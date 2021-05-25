@@ -1,5 +1,9 @@
 name: generate
 
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
 jobs:
   generate:
     runs-on: ubuntu-latest
