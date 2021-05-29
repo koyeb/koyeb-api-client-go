@@ -42,7 +42,7 @@ tags:
     The following code is an example request to retrieve the list of Apps.
 
     ```
-    %curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://api.koyeb.com/v1/storage/apps
+    %curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://api.koyeb.com/v1/apps
     {
       "apps": [
         {
@@ -1713,294 +1713,6 @@ paths:
       tags:
       - organization
       x-codegen-request-body-name: body
-  /v1/s3_credentials:
-    get:
-      operationId: ListS3Credentials
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: status
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListS3CredentialsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-    post:
-      operationId: CreateS3Credential
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateS3Credential'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/S3CredentialReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-      x-codegen-request-body-name: body
-  /v1/s3_credentials/{id}:
-    delete:
-      operationId: DeleteS3Credential
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Empty'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-    get:
-      operationId: GetS3Credential
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/S3CredentialReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-    patch:
-      operationId: UpdateS3Credential2
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/S3Credential'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/S3CredentialReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateS3Credential
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/S3Credential'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/S3CredentialReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - s3Credentials
-      x-codegen-request-body-name: body
   /v1/sso/canny:
     post:
       operationId: CannyAuth
@@ -2203,2664 +1915,6 @@ paths:
           description: An unexpected error response.
       tags:
       - activity
-  /v1/catalog/functions:
-    get:
-      operationId: ListCatalogFunctions
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListCatalogFunctionsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Show catalog of functions
-      tags:
-      - Catalog
-  /v1/catalog/functions/{name}:
-    get:
-      operationId: GetCatalogFunction
-      parameters:
-      - description: The name of the function
-        in: path
-        name: name
-        required: true
-        schema:
-          type: string
-      - description: An optional function version, if it is not set return the latest.
-        in: query
-        name: version
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCatalogFunctionsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch an item of the function catalog
-      tags:
-      - Catalog
-  /v1/catalog/stacks:
-    get:
-      operationId: ListCatalogStacks
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListCatalogStacksReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Show catalog of stacks
-      tags:
-      - Catalog
-  /v1/catalog/stacks/{name}:
-    get:
-      operationId: GetCatalogStack
-      parameters:
-      - in: path
-        name: name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCatalogStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch an item of the stack catalog
-      tags:
-      - Catalog
-  /v1/catalog/stores:
-    get:
-      operationId: ListCatalogStores
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListCatalogStoresReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Show catalog of stores
-      tags:
-      - Catalog
-  /v1/catalog/stores/{name}:
-    get:
-      operationId: GetCatalogStore
-      parameters:
-      - in: path
-        name: name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CatalogStoreReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch an item of the store catalog
-      tags:
-      - Catalog
-  /v1/connectors:
-    get:
-      operationId: ListConnectors
-      parameters:
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) Filter by name.
-        in: query
-        name: name_filter
-        schema:
-          type: string
-      - description: (Optional) A way to retrieve connectors only of a specific type.
-        in: query
-        name: type
-        schema:
-          default: unknown
-          enum:
-          - unknown
-          - cloudevent
-          - webhook
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListConnectorsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List connectors
-      tags:
-      - Connectors
-    post:
-      operationId: CreateConnector
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/ConnectorUpsert'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateConnectorReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create a new connector
-      tags:
-      - Connectors
-      x-codegen-request-body-name: body
-  /v1/connectors/{idOrName}:
-    delete:
-      operationId: DeleteConnector
-      parameters:
-      - in: path
-        name: idOrName
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteConnectorReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete a connector
-      tags:
-      - Connectors
-    get:
-      operationId: GetConnector
-      parameters:
-      - in: path
-        name: idOrName
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetConnectorReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch a connector
-      tags:
-      - Connectors
-    put:
-      operationId: UpdateConnector
-      parameters:
-      - in: path
-        name: idOrName
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/ConnectorUpsert'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateConnectorReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update a connector
-      tags:
-      - Connectors
-      x-codegen-request-body-name: body
-  /v1/connectors/{idOrName}/logs/tail:
-    get:
-      operationId: TailConnectorLogs
-      parameters:
-      - description: The id or name of the connector to tail
-        in: path
-        name: idOrName
-        required: true
-        schema:
-          type: string
-      - description: A timestamp to indicate when to pull the logs from.
-        in: query
-        name: start
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - logs
-  /v1/secrets:
-    get:
-      operationId: ListSecrets
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListSecretsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    post:
-      operationId: CreateSecret
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateSecret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-  /v1/secrets/{id}:
-    delete:
-      operationId: DeleteSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    get:
-      operationId: GetSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    patch:
-      operationId: UpdateSecret2
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Secret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Secret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-  /v1/secrets/{id}/activities:
-    get:
-      operationId: GetSecretActivities
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: View stack activities
-      tags:
-      - Secrets
-  /v1/stacks:
-    get:
-      operationId: ListStacks
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - description: Where the repo lives.
-        in: query
-        name: repository.type
-        schema:
-          default: GITHUB
-          enum:
-          - GITHUB
-          type: string
-      - description: 'The url to find the repo (.e.g: koyeb/gateway).'
-        in: query
-        name: repository.name
-        schema:
-          type: string
-      - description: The branch to track changes on.
-        in: query
-        name: repository.branch
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListStacksReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List stacks
-      tags:
-      - stack
-    post:
-      operationId: CreateStack
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/StackUpsert'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create a stack
-      tags:
-      - stack
-      x-codegen-request-body-name: body
-  /v1/stacks/{id}:
-    delete:
-      operationId: DeleteStack
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete an existing stack
-      tags:
-      - stack
-    get:
-      operationId: GetStack
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch a stack
-      tags:
-      - stack
-    patch:
-      operationId: UpdateStack2
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/StackUpsert'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update an existing stack
-      tags:
-      - stack
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateStack
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/StackUpsert'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateStackReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update an existing stack
-      tags:
-      - stack
-      x-codegen-request-body-name: body
-  /v1/stacks/{id}/activities:
-    get:
-      operationId: GetStackActivities
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: View stack activities
-      tags:
-      - stack
-  /v1/stacks/{stack_id}/events:
-    post:
-      operationId: CreateStackEvent
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              type: object
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateStackEventReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Send event to stack
-      tags:
-      - stack
-      x-codegen-request-body-name: body
-  /v1/stacks/{stack_id}/events/tail:
-    get:
-      operationId: TailStackEvents
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: start
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_Event'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - logs
-  /v1/stacks/{stack_id}/executions/{run_id}/cancel:
-    post:
-      operationId: CancelFunctionExecution
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: run_id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CancelFunctionExecutionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Cancel the execution of a function
-      tags:
-      - Functions
-  /v1/stacks/{stack_id}/executions/{run_id}/retrigger:
-    post:
-      operationId: RetryFunctionExecution
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: run_id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RetryFunctionExecutionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Relaunch the execution of a function
-      tags:
-      - Functions
-  /v1/stacks/{stack_id}/revisions:
-    get:
-      operationId: ListStackRevisions
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListStackRevisionsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List stack revisions
-      tags:
-      - stack
-    post:
-      operationId: CreateStackRevision
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateStackRevisionRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetStackRevisionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create stack revisions
-      tags:
-      - stack
-      x-codegen-request-body-name: body
-  /v1/stacks/{stack_id}/revisions/{sha}:
-    get:
-      operationId: GetStackRevision
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetStackRevisionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Fetch a stack revision
-      tags:
-      - stack
-  /v1/stacks/{stack_id}/revisions/{sha}/activities:
-    get:
-      operationId: GetStackRevisionActivities
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get a stack revision activities
-      tags:
-      - stack
-  /v1/stacks/{stack_id}/revisions/{sha}/build/cancel:
-    post:
-      operationId: CancelBuild
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CancelBuildReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Cancel the execution of a build
-      tags:
-      - stack
-  /v1/stacks/{stack_id}/revisions/{sha}/build/retrigger:
-    post:
-      operationId: RetryBuild
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RetryBuildReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Relaunch the execution of a build
-      tags:
-      - stack
-  /v1/stacks/{stack_id}/revisions/{sha}/builds/tail:
-    get:
-      operationId: TailStackRevisionBuildLogs
-      parameters:
-      - description: The name of the stack
-        in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha or _latest to indicate the latest revision
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - description: A timestamp to indicate when to pull the logs from.
-        in: query
-        name: start
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - logs
-  /v1/stacks/{stack_id}/revisions/{sha}/functions:
-    get:
-      operationId: ListFunctions
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha of the revision (either short of long form, `_latest`
-          returns the latest deployed revision)
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListFunctionsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List functions for a revision
-      tags:
-      - Functions
-  /v1/stacks/{stack_id}/revisions/{sha}/functions/{fn_name}/logs/tail:
-    get:
-      operationId: TailStackRevisionLogsForFunction
-      parameters:
-      - description: The name of the stack
-        in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha or _latest to indicate the latest revision
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - description: The name of the function
-        in: path
-        name: fn_name
-        required: true
-        schema:
-          type: string
-      - description: A timestamp.
-        in: query
-        name: start
-        schema:
-          type: string
-      - description: An optional event_id to filter on to only see runs from this
-          id.
-        in: query
-        name: event_id
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - logs
-  /v1/stacks/{stack_id}/revisions/{sha}/functions/{function}:
-    get:
-      operationId: GetFunction
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha of the revision (either short of long form, `_latest`
-          returns the latest deployed revision)
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: function
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetFunctionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get function
-      tags:
-      - Functions
-  /v1/stacks/{stack_id}/revisions/{sha}/functions/{function}/executions:
-    get:
-      operationId: FetchFunctionExecutions
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha of the revision (either short of long form, `_latest`
-          returns the latest deployed revision)
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - description: The name of the function or `:all` to get the history for all
-          the functions
-        in: path
-        name: function
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/FetchFunctionExecutionsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get the executions of function runs
-      tags:
-      - Functions
-  /v1/stacks/{stack_id}/revisions/{sha}/functions/{function}/invoke:
-    post:
-      operationId: InvokeFunction
-      parameters:
-      - in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: function
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              type: object
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/InvokeFunctionReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Send an event to a specific function
-      tags:
-      - Functions
-      x-codegen-request-body-name: body
-  /v1/stacks/{stack_id}/revisions/{sha}/logs/tail:
-    get:
-      operationId: TailStackRevisionLogs
-      parameters:
-      - description: The name of the stack
-        in: path
-        name: stack_id
-        required: true
-        schema:
-          type: string
-      - description: The sha or _latest to indicate the latest revision
-        in: path
-        name: sha
-        required: true
-        schema:
-          type: string
-      - description: A timestamp to indicate when to pull the logs from.
-        in: query
-        name: start
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - logs
-  /v1/stores:
-    get:
-      operationId: ListStores
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: status
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListStoresReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-    post:
-      operationId: CreateStore
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateStore'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StoreReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-      x-codegen-request-body-name: body
-  /v1/stores/{id}:
-    delete:
-      operationId: DeleteStore
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Empty'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-    get:
-      operationId: GetStore
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StoreReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-    patch:
-      operationId: UpdateStore2
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Store'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StoreReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateStore
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Store'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StoreReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-      x-codegen-request-body-name: body
-  /v1/stores/{id}/activities:
-    get:
-      operationId: GetStoreActivities
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-  /v1/stores/{id}/status:
-    post:
-      operationId: CheckStoreStatus
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Empty'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - store
-  /v1/summary:
-    get:
-      operationId: GetStorageSummary
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/StorageSummaryReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - StorageMetrics
-  /v1/validate_yaml:
-    post:
-      operationId: ValidateYaml
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              type: string
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ValidateYamlReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Validate a yaml stack
-      tags:
-      - Catalog
-      x-codegen-request-body-name: body
   /v1/apps/{app_id_or_name}/services:
     get:
       operationId: ListServices
@@ -5373,6 +2427,342 @@ paths:
       summary: Update App
       tags:
       - Apps
+  /v1/secrets:
+    get:
+      operationId: ListSecrets
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSecretsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+    post:
+      operationId: CreateSecret
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateSecret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+  /v1/secrets/{id}:
+    delete:
+      operationId: DeleteSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+    get:
+      operationId: GetSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+    patch:
+      operationId: UpdateSecret2
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Secret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Secret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+  /v1/secrets/{id}/activities:
+    get:
+      operationId: GetSecretActivities
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityList'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: View stack activities
+      tags:
+      - Secrets
 components:
   schemas:
     google.protobuf.Any:
@@ -5440,20 +2830,23 @@ components:
       type: object
     LogEntry:
       example:
-        level: level
+        msg: msg
+        instance_id: instance_id
+        offset: offset
         stream: stream
-        created_at: 2000-01-23T04:56:07.000+00:00
-        message: message
+        revision_id: revision_id
       properties:
-        message:
+        revision_id:
+          title: TODO improve with offset return / resume
           type: string
-        level:
-          type: string
-        created_at:
-          format: date-time
+        instance_id:
           type: string
         stream:
-          title: The stream (stdout/stderr) this log was emitted to
+          type: string
+        msg:
+          type: string
+        offset:
+          format: int64
           type: string
       type: object
     GetRegionReply:
@@ -5812,16 +3205,6 @@ components:
         description:
           type: string
       type: object
-    CreateS3Credential:
-      example:
-        name: name
-        description: description
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-      type: object
     Credential:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -6030,55 +3413,6 @@ components:
           format: int64
           type: integer
       type: object
-    ListS3CredentialsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        s3_credentials:
-        - secret_key: secret_key
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - action: action
-            target: target
-          - action: action
-            target: target
-          organization_id: organization_id
-          access_key: access_key
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-        - secret_key: secret_key
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - action: action
-            target: target
-          - action: action
-            target: target
-          organization_id: organization_id
-          access_key: access_key
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-      properties:
-        s3_credentials:
-          items:
-            $ref: '#/components/schemas/S3Credential'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
     LoginReply:
       example:
         token:
@@ -6185,16 +3519,6 @@ components:
         email:
           type: string
       type: object
-    Permission:
-      example:
-        action: action
-        target: target
-      properties:
-        action:
-          type: string
-        target:
-          type: string
-      type: object
     ResendEmailValidationReply:
       type: object
     ResendEmailValidationRequest:
@@ -6207,70 +3531,6 @@ components:
       properties:
         email:
           type: string
-      type: object
-    S3Credential:
-      example:
-        secret_key: secret_key
-        expires_at: 2000-01-23T04:56:07.000+00:00
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        permissions:
-        - action: action
-          target: target
-        - action: action
-          target: target
-        organization_id: organization_id
-        access_key: access_key
-        name: name
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-      properties:
-        id:
-          type: string
-        organization_id:
-          type: string
-        name:
-          type: string
-        access_key:
-          type: string
-        secret_key:
-          type: string
-        description:
-          type: string
-        permissions:
-          items:
-            $ref: '#/components/schemas/Permission'
-          type: array
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        expires_at:
-          format: date-time
-          type: string
-      type: object
-    S3CredentialReply:
-      example:
-        s3_credential:
-          secret_key: secret_key
-          expires_at: 2000-01-23T04:56:07.000+00:00
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          permissions:
-          - action: action
-            target: target
-          - action: action
-            target: target
-          organization_id: organization_id
-          access_key: access_key
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-      properties:
-        s3_credential:
-          $ref: '#/components/schemas/S3Credential'
       type: object
     Token:
       example:
@@ -6660,1754 +3920,6 @@ components:
         unseen:
           format: int64
           type: integer
-      type: object
-    BaseCatalog.Status:
-      default: COMING_SOON
-      enum:
-      - COMING_SOON
-      - ACTIVE
-      - DEPRECATED
-      - DISABLED
-      - UNKNOWN
-      title: The status of a catalog entry
-      type: string
-    CancelBuildReply:
-      type: object
-    CancelFunctionExecutionReply:
-      type: object
-    CatalogFunction:
-      example:
-        template: template
-        short_description: short_description
-        image: image
-        website: website
-        name: name
-        icon: icon
-        description: description
-        display_name: display_name
-        version: version
-        parameters:
-        - default: '{}'
-          name: name
-          description: description
-          required: true
-        - default: '{}'
-          name: name
-          description: description
-          required: true
-        tags:
-        - tags
-        - tags
-      properties:
-        name:
-          title: The name of the tag in a slug valid format
-          type: string
-        display_name:
-          title: A display name for a stack
-          type: string
-        short_description:
-          title: An short description of the stack (<140 characters)
-          type: string
-        description:
-          title: A longer description of the stack akin to a README in markdown
-          type: string
-        icon:
-          title: An optional url to an icon for this stack (What file format?!)
-          type: string
-        website:
-          title: The website to get more info about this function (for example the
-            source code)
-          type: string
-        status:
-          $ref: '#/components/schemas/BaseCatalog.Status'
-        tags:
-          items:
-            type: string
-          title: A set of tags to identify the catalog
-          type: array
-        version:
-          title: 'The version of the function in semver format: https://semver.org/'
-          type: string
-        image:
-          title: The image this function will use
-          type: string
-        template:
-          title: The template that is used for expanding a catalog function
-          type: string
-        parameters:
-          items:
-            $ref: '#/components/schemas/FunctionParameter'
-          title: A list of parameters for the function
-          type: array
-      type: object
-    CatalogFunctionListItem:
-      example:
-        short_description: short_description
-        image: image
-        website: website
-        name: name
-        icon: icon
-        display_name: display_name
-        version: version
-        parameters:
-        - default: '{}'
-          name: name
-          description: description
-          required: true
-        - default: '{}'
-          name: name
-          description: description
-          required: true
-        tags:
-        - tags
-        - tags
-      properties:
-        name:
-          title: The name of the tag in a slug valid format
-          type: string
-        display_name:
-          title: A display name for a stack
-          type: string
-        short_description:
-          title: An short description of the stack (<140 characters)
-          type: string
-        icon:
-          title: An optional url to an icon for this stack (What file format?!)
-          type: string
-        website:
-          title: The website to get more info about this function (for example the
-            source code)
-          type: string
-        status:
-          $ref: '#/components/schemas/BaseCatalog.Status'
-        tags:
-          items:
-            type: string
-          title: A set of tags to identify the catalog
-          type: array
-        version:
-          title: 'The version of the function in semver format: https://semver.org/'
-          type: string
-        image:
-          title: The image this function will use
-          type: string
-        parameters:
-          items:
-            $ref: '#/components/schemas/FunctionParameter'
-          title: A list of parameters for the function
-          type: array
-      title: A shorter version o a CatalogFunction for listing
-      type: object
-    CatalogStack:
-      example:
-        short_description: short_description
-        source_control_ref:
-          ref: ref
-          repo: repo
-        name: name
-        icon: icon
-        description: description
-        is_yaml_only: true
-        display_name: display_name
-        tags:
-        - tags
-        - tags
-        yaml: yaml
-      properties:
-        name:
-          title: The name of the tag in a slug valid format
-          type: string
-        display_name:
-          title: A display name for a stack
-          type: string
-        short_description:
-          title: An short description of the stack (<140 characters)
-          type: string
-        description:
-          title: A longer description of the stack akin to a README in markdown
-          type: string
-        icon:
-          title: An optional url to an icon for this stack (What file format?!)
-          type: string
-        status:
-          $ref: '#/components/schemas/BaseCatalog.Status'
-        tags:
-          items:
-            type: string
-          title: A set of tags to identify the catalog
-          type: array
-        source_control_ref:
-          $ref: '#/components/schemas/SCMReference'
-        is_yaml_only:
-          description: Whether this stack is only a yaml or not (in which case it
-            can be created as a non git managed stack).
-          type: boolean
-        yaml:
-          description: The yaml that is represented the stack.
-          type: string
-      title: A stack entry in the catalog
-      type: object
-    CatalogStackListItem:
-      example:
-        short_description: short_description
-        source_control_ref:
-          ref: ref
-          repo: repo
-        name: name
-        icon: icon
-        display_name: display_name
-        tags:
-        - tags
-        - tags
-      properties:
-        name:
-          type: string
-        display_name:
-          type: string
-        short_description:
-          type: string
-        icon:
-          type: string
-        status:
-          $ref: '#/components/schemas/BaseCatalog.Status'
-        tags:
-          items:
-            type: string
-          type: array
-        source_control_ref:
-          $ref: '#/components/schemas/SCMReference'
-      title: A shorter version of a CatalogStack for listing
-      type: object
-    CatalogStore:
-      example:
-        short_description: short_description
-        website: website
-        vendor: vendor
-        name: name
-        icon: icon
-        description: description
-        display_name: display_name
-        parameters:
-        - default: '{}'
-          name: name
-          options: '{}'
-          description: description
-          sensitive: true
-          required: true
-        - default: '{}'
-          name: name
-          options: '{}'
-          description: description
-          sensitive: true
-          required: true
-        tags:
-        - tags
-        - tags
-      properties:
-        name:
-          type: string
-        display_name:
-          type: string
-        short_description:
-          type: string
-        description:
-          type: string
-        icon:
-          type: string
-        website:
-          type: string
-        vendor:
-          type: string
-        tags:
-          items:
-            type: string
-          type: array
-        status:
-          $ref: '#/components/schemas/BaseCatalog.Status'
-        parameters:
-          items:
-            $ref: '#/components/schemas/Parameter'
-          type: array
-      type: object
-    CatalogStoreReply:
-      example:
-        catalog_store:
-          short_description: short_description
-          website: website
-          vendor: vendor
-          name: name
-          icon: icon
-          description: description
-          display_name: display_name
-          parameters:
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          tags:
-          - tags
-          - tags
-      properties:
-        catalog_store:
-          $ref: '#/components/schemas/CatalogStore'
-      type: object
-    CommitInfo:
-      example:
-        avatar_url: avatar_url
-        origin: origin
-        message: message
-        user: user
-        hash: hash
-      properties:
-        user:
-          type: string
-        message:
-          type: string
-        hash:
-          type: string
-        avatar_url:
-          type: string
-        origin:
-          type: string
-      type: object
-    Connector:
-      example:
-        with:
-          key: '{}'
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        url: url
-      properties:
-        id:
-          title: The id of the connector
-          type: string
-        name:
-          title: Name of the connector
-          type: string
-        updated_at:
-          format: date-time
-          title: When the entity was last updated
-          type: string
-        created_at:
-          format: date-time
-          title: When the entity was created
-          type: string
-        url:
-          title: The url of the connector
-          type: string
-        type:
-          $ref: '#/components/schemas/Connector.Type'
-        organization_id:
-          title: The organisation id of the connector
-          type: string
-        with:
-          additionalProperties:
-            properties: {}
-            type: object
-          title: The metadata attached to the type
-          type: object
-      type: object
-    Connector.Type:
-      default: unknown
-      enum:
-      - unknown
-      - cloudevent
-      - webhook
-      type: string
-    ConnectorListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        url: url
-      properties:
-        id:
-          title: The id of the connector
-          type: string
-        name:
-          title: Name of the connector
-          type: string
-        updated_at:
-          format: date-time
-          title: When the entity was last updated
-          type: string
-        created_at:
-          format: date-time
-          title: When the entity was created
-          type: string
-        url:
-          title: The url of the connector
-          type: string
-        type:
-          $ref: '#/components/schemas/Connector.Type'
-      type: object
-    ConnectorUpsert:
-      example:
-        with:
-          key: '{}'
-        change_url: true
-        name: name
-      properties:
-        name:
-          title: Name of the connector
-          type: string
-        change_url:
-          title: Only valid for update (whether or not to regen the url)
-          type: boolean
-        type:
-          $ref: '#/components/schemas/Connector.Type'
-        with:
-          additionalProperties:
-            properties: {}
-            type: object
-          title: The metadata attached to the type
-          type: object
-      type: object
-    CreateConnectorReply:
-      example:
-        connector:
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          url: url
-      properties:
-        connector:
-          $ref: '#/components/schemas/Connector'
-      type: object
-    CreateSecret:
-      example:
-        name: name
-        value: value
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-      type: object
-    CreateSecretReply:
-      example:
-        secret:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          value: value
-      properties:
-        secret:
-          $ref: '#/components/schemas/Secret'
-      type: object
-    CreateStackEventReply:
-      example:
-        id: id
-      properties:
-        id:
-          type: string
-      type: object
-    CreateStackReply:
-      example:
-        stack:
-          status_message: status_message
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          latest_revision_sha: latest_revision_sha
-          deployed_revision_sha: deployed_revision_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          repository:
-            name: name
-            branch: branch
-          latest_revision:
-            status_message: status_message
-            releaseId: releaseId
-            parent_sha: parent_sha
-            created_at: 2000-01-23T04:56:07.000+00:00
-            sha: sha
-            version: version
-            yaml: yaml
-            commit_info:
-              avatar_url: avatar_url
-              origin: origin
-              message: message
-              user: user
-              hash: hash
-      properties:
-        stack:
-          $ref: '#/components/schemas/Stack'
-      type: object
-    CreateStackRevisionRequest:
-      example:
-        stack_id: stack_id
-        message: message
-        yaml: '{}'
-      properties:
-        stack_id:
-          type: string
-        yaml:
-          properties: {}
-          type: object
-        message:
-          type: string
-      type: object
-    CreateStore:
-      example:
-        with:
-          key: '{}'
-        name: name
-        region: region
-        type: type
-      properties:
-        name:
-          type: string
-        region:
-          type: string
-        type:
-          type: string
-        with:
-          additionalProperties:
-            properties: {}
-            type: object
-          type: object
-      type: object
-    DeleteConnectorReply:
-      type: object
-    DeleteSecretReply:
-      type: object
-    DeleteStackReply:
-      type: object
-    Event:
-      example:
-        data: data
-        created_at: 2000-01-23T04:56:07.000+00:00
-        cloudevent: '{}'
-        id: id
-        message: message
-        event: '{}'
-      properties:
-        id:
-          type: string
-        message:
-          type: string
-        event:
-          properties: {}
-          title: (Deprecated) Use cloudevent instead
-          type: object
-        data:
-          title: (Depreacted) Use cloudevent instead
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        cloudevent:
-          properties: {}
-          title: 'A cloudevent in the json format: https://cloudevents.io/'
-          type: object
-      type: object
-    FetchFunctionExecutionsReply:
-      example:
-        executions:
-        - run_id: run_id
-          event_id: event_id
-          executions:
-          - start: 2000-01-23T04:56:07.000+00:00
-            exitCode: 0
-            end: 2000-01-23T04:56:07.000+00:00
-          - start: 2000-01-23T04:56:07.000+00:00
-            exitCode: 0
-            end: 2000-01-23T04:56:07.000+00:00
-          fn_name: fn_name
-        - run_id: run_id
-          event_id: event_id
-          executions:
-          - start: 2000-01-23T04:56:07.000+00:00
-            exitCode: 0
-            end: 2000-01-23T04:56:07.000+00:00
-          - start: 2000-01-23T04:56:07.000+00:00
-            exitCode: 0
-            end: 2000-01-23T04:56:07.000+00:00
-          fn_name: fn_name
-        offset: 1
-        limit: 6
-        count: 5
-      properties:
-        executions:
-          items:
-            $ref: '#/components/schemas/FunctionRunInfoListItem'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    Function:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/FunctionType'
-      type: object
-    FunctionExecution:
-      example:
-        start: 2000-01-23T04:56:07.000+00:00
-        exitCode: 0
-        end: 2000-01-23T04:56:07.000+00:00
-      properties:
-        state:
-          $ref: '#/components/schemas/FunctionRunInfo.State'
-        start:
-          format: date-time
-          title: The possibly empty time at which this function started
-          type: string
-        end:
-          format: date-time
-          title: The possibly empty time at which this function stopped
-          type: string
-        exitCode:
-          format: int32
-          title: The exitCode of the run, it will be -1 if it's meaningless (.e.g.
-            STARTING, RUNNING states), this only makes sense if the state is FAILED
-            or SUCCEEDED (succeeded will always be 0)
-          type: integer
-      type: object
-    FunctionListItem:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/FunctionType'
-      type: object
-    FunctionParameter:
-      example:
-        default: '{}'
-        name: name
-        description: description
-        required: true
-      properties:
-        name:
-          title: The name of the parameter
-          type: string
-        description:
-          title: A description of this parameter
-          type: string
-        required:
-          title: Whether or not this parameter must be set
-          type: boolean
-        type:
-          $ref: '#/components/schemas/FunctionParameter.Type'
-        default:
-          properties: {}
-          type: object
-      type: object
-    FunctionParameter.Type:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - STORE_REF
-      - SECRET_REF
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      title: |-
-        - UNKNOWN: Only used for error handling
-         - STORE_REF: A reference to an existing store
-         - SECRET_REF: A reference to an existing secret
-      type: string
-    FunctionRunInfo.State:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - STARTING
-      - RUNNING
-      - FAILED
-      - SUCCEEDED
-      - CANCELLED
-      - TIMEOUT
-      type: string
-    FunctionRunInfoListItem:
-      example:
-        run_id: run_id
-        event_id: event_id
-        executions:
-        - start: 2000-01-23T04:56:07.000+00:00
-          exitCode: 0
-          end: 2000-01-23T04:56:07.000+00:00
-        - start: 2000-01-23T04:56:07.000+00:00
-          exitCode: 0
-          end: 2000-01-23T04:56:07.000+00:00
-        fn_name: fn_name
-      properties:
-        run_id:
-          type: string
-        event_id:
-          type: string
-        fn_name:
-          type: string
-        state:
-          $ref: '#/components/schemas/FunctionRunInfo.State'
-        executions:
-          description: A list of executions, with the first one being the most recent
-            one.
-          items:
-            $ref: '#/components/schemas/FunctionExecution'
-          type: array
-      type: object
-    FunctionType:
-      default: DOCKER
-      enum:
-      - DOCKER
-      - CATALOG
-      - CODE
-      type: string
-    GetCatalogFunctionsReply:
-      example:
-        catalog_function:
-          template: template
-          short_description: short_description
-          image: image
-          website: website
-          name: name
-          icon: icon
-          description: description
-          display_name: display_name
-          version: version
-          parameters:
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          tags:
-          - tags
-          - tags
-        versions:
-        - versions
-        - versions
-      properties:
-        catalog_function:
-          $ref: '#/components/schemas/CatalogFunction'
-        versions:
-          items:
-            type: string
-          type: array
-      type: object
-    GetCatalogStackReply:
-      example:
-        catalog_stack:
-          short_description: short_description
-          source_control_ref:
-            ref: ref
-            repo: repo
-          name: name
-          icon: icon
-          description: description
-          is_yaml_only: true
-          display_name: display_name
-          tags:
-          - tags
-          - tags
-          yaml: yaml
-      properties:
-        catalog_stack:
-          $ref: '#/components/schemas/CatalogStack'
-      type: object
-    GetConnectorByUrlReply:
-      properties:
-        connector:
-          $ref: '#/components/schemas/Connector'
-      type: object
-    GetConnectorReply:
-      example:
-        connector:
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          url: url
-      properties:
-        connector:
-          $ref: '#/components/schemas/Connector'
-      type: object
-    GetFunctionReply:
-      example:
-        function:
-          name: name
-      properties:
-        function:
-          $ref: '#/components/schemas/Function'
-      type: object
-    GetSecretReply:
-      example:
-        secret:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          value: value
-      properties:
-        secret:
-          $ref: '#/components/schemas/Secret'
-      type: object
-    GetStackReply:
-      example:
-        stack:
-          status_message: status_message
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          latest_revision_sha: latest_revision_sha
-          deployed_revision_sha: deployed_revision_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          repository:
-            name: name
-            branch: branch
-          latest_revision:
-            status_message: status_message
-            releaseId: releaseId
-            parent_sha: parent_sha
-            created_at: 2000-01-23T04:56:07.000+00:00
-            sha: sha
-            version: version
-            yaml: yaml
-            commit_info:
-              avatar_url: avatar_url
-              origin: origin
-              message: message
-              user: user
-              hash: hash
-      properties:
-        stack:
-          $ref: '#/components/schemas/Stack'
-      type: object
-    GetStackRevisionReply:
-      example:
-        revision:
-          status_message: status_message
-          releaseId: releaseId
-          parent_sha: parent_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-          version: version
-          yaml: yaml
-          commit_info:
-            avatar_url: avatar_url
-            origin: origin
-            message: message
-            user: user
-            hash: hash
-      properties:
-        revision:
-          $ref: '#/components/schemas/StackRevision'
-      type: object
-    InvokeFunctionReply:
-      example:
-        id: id
-      properties:
-        id:
-          type: string
-      type: object
-    ListCatalogFunctionsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        catalog_functions:
-        - short_description: short_description
-          image: image
-          website: website
-          name: name
-          icon: icon
-          display_name: display_name
-          version: version
-          parameters:
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          tags:
-          - tags
-          - tags
-        - short_description: short_description
-          image: image
-          website: website
-          name: name
-          icon: icon
-          display_name: display_name
-          version: version
-          parameters:
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          - default: '{}'
-            name: name
-            description: description
-            required: true
-          tags:
-          - tags
-          - tags
-      properties:
-        catalog_functions:
-          items:
-            $ref: '#/components/schemas/CatalogFunctionListItem'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListCatalogStacksReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        catalog_stacks:
-        - short_description: short_description
-          source_control_ref:
-            ref: ref
-            repo: repo
-          name: name
-          icon: icon
-          display_name: display_name
-          tags:
-          - tags
-          - tags
-        - short_description: short_description
-          source_control_ref:
-            ref: ref
-            repo: repo
-          name: name
-          icon: icon
-          display_name: display_name
-          tags:
-          - tags
-          - tags
-      properties:
-        catalog_stacks:
-          items:
-            $ref: '#/components/schemas/CatalogStackListItem'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListCatalogStoresReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        catalog_stores:
-        - short_description: short_description
-          website: website
-          vendor: vendor
-          name: name
-          icon: icon
-          description: description
-          display_name: display_name
-          parameters:
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          tags:
-          - tags
-          - tags
-        - short_description: short_description
-          website: website
-          vendor: vendor
-          name: name
-          icon: icon
-          description: description
-          display_name: display_name
-          parameters:
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          - default: '{}'
-            name: name
-            options: '{}'
-            description: description
-            sensitive: true
-            required: true
-          tags:
-          - tags
-          - tags
-      properties:
-        catalog_stores:
-          items:
-            $ref: '#/components/schemas/CatalogStore'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListConnectorsReply:
-      example:
-        connectors:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          url: url
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          url: url
-        offset: 6
-        limit: 0
-        count: 1
-      properties:
-        connectors:
-          items:
-            $ref: '#/components/schemas/ConnectorListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    ListFunctionsReply:
-      example:
-        functions:
-        - name: name
-        - name: name
-      properties:
-        functions:
-          items:
-            $ref: '#/components/schemas/FunctionListItem'
-          type: array
-      type: object
-    ListSecretsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        secrets:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          value: value
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          value: value
-      properties:
-        secrets:
-          items:
-            $ref: '#/components/schemas/Secret'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListStackRevisionsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        revisions:
-        - releaseId: releaseId
-          parent_sha: parent_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-          version: version
-          commit_info:
-            avatar_url: avatar_url
-            origin: origin
-            message: message
-            user: user
-            hash: hash
-        - releaseId: releaseId
-          parent_sha: parent_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-          version: version
-          commit_info:
-            avatar_url: avatar_url
-            origin: origin
-            message: message
-            user: user
-            hash: hash
-      properties:
-        revisions:
-          items:
-            $ref: '#/components/schemas/StackRevisionListItem'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListStacksReply:
-      example:
-        offset: 6
-        stacks:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          latest_revision_sha: latest_revision_sha
-          deployed_revision_sha: deployed_revision_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          repository:
-            name: name
-            branch: branch
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          latest_revision_sha: latest_revision_sha
-          deployed_revision_sha: deployed_revision_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          repository:
-            name: name
-            branch: branch
-        limit: 0
-        count: 1
-      properties:
-        stacks:
-          items:
-            $ref: '#/components/schemas/StackListItem'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    ListStoresReply:
-      example:
-        offset: 6
-        stores:
-        - status_message: status_message
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          type: type
-          region: region
-          url: url
-          store_url: store_url
-        - status_message: status_message
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          type: type
-          region: region
-          url: url
-          store_url: store_url
-        limit: 0
-        count: 1
-      properties:
-        stores:
-          items:
-            $ref: '#/components/schemas/Store'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    Parameter:
-      example:
-        default: '{}'
-        name: name
-        options: '{}'
-        description: description
-        sensitive: true
-        required: true
-      properties:
-        name:
-          type: string
-        required:
-          type: boolean
-        description:
-          type: string
-        type:
-          $ref: '#/components/schemas/Parameter.ParameterType'
-        sensitive:
-          type: boolean
-        options:
-          properties: {}
-          type: object
-        default:
-          properties: {}
-          type: object
-      type: object
-    Parameter.ParameterType:
-      default: STRING
-      enum:
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      - LIST
-      - STRUCT
-      type: string
-    RetryBuildReply:
-      type: object
-    RetryFunctionExecutionReply:
-      type: object
-    SCMReference:
-      example:
-        ref: ref
-        repo: repo
-      properties:
-        type:
-          $ref: '#/components/schemas/SCMReference.SCMType'
-        repo:
-          title: A way to identify the repository within the git provider
-          type: string
-        ref:
-          title: A git ref to identify the data that needs to be taken from the repo
-            (it can be a commit, a tag, a branch...)
-          type: string
-      type: object
-    SCMReference.SCMType:
-      default: GITHUB
-      enum:
-      - GITHUB
-      - UNKNOWN
-      type: string
-    SCMRepository:
-      example:
-        name: name
-        branch: branch
-      properties:
-        type:
-          $ref: '#/components/schemas/SCMRepository.Type'
-        name:
-          title: 'The url to find the repo (.e.g: koyeb/gateway)'
-          type: string
-        branch:
-          description: The branch to track changes on.
-          type: string
-      type: object
-    SCMRepository.Type:
-      default: GITHUB
-      enum:
-      - GITHUB
-      type: string
-    Secret:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        value: value
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        value:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-      type: object
-    Stack:
-      example:
-        status_message: status_message
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        latest_revision_sha: latest_revision_sha
-        deployed_revision_sha: deployed_revision_sha
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        repository:
-          name: name
-          branch: branch
-        latest_revision:
-          status_message: status_message
-          releaseId: releaseId
-          parent_sha: parent_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-          version: version
-          yaml: yaml
-          commit_info:
-            avatar_url: avatar_url
-            origin: origin
-            message: message
-            user: user
-            hash: hash
-      properties:
-        id:
-          title: The id of the stack
-          type: string
-        name:
-          title: The name of the stack
-          type: string
-        organization_id:
-          title: The organisation id of the stack
-          type: string
-        latest_revision:
-          $ref: '#/components/schemas/StackRevision'
-        latest_revision_sha:
-          title: Sha of the latest revision
-          type: string
-        deployed_revision_sha:
-          title: Sha of the revision that was successfully deployed
-          type: string
-        repository:
-          $ref: '#/components/schemas/SCMRepository'
-        status:
-          $ref: '#/components/schemas/Stack.Status'
-        status_message:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-      title: A Stack
-      type: object
-    Stack.Status:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - DRAINING
-      - PROVISIONING
-      - ACTIVE
-      - ERROR
-      - WARNING
-      - DEPLOYING
-      title: |-
-        - UNKNOWN: This shouldn't happen but for API completion
-         - DRAINING: The stack is getting deleted
-         - PROVISIONING: A stack is starting up but doesn't have a deployed revision yet
-         - ACTIVE: Everything is ok
-         - ERROR: There's no active release and recent releases have failed
-         - WARNING: There's an active release, however the most recent release is unhealthy
-         - DEPLOYING: There's an active release, and we're deploying a newer release
-      type: string
-    StackListItem:
-      description: A smaller representation of a stack to use when listing entities.
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        latest_revision_sha: latest_revision_sha
-        deployed_revision_sha: deployed_revision_sha
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        repository:
-          name: name
-          branch: branch
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        latest_revision_sha:
-          type: string
-        deployed_revision_sha:
-          type: string
-        status:
-          $ref: '#/components/schemas/Stack.Status'
-        repository:
-          $ref: '#/components/schemas/SCMRepository'
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-      type: object
-    StackRevision:
-      description: The actual concrete definition of a stack.
-      example:
-        status_message: status_message
-        releaseId: releaseId
-        parent_sha: parent_sha
-        created_at: 2000-01-23T04:56:07.000+00:00
-        sha: sha
-        version: version
-        yaml: yaml
-        commit_info:
-          avatar_url: avatar_url
-          origin: origin
-          message: message
-          user: user
-          hash: hash
-      properties:
-        sha:
-          title: The sha of the revision
-          type: string
-        yaml:
-          title: The raw yaml
-          type: string
-        version:
-          title: The version of the schema definition
-          type: string
-        parent_sha:
-          title: The sha of the previous revision of this stack (empty if it's the
-            first revision)
-          type: string
-        status:
-          $ref: '#/components/schemas/StackRevision.Status'
-        status_message:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        commit_info:
-          $ref: '#/components/schemas/CommitInfo'
-        releaseId:
-          title: The release this stack revision was included in (possibly null if
-            not release was done yet)
-          type: string
-      type: object
-    StackRevision.Status:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - UNAVAILABLE
-      - PROVISIONING
-      - STOPPING
-      - ERROR
-      - ACTIVE
-      - VALIDATION_ERROR
-      - STOPPED
-      - BUILDING
-      - BUILD_FAILED
-      title: |-
-        - PROVISIONING: The revision is starting up, events won't be triggered to it
-         - STOPPING: The revision is being shutdown, existing runs won't get cancelled but new ones won't be triggered on it.
-         - ERROR: An error happened when deploying the new revision or when checking it's availability
-         - ACTIVE: The revision is active and everything goes well
-         - VALIDATION_ERROR: Indicate that the revision was not valid
-         - STOPPED: The revision is fully stopped nothing will get triggered
-         - BUILDING: The revision is being built
-         - BUILD_FAILED: The revision has failed to build
-      type: string
-    StackRevisionListItem:
-      example:
-        releaseId: releaseId
-        parent_sha: parent_sha
-        created_at: 2000-01-23T04:56:07.000+00:00
-        sha: sha
-        version: version
-        commit_info:
-          avatar_url: avatar_url
-          origin: origin
-          message: message
-          user: user
-          hash: hash
-      properties:
-        sha:
-          title: The sha of the revision
-          type: string
-        version:
-          title: The version of the schema definition
-          type: string
-        parent_sha:
-          title: The sha of the previous revision of this stack (empty if it's the
-            first revision)
-          type: string
-        status:
-          $ref: '#/components/schemas/StackRevision.Status'
-        created_at:
-          format: date-time
-          type: string
-        commit_info:
-          $ref: '#/components/schemas/CommitInfo'
-        releaseId:
-          title: The release this stack revision was included in (possibly null if
-            not release was done yet)
-          type: string
-      type: object
-    StackUpsert:
-      example:
-        name: name
-        repository:
-          name: name
-          branch: branch
-      properties:
-        name:
-          title: Stack name
-          type: string
-        repository:
-          $ref: '#/components/schemas/SCMRepository'
-      type: object
-    StorageSummaryReply:
-      example:
-        summary:
-          stack_count: 6.027456183070403
-          store_count: 0.8008281904610115
-      properties:
-        summary:
-          $ref: '#/components/schemas/StorageSummaryReply.Summary'
-      type: object
-    StorageSummaryReply.Summary:
-      example:
-        stack_count: 6.027456183070403
-        store_count: 0.8008281904610115
-      properties:
-        store_count:
-          format: double
-          type: number
-        stack_count:
-          format: double
-          type: number
-      type: object
-    Store:
-      example:
-        status_message: status_message
-        with:
-          key: '{}'
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        type: type
-        region: region
-        url: url
-        store_url: store_url
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-        with:
-          additionalProperties:
-            properties: {}
-            type: object
-          type: object
-        region:
-          type: string
-        url:
-          title: The url to the storage endpoint
-          type: string
-        status:
-          $ref: '#/components/schemas/Store.Status'
-        status_message:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        store_url:
-          title: The url to the bucket specifically
-          type: string
-      type: object
-    Store.Status:
-      default: PROVISIONING
-      enum:
-      - PROVISIONING
-      - UPDATING
-      - ENABLING
-      - ENABLED
-      - DISABING
-      - DISABLED
-      - LOCKING
-      - LOCKED
-      - ERROR
-      - DELETING
-      - DELETED
-      type: string
-    StoreReply:
-      example:
-        store:
-          status_message: status_message
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          type: type
-          region: region
-          url: url
-          store_url: store_url
-      properties:
-        store:
-          $ref: '#/components/schemas/Store'
-      type: object
-    UpdateConnectorReply:
-      example:
-        connector:
-          with:
-            key: '{}'
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          url: url
-      properties:
-        connector:
-          $ref: '#/components/schemas/Connector'
-      type: object
-    UpdateSecretReply:
-      example:
-        secret:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          value: value
-      properties:
-        secret:
-          $ref: '#/components/schemas/Secret'
-      type: object
-    UpdateStackReply:
-      example:
-        stack:
-          status_message: status_message
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          latest_revision_sha: latest_revision_sha
-          deployed_revision_sha: deployed_revision_sha
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          repository:
-            name: name
-            branch: branch
-          latest_revision:
-            status_message: status_message
-            releaseId: releaseId
-            parent_sha: parent_sha
-            created_at: 2000-01-23T04:56:07.000+00:00
-            sha: sha
-            version: version
-            yaml: yaml
-            commit_info:
-              avatar_url: avatar_url
-              origin: origin
-              message: message
-              user: user
-              hash: hash
-      properties:
-        stack:
-          $ref: '#/components/schemas/Stack'
-      type: object
-    ValidateYamlReply:
       type: object
     CreateService:
       example:
@@ -9546,13 +5058,146 @@ components:
         app:
           $ref: '#/components/schemas/App'
       type: object
+    CreateSecret:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      type: object
+    CreateSecretReply:
+      example:
+        secret:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          value: value
+      properties:
+        secret:
+          $ref: '#/components/schemas/Secret'
+      type: object
+    DeleteSecretReply:
+      type: object
+    GetSecretInternalReply:
+      properties:
+        secret:
+          $ref: '#/components/schemas/InternalSecret'
+      type: object
+    GetSecretReply:
+      example:
+        secret:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          value: value
+      properties:
+        secret:
+          $ref: '#/components/schemas/Secret'
+      type: object
+    InternalSecret:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        value:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    ListSecretsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        secrets:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          value: value
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          value: value
+      properties:
+        secrets:
+          items:
+            $ref: '#/components/schemas/Secret'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+        count:
+          format: int64
+          type: integer
+      type: object
+    Secret:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        value: value
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        value:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    UpdateSecretReply:
+      example:
+        secret:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          value: value
+      properties:
+        secret:
+          $ref: '#/components/schemas/Secret'
+      type: object
     Stream_result_of_LogEntry:
       example:
         result:
-          level: level
+          msg: msg
+          instance_id: instance_id
+          offset: offset
           stream: stream
-          created_at: 2000-01-23T04:56:07.000+00:00
-          message: message
+          revision_id: revision_id
         error:
           code: 0
           details:
@@ -9567,30 +5212,6 @@ components:
         error:
           $ref: '#/components/schemas/google.rpc.Status'
       title: Stream result of LogEntry
-      type: object
-    Stream_result_of_Event:
-      example:
-        result:
-          data: data
-          created_at: 2000-01-23T04:56:07.000+00:00
-          cloudevent: '{}'
-          id: id
-          message: message
-          event: '{}'
-        error:
-          code: 0
-          details:
-          - value: value
-            type_url: type_url
-          - value: value
-            type_url: type_url
-          message: message
-      properties:
-        result:
-          $ref: '#/components/schemas/Event'
-        error:
-          $ref: '#/components/schemas/google.rpc.Status'
-      title: Stream result of Event
       type: object
   securitySchemes:
     Bearer:

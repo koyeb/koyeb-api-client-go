@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** |  | [optional] 
-**Level** | Pointer to **string** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**RevisionId** | Pointer to **string** |  | [optional] 
+**InstanceId** | Pointer to **string** |  | [optional] 
 **Stream** | Pointer to **string** |  | [optional] 
+**Msg** | Pointer to **string** |  | [optional] 
+**Offset** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -28,80 +29,55 @@ NewLogEntryWithDefaults instantiates a new LogEntry object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetMessage
+### GetRevisionId
 
-`func (o *LogEntry) GetMessage() string`
+`func (o *LogEntry) GetRevisionId() string`
 
-GetMessage returns the Message field if non-nil, zero value otherwise.
+GetRevisionId returns the RevisionId field if non-nil, zero value otherwise.
 
-### GetMessageOk
+### GetRevisionIdOk
 
-`func (o *LogEntry) GetMessageOk() (*string, bool)`
+`func (o *LogEntry) GetRevisionIdOk() (*string, bool)`
 
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+GetRevisionIdOk returns a tuple with the RevisionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMessage
+### SetRevisionId
 
-`func (o *LogEntry) SetMessage(v string)`
+`func (o *LogEntry) SetRevisionId(v string)`
 
-SetMessage sets Message field to given value.
+SetRevisionId sets RevisionId field to given value.
 
-### HasMessage
+### HasRevisionId
 
-`func (o *LogEntry) HasMessage() bool`
+`func (o *LogEntry) HasRevisionId() bool`
 
-HasMessage returns a boolean if a field has been set.
+HasRevisionId returns a boolean if a field has been set.
 
-### GetLevel
+### GetInstanceId
 
-`func (o *LogEntry) GetLevel() string`
+`func (o *LogEntry) GetInstanceId() string`
 
-GetLevel returns the Level field if non-nil, zero value otherwise.
+GetInstanceId returns the InstanceId field if non-nil, zero value otherwise.
 
-### GetLevelOk
+### GetInstanceIdOk
 
-`func (o *LogEntry) GetLevelOk() (*string, bool)`
+`func (o *LogEntry) GetInstanceIdOk() (*string, bool)`
 
-GetLevelOk returns a tuple with the Level field if it's non-nil, zero value otherwise
+GetInstanceIdOk returns a tuple with the InstanceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLevel
+### SetInstanceId
 
-`func (o *LogEntry) SetLevel(v string)`
+`func (o *LogEntry) SetInstanceId(v string)`
 
-SetLevel sets Level field to given value.
+SetInstanceId sets InstanceId field to given value.
 
-### HasLevel
+### HasInstanceId
 
-`func (o *LogEntry) HasLevel() bool`
+`func (o *LogEntry) HasInstanceId() bool`
 
-HasLevel returns a boolean if a field has been set.
-
-### GetCreatedAt
-
-`func (o *LogEntry) GetCreatedAt() time.Time`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *LogEntry) GetCreatedAtOk() (*time.Time, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *LogEntry) SetCreatedAt(v time.Time)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *LogEntry) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
+HasInstanceId returns a boolean if a field has been set.
 
 ### GetStream
 
@@ -127,6 +103,56 @@ SetStream sets Stream field to given value.
 `func (o *LogEntry) HasStream() bool`
 
 HasStream returns a boolean if a field has been set.
+
+### GetMsg
+
+`func (o *LogEntry) GetMsg() string`
+
+GetMsg returns the Msg field if non-nil, zero value otherwise.
+
+### GetMsgOk
+
+`func (o *LogEntry) GetMsgOk() (*string, bool)`
+
+GetMsgOk returns a tuple with the Msg field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMsg
+
+`func (o *LogEntry) SetMsg(v string)`
+
+SetMsg sets Msg field to given value.
+
+### HasMsg
+
+`func (o *LogEntry) HasMsg() bool`
+
+HasMsg returns a boolean if a field has been set.
+
+### GetOffset
+
+`func (o *LogEntry) GetOffset() string`
+
+GetOffset returns the Offset field if non-nil, zero value otherwise.
+
+### GetOffsetOk
+
+`func (o *LogEntry) GetOffsetOk() (*string, bool)`
+
+GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOffset
+
+`func (o *LogEntry) SetOffset(v string)`
+
+SetOffset sets Offset field to given value.
+
+### HasOffset
+
+`func (o *LogEntry) HasOffset() bool`
+
+HasOffset returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

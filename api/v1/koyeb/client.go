@@ -52,13 +52,7 @@ type APIClient struct {
 
 	AppsApi *AppsApiService
 
-	CatalogApi *CatalogApiService
-
-	ConnectorsApi *ConnectorsApiService
-
 	CredentialsApi *CredentialsApiService
-
-	FunctionsApi *FunctionsApiService
 
 	HooksApi *HooksApiService
 
@@ -74,8 +68,6 @@ type APIClient struct {
 
 	RegionsApi *RegionsApiService
 
-	S3CredentialsApi *S3CredentialsApiService
-
 	SecretsApi *SecretsApiService
 
 	ServicesApi *ServicesApiService
@@ -83,12 +75,6 @@ type APIClient struct {
 	SessionApi *SessionApiService
 
 	SsoApi *SsoApiService
-
-	StackApi *StackApiService
-
-	StorageMetricsApi *StorageMetricsApiService
-
-	StoreApi *StoreApiService
 }
 
 type service struct {
@@ -109,10 +95,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.ActivityApi = (*ActivityApiService)(&c.common)
 	c.AppsApi = (*AppsApiService)(&c.common)
-	c.CatalogApi = (*CatalogApiService)(&c.common)
-	c.ConnectorsApi = (*ConnectorsApiService)(&c.common)
 	c.CredentialsApi = (*CredentialsApiService)(&c.common)
-	c.FunctionsApi = (*FunctionsApiService)(&c.common)
 	c.HooksApi = (*HooksApiService)(&c.common)
 	c.InstancesApi = (*InstancesApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
@@ -120,14 +103,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrganizationApi = (*OrganizationApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
 	c.RegionsApi = (*RegionsApiService)(&c.common)
-	c.S3CredentialsApi = (*S3CredentialsApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionApi = (*SessionApiService)(&c.common)
 	c.SsoApi = (*SsoApiService)(&c.common)
-	c.StackApi = (*StackApiService)(&c.common)
-	c.StorageMetricsApi = (*StorageMetricsApiService)(&c.common)
-	c.StoreApi = (*StoreApiService)(&c.common)
 
 	return c
 }

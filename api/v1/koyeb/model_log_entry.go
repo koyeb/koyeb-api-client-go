@@ -12,15 +12,15 @@ package koyeb
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // LogEntry struct for LogEntry
 type LogEntry struct {
-	Message *string `json:"message,omitempty"`
-	Level *string `json:"level,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	RevisionId *string `json:"revision_id,omitempty"`
+	InstanceId *string `json:"instance_id,omitempty"`
 	Stream *string `json:"stream,omitempty"`
+	Msg *string `json:"msg,omitempty"`
+	Offset *string `json:"offset,omitempty"`
 }
 
 // NewLogEntry instantiates a new LogEntry object
@@ -40,100 +40,68 @@ func NewLogEntryWithDefaults() *LogEntry {
 	return &this
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
-func (o *LogEntry) GetMessage() string {
-	if o == nil || o.Message == nil {
+// GetRevisionId returns the RevisionId field value if set, zero value otherwise.
+func (o *LogEntry) GetRevisionId() string {
+	if o == nil || o.RevisionId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+	return *o.RevisionId
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetRevisionIdOk returns a tuple with the RevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogEntry) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+func (o *LogEntry) GetRevisionIdOk() (*string, bool) {
+	if o == nil || o.RevisionId == nil {
 		return nil, false
 	}
-	return o.Message, true
+	return o.RevisionId, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *LogEntry) HasMessage() bool {
-	if o != nil && o.Message != nil {
+// HasRevisionId returns a boolean if a field has been set.
+func (o *LogEntry) HasRevisionId() bool {
+	if o != nil && o.RevisionId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *LogEntry) SetMessage(v string) {
-	o.Message = &v
+// SetRevisionId gets a reference to the given string and assigns it to the RevisionId field.
+func (o *LogEntry) SetRevisionId(v string) {
+	o.RevisionId = &v
 }
 
-// GetLevel returns the Level field value if set, zero value otherwise.
-func (o *LogEntry) GetLevel() string {
-	if o == nil || o.Level == nil {
+// GetInstanceId returns the InstanceId field value if set, zero value otherwise.
+func (o *LogEntry) GetInstanceId() string {
+	if o == nil || o.InstanceId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Level
+	return *o.InstanceId
 }
 
-// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
+// GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogEntry) GetLevelOk() (*string, bool) {
-	if o == nil || o.Level == nil {
+func (o *LogEntry) GetInstanceIdOk() (*string, bool) {
+	if o == nil || o.InstanceId == nil {
 		return nil, false
 	}
-	return o.Level, true
+	return o.InstanceId, true
 }
 
-// HasLevel returns a boolean if a field has been set.
-func (o *LogEntry) HasLevel() bool {
-	if o != nil && o.Level != nil {
+// HasInstanceId returns a boolean if a field has been set.
+func (o *LogEntry) HasInstanceId() bool {
+	if o != nil && o.InstanceId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLevel gets a reference to the given string and assigns it to the Level field.
-func (o *LogEntry) SetLevel(v string) {
-	o.Level = &v
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *LogEntry) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogEntry) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *LogEntry) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *LogEntry) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
+func (o *LogEntry) SetInstanceId(v string) {
+	o.InstanceId = &v
 }
 
 // GetStream returns the Stream field value if set, zero value otherwise.
@@ -168,19 +136,86 @@ func (o *LogEntry) SetStream(v string) {
 	o.Stream = &v
 }
 
+// GetMsg returns the Msg field value if set, zero value otherwise.
+func (o *LogEntry) GetMsg() string {
+	if o == nil || o.Msg == nil {
+		var ret string
+		return ret
+	}
+	return *o.Msg
+}
+
+// GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogEntry) GetMsgOk() (*string, bool) {
+	if o == nil || o.Msg == nil {
+		return nil, false
+	}
+	return o.Msg, true
+}
+
+// HasMsg returns a boolean if a field has been set.
+func (o *LogEntry) HasMsg() bool {
+	if o != nil && o.Msg != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMsg gets a reference to the given string and assigns it to the Msg field.
+func (o *LogEntry) SetMsg(v string) {
+	o.Msg = &v
+}
+
+// GetOffset returns the Offset field value if set, zero value otherwise.
+func (o *LogEntry) GetOffset() string {
+	if o == nil || o.Offset == nil {
+		var ret string
+		return ret
+	}
+	return *o.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogEntry) GetOffsetOk() (*string, bool) {
+	if o == nil || o.Offset == nil {
+		return nil, false
+	}
+	return o.Offset, true
+}
+
+// HasOffset returns a boolean if a field has been set.
+func (o *LogEntry) HasOffset() bool {
+	if o != nil && o.Offset != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOffset gets a reference to the given string and assigns it to the Offset field.
+func (o *LogEntry) SetOffset(v string) {
+	o.Offset = &v
+}
+
 func (o LogEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
+	if o.RevisionId != nil {
+		toSerialize["revision_id"] = o.RevisionId
 	}
-	if o.Level != nil {
-		toSerialize["level"] = o.Level
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.InstanceId != nil {
+		toSerialize["instance_id"] = o.InstanceId
 	}
 	if o.Stream != nil {
 		toSerialize["stream"] = o.Stream
+	}
+	if o.Msg != nil {
+		toSerialize["msg"] = o.Msg
+	}
+	if o.Offset != nil {
+		toSerialize["offset"] = o.Offset
 	}
 	return json.Marshal(toSerialize)
 }
