@@ -88,40 +88,17 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
-*CatalogApi* | [**GetCatalogFunction**](docs/CatalogApi.md#getcatalogfunction) | **Get** /v1/catalog/functions/{name} | Fetch an item of the function catalog
-*CatalogApi* | [**GetCatalogStack**](docs/CatalogApi.md#getcatalogstack) | **Get** /v1/catalog/stacks/{name} | Fetch an item of the stack catalog
-*CatalogApi* | [**GetCatalogStore**](docs/CatalogApi.md#getcatalogstore) | **Get** /v1/catalog/stores/{name} | Fetch an item of the store catalog
-*CatalogApi* | [**ListCatalogFunctions**](docs/CatalogApi.md#listcatalogfunctions) | **Get** /v1/catalog/functions | Show catalog of functions
-*CatalogApi* | [**ListCatalogStacks**](docs/CatalogApi.md#listcatalogstacks) | **Get** /v1/catalog/stacks | Show catalog of stacks
-*CatalogApi* | [**ListCatalogStores**](docs/CatalogApi.md#listcatalogstores) | **Get** /v1/catalog/stores | Show catalog of stores
-*CatalogApi* | [**ValidateYaml**](docs/CatalogApi.md#validateyaml) | **Post** /v1/validate_yaml | Validate a yaml stack
-*ConnectorsApi* | [**CreateConnector**](docs/ConnectorsApi.md#createconnector) | **Post** /v1/connectors | Create a new connector
-*ConnectorsApi* | [**DeleteConnector**](docs/ConnectorsApi.md#deleteconnector) | **Delete** /v1/connectors/{idOrName} | Delete a connector
-*ConnectorsApi* | [**GetConnector**](docs/ConnectorsApi.md#getconnector) | **Get** /v1/connectors/{idOrName} | Fetch a connector
-*ConnectorsApi* | [**ListConnectors**](docs/ConnectorsApi.md#listconnectors) | **Get** /v1/connectors | List connectors
-*ConnectorsApi* | [**UpdateConnector**](docs/ConnectorsApi.md#updateconnector) | **Put** /v1/connectors/{idOrName} | Update a connector
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | 
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | 
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | 
 *CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | 
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
-*FunctionsApi* | [**CancelFunctionExecution**](docs/FunctionsApi.md#cancelfunctionexecution) | **Post** /v1/stacks/{stack_id}/executions/{run_id}/cancel | Cancel the execution of a function
-*FunctionsApi* | [**FetchFunctionExecutions**](docs/FunctionsApi.md#fetchfunctionexecutions) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/functions/{function}/executions | Get the executions of function runs
-*FunctionsApi* | [**GetFunction**](docs/FunctionsApi.md#getfunction) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/functions/{function} | Get function
-*FunctionsApi* | [**InvokeFunction**](docs/FunctionsApi.md#invokefunction) | **Post** /v1/stacks/{stack_id}/revisions/{sha}/functions/{function}/invoke | Send an event to a specific function
-*FunctionsApi* | [**ListFunctions**](docs/FunctionsApi.md#listfunctions) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/functions | List functions for a revision
-*FunctionsApi* | [**RetryFunctionExecution**](docs/FunctionsApi.md#retryfunctionexecution) | **Post** /v1/stacks/{stack_id}/executions/{run_id}/retrigger | Relaunch the execution of a function
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
-*LogsApi* | [**TailConnectorLogs**](docs/LogsApi.md#tailconnectorlogs) | **Get** /v1/connectors/{idOrName}/logs/tail | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
-*LogsApi* | [**TailStackEvents**](docs/LogsApi.md#tailstackevents) | **Get** /v1/stacks/{stack_id}/events/tail | 
-*LogsApi* | [**TailStackRevisionBuildLogs**](docs/LogsApi.md#tailstackrevisionbuildlogs) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/builds/tail | 
-*LogsApi* | [**TailStackRevisionLogs**](docs/LogsApi.md#tailstackrevisionlogs) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/logs/tail | 
-*LogsApi* | [**TailStackRevisionLogsForFunction**](docs/LogsApi.md#tailstackrevisionlogsforfunction) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/functions/{fn_name}/logs/tail | 
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
@@ -141,12 +118,6 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
 *RegionsApi* | [**GetRegion**](docs/RegionsApi.md#getregion) | **Get** /v1/regions/{id} | Get Region
 *RegionsApi* | [**ListRegions**](docs/RegionsApi.md#listregions) | **Get** /v1/regions | List Region
-*S3CredentialsApi* | [**CreateS3Credential**](docs/S3CredentialsApi.md#creates3credential) | **Post** /v1/s3_credentials | 
-*S3CredentialsApi* | [**DeleteS3Credential**](docs/S3CredentialsApi.md#deletes3credential) | **Delete** /v1/s3_credentials/{id} | 
-*S3CredentialsApi* | [**GetS3Credential**](docs/S3CredentialsApi.md#gets3credential) | **Get** /v1/s3_credentials/{id} | 
-*S3CredentialsApi* | [**ListS3Credentials**](docs/S3CredentialsApi.md#lists3credentials) | **Get** /v1/s3_credentials | 
-*S3CredentialsApi* | [**UpdateS3Credential**](docs/S3CredentialsApi.md#updates3credential) | **Put** /v1/s3_credentials/{id} | 
-*S3CredentialsApi* | [**UpdateS3Credential2**](docs/S3CredentialsApi.md#updates3credential2) | **Patch** /v1/s3_credentials/{id} | 
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
@@ -167,29 +138,6 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**PasswordlessLogin**](docs/SessionApi.md#passwordlesslogin) | **Post** /v1/account/passwordless_login | 
 *SessionApi* | [**RefreshToken**](docs/SessionApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
-*StackApi* | [**CancelBuild**](docs/StackApi.md#cancelbuild) | **Post** /v1/stacks/{stack_id}/revisions/{sha}/build/cancel | Cancel the execution of a build
-*StackApi* | [**CreateStack**](docs/StackApi.md#createstack) | **Post** /v1/stacks | Create a stack
-*StackApi* | [**CreateStackEvent**](docs/StackApi.md#createstackevent) | **Post** /v1/stacks/{stack_id}/events | Send event to stack
-*StackApi* | [**CreateStackRevision**](docs/StackApi.md#createstackrevision) | **Post** /v1/stacks/{stack_id}/revisions | Create stack revisions
-*StackApi* | [**DeleteStack**](docs/StackApi.md#deletestack) | **Delete** /v1/stacks/{id} | Delete an existing stack
-*StackApi* | [**GetStack**](docs/StackApi.md#getstack) | **Get** /v1/stacks/{id} | Fetch a stack
-*StackApi* | [**GetStackActivities**](docs/StackApi.md#getstackactivities) | **Get** /v1/stacks/{id}/activities | View stack activities
-*StackApi* | [**GetStackRevision**](docs/StackApi.md#getstackrevision) | **Get** /v1/stacks/{stack_id}/revisions/{sha} | Fetch a stack revision
-*StackApi* | [**GetStackRevisionActivities**](docs/StackApi.md#getstackrevisionactivities) | **Get** /v1/stacks/{stack_id}/revisions/{sha}/activities | Get a stack revision activities
-*StackApi* | [**ListStackRevisions**](docs/StackApi.md#liststackrevisions) | **Get** /v1/stacks/{stack_id}/revisions | List stack revisions
-*StackApi* | [**ListStacks**](docs/StackApi.md#liststacks) | **Get** /v1/stacks | List stacks
-*StackApi* | [**RetryBuild**](docs/StackApi.md#retrybuild) | **Post** /v1/stacks/{stack_id}/revisions/{sha}/build/retrigger | Relaunch the execution of a build
-*StackApi* | [**UpdateStack**](docs/StackApi.md#updatestack) | **Put** /v1/stacks/{id} | Update an existing stack
-*StackApi* | [**UpdateStack2**](docs/StackApi.md#updatestack2) | **Patch** /v1/stacks/{id} | Update an existing stack
-*StorageMetricsApi* | [**GetStorageSummary**](docs/StorageMetricsApi.md#getstoragesummary) | **Get** /v1/summary | 
-*StoreApi* | [**CheckStoreStatus**](docs/StoreApi.md#checkstorestatus) | **Post** /v1/stores/{id}/status | 
-*StoreApi* | [**CreateStore**](docs/StoreApi.md#createstore) | **Post** /v1/stores | 
-*StoreApi* | [**DeleteStore**](docs/StoreApi.md#deletestore) | **Delete** /v1/stores/{id} | 
-*StoreApi* | [**GetStore**](docs/StoreApi.md#getstore) | **Get** /v1/stores/{id} | 
-*StoreApi* | [**GetStoreActivities**](docs/StoreApi.md#getstoreactivities) | **Get** /v1/stores/{id}/activities | 
-*StoreApi* | [**ListStores**](docs/StoreApi.md#liststores) | **Get** /v1/stores | 
-*StoreApi* | [**UpdateStore**](docs/StoreApi.md#updatestore) | **Put** /v1/stores/{id} | 
-*StoreApi* | [**UpdateStore2**](docs/StoreApi.md#updatestore2) | **Patch** /v1/stores/{id} | 
 
 
 ## Documentation For Models
@@ -199,33 +147,15 @@ Class | Method | HTTP request | Description
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
  - [AppListItem](docs/AppListItem.md)
- - [BaseCatalogStatus](docs/BaseCatalogStatus.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
- - [CatalogFunction](docs/CatalogFunction.md)
- - [CatalogFunctionListItem](docs/CatalogFunctionListItem.md)
- - [CatalogStack](docs/CatalogStack.md)
- - [CatalogStackListItem](docs/CatalogStackListItem.md)
- - [CatalogStore](docs/CatalogStore.md)
- - [CatalogStoreReply](docs/CatalogStoreReply.md)
- - [CommitInfo](docs/CommitInfo.md)
- - [Connector](docs/Connector.md)
- - [ConnectorListItem](docs/ConnectorListItem.md)
- - [ConnectorType](docs/ConnectorType.md)
- - [ConnectorUpsert](docs/ConnectorUpsert.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
- - [CreateConnectorReply](docs/CreateConnectorReply.md)
  - [CreateCredential](docs/CreateCredential.md)
- - [CreateS3Credential](docs/CreateS3Credential.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
- - [CreateStackEventReply](docs/CreateStackEventReply.md)
- - [CreateStackReply](docs/CreateStackReply.md)
- - [CreateStackRevisionRequest](docs/CreateStackRevisionRequest.md)
- - [CreateStore](docs/CreateStore.md)
  - [Credential](docs/Credential.md)
  - [CredentialReply](docs/CredentialReply.md)
  - [DeploymentState](docs/DeploymentState.md)
@@ -236,36 +166,20 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [ErrorField](docs/ErrorField.md)
  - [ErrorWithFields](docs/ErrorWithFields.md)
- - [Event](docs/Event.md)
- - [FetchFunctionExecutionsReply](docs/FetchFunctionExecutionsReply.md)
  - [FetchGatewayReply](docs/FetchGatewayReply.md)
  - [FetchInternalRevisionReply](docs/FetchInternalRevisionReply.md)
  - [FetchInternalServiceReply](docs/FetchInternalServiceReply.md)
- - [Function](docs/Function.md)
- - [FunctionExecution](docs/FunctionExecution.md)
- - [FunctionListItem](docs/FunctionListItem.md)
- - [FunctionParameter](docs/FunctionParameter.md)
- - [FunctionParameterType](docs/FunctionParameterType.md)
- - [FunctionRunInfoListItem](docs/FunctionRunInfoListItem.md)
- - [FunctionRunInfoState](docs/FunctionRunInfoState.md)
- - [FunctionType](docs/FunctionType.md)
  - [GatewayRoute](docs/GatewayRoute.md)
  - [GetAppReply](docs/GetAppReply.md)
- - [GetCatalogFunctionsReply](docs/GetCatalogFunctionsReply.md)
- - [GetCatalogStackReply](docs/GetCatalogStackReply.md)
- - [GetConnectorByUrlReply](docs/GetConnectorByUrlReply.md)
- - [GetConnectorReply](docs/GetConnectorReply.md)
- - [GetFunctionReply](docs/GetFunctionReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
  - [GetInternalAppReply](docs/GetInternalAppReply.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
+ - [GetSecretInternalReply](docs/GetSecretInternalReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
  - [GetServiceRevisionReply](docs/GetServiceRevisionReply.md)
- - [GetStackReply](docs/GetStackReply.md)
- - [GetStackRevisionReply](docs/GetStackRevisionReply.md)
  - [GitSource](docs/GitSource.md)
  - [GithubInstallationCallbackRequest](docs/GithubInstallationCallbackRequest.md)
  - [GithubInstallationReply](docs/GithubInstallationReply.md)
@@ -276,26 +190,17 @@ Class | Method | HTTP request | Description
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)
  - [Instance](docs/Instance.md)
  - [InstanceListItem](docs/InstanceListItem.md)
+ - [InternalSecret](docs/InternalSecret.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
- - [InvokeFunctionReply](docs/InvokeFunctionReply.md)
  - [ListAppsReply](docs/ListAppsReply.md)
- - [ListCatalogFunctionsReply](docs/ListCatalogFunctionsReply.md)
- - [ListCatalogStacksReply](docs/ListCatalogStacksReply.md)
- - [ListCatalogStoresReply](docs/ListCatalogStoresReply.md)
- - [ListConnectorsReply](docs/ListConnectorsReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
- - [ListFunctionsReply](docs/ListFunctionsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListInternalRevisionsReply](docs/ListInternalRevisionsReply.md)
  - [ListInternalServicesReply](docs/ListInternalServicesReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
- - [ListS3CredentialsReply](docs/ListS3CredentialsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServiceRevisionsReply](docs/ListServiceRevisionsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
- - [ListStackRevisionsReply](docs/ListStackRevisionsReply.md)
- - [ListStacksReply](docs/ListStacksReply.md)
- - [ListStoresReply](docs/ListStoresReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
@@ -306,21 +211,12 @@ Class | Method | HTTP request | Description
  - [OAuthProvider](docs/OAuthProvider.md)
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
- - [Parameter](docs/Parameter.md)
- - [ParameterParameterType](docs/ParameterParameterType.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
- - [Permission](docs/Permission.md)
  - [Port](docs/Port.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
  - [Route](docs/Route.md)
- - [S3Credential](docs/S3Credential.md)
- - [S3CredentialReply](docs/S3CredentialReply.md)
- - [SCMReference](docs/SCMReference.md)
- - [SCMReferenceSCMType](docs/SCMReferenceSCMType.md)
- - [SCMRepository](docs/SCMRepository.md)
- - [SCMRepositoryType](docs/SCMRepositoryType.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
  - [Service](docs/Service.md)
@@ -337,30 +233,15 @@ Class | Method | HTTP request | Description
  - [ServiceRevisionStateStatus](docs/ServiceRevisionStateStatus.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStateStatus](docs/ServiceStateStatus.md)
- - [Stack](docs/Stack.md)
- - [StackListItem](docs/StackListItem.md)
- - [StackRevision](docs/StackRevision.md)
- - [StackRevisionListItem](docs/StackRevisionListItem.md)
- - [StackRevisionStatus](docs/StackRevisionStatus.md)
- - [StackStatus](docs/StackStatus.md)
- - [StackUpsert](docs/StackUpsert.md)
- - [StorageSummaryReply](docs/StorageSummaryReply.md)
- - [StorageSummaryReplySummary](docs/StorageSummaryReplySummary.md)
- - [Store](docs/Store.md)
- - [StoreReply](docs/StoreReply.md)
- - [StoreStatus](docs/StoreStatus.md)
- - [StreamResultOfEvent](docs/StreamResultOfEvent.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [Token](docs/Token.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
- - [UpdateConnectorReply](docs/UpdateConnectorReply.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
- - [UpdateStackReply](docs/UpdateStackReply.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
  - [User](docs/User.md)
  - [UserAccountStatus](docs/UserAccountStatus.md)
