@@ -24,12 +24,111 @@ var (
 	_ _context.Context
 )
 
+type SecretsApi interface {
+
+	/*
+	 * CreateSecret Method for CreateSecret
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiCreateSecretRequest
+	 */
+	CreateSecret(ctx _context.Context) ApiCreateSecretRequest
+
+	/*
+	 * CreateSecretExecute executes the request
+	 * @return CreateSecretReply
+	 */
+	CreateSecretExecute(r ApiCreateSecretRequest) (CreateSecretReply, *_nethttp.Response, error)
+
+	/*
+	 * DeleteSecret Method for DeleteSecret
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiDeleteSecretRequest
+	 */
+	DeleteSecret(ctx _context.Context, id string) ApiDeleteSecretRequest
+
+	/*
+	 * DeleteSecretExecute executes the request
+	 * @return interface{}
+	 */
+	DeleteSecretExecute(r ApiDeleteSecretRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GetSecret Method for GetSecret
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiGetSecretRequest
+	 */
+	GetSecret(ctx _context.Context, id string) ApiGetSecretRequest
+
+	/*
+	 * GetSecretExecute executes the request
+	 * @return GetSecretReply
+	 */
+	GetSecretExecute(r ApiGetSecretRequest) (GetSecretReply, *_nethttp.Response, error)
+
+	/*
+	 * GetSecretActivities View stack activities
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiGetSecretActivitiesRequest
+	 */
+	GetSecretActivities(ctx _context.Context, id string) ApiGetSecretActivitiesRequest
+
+	/*
+	 * GetSecretActivitiesExecute executes the request
+	 * @return ActivityList
+	 */
+	GetSecretActivitiesExecute(r ApiGetSecretActivitiesRequest) (ActivityList, *_nethttp.Response, error)
+
+	/*
+	 * ListSecrets Method for ListSecrets
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListSecretsRequest
+	 */
+	ListSecrets(ctx _context.Context) ApiListSecretsRequest
+
+	/*
+	 * ListSecretsExecute executes the request
+	 * @return ListSecretsReply
+	 */
+	ListSecretsExecute(r ApiListSecretsRequest) (ListSecretsReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateSecret Method for UpdateSecret
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateSecretRequest
+	 */
+	UpdateSecret(ctx _context.Context, id string) ApiUpdateSecretRequest
+
+	/*
+	 * UpdateSecretExecute executes the request
+	 * @return UpdateSecretReply
+	 */
+	UpdateSecretExecute(r ApiUpdateSecretRequest) (UpdateSecretReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateSecret2 Method for UpdateSecret2
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateSecret2Request
+	 */
+	UpdateSecret2(ctx _context.Context, id string) ApiUpdateSecret2Request
+
+	/*
+	 * UpdateSecret2Execute executes the request
+	 * @return UpdateSecretReply
+	 */
+	UpdateSecret2Execute(r ApiUpdateSecret2Request) (UpdateSecretReply, *_nethttp.Response, error)
+}
+
 // SecretsApiService SecretsApi service
 type SecretsApiService service
 
 type ApiCreateSecretRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	body *CreateSecret
 }
 
@@ -191,7 +290,7 @@ func (a *SecretsApiService) CreateSecretExecute(r ApiCreateSecretRequest) (Creat
 
 type ApiDeleteSecretRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	id string
 }
 
@@ -347,7 +446,7 @@ func (a *SecretsApiService) DeleteSecretExecute(r ApiDeleteSecretRequest) (inter
 
 type ApiGetSecretRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	id string
 }
 
@@ -503,7 +602,7 @@ func (a *SecretsApiService) GetSecretExecute(r ApiGetSecretRequest) (GetSecretRe
 
 type ApiGetSecretActivitiesRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	id string
 	limit *string
 	offset *string
@@ -675,7 +774,7 @@ func (a *SecretsApiService) GetSecretActivitiesExecute(r ApiGetSecretActivitiesR
 
 type ApiListSecretsRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	name *string
 	limit *string
 	offset *string
@@ -851,7 +950,7 @@ func (a *SecretsApiService) ListSecretsExecute(r ApiListSecretsRequest) (ListSec
 
 type ApiUpdateSecretRequest struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	id string
 	body *Secret
 	updateMask *string
@@ -1025,7 +1124,7 @@ func (a *SecretsApiService) UpdateSecretExecute(r ApiUpdateSecretRequest) (Updat
 
 type ApiUpdateSecret2Request struct {
 	ctx _context.Context
-	ApiService *SecretsApiService
+	ApiService SecretsApi
 	id string
 	body *Secret
 	updateMask *string

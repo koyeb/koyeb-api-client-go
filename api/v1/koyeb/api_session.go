@@ -23,12 +23,67 @@ var (
 	_ _context.Context
 )
 
+type SessionApi interface {
+
+	/*
+	 * Login Login user
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiLoginRequest
+	 */
+	Login(ctx _context.Context) ApiLoginRequest
+
+	/*
+	 * LoginExecute executes the request
+	 * @return LoginReply
+	 */
+	LoginExecute(r ApiLoginRequest) (LoginReply, *_nethttp.Response, error)
+
+	/*
+	 * Logout Logout user
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiLogoutRequest
+	 */
+	Logout(ctx _context.Context) ApiLogoutRequest
+
+	/*
+	 * LogoutExecute executes the request
+	 * @return interface{}
+	 */
+	LogoutExecute(r ApiLogoutRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * PasswordlessLogin Method for PasswordlessLogin
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiPasswordlessLoginRequest
+	 */
+	PasswordlessLogin(ctx _context.Context) ApiPasswordlessLoginRequest
+
+	/*
+	 * PasswordlessLoginExecute executes the request
+	 * @return interface{}
+	 */
+	PasswordlessLoginExecute(r ApiPasswordlessLoginRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * RefreshToken Refresh token
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiRefreshTokenRequest
+	 */
+	RefreshToken(ctx _context.Context) ApiRefreshTokenRequest
+
+	/*
+	 * RefreshTokenExecute executes the request
+	 * @return LoginReply
+	 */
+	RefreshTokenExecute(r ApiRefreshTokenRequest) (LoginReply, *_nethttp.Response, error)
+}
+
 // SessionApiService SessionApi service
 type SessionApiService service
 
 type ApiLoginRequest struct {
 	ctx _context.Context
-	ApiService *SessionApiService
+	ApiService SessionApi
 	body *LoginRequest
 }
 
@@ -190,7 +245,7 @@ func (a *SessionApiService) LoginExecute(r ApiLoginRequest) (LoginReply, *_netht
 
 type ApiLogoutRequest struct {
 	ctx _context.Context
-	ApiService *SessionApiService
+	ApiService SessionApi
 }
 
 
@@ -342,7 +397,7 @@ func (a *SessionApiService) LogoutExecute(r ApiLogoutRequest) (interface{}, *_ne
 
 type ApiPasswordlessLoginRequest struct {
 	ctx _context.Context
-	ApiService *SessionApiService
+	ApiService SessionApi
 	body *PasswordlessLoginRequest
 }
 
@@ -504,7 +559,7 @@ func (a *SessionApiService) PasswordlessLoginExecute(r ApiPasswordlessLoginReque
 
 type ApiRefreshTokenRequest struct {
 	ctx _context.Context
-	ApiService *SessionApiService
+	ApiService SessionApi
 }
 
 

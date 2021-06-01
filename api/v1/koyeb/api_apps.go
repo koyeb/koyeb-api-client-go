@@ -24,12 +24,97 @@ var (
 	_ _context.Context
 )
 
+type AppsApi interface {
+
+	/*
+	 * CreateApp Create App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiCreateAppRequest
+	 */
+	CreateApp(ctx _context.Context) ApiCreateAppRequest
+
+	/*
+	 * CreateAppExecute executes the request
+	 * @return CreateAppReply
+	 */
+	CreateAppExecute(r ApiCreateAppRequest) (CreateAppReply, *_nethttp.Response, error)
+
+	/*
+	 * DeleteApp Delete App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param idOrName The id or the name of the entity to delete
+	 * @return ApiDeleteAppRequest
+	 */
+	DeleteApp(ctx _context.Context, idOrName string) ApiDeleteAppRequest
+
+	/*
+	 * DeleteAppExecute executes the request
+	 * @return interface{}
+	 */
+	DeleteAppExecute(r ApiDeleteAppRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GetApp Get App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param idOrName The id or the name of the App
+	 * @return ApiGetAppRequest
+	 */
+	GetApp(ctx _context.Context, idOrName string) ApiGetAppRequest
+
+	/*
+	 * GetAppExecute executes the request
+	 * @return GetAppReply
+	 */
+	GetAppExecute(r ApiGetAppRequest) (GetAppReply, *_nethttp.Response, error)
+
+	/*
+	 * ListApps List App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListAppsRequest
+	 */
+	ListApps(ctx _context.Context) ApiListAppsRequest
+
+	/*
+	 * ListAppsExecute executes the request
+	 * @return ListAppsReply
+	 */
+	ListAppsExecute(r ApiListAppsRequest) (ListAppsReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateApp Update App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiUpdateAppRequest
+	 */
+	UpdateApp(ctx _context.Context, idOrName string) ApiUpdateAppRequest
+
+	/*
+	 * UpdateAppExecute executes the request
+	 * @return UpdateAppReply
+	 */
+	UpdateAppExecute(r ApiUpdateAppRequest) (UpdateAppReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateApp2 Update App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiUpdateApp2Request
+	 */
+	UpdateApp2(ctx _context.Context, idOrName string) ApiUpdateApp2Request
+
+	/*
+	 * UpdateApp2Execute executes the request
+	 * @return UpdateAppReply
+	 */
+	UpdateApp2Execute(r ApiUpdateApp2Request) (UpdateAppReply, *_nethttp.Response, error)
+}
+
 // AppsApiService AppsApi service
 type AppsApiService service
 
 type ApiCreateAppRequest struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	body *CreateApp
 }
 
@@ -191,7 +276,7 @@ func (a *AppsApiService) CreateAppExecute(r ApiCreateAppRequest) (CreateAppReply
 
 type ApiDeleteAppRequest struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	idOrName string
 }
 
@@ -347,7 +432,7 @@ func (a *AppsApiService) DeleteAppExecute(r ApiDeleteAppRequest) (interface{}, *
 
 type ApiGetAppRequest struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	idOrName string
 }
 
@@ -503,7 +588,7 @@ func (a *AppsApiService) GetAppExecute(r ApiGetAppRequest) (GetAppReply, *_netht
 
 type ApiListAppsRequest struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	limit *string
 	offset *string
 	name *string
@@ -679,7 +764,7 @@ func (a *AppsApiService) ListAppsExecute(r ApiListAppsRequest) (ListAppsReply, *
 
 type ApiUpdateAppRequest struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	idOrName string
 }
 
@@ -835,7 +920,7 @@ func (a *AppsApiService) UpdateAppExecute(r ApiUpdateAppRequest) (UpdateAppReply
 
 type ApiUpdateApp2Request struct {
 	ctx _context.Context
-	ApiService *AppsApiService
+	ApiService AppsApi
 	idOrName string
 	body *UpdateApp
 	updateMask *string

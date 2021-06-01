@@ -23,12 +23,28 @@ var (
 	_ _context.Context
 )
 
+type SsoApi interface {
+
+	/*
+	 * CannyAuth Method for CannyAuth
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiCannyAuthRequest
+	 */
+	CannyAuth(ctx _context.Context) ApiCannyAuthRequest
+
+	/*
+	 * CannyAuthExecute executes the request
+	 * @return CannyAuthReply
+	 */
+	CannyAuthExecute(r ApiCannyAuthRequest) (CannyAuthReply, *_nethttp.Response, error)
+}
+
 // SsoApiService SsoApi service
 type SsoApiService service
 
 type ApiCannyAuthRequest struct {
 	ctx _context.Context
-	ApiService *SsoApiService
+	ApiService SsoApi
 	body *interface{}
 }
 

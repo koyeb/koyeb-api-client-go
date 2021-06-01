@@ -23,12 +23,29 @@ var (
 	_ _context.Context
 )
 
+type HooksApi interface {
+
+	/*
+	 * Github Github hook receiver
+	 * An implementation of github hooks. The payload is a freefrom JSON and the response will always be empty.
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGithubRequest
+	 */
+	Github(ctx _context.Context) ApiGithubRequest
+
+	/*
+	 * GithubExecute executes the request
+	 * @return interface{}
+	 */
+	GithubExecute(r ApiGithubRequest) (interface{}, *_nethttp.Response, error)
+}
+
 // HooksApiService HooksApi service
 type HooksApiService service
 
 type ApiGithubRequest struct {
 	ctx _context.Context
-	ApiService *HooksApiService
+	ApiService HooksApi
 	body *interface{}
 }
 

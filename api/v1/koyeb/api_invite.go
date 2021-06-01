@@ -23,12 +23,28 @@ var (
 	_ _context.Context
 )
 
+type InviteApi interface {
+
+	/*
+	 * CreateInvite Method for CreateInvite
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiCreateInviteRequest
+	 */
+	CreateInvite(ctx _context.Context) ApiCreateInviteRequest
+
+	/*
+	 * CreateInviteExecute executes the request
+	 * @return interface{}
+	 */
+	CreateInviteExecute(r ApiCreateInviteRequest) (interface{}, *_nethttp.Response, error)
+}
+
 // InviteApiService InviteApi service
 type InviteApiService service
 
 type ApiCreateInviteRequest struct {
 	ctx _context.Context
-	ApiService *InviteApiService
+	ApiService InviteApi
 	body *InviteUserRequest
 }
 

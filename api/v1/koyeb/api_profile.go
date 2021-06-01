@@ -24,12 +24,159 @@ var (
 	_ _context.Context
 )
 
+type ProfileApi interface {
+
+	/*
+	 * DeleteAccount Method for DeleteAccount
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiDeleteAccountRequest
+	 */
+	DeleteAccount(ctx _context.Context) ApiDeleteAccountRequest
+
+	/*
+	 * DeleteAccountExecute executes the request
+	 * @return interface{}
+	 */
+	DeleteAccountExecute(r ApiDeleteAccountRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GetCurrentUser Method for GetCurrentUser
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGetCurrentUserRequest
+	 */
+	GetCurrentUser(ctx _context.Context) ApiGetCurrentUserRequest
+
+	/*
+	 * GetCurrentUserExecute executes the request
+	 * @return UserReply
+	 */
+	GetCurrentUserExecute(r ApiGetCurrentUserRequest) (UserReply, *_nethttp.Response, error)
+
+	/*
+	 * GetOAuthOptions Get OAuth Providers
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGetOAuthOptionsRequest
+	 */
+	GetOAuthOptions(ctx _context.Context) ApiGetOAuthOptionsRequest
+
+	/*
+	 * GetOAuthOptionsExecute executes the request
+	 * @return GetOAuthOptionsReply
+	 */
+	GetOAuthOptionsExecute(r ApiGetOAuthOptionsRequest) (GetOAuthOptionsReply, *_nethttp.Response, error)
+
+	/*
+	 * OAuthCallback Authenticate using OAuth
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiOAuthCallbackRequest
+	 */
+	OAuthCallback(ctx _context.Context) ApiOAuthCallbackRequest
+
+	/*
+	 * OAuthCallbackExecute executes the request
+	 * @return OAuthCallbackReply
+	 */
+	OAuthCallbackExecute(r ApiOAuthCallbackRequest) (OAuthCallbackReply, *_nethttp.Response, error)
+
+	/*
+	 * ResendEmailValidation Method for ResendEmailValidation
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiResendEmailValidationRequest
+	 */
+	ResendEmailValidation(ctx _context.Context) ApiResendEmailValidationRequest
+
+	/*
+	 * ResendEmailValidationExecute executes the request
+	 * @return interface{}
+	 */
+	ResendEmailValidationExecute(r ApiResendEmailValidationRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * ResetPassword Method for ResetPassword
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiResetPasswordRequest
+	 */
+	ResetPassword(ctx _context.Context) ApiResetPasswordRequest
+
+	/*
+	 * ResetPasswordExecute executes the request
+	 * @return interface{}
+	 */
+	ResetPasswordExecute(r ApiResetPasswordRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * Signup Method for Signup
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiSignupRequest
+	 */
+	Signup(ctx _context.Context) ApiSignupRequest
+
+	/*
+	 * SignupExecute executes the request
+	 * @return LoginReply
+	 */
+	SignupExecute(r ApiSignupRequest) (LoginReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdatePassword Method for UpdatePassword
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiUpdatePasswordRequest
+	 */
+	UpdatePassword(ctx _context.Context) ApiUpdatePasswordRequest
+
+	/*
+	 * UpdatePasswordExecute executes the request
+	 * @return LoginReply
+	 */
+	UpdatePasswordExecute(r ApiUpdatePasswordRequest) (LoginReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateUser Method for UpdateUser
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiUpdateUserRequest
+	 */
+	UpdateUser(ctx _context.Context) ApiUpdateUserRequest
+
+	/*
+	 * UpdateUserExecute executes the request
+	 * @return UserReply
+	 */
+	UpdateUserExecute(r ApiUpdateUserRequest) (UserReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateUser2 Method for UpdateUser2
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiUpdateUser2Request
+	 */
+	UpdateUser2(ctx _context.Context) ApiUpdateUser2Request
+
+	/*
+	 * UpdateUser2Execute executes the request
+	 * @return UserReply
+	 */
+	UpdateUser2Execute(r ApiUpdateUser2Request) (UserReply, *_nethttp.Response, error)
+
+	/*
+	 * Validate Method for Validate
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiValidateRequest
+	 */
+	Validate(ctx _context.Context, id string) ApiValidateRequest
+
+	/*
+	 * ValidateExecute executes the request
+	 * @return LoginReply
+	 */
+	ValidateExecute(r ApiValidateRequest) (LoginReply, *_nethttp.Response, error)
+}
+
 // ProfileApiService ProfileApi service
 type ProfileApiService service
 
 type ApiDeleteAccountRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 }
 
 
@@ -181,7 +328,7 @@ func (a *ProfileApiService) DeleteAccountExecute(r ApiDeleteAccountRequest) (int
 
 type ApiGetCurrentUserRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 }
 
 
@@ -333,7 +480,7 @@ func (a *ProfileApiService) GetCurrentUserExecute(r ApiGetCurrentUserRequest) (U
 
 type ApiGetOAuthOptionsRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	action *string
 	metadata *string
 }
@@ -501,7 +648,7 @@ func (a *ProfileApiService) GetOAuthOptionsExecute(r ApiGetOAuthOptionsRequest) 
 
 type ApiOAuthCallbackRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *OAuthCallbackRequest
 }
 
@@ -663,7 +810,7 @@ func (a *ProfileApiService) OAuthCallbackExecute(r ApiOAuthCallbackRequest) (OAu
 
 type ApiResendEmailValidationRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *interface{}
 }
 
@@ -825,7 +972,7 @@ func (a *ProfileApiService) ResendEmailValidationExecute(r ApiResendEmailValidat
 
 type ApiResetPasswordRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *ResetPasswordRequest
 }
 
@@ -987,7 +1134,7 @@ func (a *ProfileApiService) ResetPasswordExecute(r ApiResetPasswordRequest) (int
 
 type ApiSignupRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *CreateAccountRequest
 }
 
@@ -1149,7 +1296,7 @@ func (a *ProfileApiService) SignupExecute(r ApiSignupRequest) (LoginReply, *_net
 
 type ApiUpdatePasswordRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *UpdatePasswordRequest
 }
 
@@ -1311,7 +1458,7 @@ func (a *ProfileApiService) UpdatePasswordExecute(r ApiUpdatePasswordRequest) (L
 
 type ApiUpdateUserRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *UpdateUserRequestUserUpdateBody
 	updateMask *string
 }
@@ -1481,7 +1628,7 @@ func (a *ProfileApiService) UpdateUserExecute(r ApiUpdateUserRequest) (UserReply
 
 type ApiUpdateUser2Request struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	body *UpdateUserRequestUserUpdateBody
 	updateMask *string
 }
@@ -1651,7 +1798,7 @@ func (a *ProfileApiService) UpdateUser2Execute(r ApiUpdateUser2Request) (UserRep
 
 type ApiValidateRequest struct {
 	ctx _context.Context
-	ApiService *ProfileApiService
+	ApiService ProfileApi
 	id string
 }
 

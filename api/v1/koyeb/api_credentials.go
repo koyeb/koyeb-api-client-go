@@ -24,12 +24,97 @@ var (
 	_ _context.Context
 )
 
+type CredentialsApi interface {
+
+	/*
+	 * CreateCredential Method for CreateCredential
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiCreateCredentialRequest
+	 */
+	CreateCredential(ctx _context.Context) ApiCreateCredentialRequest
+
+	/*
+	 * CreateCredentialExecute executes the request
+	 * @return CredentialReply
+	 */
+	CreateCredentialExecute(r ApiCreateCredentialRequest) (CredentialReply, *_nethttp.Response, error)
+
+	/*
+	 * DeleteCredential Method for DeleteCredential
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiDeleteCredentialRequest
+	 */
+	DeleteCredential(ctx _context.Context, id string) ApiDeleteCredentialRequest
+
+	/*
+	 * DeleteCredentialExecute executes the request
+	 * @return interface{}
+	 */
+	DeleteCredentialExecute(r ApiDeleteCredentialRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GetCredential Method for GetCredential
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiGetCredentialRequest
+	 */
+	GetCredential(ctx _context.Context, id string) ApiGetCredentialRequest
+
+	/*
+	 * GetCredentialExecute executes the request
+	 * @return CredentialReply
+	 */
+	GetCredentialExecute(r ApiGetCredentialRequest) (CredentialReply, *_nethttp.Response, error)
+
+	/*
+	 * ListCredentials Method for ListCredentials
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListCredentialsRequest
+	 */
+	ListCredentials(ctx _context.Context) ApiListCredentialsRequest
+
+	/*
+	 * ListCredentialsExecute executes the request
+	 * @return ListCredentialsReply
+	 */
+	ListCredentialsExecute(r ApiListCredentialsRequest) (ListCredentialsReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateCredential Method for UpdateCredential
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateCredentialRequest
+	 */
+	UpdateCredential(ctx _context.Context, id string) ApiUpdateCredentialRequest
+
+	/*
+	 * UpdateCredentialExecute executes the request
+	 * @return CredentialReply
+	 */
+	UpdateCredentialExecute(r ApiUpdateCredentialRequest) (CredentialReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateCredential2 Method for UpdateCredential2
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateCredential2Request
+	 */
+	UpdateCredential2(ctx _context.Context, id string) ApiUpdateCredential2Request
+
+	/*
+	 * UpdateCredential2Execute executes the request
+	 * @return CredentialReply
+	 */
+	UpdateCredential2Execute(r ApiUpdateCredential2Request) (CredentialReply, *_nethttp.Response, error)
+}
+
 // CredentialsApiService CredentialsApi service
 type CredentialsApiService service
 
 type ApiCreateCredentialRequest struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	body *CreateCredential
 }
 
@@ -191,7 +276,7 @@ func (a *CredentialsApiService) CreateCredentialExecute(r ApiCreateCredentialReq
 
 type ApiDeleteCredentialRequest struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	id string
 }
 
@@ -347,7 +432,7 @@ func (a *CredentialsApiService) DeleteCredentialExecute(r ApiDeleteCredentialReq
 
 type ApiGetCredentialRequest struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	id string
 }
 
@@ -503,7 +588,7 @@ func (a *CredentialsApiService) GetCredentialExecute(r ApiGetCredentialRequest) 
 
 type ApiListCredentialsRequest struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	name *string
 	status *string
 	limit *string
@@ -687,7 +772,7 @@ func (a *CredentialsApiService) ListCredentialsExecute(r ApiListCredentialsReque
 
 type ApiUpdateCredentialRequest struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	id string
 	body *Credential
 	updateMask *string
@@ -861,7 +946,7 @@ func (a *CredentialsApiService) UpdateCredentialExecute(r ApiUpdateCredentialReq
 
 type ApiUpdateCredential2Request struct {
 	ctx _context.Context
-	ApiService *CredentialsApiService
+	ApiService CredentialsApi
 	id string
 	body *Credential
 	updateMask *string

@@ -24,12 +24,33 @@ var (
 	_ _context.Context
 )
 
+type LogsApi interface {
+
+	/*
+	 * TailInstanceLogs Method for TailInstanceLogs
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @param serviceIdOrName
+	 * @param revisionId
+	 * @param instanceId
+	 * @param stream
+	 * @return ApiTailInstanceLogsRequest
+	 */
+	TailInstanceLogs(ctx _context.Context, appIdOrName string, serviceIdOrName string, revisionId string, instanceId string, stream string) ApiTailInstanceLogsRequest
+
+	/*
+	 * TailInstanceLogsExecute executes the request
+	 * @return StreamResultOfLogEntry
+	 */
+	TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
+}
+
 // LogsApiService LogsApi service
 type LogsApiService service
 
 type ApiTailInstanceLogsRequest struct {
 	ctx _context.Context
-	ApiService *LogsApiService
+	ApiService LogsApi
 	appIdOrName string
 	serviceIdOrName string
 	revisionId string

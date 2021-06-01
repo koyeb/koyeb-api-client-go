@@ -23,12 +23,54 @@ var (
 	_ _context.Context
 )
 
+type ActivityApi interface {
+
+	/*
+	 * GetAccountActivities Method for GetAccountActivities
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGetAccountActivitiesRequest
+	 */
+	GetAccountActivities(ctx _context.Context) ApiGetAccountActivitiesRequest
+
+	/*
+	 * GetAccountActivitiesExecute executes the request
+	 * @return ActivityList
+	 */
+	GetAccountActivitiesExecute(r ApiGetAccountActivitiesRequest) (ActivityList, *_nethttp.Response, error)
+
+	/*
+	 * ListActivities Method for ListActivities
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListActivitiesRequest
+	 */
+	ListActivities(ctx _context.Context) ApiListActivitiesRequest
+
+	/*
+	 * ListActivitiesExecute executes the request
+	 * @return ActivityList
+	 */
+	ListActivitiesExecute(r ApiListActivitiesRequest) (ActivityList, *_nethttp.Response, error)
+
+	/*
+	 * ListNotifications Method for ListNotifications
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListNotificationsRequest
+	 */
+	ListNotifications(ctx _context.Context) ApiListNotificationsRequest
+
+	/*
+	 * ListNotificationsExecute executes the request
+	 * @return NotificationList
+	 */
+	ListNotificationsExecute(r ApiListNotificationsRequest) (NotificationList, *_nethttp.Response, error)
+}
+
 // ActivityApiService ActivityApi service
 type ActivityApiService service
 
 type ApiGetAccountActivitiesRequest struct {
 	ctx _context.Context
-	ApiService *ActivityApiService
+	ApiService ActivityApi
 	limit *string
 	offset *string
 }
@@ -196,7 +238,7 @@ func (a *ActivityApiService) GetAccountActivitiesExecute(r ApiGetAccountActiviti
 
 type ApiListActivitiesRequest struct {
 	ctx _context.Context
-	ApiService *ActivityApiService
+	ApiService ActivityApi
 	limit *string
 	offset *string
 }
@@ -364,7 +406,7 @@ func (a *ActivityApiService) ListActivitiesExecute(r ApiListActivitiesRequest) (
 
 type ApiListNotificationsRequest struct {
 	ctx _context.Context
-	ApiService *ActivityApiService
+	ApiService ActivityApi
 	limit *string
 	offset *string
 	markRead *string

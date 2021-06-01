@@ -48,33 +48,33 @@ type APIClient struct {
 
 	// API Services
 
-	ActivityApi *ActivityApiService
+	ActivityApi ActivityApi
 
-	AppsApi *AppsApiService
+	AppsApi AppsApi
 
-	CredentialsApi *CredentialsApiService
+	CredentialsApi CredentialsApi
 
-	HooksApi *HooksApiService
+	HooksApi HooksApi
 
-	InstancesApi *InstancesApiService
+	InstancesApi InstancesApi
 
-	InviteApi *InviteApiService
+	InviteApi InviteApi
 
-	LogsApi *LogsApiService
+	LogsApi LogsApi
 
-	OrganizationApi *OrganizationApiService
+	OrganizationApi OrganizationApi
 
-	ProfileApi *ProfileApiService
+	ProfileApi ProfileApi
 
-	RegionsApi *RegionsApiService
+	RegionsApi RegionsApi
 
-	SecretsApi *SecretsApiService
+	SecretsApi SecretsApi
 
-	ServicesApi *ServicesApiService
+	ServicesApi ServicesApi
 
-	SessionApi *SessionApiService
+	SessionApi SessionApi
 
-	SsoApi *SsoApiService
+	SsoApi SsoApi
 }
 
 type service struct {
