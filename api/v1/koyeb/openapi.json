@@ -19,7 +19,7 @@
       "name": "intro",
       "x-displayName": "Introduction",
       "x-traitTag": true,
-      "description": "Welcome to the Koyeb API documentation.\n\nThe Koyeb API allows you to interact with the Koyeb platform in a simple, programmatic way using conventional HTTP requests.\nThe API has predictable resource-oriented URLs, allowing you to request, retrieve and execute actions on resources efficiently.\n\nThe API returns JSON-encoded responses and uses standard HTTP response codes, and verbs.\n\nAll of the functionality available in the Koyeb Control Panel is also available via the API, allowing you to automate repetitive and complex actions as required.\n\nAll production API requests are made to:\n\n- https://api.koyeb.com/<version>\n\nAll data is sent and received as JSON.\n\n## Constructing Requests\n\nRequests are made of three components:\n\n- Base URL: `https://api.koyeb.com`\n- API Version: `v1`\n- Resource path: `apps`\n\nTo construct a proper request, you need to format the URL as follows:\n\n`https://api.koyeb.com/{version}/{resource}`\n\nExample: `https://api.koyeb.com/v1/apps`\n\nThe following code is an example request to retrieve the list of Apps.\n\n```\n%curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://api.koyeb.com/v1/apps\n{\n  \"apps\": [\n    {\n      \"id\": \"e267e09d-a2ef-4672-95c7-bf88d787a274\",\n      \"name\": \"demo\",\n      \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",\n      \"updated_at\": \"2021-04-26T08:28:59.221274Z\",\n      \"created_at\": \"2021-04-26T08:28:59.221274Z\",\n      \"domains\": [\n        {\n          \"name\": \"demo-koyeb.koyeb.app\",\n          \"deployment_group\": \"prod\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e38caea5-5acb-4fec-aa65-81749546b470\",\n      \"name\": \"www\",\n      \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",\n      \"updated_at\": \"2021-05-04T08:56:40.557792Z\",\n      \"created_at\": \"2021-05-04T08:56:40.557792Z\",\n      \"domains\": [\n        {\n          \"name\": \"www-koyeb.koyeb.app\",\n          \"deployment_group\": \"prod\"\n        }\n      ]\n    }\n  ],\n  \"limit\": 20,\n  \"offset\": 0,\n  \"count\": 2\n}\n```\n\n# Authentication\n\nThe Koyeb API uses API keys to authenticate requests. You can view and manage your API keys in the Koyeb Control Panel.\n\nYour API keys carry many privileges. Take care to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, Slack, client-side code, and so forth.\n\nTo make an authenticated request, include a bearer-type Authorization header containing your API key.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.\n\n# Errors\n\nWe use conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g., a required parameter is missing, resource not found), and codes in the 5xx range indicate an error with our servers.\n\n## HTTP Status Code Summary\n\n- `200 OK` - Everything worked as expected.\n- `400 Bad Request` - Often missing a required parameter.\n- `401 Unauthorized` - No valid API key provided.\n- `402 Request Failed` - Parameters were valid, but the request failed.\n- `403 Forbidden` - Insufficient privileges to access the requested resource.\n- `404 Not Found` - The requested item doesn't exist.\n- `50x` Server errors - Something went wrong on the API domain's end.\n\nInput and output data must be valid JSON with the appropriate Content-Type header set.\n\n## Attributes\n\n- code:\n\n  - `invalid_argument`: Occur when your request has invalid parameters.\n  - `unknown_resource`: Occur when the resource doesn't exist.\n  - `authentication_error`: Arise when there is a problem with authentication.\n  - `rate_limit_error`: Too many requests hit the API too quickly.\n  - `authorization_required`: You don't have sufficient right to access the resource.\n  - `api_error`: API errors use in case of a problem with api domain's servers (extremely uncommon).\n\n- message:\n\n  - A human-readable error giving more details about the error\n\n- status:\n\n  - The HTTP code returned by the server.\n\n- fields (Optional):\n\n  - An array of parameters with a human-readable message giving more details about the error.\n\n## Errors responses example\n\nResponse 400 (application/json)\n\n```\n{\n  \"status\": 400,\n  \"code\": \"invalid_argument\",\n  \"message\": \"Invalid argument\",\n  \"fields\": [\n    {\n      \"field\": \"definition.docker.image\",\n      \"description\": \"cannot be blank\"\n    }\n  ]\n}\n```\n\nResponse 401 (application/json)\n\n```\n{\n  \"status\": 401,\n  \"code\": \"authentication_error\",\n  \"message\": \"Request unauthenticated with bearer\"\n}\n```\n\nResponse 403 (application/json)\n\n```\n{\n  \"status\": 403,\n  \"code\": \"authentication_required\",\n  \"message\": \"You don't have the requested permission to access to resource.\"\n}\n```\n\n\nResponse 404 (application/json)\n\n```\n{\n  \"status\": 404,\n  \"code\": \"unknown_resource\",\n  \"message\": \"App not found\"\n}\n```\n\n# Pagination\n\nAll top-level API resources receive a paginated response. For instance, list Apps, list Services, and others share a standard structure, taking two parameters: limit and offset.\n\n**Paginated request**\n\nRequests against paginated endpoints accept two query string arguments:\n\n* *limit*, a positive integer lower or equal to 100 to select the number of items to display.\n* *offset*, an integer to indicate the position to start at.\n\nPaginated endpoints usually also accept filters to search and sort results.\nThese filters are documented along with each endpoint documentation.\n"
+      "description": "Welcome to the Koyeb API documentation.\n\nThe Koyeb API allows you to interact with the Koyeb platform in a simple, programmatic way using conventional HTTP requests.\nThe API has predictable resource-oriented URLs, allowing you to request, retrieve and execute actions on resources efficiently.\n\nThe API returns JSON-encoded responses and uses standard HTTP response codes, and verbs.\n\nAll of the functionality available in the Koyeb Control Panel is also available via the API, allowing you to automate repetitive and complex actions as required.\n\nAll production API requests are made to:\n\n- https://app.koyeb.com/<version>\n\nAll data is sent and received as JSON.\n\n## Constructing Requests\n\nRequests are made of three components:\n\n- Base URL: `https://app.koyeb.com`\n- API Version: `v1`\n- Resource path: `apps`\n\nTo construct a proper request, you need to format the URL as follows:\n\n`https://app.koyeb.com/{version}/{resource}`\n\nExample: `https://app.koyeb.com/v1/apps`\n\nThe following code is an example request to retrieve the list of Apps.\n\n```\n%curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://app.koyeb.com/v1/apps\n{\n  \"apps\": [\n    {\n      \"id\": \"e267e09d-a2ef-4672-95c7-bf88d787a274\",\n      \"name\": \"demo\",\n      \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",\n      \"updated_at\": \"2021-04-26T08:28:59.221274Z\",\n      \"created_at\": \"2021-04-26T08:28:59.221274Z\",\n      \"domains\": [\n        {\n          \"name\": \"demo-koyeb.koyeb.app\",\n          \"deployment_group\": \"prod\"\n        }\n      ]\n    },\n    {\n      \"id\": \"e38caea5-5acb-4fec-aa65-81749546b470\",\n      \"name\": \"www\",\n      \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",\n      \"updated_at\": \"2021-05-04T08:56:40.557792Z\",\n      \"created_at\": \"2021-05-04T08:56:40.557792Z\",\n      \"domains\": [\n        {\n          \"name\": \"www-koyeb.koyeb.app\",\n          \"deployment_group\": \"prod\"\n        }\n      ]\n    }\n  ],\n  \"limit\": 20,\n  \"offset\": 0,\n  \"count\": 2\n}\n```\n\n# Authentication\n\nThe Koyeb API uses API keys to authenticate requests. You can view and manage your API keys in the Koyeb Control Panel.\n\nYour API keys carry many privileges. Take care to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, Slack, client-side code, and so forth.\n\nTo make an authenticated request, include a bearer-type Authorization header containing your API key.\n\nAll API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.\n\n# Errors\n\nWe use conventional HTTP response codes to indicate the success or failure of an API request.\n\nIn general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g., a required parameter is missing, resource not found), and codes in the 5xx range indicate an error with our servers.\n\n## HTTP Status Code Summary\n\n- `200 OK` - Everything worked as expected.\n- `400 Bad Request` - Often missing a required parameter.\n- `401 Unauthorized` - No valid API key provided.\n- `402 Request Failed` - Parameters were valid, but the request failed.\n- `403 Forbidden` - Insufficient privileges to access the requested resource.\n- `404 Not Found` - The requested item doesn't exist.\n- `50x` Server errors - Something went wrong on the API domain's end.\n\nInput and output data must be valid JSON with the appropriate Content-Type header set.\n\n## Attributes\n\n- code:\n\n  - `invalid_argument`: Occur when your request has invalid parameters.\n  - `unknown_resource`: Occur when the resource doesn't exist.\n  - `authentication_error`: Arise when there is a problem with authentication.\n  - `rate_limit_error`: Too many requests hit the API too quickly.\n  - `authorization_required`: You don't have sufficient right to access the resource.\n  - `api_error`: API errors use in case of a problem with api domain's servers (extremely uncommon).\n\n- message:\n\n  - A human-readable error giving more details about the error\n\n- status:\n\n  - The HTTP code returned by the server.\n\n- fields (Optional):\n\n  - An array of parameters with a human-readable message giving more details about the error.\n\n## Errors responses example\n\nResponse 400 (application/json)\n\n```\n{\n  \"status\": 400,\n  \"code\": \"invalid_argument\",\n  \"message\": \"Invalid argument\",\n  \"fields\": [\n    {\n      \"field\": \"definition.docker.image\",\n      \"description\": \"cannot be blank\"\n    }\n  ]\n}\n```\n\nResponse 401 (application/json)\n\n```\n{\n  \"status\": 401,\n  \"code\": \"authentication_error\",\n  \"message\": \"Request unauthenticated with bearer\"\n}\n```\n\nResponse 403 (application/json)\n\n```\n{\n  \"status\": 403,\n  \"code\": \"authentication_required\",\n  \"message\": \"You don't have the requested permission to access to resource.\"\n}\n```\n\n\nResponse 404 (application/json)\n\n```\n{\n  \"status\": 404,\n  \"code\": \"unknown_resource\",\n  \"message\": \"App not found\"\n}\n```\n\n# Pagination\n\nAll top-level API resources receive a paginated response. For instance, list Apps, list Services, and others share a standard structure, taking two parameters: limit and offset.\n\n**Paginated request**\n\nRequests against paginated endpoints accept two query string arguments:\n\n* *limit*, a positive integer lower or equal to 100 to select the number of items to display.\n* *offset*, an integer to indicate the position to start at.\n\nPaginated endpoints usually also accept filters to search and sort results.\nThese filters are documented along with each endpoint documentation.\n"
     }
   ],
   "x-tagGroups": [
@@ -2041,6 +2041,24 @@
               "$ref": "#/definitions/ListServicesReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2091,6 +2109,24 @@
               "$ref": "#/definitions/CreateServiceReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2138,6 +2174,24 @@
               "$ref": "#/definitions/GetServiceReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2175,6 +2229,24 @@
               "$ref": "#/definitions/DeleteServiceReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2210,6 +2282,24 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/UpdateServiceReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           },
           "default": {
@@ -2270,6 +2360,24 @@
               "$ref": "#/definitions/UpdateServiceReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2328,6 +2436,24 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/ListServiceRevisionsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           },
           "default": {
@@ -2413,6 +2539,24 @@
               "$ref": "#/definitions/GetServiceRevisionReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2459,6 +2603,24 @@
               "$ref": "#/definitions/ListAppsReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2503,6 +2665,24 @@
               "$ref": "#/definitions/CreateAppReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2536,6 +2716,24 @@
               "$ref": "#/definitions/GetAppReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2564,6 +2762,24 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/DeleteAppReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           },
           "default": {
@@ -2596,6 +2812,24 @@
               "$ref": "#/definitions/UpdateAppReply"
             }
           },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
           "default": {
             "description": "An unexpected error response.",
             "schema": {
@@ -2624,6 +2858,24 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/UpdateAppReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           },
           "default": {
