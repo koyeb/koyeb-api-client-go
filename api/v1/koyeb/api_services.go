@@ -25,12 +25,134 @@ var (
 	_ _context.Context
 )
 
+type ServicesApi interface {
+
+	/*
+	 * CreateService Create Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @return ApiCreateServiceRequest
+	 */
+	CreateService(ctx _context.Context, appIdOrName string) ApiCreateServiceRequest
+
+	/*
+	 * CreateServiceExecute executes the request
+	 * @return CreateServiceReply
+	 */
+	CreateServiceExecute(r ApiCreateServiceRequest) (CreateServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * DeleteService Delete Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to delete
+	 * @return ApiDeleteServiceRequest
+	 */
+	DeleteService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeleteServiceRequest
+
+	/*
+	 * DeleteServiceExecute executes the request
+	 * @return interface{}
+	 */
+	DeleteServiceExecute(r ApiDeleteServiceRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GetRevision Get Revision
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the app
+	 * @param idOrName The id or the name of the service
+	 * @param id The id of the revision to fetch or `_latest` to get the latest one
+	 * @return ApiGetRevisionRequest
+	 */
+	GetRevision(ctx _context.Context, appIdOrName string, idOrName string, id string) ApiGetRevisionRequest
+
+	/*
+	 * GetRevisionExecute executes the request
+	 * @return GetServiceRevisionReply
+	 */
+	GetRevisionExecute(r ApiGetRevisionRequest) (GetServiceRevisionReply, *_nethttp.Response, error)
+
+	/*
+	 * GetService Get Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the Service
+	 * @return ApiGetServiceRequest
+	 */
+	GetService(ctx _context.Context, appIdOrName string, idOrName string) ApiGetServiceRequest
+
+	/*
+	 * GetServiceExecute executes the request
+	 * @return GetServiceReply
+	 */
+	GetServiceExecute(r ApiGetServiceRequest) (GetServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * ListRevisions List Revisions
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @param idOrName
+	 * @return ApiListRevisionsRequest
+	 */
+	ListRevisions(ctx _context.Context, appIdOrName string, idOrName string) ApiListRevisionsRequest
+
+	/*
+	 * ListRevisionsExecute executes the request
+	 * @return ListServiceRevisionsReply
+	 */
+	ListRevisionsExecute(r ApiListRevisionsRequest) (ListServiceRevisionsReply, *_nethttp.Response, error)
+
+	/*
+	 * ListServices List Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @return ApiListServicesRequest
+	 */
+	ListServices(ctx _context.Context, appIdOrName string) ApiListServicesRequest
+
+	/*
+	 * ListServicesExecute executes the request
+	 * @return ListServicesReply
+	 */
+	ListServicesExecute(r ApiListServicesRequest) (ListServicesReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateService Update Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiUpdateServiceRequest
+	 */
+	UpdateService(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateServiceRequest
+
+	/*
+	 * UpdateServiceExecute executes the request
+	 * @return UpdateServiceReply
+	 */
+	UpdateServiceExecute(r ApiUpdateServiceRequest) (UpdateServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateService2 Update Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiUpdateService2Request
+	 */
+	UpdateService2(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateService2Request
+
+	/*
+	 * UpdateService2Execute executes the request
+	 * @return UpdateServiceReply
+	 */
+	UpdateService2Execute(r ApiUpdateService2Request) (UpdateServiceReply, *_nethttp.Response, error)
+}
+
 // ServicesApiService ServicesApi service
 type ServicesApiService service
 
 type ApiCreateServiceRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	body *CreateService
 	dryRun *bool
@@ -204,7 +326,7 @@ func (a *ServicesApiService) CreateServiceExecute(r ApiCreateServiceRequest) (Cr
 
 type ApiDeleteServiceRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 }
@@ -364,7 +486,7 @@ func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (in
 
 type ApiGetRevisionRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 	id string
@@ -528,7 +650,7 @@ func (a *ServicesApiService) GetRevisionExecute(r ApiGetRevisionRequest) (GetSer
 
 type ApiGetServiceRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 }
@@ -688,7 +810,7 @@ func (a *ServicesApiService) GetServiceExecute(r ApiGetServiceRequest) (GetServi
 
 type ApiListRevisionsRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 	limit *string
@@ -896,7 +1018,7 @@ func (a *ServicesApiService) ListRevisionsExecute(r ApiListRevisionsRequest) (Li
 
 type ApiListServicesRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	limit *string
 	offset *string
@@ -1076,7 +1198,7 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (List
 
 type ApiUpdateServiceRequest struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 	body *UpdateService
@@ -1262,7 +1384,7 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (Up
 
 type ApiUpdateService2Request struct {
 	ctx _context.Context
-	ApiService *ServicesApiService
+	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
 	body *UpdateService

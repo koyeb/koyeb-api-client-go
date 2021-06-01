@@ -24,12 +24,42 @@ var (
 	_ _context.Context
 )
 
+type InstancesApi interface {
+
+	/*
+	 * GetInstance Get Instance
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The name of the instance
+	 * @return ApiGetInstanceRequest
+	 */
+	GetInstance(ctx _context.Context, id string) ApiGetInstanceRequest
+
+	/*
+	 * GetInstanceExecute executes the request
+	 * @return GetInstanceReply
+	 */
+	GetInstanceExecute(r ApiGetInstanceRequest) (GetInstanceReply, *_nethttp.Response, error)
+
+	/*
+	 * ListInstances List Instance
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListInstancesRequest
+	 */
+	ListInstances(ctx _context.Context) ApiListInstancesRequest
+
+	/*
+	 * ListInstancesExecute executes the request
+	 * @return ListInstancesReply
+	 */
+	ListInstancesExecute(r ApiListInstancesRequest) (ListInstancesReply, *_nethttp.Response, error)
+}
+
 // InstancesApiService InstancesApi service
 type InstancesApiService service
 
 type ApiGetInstanceRequest struct {
 	ctx _context.Context
-	ApiService *InstancesApiService
+	ApiService InstancesApi
 	id string
 }
 
@@ -155,7 +185,7 @@ func (a *InstancesApiService) GetInstanceExecute(r ApiGetInstanceRequest) (GetIn
 
 type ApiListInstancesRequest struct {
 	ctx _context.Context
-	ApiService *InstancesApiService
+	ApiService InstancesApi
 	limit *string
 	offset *string
 	id *string

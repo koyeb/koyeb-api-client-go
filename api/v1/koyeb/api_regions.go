@@ -24,12 +24,42 @@ var (
 	_ _context.Context
 )
 
+type RegionsApi interface {
+
+	/*
+	 * GetRegion Get Region
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The name of the region
+	 * @return ApiGetRegionRequest
+	 */
+	GetRegion(ctx _context.Context, id string) ApiGetRegionRequest
+
+	/*
+	 * GetRegionExecute executes the request
+	 * @return GetRegionReply
+	 */
+	GetRegionExecute(r ApiGetRegionRequest) (GetRegionReply, *_nethttp.Response, error)
+
+	/*
+	 * ListRegions List Region
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiListRegionsRequest
+	 */
+	ListRegions(ctx _context.Context) ApiListRegionsRequest
+
+	/*
+	 * ListRegionsExecute executes the request
+	 * @return ListRegionsReply
+	 */
+	ListRegionsExecute(r ApiListRegionsRequest) (ListRegionsReply, *_nethttp.Response, error)
+}
+
 // RegionsApiService RegionsApi service
 type RegionsApiService service
 
 type ApiGetRegionRequest struct {
 	ctx _context.Context
-	ApiService *RegionsApiService
+	ApiService RegionsApi
 	id string
 }
 
@@ -155,7 +185,7 @@ func (a *RegionsApiService) GetRegionExecute(r ApiGetRegionRequest) (GetRegionRe
 
 type ApiListRegionsRequest struct {
 	ctx _context.Context
-	ApiService *RegionsApiService
+	ApiService RegionsApi
 	limit *string
 	offset *string
 	id *string

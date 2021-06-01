@@ -24,12 +24,96 @@ var (
 	_ _context.Context
 )
 
+type OrganizationApi interface {
+
+	/*
+	 * GetOrganization Get organization
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiGetOrganizationRequest
+	 */
+	GetOrganization(ctx _context.Context, id string) ApiGetOrganizationRequest
+
+	/*
+	 * GetOrganizationExecute executes the request
+	 * @return GetOrganizationReply
+	 */
+	GetOrganizationExecute(r ApiGetOrganizationRequest) (GetOrganizationReply, *_nethttp.Response, error)
+
+	/*
+	 * GithubInstallation Start github installation
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGithubInstallationRequest
+	 */
+	GithubInstallation(ctx _context.Context) ApiGithubInstallationRequest
+
+	/*
+	 * GithubInstallationExecute executes the request
+	 * @return GithubInstallationReply
+	 */
+	GithubInstallationExecute(r ApiGithubInstallationRequest) (GithubInstallationReply, *_nethttp.Response, error)
+
+	/*
+	 * GithubInstallationCallback Github callback for app installation
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGithubInstallationCallbackRequest
+	 */
+	GithubInstallationCallback(ctx _context.Context) ApiGithubInstallationCallbackRequest
+
+	/*
+	 * GithubInstallationCallbackExecute executes the request
+	 * @return interface{}
+	 */
+	GithubInstallationCallbackExecute(r ApiGithubInstallationCallbackRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * GithubInstallationRepoList List Github repos of the organization
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @return ApiGithubInstallationRepoListRequest
+	 */
+	GithubInstallationRepoList(ctx _context.Context) ApiGithubInstallationRepoListRequest
+
+	/*
+	 * GithubInstallationRepoListExecute executes the request
+	 * @return GithubInstallationRepoListReply
+	 */
+	GithubInstallationRepoListExecute(r ApiGithubInstallationRepoListRequest) (GithubInstallationRepoListReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateOrganization Update organization
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateOrganizationRequest
+	 */
+	UpdateOrganization(ctx _context.Context, id string) ApiUpdateOrganizationRequest
+
+	/*
+	 * UpdateOrganizationExecute executes the request
+	 * @return UpdateOrganizationReply
+	 */
+	UpdateOrganizationExecute(r ApiUpdateOrganizationRequest) (UpdateOrganizationReply, *_nethttp.Response, error)
+
+	/*
+	 * UpdateOrganization2 Update organization
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id
+	 * @return ApiUpdateOrganization2Request
+	 */
+	UpdateOrganization2(ctx _context.Context, id string) ApiUpdateOrganization2Request
+
+	/*
+	 * UpdateOrganization2Execute executes the request
+	 * @return UpdateOrganizationReply
+	 */
+	UpdateOrganization2Execute(r ApiUpdateOrganization2Request) (UpdateOrganizationReply, *_nethttp.Response, error)
+}
+
 // OrganizationApiService OrganizationApi service
 type OrganizationApiService service
 
 type ApiGetOrganizationRequest struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	id string
 }
 
@@ -185,7 +269,7 @@ func (a *OrganizationApiService) GetOrganizationExecute(r ApiGetOrganizationRequ
 
 type ApiGithubInstallationRequest struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	metadata *string
 }
 
@@ -345,7 +429,7 @@ func (a *OrganizationApiService) GithubInstallationExecute(r ApiGithubInstallati
 
 type ApiGithubInstallationCallbackRequest struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	body *GithubInstallationCallbackRequest
 }
 
@@ -507,7 +591,7 @@ func (a *OrganizationApiService) GithubInstallationCallbackExecute(r ApiGithubIn
 
 type ApiGithubInstallationRepoListRequest struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	page *int64
 	perPage *int64
 }
@@ -675,7 +759,7 @@ func (a *OrganizationApiService) GithubInstallationRepoListExecute(r ApiGithubIn
 
 type ApiUpdateOrganizationRequest struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	id string
 	body *Organization
 	updateMask *string
@@ -849,7 +933,7 @@ func (a *OrganizationApiService) UpdateOrganizationExecute(r ApiUpdateOrganizati
 
 type ApiUpdateOrganization2Request struct {
 	ctx _context.Context
-	ApiService *OrganizationApiService
+	ApiService OrganizationApi
 	id string
 	body *Organization
 	updateMask *string
