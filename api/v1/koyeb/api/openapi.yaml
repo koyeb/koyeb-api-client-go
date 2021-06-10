@@ -2263,6 +2263,61 @@ paths:
       tags:
       - Services
       x-codegen-request-body-name: body
+  /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy:
+    post:
+      operationId: ReDeploy
+      parameters:
+      - in: path
+        name: app_id_or_name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id_or_name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RedeployRequest.Info'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RedeployReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Services
+      x-codegen-request-body-name: body
   /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions:
     get:
       operationId: ListRevisions
@@ -4187,6 +4242,43 @@ components:
           format: int64
           type: integer
       type: object
+    AutoRelease:
+      example:
+        groups:
+        - latest_sha: latest_sha
+          name: name
+          git_ref: git_ref
+          repository: repository
+        - latest_sha: latest_sha
+          name: name
+          git_ref: git_ref
+          repository: repository
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/AutoRelease.Group'
+          type: array
+      type: object
+    AutoRelease.Group:
+      example:
+        latest_sha: latest_sha
+        name: name
+        git_ref: git_ref
+        repository: repository
+      properties:
+        name:
+          type: string
+        repository:
+          type: string
+        git_ref:
+          title: 'A git ref to track (.e.g: refs/tags/<tag> or refs/heads/<branch>'
+          type: string
+        latest_sha:
+          title: The last hash that was resolved (used to avoid triggering releases
+            when things haven't changed)
+          type: string
+      title: Configuration extracted from the latest deployment in this deployment_group
+      type: object
     CreateService:
       example:
         definition:
@@ -4202,9 +4294,10 @@ components:
           - regions
           - regions
           git:
-            reference: reference
-            deploy_on_push: true
+            tag: tag
             repository: repository
+            branch: branch
+            sha: sha
           deployment_group: deployment_group
           name: name
           ports:
@@ -4250,6 +4343,16 @@ components:
                 revision_ids:
                 - revision_ids
                 - revision_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
           app_id: app_id
           version: version
       properties:
@@ -4338,6 +4441,8 @@ components:
       properties:
         service:
           $ref: '#/components/schemas/Service'
+        expand:
+          type: boolean
       type: object
     GatewayRoute:
       properties:
@@ -4376,6 +4481,16 @@ components:
                 revision_ids:
                 - revision_ids
                 - revision_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
           app_id: app_id
           version: version
       properties:
@@ -4404,9 +4519,10 @@ components:
             - regions
             - regions
             git:
-              reference: reference
-              deploy_on_push: true
+              tag: tag
               repository: repository
+              branch: branch
+              sha: sha
             deployment_group: deployment_group
             name: name
             ports:
@@ -4446,6 +4562,11 @@ components:
               id: id
             build_info:
               image: image
+              stage_state:
+              - status_message: status_message
+                name: name
+              - status_message: status_message
+                name: name
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
@@ -4456,22 +4577,26 @@ components:
       type: object
     GitSource:
       example:
-        reference: reference
-        deploy_on_push: true
+        tag: tag
         repository: repository
+        branch: branch
+        sha: sha
       properties:
         repository:
           description: 'A url to a git repository (contains the provider as well)
             .e.g: github.com/koyeb/test.'
           type: string
-        reference:
-          description: 'A git reference of the code that needs to be build (.e.g:
-            refs/heads/my-branch refs/tags/my-tag deadbeef).'
+        branch:
+          title: A git branch that will be tracked for new commits and deployments
+            will be created
           type: string
-        deploy_on_push:
-          description: If true a new revision will be triggered when the hash of the
-            reference is pushed.
-          type: boolean
+        tag:
+          title: A git tag that should be built
+          type: string
+        sha:
+          title: A git commit that should be built (useful for pinning to a commit,
+            this will always be set when a revision is created by a code push)
+          type: string
       type: object
     ListInternalRevisionsReply:
       properties:
@@ -4486,13 +4611,13 @@ components:
       type: object
     ListInternalServicesReply:
       properties:
-        ids:
-          items:
-            type: string
-          type: array
         service_ids:
           items:
             $ref: '#/components/schemas/ServiceId'
+          type: array
+        services:
+          items:
+            $ref: '#/components/schemas/ServiceListItem'
           type: array
       type: object
     ListServiceRevisionsReply:
@@ -4561,6 +4686,16 @@ components:
                 revision_ids:
                 - revision_ids
                 - revision_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
           app_id: app_id
           version: version
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4579,6 +4714,16 @@ components:
                 revision_ids:
                 - revision_ids
                 - revision_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
           app_id: app_id
           version: version
       properties:
@@ -4608,6 +4753,93 @@ components:
           format: int64
           type: integer
         protocol:
+          type: string
+      type: object
+    RedeployInternalReply:
+      type: object
+    RedeployReply:
+      example:
+        revision:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          child_id: child_id
+          parent_id: parent_id
+          organization_id: organization_id
+          service_id: service_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            regions:
+            - regions
+            - regions
+            git:
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          state:
+            status_message: status_message
+            datacenters:
+            - datacenters
+            - datacenters
+            instances:
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              datacenter: datacenter
+              id: id
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              datacenter: datacenter
+              id: id
+            build_info:
+              image: image
+              stage_state:
+              - status_message: status_message
+                name: name
+              - status_message: status_message
+                name: name
+              build_job_id: build_job_id
+              sha: sha
+          app_id: app_id
+          version: version
+      properties:
+        revision:
+          $ref: '#/components/schemas/ServiceRevision'
+      type: object
+    RedeployRequest.Info:
+      properties:
+        deployment_group:
+          type: string
+        sha:
           type: string
       type: object
     Route:
@@ -4651,6 +4883,16 @@ components:
               revision_ids:
               - revision_ids
               - revision_ids
+          auto_release:
+            groups:
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
         app_id: app_id
         version: version
       properties:
@@ -4689,9 +4931,10 @@ components:
         - regions
         - regions
         git:
-          reference: reference
-          deploy_on_push: true
+          tag: tag
           repository: repository
+          branch: branch
+          sha: sha
         deployment_group: deployment_group
         name: name
         ports:
@@ -4800,6 +5043,16 @@ components:
               revision_ids:
               - revision_ids
               - revision_ids
+          auto_release:
+            groups:
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
         app_id: app_id
         version: version
       properties:
@@ -4845,9 +5098,10 @@ components:
           - regions
           - regions
           git:
-            reference: reference
-            deploy_on_push: true
+            tag: tag
             repository: repository
+            branch: branch
+            sha: sha
           deployment_group: deployment_group
           name: name
           ports:
@@ -4887,6 +5141,11 @@ components:
             id: id
           build_info:
             image: image
+            stage_state:
+            - status_message: status_message
+              name: name
+            - status_message: status_message
+              name: name
             build_job_id: build_job_id
             sha: sha
         app_id: app_id
@@ -4988,6 +5247,11 @@ components:
           id: id
         build_info:
           image: image
+          stage_state:
+          - status_message: status_message
+            name: name
+          - status_message: status_message
+            name: name
           build_job_id: build_job_id
           sha: sha
       properties:
@@ -5012,6 +5276,11 @@ components:
     ServiceRevisionState.BuildInfo:
       example:
         image: image
+        stage_state:
+        - status_message: status_message
+          name: name
+        - status_message: status_message
+          name: name
         build_job_id: build_job_id
         sha: sha
       properties:
@@ -5025,7 +5294,32 @@ components:
         build_job_id:
           description: The id of the job that ran the build.
           type: string
+        stage_state:
+          description: Some info about the build.
+          items:
+            $ref: '#/components/schemas/ServiceRevisionState.StageState'
+          type: array
       type: object
+    ServiceRevisionState.StageState:
+      example:
+        status_message: status_message
+        name: name
+      properties:
+        name:
+          type: string
+        status_message:
+          type: string
+        status:
+          $ref: '#/components/schemas/ServiceRevisionState.StageState.Status'
+      type: object
+    ServiceRevisionState.StageState.Status:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - RUNNING
+      - FAILED
+      - COMPLETED
+      type: string
     ServiceRevisionState.Status:
       default: UNKNOWN
       enum:
@@ -5050,9 +5344,21 @@ components:
             revision_ids:
             - revision_ids
             - revision_ids
+        auto_release:
+          groups:
+          - latest_sha: latest_sha
+            name: name
+            git_ref: git_ref
+            repository: repository
+          - latest_sha: latest_sha
+            name: name
+            git_ref: git_ref
+            repository: repository
       properties:
         desired_deployment:
           $ref: '#/components/schemas/DeploymentState'
+        auto_release:
+          $ref: '#/components/schemas/AutoRelease'
         status:
           $ref: '#/components/schemas/ServiceState.Status'
       type: object
@@ -5082,9 +5388,10 @@ components:
           - regions
           - regions
           git:
-            reference: reference
-            deploy_on_push: true
+            tag: tag
             repository: repository
+            branch: branch
+            sha: sha
           deployment_group: deployment_group
           name: name
           ports:
@@ -5130,6 +5437,16 @@ components:
                 revision_ids:
                 - revision_ids
                 - revision_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
           app_id: app_id
           version: version
       properties:

@@ -18,10 +18,9 @@ import (
 type GitSource struct {
 	// A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test.
 	Repository *string `json:"repository,omitempty"`
-	// A git reference of the code that needs to be build (.e.g: refs/heads/my-branch refs/tags/my-tag deadbeef).
-	Reference *string `json:"reference,omitempty"`
-	// If true a new revision will be triggered when the hash of the reference is pushed.
-	DeployOnPush *bool `json:"deploy_on_push,omitempty"`
+	Branch *string `json:"branch,omitempty"`
+	Tag *string `json:"tag,omitempty"`
+	Sha *string `json:"sha,omitempty"`
 }
 
 // NewGitSource instantiates a new GitSource object
@@ -73,68 +72,100 @@ func (o *GitSource) SetRepository(v string) {
 	o.Repository = &v
 }
 
-// GetReference returns the Reference field value if set, zero value otherwise.
-func (o *GitSource) GetReference() string {
-	if o == nil || o.Reference == nil {
+// GetBranch returns the Branch field value if set, zero value otherwise.
+func (o *GitSource) GetBranch() string {
+	if o == nil || o.Branch == nil {
 		var ret string
 		return ret
 	}
-	return *o.Reference
+	return *o.Branch
 }
 
-// GetReferenceOk returns a tuple with the Reference field value if set, nil otherwise
+// GetBranchOk returns a tuple with the Branch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GitSource) GetReferenceOk() (*string, bool) {
-	if o == nil || o.Reference == nil {
+func (o *GitSource) GetBranchOk() (*string, bool) {
+	if o == nil || o.Branch == nil {
 		return nil, false
 	}
-	return o.Reference, true
+	return o.Branch, true
 }
 
-// HasReference returns a boolean if a field has been set.
-func (o *GitSource) HasReference() bool {
-	if o != nil && o.Reference != nil {
+// HasBranch returns a boolean if a field has been set.
+func (o *GitSource) HasBranch() bool {
+	if o != nil && o.Branch != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetReference gets a reference to the given string and assigns it to the Reference field.
-func (o *GitSource) SetReference(v string) {
-	o.Reference = &v
+// SetBranch gets a reference to the given string and assigns it to the Branch field.
+func (o *GitSource) SetBranch(v string) {
+	o.Branch = &v
 }
 
-// GetDeployOnPush returns the DeployOnPush field value if set, zero value otherwise.
-func (o *GitSource) GetDeployOnPush() bool {
-	if o == nil || o.DeployOnPush == nil {
-		var ret bool
+// GetTag returns the Tag field value if set, zero value otherwise.
+func (o *GitSource) GetTag() string {
+	if o == nil || o.Tag == nil {
+		var ret string
 		return ret
 	}
-	return *o.DeployOnPush
+	return *o.Tag
 }
 
-// GetDeployOnPushOk returns a tuple with the DeployOnPush field value if set, nil otherwise
+// GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GitSource) GetDeployOnPushOk() (*bool, bool) {
-	if o == nil || o.DeployOnPush == nil {
+func (o *GitSource) GetTagOk() (*string, bool) {
+	if o == nil || o.Tag == nil {
 		return nil, false
 	}
-	return o.DeployOnPush, true
+	return o.Tag, true
 }
 
-// HasDeployOnPush returns a boolean if a field has been set.
-func (o *GitSource) HasDeployOnPush() bool {
-	if o != nil && o.DeployOnPush != nil {
+// HasTag returns a boolean if a field has been set.
+func (o *GitSource) HasTag() bool {
+	if o != nil && o.Tag != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDeployOnPush gets a reference to the given bool and assigns it to the DeployOnPush field.
-func (o *GitSource) SetDeployOnPush(v bool) {
-	o.DeployOnPush = &v
+// SetTag gets a reference to the given string and assigns it to the Tag field.
+func (o *GitSource) SetTag(v string) {
+	o.Tag = &v
+}
+
+// GetSha returns the Sha field value if set, zero value otherwise.
+func (o *GitSource) GetSha() string {
+	if o == nil || o.Sha == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sha
+}
+
+// GetShaOk returns a tuple with the Sha field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetShaOk() (*string, bool) {
+	if o == nil || o.Sha == nil {
+		return nil, false
+	}
+	return o.Sha, true
+}
+
+// HasSha returns a boolean if a field has been set.
+func (o *GitSource) HasSha() bool {
+	if o != nil && o.Sha != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSha gets a reference to the given string and assigns it to the Sha field.
+func (o *GitSource) SetSha(v string) {
+	o.Sha = &v
 }
 
 func (o GitSource) MarshalJSON() ([]byte, error) {
@@ -142,11 +173,14 @@ func (o GitSource) MarshalJSON() ([]byte, error) {
 	if o.Repository != nil {
 		toSerialize["repository"] = o.Repository
 	}
-	if o.Reference != nil {
-		toSerialize["reference"] = o.Reference
+	if o.Branch != nil {
+		toSerialize["branch"] = o.Branch
 	}
-	if o.DeployOnPush != nil {
-		toSerialize["deploy_on_push"] = o.DeployOnPush
+	if o.Tag != nil {
+		toSerialize["tag"] = o.Tag
+	}
+	if o.Sha != nil {
+		toSerialize["sha"] = o.Sha
 	}
 	return json.Marshal(toSerialize)
 }

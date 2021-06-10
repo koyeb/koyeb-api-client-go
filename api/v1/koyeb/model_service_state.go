@@ -17,6 +17,7 @@ import (
 // ServiceState struct for ServiceState
 type ServiceState struct {
 	DesiredDeployment *DeploymentState `json:"desired_deployment,omitempty"`
+	AutoRelease *AutoRelease `json:"auto_release,omitempty"`
 	Status *ServiceStateStatus `json:"status,omitempty"`
 }
 
@@ -73,6 +74,38 @@ func (o *ServiceState) SetDesiredDeployment(v DeploymentState) {
 	o.DesiredDeployment = &v
 }
 
+// GetAutoRelease returns the AutoRelease field value if set, zero value otherwise.
+func (o *ServiceState) GetAutoRelease() AutoRelease {
+	if o == nil || o.AutoRelease == nil {
+		var ret AutoRelease
+		return ret
+	}
+	return *o.AutoRelease
+}
+
+// GetAutoReleaseOk returns a tuple with the AutoRelease field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceState) GetAutoReleaseOk() (*AutoRelease, bool) {
+	if o == nil || o.AutoRelease == nil {
+		return nil, false
+	}
+	return o.AutoRelease, true
+}
+
+// HasAutoRelease returns a boolean if a field has been set.
+func (o *ServiceState) HasAutoRelease() bool {
+	if o != nil && o.AutoRelease != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoRelease gets a reference to the given AutoRelease and assigns it to the AutoRelease field.
+func (o *ServiceState) SetAutoRelease(v AutoRelease) {
+	o.AutoRelease = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ServiceState) GetStatus() ServiceStateStatus {
 	if o == nil || o.Status == nil {
@@ -109,6 +142,9 @@ func (o ServiceState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DesiredDeployment != nil {
 		toSerialize["desired_deployment"] = o.DesiredDeployment
+	}
+	if o.AutoRelease != nil {
+		toSerialize["auto_release"] = o.AutoRelease
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status

@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Repository** | Pointer to **string** | A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test. | [optional] 
-**Reference** | Pointer to **string** | A git reference of the code that needs to be build (.e.g: refs/heads/my-branch refs/tags/my-tag deadbeef). | [optional] 
-**DeployOnPush** | Pointer to **bool** | If true a new revision will be triggered when the hash of the reference is pushed. | [optional] 
+**Branch** | Pointer to **string** |  | [optional] 
+**Tag** | Pointer to **string** |  | [optional] 
+**Sha** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -52,55 +53,80 @@ SetRepository sets Repository field to given value.
 
 HasRepository returns a boolean if a field has been set.
 
-### GetReference
+### GetBranch
 
-`func (o *GitSource) GetReference() string`
+`func (o *GitSource) GetBranch() string`
 
-GetReference returns the Reference field if non-nil, zero value otherwise.
+GetBranch returns the Branch field if non-nil, zero value otherwise.
 
-### GetReferenceOk
+### GetBranchOk
 
-`func (o *GitSource) GetReferenceOk() (*string, bool)`
+`func (o *GitSource) GetBranchOk() (*string, bool)`
 
-GetReferenceOk returns a tuple with the Reference field if it's non-nil, zero value otherwise
+GetBranchOk returns a tuple with the Branch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetReference
+### SetBranch
 
-`func (o *GitSource) SetReference(v string)`
+`func (o *GitSource) SetBranch(v string)`
 
-SetReference sets Reference field to given value.
+SetBranch sets Branch field to given value.
 
-### HasReference
+### HasBranch
 
-`func (o *GitSource) HasReference() bool`
+`func (o *GitSource) HasBranch() bool`
 
-HasReference returns a boolean if a field has been set.
+HasBranch returns a boolean if a field has been set.
 
-### GetDeployOnPush
+### GetTag
 
-`func (o *GitSource) GetDeployOnPush() bool`
+`func (o *GitSource) GetTag() string`
 
-GetDeployOnPush returns the DeployOnPush field if non-nil, zero value otherwise.
+GetTag returns the Tag field if non-nil, zero value otherwise.
 
-### GetDeployOnPushOk
+### GetTagOk
 
-`func (o *GitSource) GetDeployOnPushOk() (*bool, bool)`
+`func (o *GitSource) GetTagOk() (*string, bool)`
 
-GetDeployOnPushOk returns a tuple with the DeployOnPush field if it's non-nil, zero value otherwise
+GetTagOk returns a tuple with the Tag field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeployOnPush
+### SetTag
 
-`func (o *GitSource) SetDeployOnPush(v bool)`
+`func (o *GitSource) SetTag(v string)`
 
-SetDeployOnPush sets DeployOnPush field to given value.
+SetTag sets Tag field to given value.
 
-### HasDeployOnPush
+### HasTag
 
-`func (o *GitSource) HasDeployOnPush() bool`
+`func (o *GitSource) HasTag() bool`
 
-HasDeployOnPush returns a boolean if a field has been set.
+HasTag returns a boolean if a field has been set.
+
+### GetSha
+
+`func (o *GitSource) GetSha() string`
+
+GetSha returns the Sha field if non-nil, zero value otherwise.
+
+### GetShaOk
+
+`func (o *GitSource) GetShaOk() (*string, bool)`
+
+GetShaOk returns a tuple with the Sha field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSha
+
+`func (o *GitSource) SetSha(v string)`
+
+SetSha sets Sha field to given value.
+
+### HasSha
+
+`func (o *GitSource) HasSha() bool`
+
+HasSha returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

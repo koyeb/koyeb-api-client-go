@@ -17,6 +17,7 @@ import (
 // FetchInternalServiceReply struct for FetchInternalServiceReply
 type FetchInternalServiceReply struct {
 	Service *Service `json:"service,omitempty"`
+	Expand *bool `json:"expand,omitempty"`
 }
 
 // NewFetchInternalServiceReply instantiates a new FetchInternalServiceReply object
@@ -68,10 +69,45 @@ func (o *FetchInternalServiceReply) SetService(v Service) {
 	o.Service = &v
 }
 
+// GetExpand returns the Expand field value if set, zero value otherwise.
+func (o *FetchInternalServiceReply) GetExpand() bool {
+	if o == nil || o.Expand == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Expand
+}
+
+// GetExpandOk returns a tuple with the Expand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FetchInternalServiceReply) GetExpandOk() (*bool, bool) {
+	if o == nil || o.Expand == nil {
+		return nil, false
+	}
+	return o.Expand, true
+}
+
+// HasExpand returns a boolean if a field has been set.
+func (o *FetchInternalServiceReply) HasExpand() bool {
+	if o != nil && o.Expand != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpand gets a reference to the given bool and assigns it to the Expand field.
+func (o *FetchInternalServiceReply) SetExpand(v bool) {
+	o.Expand = &v
+}
+
 func (o FetchInternalServiceReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Service != nil {
 		toSerialize["service"] = o.Service
+	}
+	if o.Expand != nil {
+		toSerialize["expand"] = o.Expand
 	}
 	return json.Marshal(toSerialize)
 }

@@ -22,6 +22,8 @@ type ServiceRevisionStateBuildInfo struct {
 	Image *string `json:"image,omitempty"`
 	// The id of the job that ran the build.
 	BuildJobId *string `json:"build_job_id,omitempty"`
+	// Some info about the build.
+	StageState *[]ServiceRevisionStateStageState `json:"stage_state,omitempty"`
 }
 
 // NewServiceRevisionStateBuildInfo instantiates a new ServiceRevisionStateBuildInfo object
@@ -137,6 +139,38 @@ func (o *ServiceRevisionStateBuildInfo) SetBuildJobId(v string) {
 	o.BuildJobId = &v
 }
 
+// GetStageState returns the StageState field value if set, zero value otherwise.
+func (o *ServiceRevisionStateBuildInfo) GetStageState() []ServiceRevisionStateStageState {
+	if o == nil || o.StageState == nil {
+		var ret []ServiceRevisionStateStageState
+		return ret
+	}
+	return *o.StageState
+}
+
+// GetStageStateOk returns a tuple with the StageState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceRevisionStateBuildInfo) GetStageStateOk() (*[]ServiceRevisionStateStageState, bool) {
+	if o == nil || o.StageState == nil {
+		return nil, false
+	}
+	return o.StageState, true
+}
+
+// HasStageState returns a boolean if a field has been set.
+func (o *ServiceRevisionStateBuildInfo) HasStageState() bool {
+	if o != nil && o.StageState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStageState gets a reference to the given []ServiceRevisionStateStageState and assigns it to the StageState field.
+func (o *ServiceRevisionStateBuildInfo) SetStageState(v []ServiceRevisionStateStageState) {
+	o.StageState = &v
+}
+
 func (o ServiceRevisionStateBuildInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Sha != nil {
@@ -147,6 +181,9 @@ func (o ServiceRevisionStateBuildInfo) MarshalJSON() ([]byte, error) {
 	}
 	if o.BuildJobId != nil {
 		toSerialize["build_job_id"] = o.BuildJobId
+	}
+	if o.StageState != nil {
+		toSerialize["stage_state"] = o.StageState
 	}
 	return json.Marshal(toSerialize)
 }

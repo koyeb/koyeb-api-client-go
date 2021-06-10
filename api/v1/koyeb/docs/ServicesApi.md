@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 [**ListRevisions**](ServicesApi.md#ListRevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
 [**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
+[**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | 
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 
@@ -441,6 +442,79 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListServicesReply**](ListServicesReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ReDeploy
+
+> RedeployReply ReDeploy(ctx, appIdOrName, idOrName).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    appIdOrName := "appIdOrName_example" // string | 
+    idOrName := "idOrName_example" // string | 
+    body := *openapiclient.NewRedeployRequestInfo() // RedeployRequestInfo | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ServicesApi.ReDeploy(context.Background(), appIdOrName, idOrName).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ReDeploy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ReDeploy`: RedeployReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.ReDeploy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appIdOrName** | **string** |  | 
+**idOrName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiReDeployRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**RedeployRequestInfo**](RedeployRequestInfo.md) |  | 
+
+### Return type
+
+[**RedeployReply**](RedeployReply.md)
 
 ### Authorization
 
