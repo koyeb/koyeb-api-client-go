@@ -16,8 +16,8 @@ import (
 
 // ListInternalServicesReply struct for ListInternalServicesReply
 type ListInternalServicesReply struct {
-	Ids *[]string `json:"ids,omitempty"`
 	ServiceIds *[]ServiceId `json:"service_ids,omitempty"`
+	Services *[]ServiceListItem `json:"services,omitempty"`
 }
 
 // NewListInternalServicesReply instantiates a new ListInternalServicesReply object
@@ -35,38 +35,6 @@ func NewListInternalServicesReply() *ListInternalServicesReply {
 func NewListInternalServicesReplyWithDefaults() *ListInternalServicesReply {
 	this := ListInternalServicesReply{}
 	return &this
-}
-
-// GetIds returns the Ids field value if set, zero value otherwise.
-func (o *ListInternalServicesReply) GetIds() []string {
-	if o == nil || o.Ids == nil {
-		var ret []string
-		return ret
-	}
-	return *o.Ids
-}
-
-// GetIdsOk returns a tuple with the Ids field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListInternalServicesReply) GetIdsOk() (*[]string, bool) {
-	if o == nil || o.Ids == nil {
-		return nil, false
-	}
-	return o.Ids, true
-}
-
-// HasIds returns a boolean if a field has been set.
-func (o *ListInternalServicesReply) HasIds() bool {
-	if o != nil && o.Ids != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIds gets a reference to the given []string and assigns it to the Ids field.
-func (o *ListInternalServicesReply) SetIds(v []string) {
-	o.Ids = &v
 }
 
 // GetServiceIds returns the ServiceIds field value if set, zero value otherwise.
@@ -101,13 +69,45 @@ func (o *ListInternalServicesReply) SetServiceIds(v []ServiceId) {
 	o.ServiceIds = &v
 }
 
+// GetServices returns the Services field value if set, zero value otherwise.
+func (o *ListInternalServicesReply) GetServices() []ServiceListItem {
+	if o == nil || o.Services == nil {
+		var ret []ServiceListItem
+		return ret
+	}
+	return *o.Services
+}
+
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInternalServicesReply) GetServicesOk() (*[]ServiceListItem, bool) {
+	if o == nil || o.Services == nil {
+		return nil, false
+	}
+	return o.Services, true
+}
+
+// HasServices returns a boolean if a field has been set.
+func (o *ListInternalServicesReply) HasServices() bool {
+	if o != nil && o.Services != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServices gets a reference to the given []ServiceListItem and assigns it to the Services field.
+func (o *ListInternalServicesReply) SetServices(v []ServiceListItem) {
+	o.Services = &v
+}
+
 func (o ListInternalServicesReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Ids != nil {
-		toSerialize["ids"] = o.Ids
-	}
 	if o.ServiceIds != nil {
 		toSerialize["service_ids"] = o.ServiceIds
+	}
+	if o.Services != nil {
+		toSerialize["services"] = o.Services
 	}
 	return json.Marshal(toSerialize)
 }

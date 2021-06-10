@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Sha** | Pointer to **string** | The git sha for this build (we resolve the reference at the start of the build). | [optional] 
 **Image** | Pointer to **string** | The docker image built as a result of this build. | [optional] 
 **BuildJobId** | Pointer to **string** | The id of the job that ran the build. | [optional] 
+**StageState** | Pointer to [**[]ServiceRevisionStateStageState**](ServiceRevisionStateStageState.md) | Some info about the build. | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetBuildJobId sets BuildJobId field to given value.
 `func (o *ServiceRevisionStateBuildInfo) HasBuildJobId() bool`
 
 HasBuildJobId returns a boolean if a field has been set.
+
+### GetStageState
+
+`func (o *ServiceRevisionStateBuildInfo) GetStageState() []ServiceRevisionStateStageState`
+
+GetStageState returns the StageState field if non-nil, zero value otherwise.
+
+### GetStageStateOk
+
+`func (o *ServiceRevisionStateBuildInfo) GetStageStateOk() (*[]ServiceRevisionStateStageState, bool)`
+
+GetStageStateOk returns a tuple with the StageState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStageState
+
+`func (o *ServiceRevisionStateBuildInfo) SetStageState(v []ServiceRevisionStateStageState)`
+
+SetStageState sets StageState field to given value.
+
+### HasStageState
+
+`func (o *ServiceRevisionStateBuildInfo) HasStageState() bool`
+
+HasStageState returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

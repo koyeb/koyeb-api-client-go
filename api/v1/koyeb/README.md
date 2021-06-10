@@ -131,6 +131,7 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 *ServicesApi* | [**ListRevisions**](docs/ServicesApi.md#listrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
+*ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | 
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user
@@ -147,6 +148,8 @@ Class | Method | HTTP request | Description
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
  - [AppListItem](docs/AppListItem.md)
+ - [AutoRelease](docs/AutoRelease.md)
+ - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
@@ -213,6 +216,8 @@ Class | Method | HTTP request | Description
  - [Organization](docs/Organization.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
  - [Port](docs/Port.md)
+ - [RedeployReply](docs/RedeployReply.md)
+ - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
@@ -230,6 +235,8 @@ Class | Method | HTTP request | Description
  - [ServiceRevisionListItem](docs/ServiceRevisionListItem.md)
  - [ServiceRevisionState](docs/ServiceRevisionState.md)
  - [ServiceRevisionStateBuildInfo](docs/ServiceRevisionStateBuildInfo.md)
+ - [ServiceRevisionStateStageState](docs/ServiceRevisionStateStageState.md)
+ - [ServiceRevisionStateStageStateStatus](docs/ServiceRevisionStateStageStateStatus.md)
  - [ServiceRevisionStateStatus](docs/ServiceRevisionStateStatus.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStateStatus](docs/ServiceStateStatus.md)

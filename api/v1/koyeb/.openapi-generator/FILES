@@ -25,6 +25,8 @@ docs/ActivityList.md
 docs/App.md
 docs/AppListItem.md
 docs/AppsApi.md
+docs/AutoRelease.md
+docs/AutoReleaseGroup.md
 docs/CannyAuthReply.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
@@ -98,6 +100,8 @@ docs/OrganizationApi.md
 docs/PasswordlessLoginRequest.md
 docs/Port.md
 docs/ProfileApi.md
+docs/RedeployReply.md
+docs/RedeployRequestInfo.md
 docs/Region.md
 docs/RegionListItem.md
 docs/RegionsApi.md
@@ -117,6 +121,8 @@ docs/ServiceRevisionId.md
 docs/ServiceRevisionListItem.md
 docs/ServiceRevisionState.md
 docs/ServiceRevisionStateBuildInfo.md
+docs/ServiceRevisionStateStageState.md
+docs/ServiceRevisionStateStageStateStatus.md
 docs/ServiceRevisionStateStatus.md
 docs/ServiceState.md
 docs/ServiceStateStatus.md
@@ -143,6 +149,8 @@ model_activity.go
 model_activity_list.go
 model_app.go
 model_app_list_item.go
+model_auto_release.go
+model_auto_release_group.go
 model_canny_auth_reply.go
 model_create_account_request.go
 model_create_app.go
@@ -209,6 +217,8 @@ model_object.go
 model_organization.go
 model_passwordless_login_request.go
 model_port.go
+model_redeploy_reply.go
+model_redeploy_request_info.go
 model_region.go
 model_region_list_item.go
 model_reset_password_request.go
@@ -226,6 +236,8 @@ model_service_revision_id.go
 model_service_revision_list_item.go
 model_service_revision_state.go
 model_service_revision_state_build_info.go
+model_service_revision_state_stage_state.go
+model_service_revision_state_stage_state_status.go
 model_service_revision_state_status.go
 model_service_state.go
 model_service_state_status.go
