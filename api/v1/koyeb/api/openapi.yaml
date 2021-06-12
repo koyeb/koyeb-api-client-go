@@ -4554,10 +4554,16 @@ components:
             instances:
             - status_message: status_message
               created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
               datacenter: datacenter
               id: id
             - status_message: status_message
               created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
               datacenter: datacenter
               id: id
             build_info:
@@ -4565,8 +4571,14 @@ components:
               stage_state:
               - status_message: status_message
                 name: name
+                messages:
+                - messages
+                - messages
               - status_message: status_message
                 name: name
+                messages:
+                - messages
+                - messages
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
@@ -4814,10 +4826,16 @@ components:
             instances:
             - status_message: status_message
               created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
               datacenter: datacenter
               id: id
             - status_message: status_message
               created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
               datacenter: datacenter
               id: id
             build_info:
@@ -4825,8 +4843,14 @@ components:
               stage_state:
               - status_message: status_message
                 name: name
+                messages:
+                - messages
+                - messages
               - status_message: status_message
                 name: name
+                messages:
+                - messages
+                - messages
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
@@ -5000,6 +5024,9 @@ components:
       example:
         status_message: status_message
         created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
         datacenter: datacenter
         id: id
       properties:
@@ -5014,6 +5041,10 @@ components:
         created_at:
           format: date-time
           type: string
+        messages:
+          items:
+            type: string
+          type: array
       type: object
     ServiceInstance.Status:
       default: UNKNOWN
@@ -5133,10 +5164,16 @@ components:
           instances:
           - status_message: status_message
             created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
             datacenter: datacenter
             id: id
           - status_message: status_message
             created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
             datacenter: datacenter
             id: id
           build_info:
@@ -5144,8 +5181,14 @@ components:
             stage_state:
             - status_message: status_message
               name: name
+              messages:
+              - messages
+              - messages
             - status_message: status_message
               name: name
+              messages:
+              - messages
+              - messages
             build_job_id: build_job_id
             sha: sha
         app_id: app_id
@@ -5239,10 +5282,16 @@ components:
         instances:
         - status_message: status_message
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
           datacenter: datacenter
           id: id
         - status_message: status_message
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
           datacenter: datacenter
           id: id
         build_info:
@@ -5250,8 +5299,14 @@ components:
           stage_state:
           - status_message: status_message
             name: name
+            messages:
+            - messages
+            - messages
           - status_message: status_message
             name: name
+            messages:
+            - messages
+            - messages
           build_job_id: build_job_id
           sha: sha
       properties:
@@ -5279,8 +5334,14 @@ components:
         stage_state:
         - status_message: status_message
           name: name
+          messages:
+          - messages
+          - messages
         - status_message: status_message
           name: name
+          messages:
+          - messages
+          - messages
         build_job_id: build_job_id
         sha: sha
       properties:
@@ -5304,6 +5365,9 @@ components:
       example:
         status_message: status_message
         name: name
+        messages:
+        - messages
+        - messages
       properties:
         name:
           type: string
@@ -5311,6 +5375,10 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/ServiceRevisionState.StageState.Status'
+        messages:
+          items:
+            type: string
+          type: array
       type: object
     ServiceRevisionState.StageState.Status:
       default: UNKNOWN

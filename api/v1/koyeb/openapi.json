@@ -4839,6 +4839,12 @@
         "created_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -5054,6 +5060,12 @@
         },
         "status": {
           "$ref": "#/definitions/ServiceRevisionState.StageState.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

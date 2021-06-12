@@ -22,6 +22,7 @@ type ServiceInstance struct {
 	Status *ServiceInstanceStatus `json:"status,omitempty"`
 	StatusMessage *string `json:"status_message,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 }
 
 // NewServiceInstance instantiates a new ServiceInstance object
@@ -205,6 +206,38 @@ func (o *ServiceInstance) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *ServiceInstance) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceInstance) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *ServiceInstance) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *ServiceInstance) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 func (o ServiceInstance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -221,6 +254,9 @@ func (o ServiceInstance) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	return json.Marshal(toSerialize)
 }
