@@ -19,6 +19,7 @@ type ServiceRevisionStateStageState struct {
 	Name *string `json:"name,omitempty"`
 	StatusMessage *string `json:"status_message,omitempty"`
 	Status *ServiceRevisionStateStageStateStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 }
 
 // NewServiceRevisionStateStageState instantiates a new ServiceRevisionStateStageState object
@@ -138,6 +139,38 @@ func (o *ServiceRevisionStateStageState) SetStatus(v ServiceRevisionStateStageSt
 	o.Status = &v
 }
 
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *ServiceRevisionStateStageState) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceRevisionStateStageState) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *ServiceRevisionStateStageState) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *ServiceRevisionStateStageState) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 func (o ServiceRevisionStateStageState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -148,6 +181,9 @@ func (o ServiceRevisionStateStageState) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	return json.Marshal(toSerialize)
 }
