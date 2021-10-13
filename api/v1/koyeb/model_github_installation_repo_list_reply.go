@@ -17,7 +17,8 @@ import (
 // GithubInstallationRepoListReply struct for GithubInstallationRepoListReply
 type GithubInstallationRepoListReply struct {
 	Repositories *[]GithubRepo `json:"repositories,omitempty"`
-	InstallationId *string `json:"installationId,omitempty"`
+	InstallationId *string `json:"installation_id,omitempty"`
+	InstallationUrl *string `json:"installation_url,omitempty"`
 }
 
 // NewGithubInstallationRepoListReply instantiates a new GithubInstallationRepoListReply object
@@ -101,13 +102,48 @@ func (o *GithubInstallationRepoListReply) SetInstallationId(v string) {
 	o.InstallationId = &v
 }
 
+// GetInstallationUrl returns the InstallationUrl field value if set, zero value otherwise.
+func (o *GithubInstallationRepoListReply) GetInstallationUrl() string {
+	if o == nil || o.InstallationUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.InstallationUrl
+}
+
+// GetInstallationUrlOk returns a tuple with the InstallationUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GithubInstallationRepoListReply) GetInstallationUrlOk() (*string, bool) {
+	if o == nil || o.InstallationUrl == nil {
+		return nil, false
+	}
+	return o.InstallationUrl, true
+}
+
+// HasInstallationUrl returns a boolean if a field has been set.
+func (o *GithubInstallationRepoListReply) HasInstallationUrl() bool {
+	if o != nil && o.InstallationUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstallationUrl gets a reference to the given string and assigns it to the InstallationUrl field.
+func (o *GithubInstallationRepoListReply) SetInstallationUrl(v string) {
+	o.InstallationUrl = &v
+}
+
 func (o GithubInstallationRepoListReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Repositories != nil {
 		toSerialize["repositories"] = o.Repositories
 	}
 	if o.InstallationId != nil {
-		toSerialize["installationId"] = o.InstallationId
+		toSerialize["installation_id"] = o.InstallationId
+	}
+	if o.InstallationUrl != nil {
+		toSerialize["installation_url"] = o.InstallationUrl
 	}
 	return json.Marshal(toSerialize)
 }

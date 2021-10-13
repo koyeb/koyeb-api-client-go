@@ -52,15 +52,23 @@
     }
   ],
   "paths": {
-    "/v1/apps": {
+    "/v1/apps/{app_id_or_name}/logs/tail": {
       "get": {
-        "summary": "List App",
-        "operationId": "ListApps",
+        "operationId": "TailRuntimeLogs",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/ListAppsReply"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/LogEntry"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of LogEntry"
             }
           },
           "400": {
@@ -90,327 +98,38 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "description": "(Optional) The number of items to return.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "description": "(Optional) The offset in the list of item to return.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "name",
-            "description": "(Optional) A filter for regions.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      },
-      "post": {
-        "summary": "Create App",
-        "operationId": "CreateApp",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/CreateAppReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateApp"
-            }
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      }
-    },
-    "/v1/apps/{id_or_name}": {
-      "get": {
-        "summary": "Get App",
-        "operationId": "GetApp",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/GetAppReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id_or_name",
-            "description": "The id or the name of the App",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      },
-      "delete": {
-        "summary": "Delete App",
-        "operationId": "DeleteApp",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/DeleteAppReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id_or_name",
-            "description": "The id or the name of the entity to delete",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      },
-      "put": {
-        "summary": "Update App",
-        "operationId": "UpdateApp",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/UpdateAppReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id_or_name",
-            "description": "The id or the name of the entity to update",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      },
-      "patch": {
-        "summary": "Update App",
-        "operationId": "UpdateApp2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/UpdateAppReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id_or_name",
-            "description": "The id or the name of the entity to update",
+            "name": "app_id_or_name",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UpdateApp"
-            }
-          },
-          {
-            "name": "update_mask",
+            "name": "service_id",
             "in": "query",
             "required": false,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "Apps"
-        ]
-      }
-    },
-    "/v1/secrets": {
-      "get": {
-        "operationId": "ListSecrets",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ListSecretsReply"
-            }
           },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
           {
-            "name": "name",
+            "name": "revision_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "instance_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stream",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "description": "Temporary field.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -419,76 +138,32 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
-          "Secrets"
-        ]
-      },
-      "post": {
-        "operationId": "CreateSecret",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/CreateSecretReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/CreateSecret"
-            }
-          }
-        ],
-        "tags": [
-          "Secrets"
+          "Logs"
         ]
       }
     },
-    "/v1/secrets/{id}": {
+    "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail": {
       "get": {
-        "operationId": "GetSecret",
+        "operationId": "TailRevisionBuildLogs",
         "responses": {
           "200": {
-            "description": "A successful response.",
+            "description": "A successful response.(streaming responses)",
             "schema": {
-              "$ref": "#/definitions/GetSecretReply"
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/LogEntry"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of LogEntry"
             }
           },
           "400": {
@@ -518,241 +193,128 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Secrets"
-        ]
-      },
-      "delete": {
-        "operationId": "DeleteSecret",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/DeleteSecretReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Secrets"
-        ]
-      },
-      "put": {
-        "operationId": "UpdateSecret",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/UpdateSecretReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
+            "name": "app_id_or_name",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "name": "body",
-            "in": "body",
+            "name": "service_id_or_name",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Secret"
-            }
+            "type": "string"
           },
           {
-            "name": "update_mask",
+            "name": "revision_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "start",
             "in": "query",
             "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Secrets"
-        ]
-      },
-      "patch": {
-        "operationId": "UpdateSecret2",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/UpdateSecretReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Secret"
-            }
-          },
-          {
-            "name": "update_mask",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Secrets"
-        ]
-      }
-    },
-    "/v1/secrets/{id}/activities": {
-      "get": {
-        "summary": "View stack activities",
-        "operationId": "GetSecretActivities",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ActivityList"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
             "type": "string"
           },
           {
             "name": "limit",
             "in": "query",
             "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Logs"
+        ]
+      }
+    },
+    "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail": {
+      "get": {
+        "operationId": "TailInstanceLogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/RevisionLogEntry"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of RevisionLogEntry"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "app_id_or_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "service_id_or_name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "revision_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "instance_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "stream",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
             "name": "offset",
+            "description": "-1 is from the end, 0 is from the start anything else is from this offset in the file.",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "int64"
           }
         ],
         "tags": [
-          "Secrets"
+          "Logs"
         ]
       }
     },
@@ -1380,9 +942,347 @@
         ]
       }
     },
-    "/v1/activities": {
+    "/v1/secrets": {
       "get": {
-        "operationId": "ListActivities",
+        "operationId": "ListSecrets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListSecretsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "types",
+            "description": "Filter by secret types.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "SIMPLE",
+                "REGISTRY"
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      },
+      "post": {
+        "operationId": "CreateSecret",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateSecretReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSecret"
+            }
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      }
+    },
+    "/v1/secrets/{id}": {
+      "get": {
+        "operationId": "GetSecret",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetSecretReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteSecret",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteSecretReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateSecret",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateSecretReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Secret"
+            }
+          },
+          {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      },
+      "patch": {
+        "operationId": "UpdateSecret2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateSecretReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Secret"
+            }
+          },
+          {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Secrets"
+        ]
+      }
+    },
+    "/v1/secrets/{id}/activities": {
+      "get": {
+        "summary": "View stack activities",
+        "operationId": "GetSecretActivities",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1417,6 +1317,12 @@
         },
         "parameters": [
           {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "in": "query",
             "required": false,
@@ -1430,20 +1336,81 @@
           }
         ],
         "tags": [
-          "activity"
+          "Secrets"
         ]
       }
     },
-    "/v1/hooks/github/payload": {
-      "post": {
-        "summary": "Github hook receiver",
-        "description": "An implementation of github hooks. The payload is a freefrom JSON and the response will always be empty.",
-        "operationId": "Github",
+    "/v1/apps": {
+      "get": {
+        "summary": "List App",
+        "operationId": "ListApps",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GithubHookReply"
+              "$ref": "#/definitions/ListAppsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "description": "(Optional) A filter for regions.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      },
+      "post": {
+        "summary": "Create App",
+        "operationId": "CreateApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateAppReply"
             }
           },
           "400": {
@@ -1477,27 +1444,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/CreateApp"
             }
           }
         ],
         "tags": [
-          "hooks"
-        ],
-        "externalDocs": {
-          "description": "github documentation",
-          "url": "https://developer.github.com/webhooks/"
-        }
+          "Apps"
+        ]
       }
     },
-    "/v1/notifications": {
+    "/v1/apps/{id_or_name}": {
       "get": {
-        "operationId": "ListNotifications",
+        "summary": "Get App",
+        "operationId": "GetApp",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/NotificationList"
+              "$ref": "#/definitions/GetAppReply"
             }
           },
           "400": {
@@ -1527,44 +1491,329 @@
         },
         "parameters": [
           {
-            "name": "limit",
-            "in": "query",
-            "required": false,
+            "name": "id_or_name",
+            "description": "The id or the name of the App",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      },
+      "delete": {
+        "summary": "Delete App",
+        "operationId": "DeleteApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteAppReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id_or_name",
+            "description": "The id or the name of the entity to delete",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      },
+      "put": {
+        "summary": "Update App",
+        "operationId": "UpdateApp",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateAppReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id_or_name",
+            "description": "The id or the name of the entity to update",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Apps"
+        ]
+      },
+      "patch": {
+        "summary": "Update App",
+        "operationId": "UpdateApp2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateAppReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id_or_name",
+            "description": "The id or the name of the entity to update",
+            "in": "path",
+            "required": true,
             "type": "string"
           },
           {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "type": "string"
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateApp"
+            }
           },
           {
-            "name": "mark_read",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "mark_seen",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "unread",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "unseen",
+            "name": "update_mask",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "activity"
+          "Apps"
+        ]
+      }
+    },
+    "/v1/instances": {
+      "get": {
+        "summary": "List Instance",
+        "operationId": "ListInstances",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInstancesReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "(Optional) A filter for instances.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Instances"
+        ]
+      }
+    },
+    "/v1/instances/{id}": {
+      "get": {
+        "summary": "Get Instance",
+        "operationId": "GetInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetInstanceReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The name of the instance",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Instances"
+        ]
+      }
+    },
+    "/v1/regions": {
+      "get": {
+        "summary": "List Region",
+        "operationId": "ListRegions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListRegionsReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "description": "(Optional) A filter for regions.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Regions"
+        ]
+      }
+    },
+    "/v1/regions/{id}": {
+      "get": {
+        "summary": "Get Region",
+        "operationId": "GetRegion",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRegionReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The name of the region",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Regions"
         ]
       }
     },
@@ -2879,7 +3128,7 @@
             "format": "int64"
           },
           {
-            "name": "perPage",
+            "name": "per_page",
             "description": "The number of page elements per page (max 100): Maps to: https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#pagination.",
             "in": "query",
             "required": false,
@@ -3113,23 +3362,14 @@
         ]
       }
     },
-    "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail": {
+    "/v1/activities": {
       "get": {
-        "operationId": "TailInstanceLogs",
+        "operationId": "ListActivities",
         "responses": {
           "200": {
-            "description": "A successful response.(streaming responses)",
+            "description": "A successful response.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/LogEntry"
-                },
-                "error": {
-                  "$ref": "#/definitions/google.rpc.Status"
-                }
-              },
-              "title": "Stream result of LogEntry"
+              "$ref": "#/definitions/ActivityList"
             }
           },
           "400": {
@@ -3159,58 +3399,105 @@
         },
         "parameters": [
           {
-            "name": "app_id_or_name",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "service_id_or_name",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "revision_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "instance_id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "stream",
-            "in": "path",
-            "required": true,
+            "name": "limit",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
             "name": "offset",
-            "description": "-1 is from the end, 0 is from the start anything else is from this offset in the file.",
             "in": "query",
             "required": false,
-            "type": "string",
-            "format": "int64"
+            "type": "string"
           }
         ],
         "tags": [
-          "logs"
+          "activity"
         ]
       }
     },
-    "/v1/instances": {
-      "get": {
-        "summary": "List Instance",
-        "operationId": "ListInstances",
+    "/v1/hooks/github/payload": {
+      "post": {
+        "summary": "Github hook receiver",
+        "description": "An implementation of github hooks. The payload is a freefrom JSON and the response will always be empty.",
+        "operationId": "Github",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListInstancesReply"
+              "$ref": "#/definitions/GithubHookReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "tags": [
+          "hooks"
+        ],
+        "externalDocs": {
+          "description": "github documentation",
+          "url": "https://developer.github.com/webhooks/"
+        }
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "operationId": "ListNotifications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/NotificationList"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
             }
           },
           "default": {
@@ -3223,138 +3510,43 @@
         "parameters": [
           {
             "name": "limit",
-            "description": "(Optional) The number of items to return.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "offset",
-            "description": "(Optional) The offset in the list of item to return.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "id",
-            "description": "(Optional) A filter for instances.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Instances"
-        ]
-      }
-    },
-    "/v1/instances/{id}": {
-      "get": {
-        "summary": "Get Instance",
-        "operationId": "GetInstance",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/GetInstanceReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "The name of the instance",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Instances"
-        ]
-      }
-    },
-    "/v1/regions": {
-      "get": {
-        "summary": "List Region",
-        "operationId": "ListRegions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ListRegionsReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "limit",
-            "description": "(Optional) The number of items to return.",
+            "name": "mark_read",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "offset",
-            "description": "(Optional) The offset in the list of item to return.",
+            "name": "mark_seen",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
-            "name": "id",
-            "description": "(Optional) A filter for regions.",
+            "name": "unread",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "unseen",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Regions"
-        ]
-      }
-    },
-    "/v1/regions/{id}": {
-      "get": {
-        "summary": "Get Region",
-        "operationId": "GetRegion",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/GetRegionReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "The name of the region",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Regions"
+          "activity"
         ]
       }
     }
@@ -3371,6 +3563,14 @@
           "format": "byte"
         }
       }
+    },
+    "google.protobuf.NullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
     "google.rpc.Status": {
       "type": "object",
@@ -3437,345 +3637,40 @@
         }
       }
     },
-    "App": {
+    "LogEntry": {
       "type": "object",
       "properties": {
-        "id": {
+        "msg": {
           "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
         },
         "created_at": {
           "type": "string",
           "format": "date-time"
         },
-        "domains": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Domain"
-          }
-        }
-      }
-    },
-    "AppListItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "domains": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Domain"
-          }
-        }
-      }
-    },
-    "CreateApp": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateAppReply": {
-      "type": "object",
-      "properties": {
-        "app": {
-          "$ref": "#/definitions/App",
-          "title": "The entity created"
-        }
-      }
-    },
-    "DeleteAppReply": {
-      "type": "object"
-    },
-    "Domain": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        }
-      }
-    },
-    "GetAppReply": {
-      "type": "object",
-      "properties": {
-        "app": {
-          "$ref": "#/definitions/App",
-          "title": "The App retrieved"
-        }
-      }
-    },
-    "GetInternalAppReply": {
-      "type": "object",
-      "properties": {
-        "app": {
-          "$ref": "#/definitions/App"
-        }
-      }
-    },
-    "ListAppsReply": {
-      "type": "object",
-      "properties": {
-        "apps": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AppListItem"
-          }
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The limit in the request"
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The offset in the request"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The total number of items"
-        }
-      }
-    },
-    "UpdateApp": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "UpdateAppReply": {
-      "type": "object",
-      "properties": {
-        "app": {
-          "$ref": "#/definitions/App",
-          "title": "The entity updated"
-        }
-      }
-    },
-    "google.protobuf.NullValue": {
-      "type": "string",
-      "enum": [
-        "NULL_VALUE"
-      ],
-      "default": "NULL_VALUE",
-      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
-    },
-    "Activity": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "actor": {
-          "$ref": "#/definitions/Object"
-        },
-        "object": {
-          "$ref": "#/definitions/Object"
-        },
-        "verb": {
-          "type": "string"
-        },
-        "metadata": {
+        "labels": {
           "type": "object"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
         }
       }
     },
-    "ActivityList": {
+    "RevisionLogEntry": {
       "type": "object",
       "properties": {
-        "activities": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Activity"
-          }
+        "revision_id": {
+          "type": "string",
+          "title": "TODO improve with offset return / resume"
         },
-        "limit": {
-          "type": "integer",
-          "format": "int64"
+        "instance_id": {
+          "type": "string"
+        },
+        "stream": {
+          "type": "string"
+        },
+        "msg": {
+          "type": "string"
         },
         "offset": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "Object": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "metadata": {
-          "type": "object"
-        },
-        "deleted": {
-          "type": "boolean"
-        }
-      }
-    },
-    "CreateSecret": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
-    "CreateSecretReply": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/Secret"
-        }
-      }
-    },
-    "DeleteSecretReply": {
-      "type": "object"
-    },
-    "GetSecretInternalReply": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/InternalSecret"
-        }
-      }
-    },
-    "GetSecretReply": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/Secret"
-        }
-      }
-    },
-    "InternalSecret": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "value": {
           "type": "string",
-          "format": "byte"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "ListSecretsReply": {
-      "type": "object",
-      "properties": {
-        "secrets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Secret"
-          }
-        },
-        "limit": {
-          "type": "integer",
           "format": "int64"
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "Secret": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "UpdateSecretReply": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/Secret"
         }
       }
     },
@@ -3829,6 +3724,14 @@
     },
     "DeleteServiceReply": {
       "type": "object"
+    },
+    "DeploymentMetadata": {
+      "type": "object",
+      "properties": {
+        "trigger": {
+          "$ref": "#/definitions/TriggerDeploymentMetadata"
+        }
+      }
     },
     "DeploymentState": {
       "type": "object",
@@ -3963,6 +3866,43 @@
         }
       }
     },
+    "GitDeploymentMetadata": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "$ref": "#/definitions/GitDeploymentMetadata.Provider"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "branch": {
+          "type": "string"
+        },
+        "sha": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "sender_username": {
+          "type": "string"
+        },
+        "sender_avatar_url": {
+          "type": "string"
+        },
+        "sender_profile_url": {
+          "type": "string"
+        }
+      }
+    },
+    "GitDeploymentMetadata.Provider": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "GITHUB"
+      ],
+      "default": "UNKNOWN"
+    },
     "GitSource": {
       "type": "object",
       "properties": {
@@ -3981,6 +3921,14 @@
         "sha": {
           "type": "string",
           "title": "A git commit that should be built (useful for pinning to a commit, this will always be set when a revision is created by a code push)"
+        },
+        "build_command": {
+          "type": "string",
+          "title": "A command used to override the build command, run after all build steps"
+        },
+        "run_command": {
+          "type": "string",
+          "title": "A command used to override the default run command"
         }
       }
     },
@@ -4335,6 +4283,9 @@
         },
         "state": {
           "$ref": "#/definitions/ServiceRevisionState"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DeploymentMetadata"
         }
       }
     },
@@ -4394,6 +4345,9 @@
         },
         "status": {
           "$ref": "#/definitions/ServiceRevisionState.Status"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DeploymentMetadata"
         }
       }
     },
@@ -4521,6 +4475,25 @@
       ],
       "default": "UNKNOWN"
     },
+    "TriggerDeploymentMetadata": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/TriggerDeploymentMetadata.TriggerType"
+        },
+        "git": {
+          "$ref": "#/definitions/GitDeploymentMetadata"
+        }
+      }
+    },
+    "TriggerDeploymentMetadata.TriggerType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "GIT"
+      ],
+      "default": "UNKNOWN"
+    },
     "UpdateRevisionStateReply": {
       "type": "object"
     },
@@ -4544,23 +4517,23 @@
     "UpdateServiceStateReply": {
       "type": "object"
     },
-    "GithubHookReply": {
-      "type": "object"
-    },
-    "Notification": {
+    "Activity": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
-        "activity": {
-          "$ref": "#/definitions/Activity"
+        "actor": {
+          "$ref": "#/definitions/Object"
         },
-        "is_read": {
-          "type": "boolean"
+        "object": {
+          "$ref": "#/definitions/Object"
         },
-        "is_seen": {
-          "type": "boolean"
+        "verb": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object"
         },
         "created_at": {
           "type": "string",
@@ -4568,13 +4541,13 @@
         }
       }
     },
-    "NotificationList": {
+    "ActivityList": {
       "type": "object",
       "properties": {
-        "notifications": {
+        "activities": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Notification"
+            "$ref": "#/definitions/Activity"
           }
         },
         "limit": {
@@ -4588,20 +4561,685 @@
         "count": {
           "type": "integer",
           "format": "int64"
+        }
+      }
+    },
+    "Object": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
         },
-        "is_read": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object"
+        },
+        "deleted": {
           "type": "boolean"
+        }
+      }
+    },
+    "AzureContainerRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "registry_name": {
+          "type": "string"
         },
-        "is_seen": {
-          "type": "boolean"
+        "username": {
+          "type": "string"
         },
-        "unread": {
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateSecret": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SecretType"
+        },
+        "value": {
+          "type": "string"
+        },
+        "docker_hub_registry": {
+          "$ref": "#/definitions/DockerHubRegistryConfiguration"
+        },
+        "private_registry": {
+          "$ref": "#/definitions/PrivateRegistryConfiguration"
+        },
+        "digital_ocean_registry": {
+          "$ref": "#/definitions/DigitalOceanRegistryConfiguration"
+        },
+        "github_registry": {
+          "$ref": "#/definitions/GitHubRegistryConfiguration"
+        },
+        "gitlab_registry": {
+          "$ref": "#/definitions/GitLabRegistryConfiguration"
+        },
+        "gcp_container_registry": {
+          "$ref": "#/definitions/GCPContainerRegistryConfiguration"
+        },
+        "azure_container_registry": {
+          "$ref": "#/definitions/AzureContainerRegistryConfiguration"
+        }
+      }
+    },
+    "CreateSecretReply": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "$ref": "#/definitions/Secret"
+        }
+      }
+    },
+    "DeleteSecretReply": {
+      "type": "object"
+    },
+    "DigitalOceanRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "DockerHubRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "GCPContainerRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "keyfile_content": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "GetSecretInternalReply": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "$ref": "#/definitions/InternalSecret"
+        }
+      }
+    },
+    "GetSecretReply": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "$ref": "#/definitions/Secret"
+        }
+      }
+    },
+    "GitHubRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "GitLabRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "InternalSecret": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "type": {
+          "$ref": "#/definitions/SecretType"
+        }
+      }
+    },
+    "ListSecretsReply": {
+      "type": "object",
+      "properties": {
+        "secrets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Secret"
+          }
+        },
+        "limit": {
           "type": "integer",
           "format": "int64"
         },
-        "unseen": {
+        "offset": {
           "type": "integer",
           "format": "int64"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "PrivateRegistryConfiguration": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "Secret": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/SecretType"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "value": {
+          "type": "string"
+        },
+        "docker_hub_registry": {
+          "$ref": "#/definitions/DockerHubRegistryConfiguration"
+        },
+        "private_registry": {
+          "$ref": "#/definitions/PrivateRegistryConfiguration"
+        },
+        "digital_ocean_registry": {
+          "$ref": "#/definitions/DigitalOceanRegistryConfiguration"
+        },
+        "github_registry": {
+          "$ref": "#/definitions/GitHubRegistryConfiguration"
+        },
+        "gitlab_registry": {
+          "$ref": "#/definitions/GitLabRegistryConfiguration"
+        },
+        "gcp_container_registry": {
+          "$ref": "#/definitions/GCPContainerRegistryConfiguration"
+        },
+        "azure_container_registry": {
+          "$ref": "#/definitions/AzureContainerRegistryConfiguration"
+        }
+      }
+    },
+    "SecretType": {
+      "type": "string",
+      "enum": [
+        "SIMPLE",
+        "REGISTRY"
+      ],
+      "default": "SIMPLE"
+    },
+    "UpdateSecretReply": {
+      "type": "object",
+      "properties": {
+        "secret": {
+          "$ref": "#/definitions/Secret"
+        }
+      }
+    },
+    "App": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Domain"
+          }
+        }
+      }
+    },
+    "AppListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Domain"
+          }
+        }
+      }
+    },
+    "CreateApp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateAppReply": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/App",
+          "title": "The entity created"
+        }
+      }
+    },
+    "DeleteAppReply": {
+      "type": "object"
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "deployment_group": {
+          "type": "string"
+        }
+      }
+    },
+    "GetAppReply": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/App",
+          "title": "The App retrieved"
+        }
+      }
+    },
+    "GetInternalAppReply": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/App"
+        }
+      }
+    },
+    "ListAppsReply": {
+      "type": "object",
+      "properties": {
+        "apps": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AppListItem"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of items"
+        }
+      }
+    },
+    "UpdateApp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateAppReply": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/App",
+          "title": "The entity updated"
+        }
+      }
+    },
+    "GetInstanceReply": {
+      "type": "object",
+      "properties": {
+        "instance": {
+          "$ref": "#/definitions/Instance",
+          "title": "The instance retrieved"
+        }
+      }
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The name of the instance"
+        },
+        "description": {
+          "type": "string",
+          "title": "A short description of the instance"
+        },
+        "vcpu": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of cpus"
+        },
+        "memory": {
+          "type": "string",
+          "title": "The memory in bytes in a format like 5MB"
+        },
+        "disk": {
+          "type": "string",
+          "title": "The size of the disk in bytes in a format like 5MB"
+        },
+        "price_hourly": {
+          "type": "string",
+          "title": "The price to pay per hour"
+        },
+        "price_monthly": {
+          "type": "string",
+          "title": "The price to pay per month"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The regions where this instance type is available"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the instance"
+        },
+        "require_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The plan required to use instance"
+        }
+      }
+    },
+    "InstanceListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The name of the instance"
+        },
+        "description": {
+          "type": "string",
+          "title": "A short description of the instance"
+        },
+        "vcpu": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of cpus"
+        },
+        "memory": {
+          "type": "string",
+          "title": "The memory in bytes in a format like 5MB"
+        },
+        "disk": {
+          "type": "string",
+          "title": "The size of the disk in bytes in a format like 5MB"
+        },
+        "price_hourly": {
+          "type": "string",
+          "title": "The price to pay per hour"
+        },
+        "price_monthly": {
+          "type": "string",
+          "title": "The price to pay per month"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The regions where this instance type is available"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the instance"
+        },
+        "require_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The plan required to use instance"
+        }
+      }
+    },
+    "ListInstancesReply": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InstanceListItem"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of items"
+        }
+      }
+    },
+    "GetRegionReply": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "$ref": "#/definitions/Region",
+          "title": "The Region retrieved"
+        }
+      }
+    },
+    "ListRegionsReply": {
+      "type": "object",
+      "properties": {
+        "regions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegionListItem"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of items"
+        }
+      }
+    },
+    "Region": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The id of the region"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the region"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The coordinates of the region (lat/long)"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the region"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of instances available in this region"
+        },
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of datacenters available in this region"
+        }
+      }
+    },
+    "RegionListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The id of the region"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the region"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The coordinates of the region (lat/long)"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the region"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of instances available in this region"
+        },
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of datacenters available in this region"
         }
       }
     },
@@ -4770,7 +5408,10 @@
             "$ref": "#/definitions/GithubRepo"
           }
         },
-        "installationId": {
+        "installation_id": {
+          "type": "string"
+        },
+        "installation_url": {
           "type": "string"
         }
       }
@@ -4928,7 +5569,7 @@
           "type": "string"
         },
         "plan": {
-          "type": "string"
+          "$ref": "#/definitions/Plan"
         }
       }
     },
@@ -4945,6 +5586,15 @@
           "type": "string"
         }
       }
+    },
+    "Plan": {
+      "type": "string",
+      "enum": [
+        "basic",
+        "startup",
+        "business"
+      ],
+      "default": "basic"
     },
     "ResendEmailValidationReply": {
       "type": "object"
@@ -5150,261 +5800,64 @@
     "Empty": {
       "type": "object"
     },
-    "LogEntry": {
+    "GithubHookReply": {
+      "type": "object"
+    },
+    "Notification": {
       "type": "object",
       "properties": {
-        "revision_id": {
+        "id": {
+          "type": "string"
+        },
+        "activity": {
+          "$ref": "#/definitions/Activity"
+        },
+        "is_read": {
+          "type": "boolean"
+        },
+        "is_seen": {
+          "type": "boolean"
+        },
+        "created_at": {
           "type": "string",
-          "title": "TODO improve with offset return / resume"
+          "format": "date-time"
+        }
+      }
+    },
+    "NotificationList": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Notification"
+          }
         },
-        "instance_id": {
-          "type": "string"
-        },
-        "stream": {
-          "type": "string"
-        },
-        "msg": {
-          "type": "string"
-        },
-        "offset": {
-          "type": "string",
+        "limit": {
+          "type": "integer",
           "format": "int64"
-        }
-      }
-    },
-    "GetInstanceReply": {
-      "type": "object",
-      "properties": {
-        "instance": {
-          "$ref": "#/definitions/Instance",
-          "title": "The instance retrieved"
-        }
-      }
-    },
-    "Instance": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The name of the instance"
-        },
-        "description": {
-          "type": "string",
-          "title": "A short description of the instance"
-        },
-        "vcpu": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The number of cpus"
-        },
-        "memory": {
-          "type": "string",
-          "title": "The memory in bytes in a format like 5MB"
-        },
-        "disk": {
-          "type": "string",
-          "title": "The size of the disk in bytes in a format like 5MB"
-        },
-        "price_hourly": {
-          "type": "string",
-          "title": "The price to pay per hour"
-        },
-        "price_monthly": {
-          "type": "string",
-          "title": "The price to pay per month"
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The regions where this instance type is available"
-        },
-        "status": {
-          "type": "string",
-          "title": "The status of the instance"
-        }
-      }
-    },
-    "InstanceListItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The name of the instance"
-        },
-        "description": {
-          "type": "string",
-          "title": "A short description of the instance"
-        },
-        "vcpu": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The number of cpus"
-        },
-        "memory": {
-          "type": "string",
-          "title": "The memory in bytes in a format like 5MB"
-        },
-        "disk": {
-          "type": "string",
-          "title": "The size of the disk in bytes in a format like 5MB"
-        },
-        "price_hourly": {
-          "type": "string",
-          "title": "The price to pay per hour"
-        },
-        "price_monthly": {
-          "type": "string",
-          "title": "The price to pay per month"
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The regions where this instance type is available"
-        },
-        "status": {
-          "type": "string",
-          "title": "The status of the instance"
-        }
-      }
-    },
-    "ListInstancesReply": {
-      "type": "object",
-      "properties": {
-        "instances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/InstanceListItem"
-          }
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The limit in the request"
         },
         "offset": {
           "type": "integer",
-          "format": "int64",
-          "title": "The offset in the request"
+          "format": "int64"
         },
         "count": {
           "type": "integer",
-          "format": "int64",
-          "title": "The total number of items"
-        }
-      }
-    },
-    "GetRegionReply": {
-      "type": "object",
-      "properties": {
-        "region": {
-          "$ref": "#/definitions/Region",
-          "title": "The Region retrieved"
-        }
-      }
-    },
-    "ListRegionsReply": {
-      "type": "object",
-      "properties": {
-        "regions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/RegionListItem"
-          }
+          "format": "int64"
         },
-        "limit": {
+        "is_read": {
+          "type": "boolean"
+        },
+        "is_seen": {
+          "type": "boolean"
+        },
+        "unread": {
           "type": "integer",
-          "format": "int64",
-          "title": "The limit in the request"
+          "format": "int64"
         },
-        "offset": {
+        "unseen": {
           "type": "integer",
-          "format": "int64",
-          "title": "The offset in the request"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The total number of items"
-        }
-      }
-    },
-    "Region": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The id of the region"
-        },
-        "name": {
-          "type": "string",
-          "title": "The name of the region"
-        },
-        "coordinates": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The coordinates of the region (lat/long)"
-        },
-        "status": {
-          "type": "string",
-          "title": "The status of the region"
-        },
-        "instances": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "A list of instances available in this region"
-        },
-        "datacenters": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "A list of datacenters available in this region"
-        }
-      }
-    },
-    "RegionListItem": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The id of the region"
-        },
-        "name": {
-          "type": "string",
-          "title": "The name of the region"
-        },
-        "coordinates": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The coordinates of the region (lat/long)"
-        },
-        "status": {
-          "type": "string",
-          "title": "The status of the region"
-        },
-        "instances": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "A list of instances available in this region"
-        },
-        "datacenters": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "A list of datacenters available in this region"
+          "format": "int64"
         }
       }
     }

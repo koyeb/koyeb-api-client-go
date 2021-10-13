@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**ServiceRevisionStateStatus**](ServiceRevisionStateStatus.md) |  | [optional] [default to SERVICEREVISIONSTATESTATUS_UNKNOWN]
+**Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -309,6 +310,31 @@ SetStatus sets Status field to given value.
 `func (o *ServiceRevisionListItem) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *ServiceRevisionListItem) GetMetadata() DeploymentMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *ServiceRevisionListItem) GetMetadataOk() (*DeploymentMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *ServiceRevisionListItem) SetMetadata(v DeploymentMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *ServiceRevisionListItem) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

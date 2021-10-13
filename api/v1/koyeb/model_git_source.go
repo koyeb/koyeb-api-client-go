@@ -21,6 +21,8 @@ type GitSource struct {
 	Branch *string `json:"branch,omitempty"`
 	Tag *string `json:"tag,omitempty"`
 	Sha *string `json:"sha,omitempty"`
+	BuildCommand *string `json:"build_command,omitempty"`
+	RunCommand *string `json:"run_command,omitempty"`
 }
 
 // NewGitSource instantiates a new GitSource object
@@ -168,6 +170,70 @@ func (o *GitSource) SetSha(v string) {
 	o.Sha = &v
 }
 
+// GetBuildCommand returns the BuildCommand field value if set, zero value otherwise.
+func (o *GitSource) GetBuildCommand() string {
+	if o == nil || o.BuildCommand == nil {
+		var ret string
+		return ret
+	}
+	return *o.BuildCommand
+}
+
+// GetBuildCommandOk returns a tuple with the BuildCommand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetBuildCommandOk() (*string, bool) {
+	if o == nil || o.BuildCommand == nil {
+		return nil, false
+	}
+	return o.BuildCommand, true
+}
+
+// HasBuildCommand returns a boolean if a field has been set.
+func (o *GitSource) HasBuildCommand() bool {
+	if o != nil && o.BuildCommand != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBuildCommand gets a reference to the given string and assigns it to the BuildCommand field.
+func (o *GitSource) SetBuildCommand(v string) {
+	o.BuildCommand = &v
+}
+
+// GetRunCommand returns the RunCommand field value if set, zero value otherwise.
+func (o *GitSource) GetRunCommand() string {
+	if o == nil || o.RunCommand == nil {
+		var ret string
+		return ret
+	}
+	return *o.RunCommand
+}
+
+// GetRunCommandOk returns a tuple with the RunCommand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetRunCommandOk() (*string, bool) {
+	if o == nil || o.RunCommand == nil {
+		return nil, false
+	}
+	return o.RunCommand, true
+}
+
+// HasRunCommand returns a boolean if a field has been set.
+func (o *GitSource) HasRunCommand() bool {
+	if o != nil && o.RunCommand != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRunCommand gets a reference to the given string and assigns it to the RunCommand field.
+func (o *GitSource) SetRunCommand(v string) {
+	o.RunCommand = &v
+}
+
 func (o GitSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Repository != nil {
@@ -181,6 +247,12 @@ func (o GitSource) MarshalJSON() ([]byte, error) {
 	}
 	if o.Sha != nil {
 		toSerialize["sha"] = o.Sha
+	}
+	if o.BuildCommand != nil {
+		toSerialize["build_command"] = o.BuildCommand
+	}
+	if o.RunCommand != nil {
+		toSerialize["run_command"] = o.RunCommand
 	}
 	return json.Marshal(toSerialize)
 }
