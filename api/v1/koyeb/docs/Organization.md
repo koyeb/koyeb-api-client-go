@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Company** | Pointer to **bool** |  | [optional] 
 **VatNumber** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Plan** | Pointer to **string** |  | [optional] 
+**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] [default to PLAN_BASIC]
 
 ## Methods
 
@@ -261,20 +261,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetPlan
 
-`func (o *Organization) GetPlan() string`
+`func (o *Organization) GetPlan() Plan`
 
 GetPlan returns the Plan field if non-nil, zero value otherwise.
 
 ### GetPlanOk
 
-`func (o *Organization) GetPlanOk() (*string, bool)`
+`func (o *Organization) GetPlanOk() (*Plan, bool)`
 
 GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPlan
 
-`func (o *Organization) SetPlan(v string)`
+`func (o *Organization) SetPlan(v Plan)`
 
 SetPlan sets Plan field to given value.
 

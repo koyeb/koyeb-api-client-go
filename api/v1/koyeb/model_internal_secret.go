@@ -23,6 +23,7 @@ type InternalSecret struct {
 	OrganizationId *string `json:"organization_id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Type *SecretType `json:"type,omitempty"`
 }
 
 // NewInternalSecret instantiates a new InternalSecret object
@@ -31,6 +32,8 @@ type InternalSecret struct {
 // will change when the set of required properties is changed
 func NewInternalSecret() *InternalSecret {
 	this := InternalSecret{}
+	var type_ SecretType = SECRETTYPE_SIMPLE
+	this.Type = &type_
 	return &this
 }
 
@@ -39,6 +42,8 @@ func NewInternalSecret() *InternalSecret {
 // but it doesn't guarantee that properties required by API are set
 func NewInternalSecretWithDefaults() *InternalSecret {
 	this := InternalSecret{}
+	var type_ SecretType = SECRETTYPE_SIMPLE
+	this.Type = &type_
 	return &this
 }
 
@@ -234,6 +239,38 @@ func (o *InternalSecret) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *InternalSecret) GetType() SecretType {
+	if o == nil || o.Type == nil {
+		var ret SecretType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InternalSecret) GetTypeOk() (*SecretType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *InternalSecret) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given SecretType and assigns it to the Type field.
+func (o *InternalSecret) SetType(v SecretType) {
+	o.Type = &v
+}
+
 func (o InternalSecret) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -253,6 +290,9 @@ func (o InternalSecret) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

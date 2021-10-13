@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Branch** | Pointer to **string** |  | [optional] 
 **Tag** | Pointer to **string** |  | [optional] 
 **Sha** | Pointer to **string** |  | [optional] 
+**BuildCommand** | Pointer to **string** |  | [optional] 
+**RunCommand** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +129,56 @@ SetSha sets Sha field to given value.
 `func (o *GitSource) HasSha() bool`
 
 HasSha returns a boolean if a field has been set.
+
+### GetBuildCommand
+
+`func (o *GitSource) GetBuildCommand() string`
+
+GetBuildCommand returns the BuildCommand field if non-nil, zero value otherwise.
+
+### GetBuildCommandOk
+
+`func (o *GitSource) GetBuildCommandOk() (*string, bool)`
+
+GetBuildCommandOk returns a tuple with the BuildCommand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBuildCommand
+
+`func (o *GitSource) SetBuildCommand(v string)`
+
+SetBuildCommand sets BuildCommand field to given value.
+
+### HasBuildCommand
+
+`func (o *GitSource) HasBuildCommand() bool`
+
+HasBuildCommand returns a boolean if a field has been set.
+
+### GetRunCommand
+
+`func (o *GitSource) GetRunCommand() string`
+
+GetRunCommand returns the RunCommand field if non-nil, zero value otherwise.
+
+### GetRunCommandOk
+
+`func (o *GitSource) GetRunCommandOk() (*string, bool)`
+
+GetRunCommandOk returns a tuple with the RunCommand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRunCommand
+
+`func (o *GitSource) SetRunCommand(v string)`
+
+SetRunCommand sets RunCommand field to given value.
+
+### HasRunCommand
+
+`func (o *GitSource) HasRunCommand() bool`
+
+HasRunCommand returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

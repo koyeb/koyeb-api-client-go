@@ -25,6 +25,7 @@ type InstanceListItem struct {
 	PriceMonthly *string `json:"price_monthly,omitempty"`
 	Regions *[]string `json:"regions,omitempty"`
 	Status *string `json:"status,omitempty"`
+	RequirePlan *[]string `json:"require_plan,omitempty"`
 }
 
 // NewInstanceListItem instantiates a new InstanceListItem object
@@ -332,6 +333,38 @@ func (o *InstanceListItem) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetRequirePlan returns the RequirePlan field value if set, zero value otherwise.
+func (o *InstanceListItem) GetRequirePlan() []string {
+	if o == nil || o.RequirePlan == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RequirePlan
+}
+
+// GetRequirePlanOk returns a tuple with the RequirePlan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetRequirePlanOk() (*[]string, bool) {
+	if o == nil || o.RequirePlan == nil {
+		return nil, false
+	}
+	return o.RequirePlan, true
+}
+
+// HasRequirePlan returns a boolean if a field has been set.
+func (o *InstanceListItem) HasRequirePlan() bool {
+	if o != nil && o.RequirePlan != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequirePlan gets a reference to the given []string and assigns it to the RequirePlan field.
+func (o *InstanceListItem) SetRequirePlan(v []string) {
+	o.RequirePlan = &v
+}
+
 func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -360,6 +393,9 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+	if o.RequirePlan != nil {
+		toSerialize["require_plan"] = o.RequirePlan
 	}
 	return json.Marshal(toSerialize)
 }

@@ -12,15 +12,14 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // LogEntry struct for LogEntry
 type LogEntry struct {
-	RevisionId *string `json:"revision_id,omitempty"`
-	InstanceId *string `json:"instance_id,omitempty"`
-	Stream *string `json:"stream,omitempty"`
 	Msg *string `json:"msg,omitempty"`
-	Offset *string `json:"offset,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Labels *interface{} `json:"labels,omitempty"`
 }
 
 // NewLogEntry instantiates a new LogEntry object
@@ -38,102 +37,6 @@ func NewLogEntry() *LogEntry {
 func NewLogEntryWithDefaults() *LogEntry {
 	this := LogEntry{}
 	return &this
-}
-
-// GetRevisionId returns the RevisionId field value if set, zero value otherwise.
-func (o *LogEntry) GetRevisionId() string {
-	if o == nil || o.RevisionId == nil {
-		var ret string
-		return ret
-	}
-	return *o.RevisionId
-}
-
-// GetRevisionIdOk returns a tuple with the RevisionId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogEntry) GetRevisionIdOk() (*string, bool) {
-	if o == nil || o.RevisionId == nil {
-		return nil, false
-	}
-	return o.RevisionId, true
-}
-
-// HasRevisionId returns a boolean if a field has been set.
-func (o *LogEntry) HasRevisionId() bool {
-	if o != nil && o.RevisionId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRevisionId gets a reference to the given string and assigns it to the RevisionId field.
-func (o *LogEntry) SetRevisionId(v string) {
-	o.RevisionId = &v
-}
-
-// GetInstanceId returns the InstanceId field value if set, zero value otherwise.
-func (o *LogEntry) GetInstanceId() string {
-	if o == nil || o.InstanceId == nil {
-		var ret string
-		return ret
-	}
-	return *o.InstanceId
-}
-
-// GetInstanceIdOk returns a tuple with the InstanceId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogEntry) GetInstanceIdOk() (*string, bool) {
-	if o == nil || o.InstanceId == nil {
-		return nil, false
-	}
-	return o.InstanceId, true
-}
-
-// HasInstanceId returns a boolean if a field has been set.
-func (o *LogEntry) HasInstanceId() bool {
-	if o != nil && o.InstanceId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInstanceId gets a reference to the given string and assigns it to the InstanceId field.
-func (o *LogEntry) SetInstanceId(v string) {
-	o.InstanceId = &v
-}
-
-// GetStream returns the Stream field value if set, zero value otherwise.
-func (o *LogEntry) GetStream() string {
-	if o == nil || o.Stream == nil {
-		var ret string
-		return ret
-	}
-	return *o.Stream
-}
-
-// GetStreamOk returns a tuple with the Stream field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *LogEntry) GetStreamOk() (*string, bool) {
-	if o == nil || o.Stream == nil {
-		return nil, false
-	}
-	return o.Stream, true
-}
-
-// HasStream returns a boolean if a field has been set.
-func (o *LogEntry) HasStream() bool {
-	if o != nil && o.Stream != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStream gets a reference to the given string and assigns it to the Stream field.
-func (o *LogEntry) SetStream(v string) {
-	o.Stream = &v
 }
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
@@ -168,54 +71,80 @@ func (o *LogEntry) SetMsg(v string) {
 	o.Msg = &v
 }
 
-// GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *LogEntry) GetOffset() string {
-	if o == nil || o.Offset == nil {
-		var ret string
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *LogEntry) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.Offset
+	return *o.CreatedAt
 }
 
-// GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogEntry) GetOffsetOk() (*string, bool) {
-	if o == nil || o.Offset == nil {
+func (o *LogEntry) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
-	return o.Offset, true
+	return o.CreatedAt, true
 }
 
-// HasOffset returns a boolean if a field has been set.
-func (o *LogEntry) HasOffset() bool {
-	if o != nil && o.Offset != nil {
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *LogEntry) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOffset gets a reference to the given string and assigns it to the Offset field.
-func (o *LogEntry) SetOffset(v string) {
-	o.Offset = &v
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *LogEntry) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *LogEntry) GetLabels() interface{} {
+	if o == nil || o.Labels == nil {
+		var ret interface{}
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogEntry) GetLabelsOk() (*interface{}, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *LogEntry) HasLabels() bool {
+	if o != nil && o.Labels != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given interface{} and assigns it to the Labels field.
+func (o *LogEntry) SetLabels(v interface{}) {
+	o.Labels = &v
 }
 
 func (o LogEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RevisionId != nil {
-		toSerialize["revision_id"] = o.RevisionId
-	}
-	if o.InstanceId != nil {
-		toSerialize["instance_id"] = o.InstanceId
-	}
-	if o.Stream != nil {
-		toSerialize["stream"] = o.Stream
-	}
 	if o.Msg != nil {
 		toSerialize["msg"] = o.Msg
 	}
-	if o.Offset != nil {
-		toSerialize["offset"] = o.Offset
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
 	}
 	return json.Marshal(toSerialize)
 }

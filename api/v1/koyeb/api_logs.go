@@ -40,9 +40,39 @@ type LogsApi interface {
 
 	/*
 	 * TailInstanceLogsExecute executes the request
+	 * @return StreamResultOfRevisionLogEntry
+	 */
+	TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfRevisionLogEntry, *_nethttp.Response, error)
+
+	/*
+	 * TailRevisionBuildLogs Method for TailRevisionBuildLogs
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @param serviceIdOrName
+	 * @param revisionId
+	 * @return ApiTailRevisionBuildLogsRequest
+	 */
+	TailRevisionBuildLogs(ctx _context.Context, appIdOrName string, serviceIdOrName string, revisionId string) ApiTailRevisionBuildLogsRequest
+
+	/*
+	 * TailRevisionBuildLogsExecute executes the request
 	 * @return StreamResultOfLogEntry
 	 */
-	TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
+	TailRevisionBuildLogsExecute(r ApiTailRevisionBuildLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
+
+	/*
+	 * TailRuntimeLogs Method for TailRuntimeLogs
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @return ApiTailRuntimeLogsRequest
+	 */
+	TailRuntimeLogs(ctx _context.Context, appIdOrName string) ApiTailRuntimeLogsRequest
+
+	/*
+	 * TailRuntimeLogsExecute executes the request
+	 * @return StreamResultOfLogEntry
+	 */
+	TailRuntimeLogsExecute(r ApiTailRuntimeLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
 }
 
 // LogsApiService LogsApi service
@@ -64,7 +94,7 @@ func (r ApiTailInstanceLogsRequest) Offset(offset string) ApiTailInstanceLogsReq
 	return r
 }
 
-func (r ApiTailInstanceLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.Response, error) {
+func (r ApiTailInstanceLogsRequest) Execute() (StreamResultOfRevisionLogEntry, *_nethttp.Response, error) {
 	return r.ApiService.TailInstanceLogsExecute(r)
 }
 
@@ -92,16 +122,16 @@ func (a *LogsApiService) TailInstanceLogs(ctx _context.Context, appIdOrName stri
 
 /*
  * Execute executes the request
- * @return StreamResultOfLogEntry
+ * @return StreamResultOfRevisionLogEntry
  */
-func (a *LogsApiService) TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error) {
+func (a *LogsApiService) TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfRevisionLogEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  StreamResultOfLogEntry
+		localVarReturnValue  StreamResultOfRevisionLogEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.TailInstanceLogs")
@@ -122,6 +152,390 @@ func (a *LogsApiService) TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (
 
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiTailRevisionBuildLogsRequest struct {
+	ctx _context.Context
+	ApiService LogsApi
+	appIdOrName string
+	serviceIdOrName string
+	revisionId string
+	start *string
+	limit *string
+}
+
+func (r ApiTailRevisionBuildLogsRequest) Start(start string) ApiTailRevisionBuildLogsRequest {
+	r.start = &start
+	return r
+}
+func (r ApiTailRevisionBuildLogsRequest) Limit(limit string) ApiTailRevisionBuildLogsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiTailRevisionBuildLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.Response, error) {
+	return r.ApiService.TailRevisionBuildLogsExecute(r)
+}
+
+/*
+ * TailRevisionBuildLogs Method for TailRevisionBuildLogs
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName
+ * @param serviceIdOrName
+ * @param revisionId
+ * @return ApiTailRevisionBuildLogsRequest
+ */
+func (a *LogsApiService) TailRevisionBuildLogs(ctx _context.Context, appIdOrName string, serviceIdOrName string, revisionId string) ApiTailRevisionBuildLogsRequest {
+	return ApiTailRevisionBuildLogsRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		serviceIdOrName: serviceIdOrName,
+		revisionId: revisionId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return StreamResultOfLogEntry
+ */
+func (a *LogsApiService) TailRevisionBuildLogsExecute(r ApiTailRevisionBuildLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  StreamResultOfLogEntry
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.TailRevisionBuildLogs")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"service_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.serviceIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"revision_id"+"}", _neturl.PathEscape(parameterToString(r.revisionId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiTailRuntimeLogsRequest struct {
+	ctx _context.Context
+	ApiService LogsApi
+	appIdOrName string
+	serviceId *string
+	revisionId *string
+	instanceId *string
+	stream *string
+	start *string
+	limit *string
+}
+
+func (r ApiTailRuntimeLogsRequest) ServiceId(serviceId string) ApiTailRuntimeLogsRequest {
+	r.serviceId = &serviceId
+	return r
+}
+func (r ApiTailRuntimeLogsRequest) RevisionId(revisionId string) ApiTailRuntimeLogsRequest {
+	r.revisionId = &revisionId
+	return r
+}
+func (r ApiTailRuntimeLogsRequest) InstanceId(instanceId string) ApiTailRuntimeLogsRequest {
+	r.instanceId = &instanceId
+	return r
+}
+func (r ApiTailRuntimeLogsRequest) Stream(stream string) ApiTailRuntimeLogsRequest {
+	r.stream = &stream
+	return r
+}
+func (r ApiTailRuntimeLogsRequest) Start(start string) ApiTailRuntimeLogsRequest {
+	r.start = &start
+	return r
+}
+func (r ApiTailRuntimeLogsRequest) Limit(limit string) ApiTailRuntimeLogsRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiTailRuntimeLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.Response, error) {
+	return r.ApiService.TailRuntimeLogsExecute(r)
+}
+
+/*
+ * TailRuntimeLogs Method for TailRuntimeLogs
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName
+ * @return ApiTailRuntimeLogsRequest
+ */
+func (a *LogsApiService) TailRuntimeLogs(ctx _context.Context, appIdOrName string) ApiTailRuntimeLogsRequest {
+	return ApiTailRuntimeLogsRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return StreamResultOfLogEntry
+ */
+func (a *LogsApiService) TailRuntimeLogsExecute(r ApiTailRuntimeLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  StreamResultOfLogEntry
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.TailRuntimeLogs")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/logs/tail"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.serviceId != nil {
+		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
+	}
+	if r.revisionId != nil {
+		localVarQueryParams.Add("revision_id", parameterToString(*r.revisionId, ""))
+	}
+	if r.instanceId != nil {
+		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
+	}
+	if r.stream != nil {
+		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
+	}
+	if r.start != nil {
+		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -28,6 +28,7 @@ type ServiceRevision struct {
 	Version *string `json:"version,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
 	State *ServiceRevisionState `json:"state,omitempty"`
+	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 }
 
 // NewServiceRevision instantiates a new ServiceRevision object
@@ -399,6 +400,38 @@ func (o *ServiceRevision) SetState(v ServiceRevisionState) {
 	o.State = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *ServiceRevision) GetMetadata() DeploymentMetadata {
+	if o == nil || o.Metadata == nil {
+		var ret DeploymentMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceRevision) GetMetadataOk() (*DeploymentMetadata, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *ServiceRevision) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given DeploymentMetadata and assigns it to the Metadata field.
+func (o *ServiceRevision) SetMetadata(v DeploymentMetadata) {
+	o.Metadata = &v
+}
+
 func (o ServiceRevision) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.OrganizationId != nil {
@@ -433,6 +466,9 @@ func (o ServiceRevision) MarshalJSON() ([]byte, error) {
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	return json.Marshal(toSerialize)
 }

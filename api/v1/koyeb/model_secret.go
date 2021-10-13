@@ -19,10 +19,18 @@ import (
 type Secret struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Value *string `json:"value,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
+	Type *SecretType `json:"type,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Value *string `json:"value,omitempty"`
+	DockerHubRegistry *DockerHubRegistryConfiguration `json:"docker_hub_registry,omitempty"`
+	PrivateRegistry *PrivateRegistryConfiguration `json:"private_registry,omitempty"`
+	DigitalOceanRegistry *DigitalOceanRegistryConfiguration `json:"digital_ocean_registry,omitempty"`
+	GithubRegistry *GitHubRegistryConfiguration `json:"github_registry,omitempty"`
+	GitlabRegistry *GitLabRegistryConfiguration `json:"gitlab_registry,omitempty"`
+	GcpContainerRegistry *GCPContainerRegistryConfiguration `json:"gcp_container_registry,omitempty"`
+	AzureContainerRegistry *AzureContainerRegistryConfiguration `json:"azure_container_registry,omitempty"`
 }
 
 // NewSecret instantiates a new Secret object
@@ -31,6 +39,8 @@ type Secret struct {
 // will change when the set of required properties is changed
 func NewSecret() *Secret {
 	this := Secret{}
+	var type_ SecretType = SECRETTYPE_SIMPLE
+	this.Type = &type_
 	return &this
 }
 
@@ -39,6 +49,8 @@ func NewSecret() *Secret {
 // but it doesn't guarantee that properties required by API are set
 func NewSecretWithDefaults() *Secret {
 	this := Secret{}
+	var type_ SecretType = SECRETTYPE_SIMPLE
+	this.Type = &type_
 	return &this
 }
 
@@ -106,38 +118,6 @@ func (o *Secret) SetName(v string) {
 	o.Name = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *Secret) GetValue() string {
-	if o == nil || o.Value == nil {
-		var ret string
-		return ret
-	}
-	return *o.Value
-}
-
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Secret) GetValueOk() (*string, bool) {
-	if o == nil || o.Value == nil {
-		return nil, false
-	}
-	return o.Value, true
-}
-
-// HasValue returns a boolean if a field has been set.
-func (o *Secret) HasValue() bool {
-	if o != nil && o.Value != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetValue gets a reference to the given string and assigns it to the Value field.
-func (o *Secret) SetValue(v string) {
-	o.Value = &v
-}
-
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Secret) GetOrganizationId() string {
 	if o == nil || o.OrganizationId == nil {
@@ -168,6 +148,38 @@ func (o *Secret) HasOrganizationId() bool {
 // SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
 func (o *Secret) SetOrganizationId(v string) {
 	o.OrganizationId = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Secret) GetType() SecretType {
+	if o == nil || o.Type == nil {
+		var ret SecretType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetTypeOk() (*SecretType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Secret) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given SecretType and assigns it to the Type field.
+func (o *Secret) SetType(v SecretType) {
+	o.Type = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -234,6 +246,262 @@ func (o *Secret) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *Secret) GetValue() string {
+	if o == nil || o.Value == nil {
+		var ret string
+		return ret
+	}
+	return *o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetValueOk() (*string, bool) {
+	if o == nil || o.Value == nil {
+		return nil, false
+	}
+	return o.Value, true
+}
+
+// HasValue returns a boolean if a field has been set.
+func (o *Secret) HasValue() bool {
+	if o != nil && o.Value != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValue gets a reference to the given string and assigns it to the Value field.
+func (o *Secret) SetValue(v string) {
+	o.Value = &v
+}
+
+// GetDockerHubRegistry returns the DockerHubRegistry field value if set, zero value otherwise.
+func (o *Secret) GetDockerHubRegistry() DockerHubRegistryConfiguration {
+	if o == nil || o.DockerHubRegistry == nil {
+		var ret DockerHubRegistryConfiguration
+		return ret
+	}
+	return *o.DockerHubRegistry
+}
+
+// GetDockerHubRegistryOk returns a tuple with the DockerHubRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetDockerHubRegistryOk() (*DockerHubRegistryConfiguration, bool) {
+	if o == nil || o.DockerHubRegistry == nil {
+		return nil, false
+	}
+	return o.DockerHubRegistry, true
+}
+
+// HasDockerHubRegistry returns a boolean if a field has been set.
+func (o *Secret) HasDockerHubRegistry() bool {
+	if o != nil && o.DockerHubRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDockerHubRegistry gets a reference to the given DockerHubRegistryConfiguration and assigns it to the DockerHubRegistry field.
+func (o *Secret) SetDockerHubRegistry(v DockerHubRegistryConfiguration) {
+	o.DockerHubRegistry = &v
+}
+
+// GetPrivateRegistry returns the PrivateRegistry field value if set, zero value otherwise.
+func (o *Secret) GetPrivateRegistry() PrivateRegistryConfiguration {
+	if o == nil || o.PrivateRegistry == nil {
+		var ret PrivateRegistryConfiguration
+		return ret
+	}
+	return *o.PrivateRegistry
+}
+
+// GetPrivateRegistryOk returns a tuple with the PrivateRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetPrivateRegistryOk() (*PrivateRegistryConfiguration, bool) {
+	if o == nil || o.PrivateRegistry == nil {
+		return nil, false
+	}
+	return o.PrivateRegistry, true
+}
+
+// HasPrivateRegistry returns a boolean if a field has been set.
+func (o *Secret) HasPrivateRegistry() bool {
+	if o != nil && o.PrivateRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivateRegistry gets a reference to the given PrivateRegistryConfiguration and assigns it to the PrivateRegistry field.
+func (o *Secret) SetPrivateRegistry(v PrivateRegistryConfiguration) {
+	o.PrivateRegistry = &v
+}
+
+// GetDigitalOceanRegistry returns the DigitalOceanRegistry field value if set, zero value otherwise.
+func (o *Secret) GetDigitalOceanRegistry() DigitalOceanRegistryConfiguration {
+	if o == nil || o.DigitalOceanRegistry == nil {
+		var ret DigitalOceanRegistryConfiguration
+		return ret
+	}
+	return *o.DigitalOceanRegistry
+}
+
+// GetDigitalOceanRegistryOk returns a tuple with the DigitalOceanRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetDigitalOceanRegistryOk() (*DigitalOceanRegistryConfiguration, bool) {
+	if o == nil || o.DigitalOceanRegistry == nil {
+		return nil, false
+	}
+	return o.DigitalOceanRegistry, true
+}
+
+// HasDigitalOceanRegistry returns a boolean if a field has been set.
+func (o *Secret) HasDigitalOceanRegistry() bool {
+	if o != nil && o.DigitalOceanRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalOceanRegistry gets a reference to the given DigitalOceanRegistryConfiguration and assigns it to the DigitalOceanRegistry field.
+func (o *Secret) SetDigitalOceanRegistry(v DigitalOceanRegistryConfiguration) {
+	o.DigitalOceanRegistry = &v
+}
+
+// GetGithubRegistry returns the GithubRegistry field value if set, zero value otherwise.
+func (o *Secret) GetGithubRegistry() GitHubRegistryConfiguration {
+	if o == nil || o.GithubRegistry == nil {
+		var ret GitHubRegistryConfiguration
+		return ret
+	}
+	return *o.GithubRegistry
+}
+
+// GetGithubRegistryOk returns a tuple with the GithubRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetGithubRegistryOk() (*GitHubRegistryConfiguration, bool) {
+	if o == nil || o.GithubRegistry == nil {
+		return nil, false
+	}
+	return o.GithubRegistry, true
+}
+
+// HasGithubRegistry returns a boolean if a field has been set.
+func (o *Secret) HasGithubRegistry() bool {
+	if o != nil && o.GithubRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGithubRegistry gets a reference to the given GitHubRegistryConfiguration and assigns it to the GithubRegistry field.
+func (o *Secret) SetGithubRegistry(v GitHubRegistryConfiguration) {
+	o.GithubRegistry = &v
+}
+
+// GetGitlabRegistry returns the GitlabRegistry field value if set, zero value otherwise.
+func (o *Secret) GetGitlabRegistry() GitLabRegistryConfiguration {
+	if o == nil || o.GitlabRegistry == nil {
+		var ret GitLabRegistryConfiguration
+		return ret
+	}
+	return *o.GitlabRegistry
+}
+
+// GetGitlabRegistryOk returns a tuple with the GitlabRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetGitlabRegistryOk() (*GitLabRegistryConfiguration, bool) {
+	if o == nil || o.GitlabRegistry == nil {
+		return nil, false
+	}
+	return o.GitlabRegistry, true
+}
+
+// HasGitlabRegistry returns a boolean if a field has been set.
+func (o *Secret) HasGitlabRegistry() bool {
+	if o != nil && o.GitlabRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGitlabRegistry gets a reference to the given GitLabRegistryConfiguration and assigns it to the GitlabRegistry field.
+func (o *Secret) SetGitlabRegistry(v GitLabRegistryConfiguration) {
+	o.GitlabRegistry = &v
+}
+
+// GetGcpContainerRegistry returns the GcpContainerRegistry field value if set, zero value otherwise.
+func (o *Secret) GetGcpContainerRegistry() GCPContainerRegistryConfiguration {
+	if o == nil || o.GcpContainerRegistry == nil {
+		var ret GCPContainerRegistryConfiguration
+		return ret
+	}
+	return *o.GcpContainerRegistry
+}
+
+// GetGcpContainerRegistryOk returns a tuple with the GcpContainerRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetGcpContainerRegistryOk() (*GCPContainerRegistryConfiguration, bool) {
+	if o == nil || o.GcpContainerRegistry == nil {
+		return nil, false
+	}
+	return o.GcpContainerRegistry, true
+}
+
+// HasGcpContainerRegistry returns a boolean if a field has been set.
+func (o *Secret) HasGcpContainerRegistry() bool {
+	if o != nil && o.GcpContainerRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGcpContainerRegistry gets a reference to the given GCPContainerRegistryConfiguration and assigns it to the GcpContainerRegistry field.
+func (o *Secret) SetGcpContainerRegistry(v GCPContainerRegistryConfiguration) {
+	o.GcpContainerRegistry = &v
+}
+
+// GetAzureContainerRegistry returns the AzureContainerRegistry field value if set, zero value otherwise.
+func (o *Secret) GetAzureContainerRegistry() AzureContainerRegistryConfiguration {
+	if o == nil || o.AzureContainerRegistry == nil {
+		var ret AzureContainerRegistryConfiguration
+		return ret
+	}
+	return *o.AzureContainerRegistry
+}
+
+// GetAzureContainerRegistryOk returns a tuple with the AzureContainerRegistry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetAzureContainerRegistryOk() (*AzureContainerRegistryConfiguration, bool) {
+	if o == nil || o.AzureContainerRegistry == nil {
+		return nil, false
+	}
+	return o.AzureContainerRegistry, true
+}
+
+// HasAzureContainerRegistry returns a boolean if a field has been set.
+func (o *Secret) HasAzureContainerRegistry() bool {
+	if o != nil && o.AzureContainerRegistry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAzureContainerRegistry gets a reference to the given AzureContainerRegistryConfiguration and assigns it to the AzureContainerRegistry field.
+func (o *Secret) SetAzureContainerRegistry(v AzureContainerRegistryConfiguration) {
+	o.AzureContainerRegistry = &v
+}
+
 func (o Secret) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -242,17 +510,41 @@ func (o Secret) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
-	}
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	if o.DockerHubRegistry != nil {
+		toSerialize["docker_hub_registry"] = o.DockerHubRegistry
+	}
+	if o.PrivateRegistry != nil {
+		toSerialize["private_registry"] = o.PrivateRegistry
+	}
+	if o.DigitalOceanRegistry != nil {
+		toSerialize["digital_ocean_registry"] = o.DigitalOceanRegistry
+	}
+	if o.GithubRegistry != nil {
+		toSerialize["github_registry"] = o.GithubRegistry
+	}
+	if o.GitlabRegistry != nil {
+		toSerialize["gitlab_registry"] = o.GitlabRegistry
+	}
+	if o.GcpContainerRegistry != nil {
+		toSerialize["gcp_container_registry"] = o.GcpContainerRegistry
+	}
+	if o.AzureContainerRegistry != nil {
+		toSerialize["azure_container_registry"] = o.AzureContainerRegistry
 	}
 	return json.Marshal(toSerialize)
 }

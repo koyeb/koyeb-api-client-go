@@ -99,6 +99,8 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
+*LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
+*LogsApi* | [**TailRuntimeLogs**](docs/LogsApi.md#tailruntimelogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | 
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
@@ -150,6 +152,7 @@ Class | Method | HTTP request | Description
  - [AppListItem](docs/AppListItem.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
+ - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
@@ -161,8 +164,11 @@ Class | Method | HTTP request | Description
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
  - [CredentialReply](docs/CredentialReply.md)
+ - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentState](docs/DeploymentState.md)
  - [DeploymentStateGroup](docs/DeploymentStateGroup.md)
+ - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
+ - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
  - [Env](docs/Env.md)
@@ -172,6 +178,7 @@ Class | Method | HTTP request | Description
  - [FetchGatewayReply](docs/FetchGatewayReply.md)
  - [FetchInternalRevisionReply](docs/FetchInternalRevisionReply.md)
  - [FetchInternalServiceReply](docs/FetchInternalServiceReply.md)
+ - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GatewayRoute](docs/GatewayRoute.md)
  - [GetAppReply](docs/GetAppReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
@@ -183,6 +190,10 @@ Class | Method | HTTP request | Description
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
  - [GetServiceRevisionReply](docs/GetServiceRevisionReply.md)
+ - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
+ - [GitDeploymentMetadataProvider](docs/GitDeploymentMetadataProvider.md)
+ - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
+ - [GitLabRegistryConfiguration](docs/GitLabRegistryConfiguration.md)
  - [GitSource](docs/GitSource.md)
  - [GithubInstallationCallbackRequest](docs/GithubInstallationCallbackRequest.md)
  - [GithubInstallationReply](docs/GithubInstallationReply.md)
@@ -215,15 +226,19 @@ Class | Method | HTTP request | Description
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
+ - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
+ - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
+ - [RevisionLogEntry](docs/RevisionLogEntry.md)
  - [Route](docs/Route.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
+ - [SecretType](docs/SecretType.md)
  - [Service](docs/Service.md)
  - [ServiceDefinition](docs/ServiceDefinition.md)
  - [ServiceId](docs/ServiceId.md)
@@ -241,7 +256,10 @@ Class | Method | HTTP request | Description
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStateStatus](docs/ServiceStateStatus.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
+ - [StreamResultOfRevisionLogEntry](docs/StreamResultOfRevisionLogEntry.md)
  - [Token](docs/Token.md)
+ - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
+ - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)

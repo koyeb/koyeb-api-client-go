@@ -25,7 +25,7 @@ type Organization struct {
 	Company *bool `json:"company,omitempty"`
 	VatNumber *string `json:"vat_number,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Plan *string `json:"plan,omitempty"`
+	Plan *Plan `json:"plan,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -34,6 +34,8 @@ type Organization struct {
 // will change when the set of required properties is changed
 func NewOrganization() *Organization {
 	this := Organization{}
+	var plan Plan = PLAN_BASIC
+	this.Plan = &plan
 	return &this
 }
 
@@ -42,6 +44,8 @@ func NewOrganization() *Organization {
 // but it doesn't guarantee that properties required by API are set
 func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
+	var plan Plan = PLAN_BASIC
+	this.Plan = &plan
 	return &this
 }
 
@@ -334,9 +338,9 @@ func (o *Organization) SetName(v string) {
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
-func (o *Organization) GetPlan() string {
+func (o *Organization) GetPlan() Plan {
 	if o == nil || o.Plan == nil {
-		var ret string
+		var ret Plan
 		return ret
 	}
 	return *o.Plan
@@ -344,7 +348,7 @@ func (o *Organization) GetPlan() string {
 
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Organization) GetPlanOk() (*string, bool) {
+func (o *Organization) GetPlanOk() (*Plan, bool) {
 	if o == nil || o.Plan == nil {
 		return nil, false
 	}
@@ -360,8 +364,8 @@ func (o *Organization) HasPlan() bool {
 	return false
 }
 
-// SetPlan gets a reference to the given string and assigns it to the Plan field.
-func (o *Organization) SetPlan(v string) {
+// SetPlan gets a reference to the given Plan and assigns it to the Plan field.
+func (o *Organization) SetPlan(v Plan) {
 	o.Plan = &v
 }
 

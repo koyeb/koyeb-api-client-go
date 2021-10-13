@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -778,6 +779,7 @@ type ApiListSecretsRequest struct {
 	name *string
 	limit *string
 	offset *string
+	types *[]string
 }
 
 func (r ApiListSecretsRequest) Name(name string) ApiListSecretsRequest {
@@ -790,6 +792,10 @@ func (r ApiListSecretsRequest) Limit(limit string) ApiListSecretsRequest {
 }
 func (r ApiListSecretsRequest) Offset(offset string) ApiListSecretsRequest {
 	r.offset = &offset
+	return r
+}
+func (r ApiListSecretsRequest) Types(types []string) ApiListSecretsRequest {
+	r.types = &types
 	return r
 }
 
@@ -842,6 +848,17 @@ func (a *SecretsApiService) ListSecretsExecute(r ApiListSecretsRequest) (ListSec
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.types != nil {
+		t := *r.types
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("types", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("types", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

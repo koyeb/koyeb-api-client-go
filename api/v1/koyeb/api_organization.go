@@ -650,7 +650,7 @@ func (a *OrganizationApiService) GithubInstallationRepoListExecute(r ApiGithubIn
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("perPage", parameterToString(*r.perPage, ""))
+		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
