@@ -51,6 +51,10 @@ docs/Env.md
 docs/Error.md
 docs/ErrorField.md
 docs/ErrorWithFields.md
+docs/ExecCommandIO.md
+docs/ExecCommandReply.md
+docs/ExecCommandRequestBody.md
+docs/ExecCommandRequestTerminalSize.md
 docs/FetchGatewayReply.md
 docs/FetchInternalRevisionReply.md
 docs/FetchInternalServiceReply.md
@@ -142,6 +146,7 @@ docs/ServiceStateStatus.md
 docs/ServicesApi.md
 docs/SessionApi.md
 docs/SsoApi.md
+docs/StreamResultOfExecCommandReply.md
 docs/StreamResultOfLogEntry.md
 docs/StreamResultOfRevisionLogEntry.md
 docs/Token.md
@@ -190,6 +195,10 @@ model_env.go
 model_error.go
 model_error_field.go
 model_error_with_fields.go
+model_exec_command_io.go
+model_exec_command_reply.go
+model_exec_command_request_body.go
+model_exec_command_request_terminal_size.go
 model_fetch_gateway_reply.go
 model_fetch_internal_revision_reply.go
 model_fetch_internal_service_reply.go
@@ -270,6 +279,7 @@ model_service_revision_state_stage_state_status.go
 model_service_revision_state_status.go
 model_service_state.go
 model_service_state_status.go
+model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go
 model_stream_result_of_revision_log_entry.go
 model_token.go
