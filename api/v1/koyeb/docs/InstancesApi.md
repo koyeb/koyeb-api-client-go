@@ -4,9 +4,76 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ExecCommand**](InstancesApi.md#ExecCommand) | **Post** /v1/instances/exec | Exec Command
 [**GetInstance**](InstancesApi.md#GetInstance) | **Get** /v1/instances/{id} | Get Instance
 [**ListInstances**](InstancesApi.md#ListInstances) | **Get** /v1/instances | List Instance
 
+
+
+## ExecCommand
+
+> StreamResultOfExecCommandReply ExecCommand(ctx).Body(body).Id(id).Execute()
+
+Exec Command
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewExecCommandRequestBody() // ExecCommandRequestBody |  (streaming inputs)
+    id := "id_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.InstancesApi.ExecCommand(context.Background()).Body(body).Id(id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ExecCommand``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ExecCommand`: StreamResultOfExecCommandReply
+    fmt.Fprintf(os.Stdout, "Response from `InstancesApi.ExecCommand`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExecCommandRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ExecCommandRequestBody**](ExecCommandRequestBody.md) |  (streaming inputs) | 
+ **id** | **string** |  | 
+
+### Return type
+
+[**StreamResultOfExecCommandReply**](StreamResultOfExecCommandReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetInstance

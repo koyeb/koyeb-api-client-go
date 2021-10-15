@@ -95,6 +95,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
+*InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Post** /v1/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
@@ -175,6 +176,10 @@ Class | Method | HTTP request | Description
  - [Error](docs/Error.md)
  - [ErrorField](docs/ErrorField.md)
  - [ErrorWithFields](docs/ErrorWithFields.md)
+ - [ExecCommandIO](docs/ExecCommandIO.md)
+ - [ExecCommandReply](docs/ExecCommandReply.md)
+ - [ExecCommandRequestBody](docs/ExecCommandRequestBody.md)
+ - [ExecCommandRequestTerminalSize](docs/ExecCommandRequestTerminalSize.md)
  - [FetchGatewayReply](docs/FetchGatewayReply.md)
  - [FetchInternalRevisionReply](docs/FetchInternalRevisionReply.md)
  - [FetchInternalServiceReply](docs/FetchInternalServiceReply.md)
@@ -255,6 +260,7 @@ Class | Method | HTTP request | Description
  - [ServiceRevisionStateStatus](docs/ServiceRevisionStateStatus.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStateStatus](docs/ServiceStateStatus.md)
+ - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [StreamResultOfRevisionLogEntry](docs/StreamResultOfRevisionLogEntry.md)
  - [Token](docs/Token.md)
