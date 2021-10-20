@@ -195,6 +195,57 @@ tags:
   x-displayName: Introduction
   x-traitTag: true
 paths:
+  /v1/instances/exec:
+    post:
+      operationId: ExecCommand
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ExecCommandRequest.Body'
+        description: ' (streaming inputs)'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Exec Command
+      tags:
+      - Instances
+      x-codegen-request-body-name: body
   /v1/apps/{app_id_or_name}/logs/tail:
     get:
       operationId: TailRuntimeLogs
@@ -1612,38 +1663,6 @@ paths:
       summary: List Instance
       tags:
       - Instances
-  /v1/instances/exec:
-    post:
-      operationId: ExecCommand
-      parameters:
-      - in: query
-        name: id
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/ExecCommandRequest.Body'
-        description: ' (streaming inputs)'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
-          description: A successful response.(streaming responses)
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Exec Command
-      tags:
-      - Instances
-      x-codegen-request-body-name: body
   /v1/instances/{id}:
     get:
       operationId: GetInstance
@@ -3273,21 +3292,9 @@ components:
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
       type: object
-    google.protobuf.NullValue:
-      default: NULL_VALUE
-      description: |-
-        `NullValue` is a singleton enumeration to represent the null value for the
-        `Value` type union.
-
-         The JSON representation for `NullValue` is JSON `null`.
-
-         - NULL_VALUE: Null value.
-      enum:
-      - NULL_VALUE
-      type: string
     google.rpc.Status:
       example:
-        code: 0
+        code: 6
         details:
         - value: value
           type_url: type_url
@@ -3336,6 +3343,66 @@ components:
             $ref: '#/components/schemas/ErrorField'
           type: array
       type: object
+    ExecCommandIO:
+      example:
+        data: data
+      properties:
+        data:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    ExecCommandReply:
+      example:
+        stdout:
+          data: data
+        exited: true
+        exit_code: 0
+        stderr:
+          data: data
+      properties:
+        stdout:
+          $ref: '#/components/schemas/ExecCommandIO'
+        stderr:
+          $ref: '#/components/schemas/ExecCommandIO'
+        exited:
+          type: boolean
+        exit_code:
+          format: int32
+          type: integer
+      type: object
+    ExecCommandRequest.Body:
+      properties:
+        command:
+          items:
+            type: string
+          type: array
+        tty_size:
+          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
+        stdin:
+          $ref: '#/components/schemas/ExecCommandIO'
+      type: object
+    ExecCommandRequest.TerminalSize:
+      properties:
+        height:
+          format: int32
+          type: integer
+        width:
+          format: int32
+          type: integer
+      type: object
+    google.protobuf.NullValue:
+      default: NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+        `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+      enum:
+      - NULL_VALUE
+      type: string
     LogEntry:
       example:
         msg: msg
@@ -5510,54 +5577,6 @@ components:
         app:
           $ref: '#/components/schemas/App'
       type: object
-    ExecCommandIO:
-      example:
-        data: data
-      properties:
-        data:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      type: object
-    ExecCommandReply:
-      example:
-        stdout:
-          data: data
-        exited: true
-        exit_code: 0
-        stderr:
-          data: data
-      properties:
-        stdout:
-          $ref: '#/components/schemas/ExecCommandIO'
-        stderr:
-          $ref: '#/components/schemas/ExecCommandIO'
-        exited:
-          type: boolean
-        exit_code:
-          format: int32
-          type: integer
-      type: object
-    ExecCommandRequest.Body:
-      properties:
-        command:
-          items:
-            type: string
-          type: array
-        tty_size:
-          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
-        stdin:
-          $ref: '#/components/schemas/ExecCommandIO'
-      type: object
-    ExecCommandRequest.TerminalSize:
-      properties:
-        height:
-          format: int32
-          type: integer
-        width:
-          format: int32
-          type: integer
-      type: object
     GetInstanceReply:
       example:
         instance:
@@ -6543,6 +6562,30 @@ components:
           format: int64
           type: integer
       type: object
+    Stream_result_of_ExecCommandReply:
+      example:
+        result:
+          stdout:
+            data: data
+          exited: true
+          exit_code: 0
+          stderr:
+            data: data
+        error:
+          code: 6
+          details:
+          - value: value
+            type_url: type_url
+          - value: value
+            type_url: type_url
+          message: message
+      properties:
+        result:
+          $ref: '#/components/schemas/ExecCommandReply'
+        error:
+          $ref: '#/components/schemas/google.rpc.Status'
+      title: Stream result of ExecCommandReply
+      type: object
     Stream_result_of_LogEntry:
       example:
         result:
@@ -6550,7 +6593,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           labels: '{}'
         error:
-          code: 0
+          code: 6
           details:
           - value: value
             type_url: type_url
@@ -6573,7 +6616,7 @@ components:
           stream: stream
           revision_id: revision_id
         error:
-          code: 0
+          code: 6
           details:
           - value: value
             type_url: type_url
@@ -6586,30 +6629,6 @@ components:
         error:
           $ref: '#/components/schemas/google.rpc.Status'
       title: Stream result of RevisionLogEntry
-      type: object
-    Stream_result_of_ExecCommandReply:
-      example:
-        result:
-          stdout:
-            data: data
-          exited: true
-          exit_code: 0
-          stderr:
-            data: data
-        error:
-          code: 0
-          details:
-          - value: value
-            type_url: type_url
-          - value: value
-            type_url: type_url
-          message: message
-      properties:
-        result:
-          $ref: '#/components/schemas/ExecCommandReply'
-        error:
-          $ref: '#/components/schemas/google.rpc.Status'
-      title: Stream result of ExecCommandReply
       type: object
   securitySchemes:
     Bearer:
