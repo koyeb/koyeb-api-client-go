@@ -52,6 +52,73 @@
     }
   ],
   "paths": {
+    "/v1/instances/exec": {
+      "post": {
+        "summary": "Exec Command",
+        "operationId": "ExecCommand",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/ExecCommandReply"
+                },
+                "error": {
+                  "$ref": "#/definitions/google.rpc.Status"
+                }
+              },
+              "title": "Stream result of ExecCommandReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": " (streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ExecCommandRequest.Body"
+            }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Instances"
+        ]
+      }
+    },
     "/v1/apps/{app_id_or_name}/logs/tail": {
       "get": {
         "operationId": "TailRuntimeLogs",
@@ -1697,55 +1764,6 @@
           {
             "name": "id",
             "description": "(Optional) A filter for instances.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Instances"
-        ]
-      }
-    },
-    "/v1/instances/exec": {
-      "post": {
-        "summary": "Exec Command",
-        "operationId": "ExecCommand",
-        "responses": {
-          "200": {
-            "description": "A successful response.(streaming responses)",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "result": {
-                  "$ref": "#/definitions/ExecCommandReply"
-                },
-                "error": {
-                  "$ref": "#/definitions/google.rpc.Status"
-                }
-              },
-              "title": "Stream result of ExecCommandReply"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": " (streaming inputs)",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ExecCommandRequest.Body"
-            }
-          },
-          {
-            "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3613,14 +3631,6 @@
         }
       }
     },
-    "google.protobuf.NullValue": {
-      "type": "string",
-      "enum": [
-        "NULL_VALUE"
-      ],
-      "default": "NULL_VALUE",
-      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
-    },
     "google.rpc.Status": {
       "type": "object",
       "properties": {
@@ -3685,6 +3695,71 @@
           }
         }
       }
+    },
+    "ExecCommandIO": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "ExecCommandReply": {
+      "type": "object",
+      "properties": {
+        "stdout": {
+          "$ref": "#/definitions/ExecCommandIO"
+        },
+        "stderr": {
+          "$ref": "#/definitions/ExecCommandIO"
+        },
+        "exited": {
+          "type": "boolean"
+        },
+        "exit_code": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ExecCommandRequest.Body": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tty_size": {
+          "$ref": "#/definitions/ExecCommandRequest.TerminalSize"
+        },
+        "stdin": {
+          "$ref": "#/definitions/ExecCommandIO"
+        }
+      }
+    },
+    "ExecCommandRequest.TerminalSize": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "width": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "google.protobuf.NullValue": {
+      "type": "string",
+      "enum": [
+        "NULL_VALUE"
+      ],
+      "default": "NULL_VALUE",
+      "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
     },
     "LogEntry": {
       "type": "object",
@@ -5039,63 +5114,6 @@
         "app": {
           "$ref": "#/definitions/App",
           "title": "The entity updated"
-        }
-      }
-    },
-    "ExecCommandIO": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
-    "ExecCommandReply": {
-      "type": "object",
-      "properties": {
-        "stdout": {
-          "$ref": "#/definitions/ExecCommandIO"
-        },
-        "stderr": {
-          "$ref": "#/definitions/ExecCommandIO"
-        },
-        "exited": {
-          "type": "boolean"
-        },
-        "exit_code": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "ExecCommandRequest.Body": {
-      "type": "object",
-      "properties": {
-        "command": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tty_size": {
-          "$ref": "#/definitions/ExecCommandRequest.TerminalSize"
-        },
-        "stdin": {
-          "$ref": "#/definitions/ExecCommandIO"
-        }
-      }
-    },
-    "ExecCommandRequest.TerminalSize": {
-      "type": "object",
-      "properties": {
-        "height": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "width": {
-          "type": "integer",
-          "format": "int32"
         }
       }
     },
