@@ -95,7 +95,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
-*InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Post** /v1/instances/exec | Exec Command
+*InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
