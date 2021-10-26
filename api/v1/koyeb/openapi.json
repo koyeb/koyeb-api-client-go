@@ -53,7 +53,7 @@
   ],
   "paths": {
     "/v1/instances/exec": {
-      "post": {
+      "get": {
         "summary": "Exec Command",
         "operationId": "ExecCommand",
         "responses": {
@@ -99,19 +99,41 @@
         },
         "parameters": [
           {
-            "name": "body",
-            "description": " (streaming inputs)",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ExecCommandRequest.Body"
-            }
-          },
-          {
             "name": "id",
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "body.command",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "body.tty_size.height",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body.tty_size.width",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "body.stdin.data",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "byte"
           }
         ],
         "tags": [

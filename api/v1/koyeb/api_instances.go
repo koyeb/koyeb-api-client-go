@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -73,16 +74,31 @@ type InstancesApiService service
 type ApiExecCommandRequest struct {
 	ctx _context.Context
 	ApiService InstancesApi
-	body *ExecCommandRequestBody
 	id *string
+	bodyCommand *[]string
+	bodyTtySizeHeight *int32
+	bodyTtySizeWidth *int32
+	bodyStdinData *string
 }
 
-func (r ApiExecCommandRequest) Body(body ExecCommandRequestBody) ApiExecCommandRequest {
-	r.body = &body
-	return r
-}
 func (r ApiExecCommandRequest) Id(id string) ApiExecCommandRequest {
 	r.id = &id
+	return r
+}
+func (r ApiExecCommandRequest) BodyCommand(bodyCommand []string) ApiExecCommandRequest {
+	r.bodyCommand = &bodyCommand
+	return r
+}
+func (r ApiExecCommandRequest) BodyTtySizeHeight(bodyTtySizeHeight int32) ApiExecCommandRequest {
+	r.bodyTtySizeHeight = &bodyTtySizeHeight
+	return r
+}
+func (r ApiExecCommandRequest) BodyTtySizeWidth(bodyTtySizeWidth int32) ApiExecCommandRequest {
+	r.bodyTtySizeWidth = &bodyTtySizeWidth
+	return r
+}
+func (r ApiExecCommandRequest) BodyStdinData(bodyStdinData string) ApiExecCommandRequest {
+	r.bodyStdinData = &bodyStdinData
 	return r
 }
 
@@ -108,7 +124,7 @@ func (a *InstancesApiService) ExecCommand(ctx _context.Context) ApiExecCommandRe
  */
 func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (StreamResultOfExecCommandReply, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -126,12 +142,29 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (Strea
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
 
 	if r.id != nil {
 		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
+	}
+	if r.bodyCommand != nil {
+		t := *r.bodyCommand
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("body.command", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("body.command", parameterToString(t, "multi"))
+		}
+	}
+	if r.bodyTtySizeHeight != nil {
+		localVarQueryParams.Add("body.tty_size.height", parameterToString(*r.bodyTtySizeHeight, ""))
+	}
+	if r.bodyTtySizeWidth != nil {
+		localVarQueryParams.Add("body.tty_size.width", parameterToString(*r.bodyTtySizeWidth, ""))
+	}
+	if r.bodyStdinData != nil {
+		localVarQueryParams.Add("body.stdin.data", parameterToString(*r.bodyStdinData, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -150,8 +183,6 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (Strea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

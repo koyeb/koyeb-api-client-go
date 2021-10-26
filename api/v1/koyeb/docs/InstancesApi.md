@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExecCommand**](InstancesApi.md#ExecCommand) | **Post** /v1/instances/exec | Exec Command
+[**ExecCommand**](InstancesApi.md#ExecCommand) | **Get** /v1/instances/exec | Exec Command
 [**GetInstance**](InstancesApi.md#GetInstance) | **Get** /v1/instances/{id} | Get Instance
 [**ListInstances**](InstancesApi.md#ListInstances) | **Get** /v1/instances | List Instance
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ExecCommand
 
-> StreamResultOfExecCommandReply ExecCommand(ctx).Body(body).Id(id).Execute()
+> StreamResultOfExecCommandReply ExecCommand(ctx).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
 
 Exec Command
 
@@ -29,12 +29,15 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewExecCommandRequestBody() // ExecCommandRequestBody |  (streaming inputs)
     id := "id_example" // string |  (optional)
+    bodyCommand := []string{"Inner_example"} // []string |  (optional)
+    bodyTtySizeHeight := int32(56) // int32 |  (optional)
+    bodyTtySizeWidth := int32(56) // int32 |  (optional)
+    bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.ExecCommand(context.Background()).Body(body).Id(id).Execute()
+    resp, r, err := api_client.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ExecCommand``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,8 +58,11 @@ Other parameters are passed through a pointer to a apiExecCommandRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ExecCommandRequestBody**](ExecCommandRequestBody.md) |  (streaming inputs) | 
  **id** | **string** |  | 
+ **bodyCommand** | **[]string** |  | 
+ **bodyTtySizeHeight** | **int32** |  | 
+ **bodyTtySizeWidth** | **int32** |  | 
+ **bodyStdinData** | **string** |  | 
 
 ### Return type
 

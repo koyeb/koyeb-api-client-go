@@ -196,20 +196,36 @@ tags:
   x-traitTag: true
 paths:
   /v1/instances/exec:
-    post:
+    get:
       operationId: ExecCommand
       parameters:
       - in: query
         name: id
         schema:
           type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/ExecCommandRequest.Body'
-        description: ' (streaming inputs)'
-        required: true
+      - explode: true
+        in: query
+        name: body.command
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - in: query
+        name: body.tty_size.height
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.tty_size.width
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.stdin.data
+        schema:
+          format: byte
+          type: string
       responses:
         "200":
           content:
@@ -245,7 +261,6 @@ paths:
       summary: Exec Command
       tags:
       - Instances
-      x-codegen-request-body-name: body
   /v1/apps/{app_id_or_name}/logs/tail:
     get:
       operationId: TailRuntimeLogs
