@@ -195,273 +195,6 @@ tags:
   x-displayName: Introduction
   x-traitTag: true
 paths:
-  /v1/instances/exec:
-    get:
-      operationId: ExecCommand
-      parameters:
-      - in: query
-        name: id
-        schema:
-          type: string
-      - explode: true
-        in: query
-        name: body.command
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - in: query
-        name: body.tty_size.height
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.tty_size.width
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.stdin.data
-        schema:
-          format: byte
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Exec Command
-      tags:
-      - Instances
-  /v1/apps/{app_id_or_name}/logs/tail:
-    get:
-      operationId: TailRuntimeLogs
-      parameters:
-      - in: path
-        name: app_id_or_name
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: service_id
-        schema:
-          type: string
-      - in: query
-        name: revision_id
-        schema:
-          type: string
-      - in: query
-        name: instance_id
-        schema:
-          type: string
-      - in: query
-        name: stream
-        schema:
-          type: string
-      - description: Temporary field.
-        in: query
-        name: start
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          format: int64
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Logs
-  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail:
-    get:
-      operationId: TailRevisionBuildLogs
-      parameters:
-      - in: path
-        name: app_id_or_name
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: service_id_or_name
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: revision_id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: start
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          format: int64
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Logs
-  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail:
-    get:
-      operationId: TailInstanceLogs
-      parameters:
-      - in: path
-        name: app_id_or_name
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: service_id_or_name
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: revision_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: instance_id
-        required: true
-        schema:
-          type: string
-      - in: path
-        name: stream
-        required: true
-        schema:
-          type: string
-      - description: -1 is from the end, 0 is from the start anything else is from
-          this offset in the file.
-        in: query
-        name: offset
-        schema:
-          format: int64
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_RevisionLogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Logs
   /v1/apps/{app_id_or_name}/services:
     get:
       operationId: ListServices
@@ -862,6 +595,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: ReDeploy Service
       tags:
       - Services
       x-codegen-request-body-name: body
@@ -1643,10 +1377,22 @@ paths:
       summary: Update App
       tags:
       - Apps
-  /v1/instances:
+  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances:
     get:
-      operationId: ListInstances
+      operationId: ListServiceInstances
       parameters:
+      - description: Name or id of the application
+        in: path
+        name: app_id_or_name
+        required: true
+        schema:
+          type: string
+      - description: Name or id of the service
+        in: path
+        name: service_id_or_name
+        required: true
+        schema:
+          type: string
       - description: (Optional) The number of items to return.
         in: query
         name: limit
@@ -1657,51 +1403,306 @@ paths:
         name: offset
         schema:
           type: string
-      - description: (Optional) A filter for instances.
-        in: query
-        name: id
-        schema:
-          type: string
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListInstancesReply'
+                $ref: '#/components/schemas/ListServiceInstancesReply'
           description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
         default:
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: List Instance
+      summary: List Instances for a service
       tags:
       - Instances
-  /v1/instances/{id}:
+  /v1/apps/{app_id_or_name}/logs/tail:
     get:
-      operationId: GetInstance
+      operationId: TailRuntimeLogs
       parameters:
-      - description: The name of the instance
-        in: path
-        name: id
+      - in: path
+        name: app_id_or_name
         required: true
         schema:
           type: string
+      - in: query
+        name: service_id
+        schema:
+          type: string
+      - in: query
+        name: revision_id
+        schema:
+          type: string
+      - in: query
+        name: instance_id
+        schema:
+          type: string
+      - in: query
+        name: stream
+        schema:
+          type: string
+      - description: Temporary field.
+        in: query
+        name: start
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          format: int64
+          type: string
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GetInstanceReply'
-          description: A successful response.
+                $ref: '#/components/schemas/Stream_result_of_LogEntry'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
         default:
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: Get Instance
+      tags:
+      - Logs
+  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail:
+    get:
+      operationId: TailRevisionBuildLogs
+      parameters:
+      - in: path
+        name: app_id_or_name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: service_id_or_name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: revision_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          format: int64
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_LogEntry'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Logs
+  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail:
+    get:
+      operationId: TailInstanceLogs
+      parameters:
+      - in: path
+        name: app_id_or_name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: service_id_or_name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: revision_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: instance_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: stream
+        required: true
+        schema:
+          type: string
+      - description: -1 is from the end, 0 is from the start anything else is from
+          this offset in the file.
+        in: query
+        name: offset
+        schema:
+          format: int64
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_RevisionLogEntry'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Logs
+  /v1/instances/exec:
+    get:
+      operationId: ExecCommand
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: body.command
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - in: query
+        name: body.tty_size.height
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.tty_size.width
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.stdin.data
+        schema:
+          format: byte
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Exec Command
       tags:
       - Instances
   /v1/regions:
@@ -1765,6 +1766,67 @@ paths:
       summary: Get Region
       tags:
       - Regions
+  /v1/instances:
+    get:
+      operationId: ListInstances
+      parameters:
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for instances.
+        in: query
+        name: id
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListInstancesReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Instance
+      tags:
+      - Instances
+  /v1/instances/{id}:
+    get:
+      operationId: GetInstance
+      parameters:
+      - description: The name of the instance
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetInstanceReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Instance
+      tags:
+      - Instances
   /v1/account/activities:
     get:
       operationId: GetAccountActivities
@@ -3309,7 +3371,7 @@ components:
       type: object
     google.rpc.Status:
       example:
-        code: 6
+        code: 0
         details:
         - value: value
           type_url: type_url
@@ -3357,102 +3419,6 @@ components:
           items:
             $ref: '#/components/schemas/ErrorField'
           type: array
-      type: object
-    ExecCommandIO:
-      example:
-        data: data
-      properties:
-        data:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      type: object
-    ExecCommandReply:
-      example:
-        stdout:
-          data: data
-        exited: true
-        exit_code: 0
-        stderr:
-          data: data
-      properties:
-        stdout:
-          $ref: '#/components/schemas/ExecCommandIO'
-        stderr:
-          $ref: '#/components/schemas/ExecCommandIO'
-        exited:
-          type: boolean
-        exit_code:
-          format: int32
-          type: integer
-      type: object
-    ExecCommandRequest.Body:
-      properties:
-        command:
-          items:
-            type: string
-          type: array
-        tty_size:
-          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
-        stdin:
-          $ref: '#/components/schemas/ExecCommandIO'
-      type: object
-    ExecCommandRequest.TerminalSize:
-      properties:
-        height:
-          format: int32
-          type: integer
-        width:
-          format: int32
-          type: integer
-      type: object
-    google.protobuf.NullValue:
-      default: NULL_VALUE
-      description: |-
-        `NullValue` is a singleton enumeration to represent the null value for the
-        `Value` type union.
-
-         The JSON representation for `NullValue` is JSON `null`.
-
-         - NULL_VALUE: Null value.
-      enum:
-      - NULL_VALUE
-      type: string
-    LogEntry:
-      example:
-        msg: msg
-        created_at: 2000-01-23T04:56:07.000+00:00
-        labels: '{}'
-      properties:
-        msg:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        labels:
-          properties: {}
-          type: object
-      type: object
-    RevisionLogEntry:
-      example:
-        msg: msg
-        instance_id: instance_id
-        offset: offset
-        stream: stream
-        revision_id: revision_id
-      properties:
-        revision_id:
-          title: TODO improve with offset return / resume
-          type: string
-        instance_id:
-          type: string
-        stream:
-          type: string
-        msg:
-          type: string
-        offset:
-          format: int64
-          type: string
       type: object
     AutoRelease:
       example:
@@ -4890,6 +4856,18 @@ components:
       type: object
     UpdateServiceStateReply:
       type: object
+    google.protobuf.NullValue:
+      default: NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+        `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+      enum:
+      - NULL_VALUE
+      type: string
     Activity:
       example:
         actor:
@@ -5592,23 +5570,9 @@ components:
         app:
           $ref: '#/components/schemas/App'
       type: object
-    GetInstanceReply:
-      example:
-        instance:
-          price_monthly: price_monthly
-          require_plan:
-          - require_plan
-          - require_plan
-          disk: disk
-          memory: memory
-          regions:
-          - regions
-          - regions
-          vcpu: 0
-          description: description
-          id: id
-          price_hourly: price_hourly
-          status: status
+    AppendInstanceEventReply:
+      type: object
+    CreateInstanceReply:
       properties:
         instance:
           $ref: '#/components/schemas/Instance'
@@ -5719,7 +5683,18 @@ components:
           title: The plan required to use instance
           type: array
       type: object
-    ListInstancesReply:
+    InstanceStatus:
+      default: ALLOCATING
+      enum:
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      type: string
+    ListServiceInstancesReply:
       example:
         offset: 1
         instances:
@@ -5757,6 +5732,7 @@ components:
         instances:
           items:
             $ref: '#/components/schemas/InstanceListItem'
+          title: The collection of instances
           type: array
         limit:
           format: int64
@@ -5769,6 +5745,95 @@ components:
         count:
           format: int64
           title: The total number of items
+          type: integer
+      type: object
+    UpdateInstanceStatusReply:
+      properties:
+        instance:
+          $ref: '#/components/schemas/Instance'
+      type: object
+    LogEntry:
+      example:
+        msg: msg
+        created_at: 2000-01-23T04:56:07.000+00:00
+        labels: '{}'
+      properties:
+        msg:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        labels:
+          properties: {}
+          type: object
+      type: object
+    RevisionLogEntry:
+      example:
+        msg: msg
+        instance_id: instance_id
+        offset: offset
+        stream: stream
+        revision_id: revision_id
+      properties:
+        revision_id:
+          title: TODO improve with offset return / resume
+          type: string
+        instance_id:
+          type: string
+        stream:
+          type: string
+        msg:
+          type: string
+        offset:
+          format: int64
+          type: string
+      type: object
+    ExecCommandIO:
+      example:
+        data: data
+      properties:
+        data:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    ExecCommandReply:
+      example:
+        stdout:
+          data: data
+        exited: true
+        exit_code: 0
+        stderr:
+          data: data
+      properties:
+        stdout:
+          $ref: '#/components/schemas/ExecCommandIO'
+        stderr:
+          $ref: '#/components/schemas/ExecCommandIO'
+        exited:
+          type: boolean
+        exit_code:
+          format: int32
+          type: integer
+      type: object
+    ExecCommandRequest.Body:
+      properties:
+        command:
+          items:
+            type: string
+          type: array
+        tty_size:
+          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
+        stdin:
+          $ref: '#/components/schemas/ExecCommandIO'
+      type: object
+    ExecCommandRequest.TerminalSize:
+      properties:
+        height:
+          format: int32
+          type: integer
+        width:
+          format: int32
           type: integer
       type: object
     GetRegionReply:
@@ -5917,6 +5982,79 @@ components:
             type: string
           title: A list of datacenters available in this region
           type: array
+      type: object
+    GetInstanceReply:
+      example:
+        instance:
+          price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+      properties:
+        instance:
+          $ref: '#/components/schemas/Instance'
+      type: object
+    ListInstancesReply:
+      example:
+        offset: 6
+        instances:
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+        limit: 0
+        count: 1
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/InstanceListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
       type: object
     Action:
       default: signin
@@ -6577,30 +6715,6 @@ components:
           format: int64
           type: integer
       type: object
-    Stream_result_of_ExecCommandReply:
-      example:
-        result:
-          stdout:
-            data: data
-          exited: true
-          exit_code: 0
-          stderr:
-            data: data
-        error:
-          code: 6
-          details:
-          - value: value
-            type_url: type_url
-          - value: value
-            type_url: type_url
-          message: message
-      properties:
-        result:
-          $ref: '#/components/schemas/ExecCommandReply'
-        error:
-          $ref: '#/components/schemas/google.rpc.Status'
-      title: Stream result of ExecCommandReply
-      type: object
     Stream_result_of_LogEntry:
       example:
         result:
@@ -6608,7 +6722,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           labels: '{}'
         error:
-          code: 6
+          code: 0
           details:
           - value: value
             type_url: type_url
@@ -6631,7 +6745,7 @@ components:
           stream: stream
           revision_id: revision_id
         error:
-          code: 6
+          code: 0
           details:
           - value: value
             type_url: type_url
@@ -6644,6 +6758,30 @@ components:
         error:
           $ref: '#/components/schemas/google.rpc.Status'
       title: Stream result of RevisionLogEntry
+      type: object
+    Stream_result_of_ExecCommandReply:
+      example:
+        result:
+          stdout:
+            data: data
+          exited: true
+          exit_code: 0
+          stderr:
+            data: data
+        error:
+          code: 0
+          details:
+          - value: value
+            type_url: type_url
+          - value: value
+            type_url: type_url
+          message: message
+      properties:
+        result:
+          $ref: '#/components/schemas/ExecCommandReply'
+        error:
+          $ref: '#/components/schemas/google.rpc.Status'
+      title: Stream result of ExecCommandReply
       type: object
   securitySchemes:
     Bearer:
@@ -6664,7 +6802,6 @@ x-tagGroups:
   - Catalog
   - stack
   - Functions
-  - logs
   - store
   - S3Credentials
   - Connectors
@@ -6672,4 +6809,5 @@ x-tagGroups:
   - Services
   - Regions
   - Instances
+  - Logs
 x-original-swagger-version: "2.0"

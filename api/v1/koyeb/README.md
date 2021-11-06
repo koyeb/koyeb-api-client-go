@@ -98,6 +98,7 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
+*InstancesApi* | [**ListServiceInstances**](docs/InstancesApi.md#listserviceinstances) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances | List Instances for a service
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
 *LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
@@ -134,7 +135,7 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 *ServicesApi* | [**ListRevisions**](docs/ServicesApi.md#listrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
-*ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | 
+*ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user
@@ -159,6 +160,7 @@ Class | Method | HTTP request | Description
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateCredential](docs/CreateCredential.md)
+ - [CreateInstanceReply](docs/CreateInstanceReply.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
@@ -209,6 +211,7 @@ Class | Method | HTTP request | Description
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)
  - [Instance](docs/Instance.md)
  - [InstanceListItem](docs/InstanceListItem.md)
+ - [InstanceStatus](docs/InstanceStatus.md)
  - [InternalSecret](docs/InternalSecret.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [ListAppsReply](docs/ListAppsReply.md)
@@ -218,6 +221,7 @@ Class | Method | HTTP request | Description
  - [ListInternalServicesReply](docs/ListInternalServicesReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
+ - [ListServiceInstancesReply](docs/ListServiceInstancesReply.md)
  - [ListServiceRevisionsReply](docs/ListServiceRevisionsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [LogEntry](docs/LogEntry.md)
@@ -268,6 +272,7 @@ Class | Method | HTTP request | Description
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
+ - [UpdateInstanceStatusReply](docs/UpdateInstanceStatusReply.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)

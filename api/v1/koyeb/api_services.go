@@ -117,7 +117,7 @@ type ServicesApi interface {
 	ListServicesExecute(r ApiListServicesRequest) (ListServicesReply, *_nethttp.Response, error)
 
 	/*
-	 * ReDeploy Method for ReDeploy
+	 * ReDeploy ReDeploy Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param appIdOrName
 	 * @param idOrName
@@ -1229,7 +1229,7 @@ func (r ApiReDeployRequest) Execute() (RedeployReply, *_nethttp.Response, error)
 }
 
 /*
- * ReDeploy Method for ReDeploy
+ * ReDeploy ReDeploy Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appIdOrName
  * @param idOrName
