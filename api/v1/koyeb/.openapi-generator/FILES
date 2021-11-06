@@ -33,6 +33,7 @@ docs/CreateAccountRequest.md
 docs/CreateApp.md
 docs/CreateAppReply.md
 docs/CreateCredential.md
+docs/CreateInstanceReply.md
 docs/CreateSecret.md
 docs/CreateSecretReply.md
 docs/CreateService.md
@@ -85,6 +86,7 @@ docs/GoogleRpcStatus.md
 docs/HooksApi.md
 docs/Instance.md
 docs/InstanceListItem.md
+docs/InstanceStatus.md
 docs/InstancesApi.md
 docs/InternalSecret.md
 docs/InviteApi.md
@@ -96,6 +98,7 @@ docs/ListInternalRevisionsReply.md
 docs/ListInternalServicesReply.md
 docs/ListRegionsReply.md
 docs/ListSecretsReply.md
+docs/ListServiceInstancesReply.md
 docs/ListServiceRevisionsReply.md
 docs/ListServicesReply.md
 docs/LogEntry.md
@@ -154,6 +157,7 @@ docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataTriggerType.md
 docs/UpdateApp.md
 docs/UpdateAppReply.md
+docs/UpdateInstanceStatusReply.md
 docs/UpdateOrganizationReply.md
 docs/UpdatePasswordRequest.md
 docs/UpdateSecretReply.md
@@ -178,6 +182,7 @@ model_create_account_request.go
 model_create_app.go
 model_create_app_reply.go
 model_create_credential.go
+model_create_instance_reply.go
 model_create_secret.go
 model_create_secret_reply.go
 model_create_service.go
@@ -228,6 +233,7 @@ model_google_protobuf_null_value.go
 model_google_rpc_status.go
 model_instance.go
 model_instance_list_item.go
+model_instance_status.go
 model_internal_secret.go
 model_invite_user_request.go
 model_list_apps_reply.go
@@ -237,6 +243,7 @@ model_list_internal_revisions_reply.go
 model_list_internal_services_reply.go
 model_list_regions_reply.go
 model_list_secrets_reply.go
+model_list_service_instances_reply.go
 model_list_service_revisions_reply.go
 model_list_services_reply.go
 model_log_entry.go
@@ -287,6 +294,7 @@ model_trigger_deployment_metadata.go
 model_trigger_deployment_metadata_trigger_type.go
 model_update_app.go
 model_update_app_reply.go
+model_update_instance_status_reply.go
 model_update_organization_reply.go
 model_update_password_request.go
 model_update_secret_reply.go

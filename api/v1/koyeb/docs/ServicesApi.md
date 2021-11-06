@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 [**ListRevisions**](ServicesApi.md#ListRevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
 [**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
-[**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | 
+[**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 
@@ -461,7 +461,7 @@ Name | Type | Description  | Notes
 
 > RedeployReply ReDeploy(ctx, appIdOrName, idOrName).Body(body).Execute()
 
-
+ReDeploy Service
 
 ### Example
 
