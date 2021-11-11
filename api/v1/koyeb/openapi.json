@@ -3908,63 +3908,6 @@
         }
       }
     },
-    "FetchGatewayReply": {
-      "type": "object",
-      "properties": {
-        "routes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/GatewayRoute"
-          }
-        }
-      }
-    },
-    "FetchInternalRevisionReply": {
-      "type": "object",
-      "properties": {
-        "revision": {
-          "$ref": "#/definitions/ServiceRevision"
-        }
-      }
-    },
-    "FetchInternalServiceReply": {
-      "type": "object",
-      "properties": {
-        "service": {
-          "$ref": "#/definitions/Service"
-        },
-        "expand": {
-          "type": "boolean"
-        }
-      }
-    },
-    "GatewayRoute": {
-      "type": "object",
-      "properties": {
-        "path": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        },
-        "revision_id": {
-          "type": "string"
-        },
-        "service_id": {
-          "type": "string"
-        },
-        "port": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "datacenters": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "GetServiceReply": {
       "type": "object",
       "properties": {
@@ -4048,40 +3991,6 @@
         }
       }
     },
-    "ListInternalRevisionsReply": {
-      "type": "object",
-      "properties": {
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "revision_ids": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceRevisionId"
-          }
-        }
-      }
-    },
-    "ListInternalServicesReply": {
-      "type": "object",
-      "properties": {
-        "service_ids": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceId"
-          }
-        },
-        "services": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceListItem"
-          }
-        }
-      }
-    },
     "ListServiceRevisionsReply": {
       "type": "object",
       "properties": {
@@ -4145,9 +4054,6 @@
           "type": "string"
         }
       }
-    },
-    "RedeployInternalReply": {
-      "type": "object"
     },
     "RedeployReply": {
       "type": "object",
@@ -4274,20 +4180,6 @@
         }
       }
     },
-    "ServiceId": {
-      "type": "object",
-      "properties": {
-        "organization_id": {
-          "type": "string"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "service_id": {
-          "type": "string"
-        }
-      }
-    },
     "ServiceInstance": {
       "type": "object",
       "properties": {
@@ -4402,23 +4294,6 @@
         },
         "metadata": {
           "$ref": "#/definitions/DeploymentMetadata"
-        }
-      }
-    },
-    "ServiceRevisionId": {
-      "type": "object",
-      "properties": {
-        "organization_id": {
-          "type": "string"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "service_id": {
-          "type": "string"
-        },
-        "revision_id": {
-          "type": "string"
         }
       }
     },
@@ -4610,9 +4485,6 @@
       ],
       "default": "UNKNOWN"
     },
-    "UpdateRevisionStateReply": {
-      "type": "object"
-    },
     "UpdateService": {
       "type": "object",
       "properties": {
@@ -4629,9 +4501,6 @@
           "title": "The entity updated"
         }
       }
-    },
-    "UpdateServiceStateReply": {
-      "type": "object"
     },
     "google.protobuf.NullValue": {
       "type": "string",
@@ -4801,14 +4670,6 @@
         }
       }
     },
-    "GetSecretInternalReply": {
-      "type": "object",
-      "properties": {
-        "secret": {
-          "$ref": "#/definitions/InternalSecret"
-        }
-      }
-    },
     "GetSecretReply": {
       "type": "object",
       "properties": {
@@ -4836,35 +4697,6 @@
         },
         "password": {
           "type": "string"
-        }
-      }
-    },
-    "InternalSecret": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "type": {
-          "$ref": "#/definitions/SecretType"
         }
       }
     },
@@ -5066,14 +4898,6 @@
         }
       }
     },
-    "GetInternalAppReply": {
-      "type": "object",
-      "properties": {
-        "app": {
-          "$ref": "#/definitions/App"
-        }
-      }
-    },
     "ListAppsReply": {
       "type": "object",
       "properties": {
@@ -5114,69 +4938,6 @@
         "app": {
           "$ref": "#/definitions/App",
           "title": "The entity updated"
-        }
-      }
-    },
-    "AppendInstanceEventReply": {
-      "type": "object"
-    },
-    "CreateInstanceReply": {
-      "type": "object",
-      "properties": {
-        "instance": {
-          "$ref": "#/definitions/Instance"
-        }
-      }
-    },
-    "Instance": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The name of the instance"
-        },
-        "description": {
-          "type": "string",
-          "title": "A short description of the instance"
-        },
-        "vcpu": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The number of cpus"
-        },
-        "memory": {
-          "type": "string",
-          "title": "The memory in bytes in a format like 5MB"
-        },
-        "disk": {
-          "type": "string",
-          "title": "The size of the disk in bytes in a format like 5MB"
-        },
-        "price_hourly": {
-          "type": "string",
-          "title": "The price to pay per hour"
-        },
-        "price_monthly": {
-          "type": "string",
-          "title": "The price to pay per month"
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The regions where this instance type is available"
-        },
-        "status": {
-          "type": "string",
-          "title": "The status of the instance"
-        },
-        "require_plan": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The plan required to use instance"
         }
       }
     },
@@ -5269,14 +5030,6 @@
           "type": "integer",
           "format": "int64",
           "title": "The total number of items"
-        }
-      }
-    },
-    "UpdateInstanceStatusReply": {
-      "type": "object",
-      "properties": {
-        "instance": {
-          "$ref": "#/definitions/Instance"
         }
       }
     },
@@ -5491,6 +5244,58 @@
         "instance": {
           "$ref": "#/definitions/Instance",
           "title": "The instance retrieved"
+        }
+      }
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The name of the instance"
+        },
+        "description": {
+          "type": "string",
+          "title": "A short description of the instance"
+        },
+        "vcpu": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of cpus"
+        },
+        "memory": {
+          "type": "string",
+          "title": "The memory in bytes in a format like 5MB"
+        },
+        "disk": {
+          "type": "string",
+          "title": "The size of the disk in bytes in a format like 5MB"
+        },
+        "price_hourly": {
+          "type": "string",
+          "title": "The price to pay per hour"
+        },
+        "price_monthly": {
+          "type": "string",
+          "title": "The price to pay per month"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The regions where this instance type is available"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the instance"
+        },
+        "require_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The plan required to use instance"
         }
       }
     },

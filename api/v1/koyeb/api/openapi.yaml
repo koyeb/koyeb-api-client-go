@@ -3620,43 +3620,6 @@ components:
         value_from_secret:
           type: string
       type: object
-    FetchGatewayReply:
-      properties:
-        routes:
-          items:
-            $ref: '#/components/schemas/GatewayRoute'
-          type: array
-      type: object
-    FetchInternalRevisionReply:
-      properties:
-        revision:
-          $ref: '#/components/schemas/ServiceRevision'
-      type: object
-    FetchInternalServiceReply:
-      properties:
-        service:
-          $ref: '#/components/schemas/Service'
-        expand:
-          type: boolean
-      type: object
-    GatewayRoute:
-      properties:
-        path:
-          type: string
-        deployment_group:
-          type: string
-        revision_id:
-          type: string
-        service_id:
-          type: string
-        port:
-          format: int64
-          type: integer
-        datacenters:
-          items:
-            type: string
-          type: array
-      type: object
     GetServiceReply:
       example:
         service:
@@ -3859,28 +3822,6 @@ components:
           title: A command used to override the default run command
           type: string
       type: object
-    ListInternalRevisionsReply:
-      properties:
-        ids:
-          items:
-            type: string
-          type: array
-        revision_ids:
-          items:
-            $ref: '#/components/schemas/ServiceRevisionId'
-          type: array
-      type: object
-    ListInternalServicesReply:
-      properties:
-        service_ids:
-          items:
-            $ref: '#/components/schemas/ServiceId'
-          type: array
-        services:
-          items:
-            $ref: '#/components/schemas/ServiceListItem'
-          type: array
-      type: object
     ListServiceRevisionsReply:
       example:
         offset: 6
@@ -4035,8 +3976,6 @@ components:
           type: integer
         protocol:
           type: string
-      type: object
-    RedeployInternalReply:
       type: object
     RedeployReply:
       example:
@@ -4294,15 +4233,6 @@ components:
         git:
           $ref: '#/components/schemas/GitSource'
       type: object
-    ServiceId:
-      properties:
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-      type: object
     ServiceInstance:
       example:
         status_message: status_message
@@ -4517,17 +4447,6 @@ components:
           $ref: '#/components/schemas/ServiceRevisionState'
         metadata:
           $ref: '#/components/schemas/DeploymentMetadata'
-      type: object
-    ServiceRevisionId:
-      properties:
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        revision_id:
-          type: string
       type: object
     ServiceRevisionListItem:
       example:
@@ -4770,8 +4689,6 @@ components:
       - UNKNOWN
       - GIT
       type: string
-    UpdateRevisionStateReply:
-      type: object
     UpdateService:
       example:
         definition:
@@ -4853,8 +4770,6 @@ components:
       properties:
         service:
           $ref: '#/components/schemas/Service'
-      type: object
-    UpdateServiceStateReply:
       type: object
     google.protobuf.NullValue:
       default: NULL_VALUE
@@ -5105,11 +5020,6 @@ components:
         url:
           type: string
       type: object
-    GetSecretInternalReply:
-      properties:
-        secret:
-          $ref: '#/components/schemas/InternalSecret'
-      type: object
     GetSecretReply:
       example:
         secret:
@@ -5165,27 +5075,6 @@ components:
           type: string
         password:
           type: string
-      type: object
-    InternalSecret:
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        value:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        type:
-          $ref: '#/components/schemas/SecretType'
       type: object
     ListSecretsReply:
       example:
@@ -5497,11 +5386,6 @@ components:
         app:
           $ref: '#/components/schemas/App'
       type: object
-    GetInternalAppReply:
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
     ListAppsReply:
       example:
         offset: 6
@@ -5569,66 +5453,6 @@ components:
       properties:
         app:
           $ref: '#/components/schemas/App'
-      type: object
-    AppendInstanceEventReply:
-      type: object
-    CreateInstanceReply:
-      properties:
-        instance:
-          $ref: '#/components/schemas/Instance'
-      type: object
-    Instance:
-      example:
-        price_monthly: price_monthly
-        require_plan:
-        - require_plan
-        - require_plan
-        disk: disk
-        memory: memory
-        regions:
-        - regions
-        - regions
-        vcpu: 0
-        description: description
-        id: id
-        price_hourly: price_hourly
-        status: status
-      properties:
-        id:
-          title: The name of the instance
-          type: string
-        description:
-          title: A short description of the instance
-          type: string
-        vcpu:
-          format: int64
-          title: The number of cpus
-          type: integer
-        memory:
-          title: The memory in bytes in a format like 5MB
-          type: string
-        disk:
-          title: The size of the disk in bytes in a format like 5MB
-          type: string
-        price_hourly:
-          title: The price to pay per hour
-          type: string
-        price_monthly:
-          title: The price to pay per month
-          type: string
-        regions:
-          items:
-            type: string
-          title: The regions where this instance type is available
-          type: array
-        status:
-          title: The status of the instance
-          type: string
-        require_plan:
-          items:
-            type: string
-          title: The plan required to use instance
-          type: array
       type: object
     InstanceListItem:
       example:
@@ -5746,11 +5570,6 @@ components:
           format: int64
           title: The total number of items
           type: integer
-      type: object
-    UpdateInstanceStatusReply:
-      properties:
-        instance:
-          $ref: '#/components/schemas/Instance'
       type: object
     LogEntry:
       example:
@@ -6003,6 +5822,59 @@ components:
       properties:
         instance:
           $ref: '#/components/schemas/Instance'
+      type: object
+    Instance:
+      example:
+        price_monthly: price_monthly
+        require_plan:
+        - require_plan
+        - require_plan
+        disk: disk
+        memory: memory
+        regions:
+        - regions
+        - regions
+        vcpu: 0
+        description: description
+        id: id
+        price_hourly: price_hourly
+        status: status
+      properties:
+        id:
+          title: The name of the instance
+          type: string
+        description:
+          title: A short description of the instance
+          type: string
+        vcpu:
+          format: int64
+          title: The number of cpus
+          type: integer
+        memory:
+          title: The memory in bytes in a format like 5MB
+          type: string
+        disk:
+          title: The size of the disk in bytes in a format like 5MB
+          type: string
+        price_hourly:
+          title: The price to pay per hour
+          type: string
+        price_monthly:
+          title: The price to pay per month
+          type: string
+        regions:
+          items:
+            type: string
+          title: The regions where this instance type is available
+          type: array
+        status:
+          title: The status of the instance
+          type: string
+        require_plan:
+          items:
+            type: string
+          title: The plan required to use instance
+          type: array
       type: object
     ListInstancesReply:
       example:
