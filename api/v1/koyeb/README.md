@@ -131,10 +131,11 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/apps/{app_id_or_name}/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
+*ServicesApi* | [**DeprecatedListServices**](docs/ServicesApi.md#deprecatedlistservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
 *ServicesApi* | [**GetRevision**](docs/ServicesApi.md#getrevision) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id} | Get Revision
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 *ServicesApi* | [**ListRevisions**](docs/ServicesApi.md#listrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
-*ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
+*ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
 *ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service

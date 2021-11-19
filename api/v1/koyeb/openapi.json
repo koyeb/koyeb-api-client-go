@@ -2902,7 +2902,7 @@
     "/v1/apps/{app_id_or_name}/services": {
       "get": {
         "summary": "List Service",
-        "operationId": "ListServices",
+        "operationId": "DeprecatedListServices",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2958,7 +2958,7 @@
           },
           {
             "name": "name",
-            "description": "(Optional) A filter for regions.",
+            "description": "(Optional) A filter for name.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -3516,6 +3516,77 @@
             "description": "The id of the revision to fetch or `_latest` to get the latest one",
             "in": "path",
             "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Services"
+        ]
+      }
+    },
+    "/v1/services": {
+      "get": {
+        "summary": "List Service",
+        "operationId": "ListServices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListServicesReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "app_id",
+            "description": "(Optional) The id of the app.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "description": "(Optional) A filter for name.",
+            "in": "query",
+            "required": false,
             "type": "string"
           }
         ],
