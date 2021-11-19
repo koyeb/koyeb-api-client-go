@@ -6,10 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/apps/{app_id_or_name}/services | Create Service
 [**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
+[**DeprecatedListServices**](ServicesApi.md#DeprecatedListServices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
 [**GetRevision**](ServicesApi.md#GetRevision) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id} | Get Revision
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
 [**ListRevisions**](ServicesApi.md#ListRevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
-[**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
+[**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Service
 [**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
@@ -144,6 +145,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 **interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeprecatedListServices
+
+> ListServicesReply DeprecatedListServices(ctx, appIdOrName).Limit(limit).Offset(offset).Name(name).Execute()
+
+List Service
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    appIdOrName := "appIdOrName_example" // string | 
+    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
+    name := "name_example" // string | (Optional) A filter for name. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ServicesApi.DeprecatedListServices(context.Background(), appIdOrName).Limit(limit).Offset(offset).Name(name).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.DeprecatedListServices``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeprecatedListServices`: ListServicesReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.DeprecatedListServices`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appIdOrName** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeprecatedListServicesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **limit** | **string** | (Optional) The number of items to return. | 
+ **offset** | **string** | (Optional) The offset in the list of item to return. | 
+ **name** | **string** | (Optional) A filter for name. | 
+
+### Return type
+
+[**ListServicesReply**](ListServicesReply.md)
 
 ### Authorization
 
@@ -385,7 +460,7 @@ Name | Type | Description  | Notes
 
 ## ListServices
 
-> ListServicesReply ListServices(ctx, appIdOrName).Limit(limit).Offset(offset).Name(name).Execute()
+> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
 
 List Service
 
@@ -402,14 +477,14 @@ import (
 )
 
 func main() {
-    appIdOrName := "appIdOrName_example" // string | 
+    appId := "appId_example" // string | (Optional) The id of the app. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    name := "name_example" // string | (Optional) A filter for regions. (optional)
+    name := "name_example" // string | (Optional) A filter for name. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.ListServices(context.Background(), appIdOrName).Limit(limit).Offset(offset).Name(name).Execute()
+    resp, r, err := api_client.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -422,10 +497,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appIdOrName** | **string** |  | 
 
 ### Other Parameters
 
@@ -434,10 +505,10 @@ Other parameters are passed through a pointer to a apiListServicesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
+ **appId** | **string** | (Optional) The id of the app. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **name** | **string** | (Optional) A filter for regions. | 
+ **name** | **string** | (Optional) A filter for name. | 
 
 ### Return type
 

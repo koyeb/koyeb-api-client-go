@@ -2651,7 +2651,7 @@ paths:
       - Secrets
   /v1/apps/{app_id_or_name}/services:
     get:
-      operationId: ListServices
+      operationId: DeprecatedListServices
       parameters:
       - in: path
         name: app_id_or_name
@@ -2668,7 +2668,7 @@ paths:
         name: offset
         schema:
           type: string
-      - description: (Optional) A filter for regions.
+      - description: (Optional) A filter for name.
         in: query
         name: name
         schema:
@@ -3195,6 +3195,65 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       summary: Get Revision
+      tags:
+      - Services
+  /v1/services:
+    get:
+      operationId: ListServices
+      parameters:
+      - description: (Optional) The id of the app.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for name.
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListServicesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Service
       tags:
       - Services
   /v1/activities:
