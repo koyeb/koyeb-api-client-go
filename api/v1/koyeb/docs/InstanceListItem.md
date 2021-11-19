@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**Vcpu** | Pointer to **int64** |  | [optional] 
-**Memory** | Pointer to **string** |  | [optional] 
-**Disk** | Pointer to **string** |  | [optional] 
-**PriceHourly** | Pointer to **string** |  | [optional] 
-**PriceMonthly** | Pointer to **string** |  | [optional] 
-**Regions** | Pointer to **[]string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**RequirePlan** | Pointer to **[]string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**OrganizationId** | Pointer to **string** |  | [optional] 
+**AppId** | Pointer to **string** |  | [optional] 
+**ServiceId** | Pointer to **string** |  | [optional] 
+**DeploymentId** | Pointer to **string** |  | [optional] 
+**Datacenter** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
+**Messages** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -59,197 +59,197 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
-### GetDescription
+### GetCreatedAt
 
-`func (o *InstanceListItem) GetDescription() string`
+`func (o *InstanceListItem) GetCreatedAt() time.Time`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetCreatedAtOk
 
-`func (o *InstanceListItem) GetDescriptionOk() (*string, bool)`
+`func (o *InstanceListItem) GetCreatedAtOk() (*time.Time, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDescription
+### SetCreatedAt
 
-`func (o *InstanceListItem) SetDescription(v string)`
+`func (o *InstanceListItem) SetCreatedAt(v time.Time)`
 
-SetDescription sets Description field to given value.
+SetCreatedAt sets CreatedAt field to given value.
 
-### HasDescription
+### HasCreatedAt
 
-`func (o *InstanceListItem) HasDescription() bool`
+`func (o *InstanceListItem) HasCreatedAt() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasCreatedAt returns a boolean if a field has been set.
 
-### GetVcpu
+### GetUpdatedAt
 
-`func (o *InstanceListItem) GetVcpu() int64`
+`func (o *InstanceListItem) GetUpdatedAt() time.Time`
 
-GetVcpu returns the Vcpu field if non-nil, zero value otherwise.
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 
-### GetVcpuOk
+### GetUpdatedAtOk
 
-`func (o *InstanceListItem) GetVcpuOk() (*int64, bool)`
+`func (o *InstanceListItem) GetUpdatedAtOk() (*time.Time, bool)`
 
-GetVcpuOk returns a tuple with the Vcpu field if it's non-nil, zero value otherwise
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVcpu
+### SetUpdatedAt
 
-`func (o *InstanceListItem) SetVcpu(v int64)`
+`func (o *InstanceListItem) SetUpdatedAt(v time.Time)`
 
-SetVcpu sets Vcpu field to given value.
+SetUpdatedAt sets UpdatedAt field to given value.
 
-### HasVcpu
+### HasUpdatedAt
 
-`func (o *InstanceListItem) HasVcpu() bool`
+`func (o *InstanceListItem) HasUpdatedAt() bool`
 
-HasVcpu returns a boolean if a field has been set.
+HasUpdatedAt returns a boolean if a field has been set.
 
-### GetMemory
+### GetOrganizationId
 
-`func (o *InstanceListItem) GetMemory() string`
+`func (o *InstanceListItem) GetOrganizationId() string`
 
-GetMemory returns the Memory field if non-nil, zero value otherwise.
+GetOrganizationId returns the OrganizationId field if non-nil, zero value otherwise.
 
-### GetMemoryOk
+### GetOrganizationIdOk
 
-`func (o *InstanceListItem) GetMemoryOk() (*string, bool)`
+`func (o *InstanceListItem) GetOrganizationIdOk() (*string, bool)`
 
-GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
+GetOrganizationIdOk returns a tuple with the OrganizationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMemory
+### SetOrganizationId
 
-`func (o *InstanceListItem) SetMemory(v string)`
+`func (o *InstanceListItem) SetOrganizationId(v string)`
 
-SetMemory sets Memory field to given value.
+SetOrganizationId sets OrganizationId field to given value.
 
-### HasMemory
+### HasOrganizationId
 
-`func (o *InstanceListItem) HasMemory() bool`
+`func (o *InstanceListItem) HasOrganizationId() bool`
 
-HasMemory returns a boolean if a field has been set.
+HasOrganizationId returns a boolean if a field has been set.
 
-### GetDisk
+### GetAppId
 
-`func (o *InstanceListItem) GetDisk() string`
+`func (o *InstanceListItem) GetAppId() string`
 
-GetDisk returns the Disk field if non-nil, zero value otherwise.
+GetAppId returns the AppId field if non-nil, zero value otherwise.
 
-### GetDiskOk
+### GetAppIdOk
 
-`func (o *InstanceListItem) GetDiskOk() (*string, bool)`
+`func (o *InstanceListItem) GetAppIdOk() (*string, bool)`
 
-GetDiskOk returns a tuple with the Disk field if it's non-nil, zero value otherwise
+GetAppIdOk returns a tuple with the AppId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDisk
+### SetAppId
 
-`func (o *InstanceListItem) SetDisk(v string)`
+`func (o *InstanceListItem) SetAppId(v string)`
 
-SetDisk sets Disk field to given value.
+SetAppId sets AppId field to given value.
 
-### HasDisk
+### HasAppId
 
-`func (o *InstanceListItem) HasDisk() bool`
+`func (o *InstanceListItem) HasAppId() bool`
 
-HasDisk returns a boolean if a field has been set.
+HasAppId returns a boolean if a field has been set.
 
-### GetPriceHourly
+### GetServiceId
 
-`func (o *InstanceListItem) GetPriceHourly() string`
+`func (o *InstanceListItem) GetServiceId() string`
 
-GetPriceHourly returns the PriceHourly field if non-nil, zero value otherwise.
+GetServiceId returns the ServiceId field if non-nil, zero value otherwise.
 
-### GetPriceHourlyOk
+### GetServiceIdOk
 
-`func (o *InstanceListItem) GetPriceHourlyOk() (*string, bool)`
+`func (o *InstanceListItem) GetServiceIdOk() (*string, bool)`
 
-GetPriceHourlyOk returns a tuple with the PriceHourly field if it's non-nil, zero value otherwise
+GetServiceIdOk returns a tuple with the ServiceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPriceHourly
+### SetServiceId
 
-`func (o *InstanceListItem) SetPriceHourly(v string)`
+`func (o *InstanceListItem) SetServiceId(v string)`
 
-SetPriceHourly sets PriceHourly field to given value.
+SetServiceId sets ServiceId field to given value.
 
-### HasPriceHourly
+### HasServiceId
 
-`func (o *InstanceListItem) HasPriceHourly() bool`
+`func (o *InstanceListItem) HasServiceId() bool`
 
-HasPriceHourly returns a boolean if a field has been set.
+HasServiceId returns a boolean if a field has been set.
 
-### GetPriceMonthly
+### GetDeploymentId
 
-`func (o *InstanceListItem) GetPriceMonthly() string`
+`func (o *InstanceListItem) GetDeploymentId() string`
 
-GetPriceMonthly returns the PriceMonthly field if non-nil, zero value otherwise.
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
 
-### GetPriceMonthlyOk
+### GetDeploymentIdOk
 
-`func (o *InstanceListItem) GetPriceMonthlyOk() (*string, bool)`
+`func (o *InstanceListItem) GetDeploymentIdOk() (*string, bool)`
 
-GetPriceMonthlyOk returns a tuple with the PriceMonthly field if it's non-nil, zero value otherwise
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPriceMonthly
+### SetDeploymentId
 
-`func (o *InstanceListItem) SetPriceMonthly(v string)`
+`func (o *InstanceListItem) SetDeploymentId(v string)`
 
-SetPriceMonthly sets PriceMonthly field to given value.
+SetDeploymentId sets DeploymentId field to given value.
 
-### HasPriceMonthly
+### HasDeploymentId
 
-`func (o *InstanceListItem) HasPriceMonthly() bool`
+`func (o *InstanceListItem) HasDeploymentId() bool`
 
-HasPriceMonthly returns a boolean if a field has been set.
+HasDeploymentId returns a boolean if a field has been set.
 
-### GetRegions
+### GetDatacenter
 
-`func (o *InstanceListItem) GetRegions() []string`
+`func (o *InstanceListItem) GetDatacenter() string`
 
-GetRegions returns the Regions field if non-nil, zero value otherwise.
+GetDatacenter returns the Datacenter field if non-nil, zero value otherwise.
 
-### GetRegionsOk
+### GetDatacenterOk
 
-`func (o *InstanceListItem) GetRegionsOk() (*[]string, bool)`
+`func (o *InstanceListItem) GetDatacenterOk() (*string, bool)`
 
-GetRegionsOk returns a tuple with the Regions field if it's non-nil, zero value otherwise
+GetDatacenterOk returns a tuple with the Datacenter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRegions
+### SetDatacenter
 
-`func (o *InstanceListItem) SetRegions(v []string)`
+`func (o *InstanceListItem) SetDatacenter(v string)`
 
-SetRegions sets Regions field to given value.
+SetDatacenter sets Datacenter field to given value.
 
-### HasRegions
+### HasDatacenter
 
-`func (o *InstanceListItem) HasRegions() bool`
+`func (o *InstanceListItem) HasDatacenter() bool`
 
-HasRegions returns a boolean if a field has been set.
+HasDatacenter returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *InstanceListItem) GetStatus() string`
+`func (o *InstanceListItem) GetStatus() InstanceStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *InstanceListItem) GetStatusOk() (*string, bool)`
+`func (o *InstanceListItem) GetStatusOk() (*InstanceStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *InstanceListItem) SetStatus(v string)`
+`func (o *InstanceListItem) SetStatus(v InstanceStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -259,30 +259,30 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-### GetRequirePlan
+### GetMessages
 
-`func (o *InstanceListItem) GetRequirePlan() []string`
+`func (o *InstanceListItem) GetMessages() []string`
 
-GetRequirePlan returns the RequirePlan field if non-nil, zero value otherwise.
+GetMessages returns the Messages field if non-nil, zero value otherwise.
 
-### GetRequirePlanOk
+### GetMessagesOk
 
-`func (o *InstanceListItem) GetRequirePlanOk() (*[]string, bool)`
+`func (o *InstanceListItem) GetMessagesOk() (*[]string, bool)`
 
-GetRequirePlanOk returns a tuple with the RequirePlan field if it's non-nil, zero value otherwise
+GetMessagesOk returns a tuple with the Messages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetRequirePlan
+### SetMessages
 
-`func (o *InstanceListItem) SetRequirePlan(v []string)`
+`func (o *InstanceListItem) SetMessages(v []string)`
 
-SetRequirePlan sets RequirePlan field to given value.
+SetMessages sets Messages field to given value.
 
-### HasRequirePlan
+### HasMessages
 
-`func (o *InstanceListItem) HasRequirePlan() bool`
+`func (o *InstanceListItem) HasMessages() bool`
 
-HasRequirePlan returns a boolean if a field has been set.
+HasMessages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

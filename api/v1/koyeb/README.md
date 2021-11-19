@@ -88,6 +88,10 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
+*CatalogInstancesApi* | [**GetInstance**](docs/CatalogInstancesApi.md#getinstance) | **Get** /v1/catalog/instances/{id} | Get Instance
+*CatalogInstancesApi* | [**ListInstances**](docs/CatalogInstancesApi.md#listinstances) | **Get** /v1/catalog/instances | List Instance
+*CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
+*CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | 
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | 
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | 
@@ -96,8 +100,6 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/instances/exec | Exec Command
-*InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
-*InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instance
 *InstancesApi* | [**ListServiceInstances**](docs/InstancesApi.md#listserviceinstances) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances | List Instances for a service
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
@@ -120,8 +122,6 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
-*RegionsApi* | [**GetRegion**](docs/RegionsApi.md#getregion) | **Get** /v1/regions/{id} | Get Region
-*RegionsApi* | [**ListRegions**](docs/RegionsApi.md#listregions) | **Get** /v1/regions | List Region
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 

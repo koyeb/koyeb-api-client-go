@@ -12,20 +12,21 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // InstanceListItem struct for InstanceListItem
 type InstanceListItem struct {
 	Id *string `json:"id,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Vcpu *int64 `json:"vcpu,omitempty"`
-	Memory *string `json:"memory,omitempty"`
-	Disk *string `json:"disk,omitempty"`
-	PriceHourly *string `json:"price_hourly,omitempty"`
-	PriceMonthly *string `json:"price_monthly,omitempty"`
-	Regions *[]string `json:"regions,omitempty"`
-	Status *string `json:"status,omitempty"`
-	RequirePlan *[]string `json:"require_plan,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	OrganizationId *string `json:"organization_id,omitempty"`
+	AppId *string `json:"app_id,omitempty"`
+	ServiceId *string `json:"service_id,omitempty"`
+	DeploymentId *string `json:"deployment_id,omitempty"`
+	Datacenter *string `json:"datacenter,omitempty"`
+	Status *InstanceStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 }
 
 // NewInstanceListItem instantiates a new InstanceListItem object
@@ -34,6 +35,8 @@ type InstanceListItem struct {
 // will change when the set of required properties is changed
 func NewInstanceListItem() *InstanceListItem {
 	this := InstanceListItem{}
+	var status InstanceStatus = INSTANCESTATUS_ALLOCATING
+	this.Status = &status
 	return &this
 }
 
@@ -42,6 +45,8 @@ func NewInstanceListItem() *InstanceListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewInstanceListItemWithDefaults() *InstanceListItem {
 	this := InstanceListItem{}
+	var status InstanceStatus = INSTANCESTATUS_ALLOCATING
+	this.Status = &status
 	return &this
 }
 
@@ -77,234 +82,234 @@ func (o *InstanceListItem) SetId(v string) {
 	o.Id = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *InstanceListItem) GetDescription() string {
-	if o == nil || o.Description == nil {
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *InstanceListItem) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *InstanceListItem) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *InstanceListItem) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *InstanceListItem) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *InstanceListItem) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *InstanceListItem) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetOrganizationId() string {
+	if o == nil || o.OrganizationId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.OrganizationId
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+func (o *InstanceListItem) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || o.OrganizationId == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return o.OrganizationId, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *InstanceListItem) HasDescription() bool {
-	if o != nil && o.Description != nil {
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *InstanceListItem) SetDescription(v string) {
-	o.Description = &v
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *InstanceListItem) SetOrganizationId(v string) {
+	o.OrganizationId = &v
 }
 
-// GetVcpu returns the Vcpu field value if set, zero value otherwise.
-func (o *InstanceListItem) GetVcpu() int64 {
-	if o == nil || o.Vcpu == nil {
-		var ret int64
-		return ret
-	}
-	return *o.Vcpu
-}
-
-// GetVcpuOk returns a tuple with the Vcpu field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetVcpuOk() (*int64, bool) {
-	if o == nil || o.Vcpu == nil {
-		return nil, false
-	}
-	return o.Vcpu, true
-}
-
-// HasVcpu returns a boolean if a field has been set.
-func (o *InstanceListItem) HasVcpu() bool {
-	if o != nil && o.Vcpu != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetVcpu gets a reference to the given int64 and assigns it to the Vcpu field.
-func (o *InstanceListItem) SetVcpu(v int64) {
-	o.Vcpu = &v
-}
-
-// GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *InstanceListItem) GetMemory() string {
-	if o == nil || o.Memory == nil {
+// GetAppId returns the AppId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetAppId() string {
+	if o == nil || o.AppId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Memory
+	return *o.AppId
 }
 
-// GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
+// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetMemoryOk() (*string, bool) {
-	if o == nil || o.Memory == nil {
+func (o *InstanceListItem) GetAppIdOk() (*string, bool) {
+	if o == nil || o.AppId == nil {
 		return nil, false
 	}
-	return o.Memory, true
+	return o.AppId, true
 }
 
-// HasMemory returns a boolean if a field has been set.
-func (o *InstanceListItem) HasMemory() bool {
-	if o != nil && o.Memory != nil {
+// HasAppId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasAppId() bool {
+	if o != nil && o.AppId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMemory gets a reference to the given string and assigns it to the Memory field.
-func (o *InstanceListItem) SetMemory(v string) {
-	o.Memory = &v
+// SetAppId gets a reference to the given string and assigns it to the AppId field.
+func (o *InstanceListItem) SetAppId(v string) {
+	o.AppId = &v
 }
 
-// GetDisk returns the Disk field value if set, zero value otherwise.
-func (o *InstanceListItem) GetDisk() string {
-	if o == nil || o.Disk == nil {
+// GetServiceId returns the ServiceId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetServiceId() string {
+	if o == nil || o.ServiceId == nil {
 		var ret string
 		return ret
 	}
-	return *o.Disk
+	return *o.ServiceId
 }
 
-// GetDiskOk returns a tuple with the Disk field value if set, nil otherwise
+// GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetDiskOk() (*string, bool) {
-	if o == nil || o.Disk == nil {
+func (o *InstanceListItem) GetServiceIdOk() (*string, bool) {
+	if o == nil || o.ServiceId == nil {
 		return nil, false
 	}
-	return o.Disk, true
+	return o.ServiceId, true
 }
 
-// HasDisk returns a boolean if a field has been set.
-func (o *InstanceListItem) HasDisk() bool {
-	if o != nil && o.Disk != nil {
+// HasServiceId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasServiceId() bool {
+	if o != nil && o.ServiceId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDisk gets a reference to the given string and assigns it to the Disk field.
-func (o *InstanceListItem) SetDisk(v string) {
-	o.Disk = &v
+// SetServiceId gets a reference to the given string and assigns it to the ServiceId field.
+func (o *InstanceListItem) SetServiceId(v string) {
+	o.ServiceId = &v
 }
 
-// GetPriceHourly returns the PriceHourly field value if set, zero value otherwise.
-func (o *InstanceListItem) GetPriceHourly() string {
-	if o == nil || o.PriceHourly == nil {
+// GetDeploymentId returns the DeploymentId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetDeploymentId() string {
+	if o == nil || o.DeploymentId == nil {
 		var ret string
 		return ret
 	}
-	return *o.PriceHourly
+	return *o.DeploymentId
 }
 
-// GetPriceHourlyOk returns a tuple with the PriceHourly field value if set, nil otherwise
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetPriceHourlyOk() (*string, bool) {
-	if o == nil || o.PriceHourly == nil {
+func (o *InstanceListItem) GetDeploymentIdOk() (*string, bool) {
+	if o == nil || o.DeploymentId == nil {
 		return nil, false
 	}
-	return o.PriceHourly, true
+	return o.DeploymentId, true
 }
 
-// HasPriceHourly returns a boolean if a field has been set.
-func (o *InstanceListItem) HasPriceHourly() bool {
-	if o != nil && o.PriceHourly != nil {
+// HasDeploymentId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasDeploymentId() bool {
+	if o != nil && o.DeploymentId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPriceHourly gets a reference to the given string and assigns it to the PriceHourly field.
-func (o *InstanceListItem) SetPriceHourly(v string) {
-	o.PriceHourly = &v
+// SetDeploymentId gets a reference to the given string and assigns it to the DeploymentId field.
+func (o *InstanceListItem) SetDeploymentId(v string) {
+	o.DeploymentId = &v
 }
 
-// GetPriceMonthly returns the PriceMonthly field value if set, zero value otherwise.
-func (o *InstanceListItem) GetPriceMonthly() string {
-	if o == nil || o.PriceMonthly == nil {
+// GetDatacenter returns the Datacenter field value if set, zero value otherwise.
+func (o *InstanceListItem) GetDatacenter() string {
+	if o == nil || o.Datacenter == nil {
 		var ret string
 		return ret
 	}
-	return *o.PriceMonthly
+	return *o.Datacenter
 }
 
-// GetPriceMonthlyOk returns a tuple with the PriceMonthly field value if set, nil otherwise
+// GetDatacenterOk returns a tuple with the Datacenter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetPriceMonthlyOk() (*string, bool) {
-	if o == nil || o.PriceMonthly == nil {
+func (o *InstanceListItem) GetDatacenterOk() (*string, bool) {
+	if o == nil || o.Datacenter == nil {
 		return nil, false
 	}
-	return o.PriceMonthly, true
+	return o.Datacenter, true
 }
 
-// HasPriceMonthly returns a boolean if a field has been set.
-func (o *InstanceListItem) HasPriceMonthly() bool {
-	if o != nil && o.PriceMonthly != nil {
+// HasDatacenter returns a boolean if a field has been set.
+func (o *InstanceListItem) HasDatacenter() bool {
+	if o != nil && o.Datacenter != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPriceMonthly gets a reference to the given string and assigns it to the PriceMonthly field.
-func (o *InstanceListItem) SetPriceMonthly(v string) {
-	o.PriceMonthly = &v
-}
-
-// GetRegions returns the Regions field value if set, zero value otherwise.
-func (o *InstanceListItem) GetRegions() []string {
-	if o == nil || o.Regions == nil {
-		var ret []string
-		return ret
-	}
-	return *o.Regions
-}
-
-// GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetRegionsOk() (*[]string, bool) {
-	if o == nil || o.Regions == nil {
-		return nil, false
-	}
-	return o.Regions, true
-}
-
-// HasRegions returns a boolean if a field has been set.
-func (o *InstanceListItem) HasRegions() bool {
-	if o != nil && o.Regions != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRegions gets a reference to the given []string and assigns it to the Regions field.
-func (o *InstanceListItem) SetRegions(v []string) {
-	o.Regions = &v
+// SetDatacenter gets a reference to the given string and assigns it to the Datacenter field.
+func (o *InstanceListItem) SetDatacenter(v string) {
+	o.Datacenter = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *InstanceListItem) GetStatus() string {
+func (o *InstanceListItem) GetStatus() InstanceStatus {
 	if o == nil || o.Status == nil {
-		var ret string
+		var ret InstanceStatus
 		return ret
 	}
 	return *o.Status
@@ -312,7 +317,7 @@ func (o *InstanceListItem) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetStatusOk() (*string, bool) {
+func (o *InstanceListItem) GetStatusOk() (*InstanceStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -328,41 +333,41 @@ func (o *InstanceListItem) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *InstanceListItem) SetStatus(v string) {
+// SetStatus gets a reference to the given InstanceStatus and assigns it to the Status field.
+func (o *InstanceListItem) SetStatus(v InstanceStatus) {
 	o.Status = &v
 }
 
-// GetRequirePlan returns the RequirePlan field value if set, zero value otherwise.
-func (o *InstanceListItem) GetRequirePlan() []string {
-	if o == nil || o.RequirePlan == nil {
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *InstanceListItem) GetMessages() []string {
+	if o == nil || o.Messages == nil {
 		var ret []string
 		return ret
 	}
-	return *o.RequirePlan
+	return *o.Messages
 }
 
-// GetRequirePlanOk returns a tuple with the RequirePlan field value if set, nil otherwise
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InstanceListItem) GetRequirePlanOk() (*[]string, bool) {
-	if o == nil || o.RequirePlan == nil {
+func (o *InstanceListItem) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
 		return nil, false
 	}
-	return o.RequirePlan, true
+	return o.Messages, true
 }
 
-// HasRequirePlan returns a boolean if a field has been set.
-func (o *InstanceListItem) HasRequirePlan() bool {
-	if o != nil && o.RequirePlan != nil {
+// HasMessages returns a boolean if a field has been set.
+func (o *InstanceListItem) HasMessages() bool {
+	if o != nil && o.Messages != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetRequirePlan gets a reference to the given []string and assigns it to the RequirePlan field.
-func (o *InstanceListItem) SetRequirePlan(v []string) {
-	o.RequirePlan = &v
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *InstanceListItem) SetMessages(v []string) {
+	o.Messages = &v
 }
 
 func (o InstanceListItem) MarshalJSON() ([]byte, error) {
@@ -370,32 +375,32 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
-	if o.Vcpu != nil {
-		toSerialize["vcpu"] = o.Vcpu
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.Memory != nil {
-		toSerialize["memory"] = o.Memory
+	if o.OrganizationId != nil {
+		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if o.Disk != nil {
-		toSerialize["disk"] = o.Disk
+	if o.AppId != nil {
+		toSerialize["app_id"] = o.AppId
 	}
-	if o.PriceHourly != nil {
-		toSerialize["price_hourly"] = o.PriceHourly
+	if o.ServiceId != nil {
+		toSerialize["service_id"] = o.ServiceId
 	}
-	if o.PriceMonthly != nil {
-		toSerialize["price_monthly"] = o.PriceMonthly
+	if o.DeploymentId != nil {
+		toSerialize["deployment_id"] = o.DeploymentId
 	}
-	if o.Regions != nil {
-		toSerialize["regions"] = o.Regions
+	if o.Datacenter != nil {
+		toSerialize["datacenter"] = o.Datacenter
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if o.RequirePlan != nil {
-		toSerialize["require_plan"] = o.RequirePlan
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	return json.Marshal(toSerialize)
 }
