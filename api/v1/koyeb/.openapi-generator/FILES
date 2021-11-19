@@ -4,6 +4,8 @@ README.md
 api/openapi.yaml
 api_activity.go
 api_apps.go
+api_catalog_instances.go
+api_catalog_regions.go
 api_credentials.go
 api_hooks.go
 api_instances.go
@@ -11,7 +13,6 @@ api_invite.go
 api_logs.go
 api_organization.go
 api_profile.go
-api_regions.go
 api_secrets.go
 api_services.go
 api_session.go
@@ -29,6 +30,8 @@ docs/AutoRelease.md
 docs/AutoReleaseGroup.md
 docs/AzureContainerRegistryConfiguration.md
 docs/CannyAuthReply.md
+docs/CatalogInstancesApi.md
+docs/CatalogRegionsApi.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
 docs/CreateAppReply.md
@@ -112,7 +115,6 @@ docs/RedeployReply.md
 docs/RedeployRequestInfo.md
 docs/Region.md
 docs/RegionListItem.md
-docs/RegionsApi.md
 docs/ResetPasswordRequest.md
 docs/RevisionLogEntry.md
 docs/Route.md

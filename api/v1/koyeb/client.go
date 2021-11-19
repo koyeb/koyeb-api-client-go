@@ -52,6 +52,10 @@ type APIClient struct {
 
 	AppsApi AppsApi
 
+	CatalogInstancesApi CatalogInstancesApi
+
+	CatalogRegionsApi CatalogRegionsApi
+
 	CredentialsApi CredentialsApi
 
 	HooksApi HooksApi
@@ -65,8 +69,6 @@ type APIClient struct {
 	OrganizationApi OrganizationApi
 
 	ProfileApi ProfileApi
-
-	RegionsApi RegionsApi
 
 	SecretsApi SecretsApi
 
@@ -95,6 +97,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.ActivityApi = (*ActivityApiService)(&c.common)
 	c.AppsApi = (*AppsApiService)(&c.common)
+	c.CatalogInstancesApi = (*CatalogInstancesApiService)(&c.common)
+	c.CatalogRegionsApi = (*CatalogRegionsApiService)(&c.common)
 	c.CredentialsApi = (*CredentialsApiService)(&c.common)
 	c.HooksApi = (*HooksApiService)(&c.common)
 	c.InstancesApi = (*InstancesApiService)(&c.common)
@@ -102,7 +106,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.OrganizationApi = (*OrganizationApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
-	c.RegionsApi = (*RegionsApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionApi = (*SessionApiService)(&c.common)
