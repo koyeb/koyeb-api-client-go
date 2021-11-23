@@ -23,6 +23,7 @@ jobs:
             ${{ runner.os }}-go-
       - name: generate
         run: |
+          make clean
           make gen
           sudo chown -R $USER api/v1/koyeb
       - name: test
