@@ -1,4 +1,4 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID/koyeb
+module github.com/koyeb/koyeb-api-client-go/koyeb
 
 go 1.13
 
