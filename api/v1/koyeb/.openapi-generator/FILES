@@ -1,4 +1,5 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -158,6 +159,8 @@ docs/UserAccountStatus.md
 docs/UserFlags.md
 docs/UserReply.md
 git_push.sh
+go.mod
+go.sum
 model_action.go
 model_activity.go
 model_activity_list.go
