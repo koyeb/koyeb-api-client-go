@@ -88,8 +88,8 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
-*CatalogInstancesApi* | [**GetInstance**](docs/CatalogInstancesApi.md#getinstance) | **Get** /v1/catalog/instances/{id} | Get Instance
-*CatalogInstancesApi* | [**ListInstances**](docs/CatalogInstancesApi.md#listinstances) | **Get** /v1/catalog/instances | List Instance
+*CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
+*CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | 
@@ -100,7 +100,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/instances/exec | Exec Command
-*InstancesApi* | [**ListServiceInstances**](docs/InstancesApi.md#listserviceinstances) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances | List Instances for a service
+*InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
 *LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
@@ -212,7 +212,6 @@ Class | Method | HTTP request | Description
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
- - [ListServiceInstancesReply](docs/ListServiceInstancesReply.md)
  - [ListServiceRevisionsReply](docs/ListServiceRevisionsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [LogEntry](docs/LogEntry.md)

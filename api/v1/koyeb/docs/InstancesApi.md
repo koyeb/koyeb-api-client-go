@@ -5,7 +5,7 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ExecCommand**](InstancesApi.md#ExecCommand) | **Get** /v1/instances/exec | Exec Command
-[**ListServiceInstances**](InstancesApi.md#ListServiceInstances) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances | List Instances for a service
+[**ListInstances**](InstancesApi.md#ListInstances) | **Get** /v1/instances | List Instances
 
 
 
@@ -81,11 +81,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListServiceInstances
+## ListInstances
 
-> ListServiceInstancesReply ListServiceInstances(ctx, appIdOrName, serviceIdOrName).Limit(limit).Offset(offset).Execute()
+> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).Statuses(statuses).Limit(limit).Offset(offset).Execute()
 
-List Instances for a service
+List Instances
 
 ### Example
 
@@ -100,47 +100,46 @@ import (
 )
 
 func main() {
-    appIdOrName := "appIdOrName_example" // string | Name or id of the application
-    serviceIdOrName := "serviceIdOrName_example" // string | Name or id of the service
+    appId := "appId_example" // string | (Optional) Filter on application id. (optional)
+    serviceId := "serviceId_example" // string | (Optional) Filter on service id. (optional)
+    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id. (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on instance statuses. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.ListServiceInstances(context.Background(), appIdOrName, serviceIdOrName).Limit(limit).Offset(offset).Execute()
+    resp, r, err := api_client.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).Statuses(statuses).Limit(limit).Offset(offset).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListServiceInstances``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListServiceInstances`: ListServiceInstancesReply
-    fmt.Fprintf(os.Stdout, "Response from `InstancesApi.ListServiceInstances`: %v\n", resp)
+    // response from `ListInstances`: ListInstancesReply
+    fmt.Fprintf(os.Stdout, "Response from `InstancesApi.ListInstances`: %v\n", resp)
 }
 ```
 
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appIdOrName** | **string** | Name or id of the application | 
-**serviceIdOrName** | **string** | Name or id of the service | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListServiceInstancesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListInstancesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
-
+ **appId** | **string** | (Optional) Filter on application id. | 
+ **serviceId** | **string** | (Optional) Filter on service id. | 
+ **deploymentId** | **string** | (Optional) Filter on deployment id. | 
+ **statuses** | **[]string** | (Optional) Filter on instance statuses. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
 
 ### Return type
 
-[**ListServiceInstancesReply**](ListServiceInstancesReply.md)
+[**ListInstancesReply**](ListInstancesReply.md)
 
 ### Authorization
 

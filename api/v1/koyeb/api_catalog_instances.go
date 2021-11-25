@@ -27,55 +27,55 @@ var (
 type CatalogInstancesApi interface {
 
 	/*
-	 * GetInstance Get Instance
+	 * GetCatalogInstance Get Instance
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The name of the instance
-	 * @return ApiGetInstanceRequest
+	 * @return ApiGetCatalogInstanceRequest
 	 */
-	GetInstance(ctx _context.Context, id string) ApiGetInstanceRequest
+	GetCatalogInstance(ctx _context.Context, id string) ApiGetCatalogInstanceRequest
 
 	/*
-	 * GetInstanceExecute executes the request
+	 * GetCatalogInstanceExecute executes the request
 	 * @return GetInstanceReply
 	 */
-	GetInstanceExecute(r ApiGetInstanceRequest) (GetInstanceReply, *_nethttp.Response, error)
+	GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetInstanceReply, *_nethttp.Response, error)
 
 	/*
-	 * ListInstances List Instance
+	 * ListCatalogInstances List Instance
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return ApiListInstancesRequest
+	 * @return ApiListCatalogInstancesRequest
 	 */
-	ListInstances(ctx _context.Context) ApiListInstancesRequest
+	ListCatalogInstances(ctx _context.Context) ApiListCatalogInstancesRequest
 
 	/*
-	 * ListInstancesExecute executes the request
+	 * ListCatalogInstancesExecute executes the request
 	 * @return ListInstancesReply
 	 */
-	ListInstancesExecute(r ApiListInstancesRequest) (ListInstancesReply, *_nethttp.Response, error)
+	ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListInstancesReply, *_nethttp.Response, error)
 }
 
 // CatalogInstancesApiService CatalogInstancesApi service
 type CatalogInstancesApiService service
 
-type ApiGetInstanceRequest struct {
+type ApiGetCatalogInstanceRequest struct {
 	ctx _context.Context
 	ApiService CatalogInstancesApi
 	id string
 }
 
 
-func (r ApiGetInstanceRequest) Execute() (GetInstanceReply, *_nethttp.Response, error) {
-	return r.ApiService.GetInstanceExecute(r)
+func (r ApiGetCatalogInstanceRequest) Execute() (GetInstanceReply, *_nethttp.Response, error) {
+	return r.ApiService.GetCatalogInstanceExecute(r)
 }
 
 /*
- * GetInstance Get Instance
+ * GetCatalogInstance Get Instance
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The name of the instance
- * @return ApiGetInstanceRequest
+ * @return ApiGetCatalogInstanceRequest
  */
-func (a *CatalogInstancesApiService) GetInstance(ctx _context.Context, id string) ApiGetInstanceRequest {
-	return ApiGetInstanceRequest{
+func (a *CatalogInstancesApiService) GetCatalogInstance(ctx _context.Context, id string) ApiGetCatalogInstanceRequest {
+	return ApiGetCatalogInstanceRequest{
 		ApiService: a,
 		ctx: ctx,
 		id: id,
@@ -86,7 +86,7 @@ func (a *CatalogInstancesApiService) GetInstance(ctx _context.Context, id string
  * Execute executes the request
  * @return GetInstanceReply
  */
-func (a *CatalogInstancesApiService) GetInstanceExecute(r ApiGetInstanceRequest) (GetInstanceReply, *_nethttp.Response, error) {
+func (a *CatalogInstancesApiService) GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetInstanceReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -96,7 +96,7 @@ func (a *CatalogInstancesApiService) GetInstanceExecute(r ApiGetInstanceRequest)
 		localVarReturnValue  GetInstanceReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.GetInstance")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.GetCatalogInstance")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -183,7 +183,7 @@ func (a *CatalogInstancesApiService) GetInstanceExecute(r ApiGetInstanceRequest)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListInstancesRequest struct {
+type ApiListCatalogInstancesRequest struct {
 	ctx _context.Context
 	ApiService CatalogInstancesApi
 	limit *string
@@ -191,30 +191,30 @@ type ApiListInstancesRequest struct {
 	id *string
 }
 
-func (r ApiListInstancesRequest) Limit(limit string) ApiListInstancesRequest {
+func (r ApiListCatalogInstancesRequest) Limit(limit string) ApiListCatalogInstancesRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiListInstancesRequest) Offset(offset string) ApiListInstancesRequest {
+func (r ApiListCatalogInstancesRequest) Offset(offset string) ApiListCatalogInstancesRequest {
 	r.offset = &offset
 	return r
 }
-func (r ApiListInstancesRequest) Id(id string) ApiListInstancesRequest {
+func (r ApiListCatalogInstancesRequest) Id(id string) ApiListCatalogInstancesRequest {
 	r.id = &id
 	return r
 }
 
-func (r ApiListInstancesRequest) Execute() (ListInstancesReply, *_nethttp.Response, error) {
-	return r.ApiService.ListInstancesExecute(r)
+func (r ApiListCatalogInstancesRequest) Execute() (ListInstancesReply, *_nethttp.Response, error) {
+	return r.ApiService.ListCatalogInstancesExecute(r)
 }
 
 /*
- * ListInstances List Instance
+ * ListCatalogInstances List Instance
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListInstancesRequest
+ * @return ApiListCatalogInstancesRequest
  */
-func (a *CatalogInstancesApiService) ListInstances(ctx _context.Context) ApiListInstancesRequest {
-	return ApiListInstancesRequest{
+func (a *CatalogInstancesApiService) ListCatalogInstances(ctx _context.Context) ApiListCatalogInstancesRequest {
+	return ApiListCatalogInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -224,7 +224,7 @@ func (a *CatalogInstancesApiService) ListInstances(ctx _context.Context) ApiList
  * Execute executes the request
  * @return ListInstancesReply
  */
-func (a *CatalogInstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (ListInstancesReply, *_nethttp.Response, error) {
+func (a *CatalogInstancesApiService) ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListInstancesReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -234,7 +234,7 @@ func (a *CatalogInstancesApiService) ListInstancesExecute(r ApiListInstancesRequ
 		localVarReturnValue  ListInstancesReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.ListInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.ListCatalogInstances")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}

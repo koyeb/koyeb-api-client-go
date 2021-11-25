@@ -4,14 +4,14 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetInstance**](CatalogInstancesApi.md#GetInstance) | **Get** /v1/catalog/instances/{id} | Get Instance
-[**ListInstances**](CatalogInstancesApi.md#ListInstances) | **Get** /v1/catalog/instances | List Instance
+[**GetCatalogInstance**](CatalogInstancesApi.md#GetCatalogInstance) | **Get** /v1/catalog/instances/{id} | Get Instance
+[**ListCatalogInstances**](CatalogInstancesApi.md#ListCatalogInstances) | **Get** /v1/catalog/instances | List Instance
 
 
 
-## GetInstance
+## GetCatalogInstance
 
-> GetInstanceReply GetInstance(ctx, id).Execute()
+> GetInstanceReply GetCatalogInstance(ctx, id).Execute()
 
 Get Instance
 
@@ -32,13 +32,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CatalogInstancesApi.GetInstance(context.Background(), id).Execute()
+    resp, r, err := api_client.CatalogInstancesApi.GetCatalogInstance(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.GetInstance``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.GetCatalogInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetInstance`: GetInstanceReply
-    fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.GetInstance`: %v\n", resp)
+    // response from `GetCatalogInstance`: GetInstanceReply
+    fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.GetCatalogInstance`: %v\n", resp)
 }
 ```
 
@@ -52,7 +52,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetInstanceRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCatalogInstanceRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -77,9 +77,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListInstances
+## ListCatalogInstances
 
-> ListInstancesReply ListInstances(ctx).Limit(limit).Offset(offset).Id(id).Execute()
+> ListInstancesReply ListCatalogInstances(ctx).Limit(limit).Offset(offset).Id(id).Execute()
 
 List Instance
 
@@ -102,13 +102,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CatalogInstancesApi.ListInstances(context.Background()).Limit(limit).Offset(offset).Id(id).Execute()
+    resp, r, err := api_client.CatalogInstancesApi.ListCatalogInstances(context.Background()).Limit(limit).Offset(offset).Id(id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.ListInstances``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.ListCatalogInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListInstances`: ListInstancesReply
-    fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.ListInstances`: %v\n", resp)
+    // response from `ListCatalogInstances`: ListInstancesReply
+    fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.ListCatalogInstances`: %v\n", resp)
 }
 ```
 
@@ -118,7 +118,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListInstancesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListCatalogInstancesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

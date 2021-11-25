@@ -1895,7 +1895,7 @@ paths:
       - CatalogRegions
   /v1/catalog/instances:
     get:
-      operationId: ListInstances
+      operationId: ListCatalogInstances
       parameters:
       - description: (Optional) The number of items to return.
         in: query
@@ -1930,7 +1930,7 @@ paths:
       - CatalogInstances
   /v1/catalog/instances/{id}:
     get:
-      operationId: GetInstance
+      operationId: GetCatalogInstance
       parameters:
       - description: The name of the instance
         in: path
@@ -2240,22 +2240,42 @@ paths:
       summary: Update App
       tags:
       - Apps
-  /v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances:
+  /v1/instances:
     get:
-      operationId: ListServiceInstances
+      operationId: ListInstances
       parameters:
-      - description: Name or id of the application
-        in: path
-        name: app_id_or_name
-        required: true
+      - description: (Optional) Filter on application id.
+        in: query
+        name: app_id
         schema:
           type: string
-      - description: Name or id of the service
-        in: path
-        name: service_id_or_name
-        required: true
+      - description: (Optional) Filter on service id.
+        in: query
+        name: service_id
         schema:
           type: string
+      - description: (Optional) Filter on deployment id.
+        in: query
+        name: deployment_id
+        schema:
+          type: string
+      - description: (Optional) Filter on instance statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - ALLOCATING
+            - STARTING
+            - HEALTHY
+            - UNHEALTHY
+            - STOPPING
+            - STOPPED
+            - ERROR
+            type: string
+          type: array
+        style: form
       - description: (Optional) The number of items to return.
         in: query
         name: limit
@@ -2271,7 +2291,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListServiceInstancesReply'
+                $ref: '#/components/schemas/ListInstancesReply'
           description: A successful response.
         "400":
           content:
@@ -2298,7 +2318,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: List Instances for a service
+      summary: List Instances
       tags:
       - Instances
   /v1/secrets:
@@ -4452,6 +4472,7 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         service_id: service_id
+        allocation_id: allocation_id
         created_at: 2000-01-23T04:56:07.000+00:00
         messages:
         - messages
@@ -4477,6 +4498,8 @@ components:
           type: string
         deployment_id:
           type: string
+        allocation_id:
+          type: string
         datacenter:
           type: string
         status:
@@ -4493,6 +4516,7 @@ components:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
+          allocation_id: allocation_id
           created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
@@ -4504,6 +4528,7 @@ components:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
+          allocation_id: allocation_id
           created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
@@ -4518,6 +4543,7 @@ components:
         instances:
           items:
             $ref: '#/components/schemas/InstanceListItem'
+          title: The collection of instances
           type: array
         limit:
           format: int64
@@ -4724,53 +4750,6 @@ components:
       - STOPPED
       - ERROR
       type: string
-    ListServiceInstancesReply:
-      example:
-        offset: 6
-        instances:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-          deployment_id: deployment_id
-          app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-          deployment_id: deployment_id
-          app_id: app_id
-        limit: 0
-        count: 1
-      properties:
-        instances:
-          items:
-            $ref: '#/components/schemas/InstanceListItem'
-          title: The collection of instances
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
     AzureContainerRegistryConfiguration:
       example:
         password: password

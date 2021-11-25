@@ -92,7 +92,6 @@ docs/ListCredentialsReply.md
 docs/ListInstancesReply.md
 docs/ListRegionsReply.md
 docs/ListSecretsReply.md
-docs/ListServiceInstancesReply.md
 docs/ListServiceRevisionsReply.md
 docs/ListServicesReply.md
 docs/LogEntry.md
@@ -225,7 +224,6 @@ model_list_credentials_reply.go
 model_list_instances_reply.go
 model_list_regions_reply.go
 model_list_secrets_reply.go
-model_list_service_instances_reply.go
 model_list_service_revisions_reply.go
 model_list_services_reply.go
 model_log_entry.go
