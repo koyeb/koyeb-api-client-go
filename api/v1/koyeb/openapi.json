@@ -2034,7 +2034,7 @@
     "/v1/catalog/instances": {
       "get": {
         "summary": "List Instance",
-        "operationId": "ListInstances",
+        "operationId": "ListCatalogInstances",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2080,7 +2080,7 @@
     "/v1/catalog/instances/{id}": {
       "get": {
         "summary": "Get Instance",
-        "operationId": "GetInstance",
+        "operationId": "GetCatalogInstance",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2430,15 +2430,15 @@
         ]
       }
     },
-    "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances": {
+    "/v1/instances": {
       "get": {
-        "summary": "List Instances for a service",
-        "operationId": "ListServiceInstances",
+        "summary": "List Instances",
+        "operationId": "ListInstances",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListServiceInstancesReply"
+              "$ref": "#/definitions/ListInstancesReply"
             }
           },
           "400": {
@@ -2468,18 +2468,45 @@
         },
         "parameters": [
           {
-            "name": "app_id_or_name",
-            "description": "Name or id of the application",
-            "in": "path",
-            "required": true,
+            "name": "app_id",
+            "description": "(Optional) Filter on application id.",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
-            "name": "service_id_or_name",
-            "description": "Name or id of the service",
-            "in": "path",
-            "required": true,
+            "name": "service_id",
+            "description": "(Optional) Filter on service id.",
+            "in": "query",
+            "required": false,
             "type": "string"
+          },
+          {
+            "name": "deployment_id",
+            "description": "(Optional) Filter on deployment id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "statuses",
+            "description": "(Optional) Filter on instance statuses.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ALLOCATING",
+                "STARTING",
+                "HEALTHY",
+                "UNHEALTHY",
+                "STOPPING",
+                "STOPPED",
+                "ERROR"
+              ]
+            },
+            "collectionFormat": "multi"
           },
           {
             "name": "limit",
@@ -4786,6 +4813,9 @@
         "deployment_id": {
           "type": "string"
         },
+        "allocation_id": {
+          "type": "string"
+        },
         "datacenter": {
           "type": "string"
         },
@@ -4807,7 +4837,8 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/InstanceListItem"
-          }
+          },
+          "title": "The collection of instances"
         },
         "limit": {
           "type": "integer",
@@ -4977,33 +5008,6 @@
         "ERROR"
       ],
       "default": "ALLOCATING"
-    },
-    "ListServiceInstancesReply": {
-      "type": "object",
-      "properties": {
-        "instances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/InstanceListItem"
-          },
-          "title": "The collection of instances"
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The limit in the request"
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The offset in the request"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The total number of items"
-        }
-      }
     },
     "AzureContainerRegistryConfiguration": {
       "type": "object",

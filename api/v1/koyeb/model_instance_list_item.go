@@ -24,6 +24,7 @@ type InstanceListItem struct {
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
 	DeploymentId *string `json:"deployment_id,omitempty"`
+	AllocationId *string `json:"allocation_id,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
@@ -274,6 +275,38 @@ func (o *InstanceListItem) SetDeploymentId(v string) {
 	o.DeploymentId = &v
 }
 
+// GetAllocationId returns the AllocationId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetAllocationId() string {
+	if o == nil || o.AllocationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AllocationId
+}
+
+// GetAllocationIdOk returns a tuple with the AllocationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetAllocationIdOk() (*string, bool) {
+	if o == nil || o.AllocationId == nil {
+		return nil, false
+	}
+	return o.AllocationId, true
+}
+
+// HasAllocationId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasAllocationId() bool {
+	if o != nil && o.AllocationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocationId gets a reference to the given string and assigns it to the AllocationId field.
+func (o *InstanceListItem) SetAllocationId(v string) {
+	o.AllocationId = &v
+}
+
 // GetDatacenter returns the Datacenter field value if set, zero value otherwise.
 func (o *InstanceListItem) GetDatacenter() string {
 	if o == nil || o.Datacenter == nil {
@@ -392,6 +425,9 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeploymentId != nil {
 		toSerialize["deployment_id"] = o.DeploymentId
+	}
+	if o.AllocationId != nil {
+		toSerialize["allocation_id"] = o.AllocationId
 	}
 	if o.Datacenter != nil {
 		toSerialize["datacenter"] = o.Datacenter

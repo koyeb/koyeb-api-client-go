@@ -16,7 +16,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 	"reflect"
 )
 
@@ -41,19 +40,17 @@ type InstancesApi interface {
 	ExecCommandExecute(r ApiExecCommandRequest) (StreamResultOfExecCommandReply, *_nethttp.Response, error)
 
 	/*
-	 * ListServiceInstances List Instances for a service
+	 * ListInstances List Instances
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName Name or id of the application
-	 * @param serviceIdOrName Name or id of the service
-	 * @return ApiListServiceInstancesRequest
+	 * @return ApiListInstancesRequest
 	 */
-	ListServiceInstances(ctx _context.Context, appIdOrName string, serviceIdOrName string) ApiListServiceInstancesRequest
+	ListInstances(ctx _context.Context) ApiListInstancesRequest
 
 	/*
-	 * ListServiceInstancesExecute executes the request
-	 * @return ListServiceInstancesReply
+	 * ListInstancesExecute executes the request
+	 * @return ListInstancesReply
 	 */
-	ListServiceInstancesExecute(r ApiListServiceInstancesRequest) (ListServiceInstancesReply, *_nethttp.Response, error)
+	ListInstancesExecute(r ApiListInstancesRequest) (ListInstancesReply, *_nethttp.Response, error)
 }
 
 // InstancesApiService InstancesApi service
@@ -259,71 +256,103 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (Strea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListServiceInstancesRequest struct {
+type ApiListInstancesRequest struct {
 	ctx _context.Context
 	ApiService InstancesApi
-	appIdOrName string
-	serviceIdOrName string
+	appId *string
+	serviceId *string
+	deploymentId *string
+	statuses *[]string
 	limit *string
 	offset *string
 }
 
-func (r ApiListServiceInstancesRequest) Limit(limit string) ApiListServiceInstancesRequest {
+func (r ApiListInstancesRequest) AppId(appId string) ApiListInstancesRequest {
+	r.appId = &appId
+	return r
+}
+func (r ApiListInstancesRequest) ServiceId(serviceId string) ApiListInstancesRequest {
+	r.serviceId = &serviceId
+	return r
+}
+func (r ApiListInstancesRequest) DeploymentId(deploymentId string) ApiListInstancesRequest {
+	r.deploymentId = &deploymentId
+	return r
+}
+func (r ApiListInstancesRequest) Statuses(statuses []string) ApiListInstancesRequest {
+	r.statuses = &statuses
+	return r
+}
+func (r ApiListInstancesRequest) Limit(limit string) ApiListInstancesRequest {
 	r.limit = &limit
 	return r
 }
-func (r ApiListServiceInstancesRequest) Offset(offset string) ApiListServiceInstancesRequest {
+func (r ApiListInstancesRequest) Offset(offset string) ApiListInstancesRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiListServiceInstancesRequest) Execute() (ListServiceInstancesReply, *_nethttp.Response, error) {
-	return r.ApiService.ListServiceInstancesExecute(r)
+func (r ApiListInstancesRequest) Execute() (ListInstancesReply, *_nethttp.Response, error) {
+	return r.ApiService.ListInstancesExecute(r)
 }
 
 /*
- * ListServiceInstances List Instances for a service
+ * ListInstances List Instances
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName Name or id of the application
- * @param serviceIdOrName Name or id of the service
- * @return ApiListServiceInstancesRequest
+ * @return ApiListInstancesRequest
  */
-func (a *InstancesApiService) ListServiceInstances(ctx _context.Context, appIdOrName string, serviceIdOrName string) ApiListServiceInstancesRequest {
-	return ApiListServiceInstancesRequest{
+func (a *InstancesApiService) ListInstances(ctx _context.Context) ApiListInstancesRequest {
+	return ApiListInstancesRequest{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
-		serviceIdOrName: serviceIdOrName,
 	}
 }
 
 /*
  * Execute executes the request
- * @return ListServiceInstancesReply
+ * @return ListInstancesReply
  */
-func (a *InstancesApiService) ListServiceInstancesExecute(r ApiListServiceInstancesRequest) (ListServiceInstancesReply, *_nethttp.Response, error) {
+func (a *InstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (ListInstancesReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ListServiceInstancesReply
+		localVarReturnValue  ListInstancesReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InstancesApiService.ListServiceInstances")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InstancesApiService.ListInstances")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/instances"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"service_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.serviceIdOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/instances"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.appId != nil {
+		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
+	}
+	if r.serviceId != nil {
+		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
+	}
+	if r.deploymentId != nil {
+		localVarQueryParams.Add("deployment_id", parameterToString(*r.deploymentId, ""))
+	}
+	if r.statuses != nil {
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}

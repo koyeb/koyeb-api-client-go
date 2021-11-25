@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **string** |  | [optional] 
+**AllocationId** | Pointer to **string** |  | [optional] 
 **Datacenter** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
 **Messages** | Pointer to **[]string** |  | [optional] 
@@ -208,6 +209,31 @@ SetDeploymentId sets DeploymentId field to given value.
 `func (o *InstanceListItem) HasDeploymentId() bool`
 
 HasDeploymentId returns a boolean if a field has been set.
+
+### GetAllocationId
+
+`func (o *InstanceListItem) GetAllocationId() string`
+
+GetAllocationId returns the AllocationId field if non-nil, zero value otherwise.
+
+### GetAllocationIdOk
+
+`func (o *InstanceListItem) GetAllocationIdOk() (*string, bool)`
+
+GetAllocationIdOk returns a tuple with the AllocationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocationId
+
+`func (o *InstanceListItem) SetAllocationId(v string)`
+
+SetAllocationId sets AllocationId field to given value.
+
+### HasAllocationId
+
+`func (o *InstanceListItem) HasAllocationId() bool`
+
+HasAllocationId returns a boolean if a field has been set.
 
 ### GetDatacenter
 
