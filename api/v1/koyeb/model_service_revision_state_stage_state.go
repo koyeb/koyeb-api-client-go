@@ -12,6 +12,7 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // ServiceRevisionStateStageState struct for ServiceRevisionStateStageState
@@ -20,6 +21,8 @@ type ServiceRevisionStateStageState struct {
 	StatusMessage *string `json:"status_message,omitempty"`
 	Status *ServiceRevisionStateStageStateStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
+	StartedAt *time.Time `json:"started_at,omitempty"`
+	FinishedAt *time.Time `json:"finished_at,omitempty"`
 }
 
 // NewServiceRevisionStateStageState instantiates a new ServiceRevisionStateStageState object
@@ -171,6 +174,70 @@ func (o *ServiceRevisionStateStageState) SetMessages(v []string) {
 	o.Messages = &v
 }
 
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *ServiceRevisionStateStageState) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceRevisionStateStageState) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
+		return nil, false
+	}
+	return o.StartedAt, true
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *ServiceRevisionStateStageState) HasStartedAt() bool {
+	if o != nil && o.StartedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *ServiceRevisionStateStageState) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
+}
+
+// GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
+func (o *ServiceRevisionStateStageState) GetFinishedAt() time.Time {
+	if o == nil || o.FinishedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.FinishedAt
+}
+
+// GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceRevisionStateStageState) GetFinishedAtOk() (*time.Time, bool) {
+	if o == nil || o.FinishedAt == nil {
+		return nil, false
+	}
+	return o.FinishedAt, true
+}
+
+// HasFinishedAt returns a boolean if a field has been set.
+func (o *ServiceRevisionStateStageState) HasFinishedAt() bool {
+	if o != nil && o.FinishedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFinishedAt gets a reference to the given time.Time and assigns it to the FinishedAt field.
+func (o *ServiceRevisionStateStageState) SetFinishedAt(v time.Time) {
+	o.FinishedAt = &v
+}
+
 func (o ServiceRevisionStateStageState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -184,6 +251,12 @@ func (o ServiceRevisionStateStageState) MarshalJSON() ([]byte, error) {
 	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.StartedAt != nil {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if o.FinishedAt != nil {
+		toSerialize["finished_at"] = o.FinishedAt
 	}
 	return json.Marshal(toSerialize)
 }
