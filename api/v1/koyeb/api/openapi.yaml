@@ -5453,15 +5453,19 @@ components:
               image: image
               stage_state:
               - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
                 name: name
                 messages:
                 - messages
                 - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
               - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
                 name: name
                 messages:
                 - messages
                 - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
@@ -5775,15 +5779,19 @@ components:
               image: image
               stage_state:
               - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
                 name: name
                 messages:
                 - messages
                 - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
               - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
                 name: name
                 messages:
                 - messages
                 - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
@@ -6118,15 +6126,19 @@ components:
             image: image
             stage_state:
             - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
               name: name
               messages:
               - messages
               - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
             - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
               name: name
               messages:
               - messages
               - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
             build_job_id: build_job_id
             sha: sha
         app_id: app_id
@@ -6239,15 +6251,19 @@ components:
           image: image
           stage_state:
           - status_message: status_message
+            finished_at: 2000-01-23T04:56:07.000+00:00
             name: name
             messages:
             - messages
             - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
           - status_message: status_message
+            finished_at: 2000-01-23T04:56:07.000+00:00
             name: name
             messages:
             - messages
             - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
           build_job_id: build_job_id
           sha: sha
       properties:
@@ -6274,15 +6290,19 @@ components:
         image: image
         stage_state:
         - status_message: status_message
+          finished_at: 2000-01-23T04:56:07.000+00:00
           name: name
           messages:
           - messages
           - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
         - status_message: status_message
+          finished_at: 2000-01-23T04:56:07.000+00:00
           name: name
           messages:
           - messages
           - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
         build_job_id: build_job_id
         sha: sha
       properties:
@@ -6305,10 +6325,12 @@ components:
     ServiceRevisionState.StageState:
       example:
         status_message: status_message
+        finished_at: 2000-01-23T04:56:07.000+00:00
         name: name
         messages:
         - messages
         - messages
+        started_at: 2000-01-23T04:56:07.000+00:00
       properties:
         name:
           type: string
@@ -6320,6 +6342,12 @@ components:
           items:
             type: string
           type: array
+        started_at:
+          format: date-time
+          type: string
+        finished_at:
+          format: date-time
+          type: string
       type: object
     ServiceRevisionState.StageState.Status:
       default: UNKNOWN
