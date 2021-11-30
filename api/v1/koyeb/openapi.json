@@ -1598,7 +1598,7 @@
         ]
       }
     },
-    "/v1/instances/exec": {
+    "/v1/streams/instances/exec": {
       "get": {
         "summary": "Exec Command",
         "operationId": "ExecCommand",

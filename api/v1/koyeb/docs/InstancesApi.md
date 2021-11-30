@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ExecCommand**](InstancesApi.md#ExecCommand) | **Get** /v1/instances/exec | Exec Command
+[**ExecCommand**](InstancesApi.md#ExecCommand) | **Get** /v1/streams/instances/exec | Exec Command
 [**ListInstances**](InstancesApi.md#ListInstances) | **Get** /v1/instances | List Instances
 
 

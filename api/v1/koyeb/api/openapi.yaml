@@ -1565,7 +1565,7 @@ paths:
       tags:
       - sso
       x-codegen-request-body-name: body
-  /v1/instances/exec:
+  /v1/streams/instances/exec:
     get:
       operationId: ExecCommand
       parameters:

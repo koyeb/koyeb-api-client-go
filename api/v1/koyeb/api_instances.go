@@ -122,7 +122,7 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (Strea
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/instances/exec"
+	localVarPath := localBasePath + "/v1/streams/instances/exec"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
