@@ -2039,7 +2039,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListInstancesReply"
+              "$ref": "#/definitions/ListCatalogInstancesReply"
             }
           },
           "default": {
@@ -2085,7 +2085,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GetInstanceReply"
+              "$ref": "#/definitions/GetCatalogInstanceReply"
             }
           },
           "default": {
@@ -4726,16 +4726,7 @@
         }
       }
     },
-    "GetInstanceReply": {
-      "type": "object",
-      "properties": {
-        "instance": {
-          "$ref": "#/definitions/Instance",
-          "title": "The instance retrieved"
-        }
-      }
-    },
-    "Instance": {
+    "CatalogInstance": {
       "type": "object",
       "properties": {
         "id": {
@@ -4787,58 +4778,75 @@
         }
       }
     },
-    "InstanceListItem": {
+    "CatalogInstanceListItem": {
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
-        },
-        "created_at": {
           "type": "string",
-          "format": "date-time"
+          "title": "The name of the instance"
         },
-        "updated_at": {
+        "description": {
           "type": "string",
-          "format": "date-time"
+          "title": "A short description of the instance"
         },
-        "organization_id": {
-          "type": "string"
+        "vcpu": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of cpus"
         },
-        "app_id": {
-          "type": "string"
+        "memory": {
+          "type": "string",
+          "title": "The memory in bytes in a format like 5MB"
         },
-        "service_id": {
-          "type": "string"
+        "disk": {
+          "type": "string",
+          "title": "The size of the disk in bytes in a format like 5MB"
         },
-        "deployment_id": {
-          "type": "string"
+        "price_hourly": {
+          "type": "string",
+          "title": "The price to pay per hour"
         },
-        "allocation_id": {
-          "type": "string"
+        "price_monthly": {
+          "type": "string",
+          "title": "The price to pay per month"
         },
-        "datacenter": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/InstanceStatus"
-        },
-        "messages": {
+        "regions": {
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "title": "The regions where this instance type is available"
+        },
+        "status": {
+          "type": "string",
+          "title": "The status of the instance"
+        },
+        "require_plan": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The plan required to use instance"
         }
       }
     },
-    "ListInstancesReply": {
+    "GetCatalogInstanceReply": {
+      "type": "object",
+      "properties": {
+        "instance": {
+          "$ref": "#/definitions/CatalogInstance",
+          "title": "The instance retrieved"
+        }
+      }
+    },
+    "ListCatalogInstancesReply": {
       "type": "object",
       "properties": {
         "instances": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/InstanceListItem"
-          },
-          "title": "The collection of instances"
+            "$ref": "#/definitions/CatalogInstanceListItem"
+          }
         },
         "limit": {
           "type": "integer",
@@ -4996,6 +5004,49 @@
         }
       }
     },
+    "InstanceListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
+        "deployment_id": {
+          "type": "string"
+        },
+        "allocation_id": {
+          "type": "string"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/InstanceStatus"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "InstanceStatus": {
       "type": "string",
       "enum": [
@@ -5008,6 +5059,33 @@
         "ERROR"
       ],
       "default": "ALLOCATING"
+    },
+    "ListInstancesReply": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InstanceListItem"
+          },
+          "title": "The collection of instances"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of items"
+        }
+      }
     },
     "AzureContainerRegistryConfiguration": {
       "type": "object",

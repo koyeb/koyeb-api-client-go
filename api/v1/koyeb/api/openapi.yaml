@@ -1917,7 +1917,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListInstancesReply'
+                $ref: '#/components/schemas/ListCatalogInstancesReply'
           description: A successful response.
         default:
           content:
@@ -1943,7 +1943,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GetInstanceReply'
+                $ref: '#/components/schemas/GetCatalogInstanceReply'
           description: A successful response.
         default:
           content:
@@ -4393,28 +4393,7 @@ components:
           title: A list of datacenters available in this region
           type: array
       type: object
-    GetInstanceReply:
-      example:
-        instance:
-          price_monthly: price_monthly
-          require_plan:
-          - require_plan
-          - require_plan
-          disk: disk
-          memory: memory
-          regions:
-          - regions
-          - regions
-          vcpu: 0
-          description: description
-          id: id
-          price_hourly: price_hourly
-          status: status
-      properties:
-        instance:
-          $ref: '#/components/schemas/Instance'
-      type: object
-    Instance:
+    CatalogInstance:
       example:
         price_monthly: price_monthly
         require_plan:
@@ -4467,83 +4446,118 @@ components:
           title: The plan required to use instance
           type: array
       type: object
-    InstanceListItem:
+    CatalogInstanceListItem:
       example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        service_id: service_id
-        allocation_id: allocation_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        datacenter: datacenter
+        price_monthly: price_monthly
+        require_plan:
+        - require_plan
+        - require_plan
+        disk: disk
+        memory: memory
+        regions:
+        - regions
+        - regions
+        vcpu: 0
+        description: description
         id: id
-        deployment_id: deployment_id
-        app_id: app_id
+        price_hourly: price_hourly
+        status: status
       properties:
         id:
+          title: The name of the instance
           type: string
-        created_at:
-          format: date-time
+        description:
+          title: A short description of the instance
           type: string
-        updated_at:
-          format: date-time
+        vcpu:
+          format: int64
+          title: The number of cpus
+          type: integer
+        memory:
+          title: The memory in bytes in a format like 5MB
           type: string
-        organization_id:
+        disk:
+          title: The size of the disk in bytes in a format like 5MB
           type: string
-        app_id:
+        price_hourly:
+          title: The price to pay per hour
           type: string
-        service_id:
+        price_monthly:
+          title: The price to pay per month
           type: string
-        deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        datacenter:
-          type: string
-        status:
-          $ref: '#/components/schemas/InstanceStatus'
-        messages:
+        regions:
           items:
             type: string
+          title: The regions where this instance type is available
+          type: array
+        status:
+          title: The status of the instance
+          type: string
+        require_plan:
+          items:
+            type: string
+          title: The plan required to use instance
           type: array
       type: object
-    ListInstancesReply:
+    GetCatalogInstanceReply:
       example:
-        offset: 6
+        instance:
+          price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+      properties:
+        instance:
+          $ref: '#/components/schemas/CatalogInstance'
+      type: object
+    ListCatalogInstancesReply:
+      example:
+        offset: 1
         instances:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
           id: id
-          deployment_id: deployment_id
-          app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
+          price_hourly: price_hourly
+          status: status
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
           id: id
-          deployment_id: deployment_id
-          app_id: app_id
-        limit: 0
-        count: 1
+          price_hourly: price_hourly
+          status: status
+        limit: 6
+        count: 5
       properties:
         instances:
           items:
-            $ref: '#/components/schemas/InstanceListItem'
-          title: The collection of instances
+            $ref: '#/components/schemas/CatalogInstanceListItem'
           type: array
         limit:
           format: int64
@@ -4739,6 +4753,48 @@ components:
         app:
           $ref: '#/components/schemas/App'
       type: object
+    InstanceListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        service_id: service_id
+        allocation_id: allocation_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        datacenter: datacenter
+        id: id
+        deployment_id: deployment_id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        datacenter:
+          type: string
+        status:
+          $ref: '#/components/schemas/InstanceStatus'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
     InstanceStatus:
       default: ALLOCATING
       enum:
@@ -4750,6 +4806,55 @@ components:
       - STOPPED
       - ERROR
       type: string
+    ListInstancesReply:
+      example:
+        offset: 6
+        instances:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          deployment_id: deployment_id
+          app_id: app_id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          deployment_id: deployment_id
+          app_id: app_id
+        limit: 0
+        count: 1
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/InstanceListItem'
+          title: The collection of instances
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
     AzureContainerRegistryConfiguration:
       example:
         password: password

@@ -1,4 +1,4 @@
-# Instance
+# CatalogInstanceListItem
 
 ## Properties
 
@@ -17,270 +17,270 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewInstance
+### NewCatalogInstanceListItem
 
-`func NewInstance() *Instance`
+`func NewCatalogInstanceListItem() *CatalogInstanceListItem`
 
-NewInstance instantiates a new Instance object
+NewCatalogInstanceListItem instantiates a new CatalogInstanceListItem object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewInstanceWithDefaults
+### NewCatalogInstanceListItemWithDefaults
 
-`func NewInstanceWithDefaults() *Instance`
+`func NewCatalogInstanceListItemWithDefaults() *CatalogInstanceListItem`
 
-NewInstanceWithDefaults instantiates a new Instance object
+NewCatalogInstanceListItemWithDefaults instantiates a new CatalogInstanceListItem object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetId
 
-`func (o *Instance) GetId() string`
+`func (o *CatalogInstanceListItem) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Instance) GetIdOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetIdOk() (*string, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetId
 
-`func (o *Instance) SetId(v string)`
+`func (o *CatalogInstanceListItem) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### HasId
 
-`func (o *Instance) HasId() bool`
+`func (o *CatalogInstanceListItem) HasId() bool`
 
 HasId returns a boolean if a field has been set.
 
 ### GetDescription
 
-`func (o *Instance) GetDescription() string`
+`func (o *CatalogInstanceListItem) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *Instance) GetDescriptionOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *Instance) SetDescription(v string)`
+`func (o *CatalogInstanceListItem) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *Instance) HasDescription() bool`
+`func (o *CatalogInstanceListItem) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
 ### GetVcpu
 
-`func (o *Instance) GetVcpu() int64`
+`func (o *CatalogInstanceListItem) GetVcpu() int64`
 
 GetVcpu returns the Vcpu field if non-nil, zero value otherwise.
 
 ### GetVcpuOk
 
-`func (o *Instance) GetVcpuOk() (*int64, bool)`
+`func (o *CatalogInstanceListItem) GetVcpuOk() (*int64, bool)`
 
 GetVcpuOk returns a tuple with the Vcpu field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVcpu
 
-`func (o *Instance) SetVcpu(v int64)`
+`func (o *CatalogInstanceListItem) SetVcpu(v int64)`
 
 SetVcpu sets Vcpu field to given value.
 
 ### HasVcpu
 
-`func (o *Instance) HasVcpu() bool`
+`func (o *CatalogInstanceListItem) HasVcpu() bool`
 
 HasVcpu returns a boolean if a field has been set.
 
 ### GetMemory
 
-`func (o *Instance) GetMemory() string`
+`func (o *CatalogInstanceListItem) GetMemory() string`
 
 GetMemory returns the Memory field if non-nil, zero value otherwise.
 
 ### GetMemoryOk
 
-`func (o *Instance) GetMemoryOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetMemoryOk() (*string, bool)`
 
 GetMemoryOk returns a tuple with the Memory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMemory
 
-`func (o *Instance) SetMemory(v string)`
+`func (o *CatalogInstanceListItem) SetMemory(v string)`
 
 SetMemory sets Memory field to given value.
 
 ### HasMemory
 
-`func (o *Instance) HasMemory() bool`
+`func (o *CatalogInstanceListItem) HasMemory() bool`
 
 HasMemory returns a boolean if a field has been set.
 
 ### GetDisk
 
-`func (o *Instance) GetDisk() string`
+`func (o *CatalogInstanceListItem) GetDisk() string`
 
 GetDisk returns the Disk field if non-nil, zero value otherwise.
 
 ### GetDiskOk
 
-`func (o *Instance) GetDiskOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetDiskOk() (*string, bool)`
 
 GetDiskOk returns a tuple with the Disk field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDisk
 
-`func (o *Instance) SetDisk(v string)`
+`func (o *CatalogInstanceListItem) SetDisk(v string)`
 
 SetDisk sets Disk field to given value.
 
 ### HasDisk
 
-`func (o *Instance) HasDisk() bool`
+`func (o *CatalogInstanceListItem) HasDisk() bool`
 
 HasDisk returns a boolean if a field has been set.
 
 ### GetPriceHourly
 
-`func (o *Instance) GetPriceHourly() string`
+`func (o *CatalogInstanceListItem) GetPriceHourly() string`
 
 GetPriceHourly returns the PriceHourly field if non-nil, zero value otherwise.
 
 ### GetPriceHourlyOk
 
-`func (o *Instance) GetPriceHourlyOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetPriceHourlyOk() (*string, bool)`
 
 GetPriceHourlyOk returns a tuple with the PriceHourly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceHourly
 
-`func (o *Instance) SetPriceHourly(v string)`
+`func (o *CatalogInstanceListItem) SetPriceHourly(v string)`
 
 SetPriceHourly sets PriceHourly field to given value.
 
 ### HasPriceHourly
 
-`func (o *Instance) HasPriceHourly() bool`
+`func (o *CatalogInstanceListItem) HasPriceHourly() bool`
 
 HasPriceHourly returns a boolean if a field has been set.
 
 ### GetPriceMonthly
 
-`func (o *Instance) GetPriceMonthly() string`
+`func (o *CatalogInstanceListItem) GetPriceMonthly() string`
 
 GetPriceMonthly returns the PriceMonthly field if non-nil, zero value otherwise.
 
 ### GetPriceMonthlyOk
 
-`func (o *Instance) GetPriceMonthlyOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetPriceMonthlyOk() (*string, bool)`
 
 GetPriceMonthlyOk returns a tuple with the PriceMonthly field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceMonthly
 
-`func (o *Instance) SetPriceMonthly(v string)`
+`func (o *CatalogInstanceListItem) SetPriceMonthly(v string)`
 
 SetPriceMonthly sets PriceMonthly field to given value.
 
 ### HasPriceMonthly
 
-`func (o *Instance) HasPriceMonthly() bool`
+`func (o *CatalogInstanceListItem) HasPriceMonthly() bool`
 
 HasPriceMonthly returns a boolean if a field has been set.
 
 ### GetRegions
 
-`func (o *Instance) GetRegions() []string`
+`func (o *CatalogInstanceListItem) GetRegions() []string`
 
 GetRegions returns the Regions field if non-nil, zero value otherwise.
 
 ### GetRegionsOk
 
-`func (o *Instance) GetRegionsOk() (*[]string, bool)`
+`func (o *CatalogInstanceListItem) GetRegionsOk() (*[]string, bool)`
 
 GetRegionsOk returns a tuple with the Regions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRegions
 
-`func (o *Instance) SetRegions(v []string)`
+`func (o *CatalogInstanceListItem) SetRegions(v []string)`
 
 SetRegions sets Regions field to given value.
 
 ### HasRegions
 
-`func (o *Instance) HasRegions() bool`
+`func (o *CatalogInstanceListItem) HasRegions() bool`
 
 HasRegions returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *Instance) GetStatus() string`
+`func (o *CatalogInstanceListItem) GetStatus() string`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *Instance) GetStatusOk() (*string, bool)`
+`func (o *CatalogInstanceListItem) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *Instance) SetStatus(v string)`
+`func (o *CatalogInstanceListItem) SetStatus(v string)`
 
 SetStatus sets Status field to given value.
 
 ### HasStatus
 
-`func (o *Instance) HasStatus() bool`
+`func (o *CatalogInstanceListItem) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
 
 ### GetRequirePlan
 
-`func (o *Instance) GetRequirePlan() []string`
+`func (o *CatalogInstanceListItem) GetRequirePlan() []string`
 
 GetRequirePlan returns the RequirePlan field if non-nil, zero value otherwise.
 
 ### GetRequirePlanOk
 
-`func (o *Instance) GetRequirePlanOk() (*[]string, bool)`
+`func (o *CatalogInstanceListItem) GetRequirePlanOk() (*[]string, bool)`
 
 GetRequirePlanOk returns a tuple with the RequirePlan field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRequirePlan
 
-`func (o *Instance) SetRequirePlan(v []string)`
+`func (o *CatalogInstanceListItem) SetRequirePlan(v []string)`
 
 SetRequirePlan sets RequirePlan field to given value.
 
 ### HasRequirePlan
 
-`func (o *Instance) HasRequirePlan() bool`
+`func (o *CatalogInstanceListItem) HasRequirePlan() bool`
 
 HasRequirePlan returns a boolean if a field has been set.
 

@@ -36,9 +36,9 @@ type CatalogInstancesApi interface {
 
 	/*
 	 * GetCatalogInstanceExecute executes the request
-	 * @return GetInstanceReply
+	 * @return GetCatalogInstanceReply
 	 */
-	GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetInstanceReply, *_nethttp.Response, error)
+	GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetCatalogInstanceReply, *_nethttp.Response, error)
 
 	/*
 	 * ListCatalogInstances List Instance
@@ -49,9 +49,9 @@ type CatalogInstancesApi interface {
 
 	/*
 	 * ListCatalogInstancesExecute executes the request
-	 * @return ListInstancesReply
+	 * @return ListCatalogInstancesReply
 	 */
-	ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListInstancesReply, *_nethttp.Response, error)
+	ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListCatalogInstancesReply, *_nethttp.Response, error)
 }
 
 // CatalogInstancesApiService CatalogInstancesApi service
@@ -64,7 +64,7 @@ type ApiGetCatalogInstanceRequest struct {
 }
 
 
-func (r ApiGetCatalogInstanceRequest) Execute() (GetInstanceReply, *_nethttp.Response, error) {
+func (r ApiGetCatalogInstanceRequest) Execute() (GetCatalogInstanceReply, *_nethttp.Response, error) {
 	return r.ApiService.GetCatalogInstanceExecute(r)
 }
 
@@ -84,16 +84,16 @@ func (a *CatalogInstancesApiService) GetCatalogInstance(ctx _context.Context, id
 
 /*
  * Execute executes the request
- * @return GetInstanceReply
+ * @return GetCatalogInstanceReply
  */
-func (a *CatalogInstancesApiService) GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetInstanceReply, *_nethttp.Response, error) {
+func (a *CatalogInstancesApiService) GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (GetCatalogInstanceReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  GetInstanceReply
+		localVarReturnValue  GetCatalogInstanceReply
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.GetCatalogInstance")
@@ -204,7 +204,7 @@ func (r ApiListCatalogInstancesRequest) Id(id string) ApiListCatalogInstancesReq
 	return r
 }
 
-func (r ApiListCatalogInstancesRequest) Execute() (ListInstancesReply, *_nethttp.Response, error) {
+func (r ApiListCatalogInstancesRequest) Execute() (ListCatalogInstancesReply, *_nethttp.Response, error) {
 	return r.ApiService.ListCatalogInstancesExecute(r)
 }
 
@@ -222,16 +222,16 @@ func (a *CatalogInstancesApiService) ListCatalogInstances(ctx _context.Context) 
 
 /*
  * Execute executes the request
- * @return ListInstancesReply
+ * @return ListCatalogInstancesReply
  */
-func (a *CatalogInstancesApiService) ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListInstancesReply, *_nethttp.Response, error) {
+func (a *CatalogInstancesApiService) ListCatalogInstancesExecute(r ApiListCatalogInstancesRequest) (ListCatalogInstancesReply, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ListInstancesReply
+		localVarReturnValue  ListCatalogInstancesReply
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CatalogInstancesApiService.ListCatalogInstances")
