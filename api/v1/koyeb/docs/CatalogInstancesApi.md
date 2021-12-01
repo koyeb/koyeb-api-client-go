@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetCatalogInstance
 
-> GetInstanceReply GetCatalogInstance(ctx, id).Execute()
+> GetCatalogInstanceReply GetCatalogInstance(ctx, id).Execute()
 
 Get Instance
 
@@ -37,7 +37,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.GetCatalogInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetCatalogInstance`: GetInstanceReply
+    // response from `GetCatalogInstance`: GetCatalogInstanceReply
     fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.GetCatalogInstance`: %v\n", resp)
 }
 ```
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetInstanceReply**](GetInstanceReply.md)
+[**GetCatalogInstanceReply**](GetCatalogInstanceReply.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## ListCatalogInstances
 
-> ListInstancesReply ListCatalogInstances(ctx).Limit(limit).Offset(offset).Id(id).Execute()
+> ListCatalogInstancesReply ListCatalogInstances(ctx).Limit(limit).Offset(offset).Id(id).Execute()
 
 List Instance
 
@@ -107,7 +107,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CatalogInstancesApi.ListCatalogInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListCatalogInstances`: ListInstancesReply
+    // response from `ListCatalogInstances`: ListCatalogInstancesReply
     fmt.Fprintf(os.Stdout, "Response from `CatalogInstancesApi.ListCatalogInstances`: %v\n", resp)
 }
 ```
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListInstancesReply**](ListInstancesReply.md)
+[**ListCatalogInstancesReply**](ListCatalogInstancesReply.md)
 
 ### Authorization
 

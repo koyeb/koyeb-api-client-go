@@ -14,8 +14,8 @@ import (
 	"encoding/json"
 )
 
-// Instance struct for Instance
-type Instance struct {
+// CatalogInstance struct for CatalogInstance
+type CatalogInstance struct {
 	Id *string `json:"id,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Vcpu *int64 `json:"vcpu,omitempty"`
@@ -28,25 +28,25 @@ type Instance struct {
 	RequirePlan *[]string `json:"require_plan,omitempty"`
 }
 
-// NewInstance instantiates a new Instance object
+// NewCatalogInstance instantiates a new CatalogInstance object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInstance() *Instance {
-	this := Instance{}
+func NewCatalogInstance() *CatalogInstance {
+	this := CatalogInstance{}
 	return &this
 }
 
-// NewInstanceWithDefaults instantiates a new Instance object
+// NewCatalogInstanceWithDefaults instantiates a new CatalogInstance object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewInstanceWithDefaults() *Instance {
-	this := Instance{}
+func NewCatalogInstanceWithDefaults() *CatalogInstance {
+	this := CatalogInstance{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Instance) GetId() string {
+func (o *CatalogInstance) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *Instance) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetIdOk() (*string, bool) {
+func (o *CatalogInstance) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *Instance) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Instance) HasId() bool {
+func (o *CatalogInstance) HasId() bool {
 	if o != nil && o.Id != nil {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *Instance) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Instance) SetId(v string) {
+func (o *CatalogInstance) SetId(v string) {
 	o.Id = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Instance) GetDescription() string {
+func (o *CatalogInstance) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -88,7 +88,7 @@ func (o *Instance) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetDescriptionOk() (*string, bool) {
+func (o *CatalogInstance) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *Instance) GetDescriptionOk() (*string, bool) {
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *Instance) HasDescription() bool {
+func (o *CatalogInstance) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -105,12 +105,12 @@ func (o *Instance) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Instance) SetDescription(v string) {
+func (o *CatalogInstance) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetVcpu returns the Vcpu field value if set, zero value otherwise.
-func (o *Instance) GetVcpu() int64 {
+func (o *CatalogInstance) GetVcpu() int64 {
 	if o == nil || o.Vcpu == nil {
 		var ret int64
 		return ret
@@ -120,7 +120,7 @@ func (o *Instance) GetVcpu() int64 {
 
 // GetVcpuOk returns a tuple with the Vcpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetVcpuOk() (*int64, bool) {
+func (o *CatalogInstance) GetVcpuOk() (*int64, bool) {
 	if o == nil || o.Vcpu == nil {
 		return nil, false
 	}
@@ -128,7 +128,7 @@ func (o *Instance) GetVcpuOk() (*int64, bool) {
 }
 
 // HasVcpu returns a boolean if a field has been set.
-func (o *Instance) HasVcpu() bool {
+func (o *CatalogInstance) HasVcpu() bool {
 	if o != nil && o.Vcpu != nil {
 		return true
 	}
@@ -137,12 +137,12 @@ func (o *Instance) HasVcpu() bool {
 }
 
 // SetVcpu gets a reference to the given int64 and assigns it to the Vcpu field.
-func (o *Instance) SetVcpu(v int64) {
+func (o *CatalogInstance) SetVcpu(v int64) {
 	o.Vcpu = &v
 }
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
-func (o *Instance) GetMemory() string {
+func (o *CatalogInstance) GetMemory() string {
 	if o == nil || o.Memory == nil {
 		var ret string
 		return ret
@@ -152,7 +152,7 @@ func (o *Instance) GetMemory() string {
 
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetMemoryOk() (*string, bool) {
+func (o *CatalogInstance) GetMemoryOk() (*string, bool) {
 	if o == nil || o.Memory == nil {
 		return nil, false
 	}
@@ -160,7 +160,7 @@ func (o *Instance) GetMemoryOk() (*string, bool) {
 }
 
 // HasMemory returns a boolean if a field has been set.
-func (o *Instance) HasMemory() bool {
+func (o *CatalogInstance) HasMemory() bool {
 	if o != nil && o.Memory != nil {
 		return true
 	}
@@ -169,12 +169,12 @@ func (o *Instance) HasMemory() bool {
 }
 
 // SetMemory gets a reference to the given string and assigns it to the Memory field.
-func (o *Instance) SetMemory(v string) {
+func (o *CatalogInstance) SetMemory(v string) {
 	o.Memory = &v
 }
 
 // GetDisk returns the Disk field value if set, zero value otherwise.
-func (o *Instance) GetDisk() string {
+func (o *CatalogInstance) GetDisk() string {
 	if o == nil || o.Disk == nil {
 		var ret string
 		return ret
@@ -184,7 +184,7 @@ func (o *Instance) GetDisk() string {
 
 // GetDiskOk returns a tuple with the Disk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetDiskOk() (*string, bool) {
+func (o *CatalogInstance) GetDiskOk() (*string, bool) {
 	if o == nil || o.Disk == nil {
 		return nil, false
 	}
@@ -192,7 +192,7 @@ func (o *Instance) GetDiskOk() (*string, bool) {
 }
 
 // HasDisk returns a boolean if a field has been set.
-func (o *Instance) HasDisk() bool {
+func (o *CatalogInstance) HasDisk() bool {
 	if o != nil && o.Disk != nil {
 		return true
 	}
@@ -201,12 +201,12 @@ func (o *Instance) HasDisk() bool {
 }
 
 // SetDisk gets a reference to the given string and assigns it to the Disk field.
-func (o *Instance) SetDisk(v string) {
+func (o *CatalogInstance) SetDisk(v string) {
 	o.Disk = &v
 }
 
 // GetPriceHourly returns the PriceHourly field value if set, zero value otherwise.
-func (o *Instance) GetPriceHourly() string {
+func (o *CatalogInstance) GetPriceHourly() string {
 	if o == nil || o.PriceHourly == nil {
 		var ret string
 		return ret
@@ -216,7 +216,7 @@ func (o *Instance) GetPriceHourly() string {
 
 // GetPriceHourlyOk returns a tuple with the PriceHourly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetPriceHourlyOk() (*string, bool) {
+func (o *CatalogInstance) GetPriceHourlyOk() (*string, bool) {
 	if o == nil || o.PriceHourly == nil {
 		return nil, false
 	}
@@ -224,7 +224,7 @@ func (o *Instance) GetPriceHourlyOk() (*string, bool) {
 }
 
 // HasPriceHourly returns a boolean if a field has been set.
-func (o *Instance) HasPriceHourly() bool {
+func (o *CatalogInstance) HasPriceHourly() bool {
 	if o != nil && o.PriceHourly != nil {
 		return true
 	}
@@ -233,12 +233,12 @@ func (o *Instance) HasPriceHourly() bool {
 }
 
 // SetPriceHourly gets a reference to the given string and assigns it to the PriceHourly field.
-func (o *Instance) SetPriceHourly(v string) {
+func (o *CatalogInstance) SetPriceHourly(v string) {
 	o.PriceHourly = &v
 }
 
 // GetPriceMonthly returns the PriceMonthly field value if set, zero value otherwise.
-func (o *Instance) GetPriceMonthly() string {
+func (o *CatalogInstance) GetPriceMonthly() string {
 	if o == nil || o.PriceMonthly == nil {
 		var ret string
 		return ret
@@ -248,7 +248,7 @@ func (o *Instance) GetPriceMonthly() string {
 
 // GetPriceMonthlyOk returns a tuple with the PriceMonthly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetPriceMonthlyOk() (*string, bool) {
+func (o *CatalogInstance) GetPriceMonthlyOk() (*string, bool) {
 	if o == nil || o.PriceMonthly == nil {
 		return nil, false
 	}
@@ -256,7 +256,7 @@ func (o *Instance) GetPriceMonthlyOk() (*string, bool) {
 }
 
 // HasPriceMonthly returns a boolean if a field has been set.
-func (o *Instance) HasPriceMonthly() bool {
+func (o *CatalogInstance) HasPriceMonthly() bool {
 	if o != nil && o.PriceMonthly != nil {
 		return true
 	}
@@ -265,12 +265,12 @@ func (o *Instance) HasPriceMonthly() bool {
 }
 
 // SetPriceMonthly gets a reference to the given string and assigns it to the PriceMonthly field.
-func (o *Instance) SetPriceMonthly(v string) {
+func (o *CatalogInstance) SetPriceMonthly(v string) {
 	o.PriceMonthly = &v
 }
 
 // GetRegions returns the Regions field value if set, zero value otherwise.
-func (o *Instance) GetRegions() []string {
+func (o *CatalogInstance) GetRegions() []string {
 	if o == nil || o.Regions == nil {
 		var ret []string
 		return ret
@@ -280,7 +280,7 @@ func (o *Instance) GetRegions() []string {
 
 // GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetRegionsOk() (*[]string, bool) {
+func (o *CatalogInstance) GetRegionsOk() (*[]string, bool) {
 	if o == nil || o.Regions == nil {
 		return nil, false
 	}
@@ -288,7 +288,7 @@ func (o *Instance) GetRegionsOk() (*[]string, bool) {
 }
 
 // HasRegions returns a boolean if a field has been set.
-func (o *Instance) HasRegions() bool {
+func (o *CatalogInstance) HasRegions() bool {
 	if o != nil && o.Regions != nil {
 		return true
 	}
@@ -297,12 +297,12 @@ func (o *Instance) HasRegions() bool {
 }
 
 // SetRegions gets a reference to the given []string and assigns it to the Regions field.
-func (o *Instance) SetRegions(v []string) {
+func (o *CatalogInstance) SetRegions(v []string) {
 	o.Regions = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *Instance) GetStatus() string {
+func (o *CatalogInstance) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -312,7 +312,7 @@ func (o *Instance) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetStatusOk() (*string, bool) {
+func (o *CatalogInstance) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -320,7 +320,7 @@ func (o *Instance) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *Instance) HasStatus() bool {
+func (o *CatalogInstance) HasStatus() bool {
 	if o != nil && o.Status != nil {
 		return true
 	}
@@ -329,12 +329,12 @@ func (o *Instance) HasStatus() bool {
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *Instance) SetStatus(v string) {
+func (o *CatalogInstance) SetStatus(v string) {
 	o.Status = &v
 }
 
 // GetRequirePlan returns the RequirePlan field value if set, zero value otherwise.
-func (o *Instance) GetRequirePlan() []string {
+func (o *CatalogInstance) GetRequirePlan() []string {
 	if o == nil || o.RequirePlan == nil {
 		var ret []string
 		return ret
@@ -344,7 +344,7 @@ func (o *Instance) GetRequirePlan() []string {
 
 // GetRequirePlanOk returns a tuple with the RequirePlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Instance) GetRequirePlanOk() (*[]string, bool) {
+func (o *CatalogInstance) GetRequirePlanOk() (*[]string, bool) {
 	if o == nil || o.RequirePlan == nil {
 		return nil, false
 	}
@@ -352,7 +352,7 @@ func (o *Instance) GetRequirePlanOk() (*[]string, bool) {
 }
 
 // HasRequirePlan returns a boolean if a field has been set.
-func (o *Instance) HasRequirePlan() bool {
+func (o *CatalogInstance) HasRequirePlan() bool {
 	if o != nil && o.RequirePlan != nil {
 		return true
 	}
@@ -361,11 +361,11 @@ func (o *Instance) HasRequirePlan() bool {
 }
 
 // SetRequirePlan gets a reference to the given []string and assigns it to the RequirePlan field.
-func (o *Instance) SetRequirePlan(v []string) {
+func (o *CatalogInstance) SetRequirePlan(v []string) {
 	o.RequirePlan = &v
 }
 
-func (o Instance) MarshalJSON() ([]byte, error) {
+func (o CatalogInstance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
@@ -400,38 +400,38 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableInstance struct {
-	value *Instance
+type NullableCatalogInstance struct {
+	value *CatalogInstance
 	isSet bool
 }
 
-func (v NullableInstance) Get() *Instance {
+func (v NullableCatalogInstance) Get() *CatalogInstance {
 	return v.value
 }
 
-func (v *NullableInstance) Set(val *Instance) {
+func (v *NullableCatalogInstance) Set(val *CatalogInstance) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableInstance) IsSet() bool {
+func (v NullableCatalogInstance) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableInstance) Unset() {
+func (v *NullableCatalogInstance) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableInstance(val *Instance) *NullableInstance {
-	return &NullableInstance{value: val, isSet: true}
+func NewNullableCatalogInstance(val *CatalogInstance) *NullableCatalogInstance {
+	return &NullableCatalogInstance{value: val, isSet: true}
 }
 
-func (v NullableInstance) MarshalJSON() ([]byte, error) {
+func (v NullableCatalogInstance) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableInstance) UnmarshalJSON(src []byte) error {
+func (v *NullableCatalogInstance) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
