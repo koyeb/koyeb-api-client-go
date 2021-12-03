@@ -58,6 +58,8 @@ type APIClient struct {
 
 	CredentialsApi CredentialsApi
 
+	DeploymentsApi DeploymentsApi
+
 	HooksApi HooksApi
 
 	InstancesApi InstancesApi
@@ -100,6 +102,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CatalogInstancesApi = (*CatalogInstancesApiService)(&c.common)
 	c.CatalogRegionsApi = (*CatalogRegionsApiService)(&c.common)
 	c.CredentialsApi = (*CredentialsApiService)(&c.common)
+	c.DeploymentsApi = (*DeploymentsApiService)(&c.common)
 	c.HooksApi = (*HooksApiService)(&c.common)
 	c.InstancesApi = (*InstancesApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)

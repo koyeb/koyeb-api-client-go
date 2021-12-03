@@ -16,6 +16,7 @@ import (
 
 // CreateService struct for CreateService
 type CreateService struct {
+	AppId *string `json:"app_id,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
 }
 
@@ -34,6 +35,38 @@ func NewCreateService() *CreateService {
 func NewCreateServiceWithDefaults() *CreateService {
 	this := CreateService{}
 	return &this
+}
+
+// GetAppId returns the AppId field value if set, zero value otherwise.
+func (o *CreateService) GetAppId() string {
+	if o == nil || o.AppId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AppId
+}
+
+// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetAppIdOk() (*string, bool) {
+	if o == nil || o.AppId == nil {
+		return nil, false
+	}
+	return o.AppId, true
+}
+
+// HasAppId returns a boolean if a field has been set.
+func (o *CreateService) HasAppId() bool {
+	if o != nil && o.AppId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAppId gets a reference to the given string and assigns it to the AppId field.
+func (o *CreateService) SetAppId(v string) {
+	o.AppId = &v
 }
 
 // GetDefinition returns the Definition field value if set, zero value otherwise.
@@ -70,6 +103,9 @@ func (o *CreateService) SetDefinition(v ServiceDefinition) {
 
 func (o CreateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AppId != nil {
+		toSerialize["app_id"] = o.AppId
+	}
 	if o.Definition != nil {
 		toSerialize["definition"] = o.Definition
 	}

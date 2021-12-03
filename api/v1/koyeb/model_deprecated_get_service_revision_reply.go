@@ -14,30 +14,30 @@ import (
 	"encoding/json"
 )
 
-// GetServiceRevisionReply struct for GetServiceRevisionReply
-type GetServiceRevisionReply struct {
+// DeprecatedGetServiceRevisionReply struct for DeprecatedGetServiceRevisionReply
+type DeprecatedGetServiceRevisionReply struct {
 	Revision *ServiceRevision `json:"revision,omitempty"`
 }
 
-// NewGetServiceRevisionReply instantiates a new GetServiceRevisionReply object
+// NewDeprecatedGetServiceRevisionReply instantiates a new DeprecatedGetServiceRevisionReply object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetServiceRevisionReply() *GetServiceRevisionReply {
-	this := GetServiceRevisionReply{}
+func NewDeprecatedGetServiceRevisionReply() *DeprecatedGetServiceRevisionReply {
+	this := DeprecatedGetServiceRevisionReply{}
 	return &this
 }
 
-// NewGetServiceRevisionReplyWithDefaults instantiates a new GetServiceRevisionReply object
+// NewDeprecatedGetServiceRevisionReplyWithDefaults instantiates a new DeprecatedGetServiceRevisionReply object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewGetServiceRevisionReplyWithDefaults() *GetServiceRevisionReply {
-	this := GetServiceRevisionReply{}
+func NewDeprecatedGetServiceRevisionReplyWithDefaults() *DeprecatedGetServiceRevisionReply {
+	this := DeprecatedGetServiceRevisionReply{}
 	return &this
 }
 
 // GetRevision returns the Revision field value if set, zero value otherwise.
-func (o *GetServiceRevisionReply) GetRevision() ServiceRevision {
+func (o *DeprecatedGetServiceRevisionReply) GetRevision() ServiceRevision {
 	if o == nil || o.Revision == nil {
 		var ret ServiceRevision
 		return ret
@@ -47,7 +47,7 @@ func (o *GetServiceRevisionReply) GetRevision() ServiceRevision {
 
 // GetRevisionOk returns a tuple with the Revision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetServiceRevisionReply) GetRevisionOk() (*ServiceRevision, bool) {
+func (o *DeprecatedGetServiceRevisionReply) GetRevisionOk() (*ServiceRevision, bool) {
 	if o == nil || o.Revision == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *GetServiceRevisionReply) GetRevisionOk() (*ServiceRevision, bool) {
 }
 
 // HasRevision returns a boolean if a field has been set.
-func (o *GetServiceRevisionReply) HasRevision() bool {
+func (o *DeprecatedGetServiceRevisionReply) HasRevision() bool {
 	if o != nil && o.Revision != nil {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *GetServiceRevisionReply) HasRevision() bool {
 }
 
 // SetRevision gets a reference to the given ServiceRevision and assigns it to the Revision field.
-func (o *GetServiceRevisionReply) SetRevision(v ServiceRevision) {
+func (o *DeprecatedGetServiceRevisionReply) SetRevision(v ServiceRevision) {
 	o.Revision = &v
 }
 
-func (o GetServiceRevisionReply) MarshalJSON() ([]byte, error) {
+func (o DeprecatedGetServiceRevisionReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Revision != nil {
 		toSerialize["revision"] = o.Revision
@@ -76,38 +76,38 @@ func (o GetServiceRevisionReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableGetServiceRevisionReply struct {
-	value *GetServiceRevisionReply
+type NullableDeprecatedGetServiceRevisionReply struct {
+	value *DeprecatedGetServiceRevisionReply
 	isSet bool
 }
 
-func (v NullableGetServiceRevisionReply) Get() *GetServiceRevisionReply {
+func (v NullableDeprecatedGetServiceRevisionReply) Get() *DeprecatedGetServiceRevisionReply {
 	return v.value
 }
 
-func (v *NullableGetServiceRevisionReply) Set(val *GetServiceRevisionReply) {
+func (v *NullableDeprecatedGetServiceRevisionReply) Set(val *DeprecatedGetServiceRevisionReply) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableGetServiceRevisionReply) IsSet() bool {
+func (v NullableDeprecatedGetServiceRevisionReply) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableGetServiceRevisionReply) Unset() {
+func (v *NullableDeprecatedGetServiceRevisionReply) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableGetServiceRevisionReply(val *GetServiceRevisionReply) *NullableGetServiceRevisionReply {
-	return &NullableGetServiceRevisionReply{value: val, isSet: true}
+func NewNullableDeprecatedGetServiceRevisionReply(val *DeprecatedGetServiceRevisionReply) *NullableDeprecatedGetServiceRevisionReply {
+	return &NullableDeprecatedGetServiceRevisionReply{value: val, isSet: true}
 }
 
-func (v NullableGetServiceRevisionReply) MarshalJSON() ([]byte, error) {
+func (v NullableDeprecatedGetServiceRevisionReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableGetServiceRevisionReply) UnmarshalJSON(src []byte) error {
+func (v *NullableDeprecatedGetServiceRevisionReply) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

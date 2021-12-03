@@ -98,11 +98,14 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | 
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
+*DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
+*DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
+*LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs | 
 *LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
 *LogsApi* | [**TailRuntimeLogs**](docs/LogsApi.md#tailruntimelogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | 
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
@@ -129,16 +132,22 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**ListSecrets**](docs/SecretsApi.md#listsecrets) | **Get** /v1/secrets | 
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
-*ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/apps/{app_id_or_name}/services | Create Service
-*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
+*ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
+*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
+*ServicesApi* | [**DeprecatedCreateService**](docs/ServicesApi.md#deprecatedcreateservice) | **Post** /v1/apps/{app_id_or_name}/services | Create Service
+*ServicesApi* | [**DeprecatedDeleteService**](docs/ServicesApi.md#deprecateddeleteservice) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
+*ServicesApi* | [**DeprecatedGetRevision**](docs/ServicesApi.md#deprecatedgetrevision) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id} | Get Revision
+*ServicesApi* | [**DeprecatedGetService**](docs/ServicesApi.md#deprecatedgetservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
+*ServicesApi* | [**DeprecatedListRevisions**](docs/ServicesApi.md#deprecatedlistrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
 *ServicesApi* | [**DeprecatedListServices**](docs/ServicesApi.md#deprecatedlistservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
-*ServicesApi* | [**GetRevision**](docs/ServicesApi.md#getrevision) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id} | Get Revision
-*ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
-*ServicesApi* | [**ListRevisions**](docs/ServicesApi.md#listrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
+*ServicesApi* | [**DeprecatedReDeploy**](docs/ServicesApi.md#deprecatedredeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
+*ServicesApi* | [**DeprecatedUpdateService**](docs/ServicesApi.md#deprecatedupdateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
+*ServicesApi* | [**DeprecatedUpdateService2**](docs/ServicesApi.md#deprecatedupdateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
+*ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
-*ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
-*ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
-*ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
+*ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
+*ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
+*ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user
 *SessionApi* | [**Logout**](docs/SessionApi.md#logout) | **Delete** /v1/account/logout | Logout user
 *SessionApi* | [**PasswordlessLogin**](docs/SessionApi.md#passwordlesslogin) | **Post** /v1/account/passwordless_login | 
@@ -169,9 +178,20 @@ Class | Method | HTTP request | Description
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
  - [CredentialReply](docs/CredentialReply.md)
+ - [Deployment](docs/Deployment.md)
+ - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentState](docs/DeploymentState.md)
- - [DeploymentStateGroup](docs/DeploymentStateGroup.md)
+ - [DeploymentStateBuildInfo](docs/DeploymentStateBuildInfo.md)
+ - [DeploymentStateStageState](docs/DeploymentStateStageState.md)
+ - [DeploymentStateStageStateStatus](docs/DeploymentStateStageStateStatus.md)
+ - [DeploymentStateStatus](docs/DeploymentStateStatus.md)
+ - [DeprecatedGetServiceRevisionReply](docs/DeprecatedGetServiceRevisionReply.md)
+ - [DeprecatedListServiceRevisionsReply](docs/DeprecatedListServiceRevisionsReply.md)
+ - [DeprecatedRedeployReply](docs/DeprecatedRedeployReply.md)
+ - [DeprecatedRedeployRequestInfo](docs/DeprecatedRedeployRequestInfo.md)
+ - [DesiredDeployment](docs/DesiredDeployment.md)
+ - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
  - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
@@ -187,12 +207,12 @@ Class | Method | HTTP request | Description
  - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GetAppReply](docs/GetAppReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
+ - [GetDeploymentReply](docs/GetDeploymentReply.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
- - [GetServiceRevisionReply](docs/GetServiceRevisionReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
  - [GitDeploymentMetadataProvider](docs/GitDeploymentMetadataProvider.md)
  - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
@@ -211,10 +231,10 @@ Class | Method | HTTP request | Description
  - [ListAppsReply](docs/ListAppsReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
+ - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
- - [ListServiceRevisionsReply](docs/ListServiceRevisionsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)

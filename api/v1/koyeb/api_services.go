@@ -30,10 +30,9 @@ type ServicesApi interface {
 	/*
 	 * CreateService Create Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the App
 	 * @return ApiCreateServiceRequest
 	 */
-	CreateService(ctx _context.Context, appIdOrName string) ApiCreateServiceRequest
+	CreateService(ctx _context.Context) ApiCreateServiceRequest
 
 	/*
 	 * CreateServiceExecute executes the request
@@ -44,17 +43,91 @@ type ServicesApi interface {
 	/*
 	 * DeleteService Delete Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the App
-	 * @param idOrName The id or the name of the entity to delete
+	 * @param id The id of the entity to delete
 	 * @return ApiDeleteServiceRequest
 	 */
-	DeleteService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeleteServiceRequest
+	DeleteService(ctx _context.Context, id string) ApiDeleteServiceRequest
 
 	/*
 	 * DeleteServiceExecute executes the request
 	 * @return interface{}
 	 */
 	DeleteServiceExecute(r ApiDeleteServiceRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedCreateService Create Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @return ApiDeprecatedCreateServiceRequest
+	 */
+	DeprecatedCreateService(ctx _context.Context, appIdOrName string) ApiDeprecatedCreateServiceRequest
+
+	/*
+	 * DeprecatedCreateServiceExecute executes the request
+	 * @return CreateServiceReply
+	 */
+	DeprecatedCreateServiceExecute(r ApiDeprecatedCreateServiceRequest) (CreateServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedDeleteService Delete Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to delete
+	 * @return ApiDeprecatedDeleteServiceRequest
+	 */
+	DeprecatedDeleteService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedDeleteServiceRequest
+
+	/*
+	 * DeprecatedDeleteServiceExecute executes the request
+	 * @return interface{}
+	 */
+	DeprecatedDeleteServiceExecute(r ApiDeprecatedDeleteServiceRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedGetRevision Get Revision
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the app
+	 * @param idOrName The id or the name of the service
+	 * @param id The id of the revision to fetch or `_latest` to get the latest one
+	 * @return ApiDeprecatedGetRevisionRequest
+	 */
+	DeprecatedGetRevision(ctx _context.Context, appIdOrName string, idOrName string, id string) ApiDeprecatedGetRevisionRequest
+
+	/*
+	 * DeprecatedGetRevisionExecute executes the request
+	 * @return DeprecatedGetServiceRevisionReply
+	 */
+	DeprecatedGetRevisionExecute(r ApiDeprecatedGetRevisionRequest) (DeprecatedGetServiceRevisionReply, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedGetService Get Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the Service
+	 * @return ApiDeprecatedGetServiceRequest
+	 */
+	DeprecatedGetService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedGetServiceRequest
+
+	/*
+	 * DeprecatedGetServiceExecute executes the request
+	 * @return GetServiceReply
+	 */
+	DeprecatedGetServiceExecute(r ApiDeprecatedGetServiceRequest) (GetServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedListRevisions List Revisions
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName
+	 * @param idOrName
+	 * @return ApiDeprecatedListRevisionsRequest
+	 */
+	DeprecatedListRevisions(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedListRevisionsRequest
+
+	/*
+	 * DeprecatedListRevisionsExecute executes the request
+	 * @return DeprecatedListServiceRevisionsReply
+	 */
+	DeprecatedListRevisionsExecute(r ApiDeprecatedListRevisionsRequest) (DeprecatedListServiceRevisionsReply, *_nethttp.Response, error)
 
 	/*
 	 * DeprecatedListServices List Service
@@ -71,50 +144,63 @@ type ServicesApi interface {
 	DeprecatedListServicesExecute(r ApiDeprecatedListServicesRequest) (ListServicesReply, *_nethttp.Response, error)
 
 	/*
-	 * GetRevision Get Revision
+	 * DeprecatedReDeploy ReDeploy Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the app
-	 * @param idOrName The id or the name of the service
-	 * @param id The id of the revision to fetch or `_latest` to get the latest one
-	 * @return ApiGetRevisionRequest
+	 * @param appIdOrName
+	 * @param idOrName
+	 * @return ApiDeprecatedReDeployRequest
 	 */
-	GetRevision(ctx _context.Context, appIdOrName string, idOrName string, id string) ApiGetRevisionRequest
+	DeprecatedReDeploy(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedReDeployRequest
 
 	/*
-	 * GetRevisionExecute executes the request
-	 * @return GetServiceRevisionReply
+	 * DeprecatedReDeployExecute executes the request
+	 * @return DeprecatedRedeployReply
 	 */
-	GetRevisionExecute(r ApiGetRevisionRequest) (GetServiceRevisionReply, *_nethttp.Response, error)
+	DeprecatedReDeployExecute(r ApiDeprecatedReDeployRequest) (DeprecatedRedeployReply, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedUpdateService Update Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiDeprecatedUpdateServiceRequest
+	 */
+	DeprecatedUpdateService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedUpdateServiceRequest
+
+	/*
+	 * DeprecatedUpdateServiceExecute executes the request
+	 * @return UpdateServiceReply
+	 */
+	DeprecatedUpdateServiceExecute(r ApiDeprecatedUpdateServiceRequest) (UpdateServiceReply, *_nethttp.Response, error)
+
+	/*
+	 * DeprecatedUpdateService2 Update Service
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param appIdOrName The id or the name of the App
+	 * @param idOrName The id or the name of the entity to update
+	 * @return ApiDeprecatedUpdateService2Request
+	 */
+	DeprecatedUpdateService2(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedUpdateService2Request
+
+	/*
+	 * DeprecatedUpdateService2Execute executes the request
+	 * @return UpdateServiceReply
+	 */
+	DeprecatedUpdateService2Execute(r ApiDeprecatedUpdateService2Request) (UpdateServiceReply, *_nethttp.Response, error)
 
 	/*
 	 * GetService Get Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the App
-	 * @param idOrName The id or the name of the Service
+	 * @param id The id of the Service
 	 * @return ApiGetServiceRequest
 	 */
-	GetService(ctx _context.Context, appIdOrName string, idOrName string) ApiGetServiceRequest
+	GetService(ctx _context.Context, id string) ApiGetServiceRequest
 
 	/*
 	 * GetServiceExecute executes the request
 	 * @return GetServiceReply
 	 */
 	GetServiceExecute(r ApiGetServiceRequest) (GetServiceReply, *_nethttp.Response, error)
-
-	/*
-	 * ListRevisions List Revisions
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName
-	 * @param idOrName
-	 * @return ApiListRevisionsRequest
-	 */
-	ListRevisions(ctx _context.Context, appIdOrName string, idOrName string) ApiListRevisionsRequest
-
-	/*
-	 * ListRevisionsExecute executes the request
-	 * @return ListServiceRevisionsReply
-	 */
-	ListRevisionsExecute(r ApiListRevisionsRequest) (ListServiceRevisionsReply, *_nethttp.Response, error)
 
 	/*
 	 * ListServices List Service
@@ -132,11 +218,10 @@ type ServicesApi interface {
 	/*
 	 * ReDeploy ReDeploy Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName
-	 * @param idOrName
+	 * @param id
 	 * @return ApiReDeployRequest
 	 */
-	ReDeploy(ctx _context.Context, appIdOrName string, idOrName string) ApiReDeployRequest
+	ReDeploy(ctx _context.Context, id string) ApiReDeployRequest
 
 	/*
 	 * ReDeployExecute executes the request
@@ -147,11 +232,10 @@ type ServicesApi interface {
 	/*
 	 * UpdateService Update Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the App
-	 * @param idOrName The id or the name of the entity to update
+	 * @param id The id of the entity to update
 	 * @return ApiUpdateServiceRequest
 	 */
-	UpdateService(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateServiceRequest
+	UpdateService(ctx _context.Context, id string) ApiUpdateServiceRequest
 
 	/*
 	 * UpdateServiceExecute executes the request
@@ -162,11 +246,10 @@ type ServicesApi interface {
 	/*
 	 * UpdateService2 Update Service
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param appIdOrName The id or the name of the App
-	 * @param idOrName The id or the name of the entity to update
+	 * @param id The id of the entity to update
 	 * @return ApiUpdateService2Request
 	 */
-	UpdateService2(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateService2Request
+	UpdateService2(ctx _context.Context, id string) ApiUpdateService2Request
 
 	/*
 	 * UpdateService2Execute executes the request
@@ -181,7 +264,6 @@ type ServicesApiService service
 type ApiCreateServiceRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
-	appIdOrName string
 	body *CreateService
 	dryRun *bool
 }
@@ -202,14 +284,12 @@ func (r ApiCreateServiceRequest) Execute() (CreateServiceReply, *_nethttp.Respon
 /*
  * CreateService Create Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName The id or the name of the App
  * @return ApiCreateServiceRequest
  */
-func (a *ServicesApiService) CreateService(ctx _context.Context, appIdOrName string) ApiCreateServiceRequest {
+func (a *ServicesApiService) CreateService(ctx _context.Context) ApiCreateServiceRequest {
 	return ApiCreateServiceRequest{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
 	}
 }
 
@@ -228,6 +308,335 @@ func (a *ServicesApiService) CreateServiceExecute(r ApiCreateServiceRequest) (Cr
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.CreateService")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/services"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	if r.dryRun != nil {
+		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeleteServiceRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	id string
+}
+
+
+func (r ApiDeleteServiceRequest) Execute() (interface{}, *_nethttp.Response, error) {
+	return r.ApiService.DeleteServiceExecute(r)
+}
+
+/*
+ * DeleteService Delete Service
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the entity to delete
+ * @return ApiDeleteServiceRequest
+ */
+func (a *ServicesApiService) DeleteService(ctx _context.Context, id string) ApiDeleteServiceRequest {
+	return ApiDeleteServiceRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return interface{}
+ */
+func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (interface{}, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeleteService")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/services/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedCreateServiceRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	body *CreateService
+	dryRun *bool
+}
+
+func (r ApiDeprecatedCreateServiceRequest) Body(body CreateService) ApiDeprecatedCreateServiceRequest {
+	r.body = &body
+	return r
+}
+func (r ApiDeprecatedCreateServiceRequest) DryRun(dryRun bool) ApiDeprecatedCreateServiceRequest {
+	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiDeprecatedCreateServiceRequest) Execute() (CreateServiceReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedCreateServiceExecute(r)
+}
+
+/*
+ * DeprecatedCreateService Create Service
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName The id or the name of the App
+ * @return ApiDeprecatedCreateServiceRequest
+ */
+func (a *ServicesApiService) DeprecatedCreateService(ctx _context.Context, appIdOrName string) ApiDeprecatedCreateServiceRequest {
+	return ApiDeprecatedCreateServiceRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return CreateServiceReply
+ */
+func (a *ServicesApiService) DeprecatedCreateServiceExecute(r ApiDeprecatedCreateServiceRequest) (CreateServiceReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  CreateServiceReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedCreateService")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -352,7 +761,7 @@ func (a *ServicesApiService) CreateServiceExecute(r ApiCreateServiceRequest) (Cr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteServiceRequest struct {
+type ApiDeprecatedDeleteServiceRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
 	appIdOrName string
@@ -360,19 +769,19 @@ type ApiDeleteServiceRequest struct {
 }
 
 
-func (r ApiDeleteServiceRequest) Execute() (interface{}, *_nethttp.Response, error) {
-	return r.ApiService.DeleteServiceExecute(r)
+func (r ApiDeprecatedDeleteServiceRequest) Execute() (interface{}, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedDeleteServiceExecute(r)
 }
 
 /*
- * DeleteService Delete Service
+ * DeprecatedDeleteService Delete Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appIdOrName The id or the name of the App
  * @param idOrName The id or the name of the entity to delete
- * @return ApiDeleteServiceRequest
+ * @return ApiDeprecatedDeleteServiceRequest
  */
-func (a *ServicesApiService) DeleteService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeleteServiceRequest {
-	return ApiDeleteServiceRequest{
+func (a *ServicesApiService) DeprecatedDeleteService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedDeleteServiceRequest {
+	return ApiDeprecatedDeleteServiceRequest{
 		ApiService: a,
 		ctx: ctx,
 		appIdOrName: appIdOrName,
@@ -384,7 +793,7 @@ func (a *ServicesApiService) DeleteService(ctx _context.Context, appIdOrName str
  * Execute executes the request
  * @return interface{}
  */
-func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (interface{}, *_nethttp.Response, error) {
+func (a *ServicesApiService) DeprecatedDeleteServiceExecute(r ApiDeprecatedDeleteServiceRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -394,7 +803,7 @@ func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (in
 		localVarReturnValue  interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeleteService")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedDeleteService")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -407,6 +816,538 @@ func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (in
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedGetRevisionRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	idOrName string
+	id string
+}
+
+
+func (r ApiDeprecatedGetRevisionRequest) Execute() (DeprecatedGetServiceRevisionReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedGetRevisionExecute(r)
+}
+
+/*
+ * DeprecatedGetRevision Get Revision
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName The id or the name of the app
+ * @param idOrName The id or the name of the service
+ * @param id The id of the revision to fetch or `_latest` to get the latest one
+ * @return ApiDeprecatedGetRevisionRequest
+ */
+func (a *ServicesApiService) DeprecatedGetRevision(ctx _context.Context, appIdOrName string, idOrName string, id string) ApiDeprecatedGetRevisionRequest {
+	return ApiDeprecatedGetRevisionRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		idOrName: idOrName,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return DeprecatedGetServiceRevisionReply
+ */
+func (a *ServicesApiService) DeprecatedGetRevisionExecute(r ApiDeprecatedGetRevisionRequest) (DeprecatedGetServiceRevisionReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  DeprecatedGetServiceRevisionReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedGetRevision")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedGetServiceRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	idOrName string
+}
+
+
+func (r ApiDeprecatedGetServiceRequest) Execute() (GetServiceReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedGetServiceExecute(r)
+}
+
+/*
+ * DeprecatedGetService Get Service
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName The id or the name of the App
+ * @param idOrName The id or the name of the Service
+ * @return ApiDeprecatedGetServiceRequest
+ */
+func (a *ServicesApiService) DeprecatedGetService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedGetServiceRequest {
+	return ApiDeprecatedGetServiceRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		idOrName: idOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return GetServiceReply
+ */
+func (a *ServicesApiService) DeprecatedGetServiceExecute(r ApiDeprecatedGetServiceRequest) (GetServiceReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  GetServiceReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedGetService")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedListRevisionsRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	idOrName string
+	limit *string
+	offset *string
+	statuses *[]string
+	deploymentGroups *[]string
+}
+
+func (r ApiDeprecatedListRevisionsRequest) Limit(limit string) ApiDeprecatedListRevisionsRequest {
+	r.limit = &limit
+	return r
+}
+func (r ApiDeprecatedListRevisionsRequest) Offset(offset string) ApiDeprecatedListRevisionsRequest {
+	r.offset = &offset
+	return r
+}
+func (r ApiDeprecatedListRevisionsRequest) Statuses(statuses []string) ApiDeprecatedListRevisionsRequest {
+	r.statuses = &statuses
+	return r
+}
+func (r ApiDeprecatedListRevisionsRequest) DeploymentGroups(deploymentGroups []string) ApiDeprecatedListRevisionsRequest {
+	r.deploymentGroups = &deploymentGroups
+	return r
+}
+
+func (r ApiDeprecatedListRevisionsRequest) Execute() (DeprecatedListServiceRevisionsReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedListRevisionsExecute(r)
+}
+
+/*
+ * DeprecatedListRevisions List Revisions
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName
+ * @param idOrName
+ * @return ApiDeprecatedListRevisionsRequest
+ */
+func (a *ServicesApiService) DeprecatedListRevisions(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedListRevisionsRequest {
+	return ApiDeprecatedListRevisionsRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		idOrName: idOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return DeprecatedListServiceRevisionsReply
+ */
+func (a *ServicesApiService) DeprecatedListRevisionsExecute(r ApiDeprecatedListRevisionsRequest) (DeprecatedListServiceRevisionsReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  DeprecatedListServiceRevisionsReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedListRevisions")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/revisions"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.statuses != nil {
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
+	}
+	if r.deploymentGroups != nil {
+		t := *r.deploymentGroups
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("deployment_groups", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("deployment_groups", parameterToString(t, "multi"))
+		}
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -692,64 +1633,68 @@ func (a *ServicesApiService) DeprecatedListServicesExecute(r ApiDeprecatedListSe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetRevisionRequest struct {
+type ApiDeprecatedReDeployRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
 	appIdOrName string
 	idOrName string
-	id string
+	body *DeprecatedRedeployRequestInfo
 }
 
+func (r ApiDeprecatedReDeployRequest) Body(body DeprecatedRedeployRequestInfo) ApiDeprecatedReDeployRequest {
+	r.body = &body
+	return r
+}
 
-func (r ApiGetRevisionRequest) Execute() (GetServiceRevisionReply, *_nethttp.Response, error) {
-	return r.ApiService.GetRevisionExecute(r)
+func (r ApiDeprecatedReDeployRequest) Execute() (DeprecatedRedeployReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedReDeployExecute(r)
 }
 
 /*
- * GetRevision Get Revision
+ * DeprecatedReDeploy ReDeploy Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName The id or the name of the app
- * @param idOrName The id or the name of the service
- * @param id The id of the revision to fetch or `_latest` to get the latest one
- * @return ApiGetRevisionRequest
+ * @param appIdOrName
+ * @param idOrName
+ * @return ApiDeprecatedReDeployRequest
  */
-func (a *ServicesApiService) GetRevision(ctx _context.Context, appIdOrName string, idOrName string, id string) ApiGetRevisionRequest {
-	return ApiGetRevisionRequest{
+func (a *ServicesApiService) DeprecatedReDeploy(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedReDeployRequest {
+	return ApiDeprecatedReDeployRequest{
 		ApiService: a,
 		ctx: ctx,
 		appIdOrName: appIdOrName,
 		idOrName: idOrName,
-		id: id,
 	}
 }
 
 /*
  * Execute executes the request
- * @return GetServiceRevisionReply
+ * @return DeprecatedRedeployReply
  */
-func (a *ServicesApiService) GetRevisionExecute(r ApiGetRevisionRequest) (GetServiceRevisionReply, *_nethttp.Response, error) {
+func (a *ServicesApiService) DeprecatedReDeployExecute(r ApiDeprecatedReDeployRequest) (DeprecatedRedeployReply, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  GetServiceRevisionReply
+		localVarReturnValue  DeprecatedRedeployReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.GetRevision")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedReDeploy")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id}"
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy"
 	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -768,6 +1713,380 @@ func (a *ServicesApiService) GetRevisionExecute(r ApiGetRevisionRequest) (GetSer
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedUpdateServiceRequest struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	idOrName string
+	body *UpdateService
+	updateMask *string
+	dryRun *bool
+}
+
+func (r ApiDeprecatedUpdateServiceRequest) Body(body UpdateService) ApiDeprecatedUpdateServiceRequest {
+	r.body = &body
+	return r
+}
+func (r ApiDeprecatedUpdateServiceRequest) UpdateMask(updateMask string) ApiDeprecatedUpdateServiceRequest {
+	r.updateMask = &updateMask
+	return r
+}
+func (r ApiDeprecatedUpdateServiceRequest) DryRun(dryRun bool) ApiDeprecatedUpdateServiceRequest {
+	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiDeprecatedUpdateServiceRequest) Execute() (UpdateServiceReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedUpdateServiceExecute(r)
+}
+
+/*
+ * DeprecatedUpdateService Update Service
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName The id or the name of the App
+ * @param idOrName The id or the name of the entity to update
+ * @return ApiDeprecatedUpdateServiceRequest
+ */
+func (a *ServicesApiService) DeprecatedUpdateService(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedUpdateServiceRequest {
+	return ApiDeprecatedUpdateServiceRequest{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		idOrName: idOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return UpdateServiceReply
+ */
+func (a *ServicesApiService) DeprecatedUpdateServiceExecute(r ApiDeprecatedUpdateServiceRequest) (UpdateServiceReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  UpdateServiceReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedUpdateService")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	if r.updateMask != nil {
+		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
+	}
+	if r.dryRun != nil {
+		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiDeprecatedUpdateService2Request struct {
+	ctx _context.Context
+	ApiService ServicesApi
+	appIdOrName string
+	idOrName string
+	body *UpdateService
+	updateMask *string
+	dryRun *bool
+}
+
+func (r ApiDeprecatedUpdateService2Request) Body(body UpdateService) ApiDeprecatedUpdateService2Request {
+	r.body = &body
+	return r
+}
+func (r ApiDeprecatedUpdateService2Request) UpdateMask(updateMask string) ApiDeprecatedUpdateService2Request {
+	r.updateMask = &updateMask
+	return r
+}
+func (r ApiDeprecatedUpdateService2Request) DryRun(dryRun bool) ApiDeprecatedUpdateService2Request {
+	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiDeprecatedUpdateService2Request) Execute() (UpdateServiceReply, *_nethttp.Response, error) {
+	return r.ApiService.DeprecatedUpdateService2Execute(r)
+}
+
+/*
+ * DeprecatedUpdateService2 Update Service
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appIdOrName The id or the name of the App
+ * @param idOrName The id or the name of the entity to update
+ * @return ApiDeprecatedUpdateService2Request
+ */
+func (a *ServicesApiService) DeprecatedUpdateService2(ctx _context.Context, appIdOrName string, idOrName string) ApiDeprecatedUpdateService2Request {
+	return ApiDeprecatedUpdateService2Request{
+		ApiService: a,
+		ctx: ctx,
+		appIdOrName: appIdOrName,
+		idOrName: idOrName,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return UpdateServiceReply
+ */
+func (a *ServicesApiService) DeprecatedUpdateService2Execute(r ApiDeprecatedUpdateService2Request) (UpdateServiceReply, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  UpdateServiceReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeprecatedUpdateService2")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
+	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	if r.updateMask != nil {
+		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
+	}
+	if r.dryRun != nil {
+		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -859,8 +2178,7 @@ func (a *ServicesApiService) GetRevisionExecute(r ApiGetRevisionRequest) (GetSer
 type ApiGetServiceRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
-	appIdOrName string
-	idOrName string
+	id string
 }
 
 
@@ -871,16 +2189,14 @@ func (r ApiGetServiceRequest) Execute() (GetServiceReply, *_nethttp.Response, er
 /*
  * GetService Get Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName The id or the name of the App
- * @param idOrName The id or the name of the Service
+ * @param id The id of the Service
  * @return ApiGetServiceRequest
  */
-func (a *ServicesApiService) GetService(ctx _context.Context, appIdOrName string, idOrName string) ApiGetServiceRequest {
+func (a *ServicesApiService) GetService(ctx _context.Context, id string) ApiGetServiceRequest {
 	return ApiGetServiceRequest{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -903,222 +2219,13 @@ func (a *ServicesApiService) GetServiceExecute(r ApiGetServiceRequest) (GetServi
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/services/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"*/*"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["Bearer"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorWithFields
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-			var v GoogleRpcStatus
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiListRevisionsRequest struct {
-	ctx _context.Context
-	ApiService ServicesApi
-	appIdOrName string
-	idOrName string
-	limit *string
-	offset *string
-	statuses *[]string
-	deploymentGroups *[]string
-}
-
-func (r ApiListRevisionsRequest) Limit(limit string) ApiListRevisionsRequest {
-	r.limit = &limit
-	return r
-}
-func (r ApiListRevisionsRequest) Offset(offset string) ApiListRevisionsRequest {
-	r.offset = &offset
-	return r
-}
-func (r ApiListRevisionsRequest) Statuses(statuses []string) ApiListRevisionsRequest {
-	r.statuses = &statuses
-	return r
-}
-func (r ApiListRevisionsRequest) DeploymentGroups(deploymentGroups []string) ApiListRevisionsRequest {
-	r.deploymentGroups = &deploymentGroups
-	return r
-}
-
-func (r ApiListRevisionsRequest) Execute() (ListServiceRevisionsReply, *_nethttp.Response, error) {
-	return r.ApiService.ListRevisionsExecute(r)
-}
-
-/*
- * ListRevisions List Revisions
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName
- * @param idOrName
- * @return ApiListRevisionsRequest
- */
-func (a *ServicesApiService) ListRevisions(ctx _context.Context, appIdOrName string, idOrName string) ApiListRevisionsRequest {
-	return ApiListRevisionsRequest{
-		ApiService: a,
-		ctx: ctx,
-		appIdOrName: appIdOrName,
-		idOrName: idOrName,
-	}
-}
-
-/*
- * Execute executes the request
- * @return ListServiceRevisionsReply
- */
-func (a *ServicesApiService) ListRevisionsExecute(r ApiListRevisionsRequest) (ListServiceRevisionsReply, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ListServiceRevisionsReply
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.ListRevisions")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/revisions"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.statuses != nil {
-		t := *r.statuses
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
-		}
-	}
-	if r.deploymentGroups != nil {
-		t := *r.deploymentGroups
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("deployment_groups", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("deployment_groups", parameterToString(t, "multi"))
-		}
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1411,8 +2518,7 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (List
 type ApiReDeployRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
-	appIdOrName string
-	idOrName string
+	id string
 	body *RedeployRequestInfo
 }
 
@@ -1428,16 +2534,14 @@ func (r ApiReDeployRequest) Execute() (RedeployReply, *_nethttp.Response, error)
 /*
  * ReDeploy ReDeploy Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName
- * @param idOrName
+ * @param id
  * @return ApiReDeployRequest
  */
-func (a *ServicesApiService) ReDeploy(ctx _context.Context, appIdOrName string, idOrName string) ApiReDeployRequest {
+func (a *ServicesApiService) ReDeploy(ctx _context.Context, id string) ApiReDeployRequest {
 	return ApiReDeployRequest{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -1460,9 +2564,8 @@ func (a *ServicesApiService) ReDeployExecute(r ApiReDeployRequest) (RedeployRepl
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/services/{id}/redeploy"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1581,8 +2684,7 @@ func (a *ServicesApiService) ReDeployExecute(r ApiReDeployRequest) (RedeployRepl
 type ApiUpdateServiceRequest struct {
 	ctx _context.Context
 	ApiService ServicesApi
-	appIdOrName string
-	idOrName string
+	id string
 	body *UpdateService
 	updateMask *string
 	dryRun *bool
@@ -1608,16 +2710,14 @@ func (r ApiUpdateServiceRequest) Execute() (UpdateServiceReply, *_nethttp.Respon
 /*
  * UpdateService Update Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName The id or the name of the App
- * @param idOrName The id or the name of the entity to update
+ * @param id The id of the entity to update
  * @return ApiUpdateServiceRequest
  */
-func (a *ServicesApiService) UpdateService(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateServiceRequest {
+func (a *ServicesApiService) UpdateService(ctx _context.Context, id string) ApiUpdateServiceRequest {
 	return ApiUpdateServiceRequest{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -1640,9 +2740,8 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (Up
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/services/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1767,8 +2866,7 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (Up
 type ApiUpdateService2Request struct {
 	ctx _context.Context
 	ApiService ServicesApi
-	appIdOrName string
-	idOrName string
+	id string
 	body *UpdateService
 	updateMask *string
 	dryRun *bool
@@ -1794,16 +2892,14 @@ func (r ApiUpdateService2Request) Execute() (UpdateServiceReply, *_nethttp.Respo
 /*
  * UpdateService2 Update Service
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appIdOrName The id or the name of the App
- * @param idOrName The id or the name of the entity to update
+ * @param id The id of the entity to update
  * @return ApiUpdateService2Request
  */
-func (a *ServicesApiService) UpdateService2(ctx _context.Context, appIdOrName string, idOrName string) ApiUpdateService2Request {
+func (a *ServicesApiService) UpdateService2(ctx _context.Context, id string) ApiUpdateService2Request {
 	return ApiUpdateService2Request{
 		ApiService: a,
 		ctx: ctx,
-		appIdOrName: appIdOrName,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -1826,9 +2922,8 @@ func (a *ServicesApiService) UpdateService2Execute(r ApiUpdateService2Request) (
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{app_id_or_name}/services/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"app_id_or_name"+"}", _neturl.PathEscape(parameterToString(r.appIdOrName, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/services/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -14,30 +14,30 @@ import (
 	"encoding/json"
 )
 
-// RedeployReply struct for RedeployReply
-type RedeployReply struct {
+// GetDeploymentReply struct for GetDeploymentReply
+type GetDeploymentReply struct {
 	Deployment *Deployment `json:"deployment,omitempty"`
 }
 
-// NewRedeployReply instantiates a new RedeployReply object
+// NewGetDeploymentReply instantiates a new GetDeploymentReply object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRedeployReply() *RedeployReply {
-	this := RedeployReply{}
+func NewGetDeploymentReply() *GetDeploymentReply {
+	this := GetDeploymentReply{}
 	return &this
 }
 
-// NewRedeployReplyWithDefaults instantiates a new RedeployReply object
+// NewGetDeploymentReplyWithDefaults instantiates a new GetDeploymentReply object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRedeployReplyWithDefaults() *RedeployReply {
-	this := RedeployReply{}
+func NewGetDeploymentReplyWithDefaults() *GetDeploymentReply {
+	this := GetDeploymentReply{}
 	return &this
 }
 
 // GetDeployment returns the Deployment field value if set, zero value otherwise.
-func (o *RedeployReply) GetDeployment() Deployment {
+func (o *GetDeploymentReply) GetDeployment() Deployment {
 	if o == nil || o.Deployment == nil {
 		var ret Deployment
 		return ret
@@ -47,7 +47,7 @@ func (o *RedeployReply) GetDeployment() Deployment {
 
 // GetDeploymentOk returns a tuple with the Deployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RedeployReply) GetDeploymentOk() (*Deployment, bool) {
+func (o *GetDeploymentReply) GetDeploymentOk() (*Deployment, bool) {
 	if o == nil || o.Deployment == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *RedeployReply) GetDeploymentOk() (*Deployment, bool) {
 }
 
 // HasDeployment returns a boolean if a field has been set.
-func (o *RedeployReply) HasDeployment() bool {
+func (o *GetDeploymentReply) HasDeployment() bool {
 	if o != nil && o.Deployment != nil {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *RedeployReply) HasDeployment() bool {
 }
 
 // SetDeployment gets a reference to the given Deployment and assigns it to the Deployment field.
-func (o *RedeployReply) SetDeployment(v Deployment) {
+func (o *GetDeploymentReply) SetDeployment(v Deployment) {
 	o.Deployment = &v
 }
 
-func (o RedeployReply) MarshalJSON() ([]byte, error) {
+func (o GetDeploymentReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Deployment != nil {
 		toSerialize["deployment"] = o.Deployment
@@ -76,38 +76,38 @@ func (o RedeployReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableRedeployReply struct {
-	value *RedeployReply
+type NullableGetDeploymentReply struct {
+	value *GetDeploymentReply
 	isSet bool
 }
 
-func (v NullableRedeployReply) Get() *RedeployReply {
+func (v NullableGetDeploymentReply) Get() *GetDeploymentReply {
 	return v.value
 }
 
-func (v *NullableRedeployReply) Set(val *RedeployReply) {
+func (v *NullableGetDeploymentReply) Set(val *GetDeploymentReply) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRedeployReply) IsSet() bool {
+func (v NullableGetDeploymentReply) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRedeployReply) Unset() {
+func (v *NullableGetDeploymentReply) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRedeployReply(val *RedeployReply) *NullableRedeployReply {
-	return &NullableRedeployReply{value: val, isSet: true}
+func NewNullableGetDeploymentReply(val *GetDeploymentReply) *NullableGetDeploymentReply {
+	return &NullableGetDeploymentReply{value: val, isSet: true}
 }
 
-func (v NullableRedeployReply) MarshalJSON() ([]byte, error) {
+func (v NullableGetDeploymentReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRedeployReply) UnmarshalJSON(src []byte) error {
+func (v *NullableGetDeploymentReply) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

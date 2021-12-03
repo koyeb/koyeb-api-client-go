@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DesiredDeployment** | Pointer to [**DeploymentState**](DeploymentState.md) |  | [optional] 
+**DesiredDeployment** | Pointer to [**DesiredDeployment**](DesiredDeployment.md) |  | [optional] 
 **AutoRelease** | Pointer to [**AutoRelease**](AutoRelease.md) |  | [optional] 
 **Status** | Pointer to [**ServiceStateStatus**](ServiceStateStatus.md) |  | [optional] [default to SERVICESTATESTATUS_UNKNOWN]
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDesiredDeployment
 
-`func (o *ServiceState) GetDesiredDeployment() DeploymentState`
+`func (o *ServiceState) GetDesiredDeployment() DesiredDeployment`
 
 GetDesiredDeployment returns the DesiredDeployment field if non-nil, zero value otherwise.
 
 ### GetDesiredDeploymentOk
 
-`func (o *ServiceState) GetDesiredDeploymentOk() (*DeploymentState, bool)`
+`func (o *ServiceState) GetDesiredDeploymentOk() (*DesiredDeployment, bool)`
 
 GetDesiredDeploymentOk returns a tuple with the DesiredDeployment field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDesiredDeployment
 
-`func (o *ServiceState) SetDesiredDeployment(v DeploymentState)`
+`func (o *ServiceState) SetDesiredDeployment(v DesiredDeployment)`
 
 SetDesiredDeployment sets DesiredDeployment field to given value.
 
