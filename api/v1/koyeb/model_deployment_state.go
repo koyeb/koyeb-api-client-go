@@ -16,7 +16,11 @@ import (
 
 // DeploymentState struct for DeploymentState
 type DeploymentState struct {
-	Groups *[]DeploymentStateGroup `json:"groups,omitempty"`
+	Instances *[]ServiceInstance `json:"instances,omitempty"`
+	Status *DeploymentStateStatus `json:"status,omitempty"`
+	StatusMessage *string `json:"status_message,omitempty"`
+	Datacenters *[]string `json:"datacenters,omitempty"`
+	BuildInfo *DeploymentStateBuildInfo `json:"build_info,omitempty"`
 }
 
 // NewDeploymentState instantiates a new DeploymentState object
@@ -25,6 +29,8 @@ type DeploymentState struct {
 // will change when the set of required properties is changed
 func NewDeploymentState() *DeploymentState {
 	this := DeploymentState{}
+	var status DeploymentStateStatus = DEPLOYMENTSTATESTATUS_UNKNOWN
+	this.Status = &status
 	return &this
 }
 
@@ -33,45 +39,187 @@ func NewDeploymentState() *DeploymentState {
 // but it doesn't guarantee that properties required by API are set
 func NewDeploymentStateWithDefaults() *DeploymentState {
 	this := DeploymentState{}
+	var status DeploymentStateStatus = DEPLOYMENTSTATESTATUS_UNKNOWN
+	this.Status = &status
 	return &this
 }
 
-// GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *DeploymentState) GetGroups() []DeploymentStateGroup {
-	if o == nil || o.Groups == nil {
-		var ret []DeploymentStateGroup
+// GetInstances returns the Instances field value if set, zero value otherwise.
+func (o *DeploymentState) GetInstances() []ServiceInstance {
+	if o == nil || o.Instances == nil {
+		var ret []ServiceInstance
 		return ret
 	}
-	return *o.Groups
+	return *o.Instances
 }
 
-// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentState) GetGroupsOk() (*[]DeploymentStateGroup, bool) {
-	if o == nil || o.Groups == nil {
+func (o *DeploymentState) GetInstancesOk() (*[]ServiceInstance, bool) {
+	if o == nil || o.Instances == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return o.Instances, true
 }
 
-// HasGroups returns a boolean if a field has been set.
-func (o *DeploymentState) HasGroups() bool {
-	if o != nil && o.Groups != nil {
+// HasInstances returns a boolean if a field has been set.
+func (o *DeploymentState) HasInstances() bool {
+	if o != nil && o.Instances != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetGroups gets a reference to the given []DeploymentStateGroup and assigns it to the Groups field.
-func (o *DeploymentState) SetGroups(v []DeploymentStateGroup) {
-	o.Groups = &v
+// SetInstances gets a reference to the given []ServiceInstance and assigns it to the Instances field.
+func (o *DeploymentState) SetInstances(v []ServiceInstance) {
+	o.Instances = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *DeploymentState) GetStatus() DeploymentStateStatus {
+	if o == nil || o.Status == nil {
+		var ret DeploymentStateStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentState) GetStatusOk() (*DeploymentStateStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *DeploymentState) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given DeploymentStateStatus and assigns it to the Status field.
+func (o *DeploymentState) SetStatus(v DeploymentStateStatus) {
+	o.Status = &v
+}
+
+// GetStatusMessage returns the StatusMessage field value if set, zero value otherwise.
+func (o *DeploymentState) GetStatusMessage() string {
+	if o == nil || o.StatusMessage == nil {
+		var ret string
+		return ret
+	}
+	return *o.StatusMessage
+}
+
+// GetStatusMessageOk returns a tuple with the StatusMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentState) GetStatusMessageOk() (*string, bool) {
+	if o == nil || o.StatusMessage == nil {
+		return nil, false
+	}
+	return o.StatusMessage, true
+}
+
+// HasStatusMessage returns a boolean if a field has been set.
+func (o *DeploymentState) HasStatusMessage() bool {
+	if o != nil && o.StatusMessage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusMessage gets a reference to the given string and assigns it to the StatusMessage field.
+func (o *DeploymentState) SetStatusMessage(v string) {
+	o.StatusMessage = &v
+}
+
+// GetDatacenters returns the Datacenters field value if set, zero value otherwise.
+func (o *DeploymentState) GetDatacenters() []string {
+	if o == nil || o.Datacenters == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Datacenters
+}
+
+// GetDatacentersOk returns a tuple with the Datacenters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentState) GetDatacentersOk() (*[]string, bool) {
+	if o == nil || o.Datacenters == nil {
+		return nil, false
+	}
+	return o.Datacenters, true
+}
+
+// HasDatacenters returns a boolean if a field has been set.
+func (o *DeploymentState) HasDatacenters() bool {
+	if o != nil && o.Datacenters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDatacenters gets a reference to the given []string and assigns it to the Datacenters field.
+func (o *DeploymentState) SetDatacenters(v []string) {
+	o.Datacenters = &v
+}
+
+// GetBuildInfo returns the BuildInfo field value if set, zero value otherwise.
+func (o *DeploymentState) GetBuildInfo() DeploymentStateBuildInfo {
+	if o == nil || o.BuildInfo == nil {
+		var ret DeploymentStateBuildInfo
+		return ret
+	}
+	return *o.BuildInfo
+}
+
+// GetBuildInfoOk returns a tuple with the BuildInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentState) GetBuildInfoOk() (*DeploymentStateBuildInfo, bool) {
+	if o == nil || o.BuildInfo == nil {
+		return nil, false
+	}
+	return o.BuildInfo, true
+}
+
+// HasBuildInfo returns a boolean if a field has been set.
+func (o *DeploymentState) HasBuildInfo() bool {
+	if o != nil && o.BuildInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBuildInfo gets a reference to the given DeploymentStateBuildInfo and assigns it to the BuildInfo field.
+func (o *DeploymentState) SetBuildInfo(v DeploymentStateBuildInfo) {
+	o.BuildInfo = &v
 }
 
 func (o DeploymentState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Groups != nil {
-		toSerialize["groups"] = o.Groups
+	if o.Instances != nil {
+		toSerialize["instances"] = o.Instances
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.StatusMessage != nil {
+		toSerialize["status_message"] = o.StatusMessage
+	}
+	if o.Datacenters != nil {
+		toSerialize["datacenters"] = o.Datacenters
+	}
+	if o.BuildInfo != nil {
+		toSerialize["build_info"] = o.BuildInfo
 	}
 	return json.Marshal(toSerialize)
 }

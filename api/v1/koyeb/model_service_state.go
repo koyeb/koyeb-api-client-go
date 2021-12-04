@@ -16,7 +16,7 @@ import (
 
 // ServiceState struct for ServiceState
 type ServiceState struct {
-	DesiredDeployment *DeploymentState `json:"desired_deployment,omitempty"`
+	DesiredDeployment *DesiredDeployment `json:"desired_deployment,omitempty"`
 	AutoRelease *AutoRelease `json:"auto_release,omitempty"`
 	Status *ServiceStateStatus `json:"status,omitempty"`
 }
@@ -43,9 +43,9 @@ func NewServiceStateWithDefaults() *ServiceState {
 }
 
 // GetDesiredDeployment returns the DesiredDeployment field value if set, zero value otherwise.
-func (o *ServiceState) GetDesiredDeployment() DeploymentState {
+func (o *ServiceState) GetDesiredDeployment() DesiredDeployment {
 	if o == nil || o.DesiredDeployment == nil {
-		var ret DeploymentState
+		var ret DesiredDeployment
 		return ret
 	}
 	return *o.DesiredDeployment
@@ -53,7 +53,7 @@ func (o *ServiceState) GetDesiredDeployment() DeploymentState {
 
 // GetDesiredDeploymentOk returns a tuple with the DesiredDeployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ServiceState) GetDesiredDeploymentOk() (*DeploymentState, bool) {
+func (o *ServiceState) GetDesiredDeploymentOk() (*DesiredDeployment, bool) {
 	if o == nil || o.DesiredDeployment == nil {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *ServiceState) HasDesiredDeployment() bool {
 	return false
 }
 
-// SetDesiredDeployment gets a reference to the given DeploymentState and assigns it to the DesiredDeployment field.
-func (o *ServiceState) SetDesiredDeployment(v DeploymentState) {
+// SetDesiredDeployment gets a reference to the given DesiredDeployment and assigns it to the DesiredDeployment field.
+func (o *ServiceState) SetDesiredDeployment(v DesiredDeployment) {
 	o.DesiredDeployment = &v
 }
 

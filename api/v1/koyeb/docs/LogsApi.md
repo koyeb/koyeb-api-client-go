@@ -5,6 +5,7 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**TailInstanceLogs**](LogsApi.md#TailInstanceLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
+[**TailLogs**](LogsApi.md#TailLogs) | **Get** /v1/streams/logs | 
 [**TailRevisionBuildLogs**](LogsApi.md#TailRevisionBuildLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
 [**TailRuntimeLogs**](LogsApi.md#TailRuntimeLogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | 
 
@@ -77,6 +78,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StreamResultOfRevisionLogEntry**](StreamResultOfRevisionLogEntry.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TailLogs
+
+> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Start(start).Limit(limit).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    type_ := "type__example" // string |  (optional)
+    appId := "appId_example" // string |  (optional)
+    serviceId := "serviceId_example" // string |  (optional)
+    deploymentId := "deploymentId_example" // string |  (optional)
+    instanceId := "instanceId_example" // string |  (optional)
+    start := "start_example" // string |  (optional)
+    limit := "limit_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Start(start).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.TailLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `TailLogs`: StreamResultOfLogEntry
+    fmt.Fprintf(os.Stdout, "Response from `LogsApi.TailLogs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTailLogsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **type_** | **string** |  | 
+ **appId** | **string** |  | 
+ **serviceId** | **string** |  | 
+ **deploymentId** | **string** |  | 
+ **instanceId** | **string** |  | 
+ **start** | **string** |  | 
+ **limit** | **string** |  | 
+
+### Return type
+
+[**StreamResultOfLogEntry**](StreamResultOfLogEntry.md)
 
 ### Authorization
 

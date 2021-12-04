@@ -14,65 +14,65 @@ import (
 	"encoding/json"
 )
 
-// ListServiceRevisionsReply struct for ListServiceRevisionsReply
-type ListServiceRevisionsReply struct {
-	Revisions *[]ServiceRevisionListItem `json:"revisions,omitempty"`
+// ListDeploymentsReply struct for ListDeploymentsReply
+type ListDeploymentsReply struct {
+	Deployments *[]DeploymentListItem `json:"deployments,omitempty"`
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
 	Count *int64 `json:"count,omitempty"`
 }
 
-// NewListServiceRevisionsReply instantiates a new ListServiceRevisionsReply object
+// NewListDeploymentsReply instantiates a new ListDeploymentsReply object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListServiceRevisionsReply() *ListServiceRevisionsReply {
-	this := ListServiceRevisionsReply{}
+func NewListDeploymentsReply() *ListDeploymentsReply {
+	this := ListDeploymentsReply{}
 	return &this
 }
 
-// NewListServiceRevisionsReplyWithDefaults instantiates a new ListServiceRevisionsReply object
+// NewListDeploymentsReplyWithDefaults instantiates a new ListDeploymentsReply object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListServiceRevisionsReplyWithDefaults() *ListServiceRevisionsReply {
-	this := ListServiceRevisionsReply{}
+func NewListDeploymentsReplyWithDefaults() *ListDeploymentsReply {
+	this := ListDeploymentsReply{}
 	return &this
 }
 
-// GetRevisions returns the Revisions field value if set, zero value otherwise.
-func (o *ListServiceRevisionsReply) GetRevisions() []ServiceRevisionListItem {
-	if o == nil || o.Revisions == nil {
-		var ret []ServiceRevisionListItem
+// GetDeployments returns the Deployments field value if set, zero value otherwise.
+func (o *ListDeploymentsReply) GetDeployments() []DeploymentListItem {
+	if o == nil || o.Deployments == nil {
+		var ret []DeploymentListItem
 		return ret
 	}
-	return *o.Revisions
+	return *o.Deployments
 }
 
-// GetRevisionsOk returns a tuple with the Revisions field value if set, nil otherwise
+// GetDeploymentsOk returns a tuple with the Deployments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceRevisionsReply) GetRevisionsOk() (*[]ServiceRevisionListItem, bool) {
-	if o == nil || o.Revisions == nil {
+func (o *ListDeploymentsReply) GetDeploymentsOk() (*[]DeploymentListItem, bool) {
+	if o == nil || o.Deployments == nil {
 		return nil, false
 	}
-	return o.Revisions, true
+	return o.Deployments, true
 }
 
-// HasRevisions returns a boolean if a field has been set.
-func (o *ListServiceRevisionsReply) HasRevisions() bool {
-	if o != nil && o.Revisions != nil {
+// HasDeployments returns a boolean if a field has been set.
+func (o *ListDeploymentsReply) HasDeployments() bool {
+	if o != nil && o.Deployments != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetRevisions gets a reference to the given []ServiceRevisionListItem and assigns it to the Revisions field.
-func (o *ListServiceRevisionsReply) SetRevisions(v []ServiceRevisionListItem) {
-	o.Revisions = &v
+// SetDeployments gets a reference to the given []DeploymentListItem and assigns it to the Deployments field.
+func (o *ListDeploymentsReply) SetDeployments(v []DeploymentListItem) {
+	o.Deployments = &v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *ListServiceRevisionsReply) GetLimit() int64 {
+func (o *ListDeploymentsReply) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
 		var ret int64
 		return ret
@@ -82,7 +82,7 @@ func (o *ListServiceRevisionsReply) GetLimit() int64 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceRevisionsReply) GetLimitOk() (*int64, bool) {
+func (o *ListDeploymentsReply) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *ListServiceRevisionsReply) GetLimitOk() (*int64, bool) {
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *ListServiceRevisionsReply) HasLimit() bool {
+func (o *ListDeploymentsReply) HasLimit() bool {
 	if o != nil && o.Limit != nil {
 		return true
 	}
@@ -99,12 +99,12 @@ func (o *ListServiceRevisionsReply) HasLimit() bool {
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
-func (o *ListServiceRevisionsReply) SetLimit(v int64) {
+func (o *ListDeploymentsReply) SetLimit(v int64) {
 	o.Limit = &v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *ListServiceRevisionsReply) GetOffset() int64 {
+func (o *ListDeploymentsReply) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
 		var ret int64
 		return ret
@@ -114,7 +114,7 @@ func (o *ListServiceRevisionsReply) GetOffset() int64 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceRevisionsReply) GetOffsetOk() (*int64, bool) {
+func (o *ListDeploymentsReply) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *ListServiceRevisionsReply) GetOffsetOk() (*int64, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *ListServiceRevisionsReply) HasOffset() bool {
+func (o *ListDeploymentsReply) HasOffset() bool {
 	if o != nil && o.Offset != nil {
 		return true
 	}
@@ -131,12 +131,12 @@ func (o *ListServiceRevisionsReply) HasOffset() bool {
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
-func (o *ListServiceRevisionsReply) SetOffset(v int64) {
+func (o *ListDeploymentsReply) SetOffset(v int64) {
 	o.Offset = &v
 }
 
 // GetCount returns the Count field value if set, zero value otherwise.
-func (o *ListServiceRevisionsReply) GetCount() int64 {
+func (o *ListDeploymentsReply) GetCount() int64 {
 	if o == nil || o.Count == nil {
 		var ret int64
 		return ret
@@ -146,7 +146,7 @@ func (o *ListServiceRevisionsReply) GetCount() int64 {
 
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListServiceRevisionsReply) GetCountOk() (*int64, bool) {
+func (o *ListDeploymentsReply) GetCountOk() (*int64, bool) {
 	if o == nil || o.Count == nil {
 		return nil, false
 	}
@@ -154,7 +154,7 @@ func (o *ListServiceRevisionsReply) GetCountOk() (*int64, bool) {
 }
 
 // HasCount returns a boolean if a field has been set.
-func (o *ListServiceRevisionsReply) HasCount() bool {
+func (o *ListDeploymentsReply) HasCount() bool {
 	if o != nil && o.Count != nil {
 		return true
 	}
@@ -163,14 +163,14 @@ func (o *ListServiceRevisionsReply) HasCount() bool {
 }
 
 // SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *ListServiceRevisionsReply) SetCount(v int64) {
+func (o *ListDeploymentsReply) SetCount(v int64) {
 	o.Count = &v
 }
 
-func (o ListServiceRevisionsReply) MarshalJSON() ([]byte, error) {
+func (o ListDeploymentsReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Revisions != nil {
-		toSerialize["revisions"] = o.Revisions
+	if o.Deployments != nil {
+		toSerialize["deployments"] = o.Deployments
 	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
@@ -184,38 +184,38 @@ func (o ListServiceRevisionsReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableListServiceRevisionsReply struct {
-	value *ListServiceRevisionsReply
+type NullableListDeploymentsReply struct {
+	value *ListDeploymentsReply
 	isSet bool
 }
 
-func (v NullableListServiceRevisionsReply) Get() *ListServiceRevisionsReply {
+func (v NullableListDeploymentsReply) Get() *ListDeploymentsReply {
 	return v.value
 }
 
-func (v *NullableListServiceRevisionsReply) Set(val *ListServiceRevisionsReply) {
+func (v *NullableListDeploymentsReply) Set(val *ListDeploymentsReply) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListServiceRevisionsReply) IsSet() bool {
+func (v NullableListDeploymentsReply) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListServiceRevisionsReply) Unset() {
+func (v *NullableListDeploymentsReply) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListServiceRevisionsReply(val *ListServiceRevisionsReply) *NullableListServiceRevisionsReply {
-	return &NullableListServiceRevisionsReply{value: val, isSet: true}
+func NewNullableListDeploymentsReply(val *ListDeploymentsReply) *NullableListDeploymentsReply {
+	return &NullableListDeploymentsReply{value: val, isSet: true}
 }
 
-func (v NullableListServiceRevisionsReply) MarshalJSON() ([]byte, error) {
+func (v NullableListDeploymentsReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListServiceRevisionsReply) UnmarshalJSON(src []byte) error {
+func (v *NullableListDeploymentsReply) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
