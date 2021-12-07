@@ -217,17 +217,12 @@ func (a *DeploymentsApiService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 type ApiListDeploymentsRequest struct {
 	ctx _context.Context
 	ApiService DeploymentsApi
-	id *string
 	limit *string
 	offset *string
 	statuses *[]string
 	deploymentGroups *[]string
 }
 
-func (r ApiListDeploymentsRequest) Id(id string) ApiListDeploymentsRequest {
-	r.id = &id
-	return r
-}
 func (r ApiListDeploymentsRequest) Limit(limit string) ApiListDeploymentsRequest {
 	r.limit = &limit
 	return r
@@ -286,9 +281,6 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.id != nil {
-		localVarQueryParams.Add("id", parameterToString(*r.id, ""))
-	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}

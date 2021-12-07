@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
 **Count** | Pointer to **int64** |  | [optional] 
+**Order** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetCount sets Count field to given value.
 `func (o *ListInstancesReply) HasCount() bool`
 
 HasCount returns a boolean if a field has been set.
+
+### GetOrder
+
+`func (o *ListInstancesReply) GetOrder() string`
+
+GetOrder returns the Order field if non-nil, zero value otherwise.
+
+### GetOrderOk
+
+`func (o *ListInstancesReply) GetOrderOk() (*string, bool)`
+
+GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrder
+
+`func (o *ListInstancesReply) SetOrder(v string)`
+
+SetOrder sets Order field to given value.
+
+### HasOrder
+
+`func (o *ListInstancesReply) HasOrder() bool`
+
+HasOrder returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

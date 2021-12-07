@@ -17,17 +17,17 @@ import (
 
 // Deployment struct for Deployment
 type Deployment struct {
+	Id *string `json:"id,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
-	Id *string `json:"id,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
 	ParentId *string `json:"parent_id,omitempty"`
 	ChildId *string `json:"child_id,omitempty"`
 	Version *string `json:"version,omitempty"`
-	Definition *ServiceDefinition `json:"definition,omitempty"`
-	State *DeploymentState `json:"state,omitempty"`
+	DeploymentGroup *string `json:"deployment_group,omitempty"`
+	Status *DeploymentStateStatus `json:"status,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 }
 
@@ -37,6 +37,8 @@ type Deployment struct {
 // will change when the set of required properties is changed
 func NewDeployment() *Deployment {
 	this := Deployment{}
+	var status DeploymentStateStatus = DEPLOYMENTSTATESTATUS_UNKNOWN
+	this.Status = &status
 	return &this
 }
 
@@ -45,7 +47,105 @@ func NewDeployment() *Deployment {
 // but it doesn't guarantee that properties required by API are set
 func NewDeploymentWithDefaults() *Deployment {
 	this := Deployment{}
+	var status DeploymentStateStatus = DEPLOYMENTSTATESTATUS_UNKNOWN
+	this.Status = &status
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Deployment) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Deployment) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Deployment) SetId(v string) {
+	o.Id = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Deployment) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Deployment) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Deployment) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Deployment) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Deployment) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Deployment) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -144,102 +244,6 @@ func (o *Deployment) SetServiceId(v string) {
 	o.ServiceId = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Deployment) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Deployment) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *Deployment) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Deployment) SetId(v string) {
-	o.Id = &v
-}
-
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Deployment) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.UpdatedAt
-}
-
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Deployment) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
-		return nil, false
-	}
-	return o.UpdatedAt, true
-}
-
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *Deployment) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Deployment) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
-}
-
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Deployment) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedAt
-}
-
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Deployment) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
-		return nil, false
-	}
-	return o.CreatedAt, true
-}
-
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Deployment) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Deployment) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
-}
-
 // GetParentId returns the ParentId field value if set, zero value otherwise.
 func (o *Deployment) GetParentId() string {
 	if o == nil || o.ParentId == nil {
@@ -336,68 +340,68 @@ func (o *Deployment) SetVersion(v string) {
 	o.Version = &v
 }
 
-// GetDefinition returns the Definition field value if set, zero value otherwise.
-func (o *Deployment) GetDefinition() ServiceDefinition {
-	if o == nil || o.Definition == nil {
-		var ret ServiceDefinition
+// GetDeploymentGroup returns the DeploymentGroup field value if set, zero value otherwise.
+func (o *Deployment) GetDeploymentGroup() string {
+	if o == nil || o.DeploymentGroup == nil {
+		var ret string
 		return ret
 	}
-	return *o.Definition
+	return *o.DeploymentGroup
 }
 
-// GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
+// GetDeploymentGroupOk returns a tuple with the DeploymentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Deployment) GetDefinitionOk() (*ServiceDefinition, bool) {
-	if o == nil || o.Definition == nil {
+func (o *Deployment) GetDeploymentGroupOk() (*string, bool) {
+	if o == nil || o.DeploymentGroup == nil {
 		return nil, false
 	}
-	return o.Definition, true
+	return o.DeploymentGroup, true
 }
 
-// HasDefinition returns a boolean if a field has been set.
-func (o *Deployment) HasDefinition() bool {
-	if o != nil && o.Definition != nil {
+// HasDeploymentGroup returns a boolean if a field has been set.
+func (o *Deployment) HasDeploymentGroup() bool {
+	if o != nil && o.DeploymentGroup != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDefinition gets a reference to the given ServiceDefinition and assigns it to the Definition field.
-func (o *Deployment) SetDefinition(v ServiceDefinition) {
-	o.Definition = &v
+// SetDeploymentGroup gets a reference to the given string and assigns it to the DeploymentGroup field.
+func (o *Deployment) SetDeploymentGroup(v string) {
+	o.DeploymentGroup = &v
 }
 
-// GetState returns the State field value if set, zero value otherwise.
-func (o *Deployment) GetState() DeploymentState {
-	if o == nil || o.State == nil {
-		var ret DeploymentState
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *Deployment) GetStatus() DeploymentStateStatus {
+	if o == nil || o.Status == nil {
+		var ret DeploymentStateStatus
 		return ret
 	}
-	return *o.State
+	return *o.Status
 }
 
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Deployment) GetStateOk() (*DeploymentState, bool) {
-	if o == nil || o.State == nil {
+func (o *Deployment) GetStatusOk() (*DeploymentStateStatus, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.State, true
+	return o.Status, true
 }
 
-// HasState returns a boolean if a field has been set.
-func (o *Deployment) HasState() bool {
-	if o != nil && o.State != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *Deployment) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetState gets a reference to the given DeploymentState and assigns it to the State field.
-func (o *Deployment) SetState(v DeploymentState) {
-	o.State = &v
+// SetStatus gets a reference to the given DeploymentStateStatus and assigns it to the Status field.
+func (o *Deployment) SetStatus(v DeploymentStateStatus) {
+	o.Status = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -434,6 +438,15 @@ func (o *Deployment) SetMetadata(v DeploymentMetadata) {
 
 func (o Deployment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
@@ -442,15 +455,6 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	}
 	if o.ServiceId != nil {
 		toSerialize["service_id"] = o.ServiceId
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.ParentId != nil {
 		toSerialize["parent_id"] = o.ParentId
@@ -461,11 +465,11 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
-	if o.Definition != nil {
-		toSerialize["definition"] = o.Definition
+	if o.DeploymentGroup != nil {
+		toSerialize["deployment_group"] = o.DeploymentGroup
 	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata

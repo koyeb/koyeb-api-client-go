@@ -50,10 +50,6 @@ docs/CredentialsApi.md
 docs/Deployment.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
-docs/DeploymentState.md
-docs/DeploymentStateBuildInfo.md
-docs/DeploymentStateStageState.md
-docs/DeploymentStateStageStateStatus.md
 docs/DeploymentStateStatus.md
 docs/DeploymentsApi.md
 docs/DeprecatedGetServiceRevisionReply.md
@@ -78,6 +74,7 @@ docs/GCPContainerRegistryConfiguration.md
 docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetDeploymentReply.md
+docs/GetInstanceReply.md
 docs/GetOAuthOptionsReply.md
 docs/GetOrganizationReply.md
 docs/GetRegionReply.md
@@ -96,6 +93,7 @@ docs/GoogleProtobufAny.md
 docs/GoogleProtobufNullValue.md
 docs/GoogleRpcStatus.md
 docs/HooksApi.md
+docs/Instance.md
 docs/InstanceListItem.md
 docs/InstanceStatus.md
 docs/InstancesApi.md
@@ -199,10 +197,6 @@ model_credential_reply.go
 model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
-model_deployment_state.go
-model_deployment_state_build_info.go
-model_deployment_state_stage_state.go
-model_deployment_state_stage_state_status.go
 model_deployment_state_status.go
 model_deprecated_get_service_revision_reply.go
 model_deprecated_list_service_revisions_reply.go
@@ -226,6 +220,7 @@ model_gcp_container_registry_configuration.go
 model_get_app_reply.go
 model_get_catalog_instance_reply.go
 model_get_deployment_reply.go
+model_get_instance_reply.go
 model_get_o_auth_options_reply.go
 model_get_organization_reply.go
 model_get_region_reply.go
@@ -243,6 +238,7 @@ model_github_repo.go
 model_google_protobuf_any.go
 model_google_protobuf_null_value.go
 model_google_rpc_status.go
+model_instance.go
 model_instance_list_item.go
 model_instance_status.go
 model_invite_user_request.go

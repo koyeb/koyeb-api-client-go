@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
+*InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
@@ -181,10 +182,6 @@ Class | Method | HTTP request | Description
  - [Deployment](docs/Deployment.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
- - [DeploymentState](docs/DeploymentState.md)
- - [DeploymentStateBuildInfo](docs/DeploymentStateBuildInfo.md)
- - [DeploymentStateStageState](docs/DeploymentStateStageState.md)
- - [DeploymentStateStageStateStatus](docs/DeploymentStateStageStateStatus.md)
  - [DeploymentStateStatus](docs/DeploymentStateStatus.md)
  - [DeprecatedGetServiceRevisionReply](docs/DeprecatedGetServiceRevisionReply.md)
  - [DeprecatedListServiceRevisionsReply](docs/DeprecatedListServiceRevisionsReply.md)
@@ -208,6 +205,7 @@ Class | Method | HTTP request | Description
  - [GetAppReply](docs/GetAppReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
+ - [GetInstanceReply](docs/GetInstanceReply.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
@@ -225,6 +223,7 @@ Class | Method | HTTP request | Description
  - [GoogleProtobufAny](docs/GoogleProtobufAny.md)
  - [GoogleProtobufNullValue](docs/GoogleProtobufNullValue.md)
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)
+ - [Instance](docs/Instance.md)
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
