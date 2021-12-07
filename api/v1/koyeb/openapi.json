@@ -1076,151 +1076,6 @@
         ]
       }
     },
-    "/v1/deployments": {
-      "get": {
-        "summary": "List Deployments",
-        "operationId": "ListDeployments",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/ListDeploymentsReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "description": "(Optional) The number of items to return.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "offset",
-            "description": "(Optional) The offset in the list of item to return.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "statuses",
-            "description": "(Optional) Statuses to filter on.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "UNKNOWN",
-                "STARTING",
-                "ACTIVE",
-                "STOPPING",
-                "STOPPED",
-                "FAILED",
-                "BUILDING",
-                "TERMINATED"
-              ]
-            },
-            "collectionFormat": "multi"
-          },
-          {
-            "name": "deployment_groups",
-            "description": "(Optional) Only fetch deployments in this deployment group.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "Deployments"
-        ]
-      }
-    },
-    "/v1/deployments/{id}": {
-      "get": {
-        "summary": "Get Deployment",
-        "operationId": "GetDeployment",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/GetDeploymentReply"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "$ref": "#/definitions/ErrorWithFields"
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/google.rpc.Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "The id of the deployment",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "Deployments"
-        ]
-      }
-    },
     "/v1/services": {
       "get": {
         "summary": "List Service",
@@ -1641,6 +1496,145 @@
         ]
       }
     },
+    "/v1/deployments": {
+      "get": {
+        "summary": "List Deployments",
+        "operationId": "ListDeployments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDeploymentsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "statuses",
+            "description": "(Optional) Filter on deployment statuses.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "UNKNOWN",
+                "STARTING",
+                "ACTIVE",
+                "STOPPING",
+                "STOPPED",
+                "FAILED",
+                "BUILDING",
+                "TERMINATED"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "deployment_groups",
+            "description": "(Optional) Filter on deployment groups.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "Deployments"
+        ]
+      }
+    },
+    "/v1/deployments/{id}": {
+      "get": {
+        "summary": "Get Deployment",
+        "operationId": "GetDeployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDeploymentReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the deployment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Deployments"
+        ]
+      }
+    },
     "/v1/apps": {
       "get": {
         "summary": "List App",
@@ -2052,6 +2046,62 @@
             "description": "(Optional) The offset in the list of item to return.",
             "in": "query",
             "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "(Optional) Sorts the list in the ascending or the descending order.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Instances"
+        ]
+      }
+    },
+    "/v1/instances/{id}": {
+      "get": {
+        "summary": "Get Instance",
+        "operationId": "GetInstance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetInstanceReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],
@@ -4834,6 +4884,17 @@
     "Deployment": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
         "organization_id": {
           "type": "string"
         },
@@ -4843,17 +4904,6 @@
         "service_id": {
           "type": "string"
         },
-        "id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
         "parent_id": {
           "type": "string"
         },
@@ -4862,53 +4912,7 @@
         },
         "version": {
           "type": "string",
-          "format": "int64",
-          "title": "A version updated whenever this state changes (useful for caching)"
-        },
-        "definition": {
-          "$ref": "#/definitions/ServiceDefinition"
-        },
-        "state": {
-          "$ref": "#/definitions/DeploymentState"
-        },
-        "metadata": {
-          "$ref": "#/definitions/DeploymentMetadata"
-        }
-      }
-    },
-    "DeploymentListItem": {
-      "type": "object",
-      "properties": {
-        "organization_id": {
-          "type": "string"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "service_id": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "parent_id": {
-          "type": "string"
-        },
-        "child_id": {
-          "type": "string"
-        },
-        "version": {
-          "type": "string",
-          "format": "int64",
-          "title": "A version updated whenever the state changes (useful for caching or CAS updates)"
+          "format": "int64"
         },
         "deployment_group": {
           "type": "string"
@@ -4928,91 +4932,6 @@
           "$ref": "#/definitions/TriggerDeploymentMetadata"
         }
       }
-    },
-    "DeploymentState": {
-      "type": "object",
-      "properties": {
-        "instances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceInstance"
-          },
-          "title": "Information about instances"
-        },
-        "status": {
-          "$ref": "#/definitions/DeploymentState.Status",
-          "title": "A simple status to indicate where this deployment is at"
-        },
-        "status_message": {
-          "type": "string",
-          "title": "Some extra information of the status"
-        },
-        "datacenters": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The datacenters this deployment will run in"
-        },
-        "build_info": {
-          "$ref": "#/definitions/DeploymentState.BuildInfo",
-          "title": "Information about builds"
-        }
-      }
-    },
-    "DeploymentState.BuildInfo": {
-      "type": "object",
-      "properties": {
-        "sha": {
-          "type": "string",
-          "description": "The git sha for this build (we resolve the reference at the start of the build)."
-        },
-        "image": {
-          "type": "string",
-          "description": "The docker image built as a result of this build."
-        },
-        "build_job_id": {
-          "type": "string",
-          "description": "The id of the job that ran the build."
-        },
-        "stage_state": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentState.StageState"
-          },
-          "description": "Some info about the build."
-        }
-      }
-    },
-    "DeploymentState.StageState": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "status_message": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/DeploymentState.StageState.Status"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "DeploymentState.StageState.Status": {
-      "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "RUNNING",
-        "FAILED",
-        "COMPLETED"
-      ],
-      "default": "UNKNOWN"
     },
     "DeploymentState.Status": {
       "type": "string",
@@ -5148,14 +5067,6 @@
         }
       }
     },
-    "GetDeploymentReply": {
-      "type": "object",
-      "properties": {
-        "deployment": {
-          "$ref": "#/definitions/Deployment"
-        }
-      }
-    },
     "GetServiceReply": {
       "type": "object",
       "properties": {
@@ -5228,32 +5139,6 @@
         "run_command": {
           "type": "string",
           "title": "A command used to override the default run command"
-        }
-      }
-    },
-    "ListDeploymentsReply": {
-      "type": "object",
-      "properties": {
-        "deployments": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentListItem"
-          }
-        },
-        "limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The limit in the request"
-        },
-        "offset": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The offset in the request"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The total number of items"
         }
       }
     },
@@ -5750,6 +5635,85 @@
         }
       }
     },
+    "DeploymentListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "child_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "format": "int64"
+        },
+        "deployment_group": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/DeploymentState.Status"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DeploymentMetadata"
+        }
+      }
+    },
+    "GetDeploymentReply": {
+      "type": "object",
+      "properties": {
+        "deployment": {
+          "$ref": "#/definitions/Deployment"
+        }
+      }
+    },
+    "ListDeploymentsReply": {
+      "type": "object",
+      "properties": {
+        "deployments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentListItem"
+          },
+          "title": "The collection of deployments"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of items"
+        }
+      }
+    },
     "App": {
       "type": "object",
       "properties": {
@@ -5889,6 +5853,57 @@
         }
       }
     },
+    "GetInstanceReply": {
+      "type": "object",
+      "properties": {
+        "instance": {
+          "$ref": "#/definitions/Instance"
+        }
+      }
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
+        "deployment_id": {
+          "type": "string"
+        },
+        "allocation_id": {
+          "type": "string"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/InstanceStatus"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "InstanceListItem": {
       "type": "object",
       "properties": {
@@ -5969,6 +5984,10 @@
           "type": "integer",
           "format": "int64",
           "title": "The total number of items"
+        },
+        "order": {
+          "type": "string",
+          "title": "The order in the request"
         }
       }
     },

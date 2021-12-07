@@ -20,6 +20,7 @@ type ListInstancesReply struct {
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
 	Count *int64 `json:"count,omitempty"`
+	Order *string `json:"order,omitempty"`
 }
 
 // NewListInstancesReply instantiates a new ListInstancesReply object
@@ -167,6 +168,38 @@ func (o *ListInstancesReply) SetCount(v int64) {
 	o.Count = &v
 }
 
+// GetOrder returns the Order field value if set, zero value otherwise.
+func (o *ListInstancesReply) GetOrder() string {
+	if o == nil || o.Order == nil {
+		var ret string
+		return ret
+	}
+	return *o.Order
+}
+
+// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListInstancesReply) GetOrderOk() (*string, bool) {
+	if o == nil || o.Order == nil {
+		return nil, false
+	}
+	return o.Order, true
+}
+
+// HasOrder returns a boolean if a field has been set.
+func (o *ListInstancesReply) HasOrder() bool {
+	if o != nil && o.Order != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrder gets a reference to the given string and assigns it to the Order field.
+func (o *ListInstancesReply) SetOrder(v string) {
+	o.Order = &v
+}
+
 func (o ListInstancesReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Instances != nil {
@@ -180,6 +213,9 @@ func (o ListInstancesReply) MarshalJSON() ([]byte, error) {
 	}
 	if o.Count != nil {
 		toSerialize["count"] = o.Count
+	}
+	if o.Order != nil {
+		toSerialize["order"] = o.Order
 	}
 	return json.Marshal(toSerialize)
 }

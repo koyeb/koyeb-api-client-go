@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **ChildId** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
-**Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
-**State** | Pointer to [**DeploymentState**](DeploymentState.md) |  | [optional] 
+**DeploymentGroup** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to [**DeploymentStateStatus**](DeploymentStateStatus.md) |  | [optional] [default to DEPLOYMENTSTATESTATUS_UNKNOWN]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 
 ## Methods
@@ -35,6 +35,81 @@ will change when the set of required properties is changed
 NewDeploymentWithDefaults instantiates a new Deployment object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *Deployment) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Deployment) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Deployment) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Deployment) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *Deployment) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Deployment) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Deployment) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *Deployment) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *Deployment) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Deployment) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Deployment) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *Deployment) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetOrganizationId
 
@@ -111,81 +186,6 @@ SetServiceId sets ServiceId field to given value.
 
 HasServiceId returns a boolean if a field has been set.
 
-### GetId
-
-`func (o *Deployment) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Deployment) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *Deployment) SetId(v string)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *Deployment) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetUpdatedAt
-
-`func (o *Deployment) GetUpdatedAt() time.Time`
-
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
-
-### GetUpdatedAtOk
-
-`func (o *Deployment) GetUpdatedAtOk() (*time.Time, bool)`
-
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUpdatedAt
-
-`func (o *Deployment) SetUpdatedAt(v time.Time)`
-
-SetUpdatedAt sets UpdatedAt field to given value.
-
-### HasUpdatedAt
-
-`func (o *Deployment) HasUpdatedAt() bool`
-
-HasUpdatedAt returns a boolean if a field has been set.
-
-### GetCreatedAt
-
-`func (o *Deployment) GetCreatedAt() time.Time`
-
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
-
-### GetCreatedAtOk
-
-`func (o *Deployment) GetCreatedAtOk() (*time.Time, bool)`
-
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedAt
-
-`func (o *Deployment) SetCreatedAt(v time.Time)`
-
-SetCreatedAt sets CreatedAt field to given value.
-
-### HasCreatedAt
-
-`func (o *Deployment) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
-
 ### GetParentId
 
 `func (o *Deployment) GetParentId() string`
@@ -261,55 +261,55 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-### GetDefinition
+### GetDeploymentGroup
 
-`func (o *Deployment) GetDefinition() ServiceDefinition`
+`func (o *Deployment) GetDeploymentGroup() string`
 
-GetDefinition returns the Definition field if non-nil, zero value otherwise.
+GetDeploymentGroup returns the DeploymentGroup field if non-nil, zero value otherwise.
 
-### GetDefinitionOk
+### GetDeploymentGroupOk
 
-`func (o *Deployment) GetDefinitionOk() (*ServiceDefinition, bool)`
+`func (o *Deployment) GetDeploymentGroupOk() (*string, bool)`
 
-GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
+GetDeploymentGroupOk returns a tuple with the DeploymentGroup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDefinition
+### SetDeploymentGroup
 
-`func (o *Deployment) SetDefinition(v ServiceDefinition)`
+`func (o *Deployment) SetDeploymentGroup(v string)`
 
-SetDefinition sets Definition field to given value.
+SetDeploymentGroup sets DeploymentGroup field to given value.
 
-### HasDefinition
+### HasDeploymentGroup
 
-`func (o *Deployment) HasDefinition() bool`
+`func (o *Deployment) HasDeploymentGroup() bool`
 
-HasDefinition returns a boolean if a field has been set.
+HasDeploymentGroup returns a boolean if a field has been set.
 
-### GetState
+### GetStatus
 
-`func (o *Deployment) GetState() DeploymentState`
+`func (o *Deployment) GetStatus() DeploymentStateStatus`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetStatusOk
 
-`func (o *Deployment) GetStateOk() (*DeploymentState, bool)`
+`func (o *Deployment) GetStatusOk() (*DeploymentStateStatus, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetState
+### SetStatus
 
-`func (o *Deployment) SetState(v DeploymentState)`
+`func (o *Deployment) SetStatus(v DeploymentStateStatus)`
 
-SetState sets State field to given value.
+SetStatus sets Status field to given value.
 
-### HasState
+### HasStatus
 
-`func (o *Deployment) HasState() bool`
+`func (o *Deployment) HasStatus() bool`
 
-HasState returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
 ### GetMetadata
 
