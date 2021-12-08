@@ -27,7 +27,7 @@ var (
 type LogsApi interface {
 
 	/*
-	 * TailInstanceLogs Method for TailInstanceLogs
+	 * TailInstanceLogs TailInstanceLogs
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param appIdOrName
 	 * @param serviceIdOrName
@@ -45,7 +45,7 @@ type LogsApi interface {
 	TailInstanceLogsExecute(r ApiTailInstanceLogsRequest) (StreamResultOfRevisionLogEntry, *_nethttp.Response, error)
 
 	/*
-	 * TailLogs Method for TailLogs
+	 * TailLogs Tails logs
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return ApiTailLogsRequest
 	 */
@@ -58,7 +58,7 @@ type LogsApi interface {
 	TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
 
 	/*
-	 * TailRevisionBuildLogs Method for TailRevisionBuildLogs
+	 * TailRevisionBuildLogs TailRevisionBuildLogs
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param appIdOrName
 	 * @param serviceIdOrName
@@ -74,7 +74,7 @@ type LogsApi interface {
 	TailRevisionBuildLogsExecute(r ApiTailRevisionBuildLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
 
 	/*
-	 * TailRuntimeLogs Method for TailRuntimeLogs
+	 * TailRuntimeLogs TailRuntimeLogs
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param appIdOrName
 	 * @return ApiTailRuntimeLogsRequest
@@ -112,7 +112,7 @@ func (r ApiTailInstanceLogsRequest) Execute() (StreamResultOfRevisionLogEntry, *
 }
 
 /*
- * TailInstanceLogs Method for TailInstanceLogs
+ * TailInstanceLogs TailInstanceLogs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appIdOrName
  * @param serviceIdOrName
@@ -279,6 +279,7 @@ type ApiTailLogsRequest struct {
 	serviceId *string
 	deploymentId *string
 	instanceId *string
+	stream *string
 	start *string
 	limit *string
 }
@@ -303,6 +304,10 @@ func (r ApiTailLogsRequest) InstanceId(instanceId string) ApiTailLogsRequest {
 	r.instanceId = &instanceId
 	return r
 }
+func (r ApiTailLogsRequest) Stream(stream string) ApiTailLogsRequest {
+	r.stream = &stream
+	return r
+}
 func (r ApiTailLogsRequest) Start(start string) ApiTailLogsRequest {
 	r.start = &start
 	return r
@@ -317,7 +322,7 @@ func (r ApiTailLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.Respons
 }
 
 /*
- * TailLogs Method for TailLogs
+ * TailLogs Tails logs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiTailLogsRequest
  */
@@ -347,7 +352,7 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLo
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/streams/logs"
+	localVarPath := localBasePath + "/v1/streams/logs/tail"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -367,6 +372,9 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLo
 	}
 	if r.instanceId != nil {
 		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
+	}
+	if r.stream != nil {
+		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
 	}
 	if r.start != nil {
 		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
@@ -503,7 +511,7 @@ func (r ApiTailRevisionBuildLogsRequest) Execute() (StreamResultOfLogEntry, *_ne
 }
 
 /*
- * TailRevisionBuildLogs Method for TailRevisionBuildLogs
+ * TailRevisionBuildLogs TailRevisionBuildLogs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appIdOrName
  * @param serviceIdOrName
@@ -701,7 +709,7 @@ func (r ApiTailRuntimeLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.
 }
 
 /*
- * TailRuntimeLogs Method for TailRuntimeLogs
+ * TailRuntimeLogs TailRuntimeLogs
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param appIdOrName
  * @return ApiTailRuntimeLogsRequest

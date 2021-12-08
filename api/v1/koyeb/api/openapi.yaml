@@ -1464,6 +1464,16 @@ paths:
     get:
       operationId: ListDeployments
       parameters:
+      - description: (Optional) Filter on application id.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) Filter on service id.
+        in: query
+        name: service_id
+        schema:
+          type: string
       - description: (Optional) The number of items to return.
         in: query
         name: limit
@@ -1474,33 +1484,6 @@ paths:
         name: offset
         schema:
           type: string
-      - description: (Optional) Filter on deployment statuses.
-        explode: true
-        in: query
-        name: statuses
-        schema:
-          items:
-            enum:
-            - UNKNOWN
-            - STARTING
-            - ACTIVE
-            - STOPPING
-            - STOPPED
-            - FAILED
-            - BUILDING
-            - TERMINATED
-            type: string
-          type: array
-        style: form
-      - description: (Optional) Filter on deployment groups.
-        explode: true
-        in: query
-        name: deployment_groups
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
       responses:
         "200":
           content:
@@ -3781,6 +3764,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: TailRuntimeLogs
       tags:
       - Logs
   /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail:
@@ -3843,6 +3827,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: TailRevisionBuildLogs
       tags:
       - Logs
   /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail:
@@ -3913,9 +3898,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: TailInstanceLogs
       tags:
       - Logs
-  /v1/streams/logs:
+  /v1/streams/logs/tail:
     get:
       operationId: TailLogs
       parameters:
@@ -3937,6 +3923,10 @@ paths:
           type: string
       - in: query
         name: instance_id
+        schema:
+          type: string
+      - in: query
+        name: stream
         schema:
           type: string
       - in: query
@@ -3980,6 +3970,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: Tails logs
       tags:
       - Logs
 components:
@@ -4691,16 +4682,96 @@ components:
               sha: sha
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
         deployment_group: deployment_group
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
-        created_at: 2000-01-23T04:56:07.000+00:00
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - value: value
+            key: key
+            value_from_secret: value_from_secret
+          - value: value
+            key: key
+            value_from_secret: value_from_secret
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
         id: id
+        state:
+          status_message: status_message
+          datacenters:
+          - datacenters
+          - datacenters
+          instances:
+          - status_message: status_message
+            created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
+            datacenter: datacenter
+            id: id
+          - status_message: status_message
+            created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
+            datacenter: datacenter
+            id: id
+          build_info:
+            image: image
+            stage_state:
+            - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            build_job_id: build_job_id
+            sha: sha
         app_id: app_id
-        version: version
       properties:
         id:
           type: string
@@ -4720,15 +4791,19 @@ components:
           type: string
         child_id:
           type: string
+        status:
+          $ref: '#/components/schemas/DeploymentStatus'
+        metadata:
+          $ref: '#/components/schemas/DeploymentMetadata'
         version:
           format: int64
           type: string
         deployment_group:
           type: string
-        status:
-          $ref: '#/components/schemas/DeploymentState.Status'
-        metadata:
-          $ref: '#/components/schemas/DeploymentMetadata'
+        definition:
+          $ref: '#/components/schemas/ServiceDefinition'
+        state:
+          $ref: '#/components/schemas/ServiceRevisionState'
       type: object
     DeploymentMetadata:
       example:
@@ -4745,17 +4820,10 @@ components:
         trigger:
           $ref: '#/components/schemas/TriggerDeploymentMetadata'
       type: object
-    DeploymentState.Status:
-      default: UNKNOWN
+    DeploymentStatus:
+      default: PENDING
       enum:
-      - UNKNOWN
-      - STARTING
-      - ACTIVE
-      - STOPPING
-      - STOPPED
-      - FAILED
-      - BUILDING
-      - TERMINATED
+      - PENDING
       type: string
     DeprecatedGetServiceRevisionReply:
       example:
@@ -5340,16 +5408,96 @@ components:
                 sha: sha
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            regions:
+            - regions
+            - regions
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
           id: id
+          state:
+            status_message: status_message
+            datacenters:
+            - datacenters
+            - datacenters
+            instances:
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            build_info:
+              image: image
+              stage_state:
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              build_job_id: build_job_id
+              sha: sha
           app_id: app_id
-          version: version
       properties:
         deployment:
           $ref: '#/components/schemas/Deployment'
@@ -6102,16 +6250,96 @@ components:
               sha: sha
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
         deployment_group: deployment_group
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
-        created_at: 2000-01-23T04:56:07.000+00:00
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - value: value
+            key: key
+            value_from_secret: value_from_secret
+          - value: value
+            key: key
+            value_from_secret: value_from_secret
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
         id: id
+        state:
+          status_message: status_message
+          datacenters:
+          - datacenters
+          - datacenters
+          instances:
+          - status_message: status_message
+            created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
+            datacenter: datacenter
+            id: id
+          - status_message: status_message
+            created_at: 2000-01-23T04:56:07.000+00:00
+            messages:
+            - messages
+            - messages
+            datacenter: datacenter
+            id: id
+          build_info:
+            image: image
+            stage_state:
+            - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - status_message: status_message
+              finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            build_job_id: build_job_id
+            sha: sha
         app_id: app_id
-        version: version
       properties:
         id:
           type: string
@@ -6131,15 +6359,19 @@ components:
           type: string
         child_id:
           type: string
+        status:
+          $ref: '#/components/schemas/DeploymentStatus'
+        metadata:
+          $ref: '#/components/schemas/DeploymentMetadata'
         version:
           format: int64
           type: string
         deployment_group:
           type: string
-        status:
-          $ref: '#/components/schemas/DeploymentState.Status'
-        metadata:
-          $ref: '#/components/schemas/DeploymentMetadata'
+        definition:
+          $ref: '#/components/schemas/ServiceDefinition'
+        state:
+          $ref: '#/components/schemas/ServiceRevisionState'
       type: object
     GetDeploymentReply:
       example:
@@ -6154,16 +6386,96 @@ components:
                 sha: sha
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            regions:
+            - regions
+            - regions
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
           id: id
+          state:
+            status_message: status_message
+            datacenters:
+            - datacenters
+            - datacenters
+            instances:
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            build_info:
+              image: image
+              stage_state:
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              build_job_id: build_job_id
+              sha: sha
           app_id: app_id
-          version: version
       properties:
         deployment:
           $ref: '#/components/schemas/Deployment'
@@ -6181,16 +6493,96 @@ components:
                 sha: sha
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            regions:
+            - regions
+            - regions
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
           id: id
+          state:
+            status_message: status_message
+            datacenters:
+            - datacenters
+            - datacenters
+            instances:
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            build_info:
+              image: image
+              stage_state:
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              build_job_id: build_job_id
+              sha: sha
           app_id: app_id
-          version: version
         - metadata:
             trigger:
               git:
@@ -6201,16 +6593,96 @@ components:
                 sha: sha
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
-          created_at: 2000-01-23T04:56:07.000+00:00
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            regions:
+            - regions
+            - regions
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            - value: value
+              key: key
+              value_from_secret: value_from_secret
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
           id: id
+          state:
+            status_message: status_message
+            datacenters:
+            - datacenters
+            - datacenters
+            instances:
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            - status_message: status_message
+              created_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              datacenter: datacenter
+              id: id
+            build_info:
+              image: image
+              stage_state:
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              - status_message: status_message
+                finished_at: 2000-01-23T04:56:07.000+00:00
+                name: name
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+              build_job_id: build_job_id
+              sha: sha
           app_id: app_id
-          version: version
         offset: 6
         limit: 0
         count: 1
@@ -7742,6 +8214,7 @@ x-tagGroups:
   - Connectors
   - Apps
   - Services
+  - Deployments
   - Instances
   - Logs
   - CatalogRegions

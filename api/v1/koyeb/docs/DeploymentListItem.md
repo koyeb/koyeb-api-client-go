@@ -12,10 +12,12 @@ Name | Type | Description | Notes
 **ServiceId** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 **ChildId** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to [**DeploymentStatus**](DeploymentStatus.md) |  | [optional] [default to DEPLOYMENTSTATUS_PENDING]
+**Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**DeploymentStateStatus**](DeploymentStateStatus.md) |  | [optional] [default to DEPLOYMENTSTATESTATUS_UNKNOWN]
-**Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
+**Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
+**State** | Pointer to [**ServiceRevisionState**](ServiceRevisionState.md) |  | [optional] 
 
 ## Methods
 
@@ -236,6 +238,56 @@ SetChildId sets ChildId field to given value.
 
 HasChildId returns a boolean if a field has been set.
 
+### GetStatus
+
+`func (o *DeploymentListItem) GetStatus() DeploymentStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DeploymentListItem) GetStatusOk() (*DeploymentStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DeploymentListItem) SetStatus(v DeploymentStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *DeploymentListItem) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *DeploymentListItem) GetMetadata() DeploymentMetadata`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DeploymentListItem) GetMetadataOk() (*DeploymentMetadata, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DeploymentListItem) SetMetadata(v DeploymentMetadata)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DeploymentListItem) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
 ### GetVersion
 
 `func (o *DeploymentListItem) GetVersion() string`
@@ -286,55 +338,55 @@ SetDeploymentGroup sets DeploymentGroup field to given value.
 
 HasDeploymentGroup returns a boolean if a field has been set.
 
-### GetStatus
+### GetDefinition
 
-`func (o *DeploymentListItem) GetStatus() DeploymentStateStatus`
+`func (o *DeploymentListItem) GetDefinition() ServiceDefinition`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetDefinition returns the Definition field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetDefinitionOk
 
-`func (o *DeploymentListItem) GetStatusOk() (*DeploymentStateStatus, bool)`
+`func (o *DeploymentListItem) GetDefinitionOk() (*ServiceDefinition, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStatus
+### SetDefinition
 
-`func (o *DeploymentListItem) SetStatus(v DeploymentStateStatus)`
+`func (o *DeploymentListItem) SetDefinition(v ServiceDefinition)`
 
-SetStatus sets Status field to given value.
+SetDefinition sets Definition field to given value.
 
-### HasStatus
+### HasDefinition
 
-`func (o *DeploymentListItem) HasStatus() bool`
+`func (o *DeploymentListItem) HasDefinition() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasDefinition returns a boolean if a field has been set.
 
-### GetMetadata
+### GetState
 
-`func (o *DeploymentListItem) GetMetadata() DeploymentMetadata`
+`func (o *DeploymentListItem) GetState() ServiceRevisionState`
 
-GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+GetState returns the State field if non-nil, zero value otherwise.
 
-### GetMetadataOk
+### GetStateOk
 
-`func (o *DeploymentListItem) GetMetadataOk() (*DeploymentMetadata, bool)`
+`func (o *DeploymentListItem) GetStateOk() (*ServiceRevisionState, bool)`
 
-GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMetadata
+### SetState
 
-`func (o *DeploymentListItem) SetMetadata(v DeploymentMetadata)`
+`func (o *DeploymentListItem) SetState(v ServiceRevisionState)`
 
-SetMetadata sets Metadata field to given value.
+SetState sets State field to given value.
 
-### HasMetadata
+### HasState
 
-`func (o *DeploymentListItem) HasMetadata() bool`
+`func (o *DeploymentListItem) HasState() bool`
 
-HasMetadata returns a boolean if a field has been set.
+HasState returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

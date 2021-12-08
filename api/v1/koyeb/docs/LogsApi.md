@@ -4,10 +4,10 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TailInstanceLogs**](LogsApi.md#TailInstanceLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
-[**TailLogs**](LogsApi.md#TailLogs) | **Get** /v1/streams/logs | 
-[**TailRevisionBuildLogs**](LogsApi.md#TailRevisionBuildLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
-[**TailRuntimeLogs**](LogsApi.md#TailRuntimeLogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | 
+[**TailInstanceLogs**](LogsApi.md#TailInstanceLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | TailInstanceLogs
+[**TailLogs**](LogsApi.md#TailLogs) | **Get** /v1/streams/logs/tail | Tails logs
+[**TailRevisionBuildLogs**](LogsApi.md#TailRevisionBuildLogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | TailRevisionBuildLogs
+[**TailRuntimeLogs**](LogsApi.md#TailRuntimeLogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | TailRuntimeLogs
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > StreamResultOfRevisionLogEntry TailInstanceLogs(ctx, appIdOrName, serviceIdOrName, revisionId, instanceId, stream).Offset(offset).Execute()
 
-
+TailInstanceLogs
 
 ### Example
 
@@ -95,9 +95,9 @@ Name | Type | Description  | Notes
 
 ## TailLogs
 
-> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Start(start).Limit(limit).Execute()
+> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
 
-
+Tails logs
 
 ### Example
 
@@ -117,12 +117,13 @@ func main() {
     serviceId := "serviceId_example" // string |  (optional)
     deploymentId := "deploymentId_example" // string |  (optional)
     instanceId := "instanceId_example" // string |  (optional)
+    stream := "stream_example" // string |  (optional)
     start := "start_example" // string |  (optional)
     limit := "limit_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Start(start).Limit(limit).Execute()
+    resp, r, err := api_client.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.TailLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -148,6 +149,7 @@ Name | Type | Description  | Notes
  **serviceId** | **string** |  | 
  **deploymentId** | **string** |  | 
  **instanceId** | **string** |  | 
+ **stream** | **string** |  | 
  **start** | **string** |  | 
  **limit** | **string** |  | 
 
@@ -173,7 +175,7 @@ Name | Type | Description  | Notes
 
 > StreamResultOfLogEntry TailRevisionBuildLogs(ctx, appIdOrName, serviceIdOrName, revisionId).Start(start).Limit(limit).Execute()
 
-
+TailRevisionBuildLogs
 
 ### Example
 
@@ -251,7 +253,7 @@ Name | Type | Description  | Notes
 
 > StreamResultOfLogEntry TailRuntimeLogs(ctx, appIdOrName).ServiceId(serviceId).RevisionId(revisionId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
 
-
+TailRuntimeLogs
 
 ### Example
 

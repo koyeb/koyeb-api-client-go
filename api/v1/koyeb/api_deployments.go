@@ -17,7 +17,6 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
-	"reflect"
 )
 
 // Linger please
@@ -217,26 +216,26 @@ func (a *DeploymentsApiService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 type ApiListDeploymentsRequest struct {
 	ctx _context.Context
 	ApiService DeploymentsApi
+	appId *string
+	serviceId *string
 	limit *string
 	offset *string
-	statuses *[]string
-	deploymentGroups *[]string
 }
 
+func (r ApiListDeploymentsRequest) AppId(appId string) ApiListDeploymentsRequest {
+	r.appId = &appId
+	return r
+}
+func (r ApiListDeploymentsRequest) ServiceId(serviceId string) ApiListDeploymentsRequest {
+	r.serviceId = &serviceId
+	return r
+}
 func (r ApiListDeploymentsRequest) Limit(limit string) ApiListDeploymentsRequest {
 	r.limit = &limit
 	return r
 }
 func (r ApiListDeploymentsRequest) Offset(offset string) ApiListDeploymentsRequest {
 	r.offset = &offset
-	return r
-}
-func (r ApiListDeploymentsRequest) Statuses(statuses []string) ApiListDeploymentsRequest {
-	r.statuses = &statuses
-	return r
-}
-func (r ApiListDeploymentsRequest) DeploymentGroups(deploymentGroups []string) ApiListDeploymentsRequest {
-	r.deploymentGroups = &deploymentGroups
 	return r
 }
 
@@ -281,33 +280,17 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.appId != nil {
+		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
+	}
+	if r.serviceId != nil {
+		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.statuses != nil {
-		t := *r.statuses
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
-		}
-	}
-	if r.deploymentGroups != nil {
-		t := *r.deploymentGroups
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("deployment_groups", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("deployment_groups", parameterToString(t, "multi"))
-		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
