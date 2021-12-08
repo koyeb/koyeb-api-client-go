@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## ListDeployments
 
-> ListDeploymentsReply ListDeployments(ctx).Limit(limit).Offset(offset).Statuses(statuses).DeploymentGroups(deploymentGroups).Execute()
+> ListDeploymentsReply ListDeployments(ctx).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Execute()
 
 List Deployments
 
@@ -96,14 +96,14 @@ import (
 )
 
 func main() {
+    appId := "appId_example" // string | (Optional) Filter on application id. (optional)
+    serviceId := "serviceId_example" // string | (Optional) Filter on service id. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on deployment statuses. (optional)
-    deploymentGroups := []string{"Inner_example"} // []string | (Optional) Filter on deployment groups. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeploymentsApi.ListDeployments(context.Background()).Limit(limit).Offset(offset).Statuses(statuses).DeploymentGroups(deploymentGroups).Execute()
+    resp, r, err := api_client.DeploymentsApi.ListDeployments(context.Background()).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.ListDeployments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,10 +124,10 @@ Other parameters are passed through a pointer to a apiListDeploymentsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **appId** | **string** | (Optional) Filter on application id. | 
+ **serviceId** | **string** | (Optional) Filter on service id. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **statuses** | **[]string** | (Optional) Filter on deployment statuses. | 
- **deploymentGroups** | **[]string** | (Optional) Filter on deployment groups. | 
 
 ### Return type
 

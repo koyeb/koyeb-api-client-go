@@ -50,7 +50,7 @@ docs/CredentialsApi.md
 docs/Deployment.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
-docs/DeploymentStateStatus.md
+docs/DeploymentStatus.md
 docs/DeploymentsApi.md
 docs/DeprecatedGetServiceRevisionReply.md
 docs/DeprecatedListServiceRevisionsReply.md
@@ -197,7 +197,7 @@ model_credential_reply.go
 model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
-model_deployment_state_status.go
+model_deployment_status.go
 model_deprecated_get_service_revision_reply.go
 model_deprecated_list_service_revisions_reply.go
 model_deprecated_redeploy_reply.go

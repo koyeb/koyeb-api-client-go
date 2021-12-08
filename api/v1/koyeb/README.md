@@ -105,10 +105,10 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
-*LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | 
-*LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs | 
-*LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | 
-*LogsApi* | [**TailRuntimeLogs**](docs/LogsApi.md#tailruntimelogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | 
+*LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | TailInstanceLogs
+*LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
+*LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | TailRevisionBuildLogs
+*LogsApi* | [**TailRuntimeLogs**](docs/LogsApi.md#tailruntimelogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | TailRuntimeLogs
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
@@ -182,7 +182,7 @@ Class | Method | HTTP request | Description
  - [Deployment](docs/Deployment.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
- - [DeploymentStateStatus](docs/DeploymentStateStatus.md)
+ - [DeploymentStatus](docs/DeploymentStatus.md)
  - [DeprecatedGetServiceRevisionReply](docs/DeprecatedGetServiceRevisionReply.md)
  - [DeprecatedListServiceRevisionsReply](docs/DeprecatedListServiceRevisionsReply.md)
  - [DeprecatedRedeployReply](docs/DeprecatedRedeployReply.md)

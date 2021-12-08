@@ -45,6 +45,7 @@
         "Connectors",
         "Apps",
         "Services",
+        "Deployments",
         "Instances",
         "Logs",
         "CatalogRegions",
@@ -1534,6 +1535,20 @@
         },
         "parameters": [
           {
+            "name": "app_id",
+            "description": "(Optional) Filter on application id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_id",
+            "description": "(Optional) Filter on service id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "limit",
             "description": "(Optional) The number of items to return.",
             "in": "query",
@@ -1546,38 +1561,6 @@
             "in": "query",
             "required": false,
             "type": "string"
-          },
-          {
-            "name": "statuses",
-            "description": "(Optional) Filter on deployment statuses.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string",
-              "enum": [
-                "UNKNOWN",
-                "STARTING",
-                "ACTIVE",
-                "STOPPING",
-                "STOPPED",
-                "FAILED",
-                "BUILDING",
-                "TERMINATED"
-              ]
-            },
-            "collectionFormat": "multi"
-          },
-          {
-            "name": "deployment_groups",
-            "description": "(Optional) Filter on deployment groups.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -4090,6 +4073,7 @@
     },
     "/v1/apps/{app_id_or_name}/logs/tail": {
       "get": {
+        "summary": "TailRuntimeLogs",
         "operationId": "TailRuntimeLogs",
         "responses": {
           "200": {
@@ -4185,6 +4169,7 @@
     },
     "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail": {
       "get": {
+        "summary": "TailRevisionBuildLogs",
         "operationId": "TailRevisionBuildLogs",
         "responses": {
           "200": {
@@ -4267,6 +4252,7 @@
     },
     "/v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail": {
       "get": {
+        "summary": "TailInstanceLogs",
         "operationId": "TailInstanceLogs",
         "responses": {
           "200": {
@@ -4354,8 +4340,9 @@
         ]
       }
     },
-    "/v1/streams/logs": {
+    "/v1/streams/logs/tail": {
       "get": {
+        "summary": "Tails logs",
         "operationId": "TailLogs",
         "responses": {
           "200": {
@@ -4425,6 +4412,12 @@
           },
           {
             "name": "instance_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stream",
             "in": "query",
             "required": false,
             "type": "string"
@@ -4910,6 +4903,12 @@
         "child_id": {
           "type": "string"
         },
+        "status": {
+          "$ref": "#/definitions/DeploymentStatus"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DeploymentMetadata"
+        },
         "version": {
           "type": "string",
           "format": "int64"
@@ -4917,11 +4916,11 @@
         "deployment_group": {
           "type": "string"
         },
-        "status": {
-          "$ref": "#/definitions/DeploymentState.Status"
+        "definition": {
+          "$ref": "#/definitions/ServiceDefinition"
         },
-        "metadata": {
-          "$ref": "#/definitions/DeploymentMetadata"
+        "state": {
+          "$ref": "#/definitions/ServiceRevisionState"
         }
       }
     },
@@ -4933,19 +4932,12 @@
         }
       }
     },
-    "DeploymentState.Status": {
+    "DeploymentStatus": {
       "type": "string",
       "enum": [
-        "UNKNOWN",
-        "STARTING",
-        "ACTIVE",
-        "STOPPING",
-        "STOPPED",
-        "FAILED",
-        "BUILDING",
-        "TERMINATED"
+        "PENDING"
       ],
-      "default": "UNKNOWN"
+      "default": "PENDING"
     },
     "DeprecatedGetServiceRevisionReply": {
       "type": "object",
@@ -5664,6 +5656,12 @@
         "child_id": {
           "type": "string"
         },
+        "status": {
+          "$ref": "#/definitions/DeploymentStatus"
+        },
+        "metadata": {
+          "$ref": "#/definitions/DeploymentMetadata"
+        },
         "version": {
           "type": "string",
           "format": "int64"
@@ -5671,11 +5669,11 @@
         "deployment_group": {
           "type": "string"
         },
-        "status": {
-          "$ref": "#/definitions/DeploymentState.Status"
+        "definition": {
+          "$ref": "#/definitions/ServiceDefinition"
         },
-        "metadata": {
-          "$ref": "#/definitions/DeploymentMetadata"
+        "state": {
+          "$ref": "#/definitions/ServiceRevisionState"
         }
       }
     },
