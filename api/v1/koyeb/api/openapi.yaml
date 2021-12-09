@@ -1302,7 +1302,7 @@ paths:
         name: update_mask
         schema:
           type: string
-      - description: If set only run validation.
+      - description: If set, run validation and check that the service exists.
         in: query
         name: dry_run
         schema:
@@ -1362,7 +1362,7 @@ paths:
         name: update_mask
         schema:
           type: string
-      - description: If set only run validation.
+      - description: If set, run validation and check that the service exists.
         in: query
         name: dry_run
         schema:
