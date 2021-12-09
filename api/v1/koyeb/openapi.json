@@ -1360,7 +1360,7 @@
           },
           {
             "name": "dry_run",
-            "description": "If set only run validation.",
+            "description": "If set, run validation and check that the service exists.",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -1429,7 +1429,7 @@
           },
           {
             "name": "dry_run",
-            "description": "If set only run validation.",
+            "description": "If set, run validation and check that the service exists.",
             "in": "query",
             "required": false,
             "type": "boolean"

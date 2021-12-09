@@ -1055,7 +1055,7 @@ func main() {
     id := "id_example" // string | The id of the entity to update
     body := *openapiclient.NewUpdateService() // UpdateService | 
     updateMask := "updateMask_example" // string |  (optional)
-    dryRun := true // bool | If set only run validation. (optional)
+    dryRun := true // bool | If set, run validation and check that the service exists. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -1087,7 +1087,7 @@ Name | Type | Description  | Notes
 
  **body** | [**UpdateService**](UpdateService.md) |  | 
  **updateMask** | **string** |  | 
- **dryRun** | **bool** | If set only run validation. | 
+ **dryRun** | **bool** | If set, run validation and check that the service exists. | 
 
 ### Return type
 
@@ -1129,7 +1129,7 @@ func main() {
     id := "id_example" // string | The id of the entity to update
     body := *openapiclient.NewUpdateService() // UpdateService | 
     updateMask := "updateMask_example" // string |  (optional)
-    dryRun := true // bool | If set only run validation. (optional)
+    dryRun := true // bool | If set, run validation and check that the service exists. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -1161,7 +1161,7 @@ Name | Type | Description  | Notes
 
  **body** | [**UpdateService**](UpdateService.md) |  | 
  **updateMask** | **string** |  | 
- **dryRun** | **bool** | If set only run validation. | 
+ **dryRun** | **bool** | If set, run validation and check that the service exists. | 
 
 ### Return type
 
