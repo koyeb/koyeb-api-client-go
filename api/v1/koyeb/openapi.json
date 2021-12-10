@@ -1561,6 +1561,27 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "oldstatuses",
+            "description": "(Optional / Deprecated) Filter on statuses.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "UNKNOWN",
+                "STARTING",
+                "ACTIVE",
+                "STOPPING",
+                "STOPPED",
+                "FAILED",
+                "BUILDING",
+                "TERMINATED"
+              ]
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [

@@ -1484,6 +1484,24 @@ paths:
         name: offset
         schema:
           type: string
+      - description: (Optional / Deprecated) Filter on statuses.
+        explode: true
+        in: query
+        name: oldstatuses
+        schema:
+          items:
+            enum:
+            - UNKNOWN
+            - STARTING
+            - ACTIVE
+            - STOPPING
+            - STOPPED
+            - FAILED
+            - BUILDING
+            - TERMINATED
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
