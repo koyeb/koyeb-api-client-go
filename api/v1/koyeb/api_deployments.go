@@ -17,6 +17,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -220,6 +221,7 @@ type ApiListDeploymentsRequest struct {
 	serviceId *string
 	limit *string
 	offset *string
+	oldstatuses *[]string
 }
 
 func (r ApiListDeploymentsRequest) AppId(appId string) ApiListDeploymentsRequest {
@@ -236,6 +238,10 @@ func (r ApiListDeploymentsRequest) Limit(limit string) ApiListDeploymentsRequest
 }
 func (r ApiListDeploymentsRequest) Offset(offset string) ApiListDeploymentsRequest {
 	r.offset = &offset
+	return r
+}
+func (r ApiListDeploymentsRequest) Oldstatuses(oldstatuses []string) ApiListDeploymentsRequest {
+	r.oldstatuses = &oldstatuses
 	return r
 }
 
@@ -291,6 +297,17 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.oldstatuses != nil {
+		t := *r.oldstatuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("oldstatuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("oldstatuses", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
