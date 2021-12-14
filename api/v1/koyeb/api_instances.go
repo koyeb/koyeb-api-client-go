@@ -433,6 +433,7 @@ type ApiListInstancesRequest struct {
 	appId *string
 	serviceId *string
 	deploymentId *string
+	allocationId *string
 	statuses *[]string
 	limit *string
 	offset *string
@@ -449,6 +450,10 @@ func (r ApiListInstancesRequest) ServiceId(serviceId string) ApiListInstancesReq
 }
 func (r ApiListInstancesRequest) DeploymentId(deploymentId string) ApiListInstancesRequest {
 	r.deploymentId = &deploymentId
+	return r
+}
+func (r ApiListInstancesRequest) AllocationId(allocationId string) ApiListInstancesRequest {
+	r.allocationId = &allocationId
 	return r
 }
 func (r ApiListInstancesRequest) Statuses(statuses []string) ApiListInstancesRequest {
@@ -517,6 +522,9 @@ func (a *InstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (L
 	}
 	if r.deploymentId != nil {
 		localVarQueryParams.Add("deployment_id", parameterToString(*r.deploymentId, ""))
+	}
+	if r.allocationId != nil {
+		localVarQueryParams.Add("allocation_id", parameterToString(*r.allocationId, ""))
 	}
 	if r.statuses != nil {
 		t := *r.statuses
