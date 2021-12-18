@@ -18,7 +18,7 @@ import (
 // InstanceStatus the model 'InstanceStatus'
 type InstanceStatus string
 
-// List of InstanceStatus
+// List of Instance.Status
 const (
 	INSTANCESTATUS_ALLOCATING InstanceStatus = "ALLOCATING"
 	INSTANCESTATUS_STARTING InstanceStatus = "STARTING"
@@ -77,7 +77,7 @@ func (v InstanceStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to InstanceStatus value
+// Ptr returns reference to Instance.Status value
 func (v InstanceStatus) Ptr() *InstanceStatus {
 	return &v
 }

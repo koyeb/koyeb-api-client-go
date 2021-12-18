@@ -3839,6 +3839,30 @@
             "type": "string"
           },
           {
+            "name": "statuses",
+            "description": "(Optional) Filter on statuses.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "PENDING",
+                "PROVISIONING",
+                "SCHEDULED",
+                "CANCELED",
+                "ALLOCATING",
+                "STARTING",
+                "HEALTHY",
+                "UNHEALTHY",
+                "STOPPING",
+                "STOPPED",
+                "ERROR"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
             "name": "oldstatuses",
             "description": "(Optional / Deprecated) Filter on statuses.",
             "in": "query",
@@ -5515,7 +5539,7 @@
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/InstanceStatus"
+          "$ref": "#/definitions/Instance.Status"
         },
         "messages": {
           "type": "array",
@@ -5524,6 +5548,19 @@
           }
         }
       }
+    },
+    "Instance.Status": {
+      "type": "string",
+      "enum": [
+        "ALLOCATING",
+        "STARTING",
+        "HEALTHY",
+        "UNHEALTHY",
+        "STOPPING",
+        "STOPPED",
+        "ERROR"
+      ],
+      "default": "ALLOCATING"
     },
     "InstanceListItem": {
       "type": "object",
@@ -5558,7 +5595,7 @@
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/InstanceStatus"
+          "$ref": "#/definitions/Instance.Status"
         },
         "messages": {
           "type": "array",
@@ -5567,19 +5604,6 @@
           }
         }
       }
-    },
-    "InstanceStatus": {
-      "type": "string",
-      "enum": [
-        "ALLOCATING",
-        "STARTING",
-        "HEALTHY",
-        "UNHEALTHY",
-        "STOPPING",
-        "STOPPED",
-        "ERROR"
-      ],
-      "default": "ALLOCATING"
     },
     "ListInstancesReply": {
       "type": "object",
@@ -5696,10 +5720,16 @@
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/DeploymentStatus"
+          "$ref": "#/definitions/Deployment.Status"
         },
         "metadata": {
           "$ref": "#/definitions/DeploymentMetadata"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "version": {
           "type": "string",
@@ -5716,6 +5746,23 @@
         }
       }
     },
+    "Deployment.Status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "PROVISIONING",
+        "SCHEDULED",
+        "CANCELED",
+        "ALLOCATING",
+        "STARTING",
+        "HEALTHY",
+        "UNHEALTHY",
+        "STOPPING",
+        "STOPPED",
+        "ERROR"
+      ],
+      "default": "PENDING"
+    },
     "DeploymentMetadata": {
       "type": "object",
       "properties": {
@@ -5723,13 +5770,6 @@
           "$ref": "#/definitions/TriggerDeploymentMetadata"
         }
       }
-    },
-    "DeploymentStatus": {
-      "type": "string",
-      "enum": [
-        "PENDING"
-      ],
-      "default": "PENDING"
     },
     "DeprecatedGetServiceRevisionReply": {
       "type": "object",
@@ -6089,45 +6129,6 @@
         }
       }
     },
-    "ServiceInstance": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "datacenter": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/ServiceInstance.Status"
-        },
-        "status_message": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "ServiceInstance.Status": {
-      "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "STARTING",
-        "HEALTHY",
-        "UNHEALTHY",
-        "FAILED",
-        "STOPPED"
-      ],
-      "default": "UNKNOWN"
-    },
     "ServiceListItem": {
       "type": "object",
       "properties": {
@@ -6254,13 +6255,6 @@
     "ServiceRevisionState": {
       "type": "object",
       "properties": {
-        "instances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceInstance"
-          },
-          "title": "Information about instances"
-        },
         "status": {
           "$ref": "#/definitions/ServiceRevisionState.Status",
           "title": "A simple status to indicate where this revision is at"
@@ -6449,10 +6443,16 @@
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/DeploymentStatus"
+          "$ref": "#/definitions/Deployment.Status"
         },
         "metadata": {
           "$ref": "#/definitions/DeploymentMetadata"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "version": {
           "type": "string",

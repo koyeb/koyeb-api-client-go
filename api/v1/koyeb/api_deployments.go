@@ -221,6 +221,7 @@ type ApiListDeploymentsRequest struct {
 	serviceId *string
 	limit *string
 	offset *string
+	statuses *[]string
 	oldstatuses *[]string
 }
 
@@ -238,6 +239,10 @@ func (r ApiListDeploymentsRequest) Limit(limit string) ApiListDeploymentsRequest
 }
 func (r ApiListDeploymentsRequest) Offset(offset string) ApiListDeploymentsRequest {
 	r.offset = &offset
+	return r
+}
+func (r ApiListDeploymentsRequest) Statuses(statuses []string) ApiListDeploymentsRequest {
+	r.statuses = &statuses
 	return r
 }
 func (r ApiListDeploymentsRequest) Oldstatuses(oldstatuses []string) ApiListDeploymentsRequest {
@@ -297,6 +302,17 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.statuses != nil {
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
 	}
 	if r.oldstatuses != nil {
 		t := *r.oldstatuses

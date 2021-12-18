@@ -3428,6 +3428,27 @@ paths:
         name: offset
         schema:
           type: string
+      - description: (Optional) Filter on statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - PENDING
+            - PROVISIONING
+            - SCHEDULED
+            - CANCELED
+            - ALLOCATING
+            - STARTING
+            - HEALTHY
+            - UNHEALTHY
+            - STOPPING
+            - STOPPED
+            - ERROR
+            type: string
+          type: array
+        style: form
       - description: (Optional / Deprecated) Filter on statuses.
         explode: true
         in: query
@@ -5159,12 +5180,23 @@ components:
         datacenter:
           type: string
         status:
-          $ref: '#/components/schemas/InstanceStatus'
+          $ref: '#/components/schemas/Instance.Status'
         messages:
           items:
             type: string
           type: array
       type: object
+    Instance.Status:
+      default: ALLOCATING
+      enum:
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      type: string
     InstanceListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5201,23 +5233,12 @@ components:
         datacenter:
           type: string
         status:
-          $ref: '#/components/schemas/InstanceStatus'
+          $ref: '#/components/schemas/Instance.Status'
         messages:
           items:
             type: string
           type: array
       type: object
-    InstanceStatus:
-      default: ALLOCATING
-      enum:
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERROR
-      type: string
     ListInstancesReply:
       example:
         offset: 6
@@ -5421,6 +5442,9 @@ components:
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
+        messages:
+        - messages
+        - messages
         definition:
           routes:
           - path: path
@@ -5468,21 +5492,6 @@ components:
           datacenters:
           - datacenters
           - datacenters
-          instances:
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
           build_info:
             image: image
             stage_state:
@@ -5523,9 +5532,13 @@ components:
         child_id:
           type: string
         status:
-          $ref: '#/components/schemas/DeploymentStatus'
+          $ref: '#/components/schemas/Deployment.Status'
         metadata:
           $ref: '#/components/schemas/DeploymentMetadata'
+        messages:
+          items:
+            type: string
+          type: array
         version:
           format: int64
           type: string
@@ -5536,6 +5549,21 @@ components:
         state:
           $ref: '#/components/schemas/ServiceRevisionState'
       type: object
+    Deployment.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - PROVISIONING
+      - SCHEDULED
+      - CANCELED
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      type: string
     DeploymentMetadata:
       example:
         trigger:
@@ -5551,11 +5579,6 @@ components:
         trigger:
           $ref: '#/components/schemas/TriggerDeploymentMetadata'
       type: object
-    DeploymentStatus:
-      default: PENDING
-      enum:
-      - PENDING
-      type: string
     DeprecatedGetServiceRevisionReply:
       example:
         revision:
@@ -5622,21 +5645,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:
@@ -5792,21 +5800,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:
@@ -6147,6 +6140,9 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          messages:
+          - messages
+          - messages
           definition:
             routes:
             - path: path
@@ -6194,21 +6190,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:
@@ -6393,42 +6374,6 @@ components:
         git:
           $ref: '#/components/schemas/GitSource'
       type: object
-    ServiceInstance:
-      example:
-        status_message: status_message
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        datacenter: datacenter
-        id: id
-      properties:
-        id:
-          type: string
-        datacenter:
-          type: string
-        status:
-          $ref: '#/components/schemas/ServiceInstance.Status'
-        status_message:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        messages:
-          items:
-            type: string
-          type: array
-      type: object
-    ServiceInstance.Status:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - STARTING
-      - HEALTHY
-      - UNHEALTHY
-      - FAILED
-      - STOPPED
-      type: string
     ServiceListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -6552,21 +6497,6 @@ components:
           datacenters:
           - datacenters
           - datacenters
-          instances:
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
           build_info:
             image: image
             stage_state:
@@ -6677,21 +6607,6 @@ components:
         datacenters:
         - datacenters
         - datacenters
-        instances:
-        - status_message: status_message
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-        - status_message: status_message
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
         build_info:
           image: image
           stage_state:
@@ -6712,11 +6627,6 @@ components:
           build_job_id: build_job_id
           sha: sha
       properties:
-        instances:
-          items:
-            $ref: '#/components/schemas/ServiceInstance'
-          title: Information about instances
-          type: array
         status:
           $ref: '#/components/schemas/ServiceRevisionState.Status'
         status_message:
@@ -6989,6 +6899,9 @@ components:
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
+        messages:
+        - messages
+        - messages
         definition:
           routes:
           - path: path
@@ -7036,21 +6949,6 @@ components:
           datacenters:
           - datacenters
           - datacenters
-          instances:
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
-          - status_message: status_message
-            created_at: 2000-01-23T04:56:07.000+00:00
-            messages:
-            - messages
-            - messages
-            datacenter: datacenter
-            id: id
           build_info:
             image: image
             stage_state:
@@ -7091,9 +6989,13 @@ components:
         child_id:
           type: string
         status:
-          $ref: '#/components/schemas/DeploymentStatus'
+          $ref: '#/components/schemas/Deployment.Status'
         metadata:
           $ref: '#/components/schemas/DeploymentMetadata'
+        messages:
+          items:
+            type: string
+          type: array
         version:
           format: int64
           type: string
@@ -7125,6 +7027,9 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          messages:
+          - messages
+          - messages
           definition:
             routes:
             - path: path
@@ -7172,21 +7077,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:
@@ -7232,6 +7122,9 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          messages:
+          - messages
+          - messages
           definition:
             routes:
             - path: path
@@ -7279,21 +7172,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:
@@ -7332,6 +7210,9 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          messages:
+          - messages
+          - messages
           definition:
             routes:
             - path: path
@@ -7379,21 +7260,6 @@ components:
             datacenters:
             - datacenters
             - datacenters
-            instances:
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
-            - status_message: status_message
-              created_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              datacenter: datacenter
-              id: id
             build_info:
               image: image
               stage_state:

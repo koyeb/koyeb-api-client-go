@@ -261,8 +261,6 @@ Class | Method | HTTP request | Description
  - [SecretType](docs/SecretType.md)
  - [Service](docs/Service.md)
  - [ServiceDefinition](docs/ServiceDefinition.md)
- - [ServiceInstance](docs/ServiceInstance.md)
- - [ServiceInstanceStatus](docs/ServiceInstanceStatus.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceRevision](docs/ServiceRevision.md)
  - [ServiceRevisionListItem](docs/ServiceRevisionListItem.md)

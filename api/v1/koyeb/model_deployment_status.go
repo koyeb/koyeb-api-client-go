@@ -18,13 +18,33 @@ import (
 // DeploymentStatus the model 'DeploymentStatus'
 type DeploymentStatus string
 
-// List of DeploymentStatus
+// List of Deployment.Status
 const (
 	DEPLOYMENTSTATUS_PENDING DeploymentStatus = "PENDING"
+	DEPLOYMENTSTATUS_PROVISIONING DeploymentStatus = "PROVISIONING"
+	DEPLOYMENTSTATUS_SCHEDULED DeploymentStatus = "SCHEDULED"
+	DEPLOYMENTSTATUS_CANCELED DeploymentStatus = "CANCELED"
+	DEPLOYMENTSTATUS_ALLOCATING DeploymentStatus = "ALLOCATING"
+	DEPLOYMENTSTATUS_STARTING DeploymentStatus = "STARTING"
+	DEPLOYMENTSTATUS_HEALTHY DeploymentStatus = "HEALTHY"
+	DEPLOYMENTSTATUS_UNHEALTHY DeploymentStatus = "UNHEALTHY"
+	DEPLOYMENTSTATUS_STOPPING DeploymentStatus = "STOPPING"
+	DEPLOYMENTSTATUS_STOPPED DeploymentStatus = "STOPPED"
+	DEPLOYMENTSTATUS_ERROR DeploymentStatus = "ERROR"
 )
 
 var allowedDeploymentStatusEnumValues = []DeploymentStatus{
 	"PENDING",
+	"PROVISIONING",
+	"SCHEDULED",
+	"CANCELED",
+	"ALLOCATING",
+	"STARTING",
+	"HEALTHY",
+	"UNHEALTHY",
+	"STOPPING",
+	"STOPPED",
+	"ERROR",
 }
 
 func (v *DeploymentStatus) UnmarshalJSON(src []byte) error {
@@ -65,7 +85,7 @@ func (v DeploymentStatus) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to DeploymentStatus value
+// Ptr returns reference to Deployment.Status value
 func (v DeploymentStatus) Ptr() *DeploymentStatus {
 	return &v
 }
