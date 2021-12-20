@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Instances** | Pointer to [**[]ServiceInstance**](ServiceInstance.md) |  | [optional] 
 **Status** | Pointer to [**ServiceRevisionStateStatus**](ServiceRevisionStateStatus.md) |  | [optional] [default to SERVICEREVISIONSTATESTATUS_UNKNOWN]
 **StatusMessage** | Pointer to **string** |  | [optional] 
 **Datacenters** | Pointer to **[]string** |  | [optional] 
@@ -28,31 +27,6 @@ will change when the set of required properties is changed
 NewServiceRevisionStateWithDefaults instantiates a new ServiceRevisionState object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetInstances
-
-`func (o *ServiceRevisionState) GetInstances() []ServiceInstance`
-
-GetInstances returns the Instances field if non-nil, zero value otherwise.
-
-### GetInstancesOk
-
-`func (o *ServiceRevisionState) GetInstancesOk() (*[]ServiceInstance, bool)`
-
-GetInstancesOk returns a tuple with the Instances field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstances
-
-`func (o *ServiceRevisionState) SetInstances(v []ServiceInstance)`
-
-SetInstances sets Instances field to given value.
-
-### HasInstances
-
-`func (o *ServiceRevisionState) HasInstances() bool`
-
-HasInstances returns a boolean if a field has been set.
 
 ### GetStatus
 

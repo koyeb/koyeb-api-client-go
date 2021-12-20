@@ -137,8 +137,6 @@ docs/SecretType.md
 docs/SecretsApi.md
 docs/Service.md
 docs/ServiceDefinition.md
-docs/ServiceInstance.md
-docs/ServiceInstanceStatus.md
 docs/ServiceListItem.md
 docs/ServiceRevision.md
 docs/ServiceRevisionListItem.md
@@ -276,8 +274,6 @@ model_secret.go
 model_secret_type.go
 model_service.go
 model_service_definition.go
-model_service_instance.go
-model_service_instance_status.go
 model_service_list_item.go
 model_service_revision.go
 model_service_revision_list_item.go

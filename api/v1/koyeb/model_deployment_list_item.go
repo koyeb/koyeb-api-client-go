@@ -27,6 +27,7 @@ type DeploymentListItem struct {
 	ChildId *string `json:"child_id,omitempty"`
 	Status *DeploymentStatus `json:"status,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
@@ -374,6 +375,38 @@ func (o *DeploymentListItem) SetMetadata(v DeploymentMetadata) {
 	o.Metadata = &v
 }
 
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *DeploymentListItem) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeploymentListItem) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -533,6 +566,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version

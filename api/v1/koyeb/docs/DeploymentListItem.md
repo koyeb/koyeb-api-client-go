@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ChildId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**DeploymentStatus**](DeploymentStatus.md) |  | [optional] [default to DEPLOYMENTSTATUS_PENDING]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
+**Messages** | Pointer to **[]string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
@@ -287,6 +288,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *DeploymentListItem) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetMessages
+
+`func (o *DeploymentListItem) GetMessages() []string`
+
+GetMessages returns the Messages field if non-nil, zero value otherwise.
+
+### GetMessagesOk
+
+`func (o *DeploymentListItem) GetMessagesOk() (*[]string, bool)`
+
+GetMessagesOk returns a tuple with the Messages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessages
+
+`func (o *DeploymentListItem) SetMessages(v []string)`
+
+SetMessages sets Messages field to given value.
+
+### HasMessages
+
+`func (o *DeploymentListItem) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetVersion
 

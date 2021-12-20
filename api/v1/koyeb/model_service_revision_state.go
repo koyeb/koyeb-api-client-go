@@ -16,7 +16,6 @@ import (
 
 // ServiceRevisionState struct for ServiceRevisionState
 type ServiceRevisionState struct {
-	Instances *[]ServiceInstance `json:"instances,omitempty"`
 	Status *ServiceRevisionStateStatus `json:"status,omitempty"`
 	StatusMessage *string `json:"status_message,omitempty"`
 	Datacenters *[]string `json:"datacenters,omitempty"`
@@ -42,38 +41,6 @@ func NewServiceRevisionStateWithDefaults() *ServiceRevisionState {
 	var status ServiceRevisionStateStatus = SERVICEREVISIONSTATESTATUS_UNKNOWN
 	this.Status = &status
 	return &this
-}
-
-// GetInstances returns the Instances field value if set, zero value otherwise.
-func (o *ServiceRevisionState) GetInstances() []ServiceInstance {
-	if o == nil || o.Instances == nil {
-		var ret []ServiceInstance
-		return ret
-	}
-	return *o.Instances
-}
-
-// GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceRevisionState) GetInstancesOk() (*[]ServiceInstance, bool) {
-	if o == nil || o.Instances == nil {
-		return nil, false
-	}
-	return o.Instances, true
-}
-
-// HasInstances returns a boolean if a field has been set.
-func (o *ServiceRevisionState) HasInstances() bool {
-	if o != nil && o.Instances != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInstances gets a reference to the given []ServiceInstance and assigns it to the Instances field.
-func (o *ServiceRevisionState) SetInstances(v []ServiceInstance) {
-	o.Instances = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -206,9 +173,6 @@ func (o *ServiceRevisionState) SetBuildInfo(v ServiceRevisionStateBuildInfo) {
 
 func (o ServiceRevisionState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Instances != nil {
-		toSerialize["instances"] = o.Instances
-	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
