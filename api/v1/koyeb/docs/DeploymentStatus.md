@@ -17,6 +17,8 @@
 
 * `HEALTHY` (value: `"HEALTHY"`)
 
+* `DEGRADED` (value: `"DEGRADED"`)
+
 * `UNHEALTHY` (value: `"UNHEALTHY"`)
 
 * `STOPPING` (value: `"STOPPING"`)
