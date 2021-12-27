@@ -3442,6 +3442,7 @@ paths:
             - ALLOCATING
             - STARTING
             - HEALTHY
+            - DEGRADED
             - UNHEALTHY
             - STOPPING
             - STOPPED
@@ -5559,6 +5560,7 @@ components:
       - ALLOCATING
       - STARTING
       - HEALTHY
+      - DEGRADED
       - UNHEALTHY
       - STOPPING
       - STOPPED
