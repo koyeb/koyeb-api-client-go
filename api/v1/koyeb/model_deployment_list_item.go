@@ -20,6 +20,7 @@ type DeploymentListItem struct {
 	Id *string `json:"id,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	AllocatedAt *time.Time `json:"allocated_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
@@ -149,6 +150,38 @@ func (o *DeploymentListItem) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *DeploymentListItem) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
+}
+
+// GetAllocatedAt returns the AllocatedAt field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetAllocatedAt() time.Time {
+	if o == nil || o.AllocatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AllocatedAt
+}
+
+// GetAllocatedAtOk returns a tuple with the AllocatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetAllocatedAtOk() (*time.Time, bool) {
+	if o == nil || o.AllocatedAt == nil {
+		return nil, false
+	}
+	return o.AllocatedAt, true
+}
+
+// HasAllocatedAt returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasAllocatedAt() bool {
+	if o != nil && o.AllocatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllocatedAt gets a reference to the given time.Time and assigns it to the AllocatedAt field.
+func (o *DeploymentListItem) SetAllocatedAt(v time.Time) {
+	o.AllocatedAt = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -545,6 +578,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.AllocatedAt != nil {
+		toSerialize["allocated_at"] = o.AllocatedAt
 	}
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId

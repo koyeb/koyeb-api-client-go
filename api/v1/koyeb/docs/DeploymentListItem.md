@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**AllocatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
@@ -113,6 +114,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *DeploymentListItem) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetAllocatedAt
+
+`func (o *DeploymentListItem) GetAllocatedAt() time.Time`
+
+GetAllocatedAt returns the AllocatedAt field if non-nil, zero value otherwise.
+
+### GetAllocatedAtOk
+
+`func (o *DeploymentListItem) GetAllocatedAtOk() (*time.Time, bool)`
+
+GetAllocatedAtOk returns a tuple with the AllocatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllocatedAt
+
+`func (o *DeploymentListItem) SetAllocatedAt(v time.Time)`
+
+SetAllocatedAt sets AllocatedAt field to given value.
+
+### HasAllocatedAt
+
+`func (o *DeploymentListItem) HasAllocatedAt() bool`
+
+HasAllocatedAt returns a boolean if a field has been set.
 
 ### GetOrganizationId
 

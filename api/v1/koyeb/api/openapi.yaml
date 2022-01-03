@@ -5513,6 +5513,7 @@ components:
             build_job_id: build_job_id
             sha: sha
         app_id: app_id
+        allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -5520,6 +5521,9 @@ components:
           format: date-time
           type: string
         updated_at:
+          format: date-time
+          type: string
+        allocated_at:
           format: date-time
           type: string
         organization_id:
@@ -6212,6 +6216,7 @@ components:
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
+          allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         deployment:
           $ref: '#/components/schemas/Deployment'
@@ -6971,6 +6976,7 @@ components:
             build_job_id: build_job_id
             sha: sha
         app_id: app_id
+        allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -6978,6 +6984,9 @@ components:
           format: date-time
           type: string
         updated_at:
+          format: date-time
+          type: string
+        allocated_at:
           format: date-time
           type: string
         organization_id:
@@ -7099,6 +7108,7 @@ components:
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
+          allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         deployment:
           $ref: '#/components/schemas/Deployment'
@@ -7194,6 +7204,7 @@ components:
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
+          allocated_at: 2000-01-23T04:56:07.000+00:00
         - metadata:
             trigger:
               git:
@@ -7282,6 +7293,7 @@ components:
               build_job_id: build_job_id
               sha: sha
           app_id: app_id
+          allocated_at: 2000-01-23T04:56:07.000+00:00
         offset: 6
         limit: 0
         count: 1
