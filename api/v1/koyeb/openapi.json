@@ -5709,6 +5709,10 @@
           "type": "string",
           "format": "date-time"
         },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
         "organization_id": {
           "type": "string"
         },
@@ -6434,6 +6438,10 @@
           "format": "date-time"
         },
         "allocated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "started_at": {
           "type": "string",
           "format": "date-time"
         },

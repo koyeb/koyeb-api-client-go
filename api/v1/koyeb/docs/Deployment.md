@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **AllocatedAt** | Pointer to **time.Time** |  | [optional] 
+**StartedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
@@ -139,6 +140,31 @@ SetAllocatedAt sets AllocatedAt field to given value.
 `func (o *Deployment) HasAllocatedAt() bool`
 
 HasAllocatedAt returns a boolean if a field has been set.
+
+### GetStartedAt
+
+`func (o *Deployment) GetStartedAt() time.Time`
+
+GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
+
+### GetStartedAtOk
+
+`func (o *Deployment) GetStartedAtOk() (*time.Time, bool)`
+
+GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartedAt
+
+`func (o *Deployment) SetStartedAt(v time.Time)`
+
+SetStartedAt sets StartedAt field to given value.
+
+### HasStartedAt
+
+`func (o *Deployment) HasStartedAt() bool`
+
+HasStartedAt returns a boolean if a field has been set.
 
 ### GetOrganizationId
 
