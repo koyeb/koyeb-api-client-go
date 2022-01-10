@@ -21,6 +21,7 @@ type DeploymentListItem struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AllocatedAt *time.Time `json:"allocated_at,omitempty"`
+	StartedAt *time.Time `json:"started_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
@@ -182,6 +183,38 @@ func (o *DeploymentListItem) HasAllocatedAt() bool {
 // SetAllocatedAt gets a reference to the given time.Time and assigns it to the AllocatedAt field.
 func (o *DeploymentListItem) SetAllocatedAt(v time.Time) {
 	o.AllocatedAt = &v
+}
+
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
+		return nil, false
+	}
+	return o.StartedAt, true
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasStartedAt() bool {
+	if o != nil && o.StartedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *DeploymentListItem) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -581,6 +614,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.AllocatedAt != nil {
 		toSerialize["allocated_at"] = o.AllocatedAt
+	}
+	if o.StartedAt != nil {
+		toSerialize["started_at"] = o.StartedAt
 	}
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId

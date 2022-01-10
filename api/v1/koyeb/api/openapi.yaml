@@ -5443,6 +5443,7 @@ components:
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
         messages:
         - messages
         - messages
@@ -5524,6 +5525,9 @@ components:
           format: date-time
           type: string
         allocated_at:
+          format: date-time
+          type: string
+        started_at:
           format: date-time
           type: string
         organization_id:
@@ -6146,6 +6150,7 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
@@ -6906,6 +6911,7 @@ components:
         parent_id: parent_id
         organization_id: organization_id
         service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
         messages:
         - messages
         - messages
@@ -6989,6 +6995,9 @@ components:
         allocated_at:
           format: date-time
           type: string
+        started_at:
+          format: date-time
+          type: string
         organization_id:
           type: string
         app_id:
@@ -7038,6 +7047,7 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
@@ -7134,6 +7144,7 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
@@ -7223,6 +7234,7 @@ components:
           parent_id: parent_id
           organization_id: organization_id
           service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
