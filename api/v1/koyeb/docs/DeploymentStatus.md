@@ -9,6 +9,8 @@
 
 * `SCHEDULED` (value: `"SCHEDULED"`)
 
+* `CANCELING` (value: `"CANCELING"`)
+
 * `CANCELED` (value: `"CANCELED"`)
 
 * `ALLOCATING` (value: `"ALLOCATING"`)
@@ -24,6 +26,8 @@
 * `STOPPING` (value: `"STOPPING"`)
 
 * `STOPPED` (value: `"STOPPED"`)
+
+* `ERRORING` (value: `"ERRORING"`)
 
 * `ERROR` (value: `"ERROR"`)
 

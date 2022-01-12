@@ -3438,6 +3438,7 @@ paths:
             - PENDING
             - PROVISIONING
             - SCHEDULED
+            - CANCELING
             - CANCELED
             - ALLOCATING
             - STARTING
@@ -3446,6 +3447,7 @@ paths:
             - UNHEALTHY
             - STOPPING
             - STOPPED
+            - ERRORING
             - ERROR
             type: string
           type: array
@@ -5564,6 +5566,7 @@ components:
       - PENDING
       - PROVISIONING
       - SCHEDULED
+      - CANCELING
       - CANCELED
       - ALLOCATING
       - STARTING
@@ -5572,6 +5575,7 @@ components:
       - UNHEALTHY
       - STOPPING
       - STOPPED
+      - ERRORING
       - ERROR
       type: string
     DeploymentMetadata:
