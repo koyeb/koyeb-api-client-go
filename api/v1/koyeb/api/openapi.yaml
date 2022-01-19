@@ -4800,7 +4800,7 @@ components:
             type: string
           type: array
         version:
-          format: int64
+          format: uint64
           type: string
         deployment_group:
           type: string
@@ -4953,7 +4953,7 @@ components:
             type: string
           type: array
         version:
-          format: int64
+          format: uint64
           type: string
         deployment_group:
           type: string
@@ -6393,6 +6393,10 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          active_deployment_id: active_deployment_id
           id: id
           state:
             desired_deployment:
@@ -6423,6 +6427,7 @@ components:
                 repository: repository
           app_id: app_id
           version: version
+          latest_deployment_id: latest_deployment_id
       properties:
         service:
           $ref: '#/components/schemas/Service'
@@ -6734,6 +6739,10 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          active_deployment_id: active_deployment_id
           id: id
           state:
             desired_deployment:
@@ -6764,6 +6773,7 @@ components:
                 repository: repository
           app_id: app_id
           version: version
+          latest_deployment_id: latest_deployment_id
       properties:
         service:
           $ref: '#/components/schemas/Service'
@@ -6778,6 +6788,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          active_deployment_id: active_deployment_id
           id: id
           state:
             desired_deployment:
@@ -6808,10 +6819,12 @@ components:
                 repository: repository
           app_id: app_id
           version: version
+          latest_deployment_id: latest_deployment_id
         - updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          active_deployment_id: active_deployment_id
           id: id
           state:
             desired_deployment:
@@ -6842,6 +6855,7 @@ components:
                 repository: repository
           app_id: app_id
           version: version
+          latest_deployment_id: latest_deployment_id
       properties:
         services:
           items:
@@ -6970,6 +6984,10 @@ components:
         organization_id: organization_id
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        active_deployment_id: active_deployment_id
         id: id
         state:
           desired_deployment:
@@ -7000,8 +7018,15 @@ components:
               repository: repository
         app_id: app_id
         version: version
+        latest_deployment_id: latest_deployment_id
       properties:
         id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
           type: string
         name:
           type: string
@@ -7009,25 +7034,39 @@ components:
           type: string
         app_id:
           type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
+        status:
+          $ref: '#/components/schemas/Service.Status'
+        messages:
+          items:
+            type: string
+          type: array
         version:
           format: uint64
-          title: A version updated whenever this state changes (useful for caching)
+          type: string
+        active_deployment_id:
+          type: string
+        latest_deployment_id:
           type: string
         state:
           $ref: '#/components/schemas/ServiceState'
       type: object
+    Service.Status:
+      default: STARTING
+      enum:
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - DELETING
+      - DELETED
+      type: string
     ServiceListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
+        active_deployment_id: active_deployment_id
         id: id
         state:
           desired_deployment:
@@ -7058,6 +7097,7 @@ components:
               repository: repository
         app_id: app_id
         version: version
+        latest_deployment_id: latest_deployment_id
       properties:
         id:
           type: string
@@ -7079,6 +7119,10 @@ components:
           type: string
         state:
           $ref: '#/components/schemas/ServiceState'
+        active_deployment_id:
+          type: string
+        latest_deployment_id:
+          type: string
       type: object
     ServiceRevision:
       example:
@@ -7348,6 +7392,10 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          active_deployment_id: active_deployment_id
           id: id
           state:
             desired_deployment:
@@ -7378,6 +7426,7 @@ components:
                 repository: repository
           app_id: app_id
           version: version
+          latest_deployment_id: latest_deployment_id
       properties:
         service:
           $ref: '#/components/schemas/Service'

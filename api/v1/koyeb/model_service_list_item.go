@@ -25,6 +25,8 @@ type ServiceListItem struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Version *string `json:"version,omitempty"`
 	State *ServiceState `json:"state,omitempty"`
+	ActiveDeploymentId *string `json:"active_deployment_id,omitempty"`
+	LatestDeploymentId *string `json:"latest_deployment_id,omitempty"`
 }
 
 // NewServiceListItem instantiates a new ServiceListItem object
@@ -300,6 +302,70 @@ func (o *ServiceListItem) SetState(v ServiceState) {
 	o.State = &v
 }
 
+// GetActiveDeploymentId returns the ActiveDeploymentId field value if set, zero value otherwise.
+func (o *ServiceListItem) GetActiveDeploymentId() string {
+	if o == nil || o.ActiveDeploymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ActiveDeploymentId
+}
+
+// GetActiveDeploymentIdOk returns a tuple with the ActiveDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetActiveDeploymentIdOk() (*string, bool) {
+	if o == nil || o.ActiveDeploymentId == nil {
+		return nil, false
+	}
+	return o.ActiveDeploymentId, true
+}
+
+// HasActiveDeploymentId returns a boolean if a field has been set.
+func (o *ServiceListItem) HasActiveDeploymentId() bool {
+	if o != nil && o.ActiveDeploymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetActiveDeploymentId gets a reference to the given string and assigns it to the ActiveDeploymentId field.
+func (o *ServiceListItem) SetActiveDeploymentId(v string) {
+	o.ActiveDeploymentId = &v
+}
+
+// GetLatestDeploymentId returns the LatestDeploymentId field value if set, zero value otherwise.
+func (o *ServiceListItem) GetLatestDeploymentId() string {
+	if o == nil || o.LatestDeploymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.LatestDeploymentId
+}
+
+// GetLatestDeploymentIdOk returns a tuple with the LatestDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetLatestDeploymentIdOk() (*string, bool) {
+	if o == nil || o.LatestDeploymentId == nil {
+		return nil, false
+	}
+	return o.LatestDeploymentId, true
+}
+
+// HasLatestDeploymentId returns a boolean if a field has been set.
+func (o *ServiceListItem) HasLatestDeploymentId() bool {
+	if o != nil && o.LatestDeploymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestDeploymentId gets a reference to the given string and assigns it to the LatestDeploymentId field.
+func (o *ServiceListItem) SetLatestDeploymentId(v string) {
+	o.LatestDeploymentId = &v
+}
+
 func (o ServiceListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -325,6 +391,12 @@ func (o ServiceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
+	}
+	if o.ActiveDeploymentId != nil {
+		toSerialize["active_deployment_id"] = o.ActiveDeploymentId
+	}
+	if o.LatestDeploymentId != nil {
+		toSerialize["latest_deployment_id"] = o.LatestDeploymentId
 	}
 	return json.Marshal(toSerialize)
 }
