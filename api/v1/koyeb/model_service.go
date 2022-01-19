@@ -18,12 +18,16 @@ import (
 // Service struct for Service
 type Service struct {
 	Id *string `json:"id,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Status *ServiceStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 	Version *string `json:"version,omitempty"`
+	ActiveDeploymentId *string `json:"active_deployment_id,omitempty"`
+	LatestDeploymentId *string `json:"latest_deployment_id,omitempty"`
 	State *ServiceState `json:"state,omitempty"`
 }
 
@@ -33,6 +37,8 @@ type Service struct {
 // will change when the set of required properties is changed
 func NewService() *Service {
 	this := Service{}
+	var status ServiceStatus = SERVICESTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -41,6 +47,8 @@ func NewService() *Service {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceWithDefaults() *Service {
 	this := Service{}
+	var status ServiceStatus = SERVICESTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -74,6 +82,70 @@ func (o *Service) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Service) SetId(v string) {
 	o.Id = &v
+}
+
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Service) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Service) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Service) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Service) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Service) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Service) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -172,68 +244,68 @@ func (o *Service) SetAppId(v string) {
 	o.AppId = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *Service) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
-		var ret time.Time
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *Service) GetStatus() ServiceStatus {
+	if o == nil || o.Status == nil {
+		var ret ServiceStatus
 		return ret
 	}
-	return *o.UpdatedAt
+	return *o.Status
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Service) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+func (o *Service) GetStatusOk() (*ServiceStatus, bool) {
+	if o == nil || o.Status == nil {
 		return nil, false
 	}
-	return o.UpdatedAt, true
+	return o.Status, true
 }
 
-// HasUpdatedAt returns a boolean if a field has been set.
-func (o *Service) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+// HasStatus returns a boolean if a field has been set.
+func (o *Service) HasStatus() bool {
+	if o != nil && o.Status != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
-func (o *Service) SetUpdatedAt(v time.Time) {
-	o.UpdatedAt = &v
+// SetStatus gets a reference to the given ServiceStatus and assigns it to the Status field.
+func (o *Service) SetStatus(v ServiceStatus) {
+	o.Status = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *Service) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *Service) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.Messages
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Service) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+func (o *Service) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.Messages, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *Service) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+// HasMessages returns a boolean if a field has been set.
+func (o *Service) HasMessages() bool {
+	if o != nil && o.Messages != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *Service) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *Service) SetMessages(v []string) {
+	o.Messages = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
@@ -266,6 +338,70 @@ func (o *Service) HasVersion() bool {
 // SetVersion gets a reference to the given string and assigns it to the Version field.
 func (o *Service) SetVersion(v string) {
 	o.Version = &v
+}
+
+// GetActiveDeploymentId returns the ActiveDeploymentId field value if set, zero value otherwise.
+func (o *Service) GetActiveDeploymentId() string {
+	if o == nil || o.ActiveDeploymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ActiveDeploymentId
+}
+
+// GetActiveDeploymentIdOk returns a tuple with the ActiveDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetActiveDeploymentIdOk() (*string, bool) {
+	if o == nil || o.ActiveDeploymentId == nil {
+		return nil, false
+	}
+	return o.ActiveDeploymentId, true
+}
+
+// HasActiveDeploymentId returns a boolean if a field has been set.
+func (o *Service) HasActiveDeploymentId() bool {
+	if o != nil && o.ActiveDeploymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetActiveDeploymentId gets a reference to the given string and assigns it to the ActiveDeploymentId field.
+func (o *Service) SetActiveDeploymentId(v string) {
+	o.ActiveDeploymentId = &v
+}
+
+// GetLatestDeploymentId returns the LatestDeploymentId field value if set, zero value otherwise.
+func (o *Service) GetLatestDeploymentId() string {
+	if o == nil || o.LatestDeploymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.LatestDeploymentId
+}
+
+// GetLatestDeploymentIdOk returns a tuple with the LatestDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetLatestDeploymentIdOk() (*string, bool) {
+	if o == nil || o.LatestDeploymentId == nil {
+		return nil, false
+	}
+	return o.LatestDeploymentId, true
+}
+
+// HasLatestDeploymentId returns a boolean if a field has been set.
+func (o *Service) HasLatestDeploymentId() bool {
+	if o != nil && o.LatestDeploymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestDeploymentId gets a reference to the given string and assigns it to the LatestDeploymentId field.
+func (o *Service) SetLatestDeploymentId(v string) {
+	o.LatestDeploymentId = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -305,6 +441,12 @@ func (o Service) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -314,14 +456,20 @@ func (o Service) MarshalJSON() ([]byte, error) {
 	if o.AppId != nil {
 		toSerialize["app_id"] = o.AppId
 	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
+	}
+	if o.ActiveDeploymentId != nil {
+		toSerialize["active_deployment_id"] = o.ActiveDeploymentId
+	}
+	if o.LatestDeploymentId != nil {
+		toSerialize["latest_deployment_id"] = o.LatestDeploymentId
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State

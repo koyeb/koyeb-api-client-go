@@ -5116,7 +5116,7 @@
         },
         "version": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         },
         "deployment_group": {
           "type": "string"
@@ -5200,7 +5200,7 @@
         },
         "version": {
           "type": "string",
-          "format": "int64"
+          "format": "uint64"
         },
         "deployment_group": {
           "type": "string"
@@ -6191,6 +6191,14 @@
         "id": {
           "type": "string"
         },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
         "name": {
           "type": "string"
         },
@@ -6200,23 +6208,42 @@
         "app_id": {
           "type": "string"
         },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
+        "status": {
+          "$ref": "#/definitions/Service.Status"
         },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "version": {
           "type": "string",
-          "format": "uint64",
-          "title": "A version updated whenever this state changes (useful for caching)"
+          "format": "uint64"
+        },
+        "active_deployment_id": {
+          "type": "string"
+        },
+        "latest_deployment_id": {
+          "type": "string"
         },
         "state": {
-          "$ref": "#/definitions/ServiceState"
+          "$ref": "#/definitions/ServiceState",
+          "title": "Legacy stuff"
         }
       }
+    },
+    "Service.Status": {
+      "type": "string",
+      "enum": [
+        "STARTING",
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY",
+        "DELETING",
+        "DELETED"
+      ],
+      "default": "STARTING"
     },
     "ServiceListItem": {
       "type": "object",
@@ -6248,6 +6275,12 @@
         },
         "state": {
           "$ref": "#/definitions/ServiceState"
+        },
+        "active_deployment_id": {
+          "type": "string"
+        },
+        "latest_deployment_id": {
+          "type": "string"
         }
       }
     },

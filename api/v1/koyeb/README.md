@@ -271,6 +271,7 @@ Class | Method | HTTP request | Description
  - [ServiceRevisionStateStatus](docs/ServiceRevisionStateStatus.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStateStatus](docs/ServiceStateStatus.md)
+ - [ServiceStatus](docs/ServiceStatus.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [StreamResultOfRevisionLogEntry](docs/StreamResultOfRevisionLogEntry.md)

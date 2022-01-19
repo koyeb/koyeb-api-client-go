@@ -5,12 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
+**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Status** | Pointer to [**ServiceStatus**](ServiceStatus.md) |  | [optional] [default to SERVICESTATUS_STARTING]
+**Messages** | Pointer to **[]string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
+**ActiveDeploymentId** | Pointer to **string** |  | [optional] 
+**LatestDeploymentId** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**ServiceState**](ServiceState.md) |  | [optional] 
 
 ## Methods
@@ -56,6 +60,56 @@ SetId sets Id field to given value.
 `func (o *Service) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *Service) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *Service) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *Service) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+### HasCreatedAt
+
+`func (o *Service) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### GetUpdatedAt
+
+`func (o *Service) GetUpdatedAt() time.Time`
+
+GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+
+### GetUpdatedAtOk
+
+`func (o *Service) GetUpdatedAtOk() (*time.Time, bool)`
+
+GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedAt
+
+`func (o *Service) SetUpdatedAt(v time.Time)`
+
+SetUpdatedAt sets UpdatedAt field to given value.
+
+### HasUpdatedAt
+
+`func (o *Service) HasUpdatedAt() bool`
+
+HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetName
 
@@ -132,55 +186,55 @@ SetAppId sets AppId field to given value.
 
 HasAppId returns a boolean if a field has been set.
 
-### GetUpdatedAt
+### GetStatus
 
-`func (o *Service) GetUpdatedAt() time.Time`
+`func (o *Service) GetStatus() ServiceStatus`
 
-GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetUpdatedAtOk
+### GetStatusOk
 
-`func (o *Service) GetUpdatedAtOk() (*time.Time, bool)`
+`func (o *Service) GetStatusOk() (*ServiceStatus, bool)`
 
-GetUpdatedAtOk returns a tuple with the UpdatedAt field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUpdatedAt
+### SetStatus
 
-`func (o *Service) SetUpdatedAt(v time.Time)`
+`func (o *Service) SetStatus(v ServiceStatus)`
 
-SetUpdatedAt sets UpdatedAt field to given value.
+SetStatus sets Status field to given value.
 
-### HasUpdatedAt
+### HasStatus
 
-`func (o *Service) HasUpdatedAt() bool`
+`func (o *Service) HasStatus() bool`
 
-HasUpdatedAt returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
-### GetCreatedAt
+### GetMessages
 
-`func (o *Service) GetCreatedAt() time.Time`
+`func (o *Service) GetMessages() []string`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetMessages returns the Messages field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetMessagesOk
 
-`func (o *Service) GetCreatedAtOk() (*time.Time, bool)`
+`func (o *Service) GetMessagesOk() (*[]string, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetMessagesOk returns a tuple with the Messages field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedAt
+### SetMessages
 
-`func (o *Service) SetCreatedAt(v time.Time)`
+`func (o *Service) SetMessages(v []string)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetMessages sets Messages field to given value.
 
-### HasCreatedAt
+### HasMessages
 
-`func (o *Service) HasCreatedAt() bool`
+`func (o *Service) HasMessages() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasMessages returns a boolean if a field has been set.
 
 ### GetVersion
 
@@ -206,6 +260,56 @@ SetVersion sets Version field to given value.
 `func (o *Service) HasVersion() bool`
 
 HasVersion returns a boolean if a field has been set.
+
+### GetActiveDeploymentId
+
+`func (o *Service) GetActiveDeploymentId() string`
+
+GetActiveDeploymentId returns the ActiveDeploymentId field if non-nil, zero value otherwise.
+
+### GetActiveDeploymentIdOk
+
+`func (o *Service) GetActiveDeploymentIdOk() (*string, bool)`
+
+GetActiveDeploymentIdOk returns a tuple with the ActiveDeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActiveDeploymentId
+
+`func (o *Service) SetActiveDeploymentId(v string)`
+
+SetActiveDeploymentId sets ActiveDeploymentId field to given value.
+
+### HasActiveDeploymentId
+
+`func (o *Service) HasActiveDeploymentId() bool`
+
+HasActiveDeploymentId returns a boolean if a field has been set.
+
+### GetLatestDeploymentId
+
+`func (o *Service) GetLatestDeploymentId() string`
+
+GetLatestDeploymentId returns the LatestDeploymentId field if non-nil, zero value otherwise.
+
+### GetLatestDeploymentIdOk
+
+`func (o *Service) GetLatestDeploymentIdOk() (*string, bool)`
+
+GetLatestDeploymentIdOk returns a tuple with the LatestDeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestDeploymentId
+
+`func (o *Service) SetLatestDeploymentId(v string)`
+
+SetLatestDeploymentId sets LatestDeploymentId field to given value.
+
+### HasLatestDeploymentId
+
+`func (o *Service) HasLatestDeploymentId() bool`
+
+HasLatestDeploymentId returns a boolean if a field has been set.
 
 ### GetState
 
