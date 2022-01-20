@@ -23,6 +23,8 @@ type ServiceListItem struct {
 	AppId *string `json:"app_id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	Status *ServiceStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 	Version *string `json:"version,omitempty"`
 	State *ServiceState `json:"state,omitempty"`
 	ActiveDeploymentId *string `json:"active_deployment_id,omitempty"`
@@ -35,6 +37,8 @@ type ServiceListItem struct {
 // will change when the set of required properties is changed
 func NewServiceListItem() *ServiceListItem {
 	this := ServiceListItem{}
+	var status ServiceStatus = SERVICESTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -43,6 +47,8 @@ func NewServiceListItem() *ServiceListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceListItemWithDefaults() *ServiceListItem {
 	this := ServiceListItem{}
+	var status ServiceStatus = SERVICESTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -238,6 +244,70 @@ func (o *ServiceListItem) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ServiceListItem) GetStatus() ServiceStatus {
+	if o == nil || o.Status == nil {
+		var ret ServiceStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetStatusOk() (*ServiceStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *ServiceListItem) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given ServiceStatus and assigns it to the Status field.
+func (o *ServiceListItem) SetStatus(v ServiceStatus) {
+	o.Status = &v
+}
+
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *ServiceListItem) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *ServiceListItem) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *ServiceListItem) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *ServiceListItem) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -385,6 +455,12 @@ func (o ServiceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.CreatedAt != nil {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
