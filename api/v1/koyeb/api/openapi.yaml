@@ -6788,6 +6788,9 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
           active_deployment_id: active_deployment_id
           id: id
           state:
@@ -6824,6 +6827,9 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
           active_deployment_id: active_deployment_id
           id: id
           state:
@@ -7066,6 +7072,9 @@ components:
         organization_id: organization_id
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
         active_deployment_id: active_deployment_id
         id: id
         state:
@@ -7113,6 +7122,12 @@ components:
         created_at:
           format: date-time
           type: string
+        status:
+          $ref: '#/components/schemas/Service.Status'
+        messages:
+          items:
+            type: string
+          type: array
         version:
           format: uint64
           title: A version updated whenever this state changes (useful for caching)

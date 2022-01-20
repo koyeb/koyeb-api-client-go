@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Status** | Pointer to [**ServiceStatus**](ServiceStatus.md) |  | [optional] [default to SERVICESTATUS_STARTING]
+**Messages** | Pointer to **[]string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**ServiceState**](ServiceState.md) |  | [optional] 
 **ActiveDeploymentId** | Pointer to **string** |  | [optional] 
@@ -183,6 +185,56 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *ServiceListItem) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *ServiceListItem) GetStatus() ServiceStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *ServiceListItem) GetStatusOk() (*ServiceStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *ServiceListItem) SetStatus(v ServiceStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *ServiceListItem) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetMessages
+
+`func (o *ServiceListItem) GetMessages() []string`
+
+GetMessages returns the Messages field if non-nil, zero value otherwise.
+
+### GetMessagesOk
+
+`func (o *ServiceListItem) GetMessagesOk() (*[]string, bool)`
+
+GetMessagesOk returns a tuple with the Messages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessages
+
+`func (o *ServiceListItem) SetMessages(v []string)`
+
+SetMessages sets Messages field to given value.
+
+### HasMessages
+
+`func (o *ServiceListItem) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 ### GetVersion
 

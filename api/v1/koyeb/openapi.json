@@ -6268,6 +6268,15 @@
           "type": "string",
           "format": "date-time"
         },
+        "status": {
+          "$ref": "#/definitions/Service.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "version": {
           "type": "string",
           "format": "uint64",
