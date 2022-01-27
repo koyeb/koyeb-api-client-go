@@ -16,8 +16,6 @@ import (
 
 // ServiceRevisionState struct for ServiceRevisionState
 type ServiceRevisionState struct {
-	Status *ServiceRevisionStateStatus `json:"status,omitempty"`
-	StatusMessage *string `json:"status_message,omitempty"`
 	Datacenters *[]string `json:"datacenters,omitempty"`
 	BuildInfo *ServiceRevisionStateBuildInfo `json:"build_info,omitempty"`
 }
@@ -28,8 +26,6 @@ type ServiceRevisionState struct {
 // will change when the set of required properties is changed
 func NewServiceRevisionState() *ServiceRevisionState {
 	this := ServiceRevisionState{}
-	var status ServiceRevisionStateStatus = SERVICEREVISIONSTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
 }
 
@@ -38,73 +34,7 @@ func NewServiceRevisionState() *ServiceRevisionState {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceRevisionStateWithDefaults() *ServiceRevisionState {
 	this := ServiceRevisionState{}
-	var status ServiceRevisionStateStatus = SERVICEREVISIONSTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ServiceRevisionState) GetStatus() ServiceRevisionStateStatus {
-	if o == nil || o.Status == nil {
-		var ret ServiceRevisionStateStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceRevisionState) GetStatusOk() (*ServiceRevisionStateStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *ServiceRevisionState) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given ServiceRevisionStateStatus and assigns it to the Status field.
-func (o *ServiceRevisionState) SetStatus(v ServiceRevisionStateStatus) {
-	o.Status = &v
-}
-
-// GetStatusMessage returns the StatusMessage field value if set, zero value otherwise.
-func (o *ServiceRevisionState) GetStatusMessage() string {
-	if o == nil || o.StatusMessage == nil {
-		var ret string
-		return ret
-	}
-	return *o.StatusMessage
-}
-
-// GetStatusMessageOk returns a tuple with the StatusMessage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceRevisionState) GetStatusMessageOk() (*string, bool) {
-	if o == nil || o.StatusMessage == nil {
-		return nil, false
-	}
-	return o.StatusMessage, true
-}
-
-// HasStatusMessage returns a boolean if a field has been set.
-func (o *ServiceRevisionState) HasStatusMessage() bool {
-	if o != nil && o.StatusMessage != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusMessage gets a reference to the given string and assigns it to the StatusMessage field.
-func (o *ServiceRevisionState) SetStatusMessage(v string) {
-	o.StatusMessage = &v
 }
 
 // GetDatacenters returns the Datacenters field value if set, zero value otherwise.
@@ -173,12 +103,6 @@ func (o *ServiceRevisionState) SetBuildInfo(v ServiceRevisionStateBuildInfo) {
 
 func (o ServiceRevisionState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.StatusMessage != nil {
-		toSerialize["status_message"] = o.StatusMessage
-	}
 	if o.Datacenters != nil {
 		toSerialize["datacenters"] = o.Datacenters
 	}

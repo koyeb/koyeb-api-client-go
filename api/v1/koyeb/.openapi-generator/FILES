@@ -144,9 +144,7 @@ docs/ServiceRevisionState.md
 docs/ServiceRevisionStateBuildInfo.md
 docs/ServiceRevisionStateStageState.md
 docs/ServiceRevisionStateStageStateStatus.md
-docs/ServiceRevisionStateStatus.md
 docs/ServiceState.md
-docs/ServiceStateStatus.md
 docs/ServiceStatus.md
 docs/ServicesApi.md
 docs/SessionApi.md
@@ -282,9 +280,7 @@ model_service_revision_state.go
 model_service_revision_state_build_info.go
 model_service_revision_state_stage_state.go
 model_service_revision_state_stage_state_status.go
-model_service_revision_state_status.go
 model_service_state.go
-model_service_state_status.go
 model_service_status.go
 model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go

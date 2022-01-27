@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **ChildId** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**ServiceRevisionStateStatus**](ServiceRevisionStateStatus.md) |  | [optional] [default to SERVICEREVISIONSTATESTATUS_UNKNOWN]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 
 ## Methods
@@ -285,31 +284,6 @@ SetDeploymentGroup sets DeploymentGroup field to given value.
 `func (o *ServiceRevisionListItem) HasDeploymentGroup() bool`
 
 HasDeploymentGroup returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *ServiceRevisionListItem) GetStatus() ServiceRevisionStateStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *ServiceRevisionListItem) GetStatusOk() (*ServiceRevisionStateStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *ServiceRevisionListItem) SetStatus(v ServiceRevisionStateStatus)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *ServiceRevisionListItem) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### GetMetadata
 

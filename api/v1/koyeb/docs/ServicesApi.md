@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ## DeprecatedListRevisions
 
-> DeprecatedListServiceRevisionsReply DeprecatedListRevisions(ctx, appIdOrName, idOrName).Limit(limit).Offset(offset).Statuses(statuses).DeploymentGroups(deploymentGroups).Execute()
+> DeprecatedListServiceRevisionsReply DeprecatedListRevisions(ctx, appIdOrName, idOrName).Limit(limit).Offset(offset).DeploymentGroups(deploymentGroups).Execute()
 
 List Revisions
 
@@ -468,12 +468,11 @@ func main() {
     idOrName := "idOrName_example" // string | 
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    statuses := []string{"Statuses_example"} // []string | (Optional) Statuses to filter on. (optional)
     deploymentGroups := []string{"Inner_example"} // []string | (Optional) Only fetch revisions in this deployment group. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.DeprecatedListRevisions(context.Background(), appIdOrName, idOrName).Limit(limit).Offset(offset).Statuses(statuses).DeploymentGroups(deploymentGroups).Execute()
+    resp, r, err := api_client.ServicesApi.DeprecatedListRevisions(context.Background(), appIdOrName, idOrName).Limit(limit).Offset(offset).DeploymentGroups(deploymentGroups).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.DeprecatedListRevisions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -503,7 +502,6 @@ Name | Type | Description  | Notes
 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **statuses** | **[]string** | (Optional) Statuses to filter on. | 
  **deploymentGroups** | **[]string** | (Optional) Only fetch revisions in this deployment group. | 
 
 ### Return type

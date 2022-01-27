@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DesiredDeployment** | Pointer to [**DesiredDeployment**](DesiredDeployment.md) |  | [optional] 
 **AutoRelease** | Pointer to [**AutoRelease**](AutoRelease.md) |  | [optional] 
-**Status** | Pointer to [**ServiceStateStatus**](ServiceStateStatus.md) |  | [optional] [default to SERVICESTATESTATUS_UNKNOWN]
 
 ## Methods
 
@@ -76,31 +75,6 @@ SetAutoRelease sets AutoRelease field to given value.
 `func (o *ServiceState) HasAutoRelease() bool`
 
 HasAutoRelease returns a boolean if a field has been set.
-
-### GetStatus
-
-`func (o *ServiceState) GetStatus() ServiceStateStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *ServiceState) GetStatusOk() (*ServiceStateStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *ServiceState) SetStatus(v ServiceStateStatus)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *ServiceState) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
