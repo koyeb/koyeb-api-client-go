@@ -27,7 +27,6 @@ type ServiceRevisionListItem struct {
 	ChildId *string `json:"child_id,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
-	Status *ServiceRevisionStateStatus `json:"status,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 }
 
@@ -37,8 +36,6 @@ type ServiceRevisionListItem struct {
 // will change when the set of required properties is changed
 func NewServiceRevisionListItem() *ServiceRevisionListItem {
 	this := ServiceRevisionListItem{}
-	var status ServiceRevisionStateStatus = SERVICEREVISIONSTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
 }
 
@@ -47,8 +44,6 @@ func NewServiceRevisionListItem() *ServiceRevisionListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceRevisionListItemWithDefaults() *ServiceRevisionListItem {
 	this := ServiceRevisionListItem{}
-	var status ServiceRevisionStateStatus = SERVICEREVISIONSTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
 }
 
@@ -372,38 +367,6 @@ func (o *ServiceRevisionListItem) SetDeploymentGroup(v string) {
 	o.DeploymentGroup = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ServiceRevisionListItem) GetStatus() ServiceRevisionStateStatus {
-	if o == nil || o.Status == nil {
-		var ret ServiceRevisionStateStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceRevisionListItem) GetStatusOk() (*ServiceRevisionStateStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *ServiceRevisionListItem) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given ServiceRevisionStateStatus and assigns it to the Status field.
-func (o *ServiceRevisionListItem) SetStatus(v ServiceRevisionStateStatus) {
-	o.Status = &v
-}
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ServiceRevisionListItem) GetMetadata() DeploymentMetadata {
 	if o == nil || o.Metadata == nil {
@@ -467,9 +430,6 @@ func (o ServiceRevisionListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeploymentGroup != nil {
 		toSerialize["deployment_group"] = o.DeploymentGroup
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata

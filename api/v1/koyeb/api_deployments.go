@@ -222,7 +222,6 @@ type ApiListDeploymentsRequest struct {
 	limit *string
 	offset *string
 	statuses *[]string
-	oldstatuses *[]string
 }
 
 func (r ApiListDeploymentsRequest) AppId(appId string) ApiListDeploymentsRequest {
@@ -243,10 +242,6 @@ func (r ApiListDeploymentsRequest) Offset(offset string) ApiListDeploymentsReque
 }
 func (r ApiListDeploymentsRequest) Statuses(statuses []string) ApiListDeploymentsRequest {
 	r.statuses = &statuses
-	return r
-}
-func (r ApiListDeploymentsRequest) Oldstatuses(oldstatuses []string) ApiListDeploymentsRequest {
-	r.oldstatuses = &oldstatuses
 	return r
 }
 
@@ -312,17 +307,6 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 			}
 		} else {
 			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
-		}
-	}
-	if r.oldstatuses != nil {
-		t := *r.oldstatuses
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("oldstatuses", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("oldstatuses", parameterToString(t, "multi"))
 		}
 	}
 	// to determine the Content-Type header

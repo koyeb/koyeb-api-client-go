@@ -18,7 +18,6 @@ import (
 type ServiceState struct {
 	DesiredDeployment *DesiredDeployment `json:"desired_deployment,omitempty"`
 	AutoRelease *AutoRelease `json:"auto_release,omitempty"`
-	Status *ServiceStateStatus `json:"status,omitempty"`
 }
 
 // NewServiceState instantiates a new ServiceState object
@@ -27,8 +26,6 @@ type ServiceState struct {
 // will change when the set of required properties is changed
 func NewServiceState() *ServiceState {
 	this := ServiceState{}
-	var status ServiceStateStatus = SERVICESTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
 }
 
@@ -37,8 +34,6 @@ func NewServiceState() *ServiceState {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceStateWithDefaults() *ServiceState {
 	this := ServiceState{}
-	var status ServiceStateStatus = SERVICESTATESTATUS_UNKNOWN
-	this.Status = &status
 	return &this
 }
 
@@ -106,38 +101,6 @@ func (o *ServiceState) SetAutoRelease(v AutoRelease) {
 	o.AutoRelease = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ServiceState) GetStatus() ServiceStateStatus {
-	if o == nil || o.Status == nil {
-		var ret ServiceStateStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ServiceState) GetStatusOk() (*ServiceStateStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *ServiceState) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given ServiceStateStatus and assigns it to the Status field.
-func (o *ServiceState) SetStatus(v ServiceStateStatus) {
-	o.Status = &v
-}
-
 func (o ServiceState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DesiredDeployment != nil {
@@ -145,9 +108,6 @@ func (o ServiceState) MarshalJSON() ([]byte, error) {
 	}
 	if o.AutoRelease != nil {
 		toSerialize["auto_release"] = o.AutoRelease
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }
