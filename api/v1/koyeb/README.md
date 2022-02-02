@@ -105,10 +105,7 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
-*LogsApi* | [**TailInstanceLogs**](docs/LogsApi.md#tailinstancelogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/instances/{instance_id}/logs/{stream}/tail | TailInstanceLogs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
-*LogsApi* | [**TailRevisionBuildLogs**](docs/LogsApi.md#tailrevisionbuildlogs) | **Get** /v1/apps/{app_id_or_name}/services/{service_id_or_name}/revisions/{revision_id}/builds/tail | TailRevisionBuildLogs
-*LogsApi* | [**TailRuntimeLogs**](docs/LogsApi.md#tailruntimelogs) | **Get** /v1/apps/{app_id_or_name}/logs/tail | TailRuntimeLogs
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
@@ -135,12 +132,7 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
-*ServicesApi* | [**DeprecatedCreateService**](docs/ServicesApi.md#deprecatedcreateservice) | **Post** /v1/apps/{app_id_or_name}/services | Create Service
 *ServicesApi* | [**DeprecatedDeleteService**](docs/ServicesApi.md#deprecateddeleteservice) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
-*ServicesApi* | [**DeprecatedGetRevision**](docs/ServicesApi.md#deprecatedgetrevision) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions/{id} | Get Revision
-*ServicesApi* | [**DeprecatedGetService**](docs/ServicesApi.md#deprecatedgetservice) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name} | Get Service
-*ServicesApi* | [**DeprecatedListRevisions**](docs/ServicesApi.md#deprecatedlistrevisions) | **Get** /v1/apps/{app_id_or_name}/services/{id_or_name}/revisions | List Revisions
-*ServicesApi* | [**DeprecatedListServices**](docs/ServicesApi.md#deprecatedlistservices) | **Get** /v1/apps/{app_id_or_name}/services | List Service
 *ServicesApi* | [**DeprecatedReDeploy**](docs/ServicesApi.md#deprecatedredeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
 *ServicesApi* | [**DeprecatedUpdateService**](docs/ServicesApi.md#deprecatedupdateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *ServicesApi* | [**DeprecatedUpdateService2**](docs/ServicesApi.md#deprecatedupdateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
@@ -183,8 +175,6 @@ Class | Method | HTTP request | Description
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
- - [DeprecatedGetServiceRevisionReply](docs/DeprecatedGetServiceRevisionReply.md)
- - [DeprecatedListServiceRevisionsReply](docs/DeprecatedListServiceRevisionsReply.md)
  - [DeprecatedRedeployReply](docs/DeprecatedRedeployReply.md)
  - [DeprecatedRedeployRequestInfo](docs/DeprecatedRedeployRequestInfo.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
@@ -254,7 +244,6 @@ Class | Method | HTTP request | Description
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
- - [RevisionLogEntry](docs/RevisionLogEntry.md)
  - [Route](docs/Route.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
@@ -263,7 +252,6 @@ Class | Method | HTTP request | Description
  - [ServiceDefinition](docs/ServiceDefinition.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceRevision](docs/ServiceRevision.md)
- - [ServiceRevisionListItem](docs/ServiceRevisionListItem.md)
  - [ServiceRevisionState](docs/ServiceRevisionState.md)
  - [ServiceRevisionStateBuildInfo](docs/ServiceRevisionStateBuildInfo.md)
  - [ServiceRevisionStateStageState](docs/ServiceRevisionStateStageState.md)
@@ -272,7 +260,6 @@ Class | Method | HTTP request | Description
  - [ServiceStatus](docs/ServiceStatus.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
- - [StreamResultOfRevisionLogEntry](docs/StreamResultOfRevisionLogEntry.md)
  - [Token](docs/Token.md)
  - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)

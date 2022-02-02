@@ -52,8 +52,6 @@ docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
 docs/DeploymentStatus.md
 docs/DeploymentsApi.md
-docs/DeprecatedGetServiceRevisionReply.md
-docs/DeprecatedListServiceRevisionsReply.md
 docs/DeprecatedRedeployReply.md
 docs/DeprecatedRedeployRequestInfo.md
 docs/DesiredDeployment.md
@@ -129,7 +127,6 @@ docs/RedeployRequestInfo.md
 docs/Region.md
 docs/RegionListItem.md
 docs/ResetPasswordRequest.md
-docs/RevisionLogEntry.md
 docs/Route.md
 docs/Scaling.md
 docs/Secret.md
@@ -139,7 +136,6 @@ docs/Service.md
 docs/ServiceDefinition.md
 docs/ServiceListItem.md
 docs/ServiceRevision.md
-docs/ServiceRevisionListItem.md
 docs/ServiceRevisionState.md
 docs/ServiceRevisionStateBuildInfo.md
 docs/ServiceRevisionStateStageState.md
@@ -151,7 +147,6 @@ docs/SessionApi.md
 docs/SsoApi.md
 docs/StreamResultOfExecCommandReply.md
 docs/StreamResultOfLogEntry.md
-docs/StreamResultOfRevisionLogEntry.md
 docs/Token.md
 docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataTriggerType.md
@@ -195,8 +190,6 @@ model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
 model_deployment_status.go
-model_deprecated_get_service_revision_reply.go
-model_deprecated_list_service_revisions_reply.go
 model_deprecated_redeploy_reply.go
 model_deprecated_redeploy_request_info.go
 model_desired_deployment.go
@@ -266,7 +259,6 @@ model_redeploy_request_info.go
 model_region.go
 model_region_list_item.go
 model_reset_password_request.go
-model_revision_log_entry.go
 model_route.go
 model_scaling.go
 model_secret.go
@@ -275,7 +267,6 @@ model_service.go
 model_service_definition.go
 model_service_list_item.go
 model_service_revision.go
-model_service_revision_list_item.go
 model_service_revision_state.go
 model_service_revision_state_build_info.go
 model_service_revision_state_stage_state.go
@@ -284,7 +275,6 @@ model_service_state.go
 model_service_status.go
 model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go
-model_stream_result_of_revision_log_entry.go
 model_token.go
 model_trigger_deployment_metadata.go
 model_trigger_deployment_metadata_trigger_type.go
