@@ -132,10 +132,6 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
-*ServicesApi* | [**DeprecatedDeleteService**](docs/ServicesApi.md#deprecateddeleteservice) | **Delete** /v1/apps/{app_id_or_name}/services/{id_or_name} | Delete Service
-*ServicesApi* | [**DeprecatedReDeploy**](docs/ServicesApi.md#deprecatedredeploy) | **Post** /v1/apps/{app_id_or_name}/services/{id_or_name}/redeploy | ReDeploy Service
-*ServicesApi* | [**DeprecatedUpdateService**](docs/ServicesApi.md#deprecatedupdateservice) | **Put** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
-*ServicesApi* | [**DeprecatedUpdateService2**](docs/ServicesApi.md#deprecatedupdateservice2) | **Patch** /v1/apps/{app_id_or_name}/services/{id_or_name} | Update Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
 *ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
@@ -175,8 +171,6 @@ Class | Method | HTTP request | Description
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
- - [DeprecatedRedeployReply](docs/DeprecatedRedeployReply.md)
- - [DeprecatedRedeployRequestInfo](docs/DeprecatedRedeployRequestInfo.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
@@ -251,7 +245,6 @@ Class | Method | HTTP request | Description
  - [Service](docs/Service.md)
  - [ServiceDefinition](docs/ServiceDefinition.md)
  - [ServiceListItem](docs/ServiceListItem.md)
- - [ServiceRevision](docs/ServiceRevision.md)
  - [ServiceRevisionState](docs/ServiceRevisionState.md)
  - [ServiceRevisionStateBuildInfo](docs/ServiceRevisionStateBuildInfo.md)
  - [ServiceRevisionStateStageState](docs/ServiceRevisionStateStageState.md)

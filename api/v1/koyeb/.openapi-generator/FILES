@@ -52,8 +52,6 @@ docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
 docs/DeploymentStatus.md
 docs/DeploymentsApi.md
-docs/DeprecatedRedeployReply.md
-docs/DeprecatedRedeployRequestInfo.md
 docs/DesiredDeployment.md
 docs/DesiredDeploymentGroup.md
 docs/DigitalOceanRegistryConfiguration.md
@@ -135,7 +133,6 @@ docs/SecretsApi.md
 docs/Service.md
 docs/ServiceDefinition.md
 docs/ServiceListItem.md
-docs/ServiceRevision.md
 docs/ServiceRevisionState.md
 docs/ServiceRevisionStateBuildInfo.md
 docs/ServiceRevisionStateStageState.md
@@ -190,8 +187,6 @@ model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
 model_deployment_status.go
-model_deprecated_redeploy_reply.go
-model_deprecated_redeploy_request_info.go
 model_desired_deployment.go
 model_desired_deployment_group.go
 model_digital_ocean_registry_configuration.go
@@ -266,7 +261,6 @@ model_secret_type.go
 model_service.go
 model_service_definition.go
 model_service_list_item.go
-model_service_revision.go
 model_service_revision_state.go
 model_service_revision_state_build_info.go
 model_service_revision_state_stage_state.go
