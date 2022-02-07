@@ -195,6 +195,230 @@ tags:
   x-displayName: Introduction
   x-traitTag: true
 paths:
+  /v1/activities:
+    get:
+      operationId: ListActivities
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityList'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - activity
+  /v1/hooks/github/payload:
+    post:
+      description: An implementation of github hooks. The payload is a freefrom JSON
+        and the response will always be empty.
+      externalDocs:
+        description: github documentation
+        url: https://developer.github.com/webhooks/
+      operationId: Github
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GithubHookReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Github hook receiver
+      tags:
+      - hooks
+      x-codegen-request-body-name: body
+  /v1/notifications:
+    get:
+      operationId: ListNotifications
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      - in: query
+        name: mark_read
+        schema:
+          type: string
+      - in: query
+        name: mark_seen
+        schema:
+          type: string
+      - in: query
+        name: unread
+        schema:
+          type: string
+      - in: query
+        name: unseen
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotificationList'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - activity
+  /v1/streams/instances/exec:
+    get:
+      operationId: ExecCommand
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: body.command
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - in: query
+        name: body.tty_size.height
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.tty_size.width
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.stdin.data
+        schema:
+          format: byte
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Exec Command
+      tags:
+      - Instances
   /v1/streams/logs/tail:
     get:
       operationId: TailLogs
@@ -267,44 +491,41 @@ paths:
       summary: Tails logs
       tags:
       - Logs
-  /v1/streams/instances/exec:
+  /v1/secrets:
     get:
-      operationId: ExecCommand
+      operationId: ListSecrets
       parameters:
       - in: query
-        name: id
+        name: name
         schema:
           type: string
-      - explode: true
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      - description: Filter by secret types.
+        explode: true
         in: query
-        name: body.command
+        name: types
         schema:
           items:
+            enum:
+            - SIMPLE
+            - REGISTRY
             type: string
           type: array
         style: form
-      - in: query
-        name: body.tty_size.height
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.tty_size.width
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.stdin.data
-        schema:
-          format: byte
-          type: string
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
-          description: A successful response.(streaming responses)
+                $ref: '#/components/schemas/ListSecretsReply'
+          description: A successful response.
         "400":
           content:
             '*/*':
@@ -330,9 +551,1213 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: Exec Command
+      tags:
+      - Secrets
+    post:
+      operationId: CreateSecret
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateSecret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+  /v1/secrets/{id}:
+    delete:
+      operationId: DeleteSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+    get:
+      operationId: GetSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+    patch:
+      operationId: UpdateSecret2
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Secret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateSecret
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Secret'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSecretReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Secrets
+      x-codegen-request-body-name: body
+  /v1/secrets/{id}/activities:
+    get:
+      operationId: GetSecretActivities
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityList'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: View stack activities
+      tags:
+      - Secrets
+  /v1/instances:
+    get:
+      operationId: ListInstances
+      parameters:
+      - description: (Optional) Filter on application id.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) Filter on service id.
+        in: query
+        name: service_id
+        schema:
+          type: string
+      - description: (Optional) Filter on deployment id.
+        in: query
+        name: deployment_id
+        schema:
+          type: string
+      - description: (Optional) Filter on allocation id.
+        in: query
+        name: allocation_id
+        schema:
+          type: string
+      - description: (Optional) Filter on instance statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - ALLOCATING
+            - STARTING
+            - HEALTHY
+            - UNHEALTHY
+            - STOPPING
+            - STOPPED
+            - ERROR
+            type: string
+          type: array
+        style: form
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Sorts the list in the ascending or the descending
+          order.
+        in: query
+        name: order
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListInstancesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Instances
       tags:
       - Instances
+  /v1/instances/{id}:
+    get:
+      operationId: GetInstance
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetInstanceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Instance
+      tags:
+      - Instances
+  /v1/apps:
+    get:
+      operationId: ListApps
+      parameters:
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for regions.
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListAppsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List App
+      tags:
+      - Apps
+    post:
+      operationId: CreateApp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateApp'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create App
+      tags:
+      - Apps
+      x-codegen-request-body-name: body
+  /v1/apps/{id_or_name}:
+    delete:
+      operationId: DeleteApp
+      parameters:
+      - description: The id or the name of the entity to delete
+        in: path
+        name: id_or_name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete App
+      tags:
+      - Apps
+    get:
+      operationId: GetApp
+      parameters:
+      - description: The id or the name of the App
+        in: path
+        name: id_or_name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get App
+      tags:
+      - Apps
+    patch:
+      operationId: UpdateApp2
+      parameters:
+      - description: The id or the name of the entity to update
+        in: path
+        name: id_or_name
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateApp'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update App
+      tags:
+      - Apps
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateApp
+      parameters:
+      - description: The id or the name of the entity to update
+        in: path
+        name: id_or_name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update App
+      tags:
+      - Apps
+  /v1/deployments:
+    get:
+      operationId: ListDeployments
+      parameters:
+      - description: (Optional) Filter on application id.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) Filter on service id.
+        in: query
+        name: service_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Filter on statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - PENDING
+            - PROVISIONING
+            - SCHEDULED
+            - CANCELING
+            - CANCELED
+            - ALLOCATING
+            - STARTING
+            - HEALTHY
+            - DEGRADED
+            - UNHEALTHY
+            - STOPPING
+            - STOPPED
+            - ERRORING
+            - ERROR
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListDeploymentsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Deployments
+      tags:
+      - Deployments
+  /v1/deployments/{id}:
+    get:
+      operationId: GetDeployment
+      parameters:
+      - description: The id of the deployment
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetDeploymentReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Deployment
+      tags:
+      - Deployments
+  /v1/services:
+    get:
+      operationId: ListServices
+      parameters:
+      - description: (Optional) The id of the app.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for name.
+        in: query
+        name: name
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListServicesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Service
+      tags:
+      - Services
+    post:
+      operationId: CreateService
+      parameters:
+      - description: If set only run validation.
+        in: query
+        name: dry_run
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateService'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateServiceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create Service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
+  /v1/services/{id}:
+    delete:
+      operationId: DeleteService
+      parameters:
+      - description: The id of the entity to delete
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteServiceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete Service
+      tags:
+      - Services
+    get:
+      operationId: GetService
+      parameters:
+      - description: The id of the Service
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetServiceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Service
+      tags:
+      - Services
+    patch:
+      operationId: UpdateService2
+      parameters:
+      - description: The id of the entity to update
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      - description: If set, run validation and check that the service exists.
+        in: query
+        name: dry_run
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateService'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateServiceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update Service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateService
+      parameters:
+      - description: The id of the entity to update
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      - description: If set, run validation and check that the service exists.
+        in: query
+        name: dry_run
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateService'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateServiceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update Service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
+  /v1/services/{id}/redeploy:
+    post:
+      operationId: ReDeploy
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RedeployRequest.Info'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RedeployReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: ReDeploy Service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
   /v1/account/activities:
     get:
       operationId: GetAccountActivities
@@ -1703,1273 +3128,6 @@ paths:
       tags:
       - sso
       x-codegen-request-body-name: body
-  /v1/secrets:
-    get:
-      operationId: ListSecrets
-      parameters:
-      - in: query
-        name: name
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      - description: Filter by secret types.
-        explode: true
-        in: query
-        name: types
-        schema:
-          items:
-            enum:
-            - SIMPLE
-            - REGISTRY
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListSecretsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    post:
-      operationId: CreateSecret
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateSecret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-  /v1/secrets/{id}:
-    delete:
-      operationId: DeleteSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    get:
-      operationId: GetSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-    patch:
-      operationId: UpdateSecret2
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Secret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateSecret
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/Secret'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateSecretReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Secrets
-      x-codegen-request-body-name: body
-  /v1/secrets/{id}/activities:
-    get:
-      operationId: GetSecretActivities
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: View stack activities
-      tags:
-      - Secrets
-  /v1/deployments:
-    get:
-      operationId: ListDeployments
-      parameters:
-      - description: (Optional) Filter on application id.
-        in: query
-        name: app_id
-        schema:
-          type: string
-      - description: (Optional) Filter on service id.
-        in: query
-        name: service_id
-        schema:
-          type: string
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) Filter on statuses.
-        explode: true
-        in: query
-        name: statuses
-        schema:
-          items:
-            enum:
-            - PENDING
-            - PROVISIONING
-            - SCHEDULED
-            - CANCELING
-            - CANCELED
-            - ALLOCATING
-            - STARTING
-            - HEALTHY
-            - DEGRADED
-            - UNHEALTHY
-            - STOPPING
-            - STOPPED
-            - ERRORING
-            - ERROR
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListDeploymentsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List Deployments
-      tags:
-      - Deployments
-  /v1/deployments/{id}:
-    get:
-      operationId: GetDeployment
-      parameters:
-      - description: The id of the deployment
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetDeploymentReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get Deployment
-      tags:
-      - Deployments
-  /v1/apps:
-    get:
-      operationId: ListApps
-      parameters:
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) A filter for regions.
-        in: query
-        name: name
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListAppsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List App
-      tags:
-      - Apps
-    post:
-      operationId: CreateApp
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateApp'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create App
-      tags:
-      - Apps
-      x-codegen-request-body-name: body
-  /v1/apps/{id_or_name}:
-    delete:
-      operationId: DeleteApp
-      parameters:
-      - description: The id or the name of the entity to delete
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete App
-      tags:
-      - Apps
-    get:
-      operationId: GetApp
-      parameters:
-      - description: The id or the name of the App
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get App
-      tags:
-      - Apps
-    patch:
-      operationId: UpdateApp2
-      parameters:
-      - description: The id or the name of the entity to update
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/UpdateApp'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update App
-      tags:
-      - Apps
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateApp
-      parameters:
-      - description: The id or the name of the entity to update
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update App
-      tags:
-      - Apps
-  /v1/services:
-    get:
-      operationId: ListServices
-      parameters:
-      - description: (Optional) The id of the app.
-        in: query
-        name: app_id
-        schema:
-          type: string
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) A filter for name.
-        in: query
-        name: name
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListServicesReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List Service
-      tags:
-      - Services
-    post:
-      operationId: CreateService
-      parameters:
-      - description: If set only run validation.
-        in: query
-        name: dry_run
-        schema:
-          type: boolean
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateService'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateServiceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create Service
-      tags:
-      - Services
-      x-codegen-request-body-name: body
-  /v1/services/{id}:
-    delete:
-      operationId: DeleteService
-      parameters:
-      - description: The id of the entity to delete
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteServiceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete Service
-      tags:
-      - Services
-    get:
-      operationId: GetService
-      parameters:
-      - description: The id of the Service
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetServiceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get Service
-      tags:
-      - Services
-    patch:
-      operationId: UpdateService2
-      parameters:
-      - description: The id of the entity to update
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      - description: If set, run validation and check that the service exists.
-        in: query
-        name: dry_run
-        schema:
-          type: boolean
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/UpdateService'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateServiceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update Service
-      tags:
-      - Services
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateService
-      parameters:
-      - description: The id of the entity to update
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      - description: If set, run validation and check that the service exists.
-        in: query
-        name: dry_run
-        schema:
-          type: boolean
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/UpdateService'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateServiceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update Service
-      tags:
-      - Services
-      x-codegen-request-body-name: body
-  /v1/services/{id}/redeploy:
-    post:
-      operationId: ReDeploy
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/RedeployRequest.Info'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/RedeployReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: ReDeploy Service
-      tags:
-      - Services
-      x-codegen-request-body-name: body
-  /v1/instances:
-    get:
-      operationId: ListInstances
-      parameters:
-      - description: (Optional) Filter on application id.
-        in: query
-        name: app_id
-        schema:
-          type: string
-      - description: (Optional) Filter on service id.
-        in: query
-        name: service_id
-        schema:
-          type: string
-      - description: (Optional) Filter on deployment id.
-        in: query
-        name: deployment_id
-        schema:
-          type: string
-      - description: (Optional) Filter on allocation id.
-        in: query
-        name: allocation_id
-        schema:
-          type: string
-      - description: (Optional) Filter on instance statuses.
-        explode: true
-        in: query
-        name: statuses
-        schema:
-          items:
-            enum:
-            - ALLOCATING
-            - STARTING
-            - HEALTHY
-            - UNHEALTHY
-            - STOPPING
-            - STOPPED
-            - ERROR
-            type: string
-          type: array
-        style: form
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) Sorts the list in the ascending or the descending
-          order.
-        in: query
-        name: order
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListInstancesReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List Instances
-      tags:
-      - Instances
-  /v1/instances/{id}:
-    get:
-      operationId: GetInstance
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetInstanceReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get Instance
-      tags:
-      - Instances
   /v1/catalog/instances:
     get:
       operationId: ListCatalogInstances
@@ -3092,164 +3250,6 @@ paths:
       summary: Get Region
       tags:
       - CatalogRegions
-  /v1/activities:
-    get:
-      operationId: ListActivities
-      parameters:
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ActivityList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - activity
-  /v1/hooks/github/payload:
-    post:
-      description: An implementation of github hooks. The payload is a freefrom JSON
-        and the response will always be empty.
-      externalDocs:
-        description: github documentation
-        url: https://developer.github.com/webhooks/
-      operationId: Github
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              type: object
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GithubHookReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Github hook receiver
-      tags:
-      - hooks
-      x-codegen-request-body-name: body
-  /v1/notifications:
-    get:
-      operationId: ListNotifications
-      parameters:
-      - in: query
-        name: limit
-        schema:
-          type: string
-      - in: query
-        name: offset
-        schema:
-          type: string
-      - in: query
-        name: mark_read
-        schema:
-          type: string
-      - in: query
-        name: mark_seen
-        schema:
-          type: string
-      - in: query
-        name: unread
-        schema:
-          type: string
-      - in: query
-        name: unseen
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/NotificationList'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - activity
 components:
   schemas:
     google.protobuf.Any:
@@ -3278,7 +3278,7 @@ components:
       type: string
     google.rpc.Status:
       example:
-        code: 0
+        code: 6
         details:
         - value: value
           type_url: type_url
@@ -3295,642 +3295,6 @@ components:
           items:
             $ref: '#/components/schemas/google.protobuf.Any'
           type: array
-      type: object
-    Error:
-      properties:
-        status:
-          format: int32
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-      type: object
-    ErrorField:
-      properties:
-        field:
-          type: string
-        description:
-          type: string
-      type: object
-    ErrorWithFields:
-      properties:
-        status:
-          format: int32
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-        fields:
-          items:
-            $ref: '#/components/schemas/ErrorField'
-          type: array
-      type: object
-    LogEntry:
-      example:
-        msg: msg
-        created_at: 2000-01-23T04:56:07.000+00:00
-        labels: '{}'
-      properties:
-        msg:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        labels:
-          properties: {}
-          type: object
-      type: object
-    ExecCommandIO:
-      example:
-        data: data
-      properties:
-        data:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      type: object
-    ExecCommandReply:
-      example:
-        stdout:
-          data: data
-        exited: true
-        exit_code: 0
-        stderr:
-          data: data
-      properties:
-        stdout:
-          $ref: '#/components/schemas/ExecCommandIO'
-        stderr:
-          $ref: '#/components/schemas/ExecCommandIO'
-        exited:
-          type: boolean
-        exit_code:
-          format: int32
-          type: integer
-      type: object
-    ExecCommandRequest.Body:
-      properties:
-        command:
-          items:
-            type: string
-          type: array
-        tty_size:
-          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
-        stdin:
-          $ref: '#/components/schemas/ExecCommandIO'
-      type: object
-    ExecCommandRequest.TerminalSize:
-      properties:
-        height:
-          format: int32
-          type: integer
-        width:
-          format: int32
-          type: integer
-      type: object
-    Action:
-      default: signin
-      enum:
-      - signin
-      - signup
-      - register
-      type: string
-    CannyAuthReply:
-      example:
-        token: token
-      properties:
-        token:
-          type: string
-      type: object
-    CannyAuthRequest:
-      type: object
-    CreateAccountRequest:
-      description: Create new account
-      example:
-        email: john@snow.com
-        password: '...'
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-        name:
-          type: string
-      required:
-      - email
-      - password
-      title: Create new account
-      type: object
-    CreateCredential:
-      example:
-        name: name
-        description: description
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-      type: object
-    Credential:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        user_id: user_id
-        organization_id: organization_id
-        name: name
-        description: description
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        token: token
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        token:
-          type: string
-        description:
-          type: string
-        user_id:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-      type: object
-    CredentialReply:
-      example:
-        credential:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          organization_id: organization_id
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          token: token
-      properties:
-        credential:
-          $ref: '#/components/schemas/Credential'
-      type: object
-    DeleteAccountReply:
-      type: object
-    GetOAuthOptionsReply:
-      description: A list of providers which you can use for single sign-on.
-      example:
-        oauth_providers:
-        - id: id
-          state: state
-          url: url
-        - id: id
-          state: state
-          url: url
-      properties:
-        oauth_providers:
-          items:
-            $ref: '#/components/schemas/OAuthProvider'
-          type: array
-      type: object
-    GetOrganizationReply:
-      example:
-        organization:
-          country: country
-          address2: address2
-          city: city
-          address1: address1
-          vat_number: vat_number
-          name: name
-          company: true
-          state: state
-          postal_code: postal_code
-      properties:
-        organization:
-          $ref: '#/components/schemas/Organization'
-      type: object
-    GithubInstallationCallbackReply:
-      type: object
-    GithubInstallationCallbackRequest:
-      example:
-        setup_action: setup_action
-        installation_id: installation_id
-        state: state
-      properties:
-        installation_id:
-          type: string
-        setup_action:
-          type: string
-        state:
-          type: string
-      type: object
-    GithubInstallationReply:
-      example:
-        app_name: app_name
-        state: state
-        app_id: app_id
-        url: url
-      properties:
-        app_name:
-          title: The github app name
-          type: string
-        app_id:
-          format: int64
-          title: The github app id
-          type: string
-        url:
-          title: The url to start the installation flow
-          type: string
-        state:
-          title: The state required by the protocol, it is only valid 10 minutes and
-            encodes information about the type of flow
-          type: string
-      type: object
-    GithubInstallationRepoListReply:
-      example:
-        repositories:
-        - private: true
-          name: name
-          description: description
-          default_branch: default_branch
-          id: id
-        - private: true
-          name: name
-          description: description
-          default_branch: default_branch
-          id: id
-        installation_url: installation_url
-        installation_id: installation_id
-      properties:
-        repositories:
-          items:
-            $ref: '#/components/schemas/GithubRepo'
-          type: array
-        installation_id:
-          type: string
-        installation_url:
-          type: string
-      type: object
-    GithubRepo:
-      example:
-        private: true
-        name: name
-        description: description
-        default_branch: default_branch
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        private:
-          type: boolean
-        description:
-          type: string
-        default_branch:
-          type: string
-      type: object
-    InviteUserRequest:
-      example:
-        name: name
-        message: message
-        email: email
-      properties:
-        email:
-          type: string
-        name:
-          type: string
-        message:
-          type: string
-      type: object
-    ListCredentialsReply:
-      example:
-        offset: 6
-        credentials:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          organization_id: organization_id
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          token: token
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          organization_id: organization_id
-          name: name
-          description: description
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          token: token
-        limit: 0
-        count: 1
-      properties:
-        credentials:
-          items:
-            $ref: '#/components/schemas/Credential'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-      type: object
-    LoginReply:
-      example:
-        token:
-          id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-          expires: 0001-01-01T00:00:00Z
-          user_id: 996d7822-6b58-11e9-956f-32001b70f000
-          organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
-      properties:
-        token:
-          $ref: '#/components/schemas/Token'
-      type: object
-    LoginRequest:
-      example:
-        email: john@snow.com
-        password: '...'
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      type: object
-    LogoutReply:
-      type: object
-    OAuthCallbackReply:
-      example:
-        token:
-          id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-          expires: 0001-01-01T00:00:00Z
-          user_id: 996d7822-6b58-11e9-956f-32001b70f000
-          organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
-      properties:
-        token:
-          $ref: '#/components/schemas/Token'
-      type: object
-    OAuthCallbackRequest:
-      example:
-        code: code
-        state: state
-      properties:
-        state:
-          title: The state created at the origin of the OAuth flow
-          type: string
-        code:
-          title: The code returned by the OAuth provider
-          type: string
-      type: object
-    OAuthProvider:
-      example:
-        id: id
-        state: state
-        url: url
-      properties:
-        id:
-          title: The name of the provider (.e.g github, google)
-          type: string
-        url:
-          title: The URL to call to initiate the OAuth flow
-          type: string
-        state:
-          title: The OAuth state required by the protocol, it is only valid 10 minutes
-            and encodes information about the type of flow
-          type: string
-      type: object
-    Organization:
-      example:
-        country: country
-        address2: address2
-        city: city
-        address1: address1
-        vat_number: vat_number
-        name: name
-        company: true
-        state: state
-        postal_code: postal_code
-      properties:
-        address1:
-          type: string
-        address2:
-          type: string
-        city:
-          type: string
-        postal_code:
-          type: string
-        state:
-          type: string
-        country:
-          type: string
-        company:
-          type: boolean
-        vat_number:
-          type: string
-        name:
-          type: string
-        plan:
-          $ref: '#/components/schemas/Plan'
-      type: object
-    PasswordlessLoginReply:
-      type: object
-    PasswordlessLoginRequest:
-      example:
-        email: john@snow.com
-      properties:
-        email:
-          type: string
-      type: object
-    Plan:
-      default: basic
-      enum:
-      - basic
-      - startup
-      - business
-      type: string
-    ResendEmailValidationReply:
-      type: object
-    ResendEmailValidationRequest:
-      type: object
-    ResetPasswordReply:
-      type: object
-    ResetPasswordRequest:
-      example:
-        email: john@snow.com
-      properties:
-        email:
-          type: string
-      type: object
-    Token:
-      example:
-        id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-        expires: 0001-01-01T00:00:00Z
-        user_id: 996d7822-6b58-11e9-956f-32001b70f000
-        organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
-      properties:
-        id:
-          type: string
-        user_id:
-          type: string
-        organization_id:
-          type: string
-        expires_at:
-          format: date-time
-          type: string
-      type: object
-    UpdateOrganizationReply:
-      example:
-        organization:
-          country: country
-          address2: address2
-          city: city
-          address1: address1
-          vat_number: vat_number
-          name: name
-          company: true
-          state: state
-          postal_code: postal_code
-      properties:
-        organization:
-          $ref: '#/components/schemas/Organization'
-      type: object
-    UpdatePasswordRequest:
-      example:
-        id: '...'
-        password: '...'
-      properties:
-        id:
-          type: string
-        password:
-          type: string
-      type: object
-    UpdateUserRequest.UserUpdateBody:
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        current_password:
-          type: string
-        password:
-          type: string
-        newsletter_subscribed:
-          type: boolean
-        name:
-          type: string
-      type: object
-    User:
-      description: Represent a User
-      example:
-        id: 78352123-a06f-4ec2-81ed-27a056725385
-        email: john@snow.com
-        name: John Snow
-        status: ACTIVE
-        status_message: active
-        avatar_url: https://www.gravatar.com/avatar/00000000000000000000000000000000
-        verified: true
-        is_admin: false
-        is_test: true
-        two_factor_authentication: false
-        last_login: 0001-01-01T00:00:00Z
-        last_login_id: 10.1.1.1
-        updated_at: 0001-01-01T00:00:00Z
-        created_at: 0001-01-01T00:00:00Z
-        default_organization_id: 78352123-a06f-4ec2-81ed-27a056725385
-        newsletter_subscribed: true
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        status:
-          $ref: '#/components/schemas/User.AccountStatus'
-        status_message:
-          type: string
-        avatar_url:
-          type: string
-        verified:
-          type: boolean
-        two_factor_authentication:
-          type: boolean
-        last_login:
-          format: date-time
-          type: string
-        last_login_ip:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        default_organization_id:
-          type: string
-        newsletter_subscribed:
-          type: boolean
-        github_id:
-          type: string
-        github_user:
-          type: string
-        flags:
-          items:
-            $ref: '#/components/schemas/UserFlags'
-          type: array
-        name:
-          type: string
-      title: User
-      type: object
-    User.AccountStatus:
-      default: WARNING
-      enum:
-      - WARNING
-      - LOCKED
-      - ACTIVE
-      type: string
-    UserFlags:
-      default: ADMIN
-      enum:
-      - ADMIN
-      - TEST
-      - RESTRICTED
-      - ACTIVE
-      - BETA
-      title: |-
-        - ADMIN: A user is an admin user
-         - TEST: A user is a test user
-         - RESTRICTED: Whether this account as restricted access
-         - ACTIVE: Whether this account is active
-         - BETA: Account in beta program
-      type: string
-    UserReply:
-      example:
-        user:
-          id: 78352123-a06f-4ec2-81ed-27a056725385
-          email: john@snow.com
-          name: John Snow
-          status: ACTIVE
-          status_message: active
-          avatar_url: https://www.gravatar.com/avatar/00000000000000000000000000000000
-          verified: true
-          is_admin: false
-          is_test: true
-          two_factor_authentication: false
-          last_login: 0001-01-01T00:00:00Z
-          last_login_id: 10.1.1.1
-          updated_at: 0001-01-01T00:00:00Z
-          created_at: 0001-01-01T00:00:00Z
-          default_organization_id: 78352123-a06f-4ec2-81ed-27a056725385
-          newsletter_subscribed: true
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
       type: object
     Activity:
       example:
@@ -4019,6 +3383,121 @@ components:
           format: int64
           type: integer
       type: object
+    GithubHookReply:
+      type: object
+    Notification:
+      example:
+        is_read: true
+        activity:
+          actor:
+            metadata: '{}'
+            deleted: true
+            name: name
+            id: id
+            type: type
+          metadata: '{}'
+          verb: verb
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          object:
+            metadata: '{}'
+            deleted: true
+            name: name
+            id: id
+            type: type
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        is_seen: true
+      properties:
+        id:
+          type: string
+        activity:
+          $ref: '#/components/schemas/Activity'
+        is_read:
+          type: boolean
+        is_seen:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    NotificationList:
+      example:
+        is_read: true
+        offset: 6
+        unread: 5
+        limit: 0
+        count: 1
+        is_seen: true
+        notifications:
+        - is_read: true
+          activity:
+            actor:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+            metadata: '{}'
+            verb: verb
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            object:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          is_seen: true
+        - is_read: true
+          activity:
+            actor:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+            metadata: '{}'
+            verb: verb
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            object:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          is_seen: true
+        unseen: 5
+      properties:
+        notifications:
+          items:
+            $ref: '#/components/schemas/Notification'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+        count:
+          format: int64
+          type: integer
+        is_read:
+          type: boolean
+        is_seen:
+          type: boolean
+        unread:
+          format: int64
+          type: integer
+        unseen:
+          format: int64
+          type: integer
+      type: object
     Object:
       example:
         metadata: '{}'
@@ -4039,7 +3518,99 @@ components:
         deleted:
           type: boolean
       type: object
-    Empty:
+    Error:
+      properties:
+        status:
+          format: int32
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
+      type: object
+    ErrorField:
+      properties:
+        field:
+          type: string
+        description:
+          type: string
+      type: object
+    ErrorWithFields:
+      properties:
+        status:
+          format: int32
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/ErrorField'
+          type: array
+      type: object
+    ExecCommandIO:
+      example:
+        data: data
+      properties:
+        data:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    ExecCommandReply:
+      example:
+        stdout:
+          data: data
+        exited: true
+        exit_code: 0
+        stderr:
+          data: data
+      properties:
+        stdout:
+          $ref: '#/components/schemas/ExecCommandIO'
+        stderr:
+          $ref: '#/components/schemas/ExecCommandIO'
+        exited:
+          type: boolean
+        exit_code:
+          format: int32
+          type: integer
+      type: object
+    ExecCommandRequest.Body:
+      properties:
+        command:
+          items:
+            type: string
+          type: array
+        tty_size:
+          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
+        stdin:
+          $ref: '#/components/schemas/ExecCommandIO'
+      type: object
+    ExecCommandRequest.TerminalSize:
+      properties:
+        height:
+          format: int32
+          type: integer
+        width:
+          format: int32
+          type: integer
+      type: object
+    LogEntry:
+      example:
+        msg: msg
+        created_at: 2000-01-23T04:56:07.000+00:00
+        labels: '{}'
+      properties:
+        msg:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        labels:
+          properties: {}
+          type: object
       type: object
     AzureContainerRegistryConfiguration:
       example:
@@ -4423,6 +3994,354 @@ components:
       properties:
         secret:
           $ref: '#/components/schemas/Secret'
+      type: object
+    GetInstanceReply:
+      example:
+        instance:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          deployment_id: deployment_id
+          app_id: app_id
+      properties:
+        instance:
+          $ref: '#/components/schemas/Instance'
+      type: object
+    Instance:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        service_id: service_id
+        allocation_id: allocation_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        datacenter: datacenter
+        id: id
+        deployment_id: deployment_id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        datacenter:
+          type: string
+        status:
+          $ref: '#/components/schemas/Instance.Status'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    Instance.Status:
+      default: ALLOCATING
+      enum:
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      type: string
+    InstanceListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        service_id: service_id
+        allocation_id: allocation_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        datacenter: datacenter
+        id: id
+        deployment_id: deployment_id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        datacenter:
+          type: string
+        status:
+          $ref: '#/components/schemas/Instance.Status'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    ListInstancesReply:
+      example:
+        offset: 6
+        instances:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          deployment_id: deployment_id
+          app_id: app_id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          deployment_id: deployment_id
+          app_id: app_id
+        limit: 0
+        count: 1
+        order: order
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/InstanceListItem'
+          title: The collection of instances
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+        order:
+          title: The order in the request
+          type: string
+      type: object
+    App:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - deployment_group: deployment_group
+          name: name
+        - deployment_group: deployment_group
+          name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    AppListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - deployment_group: deployment_group
+          name: name
+        - deployment_group: deployment_group
+          name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    CreateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    CreateAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - deployment_group: deployment_group
+            name: name
+          - deployment_group: deployment_group
+            name: name
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    DeleteAppReply:
+      type: object
+    Domain:
+      example:
+        deployment_group: deployment_group
+        name: name
+      properties:
+        name:
+          type: string
+        deployment_group:
+          type: string
+      type: object
+    GetAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - deployment_group: deployment_group
+            name: name
+          - deployment_group: deployment_group
+            name: name
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    ListAppsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        apps:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - deployment_group: deployment_group
+            name: name
+          - deployment_group: deployment_group
+            name: name
+          id: id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - deployment_group: deployment_group
+            name: name
+          - deployment_group: deployment_group
+            name: name
+          id: id
+      properties:
+        apps:
+          items:
+            $ref: '#/components/schemas/AppListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    UpdateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    UpdateAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - deployment_group: deployment_group
+            name: name
+          - deployment_group: deployment_group
+            name: name
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
       type: object
     Deployment:
       example:
@@ -5355,187 +5274,6 @@ components:
       - UNKNOWN
       - GIT
       type: string
-    App:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - deployment_group: deployment_group
-          name: name
-        - deployment_group: deployment_group
-          name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    AppListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - deployment_group: deployment_group
-          name: name
-        - deployment_group: deployment_group
-          name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    CreateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    CreateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    DeleteAppReply:
-      type: object
-    Domain:
-      example:
-        deployment_group: deployment_group
-        name: name
-      properties:
-        name:
-          type: string
-        deployment_group:
-          type: string
-      type: object
-    GetAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    ListAppsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        apps:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        apps:
-          items:
-            $ref: '#/components/schemas/AppListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    UpdateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    UpdateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
     AutoRelease:
       example:
         groups:
@@ -6249,172 +5987,549 @@ components:
         service:
           $ref: '#/components/schemas/Service'
       type: object
-    GetInstanceReply:
-      example:
-        instance:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-          deployment_id: deployment_id
-          app_id: app_id
-      properties:
-        instance:
-          $ref: '#/components/schemas/Instance'
-      type: object
-    Instance:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        service_id: service_id
-        allocation_id: allocation_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        datacenter: datacenter
-        id: id
-        deployment_id: deployment_id
-        app_id: app_id
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        datacenter:
-          type: string
-        status:
-          $ref: '#/components/schemas/Instance.Status'
-        messages:
-          items:
-            type: string
-          type: array
-      type: object
-    Instance.Status:
-      default: ALLOCATING
+    Action:
+      default: signin
       enum:
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERROR
+      - signin
+      - signup
+      - register
       type: string
-    InstanceListItem:
+    CannyAuthReply:
+      example:
+        token: token
+      properties:
+        token:
+          type: string
+      type: object
+    CannyAuthRequest:
+      type: object
+    CreateAccountRequest:
+      description: Create new account
+      example:
+        email: john@snow.com
+        password: '...'
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+      required:
+      - email
+      - password
+      title: Create new account
+      type: object
+    CreateCredential:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      type: object
+    Credential:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
+        user_id: user_id
         organization_id: organization_id
-        service_id: service_id
-        allocation_id: allocation_id
+        name: name
+        description: description
         created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        datacenter: datacenter
         id: id
-        deployment_id: deployment_id
-        app_id: app_id
+        token: token
       properties:
         id:
           type: string
-        created_at:
-          format: date-time
+        name:
+          type: string
+        token:
+          type: string
+        description:
+          type: string
+        user_id:
+          type: string
+        organization_id:
           type: string
         updated_at:
           format: date-time
           type: string
-        organization_id:
+        created_at:
+          format: date-time
           type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        datacenter:
-          type: string
-        status:
-          $ref: '#/components/schemas/Instance.Status'
-        messages:
+      type: object
+    CredentialReply:
+      example:
+        credential:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          token: token
+      properties:
+        credential:
+          $ref: '#/components/schemas/Credential'
+      type: object
+    DeleteAccountReply:
+      type: object
+    GetOAuthOptionsReply:
+      description: A list of providers which you can use for single sign-on.
+      example:
+        oauth_providers:
+        - id: id
+          state: state
+          url: url
+        - id: id
+          state: state
+          url: url
+      properties:
+        oauth_providers:
           items:
-            type: string
+            $ref: '#/components/schemas/OAuthProvider'
           type: array
       type: object
-    ListInstancesReply:
+    GetOrganizationReply:
+      example:
+        organization:
+          country: country
+          address2: address2
+          city: city
+          address1: address1
+          vat_number: vat_number
+          name: name
+          company: true
+          state: state
+          postal_code: postal_code
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization'
+      type: object
+    GithubInstallationCallbackReply:
+      type: object
+    GithubInstallationCallbackRequest:
+      example:
+        setup_action: setup_action
+        installation_id: installation_id
+        state: state
+      properties:
+        installation_id:
+          type: string
+        setup_action:
+          type: string
+        state:
+          type: string
+      type: object
+    GithubInstallationReply:
+      example:
+        app_name: app_name
+        state: state
+        app_id: app_id
+        url: url
+      properties:
+        app_name:
+          title: The github app name
+          type: string
+        app_id:
+          format: int64
+          title: The github app id
+          type: string
+        url:
+          title: The url to start the installation flow
+          type: string
+        state:
+          title: The state required by the protocol, it is only valid 10 minutes and
+            encodes information about the type of flow
+          type: string
+      type: object
+    GithubInstallationRepoListReply:
+      example:
+        repositories:
+        - private: true
+          name: name
+          description: description
+          default_branch: default_branch
+          id: id
+        - private: true
+          name: name
+          description: description
+          default_branch: default_branch
+          id: id
+        installation_url: installation_url
+        installation_id: installation_id
+      properties:
+        repositories:
+          items:
+            $ref: '#/components/schemas/GithubRepo'
+          type: array
+        installation_id:
+          type: string
+        installation_url:
+          type: string
+      type: object
+    GithubRepo:
+      example:
+        private: true
+        name: name
+        description: description
+        default_branch: default_branch
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        private:
+          type: boolean
+        description:
+          type: string
+        default_branch:
+          type: string
+      type: object
+    InviteUserRequest:
+      example:
+        name: name
+        message: message
+        email: email
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        message:
+          type: string
+      type: object
+    ListCredentialsReply:
       example:
         offset: 6
-        instances:
+        credentials:
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
           organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
+          name: name
+          description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
           id: id
-          deployment_id: deployment_id
-          app_id: app_id
+          token: token
         - updated_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
           organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
+          name: name
+          description: description
           created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
           id: id
-          deployment_id: deployment_id
-          app_id: app_id
+          token: token
         limit: 0
         count: 1
-        order: order
       properties:
-        instances:
+        credentials:
           items:
-            $ref: '#/components/schemas/InstanceListItem'
-          title: The collection of instances
+            $ref: '#/components/schemas/Credential'
           type: array
         limit:
           format: int64
-          title: The limit in the request
           type: integer
         offset:
           format: int64
-          title: The offset in the request
           type: integer
         count:
           format: int64
-          title: The total number of items
           type: integer
-        order:
-          title: The order in the request
+      type: object
+    LoginReply:
+      example:
+        token:
+          id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          expires: 0001-01-01T00:00:00Z
+          user_id: 996d7822-6b58-11e9-956f-32001b70f000
+          organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
+      properties:
+        token:
+          $ref: '#/components/schemas/Token'
+      type: object
+    LoginRequest:
+      example:
+        email: john@snow.com
+        password: '...'
+      properties:
+        email:
           type: string
+        password:
+          type: string
+      type: object
+    LogoutReply:
+      type: object
+    OAuthCallbackReply:
+      example:
+        token:
+          id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+          expires: 0001-01-01T00:00:00Z
+          user_id: 996d7822-6b58-11e9-956f-32001b70f000
+          organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
+      properties:
+        token:
+          $ref: '#/components/schemas/Token'
+      type: object
+    OAuthCallbackRequest:
+      example:
+        code: code
+        state: state
+      properties:
+        state:
+          title: The state created at the origin of the OAuth flow
+          type: string
+        code:
+          title: The code returned by the OAuth provider
+          type: string
+      type: object
+    OAuthProvider:
+      example:
+        id: id
+        state: state
+        url: url
+      properties:
+        id:
+          title: The name of the provider (.e.g github, google)
+          type: string
+        url:
+          title: The URL to call to initiate the OAuth flow
+          type: string
+        state:
+          title: The OAuth state required by the protocol, it is only valid 10 minutes
+            and encodes information about the type of flow
+          type: string
+      type: object
+    Organization:
+      example:
+        country: country
+        address2: address2
+        city: city
+        address1: address1
+        vat_number: vat_number
+        name: name
+        company: true
+        state: state
+        postal_code: postal_code
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        city:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+        country:
+          type: string
+        company:
+          type: boolean
+        vat_number:
+          type: string
+        name:
+          type: string
+        plan:
+          $ref: '#/components/schemas/Plan'
+      type: object
+    PasswordlessLoginReply:
+      type: object
+    PasswordlessLoginRequest:
+      example:
+        email: john@snow.com
+      properties:
+        email:
+          type: string
+      type: object
+    Plan:
+      default: basic
+      enum:
+      - basic
+      - startup
+      - business
+      type: string
+    ResendEmailValidationReply:
+      type: object
+    ResendEmailValidationRequest:
+      type: object
+    ResetPasswordReply:
+      type: object
+    ResetPasswordRequest:
+      example:
+        email: john@snow.com
+      properties:
+        email:
+          type: string
+      type: object
+    Token:
+      example:
+        id: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        expires: 0001-01-01T00:00:00Z
+        user_id: 996d7822-6b58-11e9-956f-32001b70f000
+        organization_id: 9f33b2c6-6b58-11e9-883c-32001b70f000
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        organization_id:
+          type: string
+        expires_at:
+          format: date-time
+          type: string
+      type: object
+    UpdateOrganizationReply:
+      example:
+        organization:
+          country: country
+          address2: address2
+          city: city
+          address1: address1
+          vat_number: vat_number
+          name: name
+          company: true
+          state: state
+          postal_code: postal_code
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization'
+      type: object
+    UpdatePasswordRequest:
+      example:
+        id: '...'
+        password: '...'
+      properties:
+        id:
+          type: string
+        password:
+          type: string
+      type: object
+    UpdateUserRequest.UserUpdateBody:
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        current_password:
+          type: string
+        password:
+          type: string
+        newsletter_subscribed:
+          type: boolean
+        name:
+          type: string
+      type: object
+    User:
+      description: Represent a User
+      example:
+        id: 78352123-a06f-4ec2-81ed-27a056725385
+        email: john@snow.com
+        name: John Snow
+        status: ACTIVE
+        status_message: active
+        avatar_url: https://www.gravatar.com/avatar/00000000000000000000000000000000
+        verified: true
+        is_admin: false
+        is_test: true
+        two_factor_authentication: false
+        last_login: 0001-01-01T00:00:00Z
+        last_login_id: 10.1.1.1
+        updated_at: 0001-01-01T00:00:00Z
+        created_at: 0001-01-01T00:00:00Z
+        default_organization_id: 78352123-a06f-4ec2-81ed-27a056725385
+        newsletter_subscribed: true
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        status:
+          $ref: '#/components/schemas/User.AccountStatus'
+        status_message:
+          type: string
+        avatar_url:
+          type: string
+        verified:
+          type: boolean
+        two_factor_authentication:
+          type: boolean
+        last_login:
+          format: date-time
+          type: string
+        last_login_ip:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        default_organization_id:
+          type: string
+        newsletter_subscribed:
+          type: boolean
+        github_id:
+          type: string
+        github_user:
+          type: string
+        flags:
+          items:
+            $ref: '#/components/schemas/UserFlags'
+          type: array
+        name:
+          type: string
+      title: User
+      type: object
+    User.AccountStatus:
+      default: WARNING
+      enum:
+      - WARNING
+      - LOCKED
+      - ACTIVE
+      type: string
+    UserFlags:
+      default: ADMIN
+      enum:
+      - ADMIN
+      - TEST
+      - RESTRICTED
+      - ACTIVE
+      - BETA
+      title: |-
+        - ADMIN: A user is an admin user
+         - TEST: A user is a test user
+         - RESTRICTED: Whether this account as restricted access
+         - ACTIVE: Whether this account is active
+         - BETA: Account in beta program
+      type: string
+    UserReply:
+      example:
+        user:
+          id: 78352123-a06f-4ec2-81ed-27a056725385
+          email: john@snow.com
+          name: John Snow
+          status: ACTIVE
+          status_message: active
+          avatar_url: https://www.gravatar.com/avatar/00000000000000000000000000000000
+          verified: true
+          is_admin: false
+          is_test: true
+          two_factor_authentication: false
+          last_login: 0001-01-01T00:00:00Z
+          last_login_id: 10.1.1.1
+          updated_at: 0001-01-01T00:00:00Z
+          created_at: 0001-01-01T00:00:00Z
+          default_organization_id: 78352123-a06f-4ec2-81ed-27a056725385
+          newsletter_subscribed: true
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+      type: object
+    Empty:
       type: object
     CatalogInstance:
       example:
@@ -6742,142 +6857,6 @@ components:
           title: A list of datacenters available in this region
           type: array
       type: object
-    GithubHookReply:
-      type: object
-    Notification:
-      example:
-        is_read: true
-        activity:
-          actor:
-            metadata: '{}'
-            deleted: true
-            name: name
-            id: id
-            type: type
-          metadata: '{}'
-          verb: verb
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          object:
-            metadata: '{}'
-            deleted: true
-            name: name
-            id: id
-            type: type
-        created_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        is_seen: true
-      properties:
-        id:
-          type: string
-        activity:
-          $ref: '#/components/schemas/Activity'
-        is_read:
-          type: boolean
-        is_seen:
-          type: boolean
-        created_at:
-          format: date-time
-          type: string
-      type: object
-    NotificationList:
-      example:
-        is_read: true
-        offset: 6
-        unread: 5
-        limit: 0
-        count: 1
-        is_seen: true
-        notifications:
-        - is_read: true
-          activity:
-            actor:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-            metadata: '{}'
-            verb: verb
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            object:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          is_seen: true
-        - is_read: true
-          activity:
-            actor:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-            metadata: '{}'
-            verb: verb
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            object:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          is_seen: true
-        unseen: 5
-      properties:
-        notifications:
-          items:
-            $ref: '#/components/schemas/Notification'
-          type: array
-        limit:
-          format: int64
-          type: integer
-        offset:
-          format: int64
-          type: integer
-        count:
-          format: int64
-          type: integer
-        is_read:
-          type: boolean
-        is_seen:
-          type: boolean
-        unread:
-          format: int64
-          type: integer
-        unseen:
-          format: int64
-          type: integer
-      type: object
-    Stream_result_of_LogEntry:
-      example:
-        result:
-          msg: msg
-          created_at: 2000-01-23T04:56:07.000+00:00
-          labels: '{}'
-        error:
-          code: 0
-          details:
-          - value: value
-            type_url: type_url
-          - value: value
-            type_url: type_url
-          message: message
-      properties:
-        result:
-          $ref: '#/components/schemas/LogEntry'
-        error:
-          $ref: '#/components/schemas/google.rpc.Status'
-      title: Stream result of LogEntry
-      type: object
     Stream_result_of_ExecCommandReply:
       example:
         result:
@@ -6888,7 +6867,7 @@ components:
           stderr:
             data: data
         error:
-          code: 0
+          code: 6
           details:
           - value: value
             type_url: type_url
@@ -6901,6 +6880,27 @@ components:
         error:
           $ref: '#/components/schemas/google.rpc.Status'
       title: Stream result of ExecCommandReply
+      type: object
+    Stream_result_of_LogEntry:
+      example:
+        result:
+          msg: msg
+          created_at: 2000-01-23T04:56:07.000+00:00
+          labels: '{}'
+        error:
+          code: 6
+          details:
+          - value: value
+            type_url: type_url
+          - value: value
+            type_url: type_url
+          message: message
+      properties:
+        result:
+          $ref: '#/components/schemas/LogEntry'
+        error:
+          $ref: '#/components/schemas/google.rpc.Status'
+      title: Stream result of LogEntry
       type: object
   securitySchemes:
     Bearer:
