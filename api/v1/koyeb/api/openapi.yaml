@@ -4357,8 +4357,28 @@ components:
               sender_profile_url: sender_profile_url
         created_at: 2000-01-23T04:56:07.000+00:00
         version: version
+        datacenters:
+        - datacenters
+        - datacenters
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
+        provisioning_info:
+          image: image
+          build_job_id: build_job_id
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
         deployment_group: deployment_group
         parent_id: parent_id
         organization_id: organization_id
@@ -4467,6 +4487,12 @@ components:
           items:
             type: string
           type: array
+        datacenters:
+          items:
+            type: string
+          type: array
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
         version:
           format: uint64
           type: string
@@ -4509,8 +4535,28 @@ components:
               sender_profile_url: sender_profile_url
         created_at: 2000-01-23T04:56:07.000+00:00
         version: version
+        datacenters:
+        - datacenters
+        - datacenters
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
+        provisioning_info:
+          image: image
+          build_job_id: build_job_id
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
         deployment_group: deployment_group
         parent_id: parent_id
         organization_id: organization_id
@@ -4619,6 +4665,12 @@ components:
           items:
             type: string
           type: array
+        datacenters:
+          items:
+            type: string
+          type: array
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
         version:
           format: uint64
           type: string
@@ -4644,6 +4696,73 @@ components:
         trigger:
           $ref: '#/components/schemas/TriggerDeploymentMetadata'
       type: object
+    DeploymentProvisioningInfo:
+      example:
+        image: image
+        build_job_id: build_job_id
+        stages:
+        - finished_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          messages:
+          - messages
+          - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
+        - finished_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          messages:
+          - messages
+          - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
+        sha: sha
+      properties:
+        sha:
+          description: The git sha for this build (we resolve the reference at the
+            start of the build).
+          type: string
+        image:
+          description: The docker image built as a result of this build.
+          type: string
+        build_job_id:
+          description: The id of the job that ran the build.
+          type: string
+        stages:
+          description: Some info about the build.
+          items:
+            $ref: '#/components/schemas/DeploymentProvisioningInfo.Stage'
+          type: array
+      type: object
+    DeploymentProvisioningInfo.Stage:
+      example:
+        finished_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        messages:
+        - messages
+        - messages
+        started_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        name:
+          type: string
+        status:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo.Stage.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        started_at:
+          format: date-time
+          type: string
+        finished_at:
+          format: date-time
+          type: string
+      type: object
+    DeploymentProvisioningInfo.Stage.Status:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - RUNNING
+      - FAILED
+      - COMPLETED
+      type: string
     DockerSource:
       example:
         args:
@@ -4692,8 +4811,28 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
+          datacenters:
+          - datacenters
+          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
+          provisioning_info:
+            image: image
+            build_job_id: build_job_id
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
@@ -4853,8 +4992,28 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
+          datacenters:
+          - datacenters
+          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
+          provisioning_info:
+            image: image
+            build_job_id: build_job_id
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
@@ -4942,8 +5101,28 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
+          datacenters:
+          - datacenters
+          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
+          provisioning_info:
+            image: image
+            build_job_id: build_job_id
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
@@ -5617,8 +5796,28 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
+          datacenters:
+          - datacenters
+          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
+          provisioning_info:
+            image: image
+            build_job_id: build_job_id
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
           deployment_group: deployment_group
           parent_id: parent_id
           organization_id: organization_id
@@ -6919,11 +7118,6 @@ x-tagGroups:
   - Secrets
   - activity
   - Catalog
-  - stack
-  - Functions
-  - store
-  - S3Credentials
-  - Connectors
   - Apps
   - Services
   - Deployments

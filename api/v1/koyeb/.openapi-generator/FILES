@@ -50,6 +50,9 @@ docs/CredentialsApi.md
 docs/Deployment.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
+docs/DeploymentProvisioningInfo.md
+docs/DeploymentProvisioningInfoStage.md
+docs/DeploymentProvisioningInfoStageStatus.md
 docs/DeploymentStatus.md
 docs/DeploymentsApi.md
 docs/DesiredDeployment.md
@@ -186,6 +189,9 @@ model_credential_reply.go
 model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
+model_deployment_provisioning_info.go
+model_deployment_provisioning_info_stage.go
+model_deployment_provisioning_info_stage_status.go
 model_deployment_status.go
 model_desired_deployment.go
 model_desired_deployment_group.go
