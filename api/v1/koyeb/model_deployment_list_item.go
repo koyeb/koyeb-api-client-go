@@ -30,6 +30,8 @@ type DeploymentListItem struct {
 	Status *DeploymentStatus `json:"status,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
+	Datacenters *[]string `json:"datacenters,omitempty"`
+	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
@@ -473,6 +475,70 @@ func (o *DeploymentListItem) SetMessages(v []string) {
 	o.Messages = &v
 }
 
+// GetDatacenters returns the Datacenters field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetDatacenters() []string {
+	if o == nil || o.Datacenters == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Datacenters
+}
+
+// GetDatacentersOk returns a tuple with the Datacenters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetDatacentersOk() (*[]string, bool) {
+	if o == nil || o.Datacenters == nil {
+		return nil, false
+	}
+	return o.Datacenters, true
+}
+
+// HasDatacenters returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasDatacenters() bool {
+	if o != nil && o.Datacenters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDatacenters gets a reference to the given []string and assigns it to the Datacenters field.
+func (o *DeploymentListItem) SetDatacenters(v []string) {
+	o.Datacenters = &v
+}
+
+// GetProvisioningInfo returns the ProvisioningInfo field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetProvisioningInfo() DeploymentProvisioningInfo {
+	if o == nil || o.ProvisioningInfo == nil {
+		var ret DeploymentProvisioningInfo
+		return ret
+	}
+	return *o.ProvisioningInfo
+}
+
+// GetProvisioningInfoOk returns a tuple with the ProvisioningInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetProvisioningInfoOk() (*DeploymentProvisioningInfo, bool) {
+	if o == nil || o.ProvisioningInfo == nil {
+		return nil, false
+	}
+	return o.ProvisioningInfo, true
+}
+
+// HasProvisioningInfo returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasProvisioningInfo() bool {
+	if o != nil && o.ProvisioningInfo != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisioningInfo gets a reference to the given DeploymentProvisioningInfo and assigns it to the ProvisioningInfo field.
+func (o *DeploymentListItem) SetProvisioningInfo(v DeploymentProvisioningInfo) {
+	o.ProvisioningInfo = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeploymentListItem) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -641,6 +707,12 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.Datacenters != nil {
+		toSerialize["datacenters"] = o.Datacenters
+	}
+	if o.ProvisioningInfo != nil {
+		toSerialize["provisioning_info"] = o.ProvisioningInfo
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version

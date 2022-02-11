@@ -38,11 +38,6 @@
         "Secrets",
         "activity",
         "Catalog",
-        "stack",
-        "Functions",
-        "store",
-        "S3Credentials",
-        "Connectors",
         "Apps",
         "Services",
         "Deployments",
@@ -4419,6 +4414,15 @@
             "type": "string"
           }
         },
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provisioning_info": {
+          "$ref": "#/definitions/DeploymentProvisioningInfo"
+        },
         "version": {
           "type": "string",
           "format": "uint64"
@@ -4503,6 +4507,15 @@
             "type": "string"
           }
         },
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provisioning_info": {
+          "$ref": "#/definitions/DeploymentProvisioningInfo"
+        },
         "version": {
           "type": "string",
           "format": "uint64"
@@ -4525,6 +4538,65 @@
           "$ref": "#/definitions/TriggerDeploymentMetadata"
         }
       }
+    },
+    "DeploymentProvisioningInfo": {
+      "type": "object",
+      "properties": {
+        "sha": {
+          "type": "string",
+          "description": "The git sha for this build (we resolve the reference at the start of the build)."
+        },
+        "image": {
+          "type": "string",
+          "description": "The docker image built as a result of this build."
+        },
+        "build_job_id": {
+          "type": "string",
+          "description": "The id of the job that ran the build."
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentProvisioningInfo.Stage"
+          },
+          "description": "Some info about the build."
+        }
+      }
+    },
+    "DeploymentProvisioningInfo.Stage": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/DeploymentProvisioningInfo.Stage.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "DeploymentProvisioningInfo.Stage.Status": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "RUNNING",
+        "FAILED",
+        "COMPLETED"
+      ],
+      "default": "UNKNOWN"
     },
     "DockerSource": {
       "type": "object",

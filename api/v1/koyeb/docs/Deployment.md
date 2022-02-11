@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**DeploymentStatus**](DeploymentStatus.md) |  | [optional] [default to DEPLOYMENTSTATUS_PENDING]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 **Messages** | Pointer to **[]string** |  | [optional] 
+**Datacenters** | Pointer to **[]string** |  | [optional] 
+**ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
@@ -365,6 +367,56 @@ SetMessages sets Messages field to given value.
 `func (o *Deployment) HasMessages() bool`
 
 HasMessages returns a boolean if a field has been set.
+
+### GetDatacenters
+
+`func (o *Deployment) GetDatacenters() []string`
+
+GetDatacenters returns the Datacenters field if non-nil, zero value otherwise.
+
+### GetDatacentersOk
+
+`func (o *Deployment) GetDatacentersOk() (*[]string, bool)`
+
+GetDatacentersOk returns a tuple with the Datacenters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatacenters
+
+`func (o *Deployment) SetDatacenters(v []string)`
+
+SetDatacenters sets Datacenters field to given value.
+
+### HasDatacenters
+
+`func (o *Deployment) HasDatacenters() bool`
+
+HasDatacenters returns a boolean if a field has been set.
+
+### GetProvisioningInfo
+
+`func (o *Deployment) GetProvisioningInfo() DeploymentProvisioningInfo`
+
+GetProvisioningInfo returns the ProvisioningInfo field if non-nil, zero value otherwise.
+
+### GetProvisioningInfoOk
+
+`func (o *Deployment) GetProvisioningInfoOk() (*DeploymentProvisioningInfo, bool)`
+
+GetProvisioningInfoOk returns a tuple with the ProvisioningInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisioningInfo
+
+`func (o *Deployment) SetProvisioningInfo(v DeploymentProvisioningInfo)`
+
+SetProvisioningInfo sets ProvisioningInfo field to given value.
+
+### HasProvisioningInfo
+
+`func (o *Deployment) HasProvisioningInfo() bool`
+
+HasProvisioningInfo returns a boolean if a field has been set.
 
 ### GetVersion
 
