@@ -35,7 +35,6 @@ type Deployment struct {
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
-	State *ServiceRevisionState `json:"state,omitempty"`
 }
 
 // NewDeployment instantiates a new Deployment object
@@ -635,38 +634,6 @@ func (o *Deployment) SetDefinition(v ServiceDefinition) {
 	o.Definition = &v
 }
 
-// GetState returns the State field value if set, zero value otherwise.
-func (o *Deployment) GetState() ServiceRevisionState {
-	if o == nil || o.State == nil {
-		var ret ServiceRevisionState
-		return ret
-	}
-	return *o.State
-}
-
-// GetStateOk returns a tuple with the State field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Deployment) GetStateOk() (*ServiceRevisionState, bool) {
-	if o == nil || o.State == nil {
-		return nil, false
-	}
-	return o.State, true
-}
-
-// HasState returns a boolean if a field has been set.
-func (o *Deployment) HasState() bool {
-	if o != nil && o.State != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetState gets a reference to the given ServiceRevisionState and assigns it to the State field.
-func (o *Deployment) SetState(v ServiceRevisionState) {
-	o.State = &v
-}
-
 func (o Deployment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -722,9 +689,6 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	}
 	if o.Definition != nil {
 		toSerialize["definition"] = o.Definition
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
 	}
 	return json.Marshal(toSerialize)
 }

@@ -4429,29 +4429,6 @@ components:
             image_registry_secret: image_registry_secret
             command: command
         id: id
-        state:
-          datacenters:
-          - datacenters
-          - datacenters
-          build_info:
-            image: image
-            stage_state:
-            - status_message: status_message
-              finished_at: 2000-01-23T04:56:07.000+00:00
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            - status_message: status_message
-              finished_at: 2000-01-23T04:56:07.000+00:00
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            build_job_id: build_job_id
-            sha: sha
         app_id: app_id
         allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -4500,8 +4477,6 @@ components:
           type: string
         definition:
           $ref: '#/components/schemas/ServiceDefinition'
-        state:
-          $ref: '#/components/schemas/ServiceRevisionState'
       type: object
     Deployment.Status:
       default: PENDING
@@ -4607,29 +4582,6 @@ components:
             image_registry_secret: image_registry_secret
             command: command
         id: id
-        state:
-          datacenters:
-          - datacenters
-          - datacenters
-          build_info:
-            image: image
-            stage_state:
-            - status_message: status_message
-              finished_at: 2000-01-23T04:56:07.000+00:00
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            - status_message: status_message
-              finished_at: 2000-01-23T04:56:07.000+00:00
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            build_job_id: build_job_id
-            sha: sha
         app_id: app_id
         allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -4678,8 +4630,6 @@ components:
           type: string
         definition:
           $ref: '#/components/schemas/ServiceDefinition'
-        state:
-          $ref: '#/components/schemas/ServiceRevisionState'
       type: object
     DeploymentMetadata:
       example:
@@ -4883,29 +4833,6 @@ components:
               image_registry_secret: image_registry_secret
               command: command
           id: id
-          state:
-            datacenters:
-            - datacenters
-            - datacenters
-            build_info:
-              image: image
-              stage_state:
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              build_job_id: build_job_id
-              sha: sha
           app_id: app_id
           allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -5064,29 +4991,6 @@ components:
               image_registry_secret: image_registry_secret
               command: command
           id: id
-          state:
-            datacenters:
-            - datacenters
-            - datacenters
-            build_info:
-              image: image
-              stage_state:
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              build_job_id: build_job_id
-              sha: sha
           app_id: app_id
           allocated_at: 2000-01-23T04:56:07.000+00:00
         - metadata:
@@ -5173,29 +5077,6 @@ components:
               image_registry_secret: image_registry_secret
               command: command
           id: id
-          state:
-            datacenters:
-            - datacenters
-            - datacenters
-            build_info:
-              image: image
-              stage_state:
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              build_job_id: build_job_id
-              sha: sha
           app_id: app_id
           allocated_at: 2000-01-23T04:56:07.000+00:00
         offset: 2
@@ -5326,111 +5207,6 @@ components:
         git:
           $ref: '#/components/schemas/GitSource'
       type: object
-    ServiceRevisionState:
-      example:
-        datacenters:
-        - datacenters
-        - datacenters
-        build_info:
-          image: image
-          stage_state:
-          - status_message: status_message
-            finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          - status_message: status_message
-            finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          build_job_id: build_job_id
-          sha: sha
-      properties:
-        datacenters:
-          items:
-            type: string
-          title: The datacenters this revision will run in
-          type: array
-        build_info:
-          $ref: '#/components/schemas/ServiceRevisionState.BuildInfo'
-      type: object
-    ServiceRevisionState.BuildInfo:
-      example:
-        image: image
-        stage_state:
-        - status_message: status_message
-          finished_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          messages:
-          - messages
-          - messages
-          started_at: 2000-01-23T04:56:07.000+00:00
-        - status_message: status_message
-          finished_at: 2000-01-23T04:56:07.000+00:00
-          name: name
-          messages:
-          - messages
-          - messages
-          started_at: 2000-01-23T04:56:07.000+00:00
-        build_job_id: build_job_id
-        sha: sha
-      properties:
-        sha:
-          description: The git sha for this build (we resolve the reference at the
-            start of the build).
-          type: string
-        image:
-          description: The docker image built as a result of this build.
-          type: string
-        build_job_id:
-          description: The id of the job that ran the build.
-          type: string
-        stage_state:
-          description: Some info about the build.
-          items:
-            $ref: '#/components/schemas/ServiceRevisionState.StageState'
-          type: array
-      type: object
-    ServiceRevisionState.StageState:
-      example:
-        status_message: status_message
-        finished_at: 2000-01-23T04:56:07.000+00:00
-        name: name
-        messages:
-        - messages
-        - messages
-        started_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        name:
-          type: string
-        status_message:
-          type: string
-        status:
-          $ref: '#/components/schemas/ServiceRevisionState.StageState.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        started_at:
-          format: date-time
-          type: string
-        finished_at:
-          format: date-time
-          type: string
-      type: object
-    ServiceRevisionState.StageState.Status:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - RUNNING
-      - FAILED
-      - COMPLETED
-      type: string
     TriggerDeploymentMetadata:
       example:
         git:
@@ -5868,29 +5644,6 @@ components:
               image_registry_secret: image_registry_secret
               command: command
           id: id
-          state:
-            datacenters:
-            - datacenters
-            - datacenters
-            build_info:
-              image: image
-              stage_state:
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              - status_message: status_message
-                finished_at: 2000-01-23T04:56:07.000+00:00
-                name: name
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-              build_job_id: build_job_id
-              sha: sha
           app_id: app_id
           allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:

@@ -22,7 +22,6 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
-**State** | Pointer to [**ServiceRevisionState**](ServiceRevisionState.md) |  | [optional] 
 
 ## Methods
 
@@ -492,31 +491,6 @@ SetDefinition sets Definition field to given value.
 `func (o *Deployment) HasDefinition() bool`
 
 HasDefinition returns a boolean if a field has been set.
-
-### GetState
-
-`func (o *Deployment) GetState() ServiceRevisionState`
-
-GetState returns the State field if non-nil, zero value otherwise.
-
-### GetStateOk
-
-`func (o *Deployment) GetStateOk() (*ServiceRevisionState, bool)`
-
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetState
-
-`func (o *Deployment) SetState(v ServiceRevisionState)`
-
-SetState sets State field to given value.
-
-### HasState
-
-`func (o *Deployment) HasState() bool`
-
-HasState returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
