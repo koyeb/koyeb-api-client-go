@@ -3128,6 +3128,25 @@ paths:
       tags:
       - sso
       x-codegen-request-body-name: body
+  /v1/catalog/datacenters:
+    get:
+      operationId: ListDatacenters
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListDatacentersReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List datacenters
+      tags:
+      - CatalogDatacenters
   /v1/catalog/instances:
     get:
       operationId: ListCatalogInstances
@@ -6482,6 +6501,47 @@ components:
           $ref: '#/components/schemas/User'
       type: object
     Empty:
+      type: object
+    DatacenterListItem:
+      example:
+        domain: domain
+        region_id: region_id
+        coordinates:
+        - coordinates
+        - coordinates
+        id: id
+      properties:
+        id:
+          type: string
+        region_id:
+          type: string
+        domain:
+          type: string
+        coordinates:
+          items:
+            type: string
+          type: array
+      type: object
+    ListDatacentersReply:
+      example:
+        datacenters:
+        - domain: domain
+          region_id: region_id
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+        - domain: domain
+          region_id: region_id
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+      properties:
+        datacenters:
+          items:
+            $ref: '#/components/schemas/DatacenterListItem'
+          type: array
       type: object
     CatalogInstance:
       example:

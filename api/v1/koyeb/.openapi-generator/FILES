@@ -5,6 +5,7 @@ README.md
 api/openapi.yaml
 api_activity.go
 api_apps.go
+api_catalog_datacenters.go
 api_catalog_instances.go
 api_catalog_regions.go
 api_credentials.go
@@ -32,6 +33,7 @@ docs/AutoRelease.md
 docs/AutoReleaseGroup.md
 docs/AzureContainerRegistryConfiguration.md
 docs/CannyAuthReply.md
+docs/CatalogDatacentersApi.md
 docs/CatalogInstance.md
 docs/CatalogInstanceListItem.md
 docs/CatalogInstancesApi.md
@@ -47,6 +49,7 @@ docs/CreateServiceReply.md
 docs/Credential.md
 docs/CredentialReply.md
 docs/CredentialsApi.md
+docs/DatacenterListItem.md
 docs/Deployment.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
@@ -101,6 +104,7 @@ docs/InviteUserRequest.md
 docs/ListAppsReply.md
 docs/ListCatalogInstancesReply.md
 docs/ListCredentialsReply.md
+docs/ListDatacentersReply.md
 docs/ListDeploymentsReply.md
 docs/ListInstancesReply.md
 docs/ListRegionsReply.md
@@ -182,6 +186,7 @@ model_create_service.go
 model_create_service_reply.go
 model_credential.go
 model_credential_reply.go
+model_datacenter_list_item.go
 model_deployment.go
 model_deployment_list_item.go
 model_deployment_metadata.go
@@ -232,6 +237,7 @@ model_invite_user_request.go
 model_list_apps_reply.go
 model_list_catalog_instances_reply.go
 model_list_credentials_reply.go
+model_list_datacenters_reply.go
 model_list_deployments_reply.go
 model_list_instances_reply.go
 model_list_regions_reply.go

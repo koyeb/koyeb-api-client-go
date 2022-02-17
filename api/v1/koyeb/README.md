@@ -88,6 +88,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
+*CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
@@ -167,6 +168,7 @@ Class | Method | HTTP request | Description
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
  - [CredentialReply](docs/CredentialReply.md)
+ - [DatacenterListItem](docs/DatacenterListItem.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
@@ -217,6 +219,7 @@ Class | Method | HTTP request | Description
  - [ListAppsReply](docs/ListAppsReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
+ - [ListDatacentersReply](docs/ListDatacentersReply.md)
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
