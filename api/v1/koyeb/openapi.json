@@ -3420,6 +3420,29 @@
         ]
       }
     },
+    "/v1/catalog/datacenters": {
+      "get": {
+        "summary": "List datacenters",
+        "operationId": "ListDatacenters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDatacentersReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "CatalogDatacenters"
+        ]
+      }
+    },
     "/v1/catalog/instances": {
       "get": {
         "summary": "List Instance",
@@ -5663,6 +5686,37 @@
     },
     "Empty": {
       "type": "object"
+    },
+    "DatacenterListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "region_id": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ListDatacentersReply": {
+      "type": "object",
+      "properties": {
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DatacenterListItem"
+          }
+        }
+      }
     },
     "CatalogInstance": {
       "type": "object",
