@@ -17,7 +17,6 @@ import (
 // DesiredDeploymentGroup struct for DesiredDeploymentGroup
 type DesiredDeploymentGroup struct {
 	Name *string `json:"name,omitempty"`
-	RevisionIds *[]string `json:"revision_ids,omitempty"`
 	DeploymentIds *[]string `json:"deployment_ids,omitempty"`
 }
 
@@ -70,38 +69,6 @@ func (o *DesiredDeploymentGroup) SetName(v string) {
 	o.Name = &v
 }
 
-// GetRevisionIds returns the RevisionIds field value if set, zero value otherwise.
-func (o *DesiredDeploymentGroup) GetRevisionIds() []string {
-	if o == nil || o.RevisionIds == nil {
-		var ret []string
-		return ret
-	}
-	return *o.RevisionIds
-}
-
-// GetRevisionIdsOk returns a tuple with the RevisionIds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DesiredDeploymentGroup) GetRevisionIdsOk() (*[]string, bool) {
-	if o == nil || o.RevisionIds == nil {
-		return nil, false
-	}
-	return o.RevisionIds, true
-}
-
-// HasRevisionIds returns a boolean if a field has been set.
-func (o *DesiredDeploymentGroup) HasRevisionIds() bool {
-	if o != nil && o.RevisionIds != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRevisionIds gets a reference to the given []string and assigns it to the RevisionIds field.
-func (o *DesiredDeploymentGroup) SetRevisionIds(v []string) {
-	o.RevisionIds = &v
-}
-
 // GetDeploymentIds returns the DeploymentIds field value if set, zero value otherwise.
 func (o *DesiredDeploymentGroup) GetDeploymentIds() []string {
 	if o == nil || o.DeploymentIds == nil {
@@ -138,9 +105,6 @@ func (o DesiredDeploymentGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
-	}
-	if o.RevisionIds != nil {
-		toSerialize["revision_ids"] = o.RevisionIds
 	}
 	if o.DeploymentIds != nil {
 		toSerialize["deployment_ids"] = o.DeploymentIds

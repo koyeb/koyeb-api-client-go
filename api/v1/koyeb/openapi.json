@@ -4924,13 +4924,6 @@
         "name": {
           "type": "string"
         },
-        "revision_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "deprecated"
-        },
         "deployment_ids": {
           "type": "array",
           "items": {
