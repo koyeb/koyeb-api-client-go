@@ -5351,16 +5351,10 @@ components:
             desired_deployment:
               groups:
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
@@ -5387,16 +5381,10 @@ components:
       example:
         groups:
         - name: name
-          revision_ids:
-          - revision_ids
-          - revision_ids
           deployment_ids:
           - deployment_ids
           - deployment_ids
         - name: name
-          revision_ids:
-          - revision_ids
-          - revision_ids
           deployment_ids:
           - deployment_ids
           - deployment_ids
@@ -5409,20 +5397,12 @@ components:
     DesiredDeployment.Group:
       example:
         name: name
-        revision_ids:
-        - revision_ids
-        - revision_ids
         deployment_ids:
         - deployment_ids
         - deployment_ids
       properties:
         name:
           type: string
-        revision_ids:
-          items:
-            type: string
-          title: deprecated
-          type: array
         deployment_ids:
           items:
             type: string
@@ -5444,16 +5424,10 @@ components:
             desired_deployment:
               groups:
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
@@ -5493,16 +5467,10 @@ components:
             desired_deployment:
               groups:
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
@@ -5532,16 +5500,10 @@ components:
             desired_deployment:
               groups:
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
@@ -5691,16 +5653,10 @@ components:
           desired_deployment:
             groups:
             - name: name
-              revision_ids:
-              - revision_ids
-              - revision_ids
               deployment_ids:
               - deployment_ids
               - deployment_ids
             - name: name
-              revision_ids:
-              - revision_ids
-              - revision_ids
               deployment_ids:
               - deployment_ids
               - deployment_ids
@@ -5773,16 +5729,10 @@ components:
           desired_deployment:
             groups:
             - name: name
-              revision_ids:
-              - revision_ids
-              - revision_ids
               deployment_ids:
               - deployment_ids
               - deployment_ids
             - name: name
-              revision_ids:
-              - revision_ids
-              - revision_ids
               deployment_ids:
               - deployment_ids
               - deployment_ids
@@ -5836,16 +5786,10 @@ components:
         desired_deployment:
           groups:
           - name: name
-            revision_ids:
-            - revision_ids
-            - revision_ids
             deployment_ids:
             - deployment_ids
             - deployment_ids
           - name: name
-            revision_ids:
-            - revision_ids
-            - revision_ids
             deployment_ids:
             - deployment_ids
             - deployment_ids
@@ -5928,16 +5872,10 @@ components:
             desired_deployment:
               groups:
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids
               - name: name
-                revision_ids:
-                - revision_ids
-                - revision_ids
                 deployment_ids:
                 - deployment_ids
                 - deployment_ids

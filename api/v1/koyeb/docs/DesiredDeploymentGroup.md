@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
-**RevisionIds** | Pointer to **[]string** |  | [optional] 
 **DeploymentIds** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
@@ -51,31 +50,6 @@ SetName sets Name field to given value.
 `func (o *DesiredDeploymentGroup) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### GetRevisionIds
-
-`func (o *DesiredDeploymentGroup) GetRevisionIds() []string`
-
-GetRevisionIds returns the RevisionIds field if non-nil, zero value otherwise.
-
-### GetRevisionIdsOk
-
-`func (o *DesiredDeploymentGroup) GetRevisionIdsOk() (*[]string, bool)`
-
-GetRevisionIdsOk returns a tuple with the RevisionIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRevisionIds
-
-`func (o *DesiredDeploymentGroup) SetRevisionIds(v []string)`
-
-SetRevisionIds sets RevisionIds field to given value.
-
-### HasRevisionIds
-
-`func (o *DesiredDeploymentGroup) HasRevisionIds() bool`
-
-HasRevisionIds returns a boolean if a field has been set.
 
 ### GetDeploymentIds
 
