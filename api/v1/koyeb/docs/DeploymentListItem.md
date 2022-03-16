@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**DeploymentStatus**](DeploymentStatus.md) |  | [optional] [default to DEPLOYMENTSTATUS_PENDING]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 **Messages** | Pointer to **[]string** |  | [optional] 
-**Datacenters** | Pointer to **[]string** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
@@ -366,31 +365,6 @@ SetMessages sets Messages field to given value.
 `func (o *DeploymentListItem) HasMessages() bool`
 
 HasMessages returns a boolean if a field has been set.
-
-### GetDatacenters
-
-`func (o *DeploymentListItem) GetDatacenters() []string`
-
-GetDatacenters returns the Datacenters field if non-nil, zero value otherwise.
-
-### GetDatacentersOk
-
-`func (o *DeploymentListItem) GetDatacentersOk() (*[]string, bool)`
-
-GetDatacentersOk returns a tuple with the Datacenters field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDatacenters
-
-`func (o *DeploymentListItem) SetDatacenters(v []string)`
-
-SetDatacenters sets Datacenters field to given value.
-
-### HasDatacenters
-
-`func (o *DeploymentListItem) HasDatacenters() bool`
-
-HasDatacenters returns a boolean if a field has been set.
 
 ### GetProvisioningInfo
 

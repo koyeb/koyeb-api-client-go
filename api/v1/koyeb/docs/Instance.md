@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **string** |  | [optional] 
+**RegionalDeploymentId** | Pointer to **string** |  | [optional] 
 **AllocationId** | Pointer to **string** |  | [optional] 
 **Datacenter** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
@@ -209,6 +210,31 @@ SetDeploymentId sets DeploymentId field to given value.
 `func (o *Instance) HasDeploymentId() bool`
 
 HasDeploymentId returns a boolean if a field has been set.
+
+### GetRegionalDeploymentId
+
+`func (o *Instance) GetRegionalDeploymentId() string`
+
+GetRegionalDeploymentId returns the RegionalDeploymentId field if non-nil, zero value otherwise.
+
+### GetRegionalDeploymentIdOk
+
+`func (o *Instance) GetRegionalDeploymentIdOk() (*string, bool)`
+
+GetRegionalDeploymentIdOk returns a tuple with the RegionalDeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegionalDeploymentId
+
+`func (o *Instance) SetRegionalDeploymentId(v string)`
+
+SetRegionalDeploymentId sets RegionalDeploymentId field to given value.
+
+### HasRegionalDeploymentId
+
+`func (o *Instance) HasRegionalDeploymentId() bool`
+
+HasRegionalDeploymentId returns a boolean if a field has been set.
 
 ### GetAllocationId
 

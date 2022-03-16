@@ -16,6 +16,7 @@ api_invite.go
 api_logs.go
 api_organization.go
 api_profile.go
+api_regional_deployments.go
 api_secrets.go
 api_services.go
 api_session.go
@@ -107,6 +108,7 @@ docs/ListCredentialsReply.md
 docs/ListDatacentersReply.md
 docs/ListDeploymentsReply.md
 docs/ListInstancesReply.md
+docs/ListRegionalDeploymentsReply.md
 docs/ListRegionsReply.md
 docs/ListSecretsReply.md
 docs/ListServicesReply.md
@@ -131,6 +133,9 @@ docs/RedeployReply.md
 docs/RedeployRequestInfo.md
 docs/Region.md
 docs/RegionListItem.md
+docs/RegionalDeploymentListItem.md
+docs/RegionalDeploymentListItemStatus.md
+docs/RegionalDeploymentsApi.md
 docs/ResetPasswordRequest.md
 docs/Route.md
 docs/Scaling.md
@@ -240,6 +245,7 @@ model_list_credentials_reply.go
 model_list_datacenters_reply.go
 model_list_deployments_reply.go
 model_list_instances_reply.go
+model_list_regional_deployments_reply.go
 model_list_regions_reply.go
 model_list_secrets_reply.go
 model_list_services_reply.go
@@ -261,6 +267,8 @@ model_redeploy_reply.go
 model_redeploy_request_info.go
 model_region.go
 model_region_list_item.go
+model_regional_deployment_list_item.go
+model_regional_deployment_list_item_status.go
 model_reset_password_request.go
 model_route.go
 model_scaling.go

@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ## ListInstances
 
-> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
+> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
 
 List Instances
 
@@ -172,6 +172,7 @@ func main() {
     appId := "appId_example" // string | (Optional) Filter on application id. (optional)
     serviceId := "serviceId_example" // string | (Optional) Filter on service id. (optional)
     deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id. (optional)
+    regionalDeploymentId := "regionalDeploymentId_example" // string | (Optional) Filter on regional deployment id. (optional)
     allocationId := "allocationId_example" // string | (Optional) Filter on allocation id. (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter on instance statuses. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
@@ -180,7 +181,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
+    resp, r, err := api_client.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +205,7 @@ Name | Type | Description  | Notes
  **appId** | **string** | (Optional) Filter on application id. | 
  **serviceId** | **string** | (Optional) Filter on service id. | 
  **deploymentId** | **string** | (Optional) Filter on deployment id. | 
+ **regionalDeploymentId** | **string** | (Optional) Filter on regional deployment id. | 
  **allocationId** | **string** | (Optional) Filter on allocation id. | 
  **statuses** | **[]string** | (Optional) Filter on instance statuses. | 
  **limit** | **string** | (Optional) The number of items to return. | 
