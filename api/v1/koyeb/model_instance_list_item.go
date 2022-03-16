@@ -24,6 +24,7 @@ type InstanceListItem struct {
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
 	DeploymentId *string `json:"deployment_id,omitempty"`
+	RegionalDeploymentId *string `json:"regional_deployment_id,omitempty"`
 	AllocationId *string `json:"allocation_id,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
@@ -275,6 +276,38 @@ func (o *InstanceListItem) SetDeploymentId(v string) {
 	o.DeploymentId = &v
 }
 
+// GetRegionalDeploymentId returns the RegionalDeploymentId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetRegionalDeploymentId() string {
+	if o == nil || o.RegionalDeploymentId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RegionalDeploymentId
+}
+
+// GetRegionalDeploymentIdOk returns a tuple with the RegionalDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetRegionalDeploymentIdOk() (*string, bool) {
+	if o == nil || o.RegionalDeploymentId == nil {
+		return nil, false
+	}
+	return o.RegionalDeploymentId, true
+}
+
+// HasRegionalDeploymentId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasRegionalDeploymentId() bool {
+	if o != nil && o.RegionalDeploymentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegionalDeploymentId gets a reference to the given string and assigns it to the RegionalDeploymentId field.
+func (o *InstanceListItem) SetRegionalDeploymentId(v string) {
+	o.RegionalDeploymentId = &v
+}
+
 // GetAllocationId returns the AllocationId field value if set, zero value otherwise.
 func (o *InstanceListItem) GetAllocationId() string {
 	if o == nil || o.AllocationId == nil {
@@ -425,6 +458,9 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeploymentId != nil {
 		toSerialize["deployment_id"] = o.DeploymentId
+	}
+	if o.RegionalDeploymentId != nil {
+		toSerialize["regional_deployment_id"] = o.RegionalDeploymentId
 	}
 	if o.AllocationId != nil {
 		toSerialize["allocation_id"] = o.AllocationId

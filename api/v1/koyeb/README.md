@@ -124,6 +124,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
+*RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Temporary: List regional deployments
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
@@ -222,6 +223,7 @@ Class | Method | HTTP request | Description
  - [ListDatacentersReply](docs/ListDatacentersReply.md)
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
+ - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
@@ -243,6 +245,8 @@ Class | Method | HTTP request | Description
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
+ - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
+ - [RegionalDeploymentListItemStatus](docs/RegionalDeploymentListItemStatus.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
  - [Route](docs/Route.md)
  - [Scaling](docs/Scaling.md)

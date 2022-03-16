@@ -858,6 +858,11 @@ paths:
         name: deployment_id
         schema:
           type: string
+      - description: (Optional) Filter on regional deployment id.
+        in: query
+        name: regional_deployment_id
+        schema:
+          type: string
       - description: (Optional) Filter on allocation id.
         in: query
         name: allocation_id
@@ -975,6 +980,60 @@ paths:
       summary: Get Instance
       tags:
       - Instances
+  /v1/regional_deployments:
+    get:
+      operationId: ListRegionalDeployments
+      parameters:
+      - description: (Optional) Filter on deployment id.
+        in: query
+        name: deployment_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListRegionalDeploymentsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: 'Temporary: List regional deployments'
+      tags:
+      - RegionalDeployments
   /v1/apps:
     get:
       operationId: ListApps
@@ -4017,6 +4076,7 @@ components:
     GetInstanceReply:
       example:
         instance:
+          regional_deployment_id: regional_deployment_id
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
@@ -4035,6 +4095,7 @@ components:
       type: object
     Instance:
       example:
+        regional_deployment_id: regional_deployment_id
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         service_id: service_id
@@ -4063,6 +4124,8 @@ components:
         service_id:
           type: string
         deployment_id:
+          type: string
+        regional_deployment_id:
           type: string
         allocation_id:
           type: string
@@ -4088,6 +4151,7 @@ components:
       type: string
     InstanceListItem:
       example:
+        regional_deployment_id: regional_deployment_id
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         service_id: service_id
@@ -4117,6 +4181,8 @@ components:
           type: string
         deployment_id:
           type: string
+        regional_deployment_id:
+          type: string
         allocation_id:
           type: string
         datacenter:
@@ -4132,7 +4198,8 @@ components:
       example:
         offset: 6
         instances:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - regional_deployment_id: regional_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
           allocation_id: allocation_id
@@ -4144,7 +4211,8 @@ components:
           id: id
           deployment_id: deployment_id
           app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - regional_deployment_id: regional_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
           allocation_id: allocation_id
@@ -4181,6 +4249,90 @@ components:
           title: The order in the request
           type: string
       type: object
+    ListRegionalDeploymentsReply:
+      example:
+        offset: 6
+        regional_deployments:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          id: id
+          region: region
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          id: id
+          region: region
+        limit: 0
+        count: 1
+      properties:
+        regional_deployments:
+          items:
+            $ref: '#/components/schemas/RegionalDeploymentListItem'
+          title: The collection of regional deployments
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    RegionalDeploymentListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        id: id
+        region: region
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        region:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegionalDeploymentListItem.Status'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    RegionalDeploymentListItem.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - PROVISIONING
+      - SCHEDULED
+      - CANCELING
+      - CANCELED
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERRORING
+      - ERROR
+      type: string
     App:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4376,9 +4528,6 @@ components:
               sender_profile_url: sender_profile_url
         created_at: 2000-01-23T04:56:07.000+00:00
         version: version
-        datacenters:
-        - datacenters
-        - datacenters
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
         provisioning_info:
@@ -4480,10 +4629,6 @@ components:
         metadata:
           $ref: '#/components/schemas/DeploymentMetadata'
         messages:
-          items:
-            type: string
-          type: array
-        datacenters:
           items:
             type: string
           type: array
@@ -4529,9 +4674,6 @@ components:
               sender_profile_url: sender_profile_url
         created_at: 2000-01-23T04:56:07.000+00:00
         version: version
-        datacenters:
-        - datacenters
-        - datacenters
         updated_at: 2000-01-23T04:56:07.000+00:00
         child_id: child_id
         provisioning_info:
@@ -4633,10 +4775,6 @@ components:
         metadata:
           $ref: '#/components/schemas/DeploymentMetadata'
         messages:
-          items:
-            type: string
-          type: array
-        datacenters:
           items:
             type: string
           type: array
@@ -4780,9 +4918,6 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
-          datacenters:
-          - datacenters
-          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           provisioning_info:
@@ -4938,9 +5073,6 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
-          datacenters:
-          - datacenters
-          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           provisioning_info:
@@ -5024,9 +5156,6 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
-          datacenters:
-          - datacenters
-          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           provisioning_info:
@@ -5553,9 +5682,6 @@ components:
                 sender_profile_url: sender_profile_url
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
-          datacenters:
-          - datacenters
-          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
           child_id: child_id
           provisioning_info:
