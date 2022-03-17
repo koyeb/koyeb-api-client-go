@@ -6381,11 +6381,13 @@ components:
           type: string
       type: object
     Plan:
-      default: basic
+      default: hobby
       enum:
-      - basic
+      - hobby
+      - starter
       - startup
       - business
+      - enterprise
       type: string
     ResendEmailValidationReply:
       type: object

@@ -34,7 +34,7 @@ type Organization struct {
 // will change when the set of required properties is changed
 func NewOrganization() *Organization {
 	this := Organization{}
-	var plan Plan = PLAN_BASIC
+	var plan Plan = PLAN_HOBBY
 	this.Plan = &plan
 	return &this
 }
@@ -44,7 +44,7 @@ func NewOrganization() *Organization {
 // but it doesn't guarantee that properties required by API are set
 func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
-	var plan Plan = PLAN_BASIC
+	var plan Plan = PLAN_HOBBY
 	this.Plan = &plan
 	return &this
 }

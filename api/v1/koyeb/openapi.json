@@ -5610,11 +5610,13 @@
     "Plan": {
       "type": "string",
       "enum": [
-        "basic",
+        "hobby",
+        "starter",
         "startup",
-        "business"
+        "business",
+        "enterprise"
       ],
-      "default": "basic"
+      "default": "hobby"
     },
     "ResendEmailValidationReply": {
       "type": "object"
