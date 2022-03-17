@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Company** | Pointer to **bool** |  | [optional] 
 **VatNumber** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] [default to PLAN_BASIC]
+**Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] [default to PLAN_HOBBY]
 
 ## Methods
 

@@ -20,15 +20,19 @@ type Plan string
 
 // List of Plan
 const (
-	PLAN_BASIC Plan = "basic"
+	PLAN_HOBBY Plan = "hobby"
+	PLAN_STARTER Plan = "starter"
 	PLAN_STARTUP Plan = "startup"
 	PLAN_BUSINESS Plan = "business"
+	PLAN_ENTERPRISE Plan = "enterprise"
 )
 
 var allowedPlanEnumValues = []Plan{
-	"basic",
+	"hobby",
+	"starter",
 	"startup",
 	"business",
+	"enterprise",
 }
 
 func (v *Plan) UnmarshalJSON(src []byte) error {
