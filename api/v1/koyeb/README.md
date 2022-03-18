@@ -83,8 +83,8 @@ Class | Method | HTTP request | Description
 *ActivityApi* | [**ListActivities**](docs/ActivityApi.md#listactivities) | **Get** /v1/activities | 
 *ActivityApi* | [**ListNotifications**](docs/ActivityApi.md#listnotifications) | **Get** /v1/notifications | 
 *AppsApi* | [**CreateApp**](docs/AppsApi.md#createapp) | **Post** /v1/apps | Create App
-*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id_or_name} | Delete App
-*AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id_or_name} | Get App
+*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App
+*AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id} | Get App
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
