@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
-**DeploymentId** | Pointer to **string** |  | [optional] 
 **RegionalDeploymentId** | Pointer to **string** |  | [optional] 
 **AllocationId** | Pointer to **string** |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 **Datacenter** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
 **Messages** | Pointer to **[]string** |  | [optional] 
@@ -186,31 +186,6 @@ SetServiceId sets ServiceId field to given value.
 
 HasServiceId returns a boolean if a field has been set.
 
-### GetDeploymentId
-
-`func (o *InstanceListItem) GetDeploymentId() string`
-
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
-
-### GetDeploymentIdOk
-
-`func (o *InstanceListItem) GetDeploymentIdOk() (*string, bool)`
-
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDeploymentId
-
-`func (o *InstanceListItem) SetDeploymentId(v string)`
-
-SetDeploymentId sets DeploymentId field to given value.
-
-### HasDeploymentId
-
-`func (o *InstanceListItem) HasDeploymentId() bool`
-
-HasDeploymentId returns a boolean if a field has been set.
-
 ### GetRegionalDeploymentId
 
 `func (o *InstanceListItem) GetRegionalDeploymentId() string`
@@ -260,6 +235,31 @@ SetAllocationId sets AllocationId field to given value.
 `func (o *InstanceListItem) HasAllocationId() bool`
 
 HasAllocationId returns a boolean if a field has been set.
+
+### GetRegion
+
+`func (o *InstanceListItem) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### GetRegionOk
+
+`func (o *InstanceListItem) GetRegionOk() (*string, bool)`
+
+GetRegionOk returns a tuple with the Region field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegion
+
+`func (o *InstanceListItem) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
+
+### HasRegion
+
+`func (o *InstanceListItem) HasRegion() bool`
+
+HasRegion returns a boolean if a field has been set.
 
 ### GetDatacenter
 

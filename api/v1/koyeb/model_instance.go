@@ -23,9 +23,9 @@ type Instance struct {
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
-	DeploymentId *string `json:"deployment_id,omitempty"`
 	RegionalDeploymentId *string `json:"regional_deployment_id,omitempty"`
 	AllocationId *string `json:"allocation_id,omitempty"`
+	Region *string `json:"region,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
@@ -244,38 +244,6 @@ func (o *Instance) SetServiceId(v string) {
 	o.ServiceId = &v
 }
 
-// GetDeploymentId returns the DeploymentId field value if set, zero value otherwise.
-func (o *Instance) GetDeploymentId() string {
-	if o == nil || o.DeploymentId == nil {
-		var ret string
-		return ret
-	}
-	return *o.DeploymentId
-}
-
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Instance) GetDeploymentIdOk() (*string, bool) {
-	if o == nil || o.DeploymentId == nil {
-		return nil, false
-	}
-	return o.DeploymentId, true
-}
-
-// HasDeploymentId returns a boolean if a field has been set.
-func (o *Instance) HasDeploymentId() bool {
-	if o != nil && o.DeploymentId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDeploymentId gets a reference to the given string and assigns it to the DeploymentId field.
-func (o *Instance) SetDeploymentId(v string) {
-	o.DeploymentId = &v
-}
-
 // GetRegionalDeploymentId returns the RegionalDeploymentId field value if set, zero value otherwise.
 func (o *Instance) GetRegionalDeploymentId() string {
 	if o == nil || o.RegionalDeploymentId == nil {
@@ -338,6 +306,38 @@ func (o *Instance) HasAllocationId() bool {
 // SetAllocationId gets a reference to the given string and assigns it to the AllocationId field.
 func (o *Instance) SetAllocationId(v string) {
 	o.AllocationId = &v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *Instance) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *Instance) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *Instance) SetRegion(v string) {
+	o.Region = &v
 }
 
 // GetDatacenter returns the Datacenter field value if set, zero value otherwise.
@@ -456,14 +456,14 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	if o.ServiceId != nil {
 		toSerialize["service_id"] = o.ServiceId
 	}
-	if o.DeploymentId != nil {
-		toSerialize["deployment_id"] = o.DeploymentId
-	}
 	if o.RegionalDeploymentId != nil {
 		toSerialize["regional_deployment_id"] = o.RegionalDeploymentId
 	}
 	if o.AllocationId != nil {
 		toSerialize["allocation_id"] = o.AllocationId
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
 	}
 	if o.Datacenter != nil {
 		toSerialize["datacenter"] = o.Datacenter

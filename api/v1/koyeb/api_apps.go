@@ -42,10 +42,10 @@ type AppsApi interface {
 	/*
 	 * DeleteApp Delete App
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param idOrName The id or the name of the entity to delete
+	 * @param id The id of the App to delete
 	 * @return ApiDeleteAppRequest
 	 */
-	DeleteApp(ctx _context.Context, idOrName string) ApiDeleteAppRequest
+	DeleteApp(ctx _context.Context, id string) ApiDeleteAppRequest
 
 	/*
 	 * DeleteAppExecute executes the request
@@ -56,10 +56,10 @@ type AppsApi interface {
 	/*
 	 * GetApp Get App
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param idOrName The id or the name of the App
+	 * @param id The id of the App
 	 * @return ApiGetAppRequest
 	 */
-	GetApp(ctx _context.Context, idOrName string) ApiGetAppRequest
+	GetApp(ctx _context.Context, id string) ApiGetAppRequest
 
 	/*
 	 * GetAppExecute executes the request
@@ -277,7 +277,7 @@ func (a *AppsApiService) CreateAppExecute(r ApiCreateAppRequest) (CreateAppReply
 type ApiDeleteAppRequest struct {
 	ctx _context.Context
 	ApiService AppsApi
-	idOrName string
+	id string
 }
 
 
@@ -288,14 +288,14 @@ func (r ApiDeleteAppRequest) Execute() (interface{}, *_nethttp.Response, error) 
 /*
  * DeleteApp Delete App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param idOrName The id or the name of the entity to delete
+ * @param id The id of the App to delete
  * @return ApiDeleteAppRequest
  */
-func (a *AppsApiService) DeleteApp(ctx _context.Context, idOrName string) ApiDeleteAppRequest {
+func (a *AppsApiService) DeleteApp(ctx _context.Context, id string) ApiDeleteAppRequest {
 	return ApiDeleteAppRequest{
 		ApiService: a,
 		ctx: ctx,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -318,8 +318,8 @@ func (a *AppsApiService) DeleteAppExecute(r ApiDeleteAppRequest) (interface{}, *
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/apps/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -433,7 +433,7 @@ func (a *AppsApiService) DeleteAppExecute(r ApiDeleteAppRequest) (interface{}, *
 type ApiGetAppRequest struct {
 	ctx _context.Context
 	ApiService AppsApi
-	idOrName string
+	id string
 }
 
 
@@ -444,14 +444,14 @@ func (r ApiGetAppRequest) Execute() (GetAppReply, *_nethttp.Response, error) {
 /*
  * GetApp Get App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param idOrName The id or the name of the App
+ * @param id The id of the App
  * @return ApiGetAppRequest
  */
-func (a *AppsApiService) GetApp(ctx _context.Context, idOrName string) ApiGetAppRequest {
+func (a *AppsApiService) GetApp(ctx _context.Context, id string) ApiGetAppRequest {
 	return ApiGetAppRequest{
 		ApiService: a,
 		ctx: ctx,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -474,8 +474,8 @@ func (a *AppsApiService) GetAppExecute(r ApiGetAppRequest) (GetAppReply, *_netht
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/apps/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

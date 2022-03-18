@@ -1133,94 +1133,6 @@ paths:
       - Apps
       x-codegen-request-body-name: body
   /v1/apps/{id_or_name}:
-    delete:
-      operationId: DeleteApp
-      parameters:
-      - description: The id or the name of the entity to delete
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete App
-      tags:
-      - Apps
-    get:
-      operationId: GetApp
-      parameters:
-      - description: The id or the name of the App
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get App
-      tags:
-      - Apps
     patch:
       operationId: UpdateApp2
       parameters:
@@ -1318,6 +1230,95 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       summary: Update App
+      tags:
+      - Apps
+  /v1/apps/{id}:
+    delete:
+      operationId: DeleteApp
+      parameters:
+      - description: The id of the App to delete
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete App
+      tags:
+      - Apps
+    get:
+      operationId: GetApp
+      parameters:
+      - description: The id of the App
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get App
       tags:
       - Apps
   /v1/deployments:
@@ -4087,7 +4088,7 @@ components:
           - messages
           datacenter: datacenter
           id: id
-          deployment_id: deployment_id
+          region: region
           app_id: app_id
       properties:
         instance:
@@ -4106,7 +4107,7 @@ components:
         - messages
         datacenter: datacenter
         id: id
-        deployment_id: deployment_id
+        region: region
         app_id: app_id
       properties:
         id:
@@ -4123,11 +4124,11 @@ components:
           type: string
         service_id:
           type: string
-        deployment_id:
-          type: string
         regional_deployment_id:
           type: string
         allocation_id:
+          type: string
+        region:
           type: string
         datacenter:
           type: string
@@ -4162,7 +4163,7 @@ components:
         - messages
         datacenter: datacenter
         id: id
-        deployment_id: deployment_id
+        region: region
         app_id: app_id
       properties:
         id:
@@ -4179,11 +4180,11 @@ components:
           type: string
         service_id:
           type: string
-        deployment_id:
-          type: string
         regional_deployment_id:
           type: string
         allocation_id:
+          type: string
+        region:
           type: string
         datacenter:
           type: string
@@ -4209,7 +4210,7 @@ components:
           - messages
           datacenter: datacenter
           id: id
-          deployment_id: deployment_id
+          region: region
           app_id: app_id
         - regional_deployment_id: regional_deployment_id
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -4222,7 +4223,7 @@ components:
           - messages
           datacenter: datacenter
           id: id
-          deployment_id: deployment_id
+          region: region
           app_id: app_id
         limit: 0
         count: 1

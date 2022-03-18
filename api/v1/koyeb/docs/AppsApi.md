@@ -5,8 +5,8 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateApp**](AppsApi.md#CreateApp) | **Post** /v1/apps | Create App
-[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id_or_name} | Delete App
-[**GetApp**](AppsApi.md#GetApp) | **Get** /v1/apps/{id_or_name} | Get App
+[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App
+[**GetApp**](AppsApi.md#GetApp) | **Get** /v1/apps/{id} | Get App
 [**ListApps**](AppsApi.md#ListApps) | **Get** /v1/apps | List App
 [**UpdateApp**](AppsApi.md#UpdateApp) | **Put** /v1/apps/{id_or_name} | Update App
 [**UpdateApp2**](AppsApi.md#UpdateApp2) | **Patch** /v1/apps/{id_or_name} | Update App
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApp
 
-> interface{} DeleteApp(ctx, idOrName).Execute()
+> interface{} DeleteApp(ctx, id).Execute()
 
 Delete App
 
@@ -96,11 +96,11 @@ import (
 )
 
 func main() {
-    idOrName := "idOrName_example" // string | The id or the name of the entity to delete
+    id := "id_example" // string | The id of the App to delete
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.DeleteApp(context.Background(), idOrName).Execute()
+    resp, r, err := api_client.AppsApi.DeleteApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.DeleteApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -116,7 +116,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** | The id or the name of the entity to delete | 
+**id** | **string** | The id of the App to delete | 
 
 ### Other Parameters
 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ## GetApp
 
-> GetAppReply GetApp(ctx, idOrName).Execute()
+> GetAppReply GetApp(ctx, id).Execute()
 
 Get App
 
@@ -164,11 +164,11 @@ import (
 )
 
 func main() {
-    idOrName := "idOrName_example" // string | The id or the name of the App
+    id := "id_example" // string | The id of the App
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.GetApp(context.Background(), idOrName).Execute()
+    resp, r, err := api_client.AppsApi.GetApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -184,7 +184,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** | The id or the name of the App | 
+**id** | **string** | The id of the App | 
 
 ### Other Parameters
 
