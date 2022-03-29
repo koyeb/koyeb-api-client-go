@@ -1,4 +1,4 @@
-# RegionalDeploymentListItemStatus
+# RegionalDeploymentStatus
 
 ## Enum
 

@@ -8,8 +8,9 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **Region** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**RegionalDeploymentListItemStatus**](RegionalDeploymentListItemStatus.md) |  | [optional] [default to REGIONALDEPLOYMENTLISTITEMSTATUS_PENDING]
+**Status** | Pointer to [**RegionalDeploymentStatus**](RegionalDeploymentStatus.md) |  | [optional] [default to REGIONALDEPLOYMENTSTATUS_PENDING]
 **Messages** | Pointer to **[]string** |  | [optional] 
+**Definition** | Pointer to [**RegionalDeploymentDefinition**](RegionalDeploymentDefinition.md) |  | [optional] 
 
 ## Methods
 
@@ -132,20 +133,20 @@ HasRegion returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentListItemStatus`
+`func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *RegionalDeploymentListItem) GetStatusOk() (*RegionalDeploymentListItemStatus, bool)`
+`func (o *RegionalDeploymentListItem) GetStatusOk() (*RegionalDeploymentStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *RegionalDeploymentListItem) SetStatus(v RegionalDeploymentListItemStatus)`
+`func (o *RegionalDeploymentListItem) SetStatus(v RegionalDeploymentStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -179,6 +180,31 @@ SetMessages sets Messages field to given value.
 `func (o *RegionalDeploymentListItem) HasMessages() bool`
 
 HasMessages returns a boolean if a field has been set.
+
+### GetDefinition
+
+`func (o *RegionalDeploymentListItem) GetDefinition() RegionalDeploymentDefinition`
+
+GetDefinition returns the Definition field if non-nil, zero value otherwise.
+
+### GetDefinitionOk
+
+`func (o *RegionalDeploymentListItem) GetDefinitionOk() (*RegionalDeploymentDefinition, bool)`
+
+GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefinition
+
+`func (o *RegionalDeploymentListItem) SetDefinition(v RegionalDeploymentDefinition)`
+
+SetDefinition sets Definition field to given value.
+
+### HasDefinition
+
+`func (o *RegionalDeploymentListItem) HasDefinition() bool`
+
+HasDefinition returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -16,11 +16,11 @@ Name | Type | Description | Notes
 **ChildId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**DeploymentStatus**](DeploymentStatus.md) |  | [optional] [default to DEPLOYMENTSTATUS_PENDING]
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
+**Definition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 **Messages** | Pointer to **[]string** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
-**Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
 
 ## Methods
 
@@ -341,6 +341,31 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### GetDefinition
+
+`func (o *Deployment) GetDefinition() DeploymentDefinition`
+
+GetDefinition returns the Definition field if non-nil, zero value otherwise.
+
+### GetDefinitionOk
+
+`func (o *Deployment) GetDefinitionOk() (*DeploymentDefinition, bool)`
+
+GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDefinition
+
+`func (o *Deployment) SetDefinition(v DeploymentDefinition)`
+
+SetDefinition sets Definition field to given value.
+
+### HasDefinition
+
+`func (o *Deployment) HasDefinition() bool`
+
+HasDefinition returns a boolean if a field has been set.
+
 ### GetMessages
 
 `func (o *Deployment) GetMessages() []string`
@@ -440,31 +465,6 @@ SetDeploymentGroup sets DeploymentGroup field to given value.
 `func (o *Deployment) HasDeploymentGroup() bool`
 
 HasDeploymentGroup returns a boolean if a field has been set.
-
-### GetDefinition
-
-`func (o *Deployment) GetDefinition() ServiceDefinition`
-
-GetDefinition returns the Definition field if non-nil, zero value otherwise.
-
-### GetDefinitionOk
-
-`func (o *Deployment) GetDefinitionOk() (*ServiceDefinition, bool)`
-
-GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefinition
-
-`func (o *Deployment) SetDefinition(v ServiceDefinition)`
-
-SetDefinition sets Definition field to given value.
-
-### HasDefinition
-
-`func (o *Deployment) HasDefinition() bool`
-
-HasDefinition returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

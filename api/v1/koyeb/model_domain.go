@@ -12,12 +12,21 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Domain struct for Domain
 type Domain struct {
+	Id *string `json:"id,omitempty"`
+	OrganizationId *string `json:"organization_id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Status *DomainStatus `json:"status,omitempty"`
+	Type *DomainType `json:"type,omitempty"`
+	AppId *string `json:"app_id,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
+	VerifiedAt *time.Time `json:"verified_at,omitempty"`
 }
 
 // NewDomain instantiates a new Domain object
@@ -26,6 +35,10 @@ type Domain struct {
 // will change when the set of required properties is changed
 func NewDomain() *Domain {
 	this := Domain{}
+	var status DomainStatus = DOMAINSTATUS_PENDING
+	this.Status = &status
+	var type_ DomainType = DOMAINTYPE_AUTOASSIGNED
+	this.Type = &type_
 	return &this
 }
 
@@ -34,7 +47,75 @@ func NewDomain() *Domain {
 // but it doesn't guarantee that properties required by API are set
 func NewDomainWithDefaults() *Domain {
 	this := Domain{}
+	var status DomainStatus = DOMAINSTATUS_PENDING
+	this.Status = &status
+	var type_ DomainType = DOMAINTYPE_AUTOASSIGNED
+	this.Type = &type_
 	return &this
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Domain) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *Domain) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *Domain) SetId(v string) {
+	o.Id = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *Domain) GetOrganizationId() string {
+	if o == nil || o.OrganizationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || o.OrganizationId == nil {
+		return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *Domain) HasOrganizationId() bool {
+	if o != nil && o.OrganizationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *Domain) SetOrganizationId(v string) {
+	o.OrganizationId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -69,6 +150,166 @@ func (o *Domain) SetName(v string) {
 	o.Name = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *Domain) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *Domain) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *Domain) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
+func (o *Domain) GetUpdatedAt() time.Time {
+	if o == nil || o.UpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.UpdatedAt
+}
+
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.UpdatedAt == nil {
+		return nil, false
+	}
+	return o.UpdatedAt, true
+}
+
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *Domain) HasUpdatedAt() bool {
+	if o != nil && o.UpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
+func (o *Domain) SetUpdatedAt(v time.Time) {
+	o.UpdatedAt = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *Domain) GetStatus() DomainStatus {
+	if o == nil || o.Status == nil {
+		var ret DomainStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetStatusOk() (*DomainStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *Domain) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given DomainStatus and assigns it to the Status field.
+func (o *Domain) SetStatus(v DomainStatus) {
+	o.Status = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Domain) GetType() DomainType {
+	if o == nil || o.Type == nil {
+		var ret DomainType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetTypeOk() (*DomainType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Domain) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given DomainType and assigns it to the Type field.
+func (o *Domain) SetType(v DomainType) {
+	o.Type = &v
+}
+
+// GetAppId returns the AppId field value if set, zero value otherwise.
+func (o *Domain) GetAppId() string {
+	if o == nil || o.AppId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AppId
+}
+
+// GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetAppIdOk() (*string, bool) {
+	if o == nil || o.AppId == nil {
+		return nil, false
+	}
+	return o.AppId, true
+}
+
+// HasAppId returns a boolean if a field has been set.
+func (o *Domain) HasAppId() bool {
+	if o != nil && o.AppId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAppId gets a reference to the given string and assigns it to the AppId field.
+func (o *Domain) SetAppId(v string) {
+	o.AppId = &v
+}
+
 // GetDeploymentGroup returns the DeploymentGroup field value if set, zero value otherwise.
 func (o *Domain) GetDeploymentGroup() string {
 	if o == nil || o.DeploymentGroup == nil {
@@ -101,13 +342,69 @@ func (o *Domain) SetDeploymentGroup(v string) {
 	o.DeploymentGroup = &v
 }
 
+// GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
+func (o *Domain) GetVerifiedAt() time.Time {
+	if o == nil || o.VerifiedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.VerifiedAt
+}
+
+// GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetVerifiedAtOk() (*time.Time, bool) {
+	if o == nil || o.VerifiedAt == nil {
+		return nil, false
+	}
+	return o.VerifiedAt, true
+}
+
+// HasVerifiedAt returns a boolean if a field has been set.
+func (o *Domain) HasVerifiedAt() bool {
+	if o != nil && o.VerifiedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVerifiedAt gets a reference to the given time.Time and assigns it to the VerifiedAt field.
+func (o *Domain) SetVerifiedAt(v time.Time) {
+	o.VerifiedAt = &v
+}
+
 func (o Domain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.OrganizationId != nil {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.UpdatedAt != nil {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.AppId != nil {
+		toSerialize["app_id"] = o.AppId
+	}
 	if o.DeploymentGroup != nil {
 		toSerialize["deployment_group"] = o.DeploymentGroup
+	}
+	if o.VerifiedAt != nil {
+		toSerialize["verified_at"] = o.VerifiedAt
 	}
 	return json.Marshal(toSerialize)
 }

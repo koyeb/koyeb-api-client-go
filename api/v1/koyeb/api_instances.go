@@ -43,7 +43,7 @@ type InstancesApi interface {
 	/*
 	 * GetInstance Get Instance
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param id
+	 * @param id The id of the instance
 	 * @return ApiGetInstanceRequest
 	 */
 	GetInstance(ctx _context.Context, id string) ApiGetInstanceRequest
@@ -285,7 +285,7 @@ func (r ApiGetInstanceRequest) Execute() (GetInstanceReply, *_nethttp.Response, 
 /*
  * GetInstance Get Instance
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param id
+ * @param id The id of the instance
  * @return ApiGetInstanceRequest
  */
 func (a *InstancesApiService) GetInstance(ctx _context.Context, id string) ApiGetInstanceRequest {

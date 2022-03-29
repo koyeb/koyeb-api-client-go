@@ -41,6 +41,7 @@
         "Apps",
         "Services",
         "Deployments",
+        "RegionalDeployments",
         "Instances",
         "Logs",
         "CatalogRegions",
@@ -392,6 +393,12 @@
           },
           {
             "name": "deployment_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "regional_deployment_id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -983,6 +990,7 @@
         "parameters": [
           {
             "name": "id",
+            "description": "The id of the instance",
             "in": "path",
             "required": true,
             "type": "string"
@@ -995,7 +1003,7 @@
     },
     "/v1/regional_deployments": {
       "get": {
-        "summary": "Temporary: List regional deployments",
+        "summary": "Experimental: List regional deployments\nUse at your own risk",
         "operationId": "ListRegionalDeployments",
         "responses": {
           "200": {
@@ -1054,6 +1062,106 @@
         ],
         "tags": [
           "RegionalDeployments"
+        ]
+      }
+    },
+    "/v1/regional_deployments/{id}": {
+      "get": {
+        "summary": "Experimental: Get regional deployment\nUse at your own risk",
+        "operationId": "GetRegionalDeployment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRegionalDeploymentReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the regional deployment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "RegionalDeployments"
+        ]
+      }
+    },
+    "/v1/domains": {
+      "post": {
+        "operationId": "CreateDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateDomainReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateDomain"
+            }
+          }
+        ],
+        "tags": [
+          "Domains"
         ]
       }
     },
@@ -4328,6 +4436,136 @@
         }
       }
     },
+    "DeploymentProvisioningInfo": {
+      "type": "object",
+      "properties": {
+        "sha": {
+          "type": "string",
+          "description": "The git sha for this build (we resolve the reference at the start of the build)."
+        },
+        "image": {
+          "type": "string",
+          "description": "The docker image built as a result of this build."
+        },
+        "build_job_id": {
+          "type": "string",
+          "description": "The id of the job that ran the build."
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentProvisioningInfo.Stage"
+          },
+          "description": "Some info about the build."
+        }
+      }
+    },
+    "DeploymentProvisioningInfo.Stage": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/DeploymentProvisioningInfo.Stage.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "finished_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "DeploymentProvisioningInfo.Stage.Status": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "RUNNING",
+        "FAILED",
+        "COMPLETED"
+      ],
+      "default": "UNKNOWN"
+    },
+    "DockerSource": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image_registry_secret": {
+          "type": "string"
+        }
+      }
+    },
+    "Env": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        }
+      }
+    },
+    "GetRegionalDeploymentReply": {
+      "type": "object",
+      "properties": {
+        "regional_deployment": {
+          "$ref": "#/definitions/RegionalDeployment"
+        }
+      }
+    },
+    "GitSource": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test."
+        },
+        "branch": {
+          "type": "string",
+          "title": "A git branch that will be tracked for new commits and deployments will be created"
+        },
+        "tag": {
+          "type": "string",
+          "title": "A git tag that should be built"
+        },
+        "sha": {
+          "type": "string",
+          "title": "A git commit that should be built (useful for pinning to a commit, this will always be set when a deployment is created by a code push)"
+        },
+        "build_command": {
+          "type": "string",
+          "title": "A command used to override the build command, run after all build steps"
+        },
+        "run_command": {
+          "type": "string",
+          "title": "A command used to override the default run command"
+        }
+      }
+    },
     "ListRegionalDeploymentsReply": {
       "type": "object",
       "properties": {
@@ -4355,7 +4593,19 @@
         }
       }
     },
-    "RegionalDeploymentListItem": {
+    "Port": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "protocol": {
+          "type": "string"
+        }
+      }
+    },
+    "RegionalDeployment": {
       "type": "object",
       "properties": {
         "id": {
@@ -4369,21 +4619,74 @@
           "type": "string",
           "format": "date-time"
         },
+        "allocated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
         "region": {
           "type": "string"
         },
+        "parent_id": {
+          "type": "string"
+        },
+        "child_id": {
+          "type": "string"
+        },
         "status": {
-          "$ref": "#/definitions/RegionalDeploymentListItem.Status"
+          "$ref": "#/definitions/RegionalDeployment.Status"
         },
         "messages": {
           "type": "array",
           "items": {
             "type": "string"
           }
+        },
+        "definition": {
+          "$ref": "#/definitions/RegionalDeploymentDefinition"
+        },
+        "datacenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "$ref": "#/definitions/RegionalDeploymentMetadata"
+        },
+        "provisioning_info": {
+          "$ref": "#/definitions/DeploymentProvisioningInfo"
+        },
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "deployment_group": {
+          "type": "string",
+          "title": "Legacy stuff"
+        },
+        "deployment_id": {
+          "type": "string"
         }
       }
     },
-    "RegionalDeploymentListItem.Status": {
+    "RegionalDeployment.Status": {
       "type": "string",
       "enum": [
         "PENDING",
@@ -4402,6 +4705,191 @@
         "ERROR"
       ],
       "default": "PENDING"
+    },
+    "RegionalDeploymentDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Route"
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Port"
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Env"
+          }
+        },
+        "region": {
+          "type": "string"
+        },
+        "scaling": {
+          "$ref": "#/definitions/Scaling"
+        },
+        "instance_type": {
+          "type": "string"
+        },
+        "deployment_group": {
+          "type": "string"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerSource"
+        },
+        "git": {
+          "$ref": "#/definitions/GitSource"
+        }
+      }
+    },
+    "RegionalDeploymentListItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "region": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/RegionalDeployment.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "definition": {
+          "$ref": "#/definitions/RegionalDeploymentDefinition"
+        }
+      }
+    },
+    "RegionalDeploymentMetadata": {
+      "type": "object",
+      "properties": {
+        "runtime_job_id": {
+          "type": "string"
+        }
+      }
+    },
+    "Route": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "Scaling": {
+      "type": "object",
+      "properties": {
+        "min": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "CreateDomain": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Domain.Type"
+        },
+        "app_id": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateDomainReply": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "$ref": "#/definitions/Domain"
+        }
+      }
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "$ref": "#/definitions/Domain.Status"
+        },
+        "type": {
+          "$ref": "#/definitions/Domain.Type"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "deployment_group": {
+          "type": "string"
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Domain.Status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "ACTIVE",
+        "ERROR"
+      ],
+      "default": "PENDING"
+    },
+    "Domain.Type": {
+      "type": "string",
+      "enum": [
+        "AUTOASSIGNED",
+        "CUSTOM"
+      ],
+      "default": "AUTOASSIGNED"
     },
     "App": {
       "type": "object",
@@ -4478,17 +4966,6 @@
     },
     "DeleteAppReply": {
       "type": "object"
-    },
-    "Domain": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        }
-      }
     },
     "GetAppReply": {
       "type": "object",
@@ -4585,6 +5062,9 @@
         "metadata": {
           "$ref": "#/definitions/DeploymentMetadata"
         },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        },
         "messages": {
           "type": "array",
           "items": {
@@ -4600,9 +5080,6 @@
         },
         "deployment_group": {
           "type": "string"
-        },
-        "definition": {
-          "$ref": "#/definitions/ServiceDefinition"
         }
       }
     },
@@ -4625,6 +5102,101 @@
         "ERROR"
       ],
       "default": "PENDING"
+    },
+    "DeploymentDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentRoute"
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentPort"
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentEnv"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scalings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentScaling"
+          }
+        },
+        "instance_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentInstanceType"
+          }
+        },
+        "scaling": {
+          "$ref": "#/definitions/DeploymentScaling",
+          "title": "DEPRECATED"
+        },
+        "instance_type": {
+          "type": "string"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerSource"
+        },
+        "git": {
+          "$ref": "#/definitions/GitSource"
+        }
+      }
+    },
+    "DeploymentEnv": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        },
+        "value_from_secret": {
+          "type": "string",
+          "title": "DEPRECATED"
+        }
+      }
+    },
+    "DeploymentInstanceType": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      }
     },
     "DeploymentListItem": {
       "type": "object",
@@ -4669,6 +5241,9 @@
         "metadata": {
           "$ref": "#/definitions/DeploymentMetadata"
         },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        },
         "messages": {
           "type": "array",
           "items": {
@@ -4684,9 +5259,6 @@
         },
         "deployment_group": {
           "type": "string"
-        },
-        "definition": {
-          "$ref": "#/definitions/ServiceDefinition"
         }
       }
     },
@@ -4698,96 +5270,46 @@
         }
       }
     },
-    "DeploymentProvisioningInfo": {
+    "DeploymentPort": {
       "type": "object",
       "properties": {
-        "sha": {
-          "type": "string",
-          "description": "The git sha for this build (we resolve the reference at the start of the build)."
+        "port": {
+          "type": "integer",
+          "format": "int64"
         },
-        "image": {
-          "type": "string",
-          "description": "The docker image built as a result of this build."
-        },
-        "build_job_id": {
-          "type": "string",
-          "description": "The id of the job that ran the build."
-        },
-        "stages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentProvisioningInfo.Stage"
-          },
-          "description": "Some info about the build."
+        "protocol": {
+          "type": "string"
         }
       }
     },
-    "DeploymentProvisioningInfo.Stage": {
+    "DeploymentRoute": {
       "type": "object",
       "properties": {
-        "name": {
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "path": {
           "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/DeploymentProvisioningInfo.Stage.Status"
-        },
-        "messages": {
+        }
+      }
+    },
+    "DeploymentScaling": {
+      "type": "object",
+      "properties": {
+        "scopes": {
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "started_at": {
-          "type": "string",
-          "format": "date-time"
+        "min": {
+          "type": "integer",
+          "format": "int64"
         },
-        "finished_at": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "DeploymentProvisioningInfo.Stage.Status": {
-      "type": "string",
-      "enum": [
-        "UNKNOWN",
-        "RUNNING",
-        "FAILED",
-        "COMPLETED"
-      ],
-      "default": "UNKNOWN"
-    },
-    "DockerSource": {
-      "type": "object",
-      "properties": {
-        "image": {
-          "type": "string"
-        },
-        "command": {
-          "type": "string"
-        },
-        "args": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "image_registry_secret": {
-          "type": "string"
-        }
-      }
-    },
-    "Env": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "value_from_secret": {
-          "type": "string"
+        "max": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
@@ -4836,35 +5358,6 @@
       ],
       "default": "UNKNOWN"
     },
-    "GitSource": {
-      "type": "object",
-      "properties": {
-        "repository": {
-          "type": "string",
-          "description": "A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test."
-        },
-        "branch": {
-          "type": "string",
-          "title": "A git branch that will be tracked for new commits and deployments will be created"
-        },
-        "tag": {
-          "type": "string",
-          "title": "A git tag that should be built"
-        },
-        "sha": {
-          "type": "string",
-          "title": "A git commit that should be built (useful for pinning to a commit, this will always be set when a deployment is created by a code push)"
-        },
-        "build_command": {
-          "type": "string",
-          "title": "A command used to override the build command, run after all build steps"
-        },
-        "run_command": {
-          "type": "string",
-          "title": "A command used to override the default run command"
-        }
-      }
-    },
     "ListDeploymentsReply": {
       "type": "object",
       "properties": {
@@ -4889,90 +5382,6 @@
           "type": "integer",
           "format": "int64",
           "title": "The total number of items"
-        }
-      }
-    },
-    "Port": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "protocol": {
-          "type": "string"
-        }
-      }
-    },
-    "Route": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "path": {
-          "type": "string"
-        }
-      }
-    },
-    "Scaling": {
-      "type": "object",
-      "properties": {
-        "min": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "max": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "ServiceDefinition": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "routes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Route"
-          }
-        },
-        "ports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Port"
-          }
-        },
-        "env": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Env"
-          }
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "scaling": {
-          "$ref": "#/definitions/Scaling"
-        },
-        "instance_type": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        },
-        "docker": {
-          "$ref": "#/definitions/DockerSource"
-        },
-        "git": {
-          "$ref": "#/definitions/GitSource"
         }
       }
     },
@@ -5034,6 +5443,10 @@
         },
         "definition": {
           "$ref": "#/definitions/ServiceDefinition"
+        },
+        "new_definition": {
+          "$ref": "#/definitions/DeploymentDefinition",
+          "title": "[(validate.rules).message.required = true];"
         }
       }
     },
@@ -5189,6 +5602,53 @@
       ],
       "default": "STARTING"
     },
+    "ServiceDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Route"
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Port"
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Env"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scaling": {
+          "$ref": "#/definitions/Scaling"
+        },
+        "instance_type": {
+          "type": "string"
+        },
+        "deployment_group": {
+          "type": "string"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerSource"
+        },
+        "git": {
+          "$ref": "#/definitions/GitSource"
+        }
+      }
+    },
     "ServiceListItem": {
       "type": "object",
       "properties": {
@@ -5253,6 +5713,10 @@
       "properties": {
         "definition": {
           "$ref": "#/definitions/ServiceDefinition"
+        },
+        "new_definition": {
+          "$ref": "#/definitions/DeploymentDefinition",
+          "title": "[(validate.rules).message.required = true];"
         }
       }
     },

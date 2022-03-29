@@ -21,8 +21,9 @@ type RegionalDeploymentListItem struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	Region *string `json:"region,omitempty"`
-	Status *RegionalDeploymentListItemStatus `json:"status,omitempty"`
+	Status *RegionalDeploymentStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
+	Definition *RegionalDeploymentDefinition `json:"definition,omitempty"`
 }
 
 // NewRegionalDeploymentListItem instantiates a new RegionalDeploymentListItem object
@@ -31,7 +32,7 @@ type RegionalDeploymentListItem struct {
 // will change when the set of required properties is changed
 func NewRegionalDeploymentListItem() *RegionalDeploymentListItem {
 	this := RegionalDeploymentListItem{}
-	var status RegionalDeploymentListItemStatus = REGIONALDEPLOYMENTLISTITEMSTATUS_PENDING
+	var status RegionalDeploymentStatus = REGIONALDEPLOYMENTSTATUS_PENDING
 	this.Status = &status
 	return &this
 }
@@ -41,7 +42,7 @@ func NewRegionalDeploymentListItem() *RegionalDeploymentListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewRegionalDeploymentListItemWithDefaults() *RegionalDeploymentListItem {
 	this := RegionalDeploymentListItem{}
-	var status RegionalDeploymentListItemStatus = REGIONALDEPLOYMENTLISTITEMSTATUS_PENDING
+	var status RegionalDeploymentStatus = REGIONALDEPLOYMENTSTATUS_PENDING
 	this.Status = &status
 	return &this
 }
@@ -175,9 +176,9 @@ func (o *RegionalDeploymentListItem) SetRegion(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentListItemStatus {
+func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentStatus {
 	if o == nil || o.Status == nil {
-		var ret RegionalDeploymentListItemStatus
+		var ret RegionalDeploymentStatus
 		return ret
 	}
 	return *o.Status
@@ -185,7 +186,7 @@ func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentListItemStatu
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegionalDeploymentListItem) GetStatusOk() (*RegionalDeploymentListItemStatus, bool) {
+func (o *RegionalDeploymentListItem) GetStatusOk() (*RegionalDeploymentStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -201,8 +202,8 @@ func (o *RegionalDeploymentListItem) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given RegionalDeploymentListItemStatus and assigns it to the Status field.
-func (o *RegionalDeploymentListItem) SetStatus(v RegionalDeploymentListItemStatus) {
+// SetStatus gets a reference to the given RegionalDeploymentStatus and assigns it to the Status field.
+func (o *RegionalDeploymentListItem) SetStatus(v RegionalDeploymentStatus) {
 	o.Status = &v
 }
 
@@ -238,6 +239,38 @@ func (o *RegionalDeploymentListItem) SetMessages(v []string) {
 	o.Messages = &v
 }
 
+// GetDefinition returns the Definition field value if set, zero value otherwise.
+func (o *RegionalDeploymentListItem) GetDefinition() RegionalDeploymentDefinition {
+	if o == nil || o.Definition == nil {
+		var ret RegionalDeploymentDefinition
+		return ret
+	}
+	return *o.Definition
+}
+
+// GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentListItem) GetDefinitionOk() (*RegionalDeploymentDefinition, bool) {
+	if o == nil || o.Definition == nil {
+		return nil, false
+	}
+	return o.Definition, true
+}
+
+// HasDefinition returns a boolean if a field has been set.
+func (o *RegionalDeploymentListItem) HasDefinition() bool {
+	if o != nil && o.Definition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefinition gets a reference to the given RegionalDeploymentDefinition and assigns it to the Definition field.
+func (o *RegionalDeploymentListItem) SetDefinition(v RegionalDeploymentDefinition) {
+	o.Definition = &v
+}
+
 func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -257,6 +290,9 @@ func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.Definition != nil {
+		toSerialize["definition"] = o.Definition
 	}
 	return json.Marshal(toSerialize)
 }

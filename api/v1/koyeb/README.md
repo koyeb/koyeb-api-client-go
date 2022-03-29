@@ -101,6 +101,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
+*DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
@@ -124,7 +125,8 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
-*RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Temporary: List regional deployments
+*RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
+*RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
@@ -163,6 +165,8 @@ Class | Method | HTTP request | Description
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateCredential](docs/CreateCredential.md)
+ - [CreateDomain](docs/CreateDomain.md)
+ - [CreateDomainReply](docs/CreateDomainReply.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
@@ -171,11 +175,17 @@ Class | Method | HTTP request | Description
  - [CredentialReply](docs/CredentialReply.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
  - [Deployment](docs/Deployment.md)
+ - [DeploymentDefinition](docs/DeploymentDefinition.md)
+ - [DeploymentEnv](docs/DeploymentEnv.md)
+ - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
+ - [DeploymentPort](docs/DeploymentPort.md)
  - [DeploymentProvisioningInfo](docs/DeploymentProvisioningInfo.md)
  - [DeploymentProvisioningInfoStage](docs/DeploymentProvisioningInfoStage.md)
  - [DeploymentProvisioningInfoStageStatus](docs/DeploymentProvisioningInfoStageStatus.md)
+ - [DeploymentRoute](docs/DeploymentRoute.md)
+ - [DeploymentScaling](docs/DeploymentScaling.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
@@ -183,6 +193,8 @@ Class | Method | HTTP request | Description
  - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
+ - [DomainStatus](docs/DomainStatus.md)
+ - [DomainType](docs/DomainType.md)
  - [Env](docs/Env.md)
  - [Error](docs/Error.md)
  - [ErrorField](docs/ErrorField.md)
@@ -199,6 +211,7 @@ Class | Method | HTTP request | Description
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
+ - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
@@ -245,8 +258,11 @@ Class | Method | HTTP request | Description
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
+ - [RegionalDeployment](docs/RegionalDeployment.md)
+ - [RegionalDeploymentDefinition](docs/RegionalDeploymentDefinition.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
- - [RegionalDeploymentListItemStatus](docs/RegionalDeploymentListItemStatus.md)
+ - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
+ - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
  - [Route](docs/Route.md)
  - [Scaling](docs/Scaling.md)

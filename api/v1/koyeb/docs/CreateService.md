@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AppId** | Pointer to **string** |  | [optional] 
 **Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
+**NewDefinition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetDefinition sets Definition field to given value.
 `func (o *CreateService) HasDefinition() bool`
 
 HasDefinition returns a boolean if a field has been set.
+
+### GetNewDefinition
+
+`func (o *CreateService) GetNewDefinition() DeploymentDefinition`
+
+GetNewDefinition returns the NewDefinition field if non-nil, zero value otherwise.
+
+### GetNewDefinitionOk
+
+`func (o *CreateService) GetNewDefinitionOk() (*DeploymentDefinition, bool)`
+
+GetNewDefinitionOk returns a tuple with the NewDefinition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNewDefinition
+
+`func (o *CreateService) SetNewDefinition(v DeploymentDefinition)`
+
+SetNewDefinition sets NewDefinition field to given value.
+
+### HasNewDefinition
+
+`func (o *CreateService) HasNewDefinition() bool`
+
+HasNewDefinition returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
