@@ -18,6 +18,7 @@ import (
 type CreateService struct {
 	AppId *string `json:"app_id,omitempty"`
 	Definition *ServiceDefinition `json:"definition,omitempty"`
+	NewDefinition *DeploymentDefinition `json:"new_definition,omitempty"`
 }
 
 // NewCreateService instantiates a new CreateService object
@@ -101,6 +102,38 @@ func (o *CreateService) SetDefinition(v ServiceDefinition) {
 	o.Definition = &v
 }
 
+// GetNewDefinition returns the NewDefinition field value if set, zero value otherwise.
+func (o *CreateService) GetNewDefinition() DeploymentDefinition {
+	if o == nil || o.NewDefinition == nil {
+		var ret DeploymentDefinition
+		return ret
+	}
+	return *o.NewDefinition
+}
+
+// GetNewDefinitionOk returns a tuple with the NewDefinition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetNewDefinitionOk() (*DeploymentDefinition, bool) {
+	if o == nil || o.NewDefinition == nil {
+		return nil, false
+	}
+	return o.NewDefinition, true
+}
+
+// HasNewDefinition returns a boolean if a field has been set.
+func (o *CreateService) HasNewDefinition() bool {
+	if o != nil && o.NewDefinition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewDefinition gets a reference to the given DeploymentDefinition and assigns it to the NewDefinition field.
+func (o *CreateService) SetNewDefinition(v DeploymentDefinition) {
+	o.NewDefinition = &v
+}
+
 func (o CreateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AppId != nil {
@@ -108,6 +141,9 @@ func (o CreateService) MarshalJSON() ([]byte, error) {
 	}
 	if o.Definition != nil {
 		toSerialize["definition"] = o.Definition
+	}
+	if o.NewDefinition != nil {
+		toSerialize["new_definition"] = o.NewDefinition
 	}
 	return json.Marshal(toSerialize)
 }

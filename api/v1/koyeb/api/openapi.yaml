@@ -440,6 +440,10 @@ paths:
         schema:
           type: string
       - in: query
+        name: regional_deployment_id
+        schema:
+          type: string
+      - in: query
         name: instance_id
         schema:
           type: string
@@ -940,7 +944,8 @@ paths:
     get:
       operationId: GetInstance
       parameters:
-      - in: path
+      - description: The id of the instance
+        in: path
         name: id
         required: true
         schema:
@@ -1031,9 +1036,102 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: 'Temporary: List regional deployments'
+      summary: |-
+        Experimental: List regional deployments
+        Use at your own risk
       tags:
       - RegionalDeployments
+  /v1/regional_deployments/{id}:
+    get:
+      operationId: GetRegionalDeployment
+      parameters:
+      - description: The id of the regional deployment
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetRegionalDeploymentReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: |-
+        Experimental: Get regional deployment
+        Use at your own risk
+      tags:
+      - RegionalDeployments
+  /v1/domains:
+    post:
+      operationId: CreateDomain
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateDomain'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+      x-codegen-request-body-name: body
   /v1/apps:
     get:
       operationId: ListApps
@@ -4250,560 +4348,6 @@ components:
           title: The order in the request
           type: string
       type: object
-    ListRegionalDeploymentsReply:
-      example:
-        offset: 6
-        regional_deployments:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          id: id
-          region: region
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          id: id
-          region: region
-        limit: 0
-        count: 1
-      properties:
-        regional_deployments:
-          items:
-            $ref: '#/components/schemas/RegionalDeploymentListItem'
-          title: The collection of regional deployments
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    RegionalDeploymentListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        id: id
-        region: region
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        region:
-          type: string
-        status:
-          $ref: '#/components/schemas/RegionalDeploymentListItem.Status'
-        messages:
-          items:
-            type: string
-          type: array
-      type: object
-    RegionalDeploymentListItem.Status:
-      default: PENDING
-      enum:
-      - PENDING
-      - PROVISIONING
-      - SCHEDULED
-      - CANCELING
-      - CANCELED
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - DEGRADED
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERRORING
-      - ERROR
-      type: string
-    App:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - deployment_group: deployment_group
-          name: name
-        - deployment_group: deployment_group
-          name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    AppListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - deployment_group: deployment_group
-          name: name
-        - deployment_group: deployment_group
-          name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    CreateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    CreateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    DeleteAppReply:
-      type: object
-    Domain:
-      example:
-        deployment_group: deployment_group
-        name: name
-      properties:
-        name:
-          type: string
-        deployment_group:
-          type: string
-      type: object
-    GetAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    ListAppsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        apps:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        apps:
-          items:
-            $ref: '#/components/schemas/AppListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    UpdateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    UpdateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - deployment_group: deployment_group
-            name: name
-          - deployment_group: deployment_group
-            name: name
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    Deployment:
-      example:
-        metadata:
-          trigger:
-            git:
-              sender_username: sender_username
-              repository: repository
-              message: message
-              branch: branch
-              sha: sha
-              sender_avatar_url: sender_avatar_url
-              sender_profile_url: sender_profile_url
-        created_at: 2000-01-23T04:56:07.000+00:00
-        version: version
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        child_id: child_id
-        provisioning_info:
-          image: image
-          build_job_id: build_job_id
-          stages:
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-        deployment_group: deployment_group
-        parent_id: parent_id
-        organization_id: organization_id
-        service_id: service_id
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          regions:
-          - regions
-          - regions
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
-          deployment_group: deployment_group
-          name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - value: value
-            key: key
-            value_from_secret: value_from_secret
-          - value: value
-            key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        id: id
-        app_id: app_id
-        allocated_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        allocated_at:
-          format: date-time
-          type: string
-        started_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        parent_id:
-          type: string
-        child_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/Deployment.Status'
-        metadata:
-          $ref: '#/components/schemas/DeploymentMetadata'
-        messages:
-          items:
-            type: string
-          type: array
-        provisioning_info:
-          $ref: '#/components/schemas/DeploymentProvisioningInfo'
-        version:
-          format: uint64
-          type: string
-        deployment_group:
-          type: string
-        definition:
-          $ref: '#/components/schemas/ServiceDefinition'
-      type: object
-    Deployment.Status:
-      default: PENDING
-      enum:
-      - PENDING
-      - PROVISIONING
-      - SCHEDULED
-      - CANCELING
-      - CANCELED
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - DEGRADED
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERRORING
-      - ERROR
-      type: string
-    DeploymentListItem:
-      example:
-        metadata:
-          trigger:
-            git:
-              sender_username: sender_username
-              repository: repository
-              message: message
-              branch: branch
-              sha: sha
-              sender_avatar_url: sender_avatar_url
-              sender_profile_url: sender_profile_url
-        created_at: 2000-01-23T04:56:07.000+00:00
-        version: version
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        child_id: child_id
-        provisioning_info:
-          image: image
-          build_job_id: build_job_id
-          stages:
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-        deployment_group: deployment_group
-        parent_id: parent_id
-        organization_id: organization_id
-        service_id: service_id
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          regions:
-          - regions
-          - regions
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
-          deployment_group: deployment_group
-          name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - value: value
-            key: key
-            value_from_secret: value_from_secret
-          - value: value
-            key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        id: id
-        app_id: app_id
-        allocated_at: 2000-01-23T04:56:07.000+00:00
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        allocated_at:
-          format: date-time
-          type: string
-        started_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        parent_id:
-          type: string
-        child_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/Deployment.Status'
-        metadata:
-          $ref: '#/components/schemas/DeploymentMetadata'
-        messages:
-          items:
-            type: string
-          type: array
-        provisioning_info:
-          $ref: '#/components/schemas/DeploymentProvisioningInfo'
-        version:
-          format: uint64
-          type: string
-        deployment_group:
-          type: string
-        definition:
-          $ref: '#/components/schemas/ServiceDefinition'
-      type: object
-    DeploymentMetadata:
-      example:
-        trigger:
-          git:
-            sender_username: sender_username
-            repository: repository
-            message: message
-            branch: branch
-            sha: sha
-            sender_avatar_url: sender_avatar_url
-            sender_profile_url: sender_profile_url
-      properties:
-        trigger:
-          $ref: '#/components/schemas/TriggerDeploymentMetadata'
-      type: object
     DeploymentProvisioningInfo:
       example:
         image: image
@@ -4893,16 +4437,1448 @@ components:
       type: object
     Env:
       example:
+        secret: secret
         value: value
         key: key
-        value_from_secret: value_from_secret
       properties:
         key:
           type: string
         value:
           type: string
-        value_from_secret:
+        secret:
           type: string
+      type: object
+    GetRegionalDeploymentReply:
+      example:
+        regional_deployment:
+          metadata:
+            runtime_job_id: runtime_job_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
+          datacenters:
+          - datacenters
+          - datacenters
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          child_id: child_id
+          provisioning_info:
+            image: image
+            build_job_id: build_job_id
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
+          deployment_group: deployment_group
+          parent_id: parent_id
+          organization_id: organization_id
+          service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          deployment_id: deployment_id
+          region: region
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        regional_deployment:
+          $ref: '#/components/schemas/RegionalDeployment'
+      type: object
+    GitSource:
+      example:
+        run_command: run_command
+        build_command: build_command
+        tag: tag
+        repository: repository
+        branch: branch
+        sha: sha
+      properties:
+        repository:
+          description: 'A url to a git repository (contains the provider as well)
+            .e.g: github.com/koyeb/test.'
+          type: string
+        branch:
+          title: A git branch that will be tracked for new commits and deployments
+            will be created
+          type: string
+        tag:
+          title: A git tag that should be built
+          type: string
+        sha:
+          title: A git commit that should be built (useful for pinning to a commit,
+            this will always be set when a deployment is created by a code push)
+          type: string
+        build_command:
+          title: A command used to override the build command, run after all build
+            steps
+          type: string
+        run_command:
+          title: A command used to override the default run command
+          type: string
+      type: object
+    ListRegionalDeploymentsReply:
+      example:
+        offset: 2
+        regional_deployments:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          region: region
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          region: region
+        limit: 5
+        count: 7
+      properties:
+        regional_deployments:
+          items:
+            $ref: '#/components/schemas/RegionalDeploymentListItem'
+          title: The collection of regional deployments
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    Port:
+      example:
+        protocol: protocol
+        port: 6
+      properties:
+        port:
+          format: int64
+          type: integer
+        protocol:
+          type: string
+      type: object
+    RegionalDeployment:
+      example:
+        metadata:
+          runtime_job_id: runtime_job_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
+        datacenters:
+        - datacenters
+        - datacenters
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        child_id: child_id
+        provisioning_info:
+          image: image
+          build_job_id: build_job_id
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
+        deployment_group: deployment_group
+        parent_id: parent_id
+        organization_id: organization_id
+        service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          region: region
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        id: id
+        deployment_id: deployment_id
+        region: region
+        app_id: app_id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
+        allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        allocated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        region:
+          type: string
+        parent_id:
+          type: string
+        child_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegionalDeployment.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        definition:
+          $ref: '#/components/schemas/RegionalDeploymentDefinition'
+        datacenters:
+          items:
+            type: string
+          type: array
+        metadata:
+          $ref: '#/components/schemas/RegionalDeploymentMetadata'
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
+        version:
+          format: uint64
+          type: string
+        deployment_group:
+          title: Legacy stuff
+          type: string
+        deployment_id:
+          type: string
+      type: object
+    RegionalDeployment.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - PROVISIONING
+      - SCHEDULED
+      - CANCELING
+      - CANCELED
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERRORING
+      - ERROR
+      type: string
+    RegionalDeploymentDefinition:
+      example:
+        routes:
+        - path: path
+          port: 0
+        - path: path
+          port: 0
+        scaling:
+          min: 1
+          max: 5
+        git:
+          run_command: run_command
+          build_command: build_command
+          tag: tag
+          repository: repository
+          branch: branch
+          sha: sha
+        deployment_group: deployment_group
+        name: name
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - secret: secret
+          value: value
+          key: key
+        - secret: secret
+          value: value
+          key: key
+        region: region
+        instance_type: instance_type
+        docker:
+          args:
+          - args
+          - args
+          image: image
+          image_registry_secret: image_registry_secret
+          command: command
+      properties:
+        name:
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type: array
+        ports:
+          items:
+            $ref: '#/components/schemas/Port'
+          type: array
+        env:
+          items:
+            $ref: '#/components/schemas/Env'
+          type: array
+        region:
+          type: string
+        scaling:
+          $ref: '#/components/schemas/Scaling'
+        instance_type:
+          type: string
+        deployment_group:
+          type: string
+        docker:
+          $ref: '#/components/schemas/DockerSource'
+        git:
+          $ref: '#/components/schemas/GitSource'
+      type: object
+    RegionalDeploymentListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          region: region
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        id: id
+        region: region
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        region:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegionalDeployment.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        definition:
+          $ref: '#/components/schemas/RegionalDeploymentDefinition'
+      type: object
+    RegionalDeploymentMetadata:
+      example:
+        runtime_job_id: runtime_job_id
+      properties:
+        runtime_job_id:
+          type: string
+      type: object
+    Route:
+      example:
+        path: path
+        port: 0
+      properties:
+        port:
+          format: int64
+          type: integer
+        path:
+          type: string
+      type: object
+    Scaling:
+      example:
+        min: 1
+        max: 5
+      properties:
+        min:
+          format: int64
+          type: integer
+        max:
+          format: int64
+          type: integer
+      type: object
+    CreateDomain:
+      example:
+        domain: domain
+        app_id: app_id
+      properties:
+        domain:
+          type: string
+        type:
+          $ref: '#/components/schemas/Domain.Type'
+        app_id:
+          type: string
+      type: object
+    CreateDomainReply:
+      example:
+        domain:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+      properties:
+        domain:
+          $ref: '#/components/schemas/Domain'
+      type: object
+    Domain:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        deployment_group: deployment_group
+        verified_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        name:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/Domain.Status'
+        type:
+          $ref: '#/components/schemas/Domain.Type'
+        app_id:
+          type: string
+        deployment_group:
+          type: string
+        verified_at:
+          format: date-time
+          type: string
+      type: object
+    Domain.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - ACTIVE
+      - ERROR
+      type: string
+    Domain.Type:
+      default: AUTOASSIGNED
+      enum:
+      - AUTOASSIGNED
+      - CUSTOM
+      type: string
+    App:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    AppListItem:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    CreateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    CreateAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    DeleteAppReply:
+      type: object
+    GetAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    ListAppsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        apps:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          id: id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        apps:
+          items:
+            $ref: '#/components/schemas/AppListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    UpdateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    UpdateAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          - updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    Deployment:
+      example:
+        metadata:
+          trigger:
+            git:
+              sender_username: sender_username
+              repository: repository
+              message: message
+              branch: branch
+              sha: sha
+              sender_avatar_url: sender_avatar_url
+              sender_profile_url: sender_profile_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        child_id: child_id
+        provisioning_info:
+          image: image
+          build_job_id: build_job_id
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
+        deployment_group: deployment_group
+        parent_id: parent_id
+        organization_id: organization_id
+        service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+            value_from_secret: value_from_secret
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+            value_from_secret: value_from_secret
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        id: id
+        app_id: app_id
+        allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        allocated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        parent_id:
+          type: string
+        child_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/Deployment.Status'
+        metadata:
+          $ref: '#/components/schemas/DeploymentMetadata'
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+        messages:
+          items:
+            type: string
+          type: array
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
+        version:
+          format: uint64
+          type: string
+        deployment_group:
+          type: string
+      type: object
+    Deployment.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - PROVISIONING
+      - SCHEDULED
+      - CANCELING
+      - CANCELED
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERRORING
+      - ERROR
+      type: string
+    DeploymentDefinition:
+      example:
+        instance_types:
+        - scopes:
+          - scopes
+          - scopes
+          type: type
+        - scopes:
+          - scopes
+          - scopes
+          type: type
+        routes:
+        - path: path
+          port: 0
+        - path: path
+          port: 0
+        scaling:
+          min: 1
+          max: 5
+          scopes:
+          - scopes
+          - scopes
+        regions:
+        - regions
+        - regions
+        git:
+          run_command: run_command
+          build_command: build_command
+          tag: tag
+          repository: repository
+          branch: branch
+          sha: sha
+        scalings:
+        - min: 1
+          max: 5
+          scopes:
+          - scopes
+          - scopes
+        - min: 1
+          max: 5
+          scopes:
+          - scopes
+          - scopes
+        name: name
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - scopes:
+          - scopes
+          - scopes
+          secret: secret
+          value: value
+          key: key
+          value_from_secret: value_from_secret
+        - scopes:
+          - scopes
+          - scopes
+          secret: secret
+          value: value
+          key: key
+          value_from_secret: value_from_secret
+        instance_type: instance_type
+        docker:
+          args:
+          - args
+          - args
+          image: image
+          image_registry_secret: image_registry_secret
+          command: command
+      properties:
+        name:
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/DeploymentRoute'
+          type: array
+        ports:
+          items:
+            $ref: '#/components/schemas/DeploymentPort'
+          type: array
+        env:
+          items:
+            $ref: '#/components/schemas/DeploymentEnv'
+          type: array
+        regions:
+          items:
+            type: string
+          type: array
+        scalings:
+          items:
+            $ref: '#/components/schemas/DeploymentScaling'
+          type: array
+        instance_types:
+          items:
+            $ref: '#/components/schemas/DeploymentInstanceType'
+          type: array
+        scaling:
+          $ref: '#/components/schemas/DeploymentScaling'
+        instance_type:
+          type: string
+        docker:
+          $ref: '#/components/schemas/DockerSource'
+        git:
+          $ref: '#/components/schemas/GitSource'
+      type: object
+    DeploymentEnv:
+      example:
+        scopes:
+        - scopes
+        - scopes
+        secret: secret
+        value: value
+        key: key
+        value_from_secret: value_from_secret
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        key:
+          type: string
+        value:
+          type: string
+        secret:
+          type: string
+        value_from_secret:
+          title: DEPRECATED
+          type: string
+      type: object
+    DeploymentInstanceType:
+      example:
+        scopes:
+        - scopes
+        - scopes
+        type: type
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      type: object
+    DeploymentListItem:
+      example:
+        metadata:
+          trigger:
+            git:
+              sender_username: sender_username
+              repository: repository
+              message: message
+              branch: branch
+              sha: sha
+              sender_avatar_url: sender_avatar_url
+              sender_profile_url: sender_profile_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        child_id: child_id
+        provisioning_info:
+          image: image
+          build_job_id: build_job_id
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
+        deployment_group: deployment_group
+        parent_id: parent_id
+        organization_id: organization_id
+        service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+            value_from_secret: value_from_secret
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+            value_from_secret: value_from_secret
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        id: id
+        app_id: app_id
+        allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        allocated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        parent_id:
+          type: string
+        child_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/Deployment.Status'
+        metadata:
+          $ref: '#/components/schemas/DeploymentMetadata'
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+        messages:
+          items:
+            type: string
+          type: array
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
+        version:
+          format: uint64
+          type: string
+        deployment_group:
+          type: string
+      type: object
+    DeploymentMetadata:
+      example:
+        trigger:
+          git:
+            sender_username: sender_username
+            repository: repository
+            message: message
+            branch: branch
+            sha: sha
+            sender_avatar_url: sender_avatar_url
+            sender_profile_url: sender_profile_url
+      properties:
+        trigger:
+          $ref: '#/components/schemas/TriggerDeploymentMetadata'
+      type: object
+    DeploymentPort:
+      example:
+        protocol: protocol
+        port: 6
+      properties:
+        port:
+          format: int64
+          type: integer
+        protocol:
+          type: string
+      type: object
+    DeploymentRoute:
+      example:
+        path: path
+        port: 0
+      properties:
+        port:
+          format: int64
+          type: integer
+        path:
+          type: string
+      type: object
+    DeploymentScaling:
+      example:
+        min: 1
+        max: 5
+        scopes:
+        - scopes
+        - scopes
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        min:
+          format: int64
+          type: integer
+        max:
+          format: int64
+          type: integer
       type: object
     GetDeploymentReply:
       example:
@@ -4947,6 +5923,15 @@ components:
           - messages
           - messages
           definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
             routes:
             - path: path
               port: 0
@@ -4955,6 +5940,9 @@ components:
             scaling:
               min: 1
               max: 5
+              scopes:
+              - scopes
+              - scopes
             regions:
             - regions
             - regions
@@ -4965,7 +5953,17 @@ components:
               repository: repository
               branch: branch
               sha: sha
-            deployment_group: deployment_group
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
             name: name
             ports:
             - protocol: protocol
@@ -4973,10 +5971,18 @@ components:
             - protocol: protocol
               port: 6
             env:
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
             instance_type: instance_type
@@ -5027,38 +6033,6 @@ components:
       - UNKNOWN
       - GITHUB
       type: string
-    GitSource:
-      example:
-        run_command: run_command
-        build_command: build_command
-        tag: tag
-        repository: repository
-        branch: branch
-        sha: sha
-      properties:
-        repository:
-          description: 'A url to a git repository (contains the provider as well)
-            .e.g: github.com/koyeb/test.'
-          type: string
-        branch:
-          title: A git branch that will be tracked for new commits and deployments
-            will be created
-          type: string
-        tag:
-          title: A git tag that should be built
-          type: string
-        sha:
-          title: A git commit that should be built (useful for pinning to a commit,
-            this will always be set when a deployment is created by a code push)
-          type: string
-        build_command:
-          title: A command used to override the build command, run after all build
-            steps
-          type: string
-        run_command:
-          title: A command used to override the default run command
-          type: string
-      type: object
     ListDeploymentsReply:
       example:
         deployments:
@@ -5102,6 +6076,15 @@ components:
           - messages
           - messages
           definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
             routes:
             - path: path
               port: 0
@@ -5110,6 +6093,9 @@ components:
             scaling:
               min: 1
               max: 5
+              scopes:
+              - scopes
+              - scopes
             regions:
             - regions
             - regions
@@ -5120,7 +6106,17 @@ components:
               repository: repository
               branch: branch
               sha: sha
-            deployment_group: deployment_group
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
             name: name
             ports:
             - protocol: protocol
@@ -5128,10 +6124,18 @@ components:
             - protocol: protocol
               port: 6
             env:
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
             instance_type: instance_type
@@ -5185,6 +6189,15 @@ components:
           - messages
           - messages
           definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
             routes:
             - path: path
               port: 0
@@ -5193,6 +6206,9 @@ components:
             scaling:
               min: 1
               max: 5
+              scopes:
+              - scopes
+              - scopes
             regions:
             - regions
             - regions
@@ -5203,7 +6219,17 @@ components:
               repository: repository
               branch: branch
               sha: sha
-            deployment_group: deployment_group
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
             name: name
             ports:
             - protocol: protocol
@@ -5211,10 +6237,18 @@ components:
             - protocol: protocol
               port: 6
             env:
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
             instance_type: instance_type
@@ -5249,112 +6283,6 @@ components:
           format: int64
           title: The total number of items
           type: integer
-      type: object
-    Port:
-      example:
-        protocol: protocol
-        port: 6
-      properties:
-        port:
-          format: int64
-          type: integer
-        protocol:
-          type: string
-      type: object
-    Route:
-      example:
-        path: path
-        port: 0
-      properties:
-        port:
-          format: int64
-          type: integer
-        path:
-          type: string
-      type: object
-    Scaling:
-      example:
-        min: 1
-        max: 5
-      properties:
-        min:
-          format: int64
-          type: integer
-        max:
-          format: int64
-          type: integer
-      type: object
-    ServiceDefinition:
-      example:
-        routes:
-        - path: path
-          port: 0
-        - path: path
-          port: 0
-        scaling:
-          min: 1
-          max: 5
-        regions:
-        - regions
-        - regions
-        git:
-          run_command: run_command
-          build_command: build_command
-          tag: tag
-          repository: repository
-          branch: branch
-          sha: sha
-        deployment_group: deployment_group
-        name: name
-        ports:
-        - protocol: protocol
-          port: 6
-        - protocol: protocol
-          port: 6
-        env:
-        - value: value
-          key: key
-          value_from_secret: value_from_secret
-        - value: value
-          key: key
-          value_from_secret: value_from_secret
-        instance_type: instance_type
-        docker:
-          args:
-          - args
-          - args
-          image: image
-          image_registry_secret: image_registry_secret
-          command: command
-      properties:
-        name:
-          type: string
-        routes:
-          items:
-            $ref: '#/components/schemas/Route'
-          type: array
-        ports:
-          items:
-            $ref: '#/components/schemas/Port'
-          type: array
-        env:
-          items:
-            $ref: '#/components/schemas/Env'
-          type: array
-        regions:
-          items:
-            type: string
-          type: array
-        scaling:
-          $ref: '#/components/schemas/Scaling'
-        instance_type:
-          type: string
-        deployment_group:
-          type: string
-        docker:
-          $ref: '#/components/schemas/DockerSource'
-        git:
-          $ref: '#/components/schemas/GitSource'
       type: object
     TriggerDeploymentMetadata:
       example:
@@ -5444,10 +6372,81 @@ components:
           - protocol: protocol
             port: 6
           env:
-          - value: value
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        new_definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
             key: key
             value_from_secret: value_from_secret
-          - value: value
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
             key: key
             value_from_secret: value_from_secret
           instance_type: instance_type
@@ -5464,6 +6463,8 @@ components:
           type: string
         definition:
           $ref: '#/components/schemas/ServiceDefinition'
+        new_definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
       type: object
     CreateServiceReply:
       example:
@@ -5711,6 +6712,15 @@ components:
           - messages
           - messages
           definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
             routes:
             - path: path
               port: 0
@@ -5719,6 +6729,9 @@ components:
             scaling:
               min: 1
               max: 5
+              scopes:
+              - scopes
+              - scopes
             regions:
             - regions
             - regions
@@ -5729,7 +6742,17 @@ components:
               repository: repository
               branch: branch
               sha: sha
-            deployment_group: deployment_group
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
             name: name
             ports:
             - protocol: protocol
@@ -5737,10 +6760,18 @@ components:
             - protocol: protocol
               port: 6
             env:
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
-            - value: value
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
               key: key
               value_from_secret: value_from_secret
             instance_type: instance_type
@@ -5841,6 +6872,78 @@ components:
       - DELETING
       - DELETED
       type: string
+    ServiceDefinition:
+      example:
+        routes:
+        - path: path
+          port: 0
+        - path: path
+          port: 0
+        scaling:
+          min: 1
+          max: 5
+        regions:
+        - regions
+        - regions
+        git:
+          run_command: run_command
+          build_command: build_command
+          tag: tag
+          repository: repository
+          branch: branch
+          sha: sha
+        deployment_group: deployment_group
+        name: name
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - secret: secret
+          value: value
+          key: key
+        - secret: secret
+          value: value
+          key: key
+        instance_type: instance_type
+        docker:
+          args:
+          - args
+          - args
+          image: image
+          image_registry_secret: image_registry_secret
+          command: command
+      properties:
+        name:
+          type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type: array
+        ports:
+          items:
+            $ref: '#/components/schemas/Port'
+          type: array
+        env:
+          items:
+            $ref: '#/components/schemas/Env'
+          type: array
+        regions:
+          items:
+            type: string
+          type: array
+        scaling:
+          $ref: '#/components/schemas/Scaling'
+        instance_type:
+          type: string
+        deployment_group:
+          type: string
+        docker:
+          $ref: '#/components/schemas/DockerSource'
+        git:
+          $ref: '#/components/schemas/GitSource'
+      type: object
     ServiceListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5965,10 +7068,81 @@ components:
           - protocol: protocol
             port: 6
           env:
-          - value: value
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        new_definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          regions:
+          - regions
+          - regions
+          git:
+            run_command: run_command
+            build_command: build_command
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
             key: key
             value_from_secret: value_from_secret
-          - value: value
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
             key: key
             value_from_secret: value_from_secret
           instance_type: instance_type
@@ -5982,6 +7156,8 @@ components:
       properties:
         definition:
           $ref: '#/components/schemas/ServiceDefinition'
+        new_definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
       type: object
     UpdateServiceReply:
       example:
@@ -7001,6 +8177,7 @@ x-tagGroups:
   - Apps
   - Services
   - Deployments
+  - RegionalDeployments
   - Instances
   - Logs
   - CatalogRegions

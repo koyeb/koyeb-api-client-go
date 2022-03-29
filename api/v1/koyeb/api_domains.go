@@ -23,87 +23,47 @@ var (
 	_ _context.Context
 )
 
-type LogsApi interface {
+type DomainsApi interface {
 
 	/*
-	 * TailLogs Tails logs
+	 * CreateDomain Method for CreateDomain
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return ApiTailLogsRequest
+	 * @return ApiCreateDomainRequest
 	 */
-	TailLogs(ctx _context.Context) ApiTailLogsRequest
+	CreateDomain(ctx _context.Context) ApiCreateDomainRequest
 
 	/*
-	 * TailLogsExecute executes the request
-	 * @return StreamResultOfLogEntry
+	 * CreateDomainExecute executes the request
+	 * @return CreateDomainReply
 	 */
-	TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error)
+	CreateDomainExecute(r ApiCreateDomainRequest) (CreateDomainReply, *_nethttp.Response, error)
 }
 
-// LogsApiService LogsApi service
-type LogsApiService service
+// DomainsApiService DomainsApi service
+type DomainsApiService service
 
-type ApiTailLogsRequest struct {
+type ApiCreateDomainRequest struct {
 	ctx _context.Context
-	ApiService LogsApi
-	type_ *string
-	appId *string
-	serviceId *string
-	deploymentId *string
-	regionalDeploymentId *string
-	instanceId *string
-	stream *string
-	start *string
-	limit *string
+	ApiService DomainsApi
+	body *CreateDomain
 }
 
-func (r ApiTailLogsRequest) Type_(type_ string) ApiTailLogsRequest {
-	r.type_ = &type_
-	return r
-}
-func (r ApiTailLogsRequest) AppId(appId string) ApiTailLogsRequest {
-	r.appId = &appId
-	return r
-}
-func (r ApiTailLogsRequest) ServiceId(serviceId string) ApiTailLogsRequest {
-	r.serviceId = &serviceId
-	return r
-}
-func (r ApiTailLogsRequest) DeploymentId(deploymentId string) ApiTailLogsRequest {
-	r.deploymentId = &deploymentId
-	return r
-}
-func (r ApiTailLogsRequest) RegionalDeploymentId(regionalDeploymentId string) ApiTailLogsRequest {
-	r.regionalDeploymentId = &regionalDeploymentId
-	return r
-}
-func (r ApiTailLogsRequest) InstanceId(instanceId string) ApiTailLogsRequest {
-	r.instanceId = &instanceId
-	return r
-}
-func (r ApiTailLogsRequest) Stream(stream string) ApiTailLogsRequest {
-	r.stream = &stream
-	return r
-}
-func (r ApiTailLogsRequest) Start(start string) ApiTailLogsRequest {
-	r.start = &start
-	return r
-}
-func (r ApiTailLogsRequest) Limit(limit string) ApiTailLogsRequest {
-	r.limit = &limit
+func (r ApiCreateDomainRequest) Body(body CreateDomain) ApiCreateDomainRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiTailLogsRequest) Execute() (StreamResultOfLogEntry, *_nethttp.Response, error) {
-	return r.ApiService.TailLogsExecute(r)
+func (r ApiCreateDomainRequest) Execute() (CreateDomainReply, *_nethttp.Response, error) {
+	return r.ApiService.CreateDomainExecute(r)
 }
 
 /*
- * TailLogs Tails logs
+ * CreateDomain Method for CreateDomain
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiTailLogsRequest
+ * @return ApiCreateDomainRequest
  */
-func (a *LogsApiService) TailLogs(ctx _context.Context) ApiTailLogsRequest {
-	return ApiTailLogsRequest{
+func (a *DomainsApiService) CreateDomain(ctx _context.Context) ApiCreateDomainRequest {
+	return ApiCreateDomainRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -111,56 +71,32 @@ func (a *LogsApiService) TailLogs(ctx _context.Context) ApiTailLogsRequest {
 
 /*
  * Execute executes the request
- * @return StreamResultOfLogEntry
+ * @return CreateDomainReply
  */
-func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLogEntry, *_nethttp.Response, error) {
+func (a *DomainsApiService) CreateDomainExecute(r ApiCreateDomainRequest) (CreateDomainReply, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  StreamResultOfLogEntry
+		localVarReturnValue  CreateDomainReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.TailLogs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DomainsApiService.CreateDomain")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/streams/logs/tail"
+	localVarPath := localBasePath + "/v1/domains"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
-	}
-	if r.appId != nil {
-		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
-	}
-	if r.serviceId != nil {
-		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
-	}
-	if r.deploymentId != nil {
-		localVarQueryParams.Add("deployment_id", parameterToString(*r.deploymentId, ""))
-	}
-	if r.regionalDeploymentId != nil {
-		localVarQueryParams.Add("regional_deployment_id", parameterToString(*r.regionalDeploymentId, ""))
-	}
-	if r.instanceId != nil {
-		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
-	}
-	if r.stream != nil {
-		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
-	}
-	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
-	}
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -178,6 +114,8 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (StreamResultOfLo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

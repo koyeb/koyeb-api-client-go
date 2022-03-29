@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## TailLogs
 
-> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
+> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
 
 Tails logs
 
@@ -31,6 +31,7 @@ func main() {
     appId := "appId_example" // string |  (optional)
     serviceId := "serviceId_example" // string |  (optional)
     deploymentId := "deploymentId_example" // string |  (optional)
+    regionalDeploymentId := "regionalDeploymentId_example" // string |  (optional)
     instanceId := "instanceId_example" // string |  (optional)
     stream := "stream_example" // string |  (optional)
     start := "start_example" // string |  (optional)
@@ -38,7 +39,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
+    resp, r, err := api_client.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.TailLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,6 +64,7 @@ Name | Type | Description  | Notes
  **appId** | **string** |  | 
  **serviceId** | **string** |  | 
  **deploymentId** | **string** |  | 
+ **regionalDeploymentId** | **string** |  | 
  **instanceId** | **string** |  | 
  **stream** | **string** |  | 
  **start** | **string** |  | 

@@ -18,7 +18,7 @@ import (
 type Env struct {
 	Key *string `json:"key,omitempty"`
 	Value *string `json:"value,omitempty"`
-	ValueFromSecret *string `json:"value_from_secret,omitempty"`
+	Secret *string `json:"secret,omitempty"`
 }
 
 // NewEnv instantiates a new Env object
@@ -102,36 +102,36 @@ func (o *Env) SetValue(v string) {
 	o.Value = &v
 }
 
-// GetValueFromSecret returns the ValueFromSecret field value if set, zero value otherwise.
-func (o *Env) GetValueFromSecret() string {
-	if o == nil || o.ValueFromSecret == nil {
+// GetSecret returns the Secret field value if set, zero value otherwise.
+func (o *Env) GetSecret() string {
+	if o == nil || o.Secret == nil {
 		var ret string
 		return ret
 	}
-	return *o.ValueFromSecret
+	return *o.Secret
 }
 
-// GetValueFromSecretOk returns a tuple with the ValueFromSecret field value if set, nil otherwise
+// GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Env) GetValueFromSecretOk() (*string, bool) {
-	if o == nil || o.ValueFromSecret == nil {
+func (o *Env) GetSecretOk() (*string, bool) {
+	if o == nil || o.Secret == nil {
 		return nil, false
 	}
-	return o.ValueFromSecret, true
+	return o.Secret, true
 }
 
-// HasValueFromSecret returns a boolean if a field has been set.
-func (o *Env) HasValueFromSecret() bool {
-	if o != nil && o.ValueFromSecret != nil {
+// HasSecret returns a boolean if a field has been set.
+func (o *Env) HasSecret() bool {
+	if o != nil && o.Secret != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetValueFromSecret gets a reference to the given string and assigns it to the ValueFromSecret field.
-func (o *Env) SetValueFromSecret(v string) {
-	o.ValueFromSecret = &v
+// SetSecret gets a reference to the given string and assigns it to the Secret field.
+func (o *Env) SetSecret(v string) {
+	o.Secret = &v
 }
 
 func (o Env) MarshalJSON() ([]byte, error) {
@@ -142,8 +142,8 @@ func (o Env) MarshalJSON() ([]byte, error) {
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
-	if o.ValueFromSecret != nil {
-		toSerialize["value_from_secret"] = o.ValueFromSecret
+	if o.Secret != nil {
+		toSerialize["secret"] = o.Secret
 	}
 	return json.Marshal(toSerialize)
 }

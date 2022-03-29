@@ -4,15 +4,84 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListRegionalDeployments**](RegionalDeploymentsApi.md#ListRegionalDeployments) | **Get** /v1/regional_deployments | Temporary: List regional deployments
+[**GetRegionalDeployment**](RegionalDeploymentsApi.md#GetRegionalDeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
+[**ListRegionalDeployments**](RegionalDeploymentsApi.md#ListRegionalDeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
 
+
+
+## GetRegionalDeployment
+
+> GetRegionalDeploymentReply GetRegionalDeployment(ctx, id).Execute()
+
+Experimental: Get regional deployment Use at your own risk
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the regional deployment
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.RegionalDeploymentsApi.GetRegionalDeployment(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RegionalDeploymentsApi.GetRegionalDeployment``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRegionalDeployment`: GetRegionalDeploymentReply
+    fmt.Fprintf(os.Stdout, "Response from `RegionalDeploymentsApi.GetRegionalDeployment`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the regional deployment | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRegionalDeploymentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetRegionalDeploymentReply**](GetRegionalDeploymentReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## ListRegionalDeployments
 
 > ListRegionalDeploymentsReply ListRegionalDeployments(ctx).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
 
-Temporary: List regional deployments
+Experimental: List regional deployments Use at your own risk
 
 ### Example
 

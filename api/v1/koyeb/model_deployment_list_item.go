@@ -29,11 +29,11 @@ type DeploymentListItem struct {
 	ChildId *string `json:"child_id,omitempty"`
 	Status *DeploymentStatus `json:"status,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
+	Definition *DeploymentDefinition `json:"definition,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
-	Definition *ServiceDefinition `json:"definition,omitempty"`
 }
 
 // NewDeploymentListItem instantiates a new DeploymentListItem object
@@ -441,6 +441,38 @@ func (o *DeploymentListItem) SetMetadata(v DeploymentMetadata) {
 	o.Metadata = &v
 }
 
+// GetDefinition returns the Definition field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetDefinition() DeploymentDefinition {
+	if o == nil || o.Definition == nil {
+		var ret DeploymentDefinition
+		return ret
+	}
+	return *o.Definition
+}
+
+// GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetDefinitionOk() (*DeploymentDefinition, bool) {
+	if o == nil || o.Definition == nil {
+		return nil, false
+	}
+	return o.Definition, true
+}
+
+// HasDefinition returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasDefinition() bool {
+	if o != nil && o.Definition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefinition gets a reference to the given DeploymentDefinition and assigns it to the Definition field.
+func (o *DeploymentListItem) SetDefinition(v DeploymentDefinition) {
+	o.Definition = &v
+}
+
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *DeploymentListItem) GetMessages() []string {
 	if o == nil || o.Messages == nil {
@@ -569,38 +601,6 @@ func (o *DeploymentListItem) SetDeploymentGroup(v string) {
 	o.DeploymentGroup = &v
 }
 
-// GetDefinition returns the Definition field value if set, zero value otherwise.
-func (o *DeploymentListItem) GetDefinition() ServiceDefinition {
-	if o == nil || o.Definition == nil {
-		var ret ServiceDefinition
-		return ret
-	}
-	return *o.Definition
-}
-
-// GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeploymentListItem) GetDefinitionOk() (*ServiceDefinition, bool) {
-	if o == nil || o.Definition == nil {
-		return nil, false
-	}
-	return o.Definition, true
-}
-
-// HasDefinition returns a boolean if a field has been set.
-func (o *DeploymentListItem) HasDefinition() bool {
-	if o != nil && o.Definition != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDefinition gets a reference to the given ServiceDefinition and assigns it to the Definition field.
-func (o *DeploymentListItem) SetDefinition(v ServiceDefinition) {
-	o.Definition = &v
-}
-
 func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -639,6 +639,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if o.Definition != nil {
+		toSerialize["definition"] = o.Definition
+	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
 	}
@@ -650,9 +653,6 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeploymentGroup != nil {
 		toSerialize["deployment_group"] = o.DeploymentGroup
-	}
-	if o.Definition != nil {
-		toSerialize["definition"] = o.Definition
 	}
 	return json.Marshal(toSerialize)
 }

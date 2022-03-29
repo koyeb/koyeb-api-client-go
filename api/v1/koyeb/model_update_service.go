@@ -17,6 +17,7 @@ import (
 // UpdateService struct for UpdateService
 type UpdateService struct {
 	Definition *ServiceDefinition `json:"definition,omitempty"`
+	NewDefinition *DeploymentDefinition `json:"new_definition,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -68,10 +69,45 @@ func (o *UpdateService) SetDefinition(v ServiceDefinition) {
 	o.Definition = &v
 }
 
+// GetNewDefinition returns the NewDefinition field value if set, zero value otherwise.
+func (o *UpdateService) GetNewDefinition() DeploymentDefinition {
+	if o == nil || o.NewDefinition == nil {
+		var ret DeploymentDefinition
+		return ret
+	}
+	return *o.NewDefinition
+}
+
+// GetNewDefinitionOk returns a tuple with the NewDefinition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetNewDefinitionOk() (*DeploymentDefinition, bool) {
+	if o == nil || o.NewDefinition == nil {
+		return nil, false
+	}
+	return o.NewDefinition, true
+}
+
+// HasNewDefinition returns a boolean if a field has been set.
+func (o *UpdateService) HasNewDefinition() bool {
+	if o != nil && o.NewDefinition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewDefinition gets a reference to the given DeploymentDefinition and assigns it to the NewDefinition field.
+func (o *UpdateService) SetNewDefinition(v DeploymentDefinition) {
+	o.NewDefinition = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Definition != nil {
 		toSerialize["definition"] = o.Definition
+	}
+	if o.NewDefinition != nil {
+		toSerialize["new_definition"] = o.NewDefinition
 	}
 	return json.Marshal(toSerialize)
 }

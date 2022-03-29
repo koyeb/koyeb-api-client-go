@@ -101,7 +101,7 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | 
+    id := "id_example" // string | The id of the instance
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -121,7 +121,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** | The id of the instance | 
 
 ### Other Parameters
 

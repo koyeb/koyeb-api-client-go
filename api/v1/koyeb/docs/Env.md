@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Key** | Pointer to **string** |  | [optional] 
 **Value** | Pointer to **string** |  | [optional] 
-**ValueFromSecret** | Pointer to **string** |  | [optional] 
+**Secret** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -77,30 +77,30 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-### GetValueFromSecret
+### GetSecret
 
-`func (o *Env) GetValueFromSecret() string`
+`func (o *Env) GetSecret() string`
 
-GetValueFromSecret returns the ValueFromSecret field if non-nil, zero value otherwise.
+GetSecret returns the Secret field if non-nil, zero value otherwise.
 
-### GetValueFromSecretOk
+### GetSecretOk
 
-`func (o *Env) GetValueFromSecretOk() (*string, bool)`
+`func (o *Env) GetSecretOk() (*string, bool)`
 
-GetValueFromSecretOk returns a tuple with the ValueFromSecret field if it's non-nil, zero value otherwise
+GetSecretOk returns a tuple with the Secret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetValueFromSecret
+### SetSecret
 
-`func (o *Env) SetValueFromSecret(v string)`
+`func (o *Env) SetSecret(v string)`
 
-SetValueFromSecret sets ValueFromSecret field to given value.
+SetSecret sets Secret field to given value.
 
-### HasValueFromSecret
+### HasSecret
 
-`func (o *Env) HasValueFromSecret() bool`
+`func (o *Env) HasSecret() bool`
 
-HasValueFromSecret returns a boolean if a field has been set.
+HasSecret returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
