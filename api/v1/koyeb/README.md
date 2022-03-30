@@ -88,6 +88,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
+*BillingApi* | [**Redirect**](docs/BillingApi.md#redirect) | **Post** /v1/billing/redirect | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
@@ -102,6 +103,7 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
+*DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
@@ -235,6 +237,7 @@ Class | Method | HTTP request | Description
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
  - [ListDatacentersReply](docs/ListDatacentersReply.md)
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
+ - [ListDomainsReply](docs/ListDomainsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
@@ -256,6 +259,7 @@ Class | Method | HTTP request | Description
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
+ - [RedirectReply](docs/RedirectReply.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [RegionalDeployment](docs/RegionalDeployment.md)

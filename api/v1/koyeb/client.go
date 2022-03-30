@@ -52,6 +52,8 @@ type APIClient struct {
 
 	AppsApi AppsApi
 
+	BillingApi BillingApi
+
 	CatalogDatacentersApi CatalogDatacentersApi
 
 	CatalogInstancesApi CatalogInstancesApi
@@ -105,6 +107,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.ActivityApi = (*ActivityApiService)(&c.common)
 	c.AppsApi = (*AppsApiService)(&c.common)
+	c.BillingApi = (*BillingApiService)(&c.common)
 	c.CatalogDatacentersApi = (*CatalogDatacentersApiService)(&c.common)
 	c.CatalogInstancesApi = (*CatalogInstancesApiService)(&c.common)
 	c.CatalogRegionsApi = (*CatalogRegionsApiService)(&c.common)
