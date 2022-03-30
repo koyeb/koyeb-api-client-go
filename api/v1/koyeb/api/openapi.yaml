@@ -1089,6 +1089,78 @@ paths:
       tags:
       - RegionalDeployments
   /v1/domains:
+    get:
+      operationId: ListDomains
+      parameters:
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for types.
+        explode: true
+        in: query
+        name: types
+        schema:
+          items:
+            enum:
+            - AUTOASSIGNED
+            - CUSTOM
+            type: string
+          type: array
+        style: form
+      - description: (Optional) A filter for statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - PENDING
+            - ACTIVE
+            - ERROR
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListDomainsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
     post:
       operationId: CreateDomain
       requestBody:
@@ -2658,6 +2730,50 @@ paths:
           description: An unexpected error response.
       tags:
       - profile
+  /v1/billing/redirect:
+    post:
+      operationId: Redirect
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RedirectRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RedirectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - billing
+      x-codegen-request-body-name: body
   /v1/credentials:
     get:
       operationId: ListCredentials
@@ -5089,6 +5205,46 @@ components:
       - AUTOASSIGNED
       - CUSTOM
       type: string
+    ListDomainsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        domains:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          app_id: app_id
+      properties:
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
     App:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -7566,6 +7722,15 @@ components:
       - business
       - enterprise
       type: string
+    RedirectReply:
+      example:
+        url: url
+      properties:
+        url:
+          type: string
+      type: object
+    RedirectRequest:
+      type: object
     ResendEmailValidationReply:
       type: object
     ResendEmailValidationRequest:
