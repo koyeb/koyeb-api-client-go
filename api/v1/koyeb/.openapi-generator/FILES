@@ -91,6 +91,7 @@ docs/GCPContainerRegistryConfiguration.md
 docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetDeploymentReply.md
+docs/GetDomainReply.md
 docs/GetInstanceReply.md
 docs/GetOAuthOptionsReply.md
 docs/GetOrganizationReply.md
@@ -163,7 +164,6 @@ docs/Secret.md
 docs/SecretType.md
 docs/SecretsApi.md
 docs/Service.md
-docs/ServiceDefinition.md
 docs/ServiceListItem.md
 docs/ServiceState.md
 docs/ServiceStatus.md
@@ -177,6 +177,8 @@ docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataTriggerType.md
 docs/UpdateApp.md
 docs/UpdateAppReply.md
+docs/UpdateDomain.md
+docs/UpdateDomainReply.md
 docs/UpdateOrganizationReply.md
 docs/UpdatePasswordRequest.md
 docs/UpdateSecretReply.md
@@ -247,6 +249,7 @@ model_gcp_container_registry_configuration.go
 model_get_app_reply.go
 model_get_catalog_instance_reply.go
 model_get_deployment_reply.go
+model_get_domain_reply.go
 model_get_instance_reply.go
 model_get_o_auth_options_reply.go
 model_get_organization_reply.go
@@ -311,7 +314,6 @@ model_scaling.go
 model_secret.go
 model_secret_type.go
 model_service.go
-model_service_definition.go
 model_service_list_item.go
 model_service_state.go
 model_service_status.go
@@ -322,6 +324,8 @@ model_trigger_deployment_metadata.go
 model_trigger_deployment_metadata_trigger_type.go
 model_update_app.go
 model_update_app_reply.go
+model_update_domain.go
+model_update_domain_reply.go
 model_update_organization_reply.go
 model_update_password_request.go
 model_update_secret_reply.go

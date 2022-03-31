@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **VerifiedAt** | Pointer to **time.Time** |  | [optional] 
+**IntendedCname** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetVerifiedAt sets VerifiedAt field to given value.
 `func (o *Domain) HasVerifiedAt() bool`
 
 HasVerifiedAt returns a boolean if a field has been set.
+
+### GetIntendedCname
+
+`func (o *Domain) GetIntendedCname() string`
+
+GetIntendedCname returns the IntendedCname field if non-nil, zero value otherwise.
+
+### GetIntendedCnameOk
+
+`func (o *Domain) GetIntendedCnameOk() (*string, bool)`
+
+GetIntendedCnameOk returns a tuple with the IntendedCname field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntendedCname
+
+`func (o *Domain) SetIntendedCname(v string)`
+
+SetIntendedCname sets IntendedCname field to given value.
+
+### HasIntendedCname
+
+`func (o *Domain) HasIntendedCname() bool`
+
+HasIntendedCname returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

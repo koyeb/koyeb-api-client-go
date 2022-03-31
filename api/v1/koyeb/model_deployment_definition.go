@@ -23,8 +23,6 @@ type DeploymentDefinition struct {
 	Regions *[]string `json:"regions,omitempty"`
 	Scalings *[]DeploymentScaling `json:"scalings,omitempty"`
 	InstanceTypes *[]DeploymentInstanceType `json:"instance_types,omitempty"`
-	Scaling *DeploymentScaling `json:"scaling,omitempty"`
-	InstanceType *string `json:"instance_type,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 }
@@ -270,70 +268,6 @@ func (o *DeploymentDefinition) SetInstanceTypes(v []DeploymentInstanceType) {
 	o.InstanceTypes = &v
 }
 
-// GetScaling returns the Scaling field value if set, zero value otherwise.
-func (o *DeploymentDefinition) GetScaling() DeploymentScaling {
-	if o == nil || o.Scaling == nil {
-		var ret DeploymentScaling
-		return ret
-	}
-	return *o.Scaling
-}
-
-// GetScalingOk returns a tuple with the Scaling field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeploymentDefinition) GetScalingOk() (*DeploymentScaling, bool) {
-	if o == nil || o.Scaling == nil {
-		return nil, false
-	}
-	return o.Scaling, true
-}
-
-// HasScaling returns a boolean if a field has been set.
-func (o *DeploymentDefinition) HasScaling() bool {
-	if o != nil && o.Scaling != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetScaling gets a reference to the given DeploymentScaling and assigns it to the Scaling field.
-func (o *DeploymentDefinition) SetScaling(v DeploymentScaling) {
-	o.Scaling = &v
-}
-
-// GetInstanceType returns the InstanceType field value if set, zero value otherwise.
-func (o *DeploymentDefinition) GetInstanceType() string {
-	if o == nil || o.InstanceType == nil {
-		var ret string
-		return ret
-	}
-	return *o.InstanceType
-}
-
-// GetInstanceTypeOk returns a tuple with the InstanceType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeploymentDefinition) GetInstanceTypeOk() (*string, bool) {
-	if o == nil || o.InstanceType == nil {
-		return nil, false
-	}
-	return o.InstanceType, true
-}
-
-// HasInstanceType returns a boolean if a field has been set.
-func (o *DeploymentDefinition) HasInstanceType() bool {
-	if o != nil && o.InstanceType != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetInstanceType gets a reference to the given string and assigns it to the InstanceType field.
-func (o *DeploymentDefinition) SetInstanceType(v string) {
-	o.InstanceType = &v
-}
-
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || o.Docker == nil {
@@ -420,12 +354,6 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if o.InstanceTypes != nil {
 		toSerialize["instance_types"] = o.InstanceTypes
-	}
-	if o.Scaling != nil {
-		toSerialize["scaling"] = o.Scaling
-	}
-	if o.InstanceType != nil {
-		toSerialize["instance_type"] = o.InstanceType
 	}
 	if o.Docker != nil {
 		toSerialize["docker"] = o.Docker

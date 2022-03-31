@@ -1204,6 +1204,187 @@ paths:
       tags:
       - Domains
       x-codegen-request-body-name: body
+  /v1/domains/{id}:
+    delete:
+      operationId: DeleteDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+    get:
+      operationId: GetDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+    post:
+      operationId: UpdateDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateDomain'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+      x-codegen-request-body-name: body
+  /v1/domains/{id}/refresh:
+    post:
+      operationId: RefreshDomainStatus
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RefreshDomainStatusReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
   /v1/apps:
     get:
       operationId: ListApps
@@ -2731,14 +2912,8 @@ paths:
       tags:
       - profile
   /v1/billing/redirect:
-    post:
+    get:
       operationId: Redirect
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/RedirectRequest'
-        required: true
       responses:
         "200":
           content:
@@ -2773,7 +2948,6 @@ paths:
           description: An unexpected error response.
       tags:
       - billing
-      x-codegen-request-body-name: body
   /v1/credentials:
     get:
       operationId: ListCredentials
@@ -5151,11 +5325,14 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
         domain:
           $ref: '#/components/schemas/Domain'
+      type: object
+    DeleteDomainReply:
       type: object
     Domain:
       example:
@@ -5165,6 +5342,7 @@ components:
         organization_id: organization_id
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
+        intended_cname: intended_cname
         id: id
         app_id: app_id
       properties:
@@ -5191,6 +5369,8 @@ components:
         verified_at:
           format: date-time
           type: string
+        intended_cname:
+          type: string
       type: object
     Domain.Status:
       default: PENDING
@@ -5205,6 +5385,22 @@ components:
       - AUTOASSIGNED
       - CUSTOM
       type: string
+    GetDomainReply:
+      example:
+        domain:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          id: id
+          app_id: app_id
+      properties:
+        domain:
+          $ref: '#/components/schemas/Domain'
+      type: object
     ListDomainsReply:
       example:
         offset: 6
@@ -5217,6 +5413,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5225,6 +5422,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
@@ -5245,6 +5443,33 @@ components:
           title: The total number of items
           type: integer
       type: object
+    RefreshDomainStatusReply:
+      type: object
+    UpdateDomain:
+      example:
+        app_id: app_id
+      properties:
+        status:
+          $ref: '#/components/schemas/Domain.Status'
+        app_id:
+          type: string
+      type: object
+    UpdateDomainReply:
+      example:
+        domain:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          id: id
+          app_id: app_id
+      properties:
+        domain:
+          $ref: '#/components/schemas/Domain'
+      type: object
     App:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5258,6 +5483,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5266,6 +5492,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
         id: id
@@ -5300,6 +5527,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5308,6 +5536,7 @@ components:
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           id: id
           app_id: app_id
         id: id
@@ -5350,6 +5579,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5358,6 +5588,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5381,6 +5612,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5389,6 +5621,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5413,6 +5646,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5421,6 +5655,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5435,6 +5670,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5443,6 +5679,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5485,6 +5722,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -5493,6 +5731,7 @@ components:
             organization_id: organization_id
             name: name
             created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5556,12 +5795,6 @@ components:
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
           regions:
           - regions
           - regions
@@ -5596,15 +5829,12 @@ components:
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
           - scopes:
             - scopes
             - scopes
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
           docker:
             args:
             - args
@@ -5692,12 +5922,6 @@ components:
           port: 0
         - path: path
           port: 0
-        scaling:
-          min: 1
-          max: 5
-          scopes:
-          - scopes
-          - scopes
         regions:
         - regions
         - regions
@@ -5732,15 +5956,12 @@ components:
           secret: secret
           value: value
           key: key
-          value_from_secret: value_from_secret
         - scopes:
           - scopes
           - scopes
           secret: secret
           value: value
           key: key
-          value_from_secret: value_from_secret
-        instance_type: instance_type
         docker:
           args:
           - args
@@ -5775,10 +5996,6 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentInstanceType'
           type: array
-        scaling:
-          $ref: '#/components/schemas/DeploymentScaling'
-        instance_type:
-          type: string
         docker:
           $ref: '#/components/schemas/DockerSource'
         git:
@@ -5792,7 +6009,6 @@ components:
         secret: secret
         value: value
         key: key
-        value_from_secret: value_from_secret
       properties:
         scopes:
           items:
@@ -5803,9 +6019,6 @@ components:
         value:
           type: string
         secret:
-          type: string
-        value_from_secret:
-          title: DEPRECATED
           type: string
       type: object
     DeploymentInstanceType:
@@ -5878,12 +6091,6 @@ components:
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
           regions:
           - regions
           - regions
@@ -5918,15 +6125,12 @@ components:
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
           - scopes:
             - scopes
             - scopes
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
           docker:
             args:
             - args
@@ -6093,12 +6297,6 @@ components:
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
-              scopes:
-              - scopes
-              - scopes
             regions:
             - regions
             - regions
@@ -6133,15 +6331,12 @@ components:
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
             - scopes:
               - scopes
               - scopes
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
-            instance_type: instance_type
             docker:
               args:
               - args
@@ -6246,12 +6441,6 @@ components:
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
-              scopes:
-              - scopes
-              - scopes
             regions:
             - regions
             - regions
@@ -6286,15 +6475,12 @@ components:
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
             - scopes:
               - scopes
               - scopes
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
-            instance_type: instance_type
             docker:
               args:
               - args
@@ -6359,12 +6545,6 @@ components:
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
-              scopes:
-              - scopes
-              - scopes
             regions:
             - regions
             - regions
@@ -6399,15 +6579,12 @@ components:
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
             - scopes:
               - scopes
               - scopes
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
-            instance_type: instance_type
             docker:
               args:
               - args
@@ -6502,47 +6679,6 @@ components:
     CreateService:
       example:
         definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          regions:
-          - regions
-          - regions
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
-          deployment_group: deployment_group
-          name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        new_definition:
           instance_types:
           - scopes:
             - scopes
@@ -6557,12 +6693,6 @@ components:
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
           regions:
           - regions
           - regions
@@ -6597,15 +6727,12 @@ components:
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
           - scopes:
             - scopes
             - scopes
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
           docker:
             args:
             - args
@@ -6618,8 +6745,6 @@ components:
         app_id:
           type: string
         definition:
-          $ref: '#/components/schemas/ServiceDefinition'
-        new_definition:
           $ref: '#/components/schemas/DeploymentDefinition'
       type: object
     CreateServiceReply:
@@ -6882,12 +7007,6 @@ components:
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
-              scopes:
-              - scopes
-              - scopes
             regions:
             - regions
             - regions
@@ -6922,15 +7041,12 @@ components:
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
             - scopes:
               - scopes
               - scopes
               secret: secret
               value: value
               key: key
-              value_from_secret: value_from_secret
-            instance_type: instance_type
             docker:
               args:
               - args
@@ -7028,78 +7144,6 @@ components:
       - DELETING
       - DELETED
       type: string
-    ServiceDefinition:
-      example:
-        routes:
-        - path: path
-          port: 0
-        - path: path
-          port: 0
-        scaling:
-          min: 1
-          max: 5
-        regions:
-        - regions
-        - regions
-        git:
-          run_command: run_command
-          build_command: build_command
-          tag: tag
-          repository: repository
-          branch: branch
-          sha: sha
-        deployment_group: deployment_group
-        name: name
-        ports:
-        - protocol: protocol
-          port: 6
-        - protocol: protocol
-          port: 6
-        env:
-        - secret: secret
-          value: value
-          key: key
-        - secret: secret
-          value: value
-          key: key
-        instance_type: instance_type
-        docker:
-          args:
-          - args
-          - args
-          image: image
-          image_registry_secret: image_registry_secret
-          command: command
-      properties:
-        name:
-          type: string
-        routes:
-          items:
-            $ref: '#/components/schemas/Route'
-          type: array
-        ports:
-          items:
-            $ref: '#/components/schemas/Port'
-          type: array
-        env:
-          items:
-            $ref: '#/components/schemas/Env'
-          type: array
-        regions:
-          items:
-            type: string
-          type: array
-        scaling:
-          $ref: '#/components/schemas/Scaling'
-        instance_type:
-          type: string
-        deployment_group:
-          type: string
-        docker:
-          $ref: '#/components/schemas/DockerSource'
-        git:
-          $ref: '#/components/schemas/GitSource'
-      type: object
     ServiceListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -7198,47 +7242,6 @@ components:
     UpdateService:
       example:
         definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          regions:
-          - regions
-          - regions
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
-          deployment_group: deployment_group
-          name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        new_definition:
           instance_types:
           - scopes:
             - scopes
@@ -7253,12 +7256,6 @@ components:
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
           regions:
           - regions
           - regions
@@ -7293,15 +7290,12 @@ components:
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
           - scopes:
             - scopes
             - scopes
             secret: secret
             value: value
             key: key
-            value_from_secret: value_from_secret
-          instance_type: instance_type
           docker:
             args:
             - args
@@ -7311,8 +7305,6 @@ components:
             command: command
       properties:
         definition:
-          $ref: '#/components/schemas/ServiceDefinition'
-        new_definition:
           $ref: '#/components/schemas/DeploymentDefinition'
       type: object
     UpdateServiceReply:
@@ -7728,8 +7720,6 @@ components:
       properties:
         url:
           type: string
-      type: object
-    RedirectRequest:
       type: object
     ResendEmailValidationReply:
       type: object
