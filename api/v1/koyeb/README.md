@@ -88,7 +88,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
-*BillingApi* | [**Redirect**](docs/BillingApi.md#redirect) | **Post** /v1/billing/redirect | 
+*BillingApi* | [**Redirect**](docs/BillingApi.md#redirect) | **Get** /v1/billing/redirect | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
@@ -103,7 +103,11 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
+*DomainsApi* | [**DeleteDomain**](docs/DomainsApi.md#deletedomain) | **Delete** /v1/domains/{id} | 
+*DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /v1/domains/{id} | 
 *DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | 
+*DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | 
+*DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Post** /v1/domains/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
@@ -209,6 +213,7 @@ Class | Method | HTTP request | Description
  - [GetAppReply](docs/GetAppReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
+ - [GetDomainReply](docs/GetDomainReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
@@ -273,7 +278,6 @@ Class | Method | HTTP request | Description
  - [Secret](docs/Secret.md)
  - [SecretType](docs/SecretType.md)
  - [Service](docs/Service.md)
- - [ServiceDefinition](docs/ServiceDefinition.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
@@ -284,6 +288,8 @@ Class | Method | HTTP request | Description
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
+ - [UpdateDomain](docs/UpdateDomain.md)
+ - [UpdateDomainReply](docs/UpdateDomainReply.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)

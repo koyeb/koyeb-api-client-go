@@ -1250,6 +1250,208 @@
         ]
       }
     },
+    "/v1/domains/{id}": {
+      "get": {
+        "operationId": "GetDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDomainReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Domains"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteDomainReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Domains"
+        ]
+      },
+      "post": {
+        "operationId": "UpdateDomain",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateDomainReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDomain"
+            }
+          },
+          {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Domains"
+        ]
+      }
+    },
+    "/v1/domains/{id}/refresh": {
+      "post": {
+        "operationId": "RefreshDomainStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RefreshDomainStatusReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Domains"
+        ]
+      }
+    },
     "/v1/apps": {
       "get": {
         "summary": "List App",
@@ -2975,7 +3177,7 @@
       }
     },
     "/v1/billing/redirect": {
-      "post": {
+      "get": {
         "operationId": "Redirect",
         "responses": {
           "200": {
@@ -3009,16 +3211,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/RedirectRequest"
-            }
-          }
-        ],
         "tags": [
           "billing"
         ]
@@ -4971,6 +5163,9 @@
         }
       }
     },
+    "DeleteDomainReply": {
+      "type": "object"
+    },
     "Domain": {
       "type": "object",
       "properties": {
@@ -5006,6 +5201,9 @@
         "verified_at": {
           "type": "string",
           "format": "date-time"
+        },
+        "intended_cname": {
+          "type": "string"
         }
       }
     },
@@ -5025,6 +5223,14 @@
         "CUSTOM"
       ],
       "default": "AUTOASSIGNED"
+    },
+    "GetDomainReply": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "$ref": "#/definitions/Domain"
+        }
+      }
     },
     "ListDomainsReply": {
       "type": "object",
@@ -5049,6 +5255,28 @@
           "type": "integer",
           "format": "int64",
           "title": "The total number of items"
+        }
+      }
+    },
+    "RefreshDomainStatusReply": {
+      "type": "object"
+    },
+    "UpdateDomain": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/Domain.Status"
+        },
+        "app_id": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateDomainReply": {
+      "type": "object",
+      "properties": {
+        "domain": {
+          "$ref": "#/definitions/Domain"
         }
       }
     },
@@ -5306,13 +5534,6 @@
             "$ref": "#/definitions/DeploymentInstanceType"
           }
         },
-        "scaling": {
-          "$ref": "#/definitions/DeploymentScaling",
-          "title": "DEPRECATED"
-        },
-        "instance_type": {
-          "type": "string"
-        },
         "docker": {
           "$ref": "#/definitions/DockerSource"
         },
@@ -5338,10 +5559,6 @@
         },
         "secret": {
           "type": "string"
-        },
-        "value_from_secret": {
-          "type": "string",
-          "title": "DEPRECATED"
         }
       }
     },
@@ -5603,11 +5820,7 @@
           "type": "string"
         },
         "definition": {
-          "$ref": "#/definitions/ServiceDefinition"
-        },
-        "new_definition": {
-          "$ref": "#/definitions/DeploymentDefinition",
-          "title": "[(validate.rules).message.required = true];"
+          "$ref": "#/definitions/DeploymentDefinition"
         }
       }
     },
@@ -5763,53 +5976,6 @@
       ],
       "default": "STARTING"
     },
-    "ServiceDefinition": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "routes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Route"
-          }
-        },
-        "ports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Port"
-          }
-        },
-        "env": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Env"
-          }
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "scaling": {
-          "$ref": "#/definitions/Scaling"
-        },
-        "instance_type": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        },
-        "docker": {
-          "$ref": "#/definitions/DockerSource"
-        },
-        "git": {
-          "$ref": "#/definitions/GitSource"
-        }
-      }
-    },
     "ServiceListItem": {
       "type": "object",
       "properties": {
@@ -5873,11 +6039,7 @@
       "type": "object",
       "properties": {
         "definition": {
-          "$ref": "#/definitions/ServiceDefinition"
-        },
-        "new_definition": {
-          "$ref": "#/definitions/DeploymentDefinition",
-          "title": "[(validate.rules).message.required = true];"
+          "$ref": "#/definitions/DeploymentDefinition"
         }
       }
     },
@@ -6252,9 +6414,6 @@
           "type": "string"
         }
       }
-    },
-    "RedirectRequest": {
-      "type": "object"
     },
     "ResendEmailValidationReply": {
       "type": "object"

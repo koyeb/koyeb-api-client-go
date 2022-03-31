@@ -45,13 +45,8 @@ type BillingApiService service
 type ApiRedirectRequest struct {
 	ctx _context.Context
 	ApiService BillingApi
-	body *interface{}
 }
 
-func (r ApiRedirectRequest) Body(body interface{}) ApiRedirectRequest {
-	r.body = &body
-	return r
-}
 
 func (r ApiRedirectRequest) Execute() (RedirectReply, *_nethttp.Response, error) {
 	return r.ApiService.RedirectExecute(r)
@@ -75,7 +70,7 @@ func (a *BillingApiService) Redirect(ctx _context.Context) ApiRedirectRequest {
  */
 func (a *BillingApiService) RedirectExecute(r ApiRedirectRequest) (RedirectReply, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -93,9 +88,6 @@ func (a *BillingApiService) RedirectExecute(r ApiRedirectRequest) (RedirectReply
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -114,8 +106,6 @@ func (a *BillingApiService) RedirectExecute(r ApiRedirectRequest) (RedirectReply
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

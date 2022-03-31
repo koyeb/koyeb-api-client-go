@@ -27,6 +27,7 @@ type Domain struct {
 	AppId *string `json:"app_id,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
+	IntendedCname *string `json:"intended_cname,omitempty"`
 }
 
 // NewDomain instantiates a new Domain object
@@ -374,6 +375,38 @@ func (o *Domain) SetVerifiedAt(v time.Time) {
 	o.VerifiedAt = &v
 }
 
+// GetIntendedCname returns the IntendedCname field value if set, zero value otherwise.
+func (o *Domain) GetIntendedCname() string {
+	if o == nil || o.IntendedCname == nil {
+		var ret string
+		return ret
+	}
+	return *o.IntendedCname
+}
+
+// GetIntendedCnameOk returns a tuple with the IntendedCname field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetIntendedCnameOk() (*string, bool) {
+	if o == nil || o.IntendedCname == nil {
+		return nil, false
+	}
+	return o.IntendedCname, true
+}
+
+// HasIntendedCname returns a boolean if a field has been set.
+func (o *Domain) HasIntendedCname() bool {
+	if o != nil && o.IntendedCname != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIntendedCname gets a reference to the given string and assigns it to the IntendedCname field.
+func (o *Domain) SetIntendedCname(v string) {
+	o.IntendedCname = &v
+}
+
 func (o Domain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -405,6 +438,9 @@ func (o Domain) MarshalJSON() ([]byte, error) {
 	}
 	if o.VerifiedAt != nil {
 		toSerialize["verified_at"] = o.VerifiedAt
+	}
+	if o.IntendedCname != nil {
+		toSerialize["intended_cname"] = o.IntendedCname
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,7 +20,6 @@ type DeploymentEnv struct {
 	Key *string `json:"key,omitempty"`
 	Value *string `json:"value,omitempty"`
 	Secret *string `json:"secret,omitempty"`
-	ValueFromSecret *string `json:"value_from_secret,omitempty"`
 }
 
 // NewDeploymentEnv instantiates a new DeploymentEnv object
@@ -168,38 +167,6 @@ func (o *DeploymentEnv) SetSecret(v string) {
 	o.Secret = &v
 }
 
-// GetValueFromSecret returns the ValueFromSecret field value if set, zero value otherwise.
-func (o *DeploymentEnv) GetValueFromSecret() string {
-	if o == nil || o.ValueFromSecret == nil {
-		var ret string
-		return ret
-	}
-	return *o.ValueFromSecret
-}
-
-// GetValueFromSecretOk returns a tuple with the ValueFromSecret field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeploymentEnv) GetValueFromSecretOk() (*string, bool) {
-	if o == nil || o.ValueFromSecret == nil {
-		return nil, false
-	}
-	return o.ValueFromSecret, true
-}
-
-// HasValueFromSecret returns a boolean if a field has been set.
-func (o *DeploymentEnv) HasValueFromSecret() bool {
-	if o != nil && o.ValueFromSecret != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetValueFromSecret gets a reference to the given string and assigns it to the ValueFromSecret field.
-func (o *DeploymentEnv) SetValueFromSecret(v string) {
-	o.ValueFromSecret = &v
-}
-
 func (o DeploymentEnv) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Scopes != nil {
@@ -213,9 +180,6 @@ func (o DeploymentEnv) MarshalJSON() ([]byte, error) {
 	}
 	if o.Secret != nil {
 		toSerialize["secret"] = o.Secret
-	}
-	if o.ValueFromSecret != nil {
-		toSerialize["value_from_secret"] = o.ValueFromSecret
 	}
 	return json.Marshal(toSerialize)
 }

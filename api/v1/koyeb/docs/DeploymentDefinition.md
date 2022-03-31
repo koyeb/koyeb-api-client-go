@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **Regions** | Pointer to **[]string** |  | [optional] 
 **Scalings** | Pointer to [**[]DeploymentScaling**](DeploymentScaling.md) |  | [optional] 
 **InstanceTypes** | Pointer to [**[]DeploymentInstanceType**](DeploymentInstanceType.md) |  | [optional] 
-**Scaling** | Pointer to [**DeploymentScaling**](DeploymentScaling.md) |  | [optional] 
-**InstanceType** | Pointer to **string** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 
@@ -209,56 +207,6 @@ SetInstanceTypes sets InstanceTypes field to given value.
 `func (o *DeploymentDefinition) HasInstanceTypes() bool`
 
 HasInstanceTypes returns a boolean if a field has been set.
-
-### GetScaling
-
-`func (o *DeploymentDefinition) GetScaling() DeploymentScaling`
-
-GetScaling returns the Scaling field if non-nil, zero value otherwise.
-
-### GetScalingOk
-
-`func (o *DeploymentDefinition) GetScalingOk() (*DeploymentScaling, bool)`
-
-GetScalingOk returns a tuple with the Scaling field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetScaling
-
-`func (o *DeploymentDefinition) SetScaling(v DeploymentScaling)`
-
-SetScaling sets Scaling field to given value.
-
-### HasScaling
-
-`func (o *DeploymentDefinition) HasScaling() bool`
-
-HasScaling returns a boolean if a field has been set.
-
-### GetInstanceType
-
-`func (o *DeploymentDefinition) GetInstanceType() string`
-
-GetInstanceType returns the InstanceType field if non-nil, zero value otherwise.
-
-### GetInstanceTypeOk
-
-`func (o *DeploymentDefinition) GetInstanceTypeOk() (*string, bool)`
-
-GetInstanceTypeOk returns a tuple with the InstanceType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInstanceType
-
-`func (o *DeploymentDefinition) SetInstanceType(v string)`
-
-SetInstanceType sets InstanceType field to given value.
-
-### HasInstanceType
-
-`func (o *DeploymentDefinition) HasInstanceType() bool`
-
-HasInstanceType returns a boolean if a field has been set.
 
 ### GetDocker
 

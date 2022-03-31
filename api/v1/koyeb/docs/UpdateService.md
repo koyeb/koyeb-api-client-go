@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Definition** | Pointer to [**ServiceDefinition**](ServiceDefinition.md) |  | [optional] 
-**NewDefinition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
+**Definition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 
 ## Methods
 
@@ -28,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetDefinition
 
-`func (o *UpdateService) GetDefinition() ServiceDefinition`
+`func (o *UpdateService) GetDefinition() DeploymentDefinition`
 
 GetDefinition returns the Definition field if non-nil, zero value otherwise.
 
 ### GetDefinitionOk
 
-`func (o *UpdateService) GetDefinitionOk() (*ServiceDefinition, bool)`
+`func (o *UpdateService) GetDefinitionOk() (*DeploymentDefinition, bool)`
 
 GetDefinitionOk returns a tuple with the Definition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefinition
 
-`func (o *UpdateService) SetDefinition(v ServiceDefinition)`
+`func (o *UpdateService) SetDefinition(v DeploymentDefinition)`
 
 SetDefinition sets Definition field to given value.
 
@@ -50,31 +49,6 @@ SetDefinition sets Definition field to given value.
 `func (o *UpdateService) HasDefinition() bool`
 
 HasDefinition returns a boolean if a field has been set.
-
-### GetNewDefinition
-
-`func (o *UpdateService) GetNewDefinition() DeploymentDefinition`
-
-GetNewDefinition returns the NewDefinition field if non-nil, zero value otherwise.
-
-### GetNewDefinitionOk
-
-`func (o *UpdateService) GetNewDefinitionOk() (*DeploymentDefinition, bool)`
-
-GetNewDefinitionOk returns a tuple with the NewDefinition field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetNewDefinition
-
-`func (o *UpdateService) SetNewDefinition(v DeploymentDefinition)`
-
-SetNewDefinition sets NewDefinition field to given value.
-
-### HasNewDefinition
-
-`func (o *UpdateService) HasNewDefinition() bool`
-
-HasNewDefinition returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
