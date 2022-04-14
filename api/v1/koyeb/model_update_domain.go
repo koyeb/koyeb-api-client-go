@@ -16,7 +16,6 @@ import (
 
 // UpdateDomain struct for UpdateDomain
 type UpdateDomain struct {
-	Status *DomainStatus `json:"status,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 }
 
@@ -26,8 +25,6 @@ type UpdateDomain struct {
 // will change when the set of required properties is changed
 func NewUpdateDomain() *UpdateDomain {
 	this := UpdateDomain{}
-	var status DomainStatus = DOMAINSTATUS_PENDING
-	this.Status = &status
 	return &this
 }
 
@@ -36,41 +33,7 @@ func NewUpdateDomain() *UpdateDomain {
 // but it doesn't guarantee that properties required by API are set
 func NewUpdateDomainWithDefaults() *UpdateDomain {
 	this := UpdateDomain{}
-	var status DomainStatus = DOMAINSTATUS_PENDING
-	this.Status = &status
 	return &this
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *UpdateDomain) GetStatus() DomainStatus {
-	if o == nil || o.Status == nil {
-		var ret DomainStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateDomain) GetStatusOk() (*DomainStatus, bool) {
-	if o == nil || o.Status == nil {
-		return nil, false
-	}
-	return o.Status, true
-}
-
-// HasStatus returns a boolean if a field has been set.
-func (o *UpdateDomain) HasStatus() bool {
-	if o != nil && o.Status != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStatus gets a reference to the given DomainStatus and assigns it to the Status field.
-func (o *UpdateDomain) SetStatus(v DomainStatus) {
-	o.Status = &v
 }
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
@@ -107,9 +70,6 @@ func (o *UpdateDomain) SetAppId(v string) {
 
 func (o UpdateDomain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
 	if o.AppId != nil {
 		toSerialize["app_id"] = o.AppId
 	}

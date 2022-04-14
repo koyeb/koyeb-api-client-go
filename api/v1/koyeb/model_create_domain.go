@@ -16,7 +16,7 @@ import (
 
 // CreateDomain struct for CreateDomain
 type CreateDomain struct {
-	Domain *string `json:"domain,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Type *DomainType `json:"type,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 }
@@ -42,36 +42,36 @@ func NewCreateDomainWithDefaults() *CreateDomain {
 	return &this
 }
 
-// GetDomain returns the Domain field value if set, zero value otherwise.
-func (o *CreateDomain) GetDomain() string {
-	if o == nil || o.Domain == nil {
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CreateDomain) GetName() string {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-	return *o.Domain
+	return *o.Name
 }
 
-// GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateDomain) GetDomainOk() (*string, bool) {
-	if o == nil || o.Domain == nil {
+func (o *CreateDomain) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return o.Domain, true
+	return o.Name, true
 }
 
-// HasDomain returns a boolean if a field has been set.
-func (o *CreateDomain) HasDomain() bool {
-	if o != nil && o.Domain != nil {
+// HasName returns a boolean if a field has been set.
+func (o *CreateDomain) HasName() bool {
+	if o != nil && o.Name != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetDomain gets a reference to the given string and assigns it to the Domain field.
-func (o *CreateDomain) SetDomain(v string) {
-	o.Domain = &v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CreateDomain) SetName(v string) {
+	o.Name = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -140,8 +140,8 @@ func (o *CreateDomain) SetAppId(v string) {
 
 func (o CreateDomain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Domain != nil {
-		toSerialize["domain"] = o.Domain
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type

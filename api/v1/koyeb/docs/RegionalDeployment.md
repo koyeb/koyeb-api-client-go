@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **AllocatedAt** | Pointer to **time.Time** |  | [optional] 
 **StartedAt** | Pointer to **time.Time** |  | [optional] 
+**SucceededAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
@@ -169,6 +170,31 @@ SetStartedAt sets StartedAt field to given value.
 `func (o *RegionalDeployment) HasStartedAt() bool`
 
 HasStartedAt returns a boolean if a field has been set.
+
+### GetSucceededAt
+
+`func (o *RegionalDeployment) GetSucceededAt() time.Time`
+
+GetSucceededAt returns the SucceededAt field if non-nil, zero value otherwise.
+
+### GetSucceededAtOk
+
+`func (o *RegionalDeployment) GetSucceededAtOk() (*time.Time, bool)`
+
+GetSucceededAtOk returns a tuple with the SucceededAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSucceededAt
+
+`func (o *RegionalDeployment) SetSucceededAt(v time.Time)`
+
+SetSucceededAt sets SucceededAt field to given value.
+
+### HasSucceededAt
+
+`func (o *RegionalDeployment) HasSucceededAt() bool`
+
+HasSucceededAt returns a boolean if a field has been set.
 
 ### GetTerminatedAt
 

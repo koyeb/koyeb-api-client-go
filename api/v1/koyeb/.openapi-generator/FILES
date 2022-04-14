@@ -133,6 +133,7 @@ docs/LogEntry.md
 docs/LoginReply.md
 docs/LoginRequest.md
 docs/LogsApi.md
+docs/ManageReply.md
 docs/Notification.md
 docs/NotificationList.md
 docs/OAuthCallbackReply.md
@@ -148,7 +149,6 @@ docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
 docs/RedeployReply.md
 docs/RedeployRequestInfo.md
-docs/RedirectReply.md
 docs/Region.md
 docs/RegionListItem.md
 docs/RegionalDeployment.md
@@ -172,6 +172,8 @@ docs/SessionApi.md
 docs/SsoApi.md
 docs/StreamResultOfExecCommandReply.md
 docs/StreamResultOfLogEntry.md
+docs/SubscribeReply.md
+docs/SubscribeRequest.md
 docs/Token.md
 docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataTriggerType.md
@@ -287,6 +289,7 @@ model_list_services_reply.go
 model_log_entry.go
 model_login_reply.go
 model_login_request.go
+model_manage_reply.go
 model_notification.go
 model_notification_list.go
 model_o_auth_callback_reply.go
@@ -300,7 +303,6 @@ model_port.go
 model_private_registry_configuration.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
-model_redirect_reply.go
 model_region.go
 model_region_list_item.go
 model_regional_deployment.go
@@ -319,6 +321,8 @@ model_service_state.go
 model_service_status.go
 model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go
+model_subscribe_reply.go
+model_subscribe_request.go
 model_token.go
 model_trigger_deployment_metadata.go
 model_trigger_deployment_metadata_trigger_type.go

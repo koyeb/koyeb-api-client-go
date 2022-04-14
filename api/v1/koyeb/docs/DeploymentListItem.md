@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **AllocatedAt** | Pointer to **time.Time** |  | [optional] 
 **StartedAt** | Pointer to **time.Time** |  | [optional] 
+**SucceededAt** | Pointer to **time.Time** |  | [optional] 
+**TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
@@ -165,6 +167,56 @@ SetStartedAt sets StartedAt field to given value.
 `func (o *DeploymentListItem) HasStartedAt() bool`
 
 HasStartedAt returns a boolean if a field has been set.
+
+### GetSucceededAt
+
+`func (o *DeploymentListItem) GetSucceededAt() time.Time`
+
+GetSucceededAt returns the SucceededAt field if non-nil, zero value otherwise.
+
+### GetSucceededAtOk
+
+`func (o *DeploymentListItem) GetSucceededAtOk() (*time.Time, bool)`
+
+GetSucceededAtOk returns a tuple with the SucceededAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSucceededAt
+
+`func (o *DeploymentListItem) SetSucceededAt(v time.Time)`
+
+SetSucceededAt sets SucceededAt field to given value.
+
+### HasSucceededAt
+
+`func (o *DeploymentListItem) HasSucceededAt() bool`
+
+HasSucceededAt returns a boolean if a field has been set.
+
+### GetTerminatedAt
+
+`func (o *DeploymentListItem) GetTerminatedAt() time.Time`
+
+GetTerminatedAt returns the TerminatedAt field if non-nil, zero value otherwise.
+
+### GetTerminatedAtOk
+
+`func (o *DeploymentListItem) GetTerminatedAtOk() (*time.Time, bool)`
+
+GetTerminatedAtOk returns a tuple with the TerminatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTerminatedAt
+
+`func (o *DeploymentListItem) SetTerminatedAt(v time.Time)`
+
+SetTerminatedAt sets TerminatedAt field to given value.
+
+### HasTerminatedAt
+
+`func (o *DeploymentListItem) HasTerminatedAt() bool`
+
+HasTerminatedAt returns a boolean if a field has been set.
 
 ### GetOrganizationId
 

@@ -22,6 +22,7 @@ type RegionalDeployment struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	AllocatedAt *time.Time `json:"allocated_at,omitempty"`
 	StartedAt *time.Time `json:"started_at,omitempty"`
+	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
@@ -219,6 +220,38 @@ func (o *RegionalDeployment) HasStartedAt() bool {
 // SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
 func (o *RegionalDeployment) SetStartedAt(v time.Time) {
 	o.StartedAt = &v
+}
+
+// GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
+func (o *RegionalDeployment) GetSucceededAt() time.Time {
+	if o == nil || o.SucceededAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SucceededAt
+}
+
+// GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeployment) GetSucceededAtOk() (*time.Time, bool) {
+	if o == nil || o.SucceededAt == nil {
+		return nil, false
+	}
+	return o.SucceededAt, true
+}
+
+// HasSucceededAt returns a boolean if a field has been set.
+func (o *RegionalDeployment) HasSucceededAt() bool {
+	if o != nil && o.SucceededAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSucceededAt gets a reference to the given time.Time and assigns it to the SucceededAt field.
+func (o *RegionalDeployment) SetSucceededAt(v time.Time) {
+	o.SucceededAt = &v
 }
 
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
@@ -749,6 +782,9 @@ func (o RegionalDeployment) MarshalJSON() ([]byte, error) {
 	}
 	if o.StartedAt != nil {
 		toSerialize["started_at"] = o.StartedAt
+	}
+	if o.SucceededAt != nil {
+		toSerialize["succeeded_at"] = o.SucceededAt
 	}
 	if o.TerminatedAt != nil {
 		toSerialize["terminated_at"] = o.TerminatedAt
