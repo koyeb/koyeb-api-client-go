@@ -14,30 +14,30 @@ import (
 	"encoding/json"
 )
 
-// RedirectReply struct for RedirectReply
-type RedirectReply struct {
+// ManageReply struct for ManageReply
+type ManageReply struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// NewRedirectReply instantiates a new RedirectReply object
+// NewManageReply instantiates a new ManageReply object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRedirectReply() *RedirectReply {
-	this := RedirectReply{}
+func NewManageReply() *ManageReply {
+	this := ManageReply{}
 	return &this
 }
 
-// NewRedirectReplyWithDefaults instantiates a new RedirectReply object
+// NewManageReplyWithDefaults instantiates a new ManageReply object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewRedirectReplyWithDefaults() *RedirectReply {
-	this := RedirectReply{}
+func NewManageReplyWithDefaults() *ManageReply {
+	this := ManageReply{}
 	return &this
 }
 
 // GetUrl returns the Url field value if set, zero value otherwise.
-func (o *RedirectReply) GetUrl() string {
+func (o *ManageReply) GetUrl() string {
 	if o == nil || o.Url == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *RedirectReply) GetUrl() string {
 
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RedirectReply) GetUrlOk() (*string, bool) {
+func (o *ManageReply) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *RedirectReply) GetUrlOk() (*string, bool) {
 }
 
 // HasUrl returns a boolean if a field has been set.
-func (o *RedirectReply) HasUrl() bool {
+func (o *ManageReply) HasUrl() bool {
 	if o != nil && o.Url != nil {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *RedirectReply) HasUrl() bool {
 }
 
 // SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *RedirectReply) SetUrl(v string) {
+func (o *ManageReply) SetUrl(v string) {
 	o.Url = &v
 }
 
-func (o RedirectReply) MarshalJSON() ([]byte, error) {
+func (o ManageReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
@@ -76,38 +76,38 @@ func (o RedirectReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableRedirectReply struct {
-	value *RedirectReply
+type NullableManageReply struct {
+	value *ManageReply
 	isSet bool
 }
 
-func (v NullableRedirectReply) Get() *RedirectReply {
+func (v NullableManageReply) Get() *ManageReply {
 	return v.value
 }
 
-func (v *NullableRedirectReply) Set(val *RedirectReply) {
+func (v *NullableManageReply) Set(val *ManageReply) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableRedirectReply) IsSet() bool {
+func (v NullableManageReply) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableRedirectReply) Unset() {
+func (v *NullableManageReply) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableRedirectReply(val *RedirectReply) *NullableRedirectReply {
-	return &NullableRedirectReply{value: val, isSet: true}
+func NewNullableManageReply(val *ManageReply) *NullableManageReply {
+	return &NullableManageReply{value: val, isSet: true}
 }
 
-func (v NullableRedirectReply) MarshalJSON() ([]byte, error) {
+func (v NullableManageReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableRedirectReply) UnmarshalJSON(src []byte) error {
+func (v *NullableManageReply) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -88,7 +88,8 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
-*BillingApi* | [**Redirect**](docs/BillingApi.md#redirect) | **Get** /v1/billing/redirect | 
+*BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
+*BillingApi* | [**Subscribe**](docs/BillingApi.md#subscribe) | **Post** /v1/billing/subscribe | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
@@ -107,7 +108,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /v1/domains/{id} | 
 *DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | 
 *DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | 
-*DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Post** /v1/domains/{id} | 
+*DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | 
 *HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
@@ -251,6 +252,7 @@ Class | Method | HTTP request | Description
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
+ - [ManageReply](docs/ManageReply.md)
  - [Notification](docs/Notification.md)
  - [NotificationList](docs/NotificationList.md)
  - [OAuthCallbackReply](docs/OAuthCallbackReply.md)
@@ -264,7 +266,6 @@ Class | Method | HTTP request | Description
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
- - [RedirectReply](docs/RedirectReply.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [RegionalDeployment](docs/RegionalDeployment.md)
@@ -283,6 +284,8 @@ Class | Method | HTTP request | Description
  - [ServiceStatus](docs/ServiceStatus.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
+ - [SubscribeReply](docs/SubscribeReply.md)
+ - [SubscribeRequest](docs/SubscribeRequest.md)
  - [Token](docs/Token.md)
  - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)

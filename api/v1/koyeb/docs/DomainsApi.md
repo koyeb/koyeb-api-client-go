@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**GetDomain**](DomainsApi.md#GetDomain) | **Get** /v1/domains/{id} | 
 [**ListDomains**](DomainsApi.md#ListDomains) | **Get** /v1/domains | 
 [**RefreshDomainStatus**](DomainsApi.md#RefreshDomainStatus) | **Post** /v1/domains/{id}/refresh | 
-[**UpdateDomain**](DomainsApi.md#UpdateDomain) | **Post** /v1/domains/{id} | 
+[**UpdateDomain**](DomainsApi.md#UpdateDomain) | **Patch** /v1/domains/{id} | 
 
 
 
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ## ListDomains
 
-> ListDomainsReply ListDomains(ctx).Limit(limit).Offset(offset).Types(types).Statuses(statuses).Execute()
+> ListDomainsReply ListDomains(ctx).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Execute()
 
 
 
@@ -236,10 +236,11 @@ func main() {
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
     types := []string{"Types_example"} // []string | (Optional) A filter for types. (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) A filter for statuses. (optional)
+    appIds := []string{"Inner_example"} // []string | (Optional) A filter for apps. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).Execute()
+    resp, r, err := api_client.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.ListDomains``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -264,6 +265,7 @@ Name | Type | Description  | Notes
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
  **types** | **[]string** | (Optional) A filter for types. | 
  **statuses** | **[]string** | (Optional) A filter for statuses. | 
+ **appIds** | **[]string** | (Optional) A filter for apps. | 
 
 ### Return type
 

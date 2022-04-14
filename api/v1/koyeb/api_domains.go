@@ -594,6 +594,7 @@ type ApiListDomainsRequest struct {
 	offset *string
 	types *[]string
 	statuses *[]string
+	appIds *[]string
 }
 
 func (r ApiListDomainsRequest) Limit(limit string) ApiListDomainsRequest {
@@ -610,6 +611,10 @@ func (r ApiListDomainsRequest) Types(types []string) ApiListDomainsRequest {
 }
 func (r ApiListDomainsRequest) Statuses(statuses []string) ApiListDomainsRequest {
 	r.statuses = &statuses
+	return r
+}
+func (r ApiListDomainsRequest) AppIds(appIds []string) ApiListDomainsRequest {
+	r.appIds = &appIds
 	return r
 }
 
@@ -680,6 +685,17 @@ func (a *DomainsApiService) ListDomainsExecute(r ApiListDomainsRequest) (ListDom
 			}
 		} else {
 			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
+	}
+	if r.appIds != nil {
+		t := *r.appIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("app_ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("app_ids", parameterToString(t, "multi"))
 		}
 	}
 	// to determine the Content-Type header
@@ -984,7 +1000,7 @@ func (a *DomainsApiService) UpdateDomain(ctx _context.Context, id string) ApiUpd
  */
 func (a *DomainsApiService) UpdateDomainExecute(r ApiUpdateDomainRequest) (UpdateDomainReply, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string

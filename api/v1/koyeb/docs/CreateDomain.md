@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Domain** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**DomainType**](DomainType.md) |  | [optional] [default to DOMAINTYPE_AUTOASSIGNED]
 **AppId** | Pointer to **string** |  | [optional] 
 
@@ -27,30 +27,30 @@ NewCreateDomainWithDefaults instantiates a new CreateDomain object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetDomain
+### GetName
 
-`func (o *CreateDomain) GetDomain() string`
+`func (o *CreateDomain) GetName() string`
 
-GetDomain returns the Domain field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetDomainOk
+### GetNameOk
 
-`func (o *CreateDomain) GetDomainOk() (*string, bool)`
+`func (o *CreateDomain) GetNameOk() (*string, bool)`
 
-GetDomainOk returns a tuple with the Domain field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDomain
+### SetName
 
-`func (o *CreateDomain) SetDomain(v string)`
+`func (o *CreateDomain) SetName(v string)`
 
-SetDomain sets Domain field to given value.
+SetName sets Name field to given value.
 
-### HasDomain
+### HasName
 
-`func (o *CreateDomain) HasDomain() bool`
+`func (o *CreateDomain) HasName() bool`
 
-HasDomain returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
 ### GetType
 

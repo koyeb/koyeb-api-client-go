@@ -28,6 +28,7 @@ type Domain struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
 	IntendedCname *string `json:"intended_cname,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 }
 
 // NewDomain instantiates a new Domain object
@@ -407,6 +408,38 @@ func (o *Domain) SetIntendedCname(v string) {
 	o.IntendedCname = &v
 }
 
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *Domain) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *Domain) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *Domain) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 func (o Domain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -441,6 +474,9 @@ func (o Domain) MarshalJSON() ([]byte, error) {
 	}
 	if o.IntendedCname != nil {
 		toSerialize["intended_cname"] = o.IntendedCname
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	return json.Marshal(toSerialize)
 }

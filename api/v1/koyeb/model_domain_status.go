@@ -23,12 +23,16 @@ const (
 	DOMAINSTATUS_PENDING DomainStatus = "PENDING"
 	DOMAINSTATUS_ACTIVE DomainStatus = "ACTIVE"
 	DOMAINSTATUS_ERROR DomainStatus = "ERROR"
+	DOMAINSTATUS_DELETING DomainStatus = "DELETING"
+	DOMAINSTATUS_DELETED DomainStatus = "DELETED"
 )
 
 var allowedDomainStatusEnumValues = []DomainStatus{
 	"PENDING",
 	"ACTIVE",
 	"ERROR",
+	"DELETING",
+	"DELETED",
 }
 
 func (v *DomainStatus) UnmarshalJSON(src []byte) error {
