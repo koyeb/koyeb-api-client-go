@@ -27,6 +27,7 @@ type Instance struct {
 	AllocationId *string `json:"allocation_id,omitempty"`
 	Region *string `json:"region,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
+	Hypervisor *string `json:"hypervisor,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
 }
@@ -372,6 +373,38 @@ func (o *Instance) SetDatacenter(v string) {
 	o.Datacenter = &v
 }
 
+// GetHypervisor returns the Hypervisor field value if set, zero value otherwise.
+func (o *Instance) GetHypervisor() string {
+	if o == nil || o.Hypervisor == nil {
+		var ret string
+		return ret
+	}
+	return *o.Hypervisor
+}
+
+// GetHypervisorOk returns a tuple with the Hypervisor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetHypervisorOk() (*string, bool) {
+	if o == nil || o.Hypervisor == nil {
+		return nil, false
+	}
+	return o.Hypervisor, true
+}
+
+// HasHypervisor returns a boolean if a field has been set.
+func (o *Instance) HasHypervisor() bool {
+	if o != nil && o.Hypervisor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHypervisor gets a reference to the given string and assigns it to the Hypervisor field.
+func (o *Instance) SetHypervisor(v string) {
+	o.Hypervisor = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Instance) GetStatus() InstanceStatus {
 	if o == nil || o.Status == nil {
@@ -467,6 +500,9 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	}
 	if o.Datacenter != nil {
 		toSerialize["datacenter"] = o.Datacenter
+	}
+	if o.Hypervisor != nil {
+		toSerialize["hypervisor"] = o.Hypervisor
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status

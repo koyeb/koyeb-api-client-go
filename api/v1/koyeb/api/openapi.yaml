@@ -3614,6 +3614,78 @@ paths:
       summary: Tails logs
       tags:
       - Logs
+  /v1/streams/metrics:
+    get:
+      operationId: GetMetrics
+      parameters:
+      - description: ID of the service to query instances metrics for. Ignored if
+          instance_id is set.
+        in: query
+        name: service_id
+        schema:
+          type: string
+      - description: ID of the instance to query metrics for.
+        in: query
+        name: instance_id
+        schema:
+          type: string
+      - description: Metric name (cpu, ram).
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: (Optional) Defaults to an hour prior to end.
+        in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - description: (Optional) Defaults to now.
+        in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      - description: (Optional) Must be a valid duration (e.g. 1s, 1m, 1h, 1d, 1w,
+          1y).
+        in: query
+        name: step
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetMetricsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Metrics
   /v1/activities:
     get:
       operationId: ListActivities
@@ -5088,28 +5160,30 @@ components:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
         id: id
@@ -5138,28 +5212,30 @@ components:
         name: name
         created_at: 2000-01-23T04:56:07.000+00:00
         domains:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
         id: id
@@ -5196,28 +5272,30 @@ components:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5229,16 +5307,17 @@ components:
       type: object
     Domain:
       example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        intended_cname: intended_cname
+        version: version
         updated_at: 2000-01-23T04:56:07.000+00:00
         deployment_group: deployment_group
         verified_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
         messages:
         - messages
         - messages
-        intended_cname: intended_cname
         id: id
         app_id: app_id
       properties:
@@ -5271,6 +5350,9 @@ components:
           items:
             type: string
           type: array
+        version:
+          format: uint64
+          type: string
       type: object
     Domain.Status:
       default: PENDING
@@ -5295,28 +5377,30 @@ components:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5335,28 +5419,30 @@ components:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5365,28 +5451,30 @@ components:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5423,28 +5511,30 @@ components:
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
           domains:
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
-          - updated_at: 2000-01-23T04:56:07.000+00:00
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
             deployment_group: deployment_group
             verified_at: 2000-01-23T04:56:07.000+00:00
             organization_id: organization_id
             name: name
-            created_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
-            intended_cname: intended_cname
             id: id
             app_id: app_id
           id: id
@@ -5456,15 +5546,16 @@ components:
       example:
         instance:
           regional_deployment_id: regional_deployment_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          datacenter: datacenter
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           service_id: service_id
+          hypervisor: hypervisor
           allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          datacenter: datacenter
           id: id
           region: region
           app_id: app_id
@@ -5475,15 +5566,16 @@ components:
     Instance:
       example:
         regional_deployment_id: regional_deployment_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        datacenter: datacenter
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         service_id: service_id
+        hypervisor: hypervisor
         allocation_id: allocation_id
-        created_at: 2000-01-23T04:56:07.000+00:00
         messages:
         - messages
         - messages
-        datacenter: datacenter
         id: id
         region: region
         app_id: app_id
@@ -5509,6 +5601,8 @@ components:
         region:
           type: string
         datacenter:
+          type: string
+        hypervisor:
           type: string
         status:
           $ref: '#/components/schemas/Instance.Status'
@@ -6652,16 +6746,17 @@ components:
     CreateDomainReply:
       example:
         domain:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
@@ -6673,16 +6768,17 @@ components:
     GetDomainReply:
       example:
         domain:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
@@ -6695,28 +6791,30 @@ components:
         limit: 0
         count: 1
         domains:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
@@ -6749,16 +6847,17 @@ components:
     UpdateDomainReply:
       example:
         domain:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
           verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
-          intended_cname: intended_cname
           id: id
           app_id: app_id
       properties:
@@ -8313,6 +8412,51 @@ components:
           properties: {}
           type: object
       type: object
+    GetMetricsReply:
+      example:
+        metrics:
+        - values:
+          - - '{}'
+            - '{}'
+          - - '{}'
+            - '{}'
+          labels:
+            key: labels
+        - values:
+          - - '{}'
+            - '{}'
+          - - '{}'
+            - '{}'
+          labels:
+            key: labels
+      properties:
+        metrics:
+          items:
+            $ref: '#/components/schemas/GetMetricsReply.Metric'
+          type: array
+      type: object
+    GetMetricsReply.Metric:
+      example:
+        values:
+        - - '{}'
+          - '{}'
+        - - '{}'
+          - '{}'
+        labels:
+          key: labels
+      properties:
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        values:
+          items:
+            items:
+              properties: {}
+              type: object
+            type: array
+          type: array
+      type: object
     GithubHookReply:
       type: object
     Notification:
@@ -8497,6 +8641,7 @@ x-tagGroups:
   - RegionalDeployments
   - Instances
   - Logs
+  - Metrics
   - CatalogRegions
   - CatalogInstances
 x-original-swagger-version: "2.0"

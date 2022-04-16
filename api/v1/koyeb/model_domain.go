@@ -29,6 +29,7 @@ type Domain struct {
 	VerifiedAt *time.Time `json:"verified_at,omitempty"`
 	IntendedCname *string `json:"intended_cname,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
+	Version *string `json:"version,omitempty"`
 }
 
 // NewDomain instantiates a new Domain object
@@ -440,6 +441,38 @@ func (o *Domain) SetMessages(v []string) {
 	o.Messages = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *Domain) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetVersionOk() (*string, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *Domain) HasVersion() bool {
+	if o != nil && o.Version != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *Domain) SetVersion(v string) {
+	o.Version = &v
+}
+
 func (o Domain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -477,6 +510,9 @@ func (o Domain) MarshalJSON() ([]byte, error) {
 	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
 	}
 	return json.Marshal(toSerialize)
 }

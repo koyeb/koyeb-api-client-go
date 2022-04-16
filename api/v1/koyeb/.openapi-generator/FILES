@@ -16,6 +16,7 @@ api_hooks.go
 api_instances.go
 api_invite.go
 api_logs.go
+api_metrics.go
 api_organization.go
 api_profile.go
 api_regional_deployments.go
@@ -93,6 +94,8 @@ docs/GetCatalogInstanceReply.md
 docs/GetDeploymentReply.md
 docs/GetDomainReply.md
 docs/GetInstanceReply.md
+docs/GetMetricsReply.md
+docs/GetMetricsReplyMetric.md
 docs/GetOAuthOptionsReply.md
 docs/GetOrganizationReply.md
 docs/GetRegionReply.md
@@ -134,6 +137,7 @@ docs/LoginReply.md
 docs/LoginRequest.md
 docs/LogsApi.md
 docs/ManageReply.md
+docs/MetricsApi.md
 docs/Notification.md
 docs/NotificationList.md
 docs/OAuthCallbackReply.md
@@ -253,6 +257,8 @@ model_get_catalog_instance_reply.go
 model_get_deployment_reply.go
 model_get_domain_reply.go
 model_get_instance_reply.go
+model_get_metrics_reply.go
+model_get_metrics_reply_metric.go
 model_get_o_auth_options_reply.go
 model_get_organization_reply.go
 model_get_region_reply.go
