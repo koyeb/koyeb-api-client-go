@@ -45,6 +45,7 @@
         "RegionalDeployments",
         "Instances",
         "Logs",
+        "Metrics",
         "CatalogRegions",
         "CatalogInstances"
       ]
@@ -3983,6 +3984,92 @@
         ]
       }
     },
+    "/v1/streams/metrics": {
+      "get": {
+        "operationId": "GetMetrics",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMetricsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service_id",
+            "description": "ID of the service to query instances metrics for. Ignored if instance_id is set.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "instance_id",
+            "description": "ID of the instance to query metrics for.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "description": "Metric name (cpu, ram).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "description": "(Optional) Defaults to an hour prior to end.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "end",
+            "description": "(Optional) Defaults to now.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time"
+          },
+          {
+            "name": "step",
+            "description": "(Optional) Must be a valid duration (e.g. 1s, 1m, 1h, 1d, 1w, 1y).",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Metrics"
+        ]
+      }
+    },
     "/v1/activities": {
       "get": {
         "operationId": "ListActivities",
@@ -5031,6 +5118,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "version": {
+          "type": "string",
+          "format": "uint64"
         }
       }
     },
@@ -5146,6 +5237,9 @@
           "type": "string"
         },
         "datacenter": {
+          "type": "string"
+        },
+        "hypervisor": {
           "type": "string"
         },
         "status": {
@@ -6941,6 +7035,37 @@
         },
         "labels": {
           "type": "object"
+        }
+      }
+    },
+    "GetMetricsReply": {
+      "type": "object",
+      "properties": {
+        "metrics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetMetricsReply.Metric"
+          }
+        }
+      }
+    },
+    "GetMetricsReply.Metric": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
         }
       }
     },

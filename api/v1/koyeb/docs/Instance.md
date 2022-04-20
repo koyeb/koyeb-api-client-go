@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **AllocationId** | Pointer to **string** |  | [optional] 
 **Region** | Pointer to **string** |  | [optional] 
 **Datacenter** | Pointer to **string** |  | [optional] 
+**Hypervisor** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
 **Messages** | Pointer to **[]string** |  | [optional] 
 
@@ -285,6 +286,31 @@ SetDatacenter sets Datacenter field to given value.
 `func (o *Instance) HasDatacenter() bool`
 
 HasDatacenter returns a boolean if a field has been set.
+
+### GetHypervisor
+
+`func (o *Instance) GetHypervisor() string`
+
+GetHypervisor returns the Hypervisor field if non-nil, zero value otherwise.
+
+### GetHypervisorOk
+
+`func (o *Instance) GetHypervisorOk() (*string, bool)`
+
+GetHypervisorOk returns a tuple with the Hypervisor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHypervisor
+
+`func (o *Instance) SetHypervisor(v string)`
+
+SetHypervisor sets Hypervisor field to given value.
+
+### HasHypervisor
+
+`func (o *Instance) HasHypervisor() bool`
+
+HasHypervisor returns a boolean if a field has been set.
 
 ### GetStatus
 
