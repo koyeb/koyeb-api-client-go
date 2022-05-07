@@ -30,10 +30,10 @@ import (
 func main() {
     serviceId := "serviceId_example" // string | ID of the service to query instances metrics for. Ignored if instance_id is set. (optional)
     instanceId := "instanceId_example" // string | ID of the instance to query metrics for. (optional)
-    name := "name_example" // string | Metric name (cpu, ram). (optional)
+    name := "name_example" // string | Metric to query. (optional) (default to "UNKNOWN")
     start := time.Now() // time.Time | (Optional) Defaults to an hour prior to end. (optional)
     end := time.Now() // time.Time | (Optional) Defaults to now. (optional)
-    step := "step_example" // string | (Optional) Must be a valid duration (e.g. 1s, 1m, 1h, 1d, 1w, 1y). (optional)
+    step := "step_example" // string | (Optional) Must be a valid duration in hours (h) or minutes (m). Defaulst to 5m. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -60,10 +60,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **serviceId** | **string** | ID of the service to query instances metrics for. Ignored if instance_id is set. | 
  **instanceId** | **string** | ID of the instance to query metrics for. | 
- **name** | **string** | Metric name (cpu, ram). | 
+ **name** | **string** | Metric to query. | [default to &quot;UNKNOWN&quot;]
  **start** | **time.Time** | (Optional) Defaults to an hour prior to end. | 
  **end** | **time.Time** | (Optional) Defaults to now. | 
- **step** | **string** | (Optional) Must be a valid duration (e.g. 1s, 1m, 1h, 1d, 1w, 1y). | 
+ **step** | **string** | (Optional) Must be a valid duration in hours (h) or minutes (m). Defaulst to 5m. | 
 
 ### Return type
 

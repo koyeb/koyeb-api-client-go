@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **StartedAt** | Pointer to **time.Time** |  | [optional] 
 **FinishedAt** | Pointer to **time.Time** |  | [optional] 
+**BuildAttempts** | Pointer to [**[]DeploymentProvisioningInfoStageBuildAttempt**](DeploymentProvisioningInfoStageBuildAttempt.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetFinishedAt sets FinishedAt field to given value.
 `func (o *DeploymentProvisioningInfoStage) HasFinishedAt() bool`
 
 HasFinishedAt returns a boolean if a field has been set.
+
+### GetBuildAttempts
+
+`func (o *DeploymentProvisioningInfoStage) GetBuildAttempts() []DeploymentProvisioningInfoStageBuildAttempt`
+
+GetBuildAttempts returns the BuildAttempts field if non-nil, zero value otherwise.
+
+### GetBuildAttemptsOk
+
+`func (o *DeploymentProvisioningInfoStage) GetBuildAttemptsOk() (*[]DeploymentProvisioningInfoStageBuildAttempt, bool)`
+
+GetBuildAttemptsOk returns a tuple with the BuildAttempts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBuildAttempts
+
+`func (o *DeploymentProvisioningInfoStage) SetBuildAttempts(v []DeploymentProvisioningInfoStageBuildAttempt)`
+
+SetBuildAttempts sets BuildAttempts field to given value.
+
+### HasBuildAttempts
+
+`func (o *DeploymentProvisioningInfoStage) HasBuildAttempts() bool`
+
+HasBuildAttempts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

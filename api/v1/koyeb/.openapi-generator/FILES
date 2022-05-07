@@ -20,6 +20,7 @@ api_metrics.go
 api_organization.go
 api_profile.go
 api_regional_deployments.go
+api_search.go
 api_secrets.go
 api_services.go
 api_session.go
@@ -66,6 +67,7 @@ docs/DeploymentMetadata.md
 docs/DeploymentPort.md
 docs/DeploymentProvisioningInfo.md
 docs/DeploymentProvisioningInfoStage.md
+docs/DeploymentProvisioningInfoStageBuildAttempt.md
 docs/DeploymentProvisioningInfoStageStatus.md
 docs/DeploymentRoute.md
 docs/DeploymentScaling.md
@@ -121,6 +123,14 @@ docs/InstanceStatus.md
 docs/InstancesApi.md
 docs/InviteApi.md
 docs/InviteUserRequest.md
+docs/KsearchApp.md
+docs/KsearchGlobalDeployment.md
+docs/KsearchInstance.md
+docs/KsearchOrganization.md
+docs/KsearchRegionalDeployment.md
+docs/KsearchSearchReply.md
+docs/KsearchService.md
+docs/KsearchUser.md
 docs/ListAppsReply.md
 docs/ListCatalogInstancesReply.md
 docs/ListCredentialsReply.md
@@ -137,6 +147,7 @@ docs/LoginReply.md
 docs/LoginRequest.md
 docs/LogsApi.md
 docs/ManageReply.md
+docs/MetricName.md
 docs/MetricsApi.md
 docs/Notification.md
 docs/NotificationList.md
@@ -164,6 +175,7 @@ docs/RegionalDeploymentsApi.md
 docs/ResetPasswordRequest.md
 docs/Route.md
 docs/Scaling.md
+docs/SearchApi.md
 docs/Secret.md
 docs/SecretType.md
 docs/SecretsApi.md
@@ -231,6 +243,7 @@ model_deployment_metadata.go
 model_deployment_port.go
 model_deployment_provisioning_info.go
 model_deployment_provisioning_info_stage.go
+model_deployment_provisioning_info_stage_build_attempt.go
 model_deployment_provisioning_info_stage_status.go
 model_deployment_route.go
 model_deployment_scaling.go
@@ -281,6 +294,14 @@ model_instance.go
 model_instance_list_item.go
 model_instance_status.go
 model_invite_user_request.go
+model_ksearch_app.go
+model_ksearch_global_deployment.go
+model_ksearch_instance.go
+model_ksearch_organization.go
+model_ksearch_regional_deployment.go
+model_ksearch_search_reply.go
+model_ksearch_service.go
+model_ksearch_user.go
 model_list_apps_reply.go
 model_list_catalog_instances_reply.go
 model_list_credentials_reply.go
@@ -296,6 +317,7 @@ model_log_entry.go
 model_login_reply.go
 model_login_request.go
 model_manage_reply.go
+model_metric_name.go
 model_notification.go
 model_notification_list.go
 model_o_auth_callback_reply.go

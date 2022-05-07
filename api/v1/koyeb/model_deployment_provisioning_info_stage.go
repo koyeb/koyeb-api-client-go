@@ -22,6 +22,7 @@ type DeploymentProvisioningInfoStage struct {
 	Messages *[]string `json:"messages,omitempty"`
 	StartedAt *time.Time `json:"started_at,omitempty"`
 	FinishedAt *time.Time `json:"finished_at,omitempty"`
+	BuildAttempts *[]DeploymentProvisioningInfoStageBuildAttempt `json:"build_attempts,omitempty"`
 }
 
 // NewDeploymentProvisioningInfoStage instantiates a new DeploymentProvisioningInfoStage object
@@ -205,6 +206,38 @@ func (o *DeploymentProvisioningInfoStage) SetFinishedAt(v time.Time) {
 	o.FinishedAt = &v
 }
 
+// GetBuildAttempts returns the BuildAttempts field value if set, zero value otherwise.
+func (o *DeploymentProvisioningInfoStage) GetBuildAttempts() []DeploymentProvisioningInfoStageBuildAttempt {
+	if o == nil || o.BuildAttempts == nil {
+		var ret []DeploymentProvisioningInfoStageBuildAttempt
+		return ret
+	}
+	return *o.BuildAttempts
+}
+
+// GetBuildAttemptsOk returns a tuple with the BuildAttempts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentProvisioningInfoStage) GetBuildAttemptsOk() (*[]DeploymentProvisioningInfoStageBuildAttempt, bool) {
+	if o == nil || o.BuildAttempts == nil {
+		return nil, false
+	}
+	return o.BuildAttempts, true
+}
+
+// HasBuildAttempts returns a boolean if a field has been set.
+func (o *DeploymentProvisioningInfoStage) HasBuildAttempts() bool {
+	if o != nil && o.BuildAttempts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBuildAttempts gets a reference to the given []DeploymentProvisioningInfoStageBuildAttempt and assigns it to the BuildAttempts field.
+func (o *DeploymentProvisioningInfoStage) SetBuildAttempts(v []DeploymentProvisioningInfoStageBuildAttempt) {
+	o.BuildAttempts = &v
+}
+
 func (o DeploymentProvisioningInfoStage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
@@ -221,6 +254,9 @@ func (o DeploymentProvisioningInfoStage) MarshalJSON() ([]byte, error) {
 	}
 	if o.FinishedAt != nil {
 		toSerialize["finished_at"] = o.FinishedAt
+	}
+	if o.BuildAttempts != nil {
+		toSerialize["build_attempts"] = o.BuildAttempts
 	}
 	return json.Marshal(toSerialize)
 }
