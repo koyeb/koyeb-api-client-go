@@ -20,8 +20,6 @@ type DeploymentProvisioningInfo struct {
 	Sha *string `json:"sha,omitempty"`
 	// The docker image built as a result of this build.
 	Image *string `json:"image,omitempty"`
-	// The id of the job that ran the build.
-	BuildJobId *string `json:"build_job_id,omitempty"`
 	// Some info about the build.
 	Stages *[]DeploymentProvisioningInfoStage `json:"stages,omitempty"`
 }
@@ -107,38 +105,6 @@ func (o *DeploymentProvisioningInfo) SetImage(v string) {
 	o.Image = &v
 }
 
-// GetBuildJobId returns the BuildJobId field value if set, zero value otherwise.
-func (o *DeploymentProvisioningInfo) GetBuildJobId() string {
-	if o == nil || o.BuildJobId == nil {
-		var ret string
-		return ret
-	}
-	return *o.BuildJobId
-}
-
-// GetBuildJobIdOk returns a tuple with the BuildJobId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DeploymentProvisioningInfo) GetBuildJobIdOk() (*string, bool) {
-	if o == nil || o.BuildJobId == nil {
-		return nil, false
-	}
-	return o.BuildJobId, true
-}
-
-// HasBuildJobId returns a boolean if a field has been set.
-func (o *DeploymentProvisioningInfo) HasBuildJobId() bool {
-	if o != nil && o.BuildJobId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetBuildJobId gets a reference to the given string and assigns it to the BuildJobId field.
-func (o *DeploymentProvisioningInfo) SetBuildJobId(v string) {
-	o.BuildJobId = &v
-}
-
 // GetStages returns the Stages field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfo) GetStages() []DeploymentProvisioningInfoStage {
 	if o == nil || o.Stages == nil {
@@ -178,9 +144,6 @@ func (o DeploymentProvisioningInfo) MarshalJSON() ([]byte, error) {
 	}
 	if o.Image != nil {
 		toSerialize["image"] = o.Image
-	}
-	if o.BuildJobId != nil {
-		toSerialize["build_job_id"] = o.BuildJobId
 	}
 	if o.Stages != nil {
 		toSerialize["stages"] = o.Stages

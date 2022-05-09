@@ -6,7 +6,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sha** | Pointer to **string** | The git sha for this build (we resolve the reference at the start of the build). | [optional] 
 **Image** | Pointer to **string** | The docker image built as a result of this build. | [optional] 
-**BuildJobId** | Pointer to **string** | The id of the job that ran the build. | [optional] 
 **Stages** | Pointer to [**[]DeploymentProvisioningInfoStage**](DeploymentProvisioningInfoStage.md) | Some info about the build. | [optional] 
 
 ## Methods
@@ -77,31 +76,6 @@ SetImage sets Image field to given value.
 `func (o *DeploymentProvisioningInfo) HasImage() bool`
 
 HasImage returns a boolean if a field has been set.
-
-### GetBuildJobId
-
-`func (o *DeploymentProvisioningInfo) GetBuildJobId() string`
-
-GetBuildJobId returns the BuildJobId field if non-nil, zero value otherwise.
-
-### GetBuildJobIdOk
-
-`func (o *DeploymentProvisioningInfo) GetBuildJobIdOk() (*string, bool)`
-
-GetBuildJobIdOk returns a tuple with the BuildJobId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetBuildJobId
-
-`func (o *DeploymentProvisioningInfo) SetBuildJobId(v string)`
-
-SetBuildJobId sets BuildJobId field to given value.
-
-### HasBuildJobId
-
-`func (o *DeploymentProvisioningInfo) HasBuildJobId() bool`
-
-HasBuildJobId returns a boolean if a field has been set.
 
 ### GetStages
 

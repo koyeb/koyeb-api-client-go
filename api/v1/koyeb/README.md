@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
 *RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
 *RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
+*SearchApi* | [**Search**](docs/SearchApi.md#search) | **Get** /v1/search | Search
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
@@ -191,6 +192,7 @@ Class | Method | HTTP request | Description
  - [DeploymentPort](docs/DeploymentPort.md)
  - [DeploymentProvisioningInfo](docs/DeploymentProvisioningInfo.md)
  - [DeploymentProvisioningInfoStage](docs/DeploymentProvisioningInfoStage.md)
+ - [DeploymentProvisioningInfoStageBuildAttempt](docs/DeploymentProvisioningInfoStageBuildAttempt.md)
  - [DeploymentProvisioningInfoStageStatus](docs/DeploymentProvisioningInfoStageStatus.md)
  - [DeploymentRoute](docs/DeploymentRoute.md)
  - [DeploymentScaling](docs/DeploymentScaling.md)
@@ -241,6 +243,14 @@ Class | Method | HTTP request | Description
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
+ - [KsearchApp](docs/KsearchApp.md)
+ - [KsearchGlobalDeployment](docs/KsearchGlobalDeployment.md)
+ - [KsearchInstance](docs/KsearchInstance.md)
+ - [KsearchOrganization](docs/KsearchOrganization.md)
+ - [KsearchRegionalDeployment](docs/KsearchRegionalDeployment.md)
+ - [KsearchSearchReply](docs/KsearchSearchReply.md)
+ - [KsearchService](docs/KsearchService.md)
+ - [KsearchUser](docs/KsearchUser.md)
  - [ListAppsReply](docs/ListAppsReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
@@ -256,6 +266,7 @@ Class | Method | HTTP request | Description
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)
+ - [MetricName](docs/MetricName.md)
  - [Notification](docs/Notification.md)
  - [NotificationList](docs/NotificationList.md)
  - [OAuthCallbackReply](docs/OAuthCallbackReply.md)
