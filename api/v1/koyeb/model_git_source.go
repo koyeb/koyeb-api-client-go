@@ -23,6 +23,7 @@ type GitSource struct {
 	Sha *string `json:"sha,omitempty"`
 	BuildCommand *string `json:"build_command,omitempty"`
 	RunCommand *string `json:"run_command,omitempty"`
+	NoDeployOnPush *bool `json:"no_deploy_on_push,omitempty"`
 }
 
 // NewGitSource instantiates a new GitSource object
@@ -234,6 +235,38 @@ func (o *GitSource) SetRunCommand(v string) {
 	o.RunCommand = &v
 }
 
+// GetNoDeployOnPush returns the NoDeployOnPush field value if set, zero value otherwise.
+func (o *GitSource) GetNoDeployOnPush() bool {
+	if o == nil || o.NoDeployOnPush == nil {
+		var ret bool
+		return ret
+	}
+	return *o.NoDeployOnPush
+}
+
+// GetNoDeployOnPushOk returns a tuple with the NoDeployOnPush field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetNoDeployOnPushOk() (*bool, bool) {
+	if o == nil || o.NoDeployOnPush == nil {
+		return nil, false
+	}
+	return o.NoDeployOnPush, true
+}
+
+// HasNoDeployOnPush returns a boolean if a field has been set.
+func (o *GitSource) HasNoDeployOnPush() bool {
+	if o != nil && o.NoDeployOnPush != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNoDeployOnPush gets a reference to the given bool and assigns it to the NoDeployOnPush field.
+func (o *GitSource) SetNoDeployOnPush(v bool) {
+	o.NoDeployOnPush = &v
+}
+
 func (o GitSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Repository != nil {
@@ -253,6 +286,9 @@ func (o GitSource) MarshalJSON() ([]byte, error) {
 	}
 	if o.RunCommand != nil {
 		toSerialize["run_command"] = o.RunCommand
+	}
+	if o.NoDeployOnPush != nil {
+		toSerialize["no_deploy_on_push"] = o.NoDeployOnPush
 	}
 	return json.Marshal(toSerialize)
 }

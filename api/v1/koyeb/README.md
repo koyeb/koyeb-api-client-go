@@ -135,6 +135,9 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
 *RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
 *RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
+*RepositoriesApi* | [**ListBranches**](docs/RepositoriesApi.md#listbranches) | **Get** /v1/git/branches | 
+*RepositoriesApi* | [**ListRepositories**](docs/RepositoriesApi.md#listrepositories) | **Get** /v1/git/repositories | 
+*RepositoriesApi* | [**ResyncOrganization**](docs/RepositoriesApi.md#resyncorganization) | **Post** /v1/git/sync/organization/{organization_id} | 
 *SearchApi* | [**Search**](docs/SearchApi.md#search) | **Get** /v1/search | Search
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
@@ -243,6 +246,12 @@ Class | Method | HTTP request | Description
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
+ - [KgitproxyBranch](docs/KgitproxyBranch.md)
+ - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
+ - [KgitproxyListBranchesReply](docs/KgitproxyListBranchesReply.md)
+ - [KgitproxyListRepositoriesReply](docs/KgitproxyListRepositoriesReply.md)
+ - [KgitproxyRepository](docs/KgitproxyRepository.md)
+ - [KgitproxyRepositoryProvider](docs/KgitproxyRepositoryProvider.md)
  - [KsearchApp](docs/KsearchApp.md)
  - [KsearchGlobalDeployment](docs/KsearchGlobalDeployment.md)
  - [KsearchInstance](docs/KsearchInstance.md)

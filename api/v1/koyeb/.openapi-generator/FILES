@@ -20,6 +20,7 @@ api_metrics.go
 api_organization.go
 api_profile.go
 api_regional_deployments.go
+api_repositories.go
 api_search.go
 api_secrets.go
 api_services.go
@@ -123,6 +124,12 @@ docs/InstanceStatus.md
 docs/InstancesApi.md
 docs/InviteApi.md
 docs/InviteUserRequest.md
+docs/KgitproxyBranch.md
+docs/KgitproxyGitHubRepository.md
+docs/KgitproxyListBranchesReply.md
+docs/KgitproxyListRepositoriesReply.md
+docs/KgitproxyRepository.md
+docs/KgitproxyRepositoryProvider.md
 docs/KsearchApp.md
 docs/KsearchGlobalDeployment.md
 docs/KsearchInstance.md
@@ -172,6 +179,7 @@ docs/RegionalDeploymentListItem.md
 docs/RegionalDeploymentMetadata.md
 docs/RegionalDeploymentStatus.md
 docs/RegionalDeploymentsApi.md
+docs/RepositoriesApi.md
 docs/ResetPasswordRequest.md
 docs/Route.md
 docs/Scaling.md
@@ -294,6 +302,12 @@ model_instance.go
 model_instance_list_item.go
 model_instance_status.go
 model_invite_user_request.go
+model_kgitproxy_branch.go
+model_kgitproxy_git_hub_repository.go
+model_kgitproxy_list_branches_reply.go
+model_kgitproxy_list_repositories_reply.go
+model_kgitproxy_repository.go
+model_kgitproxy_repository_provider.go
 model_ksearch_app.go
 model_ksearch_global_deployment.go
 model_ksearch_instance.go

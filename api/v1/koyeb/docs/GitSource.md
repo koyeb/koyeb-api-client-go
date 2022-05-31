@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Sha** | Pointer to **string** |  | [optional] 
 **BuildCommand** | Pointer to **string** |  | [optional] 
 **RunCommand** | Pointer to **string** |  | [optional] 
+**NoDeployOnPush** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetRunCommand sets RunCommand field to given value.
 `func (o *GitSource) HasRunCommand() bool`
 
 HasRunCommand returns a boolean if a field has been set.
+
+### GetNoDeployOnPush
+
+`func (o *GitSource) GetNoDeployOnPush() bool`
+
+GetNoDeployOnPush returns the NoDeployOnPush field if non-nil, zero value otherwise.
+
+### GetNoDeployOnPushOk
+
+`func (o *GitSource) GetNoDeployOnPushOk() (*bool, bool)`
+
+GetNoDeployOnPushOk returns a tuple with the NoDeployOnPush field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNoDeployOnPush
+
+`func (o *GitSource) SetNoDeployOnPush(v bool)`
+
+SetNoDeployOnPush sets NoDeployOnPush field to given value.
+
+### HasNoDeployOnPush
+
+`func (o *GitSource) HasNoDeployOnPush() bool`
+
+HasNoDeployOnPush returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
