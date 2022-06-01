@@ -21,7 +21,9 @@
 
 * `HTTP_RESPONSE_TIME_MAX` (value: `"HTTP_RESPONSE_TIME_MAX"`)
 
-* `PUBLIC_DATA_TRANSFER` (value: `"PUBLIC_DATA_TRANSFER"`)
+* `PUBLIC_DATA_TRANSFER_IN` (value: `"PUBLIC_DATA_TRANSFER_IN"`)
+
+* `PUBLIC_DATA_TRANSFER_OUT` (value: `"PUBLIC_DATA_TRANSFER_OUT"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

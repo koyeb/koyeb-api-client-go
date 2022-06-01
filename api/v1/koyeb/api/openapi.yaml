@@ -195,66 +195,16 @@ tags:
   x-displayName: Introduction
   x-traitTag: true
 paths:
-  /v1/instances:
+  /v1/activities:
     get:
-      operationId: ListInstances
+      operationId: ListActivities
       parameters:
-      - description: (Optional) Filter on application id.
-        in: query
-        name: app_id
-        schema:
-          type: string
-      - description: (Optional) Filter on service id.
-        in: query
-        name: service_id
-        schema:
-          type: string
-      - description: (Optional) Filter on deployment id.
-        in: query
-        name: deployment_id
-        schema:
-          type: string
-      - description: (Optional) Filter on regional deployment id.
-        in: query
-        name: regional_deployment_id
-        schema:
-          type: string
-      - description: (Optional) Filter on allocation id.
-        in: query
-        name: allocation_id
-        schema:
-          type: string
-      - description: (Optional) Filter on instance statuses.
-        explode: true
-        in: query
-        name: statuses
-        schema:
-          items:
-            enum:
-            - ALLOCATING
-            - STARTING
-            - HEALTHY
-            - UNHEALTHY
-            - STOPPING
-            - STOPPED
-            - ERROR
-            type: string
-          type: array
-        style: form
-      - description: (Optional) The number of items to return.
-        in: query
+      - in: query
         name: limit
         schema:
           type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
+      - in: query
         name: offset
-        schema:
-          type: string
-      - description: (Optional) Sorts the list in the ascending or the descending
-          order.
-        in: query
-        name: order
         schema:
           type: string
       responses:
@@ -262,7 +212,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListInstancesReply'
+                $ref: '#/components/schemas/ActivityList'
           description: A successful response.
         "400":
           content:
@@ -289,14 +239,160 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: List Instances
       tags:
-      - Instances
-  /v1/instances/{id}:
+      - activity
+  /v1/hooks/github/payload:
+    post:
+      description: An implementation of github hooks. The payload is a freefrom JSON
+        and the response will always be empty.
+      externalDocs:
+        description: github documentation
+        url: https://developer.github.com/webhooks/
+      operationId: Github
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GithubHookReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Github hook receiver
+      tags:
+      - hooks
+      x-codegen-request-body-name: body
+  /v1/notifications:
     get:
-      operationId: GetInstance
+      operationId: ListNotifications
       parameters:
-      - description: The id of the instance
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      - in: query
+        name: mark_read
+        schema:
+          type: string
+      - in: query
+        name: mark_seen
+        schema:
+          type: string
+      - in: query
+        name: unread
+        schema:
+          type: string
+      - in: query
+        name: unseen
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotificationList'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - activity
+  /v1/catalog/instances:
+    get:
+      operationId: ListCatalogInstances
+      parameters:
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for instances.
+        in: query
+        name: id
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListCatalogInstancesReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Instance
+      tags:
+      - CatalogInstances
+  /v1/catalog/instances/{id}:
+    get:
+      operationId: GetCatalogInstance
+      parameters:
+      - description: The name of the instance
         in: path
         name: id
         required: true
@@ -307,27 +403,8 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GetInstanceReply'
+                $ref: '#/components/schemas/GetCatalogInstanceReply'
           description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
         default:
           content:
             '*/*':
@@ -336,10 +413,29 @@ paths:
           description: An unexpected error response.
       summary: Get Instance
       tags:
-      - Instances
-  /v1/domains:
+      - CatalogInstances
+  /v1/catalog/datacenters:
     get:
-      operationId: ListDomains
+      operationId: ListDatacenters
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListDatacentersReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List datacenters
+      tags:
+      - CatalogDatacenters
+  /v1/catalog/regions:
+    get:
+      operationId: ListRegions
       parameters:
       - description: (Optional) The number of items to return.
         in: query
@@ -351,126 +447,9 @@ paths:
         name: offset
         schema:
           type: string
-      - description: (Optional) A filter for types.
-        explode: true
+      - description: (Optional) A filter for regions.
         in: query
-        name: types
-        schema:
-          items:
-            enum:
-            - AUTOASSIGNED
-            - CUSTOM
-            type: string
-          type: array
-        style: form
-      - description: (Optional) A filter for statuses.
-        explode: true
-        in: query
-        name: statuses
-        schema:
-          items:
-            enum:
-            - PENDING
-            - ACTIVE
-            - ERROR
-            - DELETING
-            - DELETED
-            type: string
-          type: array
-        style: form
-      - description: (Optional) A filter for apps.
-        explode: true
-        in: query
-        name: app_ids
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListDomainsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Domains
-    post:
-      operationId: CreateDomain
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateDomain'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateDomainReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Domains
-      x-codegen-request-body-name: body
-  /v1/domains/{id}:
-    delete:
-      operationId: DeleteDomain
-      parameters:
-      - in: path
         name: id
-        required: true
         schema:
           type: string
       responses:
@@ -478,39 +457,23 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/DeleteDomainReply'
+                $ref: '#/components/schemas/ListRegionsReply'
           description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
         default:
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: List Region
       tags:
-      - Domains
+      - CatalogRegions
+  /v1/catalog/regions/{id}:
     get:
-      operationId: GetDomain
+      operationId: GetRegion
       parameters:
-      - in: path
+      - description: The name of the region
+        in: path
         name: id
         required: true
         schema:
@@ -520,14 +483,81 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GetDomainReply'
+                $ref: '#/components/schemas/GetRegionReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Region
+      tags:
+      - CatalogRegions
+  /v1/streams/metrics:
+    get:
+      operationId: GetMetrics
+      parameters:
+      - description: ID of the service to query instances metrics for. Ignored if
+          instance_id is set.
+        in: query
+        name: service_id
+        schema:
+          type: string
+      - description: ID of the instance to query metrics for.
+        in: query
+        name: instance_id
+        schema:
+          type: string
+      - description: Metric to query.
+        in: query
+        name: name
+        schema:
+          default: UNKNOWN
+          enum:
+          - UNKNOWN
+          - CPU_TOTAL_PERCENT
+          - MEM_RSS
+          - MEM_SWAP
+          - HTTP_THROUGHPUT
+          - HTTP_RESPONSE_TIME_50P
+          - HTTP_RESPONSE_TIME_90P
+          - HTTP_RESPONSE_TIME_99P
+          - HTTP_RESPONSE_TIME_MAX
+          - PUBLIC_DATA_TRANSFER_IN
+          - PUBLIC_DATA_TRANSFER_OUT
+          type: string
+      - description: (Optional) Defaults to an hour prior to end.
+        in: query
+        name: start
+        schema:
+          format: date-time
+          type: string
+      - description: (Optional) Defaults to now.
+        in: query
+        name: end
+        schema:
+          format: date-time
+          type: string
+      - description: (Optional) Must be a valid duration in hours (h) or minutes (m).
+          Defaulst to 5m.
+        in: query
+        name: step
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetMetricsReply'
           description: A successful response.
         "400":
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
+          description: Validation error.
         "403":
           content:
             '*/*':
@@ -548,31 +578,174 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       tags:
-      - Domains
-    patch:
-      operationId: UpdateDomain
+      - Metrics
+  /v1/streams/logs/tail:
+    get:
+      operationId: TailLogs
       parameters:
-      - in: path
-        name: id
-        required: true
+      - in: query
+        name: type
         schema:
           type: string
       - in: query
-        name: update_mask
+        name: app_id
         schema:
           type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/UpdateDomain'
-        required: true
+      - in: query
+        name: service_id
+        schema:
+          type: string
+      - in: query
+        name: deployment_id
+        schema:
+          type: string
+      - in: query
+        name: regional_deployment_id
+        schema:
+          type: string
+      - in: query
+        name: instance_id
+        schema:
+          type: string
+      - in: query
+        name: stream
+        schema:
+          type: string
+      - in: query
+        name: start
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          format: int64
+          type: string
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/UpdateDomainReply'
+                $ref: '#/components/schemas/Stream_result_of_LogEntry'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Tails logs
+      tags:
+      - Logs
+  /v1/streams/instances/exec:
+    get:
+      operationId: ExecCommand
+      parameters:
+      - in: query
+        name: id
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: body.command
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - in: query
+        name: body.tty_size.height
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.tty_size.width
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: body.stdin.data
+        schema:
+          format: byte
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
+          description: A successful response.(streaming responses)
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Exec Command
+      tags:
+      - Instances
+  /v1/git/branches:
+    get:
+      operationId: ListBranches
+      parameters:
+      - description: (Optional) Filter on one repository.
+        in: query
+        name: repository_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/kgitproxy.ListBranchesReply'
           description: A successful response.
         "400":
           content:
@@ -600,14 +773,61 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       tags:
-      - Domains
-      x-codegen-request-body-name: body
-  /v1/domains/{id}/refresh:
+      - Repositories
+  /v1/git/repositories:
+    get:
+      operationId: ListRepositories
+      parameters:
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/kgitproxy.ListRepositoriesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Repositories
+  /v1/git/sync/organization/{organization_id}:
     post:
-      operationId: RefreshDomainStatus
+      operationId: ResyncOrganization
       parameters:
       - in: path
-        name: id
+        name: organization_id
         required: true
         schema:
           type: string
@@ -616,7 +836,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/RefreshDomainStatusReply'
+                $ref: '#/components/schemas/kgitproxy.ResyncOrganizationReply'
           description: A successful response.
         "400":
           content:
@@ -644,7 +864,51 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       tags:
-      - Domains
+      - Repositories
+  /v1/search:
+    get:
+      operationId: Search
+      parameters:
+      - description: (Optional) Search query.
+        in: query
+        name: query
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ksearch.SearchReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Search
+      tags:
+      - Search
   /v1/secrets:
     get:
       operationId: ListSecrets
@@ -993,293 +1257,6 @@ paths:
       summary: View stack activities
       tags:
       - Secrets
-  /v1/apps:
-    get:
-      operationId: ListApps
-      parameters:
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) A filter for regions.
-        in: query
-        name: name
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListAppsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List App
-      tags:
-      - Apps
-    post:
-      operationId: CreateApp
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/CreateApp'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/CreateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Create App
-      tags:
-      - Apps
-      x-codegen-request-body-name: body
-  /v1/apps/{id_or_name}:
-    patch:
-      operationId: UpdateApp2
-      parameters:
-      - description: The id or the name of the entity to update
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      - in: query
-        name: update_mask
-        schema:
-          type: string
-      requestBody:
-        content:
-          '*/*':
-            schema:
-              $ref: '#/components/schemas/UpdateApp'
-        required: true
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update App
-      tags:
-      - Apps
-      x-codegen-request-body-name: body
-    put:
-      operationId: UpdateApp
-      parameters:
-      - description: The id or the name of the entity to update
-        in: path
-        name: id_or_name
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/UpdateAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Update App
-      tags:
-      - Apps
-  /v1/apps/{id}:
-    delete:
-      operationId: DeleteApp
-      parameters:
-      - description: The id of the App to delete
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete App
-      tags:
-      - Apps
-    get:
-      operationId: GetApp
-      parameters:
-      - description: The id of the App
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetAppReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get App
-      tags:
-      - Apps
   /v1/deployments:
     get:
       operationId: ListDeployments
@@ -1408,15 +1385,10 @@ paths:
       summary: Get Deployment
       tags:
       - Deployments
-  /v1/regional_deployments:
+  /v1/domains:
     get:
-      operationId: ListRegionalDeployments
+      operationId: ListDomains
       parameters:
-      - description: (Optional) Filter on deployment id.
-        in: query
-        name: deployment_id
-        schema:
-          type: string
       - description: (Optional) The number of items to return.
         in: query
         name: limit
@@ -1427,12 +1399,48 @@ paths:
         name: offset
         schema:
           type: string
+      - description: (Optional) A filter for types.
+        explode: true
+        in: query
+        name: types
+        schema:
+          items:
+            enum:
+            - AUTOASSIGNED
+            - CUSTOM
+            type: string
+          type: array
+        style: form
+      - description: (Optional) A filter for statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - PENDING
+            - ACTIVE
+            - ERROR
+            - DELETING
+            - DELETED
+            type: string
+          type: array
+        style: form
+      - description: (Optional) A filter for apps.
+        explode: true
+        in: query
+        name: app_ids
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ListRegionalDeploymentsReply'
+                $ref: '#/components/schemas/ListDomainsReply'
           description: A successful response.
         "400":
           content:
@@ -1459,17 +1467,56 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: |-
-        Experimental: List regional deployments
-        Use at your own risk
       tags:
-      - RegionalDeployments
-  /v1/regional_deployments/{id}:
-    get:
-      operationId: GetRegionalDeployment
+      - Domains
+    post:
+      operationId: CreateDomain
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateDomain'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+      x-codegen-request-body-name: body
+  /v1/domains/{id}:
+    delete:
+      operationId: DeleteDomain
       parameters:
-      - description: The id of the regional deployment
-        in: path
+      - in: path
         name: id
         required: true
         schema:
@@ -1479,7 +1526,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GetRegionalDeploymentReply'
+                $ref: '#/components/schemas/DeleteDomainReply'
           description: A successful response.
         "400":
           content:
@@ -1506,11 +1553,146 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: |-
-        Experimental: Get regional deployment
-        Use at your own risk
       tags:
-      - RegionalDeployments
+      - Domains
+    get:
+      operationId: GetDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+    patch:
+      operationId: UpdateDomain
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateDomain'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateDomainReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
+      x-codegen-request-body-name: body
+  /v1/domains/{id}/refresh:
+    post:
+      operationId: RefreshDomainStatus
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RefreshDomainStatusReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - Domains
   /v1/services:
     get:
       operationId: ListServices
@@ -1880,60 +2062,23 @@ paths:
       tags:
       - Services
       x-codegen-request-body-name: body
-  /v1/search:
+  /v1/apps:
     get:
-      operationId: Search
+      operationId: ListApps
       parameters:
-      - description: (Optional) Search query.
+      - description: (Optional) The number of items to return.
         in: query
-        name: query
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ksearch.SearchReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Search
-      tags:
-      - Search
-  /v1/activities:
-    get:
-      operationId: ListActivities
-      parameters:
-      - in: query
         name: limit
         schema:
           type: string
-      - in: query
+      - description: (Optional) The offset in the list of item to return.
+        in: query
         name: offset
+        schema:
+          type: string
+      - description: (Optional) A filter for regions.
+        in: query
+        name: name
         schema:
           type: string
       responses:
@@ -1941,7 +2086,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/ActivityList'
+                $ref: '#/components/schemas/ListAppsReply'
           description: A successful response.
         "400":
           content:
@@ -1968,28 +2113,23 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: List App
       tags:
-      - activity
-  /v1/hooks/github/payload:
+      - Apps
     post:
-      description: An implementation of github hooks. The payload is a freefrom JSON
-        and the response will always be empty.
-      externalDocs:
-        description: github documentation
-        url: https://developer.github.com/webhooks/
-      operationId: Github
+      operationId: CreateApp
       requestBody:
         content:
           '*/*':
             schema:
-              type: object
+              $ref: '#/components/schemas/CreateApp'
         required: true
       responses:
         "200":
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/GithubHookReply'
+                $ref: '#/components/schemas/CreateAppReply'
           description: A successful response.
         "400":
           content:
@@ -2016,36 +2156,73 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: Github hook receiver
+      summary: Create App
       tags:
-      - hooks
+      - Apps
       x-codegen-request-body-name: body
-  /v1/notifications:
-    get:
-      operationId: ListNotifications
+  /v1/apps/{id_or_name}:
+    patch:
+      operationId: UpdateApp2
       parameters:
-      - in: query
-        name: limit
+      - description: The id or the name of the entity to update
+        in: path
+        name: id_or_name
+        required: true
         schema:
           type: string
       - in: query
-        name: offset
+        name: update_mask
         schema:
           type: string
-      - in: query
-        name: mark_read
-        schema:
-          type: string
-      - in: query
-        name: mark_seen
-        schema:
-          type: string
-      - in: query
-        name: unread
-        schema:
-          type: string
-      - in: query
-        name: unseen
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateApp'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update App
+      tags:
+      - Apps
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateApp
+      parameters:
+      - description: The id or the name of the entity to update
+        in: path
+        name: id_or_name
+        required: true
         schema:
           type: string
       responses:
@@ -2053,7 +2230,7 @@ paths:
           content:
             '*/*':
               schema:
-                $ref: '#/components/schemas/NotificationList'
+                $ref: '#/components/schemas/UpdateAppReply'
           description: A successful response.
         "400":
           content:
@@ -2080,8 +2257,343 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
+      summary: Update App
       tags:
-      - activity
+      - Apps
+  /v1/apps/{id}:
+    delete:
+      operationId: DeleteApp
+      parameters:
+      - description: The id of the App to delete
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete App
+      tags:
+      - Apps
+    get:
+      operationId: GetApp
+      parameters:
+      - description: The id of the App
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetAppReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get App
+      tags:
+      - Apps
+  /v1/instances:
+    get:
+      operationId: ListInstances
+      parameters:
+      - description: (Optional) Filter on application id.
+        in: query
+        name: app_id
+        schema:
+          type: string
+      - description: (Optional) Filter on service id.
+        in: query
+        name: service_id
+        schema:
+          type: string
+      - description: (Optional) Filter on deployment id.
+        in: query
+        name: deployment_id
+        schema:
+          type: string
+      - description: (Optional) Filter on regional deployment id.
+        in: query
+        name: regional_deployment_id
+        schema:
+          type: string
+      - description: (Optional) Filter on allocation id.
+        in: query
+        name: allocation_id
+        schema:
+          type: string
+      - description: (Optional) Filter on instance statuses.
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - ALLOCATING
+            - STARTING
+            - HEALTHY
+            - UNHEALTHY
+            - STOPPING
+            - STOPPED
+            - ERROR
+            type: string
+          type: array
+        style: form
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Sorts the list in the ascending or the descending
+          order.
+        in: query
+        name: order
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListInstancesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Instances
+      tags:
+      - Instances
+  /v1/instances/{id}:
+    get:
+      operationId: GetInstance
+      parameters:
+      - description: The id of the instance
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetInstanceReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Instance
+      tags:
+      - Instances
+  /v1/regional_deployments:
+    get:
+      operationId: ListRegionalDeployments
+      parameters:
+      - description: (Optional) Filter on deployment id.
+        in: query
+        name: deployment_id
+        schema:
+          type: string
+      - description: (Optional) The number of items to return.
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return.
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListRegionalDeploymentsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: |-
+        Experimental: List regional deployments
+        Use at your own risk
+      tags:
+      - RegionalDeployments
+  /v1/regional_deployments/{id}:
+    get:
+      operationId: GetRegionalDeployment
+      parameters:
+      - description: The id of the regional deployment
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetRegionalDeploymentReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: |-
+        Experimental: Get regional deployment
+        Use at your own risk
+      tags:
+      - RegionalDeployments
   /v1/account/activities:
     get:
       operationId: GetAccountActivities
@@ -3533,373 +4045,6 @@ paths:
       tags:
       - sso
       x-codegen-request-body-name: body
-  /v1/catalog/instances:
-    get:
-      operationId: ListCatalogInstances
-      parameters:
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) A filter for instances.
-        in: query
-        name: id
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListCatalogInstancesReply'
-          description: A successful response.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List Instance
-      tags:
-      - CatalogInstances
-  /v1/catalog/instances/{id}:
-    get:
-      operationId: GetCatalogInstance
-      parameters:
-      - description: The name of the instance
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetCatalogInstanceReply'
-          description: A successful response.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get Instance
-      tags:
-      - CatalogInstances
-  /v1/catalog/datacenters:
-    get:
-      operationId: ListDatacenters
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListDatacentersReply'
-          description: A successful response.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List datacenters
-      tags:
-      - CatalogDatacenters
-  /v1/catalog/regions:
-    get:
-      operationId: ListRegions
-      parameters:
-      - description: (Optional) The number of items to return.
-        in: query
-        name: limit
-        schema:
-          type: string
-      - description: (Optional) The offset in the list of item to return.
-        in: query
-        name: offset
-        schema:
-          type: string
-      - description: (Optional) A filter for regions.
-        in: query
-        name: id
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ListRegionsReply'
-          description: A successful response.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: List Region
-      tags:
-      - CatalogRegions
-  /v1/catalog/regions/{id}:
-    get:
-      operationId: GetRegion
-      parameters:
-      - description: The name of the region
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetRegionReply'
-          description: A successful response.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Get Region
-      tags:
-      - CatalogRegions
-  /v1/streams/instances/exec:
-    get:
-      operationId: ExecCommand
-      parameters:
-      - in: query
-        name: id
-        schema:
-          type: string
-      - explode: true
-        in: query
-        name: body.command
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - in: query
-        name: body.tty_size.height
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.tty_size.width
-        schema:
-          format: int32
-          type: integer
-      - in: query
-        name: body.stdin.data
-        schema:
-          format: byte
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_ExecCommandReply'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Exec Command
-      tags:
-      - Instances
-  /v1/streams/metrics:
-    get:
-      operationId: GetMetrics
-      parameters:
-      - description: ID of the service to query instances metrics for. Ignored if
-          instance_id is set.
-        in: query
-        name: service_id
-        schema:
-          type: string
-      - description: ID of the instance to query metrics for.
-        in: query
-        name: instance_id
-        schema:
-          type: string
-      - description: Metric to query.
-        in: query
-        name: name
-        schema:
-          default: UNKNOWN
-          enum:
-          - UNKNOWN
-          - CPU_TOTAL_PERCENT
-          - MEM_RSS
-          - MEM_SWAP
-          - HTTP_THROUGHPUT
-          - HTTP_RESPONSE_TIME_50P
-          - HTTP_RESPONSE_TIME_90P
-          - HTTP_RESPONSE_TIME_99P
-          - HTTP_RESPONSE_TIME_MAX
-          - PUBLIC_DATA_TRANSFER
-          type: string
-      - description: (Optional) Defaults to an hour prior to end.
-        in: query
-        name: start
-        schema:
-          format: date-time
-          type: string
-      - description: (Optional) Defaults to now.
-        in: query
-        name: end
-        schema:
-          format: date-time
-          type: string
-      - description: (Optional) Must be a valid duration in hours (h) or minutes (m).
-          Defaulst to 5m.
-        in: query
-        name: step
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/GetMetricsReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error.
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      tags:
-      - Metrics
-  /v1/streams/logs/tail:
-    get:
-      operationId: TailLogs
-      parameters:
-      - in: query
-        name: type
-        schema:
-          type: string
-      - in: query
-        name: app_id
-        schema:
-          type: string
-      - in: query
-        name: service_id
-        schema:
-          type: string
-      - in: query
-        name: deployment_id
-        schema:
-          type: string
-      - in: query
-        name: regional_deployment_id
-        schema:
-          type: string
-      - in: query
-        name: instance_id
-        schema:
-          type: string
-      - in: query
-        name: stream
-        schema:
-          type: string
-      - in: query
-        name: start
-        schema:
-          type: string
-      - in: query
-        name: limit
-        schema:
-          format: int64
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Stream_result_of_LogEntry'
-          description: A successful response.(streaming responses)
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Tails logs
-      tags:
-      - Logs
 components:
   schemas:
     google.protobuf.Any:
@@ -3914,9 +4059,21 @@ components:
           pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
           type: string
       type: object
+    google.protobuf.NullValue:
+      default: NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+        `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+      enum:
+      - NULL_VALUE
+      type: string
     google.rpc.Status:
       example:
-        code: 6
+        code: 0
         details:
         - value: value
           type_url: type_url
@@ -3934,426 +4091,6 @@ components:
             $ref: '#/components/schemas/google.protobuf.Any'
           type: array
       type: object
-    Error:
-      properties:
-        status:
-          format: int32
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-      type: object
-    ErrorField:
-      properties:
-        field:
-          type: string
-        description:
-          type: string
-      type: object
-    ErrorWithFields:
-      properties:
-        status:
-          format: int32
-          type: integer
-        code:
-          type: string
-        message:
-          type: string
-        fields:
-          items:
-            $ref: '#/components/schemas/ErrorField'
-          type: array
-      type: object
-    GetInstanceReply:
-      example:
-        instance:
-          regional_deployment_id: regional_deployment_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          datacenter: datacenter
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          hypervisor: hypervisor
-          allocation_id: allocation_id
-          messages:
-          - messages
-          - messages
-          id: id
-          region: region
-          app_id: app_id
-      properties:
-        instance:
-          $ref: '#/components/schemas/Instance'
-      type: object
-    Instance:
-      example:
-        regional_deployment_id: regional_deployment_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        datacenter: datacenter
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        service_id: service_id
-        hypervisor: hypervisor
-        allocation_id: allocation_id
-        messages:
-        - messages
-        - messages
-        id: id
-        region: region
-        app_id: app_id
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        regional_deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        region:
-          type: string
-        datacenter:
-          type: string
-        hypervisor:
-          type: string
-        status:
-          $ref: '#/components/schemas/Instance.Status'
-        messages:
-          items:
-            type: string
-          type: array
-      type: object
-    Instance.Status:
-      default: ALLOCATING
-      enum:
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERROR
-      type: string
-    InstanceListItem:
-      example:
-        regional_deployment_id: regional_deployment_id
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        service_id: service_id
-        allocation_id: allocation_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        datacenter: datacenter
-        id: id
-        region: region
-        app_id: app_id
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        regional_deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        region:
-          type: string
-        datacenter:
-          type: string
-        status:
-          $ref: '#/components/schemas/Instance.Status'
-        messages:
-          items:
-            type: string
-          type: array
-      type: object
-    ListInstancesReply:
-      example:
-        offset: 6
-        instances:
-        - regional_deployment_id: regional_deployment_id
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-          region: region
-          app_id: app_id
-        - regional_deployment_id: regional_deployment_id
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          datacenter: datacenter
-          id: id
-          region: region
-          app_id: app_id
-        limit: 0
-        count: 1
-        order: order
-      properties:
-        instances:
-          items:
-            $ref: '#/components/schemas/InstanceListItem'
-          title: The collection of instances
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-        order:
-          title: The order in the request
-          type: string
-      type: object
-    CreateDomain:
-      example:
-        name: name
-        app_id: app_id
-      properties:
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/Domain.Type'
-        app_id:
-          type: string
-      type: object
-    CreateDomainReply:
-      example:
-        domain:
-          created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-      properties:
-        domain:
-          $ref: '#/components/schemas/Domain'
-      type: object
-    DeleteDomainReply:
-      type: object
-    Domain:
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        intended_cname: intended_cname
-        version: version
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        deployment_group: deployment_group
-        verified_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        messages:
-        - messages
-        - messages
-        id: id
-        app_id: app_id
-      properties:
-        id:
-          type: string
-        organization_id:
-          type: string
-        name:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        status:
-          $ref: '#/components/schemas/Domain.Status'
-        type:
-          $ref: '#/components/schemas/Domain.Type'
-        app_id:
-          type: string
-        deployment_group:
-          type: string
-        verified_at:
-          format: date-time
-          type: string
-        intended_cname:
-          type: string
-        messages:
-          items:
-            type: string
-          type: array
-        version:
-          format: uint64
-          type: string
-      type: object
-    Domain.Status:
-      default: PENDING
-      enum:
-      - PENDING
-      - ACTIVE
-      - ERROR
-      - DELETING
-      - DELETED
-      type: string
-    Domain.Type:
-      default: AUTOASSIGNED
-      enum:
-      - AUTOASSIGNED
-      - CUSTOM
-      type: string
-    GetDomainReply:
-      example:
-        domain:
-          created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-      properties:
-        domain:
-          $ref: '#/components/schemas/Domain'
-      type: object
-    ListDomainsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        domains:
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-      properties:
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    RefreshDomainStatusReply:
-      type: object
-    UpdateDomain:
-      example:
-        app_id: app_id
-      properties:
-        app_id:
-          type: string
-      type: object
-    UpdateDomainReply:
-      example:
-        domain:
-          created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-      properties:
-        domain:
-          $ref: '#/components/schemas/Domain'
-      type: object
-    google.protobuf.NullValue:
-      default: NULL_VALUE
-      description: |-
-        `NullValue` is a singleton enumeration to represent the null value for the
-        `Value` type union.
-
-         The JSON representation for `NullValue` is JSON `null`.
-
-         - NULL_VALUE: Null value.
-      enum:
-      - NULL_VALUE
-      type: string
     Activity:
       example:
         actor:
@@ -4441,6 +4178,121 @@ components:
           format: int64
           type: integer
       type: object
+    GithubHookReply:
+      type: object
+    Notification:
+      example:
+        is_read: true
+        activity:
+          actor:
+            metadata: '{}'
+            deleted: true
+            name: name
+            id: id
+            type: type
+          metadata: '{}'
+          verb: verb
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          object:
+            metadata: '{}'
+            deleted: true
+            name: name
+            id: id
+            type: type
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        is_seen: true
+      properties:
+        id:
+          type: string
+        activity:
+          $ref: '#/components/schemas/Activity'
+        is_read:
+          type: boolean
+        is_seen:
+          type: boolean
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    NotificationList:
+      example:
+        is_read: true
+        offset: 6
+        unread: 5
+        limit: 0
+        count: 1
+        is_seen: true
+        notifications:
+        - is_read: true
+          activity:
+            actor:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+            metadata: '{}'
+            verb: verb
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            object:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          is_seen: true
+        - is_read: true
+          activity:
+            actor:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+            metadata: '{}'
+            verb: verb
+            created_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            object:
+              metadata: '{}'
+              deleted: true
+              name: name
+              id: id
+              type: type
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          is_seen: true
+        unseen: 5
+      properties:
+        notifications:
+          items:
+            $ref: '#/components/schemas/Notification'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+        count:
+          format: int64
+          type: integer
+        is_read:
+          type: boolean
+        is_seen:
+          type: boolean
+        unread:
+          format: int64
+          type: integer
+        unseen:
+          format: int64
+          type: integer
+      type: object
     Object:
       example:
         metadata: '{}'
@@ -4460,6 +4312,877 @@ components:
           type: object
         deleted:
           type: boolean
+      type: object
+    Error:
+      properties:
+        status:
+          format: int32
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
+      type: object
+    ErrorField:
+      properties:
+        field:
+          type: string
+        description:
+          type: string
+      type: object
+    ErrorWithFields:
+      properties:
+        status:
+          format: int32
+          type: integer
+        code:
+          type: string
+        message:
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/ErrorField'
+          type: array
+      type: object
+    CatalogInstance:
+      example:
+        price_monthly: price_monthly
+        require_plan:
+        - require_plan
+        - require_plan
+        disk: disk
+        memory: memory
+        regions:
+        - regions
+        - regions
+        vcpu: 0
+        description: description
+        id: id
+        price_hourly: price_hourly
+        status: status
+      properties:
+        id:
+          title: The name of the instance
+          type: string
+        description:
+          title: A short description of the instance
+          type: string
+        vcpu:
+          format: int64
+          title: The number of cpus
+          type: integer
+        memory:
+          title: The memory in bytes in a format like 5MB
+          type: string
+        disk:
+          title: The size of the disk in bytes in a format like 5MB
+          type: string
+        price_hourly:
+          title: The price to pay per hour
+          type: string
+        price_monthly:
+          title: The price to pay per month
+          type: string
+        regions:
+          items:
+            type: string
+          title: The regions where this instance type is available
+          type: array
+        status:
+          title: The status of the instance
+          type: string
+        require_plan:
+          items:
+            type: string
+          title: The plan required to use instance
+          type: array
+      type: object
+    CatalogInstanceListItem:
+      example:
+        price_monthly: price_monthly
+        require_plan:
+        - require_plan
+        - require_plan
+        disk: disk
+        memory: memory
+        regions:
+        - regions
+        - regions
+        vcpu: 0
+        description: description
+        id: id
+        price_hourly: price_hourly
+        status: status
+      properties:
+        id:
+          title: The name of the instance
+          type: string
+        description:
+          title: A short description of the instance
+          type: string
+        vcpu:
+          format: int64
+          title: The number of cpus
+          type: integer
+        memory:
+          title: The memory in bytes in a format like 5MB
+          type: string
+        disk:
+          title: The size of the disk in bytes in a format like 5MB
+          type: string
+        price_hourly:
+          title: The price to pay per hour
+          type: string
+        price_monthly:
+          title: The price to pay per month
+          type: string
+        regions:
+          items:
+            type: string
+          title: The regions where this instance type is available
+          type: array
+        status:
+          title: The status of the instance
+          type: string
+        require_plan:
+          items:
+            type: string
+          title: The plan required to use instance
+          type: array
+      type: object
+    GetCatalogInstanceReply:
+      example:
+        instance:
+          price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+      properties:
+        instance:
+          $ref: '#/components/schemas/CatalogInstance'
+      type: object
+    ListCatalogInstancesReply:
+      example:
+        offset: 1
+        instances:
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+        - price_monthly: price_monthly
+          require_plan:
+          - require_plan
+          - require_plan
+          disk: disk
+          memory: memory
+          regions:
+          - regions
+          - regions
+          vcpu: 0
+          description: description
+          id: id
+          price_hourly: price_hourly
+          status: status
+        limit: 6
+        count: 5
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/CatalogInstanceListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    DatacenterListItem:
+      example:
+        domain: domain
+        region_id: region_id
+        coordinates:
+        - coordinates
+        - coordinates
+        id: id
+      properties:
+        id:
+          type: string
+        region_id:
+          type: string
+        domain:
+          type: string
+        coordinates:
+          items:
+            type: string
+          type: array
+      type: object
+    ListDatacentersReply:
+      example:
+        datacenters:
+        - domain: domain
+          region_id: region_id
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+        - domain: domain
+          region_id: region_id
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+      properties:
+        datacenters:
+          items:
+            $ref: '#/components/schemas/DatacenterListItem'
+          type: array
+      type: object
+    GetRegionReply:
+      example:
+        region:
+          datacenters:
+          - datacenters
+          - datacenters
+          instances:
+          - instances
+          - instances
+          name: name
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+          status: status
+      properties:
+        region:
+          $ref: '#/components/schemas/Region'
+      type: object
+    ListRegionsReply:
+      example:
+        regions:
+        - datacenters:
+          - datacenters
+          - datacenters
+          instances:
+          - instances
+          - instances
+          name: name
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+          status: status
+        - datacenters:
+          - datacenters
+          - datacenters
+          instances:
+          - instances
+          - instances
+          name: name
+          coordinates:
+          - coordinates
+          - coordinates
+          id: id
+          status: status
+        offset: 6
+        limit: 0
+        count: 1
+      properties:
+        regions:
+          items:
+            $ref: '#/components/schemas/RegionListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    Region:
+      example:
+        datacenters:
+        - datacenters
+        - datacenters
+        instances:
+        - instances
+        - instances
+        name: name
+        coordinates:
+        - coordinates
+        - coordinates
+        id: id
+        status: status
+      properties:
+        id:
+          title: The id of the region
+          type: string
+        name:
+          title: The name of the region
+          type: string
+        coordinates:
+          items:
+            type: string
+          title: The coordinates of the region (lat/long)
+          type: array
+        status:
+          title: The status of the region
+          type: string
+        instances:
+          items:
+            type: string
+          title: A list of instances available in this region
+          type: array
+        datacenters:
+          items:
+            type: string
+          title: A list of datacenters available in this region
+          type: array
+      type: object
+    RegionListItem:
+      example:
+        datacenters:
+        - datacenters
+        - datacenters
+        instances:
+        - instances
+        - instances
+        name: name
+        coordinates:
+        - coordinates
+        - coordinates
+        id: id
+        status: status
+      properties:
+        id:
+          title: The id of the region
+          type: string
+        name:
+          title: The name of the region
+          type: string
+        coordinates:
+          items:
+            type: string
+          title: The coordinates of the region (lat/long)
+          type: array
+        status:
+          title: The status of the region
+          type: string
+        instances:
+          items:
+            type: string
+          title: A list of instances available in this region
+          type: array
+        datacenters:
+          items:
+            type: string
+          title: A list of datacenters available in this region
+          type: array
+      type: object
+    GetMetricsReply:
+      example:
+        metrics:
+        - values:
+          - - '{}'
+            - '{}'
+          - - '{}'
+            - '{}'
+          labels:
+            key: labels
+        - values:
+          - - '{}'
+            - '{}'
+          - - '{}'
+            - '{}'
+          labels:
+            key: labels
+      properties:
+        metrics:
+          items:
+            $ref: '#/components/schemas/GetMetricsReply.Metric'
+          type: array
+      type: object
+    GetMetricsReply.Metric:
+      example:
+        values:
+        - - '{}'
+          - '{}'
+        - - '{}'
+          - '{}'
+        labels:
+          key: labels
+      properties:
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        values:
+          items:
+            items:
+              properties: {}
+              type: object
+            type: array
+          type: array
+      type: object
+    MetricName:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - CPU_TOTAL_PERCENT
+      - MEM_RSS
+      - MEM_SWAP
+      - HTTP_THROUGHPUT
+      - HTTP_RESPONSE_TIME_50P
+      - HTTP_RESPONSE_TIME_90P
+      - HTTP_RESPONSE_TIME_99P
+      - HTTP_RESPONSE_TIME_MAX
+      - PUBLIC_DATA_TRANSFER_IN
+      - PUBLIC_DATA_TRANSFER_OUT
+      type: string
+    LogEntry:
+      example:
+        msg: msg
+        created_at: 2000-01-23T04:56:07.000+00:00
+        labels: '{}'
+      properties:
+        msg:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        labels:
+          properties: {}
+          type: object
+      type: object
+    ExecCommandIO:
+      example:
+        data: data
+      properties:
+        data:
+          format: byte
+          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+          type: string
+      type: object
+    ExecCommandReply:
+      example:
+        stdout:
+          data: data
+        exited: true
+        exit_code: 0
+        stderr:
+          data: data
+      properties:
+        stdout:
+          $ref: '#/components/schemas/ExecCommandIO'
+        stderr:
+          $ref: '#/components/schemas/ExecCommandIO'
+        exited:
+          type: boolean
+        exit_code:
+          format: int32
+          type: integer
+      type: object
+    ExecCommandRequest.Body:
+      properties:
+        command:
+          items:
+            type: string
+          type: array
+        tty_size:
+          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
+        stdin:
+          $ref: '#/components/schemas/ExecCommandIO'
+      type: object
+    ExecCommandRequest.TerminalSize:
+      properties:
+        height:
+          format: int32
+          type: integer
+        width:
+          format: int32
+          type: integer
+      type: object
+    kgitproxy.Branch:
+      example:
+        organization_id: organization_id
+        name: name
+        repository_id: repository_id
+        id: id
+        is_default: true
+        is_protected: true
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        repository_id:
+          type: string
+        name:
+          type: string
+        is_default:
+          type: boolean
+        is_protected:
+          type: boolean
+      type: object
+    kgitproxy.GitHubRepository:
+      example:
+        github_id: github_id
+      properties:
+        github_id:
+          type: string
+      type: object
+    kgitproxy.ListBranchesReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        branches:
+        - organization_id: organization_id
+          name: name
+          repository_id: repository_id
+          id: id
+          is_default: true
+          is_protected: true
+        - organization_id: organization_id
+          name: name
+          repository_id: repository_id
+          id: id
+          is_default: true
+          is_protected: true
+      properties:
+        branches:
+          description: The collection of branches.
+          items:
+            $ref: '#/components/schemas/kgitproxy.Branch'
+          type: array
+        limit:
+          description: The limit in the request.
+          format: int64
+          type: integer
+        offset:
+          description: The offset in the request.
+          format: int64
+          type: integer
+        count:
+          description: The total number of items.
+          format: int64
+          type: integer
+      type: object
+    kgitproxy.ListRepositoriesReply:
+      example:
+        offset: 6
+        repositories:
+        - is_private: true
+          github:
+            github_id: github_id
+          organization_id: organization_id
+          name: name
+          description: description
+          default_branch: default_branch
+          id: id
+          url: url
+        - is_private: true
+          github:
+            github_id: github_id
+          organization_id: organization_id
+          name: name
+          description: description
+          default_branch: default_branch
+          id: id
+          url: url
+        limit: 0
+        count: 1
+      properties:
+        repositories:
+          description: The collection of repositories.
+          items:
+            $ref: '#/components/schemas/kgitproxy.Repository'
+          type: array
+        limit:
+          description: The limit in the request.
+          format: int64
+          type: integer
+        offset:
+          description: The offset in the request.
+          format: int64
+          type: integer
+        count:
+          description: The total number of items.
+          format: int64
+          type: integer
+      type: object
+    kgitproxy.Repository:
+      example:
+        is_private: true
+        github:
+          github_id: github_id
+        organization_id: organization_id
+        name: name
+        description: description
+        default_branch: default_branch
+        id: id
+        url: url
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        description:
+          type: string
+        is_private:
+          type: boolean
+        default_branch:
+          type: string
+        provider:
+          $ref: '#/components/schemas/kgitproxy.RepositoryProvider'
+        github:
+          $ref: '#/components/schemas/kgitproxy.GitHubRepository'
+      type: object
+    kgitproxy.RepositoryProvider:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - GITHUB
+      type: string
+    kgitproxy.ResyncOrganizationReply:
+      type: object
+    ksearch.App:
+      example:
+        organization_id: organization_id
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        name:
+          type: string
+      type: object
+    ksearch.GlobalDeployment:
+      example:
+        organization_id: organization_id
+        service_id: service_id
+        id: id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+      type: object
+    ksearch.Instance:
+      example:
+        organization_id: organization_id
+        service_id: service_id
+        allocation_id: allocation_id
+        id: id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        allocation_id:
+          type: string
+      type: object
+    ksearch.Organization:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    ksearch.RegionalDeployment:
+      example:
+        organization_id: organization_id
+        service_id: service_id
+        id: id
+        region: region
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        region:
+          type: string
+      type: object
+    ksearch.SearchReply:
+      example:
+        global_deployments:
+        - organization_id: organization_id
+          service_id: service_id
+          id: id
+          app_id: app_id
+        - organization_id: organization_id
+          service_id: service_id
+          id: id
+          app_id: app_id
+        instances:
+        - organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          id: id
+          app_id: app_id
+        - organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          id: id
+          app_id: app_id
+        regional_deployments:
+        - organization_id: organization_id
+          service_id: service_id
+          id: id
+          region: region
+          app_id: app_id
+        - organization_id: organization_id
+          service_id: service_id
+          id: id
+          region: region
+          app_id: app_id
+        organizations:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        services:
+        - organization_id: organization_id
+          name: name
+          id: id
+          app_id: app_id
+        - organization_id: organization_id
+          name: name
+          id: id
+          app_id: app_id
+        users:
+        - github_user: github_user
+          name: name
+          id: id
+          email: email
+        - github_user: github_user
+          name: name
+          id: id
+          email: email
+        apps:
+        - organization_id: organization_id
+          name: name
+          id: id
+        - organization_id: organization_id
+          name: name
+          id: id
+      properties:
+        organizations:
+          items:
+            $ref: '#/components/schemas/ksearch.Organization'
+          type: array
+        users:
+          items:
+            $ref: '#/components/schemas/ksearch.User'
+          type: array
+        apps:
+          items:
+            $ref: '#/components/schemas/ksearch.App'
+          type: array
+        services:
+          items:
+            $ref: '#/components/schemas/ksearch.Service'
+          type: array
+        global_deployments:
+          items:
+            $ref: '#/components/schemas/ksearch.GlobalDeployment'
+          type: array
+        regional_deployments:
+          items:
+            $ref: '#/components/schemas/ksearch.RegionalDeployment'
+          type: array
+        instances:
+          items:
+            $ref: '#/components/schemas/ksearch.Instance'
+          type: array
+      type: object
+    ksearch.Service:
+      example:
+        organization_id: organization_id
+        name: name
+        id: id
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        name:
+          type: string
+      type: object
+    ksearch.User:
+      example:
+        github_user: github_user
+        name: name
+        id: id
+        email: email
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        github_user:
+          type: string
       type: object
     AzureContainerRegistryConfiguration:
       example:
@@ -4844,331 +5567,6 @@ components:
         secret:
           $ref: '#/components/schemas/Secret'
       type: object
-    App:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    AppListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        created_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    CreateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    CreateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    DeleteAppReply:
-      type: object
-    GetAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
-    ListAppsReply:
-      example:
-        offset: 6
-        limit: 0
-        count: 1
-        apps:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          id: id
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          id: id
-      properties:
-        apps:
-          items:
-            $ref: '#/components/schemas/AppListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    UpdateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
-    UpdateAppReply:
-      example:
-        app:
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          created_at: 2000-01-23T04:56:07.000+00:00
-          domains:
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          - created_at: 2000-01-23T04:56:07.000+00:00
-            intended_cname: intended_cname
-            version: version
-            updated_at: 2000-01-23T04:56:07.000+00:00
-            deployment_group: deployment_group
-            verified_at: 2000-01-23T04:56:07.000+00:00
-            organization_id: organization_id
-            name: name
-            messages:
-            - messages
-            - messages
-            id: id
-            app_id: app_id
-          id: id
-      properties:
-        app:
-          $ref: '#/components/schemas/App'
-      type: object
     Deployment:
       example:
         metadata:
@@ -5257,6 +5655,7 @@ components:
           git:
             run_command: run_command
             build_command: build_command
+            no_deploy_on_push: true
             tag: tag
             repository: repository
             branch: branch
@@ -5391,6 +5790,7 @@ components:
         git:
           run_command: run_command
           build_command: build_command
+          no_deploy_on_push: true
           tag: tag
           repository: repository
           branch: branch
@@ -5586,6 +5986,7 @@ components:
           git:
             run_command: run_command
             build_command: build_command
+            no_deploy_on_push: true
             tag: tag
             repository: repository
             branch: branch
@@ -5976,6 +6377,7 @@ components:
             git:
               run_command: run_command
               build_command: build_command
+              no_deploy_on_push: true
               tag: tag
               repository: repository
               branch: branch
@@ -6062,6 +6464,7 @@ components:
       example:
         run_command: run_command
         build_command: build_command
+        no_deploy_on_push: true
         tag: tag
         repository: repository
         branch: branch
@@ -6089,6 +6492,9 @@ components:
         run_command:
           title: A command used to override the default run command
           type: string
+        no_deploy_on_push:
+          title: A flag to disable a new deployment when a push event is detected
+          type: boolean
       type: object
     ListDeploymentsReply:
       example:
@@ -6179,6 +6585,7 @@ components:
             git:
               run_command: run_command
               build_command: build_command
+              no_deploy_on_push: true
               tag: tag
               repository: repository
               branch: branch
@@ -6310,6 +6717,7 @@ components:
             git:
               run_command: run_command
               build_command: build_command
+              no_deploy_on_push: true
               tag: tag
               repository: repository
               branch: branch
@@ -6399,234 +6807,160 @@ components:
       - UNKNOWN
       - GIT
       type: string
-    Env:
+    CreateDomain:
       example:
-        secret: secret
-        value: value
-        key: key
+        name: name
+        app_id: app_id
       properties:
-        key:
+        name:
           type: string
-        value:
-          type: string
-        secret:
+        type:
+          $ref: '#/components/schemas/Domain.Type'
+        app_id:
           type: string
       type: object
-    GetRegionalDeploymentReply:
+    CreateDomainReply:
       example:
-        regional_deployment:
-          metadata:
-            runtime_job_id: runtime_job_id
+        domain:
           created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
           version: version
-          succeeded_at: 2000-01-23T04:56:07.000+00:00
-          datacenters:
-          - datacenters
-          - datacenters
           updated_at: 2000-01-23T04:56:07.000+00:00
-          child_id: child_id
-          provisioning_info:
-            image: image
-            stages:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              build_attempts:
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 5
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 5
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              build_attempts:
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 5
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 5
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-            sha: sha
           deployment_group: deployment_group
-          parent_id: parent_id
+          verified_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
-          service_id: service_id
-          started_at: 2000-01-23T04:56:07.000+00:00
+          name: name
           messages:
           - messages
           - messages
-          definition:
-            routes:
-            - path: path
-              port: 0
-            - path: path
-              port: 0
-            scaling:
-              min: 1
-              max: 5
-            git:
-              run_command: run_command
-              build_command: build_command
-              tag: tag
-              repository: repository
-              branch: branch
-              sha: sha
-            deployment_group: deployment_group
-            name: name
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
-            region: region
-            instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
           id: id
-          deployment_id: deployment_id
-          region: region
           app_id: app_id
-          terminated_at: 2000-01-23T04:56:07.000+00:00
-          allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
-        regional_deployment:
-          $ref: '#/components/schemas/RegionalDeployment'
+        domain:
+          $ref: '#/components/schemas/Domain'
       type: object
-    ListRegionalDeploymentsReply:
+    DeleteDomainReply:
+      type: object
+    Domain:
       example:
-        offset: 2
-        regional_deployments:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          definition:
-            routes:
-            - path: path
-              port: 0
-            - path: path
-              port: 0
-            scaling:
-              min: 1
-              max: 5
-            git:
-              run_command: run_command
-              build_command: build_command
-              tag: tag
-              repository: repository
-              branch: branch
-              sha: sha
-            deployment_group: deployment_group
-            name: name
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
-            region: region
-            instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
-          id: id
-          region: region
-        - updated_at: 2000-01-23T04:56:07.000+00:00
-          created_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
-          definition:
-            routes:
-            - path: path
-              port: 0
-            - path: path
-              port: 0
-            scaling:
-              min: 1
-              max: 5
-            git:
-              run_command: run_command
-              build_command: build_command
-              tag: tag
-              repository: repository
-              branch: branch
-              sha: sha
-            deployment_group: deployment_group
-            name: name
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
-            region: region
-            instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
-          id: id
-          region: region
-        limit: 5
-        count: 7
+        created_at: 2000-01-23T04:56:07.000+00:00
+        intended_cname: intended_cname
+        version: version
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        deployment_group: deployment_group
+        verified_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        messages:
+        - messages
+        - messages
+        id: id
+        app_id: app_id
       properties:
-        regional_deployments:
+        id:
+          type: string
+        organization_id:
+          type: string
+        name:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/Domain.Status'
+        type:
+          $ref: '#/components/schemas/Domain.Type'
+        app_id:
+          type: string
+        deployment_group:
+          type: string
+        verified_at:
+          format: date-time
+          type: string
+        intended_cname:
+          type: string
+        messages:
           items:
-            $ref: '#/components/schemas/RegionalDeploymentListItem'
-          title: The collection of regional deployments
+            type: string
+          type: array
+        version:
+          format: uint64
+          type: string
+      type: object
+    Domain.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - ACTIVE
+      - ERROR
+      - DELETING
+      - DELETED
+      type: string
+    Domain.Type:
+      default: AUTOASSIGNED
+      enum:
+      - AUTOASSIGNED
+      - CUSTOM
+      type: string
+    GetDomainReply:
+      example:
+        domain:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+      properties:
+        domain:
+          $ref: '#/components/schemas/Domain'
+      type: object
+    ListDomainsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        domains:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+      properties:
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
           type: array
         limit:
           format: int64
@@ -6641,365 +6975,34 @@ components:
           title: The total number of items
           type: integer
       type: object
-    Port:
-      example:
-        protocol: protocol
-        port: 6
-      properties:
-        port:
-          format: int64
-          type: integer
-        protocol:
-          type: string
+    RefreshDomainStatusReply:
       type: object
-    RegionalDeployment:
+    UpdateDomain:
       example:
-        metadata:
-          runtime_job_id: runtime_job_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        version: version
-        succeeded_at: 2000-01-23T04:56:07.000+00:00
-        datacenters:
-        - datacenters
-        - datacenters
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        child_id: child_id
-        provisioning_info:
-          image: image
-          stages:
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            build_attempts:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 5
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 5
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            build_attempts:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 5
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 5
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-          sha: sha
-        deployment_group: deployment_group
-        parent_id: parent_id
-        organization_id: organization_id
-        service_id: service_id
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
-          deployment_group: deployment_group
-          name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
-          region: region
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        id: id
-        deployment_id: deployment_id
-        region: region
         app_id: app_id
-        terminated_at: 2000-01-23T04:56:07.000+00:00
-        allocated_at: 2000-01-23T04:56:07.000+00:00
       properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        allocated_at:
-          format: date-time
-          type: string
-        started_at:
-          format: date-time
-          type: string
-        succeeded_at:
-          format: date-time
-          type: string
-        terminated_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
         app_id:
           type: string
-        service_id:
-          type: string
-        region:
-          type: string
-        parent_id:
-          type: string
-        child_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/RegionalDeployment.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        definition:
-          $ref: '#/components/schemas/RegionalDeploymentDefinition'
-        datacenters:
-          items:
-            type: string
-          type: array
-        metadata:
-          $ref: '#/components/schemas/RegionalDeploymentMetadata'
-        provisioning_info:
-          $ref: '#/components/schemas/DeploymentProvisioningInfo'
-        version:
-          format: uint64
-          type: string
-        deployment_group:
-          title: Legacy stuff
-          type: string
-        deployment_id:
-          type: string
       type: object
-    RegionalDeployment.Status:
-      default: PENDING
-      enum:
-      - PENDING
-      - PROVISIONING
-      - SCHEDULED
-      - CANCELING
-      - CANCELED
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - DEGRADED
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERRORING
-      - ERROR
-      type: string
-    RegionalDeploymentDefinition:
+    UpdateDomainReply:
       example:
-        routes:
-        - path: path
-          port: 0
-        - path: path
-          port: 0
-        scaling:
-          min: 1
-          max: 5
-        git:
-          run_command: run_command
-          build_command: build_command
-          tag: tag
-          repository: repository
-          branch: branch
-          sha: sha
-        deployment_group: deployment_group
-        name: name
-        ports:
-        - protocol: protocol
-          port: 6
-        - protocol: protocol
-          port: 6
-        env:
-        - secret: secret
-          value: value
-          key: key
-        - secret: secret
-          value: value
-          key: key
-        region: region
-        instance_type: instance_type
-        docker:
-          args:
-          - args
-          - args
-          image: image
-          image_registry_secret: image_registry_secret
-          command: command
-      properties:
-        name:
-          type: string
-        routes:
-          items:
-            $ref: '#/components/schemas/Route'
-          type: array
-        ports:
-          items:
-            $ref: '#/components/schemas/Port'
-          type: array
-        env:
-          items:
-            $ref: '#/components/schemas/Env'
-          type: array
-        region:
-          type: string
-        scaling:
-          $ref: '#/components/schemas/Scaling'
-        instance_type:
-          type: string
-        deployment_group:
-          type: string
-        docker:
-          $ref: '#/components/schemas/DockerSource'
-        git:
-          $ref: '#/components/schemas/GitSource'
-      type: object
-    RegionalDeploymentListItem:
-      example:
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        created_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        definition:
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          scaling:
-            min: 1
-            max: 5
-          git:
-            run_command: run_command
-            build_command: build_command
-            tag: tag
-            repository: repository
-            branch: branch
-            sha: sha
+        domain:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
           deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
           name: name
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
-          region: region
-          instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
-        id: id
-        region: region
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
       properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        region:
-          type: string
-        status:
-          $ref: '#/components/schemas/RegionalDeployment.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        definition:
-          $ref: '#/components/schemas/RegionalDeploymentDefinition'
-      type: object
-    RegionalDeploymentMetadata:
-      example:
-        runtime_job_id: runtime_job_id
-      properties:
-        runtime_job_id:
-          type: string
-      type: object
-    Route:
-      example:
-        path: path
-        port: 0
-      properties:
-        port:
-          format: int64
-          type: integer
-        path:
-          type: string
-      type: object
-    Scaling:
-      example:
-        min: 1
-        max: 5
-      properties:
-        min:
-          format: int64
-          type: integer
-        max:
-          format: int64
-          type: integer
+        domain:
+          $ref: '#/components/schemas/Domain'
       type: object
     AutoRelease:
       example:
@@ -7061,6 +7064,7 @@ components:
           git:
             run_command: run_command
             build_command: build_command
+            no_deploy_on_push: true
             tag: tag
             repository: repository
             branch: branch
@@ -7401,6 +7405,7 @@ components:
             git:
               run_command: run_command
               build_command: build_command
+              no_deploy_on_push: true
               tag: tag
               repository: repository
               branch: branch
@@ -7651,6 +7656,7 @@ components:
           git:
             run_command: run_command
             build_command: build_command
+            no_deploy_on_push: true
             tag: tag
             repository: repository
             branch: branch
@@ -7736,73 +7742,895 @@ components:
         service:
           $ref: '#/components/schemas/Service'
       type: object
-    ksearch.App:
+    App:
       example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
         id: id
       properties:
         id:
-          type: string
-        organization_id:
           type: string
         name:
           type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
       type: object
-    ksearch.GlobalDeployment:
+    AppListItem:
       example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
-        service_id: service_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
         id: id
-        app_id: app_id
       properties:
         id:
           type: string
+        name:
+          type: string
         organization_id:
           type: string
-        app_id:
+        updated_at:
+          format: date-time
           type: string
-        service_id:
+        created_at:
+          format: date-time
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    CreateApp:
+      example:
+        name: name
+      properties:
+        name:
           type: string
       type: object
-    ksearch.Instance:
+    CreateAppReply:
       example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    DeleteAppReply:
+      type: object
+    GetAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    ListAppsReply:
+      example:
+        offset: 6
+        limit: 0
+        count: 1
+        apps:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          id: id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        apps:
+          items:
+            $ref: '#/components/schemas/AppListItem'
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    UpdateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    UpdateAppReply:
+      example:
+        app:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+          id: id
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+      type: object
+    GetInstanceReply:
+      example:
+        instance:
+          regional_deployment_id: regional_deployment_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          datacenter: datacenter
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          hypervisor: hypervisor
+          allocation_id: allocation_id
+          messages:
+          - messages
+          - messages
+          id: id
+          region: region
+          app_id: app_id
+      properties:
+        instance:
+          $ref: '#/components/schemas/Instance'
+      type: object
+    Instance:
+      example:
+        regional_deployment_id: regional_deployment_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        datacenter: datacenter
+        updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         service_id: service_id
+        hypervisor: hypervisor
         allocation_id: allocation_id
-        id: id
-        app_id: app_id
-      properties:
-        id:
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        allocation_id:
-          type: string
-      type: object
-    ksearch.Organization:
-      example:
-        name: name
-        id: id
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-      type: object
-    ksearch.RegionalDeployment:
-      example:
-        organization_id: organization_id
-        service_id: service_id
+        messages:
+        - messages
+        - messages
         id: id
         region: region
         app_id: app_id
       properties:
         id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        regional_deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        region:
+          type: string
+        datacenter:
+          type: string
+        hypervisor:
+          type: string
+        status:
+          $ref: '#/components/schemas/Instance.Status'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    Instance.Status:
+      default: ALLOCATING
+      enum:
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      type: string
+    InstanceListItem:
+      example:
+        regional_deployment_id: regional_deployment_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        service_id: service_id
+        allocation_id: allocation_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        datacenter: datacenter
+        id: id
+        region: region
+        app_id: app_id
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        regional_deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        region:
+          type: string
+        datacenter:
+          type: string
+        status:
+          $ref: '#/components/schemas/Instance.Status'
+        messages:
+          items:
+            type: string
+          type: array
+      type: object
+    ListInstancesReply:
+      example:
+        offset: 6
+        instances:
+        - regional_deployment_id: regional_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          region: region
+          app_id: app_id
+        - regional_deployment_id: regional_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          allocation_id: allocation_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          datacenter: datacenter
+          id: id
+          region: region
+          app_id: app_id
+        limit: 0
+        count: 1
+        order: order
+      properties:
+        instances:
+          items:
+            $ref: '#/components/schemas/InstanceListItem'
+          title: The collection of instances
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+        order:
+          title: The order in the request
+          type: string
+      type: object
+    Env:
+      example:
+        secret: secret
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        secret:
+          type: string
+      type: object
+    GetRegionalDeploymentReply:
+      example:
+        regional_deployment:
+          metadata:
+            runtime_job_id: runtime_job_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          version: version
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          datacenters:
+          - datacenters
+          - datacenters
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          child_id: child_id
+          provisioning_info:
+            image: image
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              build_attempts:
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 5
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 5
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              build_attempts:
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 5
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 5
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+            sha: sha
+          deployment_group: deployment_group
+          parent_id: parent_id
+          organization_id: organization_id
+          service_id: service_id
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          deployment_id: deployment_id
+          region: region
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        regional_deployment:
+          $ref: '#/components/schemas/RegionalDeployment'
+      type: object
+    ListRegionalDeploymentsReply:
+      example:
+        offset: 2
+        regional_deployments:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          region: region
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          definition:
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            scaling:
+              min: 1
+              max: 5
+            git:
+              run_command: run_command
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              branch: branch
+              sha: sha
+            deployment_group: deployment_group
+            name: name
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            region: region
+            instance_type: instance_type
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
+          id: id
+          region: region
+        limit: 5
+        count: 7
+      properties:
+        regional_deployments:
+          items:
+            $ref: '#/components/schemas/RegionalDeploymentListItem'
+          title: The collection of regional deployments
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of items
+          type: integer
+      type: object
+    Port:
+      example:
+        protocol: protocol
+        port: 6
+      properties:
+        port:
+          format: int64
+          type: integer
+        protocol:
+          type: string
+      type: object
+    RegionalDeployment:
+      example:
+        metadata:
+          runtime_job_id: runtime_job_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        version: version
+        succeeded_at: 2000-01-23T04:56:07.000+00:00
+        datacenters:
+        - datacenters
+        - datacenters
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        child_id: child_id
+        provisioning_info:
+          image: image
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            build_attempts:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 5
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 5
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            build_attempts:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 5
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 5
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+          sha: sha
+        deployment_group: deployment_group
+        parent_id: parent_id
+        organization_id: organization_id
+        service_id: service_id
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          git:
+            run_command: run_command
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          region: region
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
+        id: id
+        deployment_id: deployment_id
+        region: region
+        app_id: app_id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
+        allocated_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        allocated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        succeeded_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
           type: string
         organization_id:
           type: string
@@ -7812,244 +8640,218 @@ components:
           type: string
         region:
           type: string
+        parent_id:
+          type: string
+        child_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegionalDeployment.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        definition:
+          $ref: '#/components/schemas/RegionalDeploymentDefinition'
+        datacenters:
+          items:
+            type: string
+          type: array
+        metadata:
+          $ref: '#/components/schemas/RegionalDeploymentMetadata'
+        provisioning_info:
+          $ref: '#/components/schemas/DeploymentProvisioningInfo'
+        version:
+          format: uint64
+          type: string
+        deployment_group:
+          title: Legacy stuff
+          type: string
+        deployment_id:
+          type: string
       type: object
-    ksearch.SearchReply:
+    RegionalDeployment.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - PROVISIONING
+      - SCHEDULED
+      - CANCELING
+      - CANCELED
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERRORING
+      - ERROR
+      type: string
+    RegionalDeploymentDefinition:
       example:
-        global_deployments:
-        - organization_id: organization_id
-          service_id: service_id
-          id: id
-          app_id: app_id
-        - organization_id: organization_id
-          service_id: service_id
-          id: id
-          app_id: app_id
-        instances:
-        - organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          id: id
-          app_id: app_id
-        - organization_id: organization_id
-          service_id: service_id
-          allocation_id: allocation_id
-          id: id
-          app_id: app_id
-        regional_deployments:
-        - organization_id: organization_id
-          service_id: service_id
-          id: id
-          region: region
-          app_id: app_id
-        - organization_id: organization_id
-          service_id: service_id
-          id: id
-          region: region
-          app_id: app_id
-        organizations:
-        - name: name
-          id: id
-        - name: name
-          id: id
-        services:
-        - organization_id: organization_id
-          name: name
-          id: id
-          app_id: app_id
-        - organization_id: organization_id
-          name: name
-          id: id
-          app_id: app_id
-        users:
-        - github_user: github_user
-          name: name
-          id: id
-          email: email
-        - github_user: github_user
-          name: name
-          id: id
-          email: email
-        apps:
-        - organization_id: organization_id
-          name: name
-          id: id
-        - organization_id: organization_id
-          name: name
-          id: id
-      properties:
-        organizations:
-          items:
-            $ref: '#/components/schemas/ksearch.Organization'
-          type: array
-        users:
-          items:
-            $ref: '#/components/schemas/ksearch.User'
-          type: array
-        apps:
-          items:
-            $ref: '#/components/schemas/ksearch.App'
-          type: array
-        services:
-          items:
-            $ref: '#/components/schemas/ksearch.Service'
-          type: array
-        global_deployments:
-          items:
-            $ref: '#/components/schemas/ksearch.GlobalDeployment'
-          type: array
-        regional_deployments:
-          items:
-            $ref: '#/components/schemas/ksearch.RegionalDeployment'
-          type: array
-        instances:
-          items:
-            $ref: '#/components/schemas/ksearch.Instance'
-          type: array
-      type: object
-    ksearch.Service:
-      example:
-        organization_id: organization_id
+        routes:
+        - path: path
+          port: 0
+        - path: path
+          port: 0
+        scaling:
+          min: 1
+          max: 5
+        git:
+          run_command: run_command
+          build_command: build_command
+          no_deploy_on_push: true
+          tag: tag
+          repository: repository
+          branch: branch
+          sha: sha
+        deployment_group: deployment_group
         name: name
-        id: id
-        app_id: app_id
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - secret: secret
+          value: value
+          key: key
+        - secret: secret
+          value: value
+          key: key
+        region: region
+        instance_type: instance_type
+        docker:
+          args:
+          - args
+          - args
+          image: image
+          image_registry_secret: image_registry_secret
+          command: command
       properties:
-        id:
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
         name:
           type: string
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type: array
+        ports:
+          items:
+            $ref: '#/components/schemas/Port'
+          type: array
+        env:
+          items:
+            $ref: '#/components/schemas/Env'
+          type: array
+        region:
+          type: string
+        scaling:
+          $ref: '#/components/schemas/Scaling'
+        instance_type:
+          type: string
+        deployment_group:
+          type: string
+        docker:
+          $ref: '#/components/schemas/DockerSource'
+        git:
+          $ref: '#/components/schemas/GitSource'
       type: object
-    ksearch.User:
+    RegionalDeploymentListItem:
       example:
-        github_user: github_user
-        name: name
-        id: id
-        email: email
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-        name:
-          type: string
-        github_user:
-          type: string
-      type: object
-    GithubHookReply:
-      type: object
-    Notification:
-      example:
-        is_read: true
-        activity:
-          actor:
-            metadata: '{}'
-            deleted: true
-            name: name
-            id: id
-            type: type
-          metadata: '{}'
-          verb: verb
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          object:
-            metadata: '{}'
-            deleted: true
-            name: name
-            id: id
-            type: type
+        updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        definition:
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          scaling:
+            min: 1
+            max: 5
+          git:
+            run_command: run_command
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            branch: branch
+            sha: sha
+          deployment_group: deployment_group
+          name: name
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          region: region
+          instance_type: instance_type
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
         id: id
-        is_seen: true
+        region: region
       properties:
         id:
           type: string
-        activity:
-          $ref: '#/components/schemas/Activity'
-        is_read:
-          type: boolean
-        is_seen:
-          type: boolean
         created_at:
           format: date-time
           type: string
-      type: object
-    NotificationList:
-      example:
-        is_read: true
-        offset: 6
-        unread: 5
-        limit: 0
-        count: 1
-        is_seen: true
-        notifications:
-        - is_read: true
-          activity:
-            actor:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-            metadata: '{}'
-            verb: verb
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            object:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          is_seen: true
-        - is_read: true
-          activity:
-            actor:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-            metadata: '{}'
-            verb: verb
-            created_at: 2000-01-23T04:56:07.000+00:00
-            id: id
-            object:
-              metadata: '{}'
-              deleted: true
-              name: name
-              id: id
-              type: type
-          created_at: 2000-01-23T04:56:07.000+00:00
-          id: id
-          is_seen: true
-        unseen: 5
-      properties:
-        notifications:
+        updated_at:
+          format: date-time
+          type: string
+        region:
+          type: string
+        status:
+          $ref: '#/components/schemas/RegionalDeployment.Status'
+        messages:
           items:
-            $ref: '#/components/schemas/Notification'
+            type: string
           type: array
-        limit:
+        definition:
+          $ref: '#/components/schemas/RegionalDeploymentDefinition'
+      type: object
+    RegionalDeploymentMetadata:
+      example:
+        runtime_job_id: runtime_job_id
+      properties:
+        runtime_job_id:
+          type: string
+      type: object
+    Route:
+      example:
+        path: path
+        port: 0
+      properties:
+        port:
           format: int64
           type: integer
-        offset:
+        path:
+          type: string
+      type: object
+    Scaling:
+      example:
+        min: 1
+        max: 5
+      properties:
+        min:
           format: int64
           type: integer
-        count:
-          format: int64
-          type: integer
-        is_read:
-          type: boolean
-        is_seen:
-          type: boolean
-        unread:
-          format: int64
-          type: integer
-        unseen:
+        max:
           format: int64
           type: integer
       type: object
@@ -8619,519 +9421,6 @@ components:
       type: object
     Empty:
       type: object
-    CatalogInstance:
-      example:
-        price_monthly: price_monthly
-        require_plan:
-        - require_plan
-        - require_plan
-        disk: disk
-        memory: memory
-        regions:
-        - regions
-        - regions
-        vcpu: 0
-        description: description
-        id: id
-        price_hourly: price_hourly
-        status: status
-      properties:
-        id:
-          title: The name of the instance
-          type: string
-        description:
-          title: A short description of the instance
-          type: string
-        vcpu:
-          format: int64
-          title: The number of cpus
-          type: integer
-        memory:
-          title: The memory in bytes in a format like 5MB
-          type: string
-        disk:
-          title: The size of the disk in bytes in a format like 5MB
-          type: string
-        price_hourly:
-          title: The price to pay per hour
-          type: string
-        price_monthly:
-          title: The price to pay per month
-          type: string
-        regions:
-          items:
-            type: string
-          title: The regions where this instance type is available
-          type: array
-        status:
-          title: The status of the instance
-          type: string
-        require_plan:
-          items:
-            type: string
-          title: The plan required to use instance
-          type: array
-      type: object
-    CatalogInstanceListItem:
-      example:
-        price_monthly: price_monthly
-        require_plan:
-        - require_plan
-        - require_plan
-        disk: disk
-        memory: memory
-        regions:
-        - regions
-        - regions
-        vcpu: 0
-        description: description
-        id: id
-        price_hourly: price_hourly
-        status: status
-      properties:
-        id:
-          title: The name of the instance
-          type: string
-        description:
-          title: A short description of the instance
-          type: string
-        vcpu:
-          format: int64
-          title: The number of cpus
-          type: integer
-        memory:
-          title: The memory in bytes in a format like 5MB
-          type: string
-        disk:
-          title: The size of the disk in bytes in a format like 5MB
-          type: string
-        price_hourly:
-          title: The price to pay per hour
-          type: string
-        price_monthly:
-          title: The price to pay per month
-          type: string
-        regions:
-          items:
-            type: string
-          title: The regions where this instance type is available
-          type: array
-        status:
-          title: The status of the instance
-          type: string
-        require_plan:
-          items:
-            type: string
-          title: The plan required to use instance
-          type: array
-      type: object
-    GetCatalogInstanceReply:
-      example:
-        instance:
-          price_monthly: price_monthly
-          require_plan:
-          - require_plan
-          - require_plan
-          disk: disk
-          memory: memory
-          regions:
-          - regions
-          - regions
-          vcpu: 0
-          description: description
-          id: id
-          price_hourly: price_hourly
-          status: status
-      properties:
-        instance:
-          $ref: '#/components/schemas/CatalogInstance'
-      type: object
-    ListCatalogInstancesReply:
-      example:
-        offset: 1
-        instances:
-        - price_monthly: price_monthly
-          require_plan:
-          - require_plan
-          - require_plan
-          disk: disk
-          memory: memory
-          regions:
-          - regions
-          - regions
-          vcpu: 0
-          description: description
-          id: id
-          price_hourly: price_hourly
-          status: status
-        - price_monthly: price_monthly
-          require_plan:
-          - require_plan
-          - require_plan
-          disk: disk
-          memory: memory
-          regions:
-          - regions
-          - regions
-          vcpu: 0
-          description: description
-          id: id
-          price_hourly: price_hourly
-          status: status
-        limit: 6
-        count: 5
-      properties:
-        instances:
-          items:
-            $ref: '#/components/schemas/CatalogInstanceListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    DatacenterListItem:
-      example:
-        domain: domain
-        region_id: region_id
-        coordinates:
-        - coordinates
-        - coordinates
-        id: id
-      properties:
-        id:
-          type: string
-        region_id:
-          type: string
-        domain:
-          type: string
-        coordinates:
-          items:
-            type: string
-          type: array
-      type: object
-    ListDatacentersReply:
-      example:
-        datacenters:
-        - domain: domain
-          region_id: region_id
-          coordinates:
-          - coordinates
-          - coordinates
-          id: id
-        - domain: domain
-          region_id: region_id
-          coordinates:
-          - coordinates
-          - coordinates
-          id: id
-      properties:
-        datacenters:
-          items:
-            $ref: '#/components/schemas/DatacenterListItem'
-          type: array
-      type: object
-    GetRegionReply:
-      example:
-        region:
-          datacenters:
-          - datacenters
-          - datacenters
-          instances:
-          - instances
-          - instances
-          name: name
-          coordinates:
-          - coordinates
-          - coordinates
-          id: id
-          status: status
-      properties:
-        region:
-          $ref: '#/components/schemas/Region'
-      type: object
-    ListRegionsReply:
-      example:
-        regions:
-        - datacenters:
-          - datacenters
-          - datacenters
-          instances:
-          - instances
-          - instances
-          name: name
-          coordinates:
-          - coordinates
-          - coordinates
-          id: id
-          status: status
-        - datacenters:
-          - datacenters
-          - datacenters
-          instances:
-          - instances
-          - instances
-          name: name
-          coordinates:
-          - coordinates
-          - coordinates
-          id: id
-          status: status
-        offset: 6
-        limit: 0
-        count: 1
-      properties:
-        regions:
-          items:
-            $ref: '#/components/schemas/RegionListItem'
-          type: array
-        limit:
-          format: int64
-          title: The limit in the request
-          type: integer
-        offset:
-          format: int64
-          title: The offset in the request
-          type: integer
-        count:
-          format: int64
-          title: The total number of items
-          type: integer
-      type: object
-    Region:
-      example:
-        datacenters:
-        - datacenters
-        - datacenters
-        instances:
-        - instances
-        - instances
-        name: name
-        coordinates:
-        - coordinates
-        - coordinates
-        id: id
-        status: status
-      properties:
-        id:
-          title: The id of the region
-          type: string
-        name:
-          title: The name of the region
-          type: string
-        coordinates:
-          items:
-            type: string
-          title: The coordinates of the region (lat/long)
-          type: array
-        status:
-          title: The status of the region
-          type: string
-        instances:
-          items:
-            type: string
-          title: A list of instances available in this region
-          type: array
-        datacenters:
-          items:
-            type: string
-          title: A list of datacenters available in this region
-          type: array
-      type: object
-    RegionListItem:
-      example:
-        datacenters:
-        - datacenters
-        - datacenters
-        instances:
-        - instances
-        - instances
-        name: name
-        coordinates:
-        - coordinates
-        - coordinates
-        id: id
-        status: status
-      properties:
-        id:
-          title: The id of the region
-          type: string
-        name:
-          title: The name of the region
-          type: string
-        coordinates:
-          items:
-            type: string
-          title: The coordinates of the region (lat/long)
-          type: array
-        status:
-          title: The status of the region
-          type: string
-        instances:
-          items:
-            type: string
-          title: A list of instances available in this region
-          type: array
-        datacenters:
-          items:
-            type: string
-          title: A list of datacenters available in this region
-          type: array
-      type: object
-    ExecCommandIO:
-      example:
-        data: data
-      properties:
-        data:
-          format: byte
-          pattern: ^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-          type: string
-      type: object
-    ExecCommandReply:
-      example:
-        stdout:
-          data: data
-        exited: true
-        exit_code: 0
-        stderr:
-          data: data
-      properties:
-        stdout:
-          $ref: '#/components/schemas/ExecCommandIO'
-        stderr:
-          $ref: '#/components/schemas/ExecCommandIO'
-        exited:
-          type: boolean
-        exit_code:
-          format: int32
-          type: integer
-      type: object
-    ExecCommandRequest.Body:
-      properties:
-        command:
-          items:
-            type: string
-          type: array
-        tty_size:
-          $ref: '#/components/schemas/ExecCommandRequest.TerminalSize'
-        stdin:
-          $ref: '#/components/schemas/ExecCommandIO'
-      type: object
-    ExecCommandRequest.TerminalSize:
-      properties:
-        height:
-          format: int32
-          type: integer
-        width:
-          format: int32
-          type: integer
-      type: object
-    GetMetricsReply:
-      example:
-        metrics:
-        - values:
-          - - '{}'
-            - '{}'
-          - - '{}'
-            - '{}'
-          labels:
-            key: labels
-        - values:
-          - - '{}'
-            - '{}'
-          - - '{}'
-            - '{}'
-          labels:
-            key: labels
-      properties:
-        metrics:
-          items:
-            $ref: '#/components/schemas/GetMetricsReply.Metric'
-          type: array
-      type: object
-    GetMetricsReply.Metric:
-      example:
-        values:
-        - - '{}'
-          - '{}'
-        - - '{}'
-          - '{}'
-        labels:
-          key: labels
-      properties:
-        labels:
-          additionalProperties:
-            type: string
-          type: object
-        values:
-          items:
-            items:
-              properties: {}
-              type: object
-            type: array
-          type: array
-      type: object
-    MetricName:
-      default: UNKNOWN
-      enum:
-      - UNKNOWN
-      - CPU_TOTAL_PERCENT
-      - MEM_RSS
-      - MEM_SWAP
-      - HTTP_THROUGHPUT
-      - HTTP_RESPONSE_TIME_50P
-      - HTTP_RESPONSE_TIME_90P
-      - HTTP_RESPONSE_TIME_99P
-      - HTTP_RESPONSE_TIME_MAX
-      - PUBLIC_DATA_TRANSFER
-      type: string
-    LogEntry:
-      example:
-        msg: msg
-        created_at: 2000-01-23T04:56:07.000+00:00
-        labels: '{}'
-      properties:
-        msg:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        labels:
-          properties: {}
-          type: object
-      type: object
-    Stream_result_of_ExecCommandReply:
-      example:
-        result:
-          stdout:
-            data: data
-          exited: true
-          exit_code: 0
-          stderr:
-            data: data
-        error:
-          code: 6
-          details:
-          - value: value
-            type_url: type_url
-          - value: value
-            type_url: type_url
-          message: message
-      properties:
-        result:
-          $ref: '#/components/schemas/ExecCommandReply'
-        error:
-          $ref: '#/components/schemas/google.rpc.Status'
-      title: Stream result of ExecCommandReply
-      type: object
     Stream_result_of_LogEntry:
       example:
         result:
@@ -9139,7 +9428,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           labels: '{}'
         error:
-          code: 6
+          code: 0
           details:
           - value: value
             type_url: type_url
@@ -9152,6 +9441,30 @@ components:
         error:
           $ref: '#/components/schemas/google.rpc.Status'
       title: Stream result of LogEntry
+      type: object
+    Stream_result_of_ExecCommandReply:
+      example:
+        result:
+          stdout:
+            data: data
+          exited: true
+          exit_code: 0
+          stderr:
+            data: data
+        error:
+          code: 0
+          details:
+          - value: value
+            type_url: type_url
+          - value: value
+            type_url: type_url
+          message: message
+      properties:
+        result:
+          $ref: '#/components/schemas/ExecCommandReply'
+        error:
+          $ref: '#/components/schemas/google.rpc.Status'
+      title: Stream result of ExecCommandReply
       type: object
   securitySchemes:
     Bearer:
@@ -9178,6 +9491,7 @@ x-tagGroups:
   - Instances
   - Logs
   - Metrics
+  - Repositories
   - CatalogRegions
   - CatalogInstances
 x-original-swagger-version: "2.0"
