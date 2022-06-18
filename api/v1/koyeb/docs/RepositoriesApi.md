@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## ListBranches
 
-> KgitproxyListBranchesReply ListBranches(ctx).RepositoryId(repositoryId).Limit(limit).Offset(offset).Execute()
+> KgitproxyListBranchesReply ListBranches(ctx).RepositoryId(repositoryId).Name(name).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -30,12 +30,13 @@ import (
 
 func main() {
     repositoryId := "repositoryId_example" // string | (Optional) Filter on one repository. (optional)
+    name := "name_example" // string | (Optional) Filter on branch name using a fuzzy search. Repository filter is required to enable this filter. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RepositoriesApi.ListBranches(context.Background()).RepositoryId(repositoryId).Limit(limit).Offset(offset).Execute()
+    resp, r, err := api_client.RepositoriesApi.ListBranches(context.Background()).RepositoryId(repositoryId).Name(name).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ListBranches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,6 +58,7 @@ Other parameters are passed through a pointer to a apiListBranchesRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **repositoryId** | **string** | (Optional) Filter on one repository. | 
+ **name** | **string** | (Optional) Filter on branch name using a fuzzy search. Repository filter is required to enable this filter. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
 
@@ -80,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## ListRepositories
 
-> KgitproxyListRepositoriesReply ListRepositories(ctx).Limit(limit).Offset(offset).Execute()
+> KgitproxyListRepositoriesReply ListRepositories(ctx).Name(name).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -97,12 +99,13 @@ import (
 )
 
 func main() {
+    name := "name_example" // string | (Optional) Filter on repository name using a fuzzy search. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RepositoriesApi.ListRepositories(context.Background()).Limit(limit).Offset(offset).Execute()
+    resp, r, err := api_client.RepositoriesApi.ListRepositories(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ListRepositories``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,6 +126,7 @@ Other parameters are passed through a pointer to a apiListRepositoriesRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **name** | **string** | (Optional) Filter on repository name using a fuzzy search. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
 

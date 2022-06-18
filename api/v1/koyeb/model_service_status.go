@@ -26,6 +26,9 @@ const (
 	SERVICESTATUS_UNHEALTHY ServiceStatus = "UNHEALTHY"
 	SERVICESTATUS_DELETING ServiceStatus = "DELETING"
 	SERVICESTATUS_DELETED ServiceStatus = "DELETED"
+	SERVICESTATUS_PAUSING ServiceStatus = "PAUSING"
+	SERVICESTATUS_PAUSED ServiceStatus = "PAUSED"
+	SERVICESTATUS_RESUMING ServiceStatus = "RESUMING"
 )
 
 var allowedServiceStatusEnumValues = []ServiceStatus{
@@ -35,6 +38,9 @@ var allowedServiceStatusEnumValues = []ServiceStatus{
 	"UNHEALTHY",
 	"DELETING",
 	"DELETED",
+	"PAUSING",
+	"PAUSED",
+	"RESUMING",
 }
 
 func (v *ServiceStatus) UnmarshalJSON(src []byte) error {

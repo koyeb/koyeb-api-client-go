@@ -74,12 +74,17 @@ type ApiListBranchesRequest struct {
 	ctx _context.Context
 	ApiService RepositoriesApi
 	repositoryId *string
+	name *string
 	limit *string
 	offset *string
 }
 
 func (r ApiListBranchesRequest) RepositoryId(repositoryId string) ApiListBranchesRequest {
 	r.repositoryId = &repositoryId
+	return r
+}
+func (r ApiListBranchesRequest) Name(name string) ApiListBranchesRequest {
+	r.name = &name
 	return r
 }
 func (r ApiListBranchesRequest) Limit(limit string) ApiListBranchesRequest {
@@ -134,6 +139,9 @@ func (a *RepositoriesApiService) ListBranchesExecute(r ApiListBranchesRequest) (
 
 	if r.repositoryId != nil {
 		localVarQueryParams.Add("repository_id", parameterToString(*r.repositoryId, ""))
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
@@ -249,10 +257,15 @@ func (a *RepositoriesApiService) ListBranchesExecute(r ApiListBranchesRequest) (
 type ApiListRepositoriesRequest struct {
 	ctx _context.Context
 	ApiService RepositoriesApi
+	name *string
 	limit *string
 	offset *string
 }
 
+func (r ApiListRepositoriesRequest) Name(name string) ApiListRepositoriesRequest {
+	r.name = &name
+	return r
+}
 func (r ApiListRepositoriesRequest) Limit(limit string) ApiListRepositoriesRequest {
 	r.limit = &limit
 	return r
@@ -303,6 +316,9 @@ func (a *RepositoriesApiService) ListRepositoriesExecute(r ApiListRepositoriesRe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}

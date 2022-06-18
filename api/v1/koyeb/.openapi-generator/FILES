@@ -113,6 +113,7 @@ docs/GitSource.md
 docs/GithubInstallationCallbackRequest.md
 docs/GithubInstallationReply.md
 docs/GithubInstallationRepoListReply.md
+docs/GithubInstallationRequest.md
 docs/GithubRepo.md
 docs/GoogleProtobufAny.md
 docs/GoogleProtobufNullValue.md
@@ -193,6 +194,7 @@ docs/ServiceState.md
 docs/ServiceStatus.md
 docs/ServicesApi.md
 docs/SessionApi.md
+docs/SetupReply.md
 docs/SsoApi.md
 docs/StreamResultOfExecCommandReply.md
 docs/StreamResultOfLogEntry.md
@@ -294,6 +296,7 @@ model_git_source.go
 model_github_installation_callback_request.go
 model_github_installation_reply.go
 model_github_installation_repo_list_reply.go
+model_github_installation_request.go
 model_github_repo.go
 model_google_protobuf_any.go
 model_google_protobuf_null_value.go
@@ -361,6 +364,7 @@ model_service.go
 model_service_list_item.go
 model_service_state.go
 model_service_status.go
+model_setup_reply.go
 model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go
 model_subscribe_reply.go

@@ -89,6 +89,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
+*BillingApi* | [**Setup**](docs/BillingApi.md#setup) | **Post** /v1/billing/setup | 
 *BillingApi* | [**Subscribe**](docs/BillingApi.md#subscribe) | **Post** /v1/billing/subscribe | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
@@ -118,6 +119,7 @@ Class | Method | HTTP request | Description
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
+*OrganizationApi* | [**GithubInstallation2**](docs/OrganizationApi.md#githubinstallation2) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 *OrganizationApi* | [**GithubInstallationRepoList**](docs/OrganizationApi.md#githubinstallationrepolist) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
@@ -150,7 +152,9 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
+*ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service
 *ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
+*ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user
@@ -238,6 +242,7 @@ Class | Method | HTTP request | Description
  - [GithubInstallationCallbackRequest](docs/GithubInstallationCallbackRequest.md)
  - [GithubInstallationReply](docs/GithubInstallationReply.md)
  - [GithubInstallationRepoListReply](docs/GithubInstallationRepoListReply.md)
+ - [GithubInstallationRequest](docs/GithubInstallationRequest.md)
  - [GithubRepo](docs/GithubRepo.md)
  - [GoogleProtobufAny](docs/GoogleProtobufAny.md)
  - [GoogleProtobufNullValue](docs/GoogleProtobufNullValue.md)
@@ -305,6 +310,7 @@ Class | Method | HTTP request | Description
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
+ - [SetupReply](docs/SetupReply.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [SubscribeReply](docs/SubscribeReply.md)
