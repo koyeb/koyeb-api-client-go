@@ -20,6 +20,11 @@ type Service struct {
 	Id *string `json:"id,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	StartedAt *time.Time `json:"started_at,omitempty"`
+	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
+	PausedAt *time.Time `json:"paused_at,omitempty"`
+	ResumedAt *time.Time `json:"resumed_at,omitempty"`
+	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
@@ -146,6 +151,166 @@ func (o *Service) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *Service) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
+}
+
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *Service) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
+		return nil, false
+	}
+	return o.StartedAt, true
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *Service) HasStartedAt() bool {
+	if o != nil && o.StartedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *Service) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
+}
+
+// GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
+func (o *Service) GetSucceededAt() time.Time {
+	if o == nil || o.SucceededAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SucceededAt
+}
+
+// GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetSucceededAtOk() (*time.Time, bool) {
+	if o == nil || o.SucceededAt == nil {
+		return nil, false
+	}
+	return o.SucceededAt, true
+}
+
+// HasSucceededAt returns a boolean if a field has been set.
+func (o *Service) HasSucceededAt() bool {
+	if o != nil && o.SucceededAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSucceededAt gets a reference to the given time.Time and assigns it to the SucceededAt field.
+func (o *Service) SetSucceededAt(v time.Time) {
+	o.SucceededAt = &v
+}
+
+// GetPausedAt returns the PausedAt field value if set, zero value otherwise.
+func (o *Service) GetPausedAt() time.Time {
+	if o == nil || o.PausedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PausedAt
+}
+
+// GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetPausedAtOk() (*time.Time, bool) {
+	if o == nil || o.PausedAt == nil {
+		return nil, false
+	}
+	return o.PausedAt, true
+}
+
+// HasPausedAt returns a boolean if a field has been set.
+func (o *Service) HasPausedAt() bool {
+	if o != nil && o.PausedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPausedAt gets a reference to the given time.Time and assigns it to the PausedAt field.
+func (o *Service) SetPausedAt(v time.Time) {
+	o.PausedAt = &v
+}
+
+// GetResumedAt returns the ResumedAt field value if set, zero value otherwise.
+func (o *Service) GetResumedAt() time.Time {
+	if o == nil || o.ResumedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ResumedAt
+}
+
+// GetResumedAtOk returns a tuple with the ResumedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetResumedAtOk() (*time.Time, bool) {
+	if o == nil || o.ResumedAt == nil {
+		return nil, false
+	}
+	return o.ResumedAt, true
+}
+
+// HasResumedAt returns a boolean if a field has been set.
+func (o *Service) HasResumedAt() bool {
+	if o != nil && o.ResumedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResumedAt gets a reference to the given time.Time and assigns it to the ResumedAt field.
+func (o *Service) SetResumedAt(v time.Time) {
+	o.ResumedAt = &v
+}
+
+// GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
+func (o *Service) GetTerminatedAt() time.Time {
+	if o == nil || o.TerminatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TerminatedAt
+}
+
+// GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetTerminatedAtOk() (*time.Time, bool) {
+	if o == nil || o.TerminatedAt == nil {
+		return nil, false
+	}
+	return o.TerminatedAt, true
+}
+
+// HasTerminatedAt returns a boolean if a field has been set.
+func (o *Service) HasTerminatedAt() bool {
+	if o != nil && o.TerminatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTerminatedAt gets a reference to the given time.Time and assigns it to the TerminatedAt field.
+func (o *Service) SetTerminatedAt(v time.Time) {
+	o.TerminatedAt = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -446,6 +611,21 @@ func (o Service) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.StartedAt != nil {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if o.SucceededAt != nil {
+		toSerialize["succeeded_at"] = o.SucceededAt
+	}
+	if o.PausedAt != nil {
+		toSerialize["paused_at"] = o.PausedAt
+	}
+	if o.ResumedAt != nil {
+		toSerialize["resumed_at"] = o.ResumedAt
+	}
+	if o.TerminatedAt != nil {
+		toSerialize["terminated_at"] = o.TerminatedAt
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name

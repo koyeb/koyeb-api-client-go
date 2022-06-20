@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
 [**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Service
+[**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service
 [**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
+[**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/services/{id} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/services/{id} | Update Service
 
@@ -286,6 +288,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PauseService
+
+> interface{} PauseService(ctx, id).Execute()
+
+Pause Service
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the service to pause.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ServicesApi.PauseService(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.PauseService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PauseService`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.PauseService`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the service to pause. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPauseServiceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ReDeploy
 
 > RedeployReply ReDeploy(ctx, id).Body(body).Execute()
@@ -341,6 +411,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedeployReply**](RedeployReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResumeService
+
+> interface{} ResumeService(ctx, id).Execute()
+
+Resume Service
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the service to pause.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ServicesApi.ResumeService(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ResumeService``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ResumeService`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.ResumeService`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the service to pause. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResumeServiceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**interface{}**
 
 ### Authorization
 

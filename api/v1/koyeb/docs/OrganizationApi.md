@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Get** /v1/github/installation | Start github installation
+[**GithubInstallation2**](OrganizationApi.md#GithubInstallation2) | **Post** /v1/github/installation | Start github installation
 [**GithubInstallationCallback**](OrganizationApi.md#GithubInstallationCallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 [**GithubInstallationRepoList**](OrganizationApi.md#GithubInstallationRepoList) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
@@ -126,6 +127,70 @@ Other parameters are passed through a pointer to a apiGithubInstallationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metadata** | **string** | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state. | 
+
+### Return type
+
+[**GithubInstallationReply**](GithubInstallationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GithubInstallation2
+
+> GithubInstallationReply GithubInstallation2(ctx).Body(body).Execute()
+
+Start github installation
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewGithubInstallationRequest() // GithubInstallationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationApi.GithubInstallation2(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GithubInstallation2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GithubInstallation2`: GithubInstallationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GithubInstallation2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGithubInstallation2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**GithubInstallationRequest**](GithubInstallationRequest.md) |  | 
 
 ### Return type
 

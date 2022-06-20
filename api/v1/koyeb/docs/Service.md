@@ -7,6 +7,11 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**StartedAt** | Pointer to **time.Time** |  | [optional] 
+**SucceededAt** | Pointer to **time.Time** |  | [optional] 
+**PausedAt** | Pointer to **time.Time** |  | [optional] 
+**ResumedAt** | Pointer to **time.Time** |  | [optional] 
+**TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
@@ -110,6 +115,131 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *Service) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetStartedAt
+
+`func (o *Service) GetStartedAt() time.Time`
+
+GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
+
+### GetStartedAtOk
+
+`func (o *Service) GetStartedAtOk() (*time.Time, bool)`
+
+GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartedAt
+
+`func (o *Service) SetStartedAt(v time.Time)`
+
+SetStartedAt sets StartedAt field to given value.
+
+### HasStartedAt
+
+`func (o *Service) HasStartedAt() bool`
+
+HasStartedAt returns a boolean if a field has been set.
+
+### GetSucceededAt
+
+`func (o *Service) GetSucceededAt() time.Time`
+
+GetSucceededAt returns the SucceededAt field if non-nil, zero value otherwise.
+
+### GetSucceededAtOk
+
+`func (o *Service) GetSucceededAtOk() (*time.Time, bool)`
+
+GetSucceededAtOk returns a tuple with the SucceededAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSucceededAt
+
+`func (o *Service) SetSucceededAt(v time.Time)`
+
+SetSucceededAt sets SucceededAt field to given value.
+
+### HasSucceededAt
+
+`func (o *Service) HasSucceededAt() bool`
+
+HasSucceededAt returns a boolean if a field has been set.
+
+### GetPausedAt
+
+`func (o *Service) GetPausedAt() time.Time`
+
+GetPausedAt returns the PausedAt field if non-nil, zero value otherwise.
+
+### GetPausedAtOk
+
+`func (o *Service) GetPausedAtOk() (*time.Time, bool)`
+
+GetPausedAtOk returns a tuple with the PausedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPausedAt
+
+`func (o *Service) SetPausedAt(v time.Time)`
+
+SetPausedAt sets PausedAt field to given value.
+
+### HasPausedAt
+
+`func (o *Service) HasPausedAt() bool`
+
+HasPausedAt returns a boolean if a field has been set.
+
+### GetResumedAt
+
+`func (o *Service) GetResumedAt() time.Time`
+
+GetResumedAt returns the ResumedAt field if non-nil, zero value otherwise.
+
+### GetResumedAtOk
+
+`func (o *Service) GetResumedAtOk() (*time.Time, bool)`
+
+GetResumedAtOk returns a tuple with the ResumedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetResumedAt
+
+`func (o *Service) SetResumedAt(v time.Time)`
+
+SetResumedAt sets ResumedAt field to given value.
+
+### HasResumedAt
+
+`func (o *Service) HasResumedAt() bool`
+
+HasResumedAt returns a boolean if a field has been set.
+
+### GetTerminatedAt
+
+`func (o *Service) GetTerminatedAt() time.Time`
+
+GetTerminatedAt returns the TerminatedAt field if non-nil, zero value otherwise.
+
+### GetTerminatedAtOk
+
+`func (o *Service) GetTerminatedAtOk() (*time.Time, bool)`
+
+GetTerminatedAtOk returns a tuple with the TerminatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTerminatedAt
+
+`func (o *Service) SetTerminatedAt(v time.Time)`
+
+SetTerminatedAt sets TerminatedAt field to given value.
+
+### HasTerminatedAt
+
+`func (o *Service) HasTerminatedAt() bool`
+
+HasTerminatedAt returns a boolean if a field has been set.
 
 ### GetName
 
