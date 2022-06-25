@@ -1,13 +1,13 @@
-# TriggerDeploymentMetadataTriggerType
+# TriggerDeploymentMetadataActorType
 
 ## Enum
 
 
-* `UNKNOWN_TYPE` (value: `"UNKNOWN_TYPE"`)
+* `UNKNOWN_ACTOR` (value: `"UNKNOWN_ACTOR"`)
 
-* `GIT` (value: `"GIT"`)
+* `USER` (value: `"USER"`)
 
-* `RESUME` (value: `"RESUME"`)
+* `SYSTEM` (value: `"SYSTEM"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

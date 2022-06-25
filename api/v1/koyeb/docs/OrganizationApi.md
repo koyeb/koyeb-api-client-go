@@ -4,14 +4,73 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**GetGithubInstallation**](OrganizationApi.md#GetGithubInstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
-[**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Get** /v1/github/installation | Start github installation
-[**GithubInstallation2**](OrganizationApi.md#GithubInstallation2) | **Post** /v1/github/installation | Start github installation
+[**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
 [**GithubInstallationCallback**](OrganizationApi.md#GithubInstallationCallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 [**GithubInstallationRepoList**](OrganizationApi.md#GithubInstallationRepoList) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
 
+
+
+## GetGithubInstallation
+
+> GetGithubInstallationReply GetGithubInstallation(ctx).Execute()
+
+Fetch github installation configuration
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationApi.GetGithubInstallation(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetGithubInstallation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGithubInstallation`: GetGithubInstallationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetGithubInstallation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGithubInstallationRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetGithubInstallationReply**](GetGithubInstallationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetOrganization
@@ -84,71 +143,7 @@ Name | Type | Description  | Notes
 
 ## GithubInstallation
 
-> GithubInstallationReply GithubInstallation(ctx).Metadata(metadata).Execute()
-
-Start github installation
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    metadata := "metadata_example" // string | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GithubInstallation(context.Background()).Metadata(metadata).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GithubInstallation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GithubInstallation`: GithubInstallationReply
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GithubInstallation`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGithubInstallationRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **metadata** | **string** | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state. | 
-
-### Return type
-
-[**GithubInstallationReply**](GithubInstallationReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GithubInstallation2
-
-> GithubInstallationReply GithubInstallation2(ctx).Body(body).Execute()
+> GithubInstallationReply GithubInstallation(ctx).Body(body).Execute()
 
 Start github installation
 
@@ -169,13 +164,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GithubInstallation2(context.Background()).Body(body).Execute()
+    resp, r, err := api_client.OrganizationApi.GithubInstallation(context.Background()).Body(body).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GithubInstallation2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GithubInstallation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GithubInstallation2`: GithubInstallationReply
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GithubInstallation2`: %v\n", resp)
+    // response from `GithubInstallation`: GithubInstallationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GithubInstallation`: %v\n", resp)
 }
 ```
 
@@ -185,7 +180,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGithubInstallation2Request struct via the builder pattern
+Other parameters are passed through a pointer to a apiGithubInstallationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

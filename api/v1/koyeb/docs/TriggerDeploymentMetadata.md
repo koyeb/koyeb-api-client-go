@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**TriggerDeploymentMetadataTriggerType**](TriggerDeploymentMetadataTriggerType.md) |  | [optional] [default to TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN]
+**Type** | Pointer to [**TriggerDeploymentMetadataTriggerType**](TriggerDeploymentMetadataTriggerType.md) |  | [optional] [default to TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE]
+**Actor** | Pointer to [**TriggerDeploymentMetadataActorType**](TriggerDeploymentMetadataActorType.md) |  | [optional] [default to TRIGGERDEPLOYMENTMETADATAACTORTYPE_UNKNOWN_ACTOR]
 **Git** | Pointer to [**GitDeploymentMetadata**](GitDeploymentMetadata.md) |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetType sets Type field to given value.
 `func (o *TriggerDeploymentMetadata) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetActor
+
+`func (o *TriggerDeploymentMetadata) GetActor() TriggerDeploymentMetadataActorType`
+
+GetActor returns the Actor field if non-nil, zero value otherwise.
+
+### GetActorOk
+
+`func (o *TriggerDeploymentMetadata) GetActorOk() (*TriggerDeploymentMetadataActorType, bool)`
+
+GetActorOk returns a tuple with the Actor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetActor
+
+`func (o *TriggerDeploymentMetadata) SetActor(v TriggerDeploymentMetadataActorType)`
+
+SetActor sets Actor field to given value.
+
+### HasActor
+
+`func (o *TriggerDeploymentMetadata) HasActor() bool`
+
+HasActor returns a boolean if a field has been set.
 
 ### GetGit
 

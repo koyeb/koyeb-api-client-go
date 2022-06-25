@@ -117,9 +117,9 @@ Class | Method | HTTP request | Description
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
+*OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
-*OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Get** /v1/github/installation | Start github installation
-*OrganizationApi* | [**GithubInstallation2**](docs/OrganizationApi.md#githubinstallation2) | **Post** /v1/github/installation | Start github installation
+*OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 *OrganizationApi* | [**GithubInstallationRepoList**](docs/OrganizationApi.md#githubinstallationrepolist) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
@@ -225,6 +225,7 @@ Class | Method | HTTP request | Description
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
  - [GetDomainReply](docs/GetDomainReply.md)
+ - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
  - [GetMetricsReply](docs/GetMetricsReply.md)
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
@@ -317,6 +318,7 @@ Class | Method | HTTP request | Description
  - [SubscribeRequest](docs/SubscribeRequest.md)
  - [Token](docs/Token.md)
  - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
+ - [TriggerDeploymentMetadataActorType](docs/TriggerDeploymentMetadataActorType.md)
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
