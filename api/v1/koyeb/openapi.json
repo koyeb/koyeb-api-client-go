@@ -2056,6 +2056,13 @@
               "type": "string"
             },
             "collectionFormat": "multi"
+          },
+          {
+            "name": "name",
+            "description": "(Optional) A filter for name.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

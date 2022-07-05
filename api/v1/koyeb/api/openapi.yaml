@@ -1914,6 +1914,11 @@ paths:
             type: string
           type: array
         style: form
+      - description: (Optional) A filter for name.
+        in: query
+        name: name
+        schema:
+          type: string
       responses:
         "200":
           content:
