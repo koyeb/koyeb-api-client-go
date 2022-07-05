@@ -17,6 +17,7 @@ import (
 // TriggerDeploymentMetadata struct for TriggerDeploymentMetadata
 type TriggerDeploymentMetadata struct {
 	Type *TriggerDeploymentMetadataTriggerType `json:"type,omitempty"`
+	Actor *TriggerDeploymentMetadataActorType `json:"actor,omitempty"`
 	Git *GitDeploymentMetadata `json:"git,omitempty"`
 }
 
@@ -26,8 +27,10 @@ type TriggerDeploymentMetadata struct {
 // will change when the set of required properties is changed
 func NewTriggerDeploymentMetadata() *TriggerDeploymentMetadata {
 	this := TriggerDeploymentMetadata{}
-	var type_ TriggerDeploymentMetadataTriggerType = TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN
+	var type_ TriggerDeploymentMetadataTriggerType = TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE
 	this.Type = &type_
+	var actor TriggerDeploymentMetadataActorType = TRIGGERDEPLOYMENTMETADATAACTORTYPE_UNKNOWN_ACTOR
+	this.Actor = &actor
 	return &this
 }
 
@@ -36,8 +39,10 @@ func NewTriggerDeploymentMetadata() *TriggerDeploymentMetadata {
 // but it doesn't guarantee that properties required by API are set
 func NewTriggerDeploymentMetadataWithDefaults() *TriggerDeploymentMetadata {
 	this := TriggerDeploymentMetadata{}
-	var type_ TriggerDeploymentMetadataTriggerType = TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN
+	var type_ TriggerDeploymentMetadataTriggerType = TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE
 	this.Type = &type_
+	var actor TriggerDeploymentMetadataActorType = TRIGGERDEPLOYMENTMETADATAACTORTYPE_UNKNOWN_ACTOR
+	this.Actor = &actor
 	return &this
 }
 
@@ -71,6 +76,38 @@ func (o *TriggerDeploymentMetadata) HasType() bool {
 // SetType gets a reference to the given TriggerDeploymentMetadataTriggerType and assigns it to the Type field.
 func (o *TriggerDeploymentMetadata) SetType(v TriggerDeploymentMetadataTriggerType) {
 	o.Type = &v
+}
+
+// GetActor returns the Actor field value if set, zero value otherwise.
+func (o *TriggerDeploymentMetadata) GetActor() TriggerDeploymentMetadataActorType {
+	if o == nil || o.Actor == nil {
+		var ret TriggerDeploymentMetadataActorType
+		return ret
+	}
+	return *o.Actor
+}
+
+// GetActorOk returns a tuple with the Actor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TriggerDeploymentMetadata) GetActorOk() (*TriggerDeploymentMetadataActorType, bool) {
+	if o == nil || o.Actor == nil {
+		return nil, false
+	}
+	return o.Actor, true
+}
+
+// HasActor returns a boolean if a field has been set.
+func (o *TriggerDeploymentMetadata) HasActor() bool {
+	if o != nil && o.Actor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetActor gets a reference to the given TriggerDeploymentMetadataActorType and assigns it to the Actor field.
+func (o *TriggerDeploymentMetadata) SetActor(v TriggerDeploymentMetadataActorType) {
+	o.Actor = &v
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
@@ -109,6 +146,9 @@ func (o TriggerDeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+	if o.Actor != nil {
+		toSerialize["actor"] = o.Actor
 	}
 	if o.Git != nil {
 		toSerialize["git"] = o.Git

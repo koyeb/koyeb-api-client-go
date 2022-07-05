@@ -20,13 +20,15 @@ type TriggerDeploymentMetadataTriggerType string
 
 // List of TriggerDeploymentMetadata.TriggerType
 const (
-	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN TriggerDeploymentMetadataTriggerType = "UNKNOWN"
+	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE TriggerDeploymentMetadataTriggerType = "UNKNOWN_TYPE"
 	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_GIT TriggerDeploymentMetadataTriggerType = "GIT"
+	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_RESUME TriggerDeploymentMetadataTriggerType = "RESUME"
 )
 
 var allowedTriggerDeploymentMetadataTriggerTypeEnumValues = []TriggerDeploymentMetadataTriggerType{
-	"UNKNOWN",
+	"UNKNOWN_TYPE",
 	"GIT",
+	"RESUME",
 }
 
 func (v *TriggerDeploymentMetadataTriggerType) UnmarshalJSON(src []byte) error {

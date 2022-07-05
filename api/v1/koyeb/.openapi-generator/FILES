@@ -96,6 +96,7 @@ docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetDeploymentReply.md
 docs/GetDomainReply.md
+docs/GetGithubInstallationReply.md
 docs/GetInstanceReply.md
 docs/GetMetricsReply.md
 docs/GetMetricsReplyMetric.md
@@ -202,6 +203,7 @@ docs/SubscribeReply.md
 docs/SubscribeRequest.md
 docs/Token.md
 docs/TriggerDeploymentMetadata.md
+docs/TriggerDeploymentMetadataActorType.md
 docs/TriggerDeploymentMetadataTriggerType.md
 docs/UpdateApp.md
 docs/UpdateAppReply.md
@@ -279,6 +281,7 @@ model_get_app_reply.go
 model_get_catalog_instance_reply.go
 model_get_deployment_reply.go
 model_get_domain_reply.go
+model_get_github_installation_reply.go
 model_get_instance_reply.go
 model_get_metrics_reply.go
 model_get_metrics_reply_metric.go
@@ -371,6 +374,7 @@ model_subscribe_reply.go
 model_subscribe_request.go
 model_token.go
 model_trigger_deployment_metadata.go
+model_trigger_deployment_metadata_actor_type.go
 model_trigger_deployment_metadata_trigger_type.go
 model_update_app.go
 model_update_app_reply.go
