@@ -595,6 +595,7 @@ type ApiListDomainsRequest struct {
 	types *[]string
 	statuses *[]string
 	appIds *[]string
+	name *string
 }
 
 func (r ApiListDomainsRequest) Limit(limit string) ApiListDomainsRequest {
@@ -615,6 +616,10 @@ func (r ApiListDomainsRequest) Statuses(statuses []string) ApiListDomainsRequest
 }
 func (r ApiListDomainsRequest) AppIds(appIds []string) ApiListDomainsRequest {
 	r.appIds = &appIds
+	return r
+}
+func (r ApiListDomainsRequest) Name(name string) ApiListDomainsRequest {
+	r.name = &name
 	return r
 }
 
@@ -697,6 +702,9 @@ func (a *DomainsApiService) ListDomainsExecute(r ApiListDomainsRequest) (ListDom
 		} else {
 			localVarQueryParams.Add("app_ids", parameterToString(t, "multi"))
 		}
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
