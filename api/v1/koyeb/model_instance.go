@@ -30,6 +30,8 @@ type Instance struct {
 	Hypervisor *string `json:"hypervisor,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages *[]string `json:"messages,omitempty"`
+	StartedAt *time.Time `json:"started_at,omitempty"`
+	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 }
 
 // NewInstance instantiates a new Instance object
@@ -469,6 +471,70 @@ func (o *Instance) SetMessages(v []string) {
 	o.Messages = &v
 }
 
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *Instance) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
+		return nil, false
+	}
+	return o.StartedAt, true
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *Instance) HasStartedAt() bool {
+	if o != nil && o.StartedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *Instance) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
+}
+
+// GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
+func (o *Instance) GetTerminatedAt() time.Time {
+	if o == nil || o.TerminatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TerminatedAt
+}
+
+// GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetTerminatedAtOk() (*time.Time, bool) {
+	if o == nil || o.TerminatedAt == nil {
+		return nil, false
+	}
+	return o.TerminatedAt, true
+}
+
+// HasTerminatedAt returns a boolean if a field has been set.
+func (o *Instance) HasTerminatedAt() bool {
+	if o != nil && o.TerminatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTerminatedAt gets a reference to the given time.Time and assigns it to the TerminatedAt field.
+func (o *Instance) SetTerminatedAt(v time.Time) {
+	o.TerminatedAt = &v
+}
+
 func (o Instance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -509,6 +575,12 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	}
 	if o.Messages != nil {
 		toSerialize["messages"] = o.Messages
+	}
+	if o.StartedAt != nil {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if o.TerminatedAt != nil {
+		toSerialize["terminated_at"] = o.TerminatedAt
 	}
 	return json.Marshal(toSerialize)
 }

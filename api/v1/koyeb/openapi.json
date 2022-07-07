@@ -6565,6 +6565,14 @@
           "items": {
             "type": "string"
           }
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminated_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },

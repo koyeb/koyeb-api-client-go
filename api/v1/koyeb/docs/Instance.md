@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **Hypervisor** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
 **Messages** | Pointer to **[]string** |  | [optional] 
+**StartedAt** | Pointer to **time.Time** |  | [optional] 
+**TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -361,6 +363,56 @@ SetMessages sets Messages field to given value.
 `func (o *Instance) HasMessages() bool`
 
 HasMessages returns a boolean if a field has been set.
+
+### GetStartedAt
+
+`func (o *Instance) GetStartedAt() time.Time`
+
+GetStartedAt returns the StartedAt field if non-nil, zero value otherwise.
+
+### GetStartedAtOk
+
+`func (o *Instance) GetStartedAtOk() (*time.Time, bool)`
+
+GetStartedAtOk returns a tuple with the StartedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartedAt
+
+`func (o *Instance) SetStartedAt(v time.Time)`
+
+SetStartedAt sets StartedAt field to given value.
+
+### HasStartedAt
+
+`func (o *Instance) HasStartedAt() bool`
+
+HasStartedAt returns a boolean if a field has been set.
+
+### GetTerminatedAt
+
+`func (o *Instance) GetTerminatedAt() time.Time`
+
+GetTerminatedAt returns the TerminatedAt field if non-nil, zero value otherwise.
+
+### GetTerminatedAtOk
+
+`func (o *Instance) GetTerminatedAtOk() (*time.Time, bool)`
+
+GetTerminatedAtOk returns a tuple with the TerminatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTerminatedAt
+
+`func (o *Instance) SetTerminatedAt(v time.Time)`
+
+SetTerminatedAt sets TerminatedAt field to given value.
+
+### HasTerminatedAt
+
+`func (o *Instance) HasTerminatedAt() bool`
+
+HasTerminatedAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
