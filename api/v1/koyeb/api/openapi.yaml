@@ -7547,9 +7547,11 @@ components:
           messages:
           - messages
           - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
           id: id
           region: region
           app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         instance:
           $ref: '#/components/schemas/Instance'
@@ -7567,9 +7569,11 @@ components:
         messages:
         - messages
         - messages
+        started_at: 2000-01-23T04:56:07.000+00:00
         id: id
         region: region
         app_id: app_id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           type: string
@@ -7601,6 +7605,12 @@ components:
           items:
             type: string
           type: array
+        started_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
+          type: string
       type: object
     Instance.Status:
       default: ALLOCATING
