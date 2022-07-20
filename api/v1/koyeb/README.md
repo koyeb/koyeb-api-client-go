@@ -162,6 +162,8 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**PasswordlessLogin**](docs/SessionApi.md#passwordlesslogin) | **Post** /v1/account/passwordless_login | 
 *SessionApi* | [**RefreshToken**](docs/SessionApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
+*UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
+*UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
 
 
 ## Documentation For Models
@@ -171,6 +173,7 @@ Class | Method | HTTP request | Description
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
  - [AppListItem](docs/AppListItem.md)
+ - [AppUsage](docs/AppUsage.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
@@ -231,6 +234,8 @@ Class | Method | HTTP request | Description
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
+ - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
+ - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
@@ -251,6 +256,7 @@ Class | Method | HTTP request | Description
  - [Instance](docs/Instance.md)
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
+ - [InstanceUsage](docs/InstanceUsage.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [KgitproxyBranch](docs/KgitproxyBranch.md)
  - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
@@ -290,6 +296,7 @@ Class | Method | HTTP request | Description
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
+ - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
@@ -297,6 +304,7 @@ Class | Method | HTTP request | Description
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
+ - [RegionUsage](docs/RegionUsage.md)
  - [RegionalDeployment](docs/RegionalDeployment.md)
  - [RegionalDeploymentDefinition](docs/RegionalDeploymentDefinition.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
@@ -311,6 +319,7 @@ Class | Method | HTTP request | Description
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
+ - [ServiceUsage](docs/ServiceUsage.md)
  - [SetupReply](docs/SetupReply.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
@@ -330,6 +339,8 @@ Class | Method | HTTP request | Description
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
+ - [Usage](docs/Usage.md)
+ - [UsageDetails](docs/UsageDetails.md)
  - [User](docs/User.md)
  - [UserAccountStatus](docs/UserAccountStatus.md)
  - [UserFlags](docs/UserFlags.md)
