@@ -23,6 +23,7 @@ type DeploymentDefinition struct {
 	Regions *[]string `json:"regions,omitempty"`
 	Scalings *[]DeploymentScaling `json:"scalings,omitempty"`
 	InstanceTypes *[]DeploymentInstanceType `json:"instance_types,omitempty"`
+	HealthChecks *[]DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 }
@@ -268,6 +269,38 @@ func (o *DeploymentDefinition) SetInstanceTypes(v []DeploymentInstanceType) {
 	o.InstanceTypes = &v
 }
 
+// GetHealthChecks returns the HealthChecks field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetHealthChecks() []DeploymentHealthCheck {
+	if o == nil || o.HealthChecks == nil {
+		var ret []DeploymentHealthCheck
+		return ret
+	}
+	return *o.HealthChecks
+}
+
+// GetHealthChecksOk returns a tuple with the HealthChecks field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetHealthChecksOk() (*[]DeploymentHealthCheck, bool) {
+	if o == nil || o.HealthChecks == nil {
+		return nil, false
+	}
+	return o.HealthChecks, true
+}
+
+// HasHealthChecks returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasHealthChecks() bool {
+	if o != nil && o.HealthChecks != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHealthChecks gets a reference to the given []DeploymentHealthCheck and assigns it to the HealthChecks field.
+func (o *DeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck) {
+	o.HealthChecks = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || o.Docker == nil {
@@ -354,6 +387,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if o.InstanceTypes != nil {
 		toSerialize["instance_types"] = o.InstanceTypes
+	}
+	if o.HealthChecks != nil {
+		toSerialize["health_checks"] = o.HealthChecks
 	}
 	if o.Docker != nil {
 		toSerialize["docker"] = o.Docker

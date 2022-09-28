@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Manage**](BillingApi.md#Manage) | **Get** /v1/billing/manage | 
 [**Setup**](BillingApi.md#Setup) | **Post** /v1/billing/setup | 
-[**Subscribe**](BillingApi.md#Subscribe) | **Post** /v1/billing/subscribe | 
 
 
 
@@ -118,70 +117,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SetupReply**](SetupReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## Subscribe
-
-> SubscribeReply Subscribe(ctx).Body(body).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    body := *openapiclient.NewSubscribeRequest() // SubscribeRequest | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.BillingApi.Subscribe(context.Background()).Body(body).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.Subscribe``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `Subscribe`: SubscribeReply
-    fmt.Fprintf(os.Stdout, "Response from `BillingApi.Subscribe`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSubscribeRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**SubscribeRequest**](SubscribeRequest.md) |  | 
-
-### Return type
-
-[**SubscribeReply**](SubscribeReply.md)
 
 ### Authorization
 

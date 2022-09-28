@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **Domains** | Pointer to [**[]Domain**](Domain.md) |  | [optional] 
+**Status** | Pointer to [**AppStatus**](AppStatus.md) |  | [optional] [default to APPSTATUS_STARTING]
+**Messages** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +181,56 @@ SetDomains sets Domains field to given value.
 `func (o *AppListItem) HasDomains() bool`
 
 HasDomains returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *AppListItem) GetStatus() AppStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *AppListItem) GetStatusOk() (*AppStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *AppListItem) SetStatus(v AppStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *AppListItem) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetMessages
+
+`func (o *AppListItem) GetMessages() []string`
+
+GetMessages returns the Messages field if non-nil, zero value otherwise.
+
+### GetMessagesOk
+
+`func (o *AppListItem) GetMessagesOk() (*[]string, bool)`
+
+GetMessagesOk returns a tuple with the Messages field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMessages
+
+`func (o *AppListItem) SetMessages(v []string)`
+
+SetMessages sets Messages field to given value.
+
+### HasMessages
+
+`func (o *AppListItem) HasMessages() bool`
+
+HasMessages returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -23,6 +23,8 @@ type AppListItem struct {
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	Domains *[]Domain `json:"domains,omitempty"`
+	Status *AppStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
 }
 
 // NewAppListItem instantiates a new AppListItem object
@@ -31,6 +33,8 @@ type AppListItem struct {
 // will change when the set of required properties is changed
 func NewAppListItem() *AppListItem {
 	this := AppListItem{}
+	var status AppStatus = APPSTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -39,6 +43,8 @@ func NewAppListItem() *AppListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewAppListItemWithDefaults() *AppListItem {
 	this := AppListItem{}
+	var status AppStatus = APPSTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -234,6 +240,70 @@ func (o *AppListItem) SetDomains(v []Domain) {
 	o.Domains = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *AppListItem) GetStatus() AppStatus {
+	if o == nil || o.Status == nil {
+		var ret AppStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AppListItem) GetStatusOk() (*AppStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *AppListItem) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given AppStatus and assigns it to the Status field.
+func (o *AppListItem) SetStatus(v AppStatus) {
+	o.Status = &v
+}
+
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *AppListItem) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AppListItem) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *AppListItem) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *AppListItem) SetMessages(v []string) {
+	o.Messages = &v
+}
+
 func (o AppListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -253,6 +323,12 @@ func (o AppListItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Domains != nil {
 		toSerialize["domains"] = o.Domains
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
 	}
 	return json.Marshal(toSerialize)
 }

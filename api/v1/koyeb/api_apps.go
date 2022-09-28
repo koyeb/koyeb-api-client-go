@@ -81,12 +81,40 @@ type AppsApi interface {
 	ListAppsExecute(r ApiListAppsRequest) (ListAppsReply, *_nethttp.Response, error)
 
 	/*
+	 * PauseApp Pause App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the app to pause.
+	 * @return ApiPauseAppRequest
+	 */
+	PauseApp(ctx _context.Context, id string) ApiPauseAppRequest
+
+	/*
+	 * PauseAppExecute executes the request
+	 * @return interface{}
+	 */
+	PauseAppExecute(r ApiPauseAppRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
+	 * ResumeApp Resume App
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param id The id of the app to resume.
+	 * @return ApiResumeAppRequest
+	 */
+	ResumeApp(ctx _context.Context, id string) ApiResumeAppRequest
+
+	/*
+	 * ResumeAppExecute executes the request
+	 * @return interface{}
+	 */
+	ResumeAppExecute(r ApiResumeAppRequest) (interface{}, *_nethttp.Response, error)
+
+	/*
 	 * UpdateApp Update App
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param idOrName The id or the name of the entity to update
+	 * @param id The id of the app to update.
 	 * @return ApiUpdateAppRequest
 	 */
-	UpdateApp(ctx _context.Context, idOrName string) ApiUpdateAppRequest
+	UpdateApp(ctx _context.Context, id string) ApiUpdateAppRequest
 
 	/*
 	 * UpdateAppExecute executes the request
@@ -97,10 +125,10 @@ type AppsApi interface {
 	/*
 	 * UpdateApp2 Update App
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param idOrName The id or the name of the entity to update
+	 * @param id The id of the app to update.
 	 * @return ApiUpdateApp2Request
 	 */
-	UpdateApp2(ctx _context.Context, idOrName string) ApiUpdateApp2Request
+	UpdateApp2(ctx _context.Context, id string) ApiUpdateApp2Request
 
 	/*
 	 * UpdateApp2Execute executes the request
@@ -762,10 +790,322 @@ func (a *AppsApiService) ListAppsExecute(r ApiListAppsRequest) (ListAppsReply, *
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPauseAppRequest struct {
+	ctx _context.Context
+	ApiService AppsApi
+	id string
+}
+
+
+func (r ApiPauseAppRequest) Execute() (interface{}, *_nethttp.Response, error) {
+	return r.ApiService.PauseAppExecute(r)
+}
+
+/*
+ * PauseApp Pause App
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the app to pause.
+ * @return ApiPauseAppRequest
+ */
+func (a *AppsApiService) PauseApp(ctx _context.Context, id string) ApiPauseAppRequest {
+	return ApiPauseAppRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return interface{}
+ */
+func (a *AppsApiService) PauseAppExecute(r ApiPauseAppRequest) (interface{}, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.PauseApp")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{id}/pause"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiResumeAppRequest struct {
+	ctx _context.Context
+	ApiService AppsApi
+	id string
+}
+
+
+func (r ApiResumeAppRequest) Execute() (interface{}, *_nethttp.Response, error) {
+	return r.ApiService.ResumeAppExecute(r)
+}
+
+/*
+ * ResumeApp Resume App
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param id The id of the app to resume.
+ * @return ApiResumeAppRequest
+ */
+func (a *AppsApiService) ResumeApp(ctx _context.Context, id string) ApiResumeAppRequest {
+	return ApiResumeAppRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return interface{}
+ */
+func (a *AppsApiService) ResumeAppExecute(r ApiResumeAppRequest) (interface{}, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AppsApiService.ResumeApp")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/apps/{id}/resume"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateAppRequest struct {
 	ctx _context.Context
 	ApiService AppsApi
-	idOrName string
+	id string
 }
 
 
@@ -776,14 +1116,14 @@ func (r ApiUpdateAppRequest) Execute() (UpdateAppReply, *_nethttp.Response, erro
 /*
  * UpdateApp Update App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param idOrName The id or the name of the entity to update
+ * @param id The id of the app to update.
  * @return ApiUpdateAppRequest
  */
-func (a *AppsApiService) UpdateApp(ctx _context.Context, idOrName string) ApiUpdateAppRequest {
+func (a *AppsApiService) UpdateApp(ctx _context.Context, id string) ApiUpdateAppRequest {
 	return ApiUpdateAppRequest{
 		ApiService: a,
 		ctx: ctx,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -806,8 +1146,8 @@ func (a *AppsApiService) UpdateAppExecute(r ApiUpdateAppRequest) (UpdateAppReply
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/apps/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -921,7 +1261,7 @@ func (a *AppsApiService) UpdateAppExecute(r ApiUpdateAppRequest) (UpdateAppReply
 type ApiUpdateApp2Request struct {
 	ctx _context.Context
 	ApiService AppsApi
-	idOrName string
+	id string
 	body *UpdateApp
 	updateMask *string
 }
@@ -942,14 +1282,14 @@ func (r ApiUpdateApp2Request) Execute() (UpdateAppReply, *_nethttp.Response, err
 /*
  * UpdateApp2 Update App
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param idOrName The id or the name of the entity to update
+ * @param id The id of the app to update.
  * @return ApiUpdateApp2Request
  */
-func (a *AppsApiService) UpdateApp2(ctx _context.Context, idOrName string) ApiUpdateApp2Request {
+func (a *AppsApiService) UpdateApp2(ctx _context.Context, id string) ApiUpdateApp2Request {
 	return ApiUpdateApp2Request{
 		ApiService: a,
 		ctx: ctx,
-		idOrName: idOrName,
+		id: id,
 	}
 }
 
@@ -972,8 +1312,8 @@ func (a *AppsApiService) UpdateApp2Execute(r ApiUpdateApp2Request) (UpdateAppRep
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/apps/{id_or_name}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id_or_name"+"}", _neturl.PathEscape(parameterToString(r.idOrName, "")), -1)
+	localVarPath := localBasePath + "/v1/apps/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

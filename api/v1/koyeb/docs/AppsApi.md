@@ -8,8 +8,10 @@ Method | HTTP request | Description
 [**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App
 [**GetApp**](AppsApi.md#GetApp) | **Get** /v1/apps/{id} | Get App
 [**ListApps**](AppsApi.md#ListApps) | **Get** /v1/apps | List App
-[**UpdateApp**](AppsApi.md#UpdateApp) | **Put** /v1/apps/{id_or_name} | Update App
-[**UpdateApp2**](AppsApi.md#UpdateApp2) | **Patch** /v1/apps/{id_or_name} | Update App
+[**PauseApp**](AppsApi.md#PauseApp) | **Post** /v1/apps/{id}/pause | Pause App
+[**ResumeApp**](AppsApi.md#ResumeApp) | **Post** /v1/apps/{id}/resume | Resume App
+[**UpdateApp**](AppsApi.md#UpdateApp) | **Put** /v1/apps/{id} | Update App
+[**UpdateApp2**](AppsApi.md#UpdateApp2) | **Patch** /v1/apps/{id} | Update App
 
 
 
@@ -281,9 +283,145 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PauseApp
+
+> interface{} PauseApp(ctx, id).Execute()
+
+Pause App
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the app to pause.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AppsApi.PauseApp(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PauseApp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PauseApp`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AppsApi.PauseApp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the app to pause. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPauseAppRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ResumeApp
+
+> interface{} ResumeApp(ctx, id).Execute()
+
+Resume App
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the app to resume.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.AppsApi.ResumeApp(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.ResumeApp``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ResumeApp`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `AppsApi.ResumeApp`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the app to resume. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiResumeAppRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateApp
 
-> UpdateAppReply UpdateApp(ctx, idOrName).Execute()
+> UpdateAppReply UpdateApp(ctx, id).Execute()
 
 Update App
 
@@ -300,11 +438,11 @@ import (
 )
 
 func main() {
-    idOrName := "idOrName_example" // string | The id or the name of the entity to update
+    id := "id_example" // string | The id of the app to update.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.UpdateApp(context.Background(), idOrName).Execute()
+    resp, r, err := api_client.AppsApi.UpdateApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.UpdateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -320,7 +458,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** | The id or the name of the entity to update | 
+**id** | **string** | The id of the app to update. | 
 
 ### Other Parameters
 
@@ -351,7 +489,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApp2
 
-> UpdateAppReply UpdateApp2(ctx, idOrName).Body(body).UpdateMask(updateMask).Execute()
+> UpdateAppReply UpdateApp2(ctx, id).Body(body).UpdateMask(updateMask).Execute()
 
 Update App
 
@@ -368,13 +506,13 @@ import (
 )
 
 func main() {
-    idOrName := "idOrName_example" // string | The id or the name of the entity to update
+    id := "id_example" // string | The id of the app to update.
     body := *openapiclient.NewUpdateApp() // UpdateApp | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.UpdateApp2(context.Background(), idOrName).Body(body).UpdateMask(updateMask).Execute()
+    resp, r, err := api_client.AppsApi.UpdateApp2(context.Background(), id).Body(body).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.UpdateApp2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -390,7 +528,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**idOrName** | **string** | The id or the name of the entity to update | 
+**id** | **string** | The id of the app to update. | 
 
 ### Other Parameters
 
