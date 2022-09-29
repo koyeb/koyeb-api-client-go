@@ -20,8 +20,16 @@ type App struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	StartedAt *time.Time `json:"started_at,omitempty"`
+	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
+	PausedAt *time.Time `json:"paused_at,omitempty"`
+	ResumedAt *time.Time `json:"resumed_at,omitempty"`
+	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
+	Status *AppStatus `json:"status,omitempty"`
+	Messages *[]string `json:"messages,omitempty"`
+	Version *string `json:"version,omitempty"`
 	Domains *[]Domain `json:"domains,omitempty"`
 }
 
@@ -31,6 +39,8 @@ type App struct {
 // will change when the set of required properties is changed
 func NewApp() *App {
 	this := App{}
+	var status AppStatus = APPSTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -39,6 +49,8 @@ func NewApp() *App {
 // but it doesn't guarantee that properties required by API are set
 func NewAppWithDefaults() *App {
 	this := App{}
+	var status AppStatus = APPSTATUS_STARTING
+	this.Status = &status
 	return &this
 }
 
@@ -138,6 +150,38 @@ func (o *App) SetOrganizationId(v string) {
 	o.OrganizationId = &v
 }
 
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *App) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil || o.CreatedAt == nil {
+		return nil, false
+	}
+	return o.CreatedAt, true
+}
+
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *App) HasCreatedAt() bool {
+	if o != nil && o.CreatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *App) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *App) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -170,36 +214,260 @@ func (o *App) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *App) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *App) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.StartedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *App) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+func (o *App) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return o.StartedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *App) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+// HasStartedAt returns a boolean if a field has been set.
+func (o *App) HasStartedAt() bool {
+	if o != nil && o.StartedAt != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *App) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *App) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
+}
+
+// GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
+func (o *App) GetSucceededAt() time.Time {
+	if o == nil || o.SucceededAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SucceededAt
+}
+
+// GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetSucceededAtOk() (*time.Time, bool) {
+	if o == nil || o.SucceededAt == nil {
+		return nil, false
+	}
+	return o.SucceededAt, true
+}
+
+// HasSucceededAt returns a boolean if a field has been set.
+func (o *App) HasSucceededAt() bool {
+	if o != nil && o.SucceededAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSucceededAt gets a reference to the given time.Time and assigns it to the SucceededAt field.
+func (o *App) SetSucceededAt(v time.Time) {
+	o.SucceededAt = &v
+}
+
+// GetPausedAt returns the PausedAt field value if set, zero value otherwise.
+func (o *App) GetPausedAt() time.Time {
+	if o == nil || o.PausedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PausedAt
+}
+
+// GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetPausedAtOk() (*time.Time, bool) {
+	if o == nil || o.PausedAt == nil {
+		return nil, false
+	}
+	return o.PausedAt, true
+}
+
+// HasPausedAt returns a boolean if a field has been set.
+func (o *App) HasPausedAt() bool {
+	if o != nil && o.PausedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPausedAt gets a reference to the given time.Time and assigns it to the PausedAt field.
+func (o *App) SetPausedAt(v time.Time) {
+	o.PausedAt = &v
+}
+
+// GetResumedAt returns the ResumedAt field value if set, zero value otherwise.
+func (o *App) GetResumedAt() time.Time {
+	if o == nil || o.ResumedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ResumedAt
+}
+
+// GetResumedAtOk returns a tuple with the ResumedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetResumedAtOk() (*time.Time, bool) {
+	if o == nil || o.ResumedAt == nil {
+		return nil, false
+	}
+	return o.ResumedAt, true
+}
+
+// HasResumedAt returns a boolean if a field has been set.
+func (o *App) HasResumedAt() bool {
+	if o != nil && o.ResumedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResumedAt gets a reference to the given time.Time and assigns it to the ResumedAt field.
+func (o *App) SetResumedAt(v time.Time) {
+	o.ResumedAt = &v
+}
+
+// GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
+func (o *App) GetTerminatedAt() time.Time {
+	if o == nil || o.TerminatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TerminatedAt
+}
+
+// GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetTerminatedAtOk() (*time.Time, bool) {
+	if o == nil || o.TerminatedAt == nil {
+		return nil, false
+	}
+	return o.TerminatedAt, true
+}
+
+// HasTerminatedAt returns a boolean if a field has been set.
+func (o *App) HasTerminatedAt() bool {
+	if o != nil && o.TerminatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTerminatedAt gets a reference to the given time.Time and assigns it to the TerminatedAt field.
+func (o *App) SetTerminatedAt(v time.Time) {
+	o.TerminatedAt = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *App) GetStatus() AppStatus {
+	if o == nil || o.Status == nil {
+		var ret AppStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetStatusOk() (*AppStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *App) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given AppStatus and assigns it to the Status field.
+func (o *App) SetStatus(v AppStatus) {
+	o.Status = &v
+}
+
+// GetMessages returns the Messages field value if set, zero value otherwise.
+func (o *App) GetMessages() []string {
+	if o == nil || o.Messages == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Messages
+}
+
+// GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetMessagesOk() (*[]string, bool) {
+	if o == nil || o.Messages == nil {
+		return nil, false
+	}
+	return o.Messages, true
+}
+
+// HasMessages returns a boolean if a field has been set.
+func (o *App) HasMessages() bool {
+	if o != nil && o.Messages != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMessages gets a reference to the given []string and assigns it to the Messages field.
+func (o *App) SetMessages(v []string) {
+	o.Messages = &v
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *App) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetVersionOk() (*string, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *App) HasVersion() bool {
+	if o != nil && o.Version != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *App) SetVersion(v string) {
+	o.Version = &v
 }
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
@@ -245,11 +513,35 @@ func (o App) MarshalJSON() ([]byte, error) {
 	if o.OrganizationId != nil {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
+	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.StartedAt != nil {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if o.SucceededAt != nil {
+		toSerialize["succeeded_at"] = o.SucceededAt
+	}
+	if o.PausedAt != nil {
+		toSerialize["paused_at"] = o.PausedAt
+	}
+	if o.ResumedAt != nil {
+		toSerialize["resumed_at"] = o.ResumedAt
+	}
+	if o.TerminatedAt != nil {
+		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Messages != nil {
+		toSerialize["messages"] = o.Messages
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
 	}
 	if o.Domains != nil {
 		toSerialize["domains"] = o.Domains

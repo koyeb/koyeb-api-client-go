@@ -12,6 +12,7 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Organization struct for Organization
@@ -24,8 +25,13 @@ type Organization struct {
 	Country *string `json:"country,omitempty"`
 	Company *bool `json:"company,omitempty"`
 	VatNumber *string `json:"vat_number,omitempty"`
+	BillingName *string `json:"billing_name,omitempty"`
+	BillingEmail *string `json:"billing_email,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Plan *Plan `json:"plan,omitempty"`
+	PlanUpdatedAt *time.Time `json:"plan_updated_at,omitempty"`
+	HasPaymentMethod *bool `json:"has_payment_method,omitempty"`
+	SubscriptionId *string `json:"subscription_id,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -305,6 +311,70 @@ func (o *Organization) SetVatNumber(v string) {
 	o.VatNumber = &v
 }
 
+// GetBillingName returns the BillingName field value if set, zero value otherwise.
+func (o *Organization) GetBillingName() string {
+	if o == nil || o.BillingName == nil {
+		var ret string
+		return ret
+	}
+	return *o.BillingName
+}
+
+// GetBillingNameOk returns a tuple with the BillingName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetBillingNameOk() (*string, bool) {
+	if o == nil || o.BillingName == nil {
+		return nil, false
+	}
+	return o.BillingName, true
+}
+
+// HasBillingName returns a boolean if a field has been set.
+func (o *Organization) HasBillingName() bool {
+	if o != nil && o.BillingName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingName gets a reference to the given string and assigns it to the BillingName field.
+func (o *Organization) SetBillingName(v string) {
+	o.BillingName = &v
+}
+
+// GetBillingEmail returns the BillingEmail field value if set, zero value otherwise.
+func (o *Organization) GetBillingEmail() string {
+	if o == nil || o.BillingEmail == nil {
+		var ret string
+		return ret
+	}
+	return *o.BillingEmail
+}
+
+// GetBillingEmailOk returns a tuple with the BillingEmail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetBillingEmailOk() (*string, bool) {
+	if o == nil || o.BillingEmail == nil {
+		return nil, false
+	}
+	return o.BillingEmail, true
+}
+
+// HasBillingEmail returns a boolean if a field has been set.
+func (o *Organization) HasBillingEmail() bool {
+	if o != nil && o.BillingEmail != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingEmail gets a reference to the given string and assigns it to the BillingEmail field.
+func (o *Organization) SetBillingEmail(v string) {
+	o.BillingEmail = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Organization) GetName() string {
 	if o == nil || o.Name == nil {
@@ -369,6 +439,102 @@ func (o *Organization) SetPlan(v Plan) {
 	o.Plan = &v
 }
 
+// GetPlanUpdatedAt returns the PlanUpdatedAt field value if set, zero value otherwise.
+func (o *Organization) GetPlanUpdatedAt() time.Time {
+	if o == nil || o.PlanUpdatedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.PlanUpdatedAt
+}
+
+// GetPlanUpdatedAtOk returns a tuple with the PlanUpdatedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetPlanUpdatedAtOk() (*time.Time, bool) {
+	if o == nil || o.PlanUpdatedAt == nil {
+		return nil, false
+	}
+	return o.PlanUpdatedAt, true
+}
+
+// HasPlanUpdatedAt returns a boolean if a field has been set.
+func (o *Organization) HasPlanUpdatedAt() bool {
+	if o != nil && o.PlanUpdatedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanUpdatedAt gets a reference to the given time.Time and assigns it to the PlanUpdatedAt field.
+func (o *Organization) SetPlanUpdatedAt(v time.Time) {
+	o.PlanUpdatedAt = &v
+}
+
+// GetHasPaymentMethod returns the HasPaymentMethod field value if set, zero value otherwise.
+func (o *Organization) GetHasPaymentMethod() bool {
+	if o == nil || o.HasPaymentMethod == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasPaymentMethod
+}
+
+// GetHasPaymentMethodOk returns a tuple with the HasPaymentMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetHasPaymentMethodOk() (*bool, bool) {
+	if o == nil || o.HasPaymentMethod == nil {
+		return nil, false
+	}
+	return o.HasPaymentMethod, true
+}
+
+// HasHasPaymentMethod returns a boolean if a field has been set.
+func (o *Organization) HasHasPaymentMethod() bool {
+	if o != nil && o.HasPaymentMethod != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasPaymentMethod gets a reference to the given bool and assigns it to the HasPaymentMethod field.
+func (o *Organization) SetHasPaymentMethod(v bool) {
+	o.HasPaymentMethod = &v
+}
+
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+func (o *Organization) GetSubscriptionId() string {
+	if o == nil || o.SubscriptionId == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionId
+}
+
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetSubscriptionIdOk() (*string, bool) {
+	if o == nil || o.SubscriptionId == nil {
+		return nil, false
+	}
+	return o.SubscriptionId, true
+}
+
+// HasSubscriptionId returns a boolean if a field has been set.
+func (o *Organization) HasSubscriptionId() bool {
+	if o != nil && o.SubscriptionId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+func (o *Organization) SetSubscriptionId(v string) {
+	o.SubscriptionId = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Address1 != nil {
@@ -395,11 +561,26 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if o.VatNumber != nil {
 		toSerialize["vat_number"] = o.VatNumber
 	}
+	if o.BillingName != nil {
+		toSerialize["billing_name"] = o.BillingName
+	}
+	if o.BillingEmail != nil {
+		toSerialize["billing_email"] = o.BillingEmail
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
 	if o.Plan != nil {
 		toSerialize["plan"] = o.Plan
+	}
+	if o.PlanUpdatedAt != nil {
+		toSerialize["plan_updated_at"] = o.PlanUpdatedAt
+	}
+	if o.HasPaymentMethod != nil {
+		toSerialize["has_payment_method"] = o.HasPaymentMethod
+	}
+	if o.SubscriptionId != nil {
+		toSerialize["subscription_id"] = o.SubscriptionId
 	}
 	return json.Marshal(toSerialize)
 }

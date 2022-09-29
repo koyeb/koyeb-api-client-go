@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**GithubInstallationRepoList**](OrganizationApi.md#GithubInstallationRepoList) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
+[**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
 
 
 
@@ -464,6 +465,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateOrganizationReply**](UpdateOrganizationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateOrganizationPlan
+
+> UpdateOrganizationPlanReply UpdateOrganizationPlan(ctx, id).Body(body).Execute()
+
+Update organization plan
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := *openapiclient.NewUpdateOrganizationPlanRequest() // UpdateOrganizationPlanRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationApi.UpdateOrganizationPlan(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateOrganizationPlan``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrganizationPlan`: UpdateOrganizationPlanReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateOrganizationPlan`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateOrganizationPlanRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateOrganizationPlanRequest**](UpdateOrganizationPlanRequest.md) |  | 
+
+### Return type
+
+[**UpdateOrganizationPlanReply**](UpdateOrganizationPlanReply.md)
 
 ### Authorization
 

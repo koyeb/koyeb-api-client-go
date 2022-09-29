@@ -86,11 +86,12 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App
 *AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id} | Get App
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
-*AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id_or_name} | Update App
-*AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id_or_name} | Update App
+*AppsApi* | [**PauseApp**](docs/AppsApi.md#pauseapp) | **Post** /v1/apps/{id}/pause | Pause App
+*AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
+*AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
+*AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**Setup**](docs/BillingApi.md#setup) | **Post** /v1/billing/setup | 
-*BillingApi* | [**Subscribe**](docs/BillingApi.md#subscribe) | **Post** /v1/billing/subscribe | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
@@ -124,6 +125,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GithubInstallationRepoList**](docs/OrganizationApi.md#githubinstallationrepolist) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
+*OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
 *ProfileApi* | [**DeleteAccount**](docs/ProfileApi.md#deleteaccount) | **Delete** /v1/account/profile | 
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
@@ -135,6 +137,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
+*QuotasApi* | [**ReviewOrganizationCapacity**](docs/QuotasApi.md#revieworganizationcapacity) | **Post** /v1/quotas/capacity | Review Organization Capacity
 *RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
 *RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
 *RepositoriesApi* | [**ListBranches**](docs/RepositoriesApi.md#listbranches) | **Get** /v1/git/branches | 
@@ -162,6 +165,10 @@ Class | Method | HTTP request | Description
 *SessionApi* | [**PasswordlessLogin**](docs/SessionApi.md#passwordlesslogin) | **Post** /v1/account/passwordless_login | 
 *SessionApi* | [**RefreshToken**](docs/SessionApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
+*SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
+*SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
+*UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
+*UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
 
 
 ## Documentation For Models
@@ -171,6 +178,8 @@ Class | Method | HTTP request | Description
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
  - [AppListItem](docs/AppListItem.md)
+ - [AppStatus](docs/AppStatus.md)
+ - [AppUsage](docs/AppUsage.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
@@ -193,6 +202,7 @@ Class | Method | HTTP request | Description
  - [Deployment](docs/Deployment.md)
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
  - [DeploymentEnv](docs/DeploymentEnv.md)
+ - [DeploymentHealthCheck](docs/DeploymentHealthCheck.md)
  - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
@@ -207,6 +217,8 @@ Class | Method | HTTP request | Description
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
+ - [DiscourseAuthReply](docs/DiscourseAuthReply.md)
+ - [DiscourseAuthRequest](docs/DiscourseAuthRequest.md)
  - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
@@ -231,10 +243,13 @@ Class | Method | HTTP request | Description
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
+ - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
+ - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
+ - [GetSubscriptionReply](docs/GetSubscriptionReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
  - [GitDeploymentMetadataProvider](docs/GitDeploymentMetadataProvider.md)
  - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
@@ -248,9 +263,12 @@ Class | Method | HTTP request | Description
  - [GoogleProtobufAny](docs/GoogleProtobufAny.md)
  - [GoogleProtobufNullValue](docs/GoogleProtobufNullValue.md)
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)
+ - [HTTPHeader](docs/HTTPHeader.md)
+ - [HTTPHealthCheck](docs/HTTPHealthCheck.md)
  - [Instance](docs/Instance.md)
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
+ - [InstanceUsage](docs/InstanceUsage.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [KgitproxyBranch](docs/KgitproxyBranch.md)
  - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
@@ -290,6 +308,7 @@ Class | Method | HTTP request | Description
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
+ - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
@@ -297,12 +316,15 @@ Class | Method | HTTP request | Description
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
  - [RegionListItem](docs/RegionListItem.md)
+ - [RegionUsage](docs/RegionUsage.md)
  - [RegionalDeployment](docs/RegionalDeployment.md)
  - [RegionalDeploymentDefinition](docs/RegionalDeploymentDefinition.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
  - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
+ - [ReviewOrganizationCapacityReply](docs/ReviewOrganizationCapacityReply.md)
+ - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
  - [Route](docs/Route.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
@@ -311,11 +333,15 @@ Class | Method | HTTP request | Description
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
+ - [ServiceUsage](docs/ServiceUsage.md)
  - [SetupReply](docs/SetupReply.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
- - [SubscribeReply](docs/SubscribeReply.md)
- - [SubscribeRequest](docs/SubscribeRequest.md)
+ - [Subscription](docs/Subscription.md)
+ - [SubscriptionPaymentFailure](docs/SubscriptionPaymentFailure.md)
+ - [SubscriptionPaymentFailureStripeSDK](docs/SubscriptionPaymentFailureStripeSDK.md)
+ - [SubscriptionStatus](docs/SubscriptionStatus.md)
+ - [TCPHealthCheck](docs/TCPHealthCheck.md)
  - [Token](docs/Token.md)
  - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
  - [TriggerDeploymentMetadataActorType](docs/TriggerDeploymentMetadataActorType.md)
@@ -324,12 +350,16 @@ Class | Method | HTTP request | Description
  - [UpdateAppReply](docs/UpdateAppReply.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainReply](docs/UpdateDomainReply.md)
+ - [UpdateOrganizationPlanReply](docs/UpdateOrganizationPlanReply.md)
+ - [UpdateOrganizationPlanRequest](docs/UpdateOrganizationPlanRequest.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
+ - [Usage](docs/Usage.md)
+ - [UsageDetails](docs/UsageDetails.md)
  - [User](docs/User.md)
  - [UserAccountStatus](docs/UserAccountStatus.md)
  - [UserFlags](docs/UserFlags.md)

@@ -12,8 +12,13 @@ Name | Type | Description | Notes
 **Country** | Pointer to **string** |  | [optional] 
 **Company** | Pointer to **bool** |  | [optional] 
 **VatNumber** | Pointer to **string** |  | [optional] 
+**BillingName** | Pointer to **string** |  | [optional] 
+**BillingEmail** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] [default to PLAN_HOBBY]
+**PlanUpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**HasPaymentMethod** | Pointer to **bool** |  | [optional] 
+**SubscriptionId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -234,6 +239,56 @@ SetVatNumber sets VatNumber field to given value.
 
 HasVatNumber returns a boolean if a field has been set.
 
+### GetBillingName
+
+`func (o *Organization) GetBillingName() string`
+
+GetBillingName returns the BillingName field if non-nil, zero value otherwise.
+
+### GetBillingNameOk
+
+`func (o *Organization) GetBillingNameOk() (*string, bool)`
+
+GetBillingNameOk returns a tuple with the BillingName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingName
+
+`func (o *Organization) SetBillingName(v string)`
+
+SetBillingName sets BillingName field to given value.
+
+### HasBillingName
+
+`func (o *Organization) HasBillingName() bool`
+
+HasBillingName returns a boolean if a field has been set.
+
+### GetBillingEmail
+
+`func (o *Organization) GetBillingEmail() string`
+
+GetBillingEmail returns the BillingEmail field if non-nil, zero value otherwise.
+
+### GetBillingEmailOk
+
+`func (o *Organization) GetBillingEmailOk() (*string, bool)`
+
+GetBillingEmailOk returns a tuple with the BillingEmail field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingEmail
+
+`func (o *Organization) SetBillingEmail(v string)`
+
+SetBillingEmail sets BillingEmail field to given value.
+
+### HasBillingEmail
+
+`func (o *Organization) HasBillingEmail() bool`
+
+HasBillingEmail returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *Organization) GetName() string`
@@ -283,6 +338,81 @@ SetPlan sets Plan field to given value.
 `func (o *Organization) HasPlan() bool`
 
 HasPlan returns a boolean if a field has been set.
+
+### GetPlanUpdatedAt
+
+`func (o *Organization) GetPlanUpdatedAt() time.Time`
+
+GetPlanUpdatedAt returns the PlanUpdatedAt field if non-nil, zero value otherwise.
+
+### GetPlanUpdatedAtOk
+
+`func (o *Organization) GetPlanUpdatedAtOk() (*time.Time, bool)`
+
+GetPlanUpdatedAtOk returns a tuple with the PlanUpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlanUpdatedAt
+
+`func (o *Organization) SetPlanUpdatedAt(v time.Time)`
+
+SetPlanUpdatedAt sets PlanUpdatedAt field to given value.
+
+### HasPlanUpdatedAt
+
+`func (o *Organization) HasPlanUpdatedAt() bool`
+
+HasPlanUpdatedAt returns a boolean if a field has been set.
+
+### GetHasPaymentMethod
+
+`func (o *Organization) GetHasPaymentMethod() bool`
+
+GetHasPaymentMethod returns the HasPaymentMethod field if non-nil, zero value otherwise.
+
+### GetHasPaymentMethodOk
+
+`func (o *Organization) GetHasPaymentMethodOk() (*bool, bool)`
+
+GetHasPaymentMethodOk returns a tuple with the HasPaymentMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasPaymentMethod
+
+`func (o *Organization) SetHasPaymentMethod(v bool)`
+
+SetHasPaymentMethod sets HasPaymentMethod field to given value.
+
+### HasHasPaymentMethod
+
+`func (o *Organization) HasHasPaymentMethod() bool`
+
+HasHasPaymentMethod returns a boolean if a field has been set.
+
+### GetSubscriptionId
+
+`func (o *Organization) GetSubscriptionId() string`
+
+GetSubscriptionId returns the SubscriptionId field if non-nil, zero value otherwise.
+
+### GetSubscriptionIdOk
+
+`func (o *Organization) GetSubscriptionIdOk() (*string, bool)`
+
+GetSubscriptionIdOk returns a tuple with the SubscriptionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionId
+
+`func (o *Organization) SetSubscriptionId(v string)`
+
+SetSubscriptionId sets SubscriptionId field to given value.
+
+### HasSubscriptionId
+
+`func (o *Organization) HasSubscriptionId() bool`
+
+HasSubscriptionId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

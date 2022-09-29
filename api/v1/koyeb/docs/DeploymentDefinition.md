@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Regions** | Pointer to **[]string** |  | [optional] 
 **Scalings** | Pointer to [**[]DeploymentScaling**](DeploymentScaling.md) |  | [optional] 
 **InstanceTypes** | Pointer to [**[]DeploymentInstanceType**](DeploymentInstanceType.md) |  | [optional] 
+**HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 
@@ -207,6 +208,31 @@ SetInstanceTypes sets InstanceTypes field to given value.
 `func (o *DeploymentDefinition) HasInstanceTypes() bool`
 
 HasInstanceTypes returns a boolean if a field has been set.
+
+### GetHealthChecks
+
+`func (o *DeploymentDefinition) GetHealthChecks() []DeploymentHealthCheck`
+
+GetHealthChecks returns the HealthChecks field if non-nil, zero value otherwise.
+
+### GetHealthChecksOk
+
+`func (o *DeploymentDefinition) GetHealthChecksOk() (*[]DeploymentHealthCheck, bool)`
+
+GetHealthChecksOk returns a tuple with the HealthChecks field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHealthChecks
+
+`func (o *DeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck)`
+
+SetHealthChecks sets HealthChecks field to given value.
+
+### HasHealthChecks
+
+`func (o *DeploymentDefinition) HasHealthChecks() bool`
+
+HasHealthChecks returns a boolean if a field has been set.
 
 ### GetDocker
 

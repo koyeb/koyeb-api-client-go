@@ -80,6 +80,8 @@ type APIClient struct {
 
 	ProfileApi ProfileApi
 
+	QuotasApi QuotasApi
+
 	RegionalDeploymentsApi RegionalDeploymentsApi
 
 	RepositoriesApi RepositoriesApi
@@ -93,6 +95,10 @@ type APIClient struct {
 	SessionApi SessionApi
 
 	SsoApi SsoApi
+
+	SubscriptionsApi SubscriptionsApi
+
+	UsagesApi UsagesApi
 }
 
 type service struct {
@@ -127,6 +133,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.OrganizationApi = (*OrganizationApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
+	c.QuotasApi = (*QuotasApiService)(&c.common)
 	c.RegionalDeploymentsApi = (*RegionalDeploymentsApiService)(&c.common)
 	c.RepositoriesApi = (*RepositoriesApiService)(&c.common)
 	c.SearchApi = (*SearchApiService)(&c.common)
@@ -134,6 +141,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionApi = (*SessionApiService)(&c.common)
 	c.SsoApi = (*SsoApiService)(&c.common)
+	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
+	c.UsagesApi = (*UsagesApiService)(&c.common)
 
 	return c
 }
