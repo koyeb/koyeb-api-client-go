@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to **string** |  | [optional] 
+**Data** | Pointer to **string** | Data is base64 encoded | [optional] 
 
 ## Methods
 

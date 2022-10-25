@@ -5,12 +5,12 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/services | Create Service
-[**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
+[**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service Service deletion is allowed for all status.
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
 [**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Service
-[**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service
+[**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 [**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
-[**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service
+[**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service Service resume action is allowed for the following status:  - paused
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/services/{id} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/services/{id} | Update Service
 
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteService(ctx, id).Execute()
 
-Delete Service
+Delete Service Service deletion is allowed for all status.
 
 ### Example
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 > interface{} PauseService(ctx, id).Execute()
 
-Pause Service
+Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 
 ### Example
 
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 > interface{} ResumeService(ctx, id).Execute()
 
-Resume Service
+Resume Service Service resume action is allowed for the following status:  - paused
 
 ### Example
 

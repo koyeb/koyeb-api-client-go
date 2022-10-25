@@ -83,11 +83,11 @@ Class | Method | HTTP request | Description
 *ActivityApi* | [**ListActivities**](docs/ActivityApi.md#listactivities) | **Get** /v1/activities | 
 *ActivityApi* | [**ListNotifications**](docs/ActivityApi.md#listnotifications) | **Get** /v1/notifications | 
 *AppsApi* | [**CreateApp**](docs/AppsApi.md#createapp) | **Post** /v1/apps | Create App
-*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App
+*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App App deletion is allowed for all status.
 *AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id} | Get App
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
-*AppsApi* | [**PauseApp**](docs/AppsApi.md#pauseapp) | **Post** /v1/apps/{id}/pause | Pause App
-*AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
+*AppsApi* | [**PauseApp**](docs/AppsApi.md#pauseapp) | **Post** /v1/apps/{id}/pause | Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+*AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App App resume action is allowed for the following status:  - paused
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
@@ -103,6 +103,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | 
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
+*DeploymentsApi* | [**CancelDeployment**](docs/DeploymentsApi.md#canceldeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
@@ -152,12 +153,12 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
-*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
+*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service Service deletion is allowed for all status.
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
-*ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service
+*ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 *ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
-*ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service
+*ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service Service resume action is allowed for the following status:  - paused
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user

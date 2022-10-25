@@ -16,6 +16,7 @@ import (
 
 // ExecCommandIO struct for ExecCommandIO
 type ExecCommandIO struct {
+	// Data is base64 encoded
 	Data *string `json:"data,omitempty"`
 }
 

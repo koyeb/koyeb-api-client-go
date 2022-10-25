@@ -16,6 +16,8 @@ Method | HTTP request | Description
 
 Exec Command
 
+
+
 ### Example
 
 ```go
@@ -29,11 +31,11 @@ import (
 )
 
 func main() {
-    id := "id_example" // string |  (optional)
-    bodyCommand := []string{"Inner_example"} // []string |  (optional)
+    id := "id_example" // string | ID of the instance to exec on. Mandatory in the first frame sent (optional)
+    bodyCommand := []string{"Inner_example"} // []string | Command to exec. Mandatory in the first frame sent (optional)
     bodyTtySizeHeight := int32(56) // int32 |  (optional)
     bodyTtySizeWidth := int32(56) // int32 |  (optional)
-    bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string |  (optional)
+    bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string | Data is base64 encoded (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -58,11 +60,11 @@ Other parameters are passed through a pointer to a apiExecCommandRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** |  | 
- **bodyCommand** | **[]string** |  | 
+ **id** | **string** | ID of the instance to exec on. Mandatory in the first frame sent | 
+ **bodyCommand** | **[]string** | Command to exec. Mandatory in the first frame sent | 
  **bodyTtySizeHeight** | **int32** |  | 
  **bodyTtySizeWidth** | **int32** |  | 
- **bodyStdinData** | **string** |  | 
+ **bodyStdinData** | **string** | Data is base64 encoded | 
 
 ### Return type
 
