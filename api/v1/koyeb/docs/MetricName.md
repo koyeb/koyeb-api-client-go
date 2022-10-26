@@ -9,8 +9,6 @@
 
 * `MEM_RSS` (value: `"MEM_RSS"`)
 
-* `MEM_SWAP` (value: `"MEM_SWAP"`)
-
 * `HTTP_THROUGHPUT` (value: `"HTTP_THROUGHPUT"`)
 
 * `HTTP_RESPONSE_TIME_50_P` (value: `"HTTP_RESPONSE_TIME_50P"`)

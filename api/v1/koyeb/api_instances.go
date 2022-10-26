@@ -29,6 +29,7 @@ type InstancesApi interface {
 
 	/*
 	 * ExecCommand Exec Command
+	 * This endpoint opens a websocket. Once open, all frames going through the websocket should be formatted in JSON. Input frames should match the format specified below. Output frames will match the response schema.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @return ApiExecCommandRequest
 	 */
@@ -108,6 +109,7 @@ func (r ApiExecCommandRequest) Execute() (StreamResultOfExecCommandReply, *_neth
 
 /*
  * ExecCommand Exec Command
+ * This endpoint opens a websocket. Once open, all frames going through the websocket should be formatted in JSON. Input frames should match the format specified below. Output frames will match the response schema.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @return ApiExecCommandRequest
  */

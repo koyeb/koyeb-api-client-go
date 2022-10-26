@@ -16,6 +16,7 @@ import (
 
 // ExecCommandRequestBody struct for ExecCommandRequestBody
 type ExecCommandRequestBody struct {
+	// Command to exec. Mandatory in the first frame sent
 	Command *[]string `json:"command,omitempty"`
 	TtySize *ExecCommandRequestTerminalSize `json:"tty_size,omitempty"`
 	Stdin *ExecCommandIO `json:"stdin,omitempty"`

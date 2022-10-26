@@ -40,7 +40,7 @@ type ServicesApi interface {
 	CreateServiceExecute(r ApiCreateServiceRequest) (CreateServiceReply, *_nethttp.Response, error)
 
 	/*
-	 * DeleteService Delete Service
+	 * DeleteService Delete Service Service deletion is allowed for all status.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the entity to delete
 	 * @return ApiDeleteServiceRequest
@@ -81,7 +81,7 @@ type ServicesApi interface {
 	ListServicesExecute(r ApiListServicesRequest) (ListServicesReply, *_nethttp.Response, error)
 
 	/*
-	 * PauseService Pause Service
+	 * PauseService Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the service to pause.
 	 * @return ApiPauseServiceRequest
@@ -109,7 +109,7 @@ type ServicesApi interface {
 	ReDeployExecute(r ApiReDeployRequest) (RedeployReply, *_nethttp.Response, error)
 
 	/*
-	 * ResumeService Resume Service
+	 * ResumeService Resume Service Service resume action is allowed for the following status:  - paused
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the service to pause.
 	 * @return ApiResumeServiceRequest
@@ -336,7 +336,7 @@ func (r ApiDeleteServiceRequest) Execute() (interface{}, *_nethttp.Response, err
 }
 
 /*
- * DeleteService Delete Service
+ * DeleteService Delete Service Service deletion is allowed for all status.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the entity to delete
  * @return ApiDeleteServiceRequest
@@ -832,7 +832,7 @@ func (r ApiPauseServiceRequest) Execute() (interface{}, *_nethttp.Response, erro
 }
 
 /*
- * PauseService Pause Service
+ * PauseService Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the service to pause.
  * @return ApiPauseServiceRequest
@@ -1154,7 +1154,7 @@ func (r ApiResumeServiceRequest) Execute() (interface{}, *_nethttp.Response, err
 }
 
 /*
- * ResumeService Resume Service
+ * ResumeService Resume Service Service resume action is allowed for the following status:  - paused
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the service to pause.
  * @return ApiResumeServiceRequest

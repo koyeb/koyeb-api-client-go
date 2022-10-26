@@ -40,7 +40,7 @@ type AppsApi interface {
 	CreateAppExecute(r ApiCreateAppRequest) (CreateAppReply, *_nethttp.Response, error)
 
 	/*
-	 * DeleteApp Delete App
+	 * DeleteApp Delete App App deletion is allowed for all status.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the App to delete
 	 * @return ApiDeleteAppRequest
@@ -81,7 +81,7 @@ type AppsApi interface {
 	ListAppsExecute(r ApiListAppsRequest) (ListAppsReply, *_nethttp.Response, error)
 
 	/*
-	 * PauseApp Pause App
+	 * PauseApp Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the app to pause.
 	 * @return ApiPauseAppRequest
@@ -95,7 +95,7 @@ type AppsApi interface {
 	PauseAppExecute(r ApiPauseAppRequest) (interface{}, *_nethttp.Response, error)
 
 	/*
-	 * ResumeApp Resume App
+	 * ResumeApp Resume App App resume action is allowed for the following status:  - paused
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param id The id of the app to resume.
 	 * @return ApiResumeAppRequest
@@ -314,7 +314,7 @@ func (r ApiDeleteAppRequest) Execute() (interface{}, *_nethttp.Response, error) 
 }
 
 /*
- * DeleteApp Delete App
+ * DeleteApp Delete App App deletion is allowed for all status.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the App to delete
  * @return ApiDeleteAppRequest
@@ -802,7 +802,7 @@ func (r ApiPauseAppRequest) Execute() (interface{}, *_nethttp.Response, error) {
 }
 
 /*
- * PauseApp Pause App
+ * PauseApp Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the app to pause.
  * @return ApiPauseAppRequest
@@ -958,7 +958,7 @@ func (r ApiResumeAppRequest) Execute() (interface{}, *_nethttp.Response, error) 
 }
 
 /*
- * ResumeApp Resume App
+ * ResumeApp Resume App App resume action is allowed for the following status:  - paused
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The id of the app to resume.
  * @return ApiResumeAppRequest

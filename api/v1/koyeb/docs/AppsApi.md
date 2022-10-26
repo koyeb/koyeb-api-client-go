@@ -5,11 +5,11 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateApp**](AppsApi.md#CreateApp) | **Post** /v1/apps | Create App
-[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App
+[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App App deletion is allowed for all status.
 [**GetApp**](AppsApi.md#GetApp) | **Get** /v1/apps/{id} | Get App
 [**ListApps**](AppsApi.md#ListApps) | **Get** /v1/apps | List App
-[**PauseApp**](AppsApi.md#PauseApp) | **Post** /v1/apps/{id}/pause | Pause App
-[**ResumeApp**](AppsApi.md#ResumeApp) | **Post** /v1/apps/{id}/resume | Resume App
+[**PauseApp**](AppsApi.md#PauseApp) | **Post** /v1/apps/{id}/pause | Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+[**ResumeApp**](AppsApi.md#ResumeApp) | **Post** /v1/apps/{id}/resume | Resume App App resume action is allowed for the following status:  - paused
 [**UpdateApp**](AppsApi.md#UpdateApp) | **Put** /v1/apps/{id} | Update App
 [**UpdateApp2**](AppsApi.md#UpdateApp2) | **Patch** /v1/apps/{id} | Update App
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 > interface{} DeleteApp(ctx, id).Execute()
 
-Delete App
+Delete App App deletion is allowed for all status.
 
 ### Example
 
@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 > interface{} PauseApp(ctx, id).Execute()
 
-Pause App
+Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 
 ### Example
 
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 > interface{} ResumeApp(ctx, id).Execute()
 
-Resume App
+Resume App App resume action is allowed for the following status:  - paused
 
 ### Example
 

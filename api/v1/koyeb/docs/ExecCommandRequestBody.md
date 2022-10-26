@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Command** | Pointer to **[]string** |  | [optional] 
+**Command** | Pointer to **[]string** | Command to exec. Mandatory in the first frame sent | [optional] 
 **TtySize** | Pointer to [**ExecCommandRequestTerminalSize**](ExecCommandRequestTerminalSize.md) |  | [optional] 
 **Stdin** | Pointer to [**ExecCommandIO**](ExecCommandIO.md) |  | [optional] 
 
