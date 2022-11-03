@@ -8,7 +8,6 @@ Method | HTTP request | Description
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
 [**GithubInstallationCallback**](OrganizationApi.md#GithubInstallationCallback) | **Post** /v1/github/installation/callback | Github callback for app installation
-[**GithubInstallationRepoList**](OrganizationApi.md#GithubInstallationRepoList) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
@@ -264,72 +263,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GithubInstallationRepoList
-
-> GithubInstallationRepoListReply GithubInstallationRepoList(ctx).Page(page).PerPage(perPage).Execute()
-
-List Github repos of the organization
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    page := int64(789) // int64 | The page id (starting from 1): Maps to: https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#pagination. (optional)
-    perPage := int64(789) // int64 | The number of page elements per page (max 100): Maps to: https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#pagination. (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrganizationApi.GithubInstallationRepoList(context.Background()).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GithubInstallationRepoList``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GithubInstallationRepoList`: GithubInstallationRepoListReply
-    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GithubInstallationRepoList`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGithubInstallationRepoListRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page** | **int64** | The page id (starting from 1): Maps to: https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#pagination. | 
- **perPage** | **int64** | The number of page elements per page (max 100): Maps to: https://docs.github.com/en/free-pro-team@latest/rest/overview/resources-in-the-rest-api#pagination. | 
-
-### Return type
-
-[**GithubInstallationRepoListReply**](GithubInstallationRepoListReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*, 
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
