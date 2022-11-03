@@ -123,7 +123,6 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
-*OrganizationApi* | [**GithubInstallationRepoList**](docs/OrganizationApi.md#githubinstallationrepolist) | **Get** /v1/github/installation/repositories | List Github repos of the organization
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
@@ -258,9 +257,7 @@ Class | Method | HTTP request | Description
  - [GitSource](docs/GitSource.md)
  - [GithubInstallationCallbackRequest](docs/GithubInstallationCallbackRequest.md)
  - [GithubInstallationReply](docs/GithubInstallationReply.md)
- - [GithubInstallationRepoListReply](docs/GithubInstallationRepoListReply.md)
  - [GithubInstallationRequest](docs/GithubInstallationRequest.md)
- - [GithubRepo](docs/GithubRepo.md)
  - [GoogleProtobufAny](docs/GoogleProtobufAny.md)
  - [GoogleProtobufNullValue](docs/GoogleProtobufNullValue.md)
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)

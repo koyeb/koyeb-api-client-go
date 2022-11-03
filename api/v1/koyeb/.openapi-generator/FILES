@@ -124,9 +124,7 @@ docs/GitLabRegistryConfiguration.md
 docs/GitSource.md
 docs/GithubInstallationCallbackRequest.md
 docs/GithubInstallationReply.md
-docs/GithubInstallationRepoListReply.md
 docs/GithubInstallationRequest.md
-docs/GithubRepo.md
 docs/GoogleProtobufAny.md
 docs/GoogleProtobufNullValue.md
 docs/GoogleRpcStatus.md
@@ -335,9 +333,7 @@ model_git_lab_registry_configuration.go
 model_git_source.go
 model_github_installation_callback_request.go
 model_github_installation_reply.go
-model_github_installation_repo_list_reply.go
 model_github_installation_request.go
-model_github_repo.go
 model_google_protobuf_any.go
 model_google_protobuf_null_value.go
 model_google_rpc_status.go
