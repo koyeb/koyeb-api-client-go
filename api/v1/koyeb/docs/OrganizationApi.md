@@ -8,9 +8,11 @@ Method | HTTP request | Description
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
 [**GithubInstallationCallback**](OrganizationApi.md#GithubInstallationCallback) | **Post** /v1/github/installation/callback | Github callback for app installation
+[**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | 
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
+[**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
 
 
 
@@ -269,6 +271,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SwitchOrganization
+
+> LoginReply SwitchOrganization(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := *openapiclient.NewSwitchOrganizationRequest() // SwitchOrganizationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationApi.SwitchOrganization(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.SwitchOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SwitchOrganization`: LoginReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.SwitchOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSwitchOrganizationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**SwitchOrganizationRequest**](SwitchOrganizationRequest.md) |  | 
+
+### Return type
+
+[**LoginReply**](LoginReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateOrganization
 
 > UpdateOrganizationReply UpdateOrganization(ctx, id).Body(body).UpdateMask(updateMask).Execute()
@@ -468,6 +540,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateOrganizationPlanReply**](UpdateOrganizationPlanReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpsertSignupQualification
+
+> UpsertSignupQualificationReply UpsertSignupQualification(ctx, id).Body(body).Execute()
+
+Upsert organization's signup qualification
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := *openapiclient.NewUpsertSignupQualificationRequest() // UpsertSignupQualificationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrganizationApi.UpsertSignupQualification(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpsertSignupQualification``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpsertSignupQualification`: UpsertSignupQualificationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpsertSignupQualification`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpsertSignupQualificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpsertSignupQualificationRequest**](UpsertSignupQualificationRequest.md) |  | 
+
+### Return type
+
+[**UpsertSignupQualificationReply**](UpsertSignupQualificationReply.md)
 
 ### Authorization
 

@@ -496,7 +496,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService
 
-> UpdateServiceReply UpdateService(ctx, id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService(ctx, id).Body(body).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -515,12 +515,11 @@ import (
 func main() {
     id := "id_example" // string | The id of the entity to update
     body := *openapiclient.NewUpdateService() // UpdateService | 
-    updateMask := "updateMask_example" // string |  (optional)
     dryRun := true // bool | If set, run validation and check that the service exists. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.UpdateService(context.Background(), id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+    resp, r, err := api_client.ServicesApi.UpdateService(context.Background(), id).Body(body).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -547,7 +546,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**UpdateService**](UpdateService.md) |  | 
- **updateMask** | **string** |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists. | 
 
 ### Return type
@@ -570,7 +568,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService2
 
-> UpdateServiceReply UpdateService2(ctx, id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService2(ctx, id).Body(body).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -589,12 +587,11 @@ import (
 func main() {
     id := "id_example" // string | The id of the entity to update
     body := *openapiclient.NewUpdateService() // UpdateService | 
-    updateMask := "updateMask_example" // string |  (optional)
     dryRun := true // bool | If set, run validation and check that the service exists. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.UpdateService2(context.Background(), id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+    resp, r, err := api_client.ServicesApi.UpdateService2(context.Background(), id).Body(body).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -621,7 +618,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**UpdateService**](UpdateService.md) |  | 
- **updateMask** | **string** |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists. | 
 
 ### Return type

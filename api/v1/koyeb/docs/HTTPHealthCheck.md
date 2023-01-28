@@ -7,8 +7,6 @@ Name | Type | Description | Notes
 **Port** | Pointer to **int64** |  | [optional] 
 **Path** | Pointer to **string** |  | [optional] 
 **Method** | Pointer to **string** |  | [optional] 
-**EnableSsl** | Pointer to **bool** |  | [optional] 
-**SkipTls** | Pointer to **bool** |  | [optional] 
 **Headers** | Pointer to [**[]HTTPHeader**](HTTPHeader.md) |  | [optional] 
 
 ## Methods
@@ -104,56 +102,6 @@ SetMethod sets Method field to given value.
 `func (o *HTTPHealthCheck) HasMethod() bool`
 
 HasMethod returns a boolean if a field has been set.
-
-### GetEnableSsl
-
-`func (o *HTTPHealthCheck) GetEnableSsl() bool`
-
-GetEnableSsl returns the EnableSsl field if non-nil, zero value otherwise.
-
-### GetEnableSslOk
-
-`func (o *HTTPHealthCheck) GetEnableSslOk() (*bool, bool)`
-
-GetEnableSslOk returns a tuple with the EnableSsl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnableSsl
-
-`func (o *HTTPHealthCheck) SetEnableSsl(v bool)`
-
-SetEnableSsl sets EnableSsl field to given value.
-
-### HasEnableSsl
-
-`func (o *HTTPHealthCheck) HasEnableSsl() bool`
-
-HasEnableSsl returns a boolean if a field has been set.
-
-### GetSkipTls
-
-`func (o *HTTPHealthCheck) GetSkipTls() bool`
-
-GetSkipTls returns the SkipTls field if non-nil, zero value otherwise.
-
-### GetSkipTlsOk
-
-`func (o *HTTPHealthCheck) GetSkipTlsOk() (*bool, bool)`
-
-GetSkipTlsOk returns a tuple with the SkipTls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSkipTls
-
-`func (o *HTTPHealthCheck) SetSkipTls(v bool)`
-
-SetSkipTls sets SkipTls field to given value.
-
-### HasSkipTls
-
-`func (o *HTTPHealthCheck) HasSkipTls() bool`
-
-HasSkipTls returns a boolean if a field has been set.
 
 ### GetHeaders
 

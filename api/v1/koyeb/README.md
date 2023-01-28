@@ -123,12 +123,28 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
+*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | 
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
+*OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
+*OrganizationInvitationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationInvitationsApi.md#createorganizationinvitation) | **Post** /v1/organization_invitations | 
+*OrganizationInvitationsApi* | [**DeleteOrganizationInvitation**](docs/OrganizationInvitationsApi.md#deleteorganizationinvitation) | **Delete** /v1/organization_invitations/{id} | 
+*OrganizationInvitationsApi* | [**ListOrganizationInvitations**](docs/OrganizationInvitationsApi.md#listorganizationinvitations) | **Get** /v1/organization_invitations | 
+*OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | 
+*OrganizationMembersApi* | [**ListOrganizationMembers**](docs/OrganizationMembersApi.md#listorganizationmembers) | **Get** /v1/organization_members | List organization members
+*OrganizationMembersApi* | [**RemoveOrganizationMember**](docs/OrganizationMembersApi.md#removeorganizationmember) | **Delete** /v1/organization_members/{id} | Remove an organization member
+*PaymentMethodsApi* | [**ConfirmPaymentAuthorization**](docs/PaymentMethodsApi.md#confirmpaymentauthorization) | **Post** /v1/payment_methods/{id}/confirm | Confirm payment authorization
+*PaymentMethodsApi* | [**CreatePaymentAuthorization**](docs/PaymentMethodsApi.md#createpaymentauthorization) | **Post** /v1/payment_methods | Create payment authorization
+*PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /v1/payment_methods/{id} | Delete payment method
+*PaymentMethodsApi* | [**GetPaymentMethod**](docs/PaymentMethodsApi.md#getpaymentmethod) | **Get** /v1/payment_methods/{id} | Get payment method
+*PaymentMethodsApi* | [**ListPaymentMethods**](docs/PaymentMethodsApi.md#listpaymentmethods) | **Get** /v1/payment_methods | List payment methods
+*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
+*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
 *ProfileApi* | [**DeleteAccount**](docs/ProfileApi.md#deleteaccount) | **Delete** /v1/account/profile | 
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
+*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Post** /v1/account/organization_invitations | 
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 *ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | 
 *ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | 
@@ -173,6 +189,8 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AcceptOrganizationInvitationReply](docs/AcceptOrganizationInvitationReply.md)
+ - [AcceptOrganizationInvitationRequest](docs/AcceptOrganizationInvitationRequest.md)
  - [Action](docs/Action.md)
  - [Activity](docs/Activity.md)
  - [ActivityList](docs/ActivityList.md)
@@ -186,12 +204,17 @@ Class | Method | HTTP request | Description
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
+ - [ConfirmPaymentAuthorizationReply](docs/ConfirmPaymentAuthorizationReply.md)
+ - [ConfirmPaymentAuthorizationRequest](docs/ConfirmPaymentAuthorizationRequest.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateCredential](docs/CreateCredential.md)
  - [CreateDomain](docs/CreateDomain.md)
  - [CreateDomainReply](docs/CreateDomainReply.md)
+ - [CreateOrganizationInvitationReply](docs/CreateOrganizationInvitationReply.md)
+ - [CreateOrganizationInvitationRequest](docs/CreateOrganizationInvitationRequest.md)
+ - [CreatePaymentAuthorizationReply](docs/CreatePaymentAuthorizationReply.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
@@ -199,6 +222,8 @@ Class | Method | HTTP request | Description
  - [Credential](docs/Credential.md)
  - [CredentialReply](docs/CredentialReply.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
+ - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
+ - [DeclineOrganizationInvitationRequest](docs/DeclineOrganizationInvitationRequest.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
  - [DeploymentEnv](docs/DeploymentEnv.md)
@@ -245,6 +270,7 @@ Class | Method | HTTP request | Description
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
+ - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
@@ -270,6 +296,8 @@ Class | Method | HTTP request | Description
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [KgitproxyBranch](docs/KgitproxyBranch.md)
  - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
+ - [KgitproxyGithubInstallationStatus](docs/KgitproxyGithubInstallationStatus.md)
+ - [KgitproxyIndexingStatus](docs/KgitproxyIndexingStatus.md)
  - [KgitproxyListBranchesReply](docs/KgitproxyListBranchesReply.md)
  - [KgitproxyListRepositoriesReply](docs/KgitproxyListRepositoriesReply.md)
  - [KgitproxyRepository](docs/KgitproxyRepository.md)
@@ -289,10 +317,15 @@ Class | Method | HTTP request | Description
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListDomainsReply](docs/ListDomainsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
+ - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
+ - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
+ - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
+ - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
+ - [ListUserOrganizationInvitationsRequest](docs/ListUserOrganizationInvitationsRequest.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
@@ -305,7 +338,13 @@ Class | Method | HTTP request | Description
  - [OAuthProvider](docs/OAuthProvider.md)
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
+ - [OrganizationInvitation](docs/OrganizationInvitation.md)
+ - [OrganizationInvitationStatus](docs/OrganizationInvitationStatus.md)
+ - [OrganizationMember](docs/OrganizationMember.md)
+ - [OrganizationMemberStatus](docs/OrganizationMemberStatus.md)
  - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
+ - [PaymentMethod](docs/PaymentMethod.md)
+ - [PaymentMethodStatus](docs/PaymentMethodStatus.md)
  - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
@@ -320,6 +359,9 @@ Class | Method | HTTP request | Description
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
  - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
+ - [RemoveOrganizationMemberReply](docs/RemoveOrganizationMemberReply.md)
+ - [ResendOrganizationInvitationReply](docs/ResendOrganizationInvitationReply.md)
+ - [ResendOrganizationInvitationRequest](docs/ResendOrganizationInvitationRequest.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
  - [ReviewOrganizationCapacityReply](docs/ReviewOrganizationCapacityReply.md)
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
@@ -339,6 +381,7 @@ Class | Method | HTTP request | Description
  - [SubscriptionPaymentFailure](docs/SubscriptionPaymentFailure.md)
  - [SubscriptionPaymentFailureStripeSDK](docs/SubscriptionPaymentFailureStripeSDK.md)
  - [SubscriptionStatus](docs/SubscriptionStatus.md)
+ - [SwitchOrganizationRequest](docs/SwitchOrganizationRequest.md)
  - [TCPHealthCheck](docs/TCPHealthCheck.md)
  - [Token](docs/Token.md)
  - [TriggerDeploymentMetadata](docs/TriggerDeploymentMetadata.md)
@@ -356,12 +399,15 @@ Class | Method | HTTP request | Description
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
+ - [UpsertSignupQualificationReply](docs/UpsertSignupQualificationReply.md)
+ - [UpsertSignupQualificationRequest](docs/UpsertSignupQualificationRequest.md)
  - [Usage](docs/Usage.md)
  - [UsageDetails](docs/UsageDetails.md)
  - [User](docs/User.md)
  - [UserAccountStatus](docs/UserAccountStatus.md)
  - [UserFlags](docs/UserFlags.md)
  - [UserReply](docs/UserReply.md)
+ - [UserRoleRole](docs/UserRoleRole.md)
 
 
 ## Documentation For Authorization

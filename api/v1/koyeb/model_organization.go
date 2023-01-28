@@ -32,6 +32,7 @@ type Organization struct {
 	PlanUpdatedAt *time.Time `json:"plan_updated_at,omitempty"`
 	HasPaymentMethod *bool `json:"has_payment_method,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	SignupQualification *interface{} `json:"signup_qualification,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -535,6 +536,38 @@ func (o *Organization) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
+// GetSignupQualification returns the SignupQualification field value if set, zero value otherwise.
+func (o *Organization) GetSignupQualification() interface{} {
+	if o == nil || o.SignupQualification == nil {
+		var ret interface{}
+		return ret
+	}
+	return *o.SignupQualification
+}
+
+// GetSignupQualificationOk returns a tuple with the SignupQualification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetSignupQualificationOk() (*interface{}, bool) {
+	if o == nil || o.SignupQualification == nil {
+		return nil, false
+	}
+	return o.SignupQualification, true
+}
+
+// HasSignupQualification returns a boolean if a field has been set.
+func (o *Organization) HasSignupQualification() bool {
+	if o != nil && o.SignupQualification != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSignupQualification gets a reference to the given interface{} and assigns it to the SignupQualification field.
+func (o *Organization) SetSignupQualification(v interface{}) {
+	o.SignupQualification = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Address1 != nil {
@@ -581,6 +614,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if o.SubscriptionId != nil {
 		toSerialize["subscription_id"] = o.SubscriptionId
+	}
+	if o.SignupQualification != nil {
+		toSerialize["signup_qualification"] = o.SignupQualification
 	}
 	return json.Marshal(toSerialize)
 }

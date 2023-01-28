@@ -22,6 +22,7 @@ type KgitproxyBranch struct {
 	Name *string `json:"name,omitempty"`
 	IsDefault *bool `json:"is_default,omitempty"`
 	IsProtected *bool `json:"is_protected,omitempty"`
+	Provider *KgitproxyRepositoryProvider `json:"provider,omitempty"`
 }
 
 // NewKgitproxyBranch instantiates a new KgitproxyBranch object
@@ -30,6 +31,8 @@ type KgitproxyBranch struct {
 // will change when the set of required properties is changed
 func NewKgitproxyBranch() *KgitproxyBranch {
 	this := KgitproxyBranch{}
+	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER
+	this.Provider = &provider
 	return &this
 }
 
@@ -38,6 +41,8 @@ func NewKgitproxyBranch() *KgitproxyBranch {
 // but it doesn't guarantee that properties required by API are set
 func NewKgitproxyBranchWithDefaults() *KgitproxyBranch {
 	this := KgitproxyBranch{}
+	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER
+	this.Provider = &provider
 	return &this
 }
 
@@ -233,6 +238,38 @@ func (o *KgitproxyBranch) SetIsProtected(v bool) {
 	o.IsProtected = &v
 }
 
+// GetProvider returns the Provider field value if set, zero value otherwise.
+func (o *KgitproxyBranch) GetProvider() KgitproxyRepositoryProvider {
+	if o == nil || o.Provider == nil {
+		var ret KgitproxyRepositoryProvider
+		return ret
+	}
+	return *o.Provider
+}
+
+// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KgitproxyBranch) GetProviderOk() (*KgitproxyRepositoryProvider, bool) {
+	if o == nil || o.Provider == nil {
+		return nil, false
+	}
+	return o.Provider, true
+}
+
+// HasProvider returns a boolean if a field has been set.
+func (o *KgitproxyBranch) HasProvider() bool {
+	if o != nil && o.Provider != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProvider gets a reference to the given KgitproxyRepositoryProvider and assigns it to the Provider field.
+func (o *KgitproxyBranch) SetProvider(v KgitproxyRepositoryProvider) {
+	o.Provider = &v
+}
+
 func (o KgitproxyBranch) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -252,6 +289,9 @@ func (o KgitproxyBranch) MarshalJSON() ([]byte, error) {
 	}
 	if o.IsProtected != nil {
 		toSerialize["is_protected"] = o.IsProtected
+	}
+	if o.Provider != nil {
+		toSerialize["provider"] = o.Provider
 	}
 	return json.Marshal(toSerialize)
 }

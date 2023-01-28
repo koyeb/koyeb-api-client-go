@@ -17,7 +17,7 @@ import (
 // HTTPHeader struct for HTTPHeader
 type HTTPHeader struct {
 	Key *string `json:"key,omitempty"`
-	Values *[]string `json:"values,omitempty"`
+	Value *string `json:"value,omitempty"`
 }
 
 // NewHTTPHeader instantiates a new HTTPHeader object
@@ -69,36 +69,36 @@ func (o *HTTPHeader) SetKey(v string) {
 	o.Key = &v
 }
 
-// GetValues returns the Values field value if set, zero value otherwise.
-func (o *HTTPHeader) GetValues() []string {
-	if o == nil || o.Values == nil {
-		var ret []string
+// GetValue returns the Value field value if set, zero value otherwise.
+func (o *HTTPHeader) GetValue() string {
+	if o == nil || o.Value == nil {
+		var ret string
 		return ret
 	}
-	return *o.Values
+	return *o.Value
 }
 
-// GetValuesOk returns a tuple with the Values field value if set, nil otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HTTPHeader) GetValuesOk() (*[]string, bool) {
-	if o == nil || o.Values == nil {
+func (o *HTTPHeader) GetValueOk() (*string, bool) {
+	if o == nil || o.Value == nil {
 		return nil, false
 	}
-	return o.Values, true
+	return o.Value, true
 }
 
-// HasValues returns a boolean if a field has been set.
-func (o *HTTPHeader) HasValues() bool {
-	if o != nil && o.Values != nil {
+// HasValue returns a boolean if a field has been set.
+func (o *HTTPHeader) HasValue() bool {
+	if o != nil && o.Value != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetValues gets a reference to the given []string and assigns it to the Values field.
-func (o *HTTPHeader) SetValues(v []string) {
-	o.Values = &v
+// SetValue gets a reference to the given string and assigns it to the Value field.
+func (o *HTTPHeader) SetValue(v string) {
+	o.Value = &v
 }
 
 func (o HTTPHeader) MarshalJSON() ([]byte, error) {
@@ -106,8 +106,8 @@ func (o HTTPHeader) MarshalJSON() ([]byte, error) {
 	if o.Key != nil {
 		toSerialize["key"] = o.Key
 	}
-	if o.Values != nil {
-		toSerialize["values"] = o.Values
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
 	}
 	return json.Marshal(toSerialize)
 }

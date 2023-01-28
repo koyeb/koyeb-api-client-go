@@ -1303,16 +1303,11 @@ type ApiUpdateServiceRequest struct {
 	ApiService ServicesApi
 	id string
 	body *UpdateService
-	updateMask *string
 	dryRun *bool
 }
 
 func (r ApiUpdateServiceRequest) Body(body UpdateService) ApiUpdateServiceRequest {
 	r.body = &body
-	return r
-}
-func (r ApiUpdateServiceRequest) UpdateMask(updateMask string) ApiUpdateServiceRequest {
-	r.updateMask = &updateMask
 	return r
 }
 func (r ApiUpdateServiceRequest) DryRun(dryRun bool) ApiUpdateServiceRequest {
@@ -1367,9 +1362,6 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (Up
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
-	if r.updateMask != nil {
-		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
-	}
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
 	}
@@ -1485,16 +1477,11 @@ type ApiUpdateService2Request struct {
 	ApiService ServicesApi
 	id string
 	body *UpdateService
-	updateMask *string
 	dryRun *bool
 }
 
 func (r ApiUpdateService2Request) Body(body UpdateService) ApiUpdateService2Request {
 	r.body = &body
-	return r
-}
-func (r ApiUpdateService2Request) UpdateMask(updateMask string) ApiUpdateService2Request {
-	r.updateMask = &updateMask
 	return r
 }
 func (r ApiUpdateService2Request) DryRun(dryRun bool) ApiUpdateService2Request {
@@ -1549,9 +1536,6 @@ func (a *ServicesApiService) UpdateService2Execute(r ApiUpdateService2Request) (
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
-	if r.updateMask != nil {
-		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
-	}
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
 	}

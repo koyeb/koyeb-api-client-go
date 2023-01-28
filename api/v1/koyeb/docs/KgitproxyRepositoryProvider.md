@@ -3,7 +3,7 @@
 ## Enum
 
 
-* `UNKNOWN` (value: `"UNKNOWN"`)
+* `INVALID_PROVIDER` (value: `"INVALID_PROVIDER"`)
 
 * `GITHUB` (value: `"GITHUB"`)
 

@@ -20,12 +20,12 @@ type KgitproxyRepositoryProvider string
 
 // List of kgitproxy.RepositoryProvider
 const (
-	KGITPROXYREPOSITORYPROVIDER_UNKNOWN KgitproxyRepositoryProvider = "UNKNOWN"
+	KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER KgitproxyRepositoryProvider = "INVALID_PROVIDER"
 	KGITPROXYREPOSITORYPROVIDER_GITHUB KgitproxyRepositoryProvider = "GITHUB"
 )
 
 var allowedKgitproxyRepositoryProviderEnumValues = []KgitproxyRepositoryProvider{
-	"UNKNOWN",
+	"INVALID_PROVIDER",
 	"GITHUB",
 }
 

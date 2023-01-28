@@ -12,12 +12,19 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // GetGithubInstallationReply struct for GetGithubInstallationReply
 type GetGithubInstallationReply struct {
 	InstallationId *string `json:"installation_id,omitempty"`
 	InstallationUrl *string `json:"installation_url,omitempty"`
+	Status *KgitproxyGithubInstallationStatus `json:"status,omitempty"`
+	InstalledAt *time.Time `json:"installed_at,omitempty"`
+	SuspendedAt *time.Time `json:"suspended_at,omitempty"`
+	IndexingStatus *KgitproxyIndexingStatus `json:"indexing_status,omitempty"`
+	IndexedRepositories *int64 `json:"indexed_repositories,omitempty"`
+	TotalRepositories *int64 `json:"total_repositories,omitempty"`
 }
 
 // NewGetGithubInstallationReply instantiates a new GetGithubInstallationReply object
@@ -26,6 +33,10 @@ type GetGithubInstallationReply struct {
 // will change when the set of required properties is changed
 func NewGetGithubInstallationReply() *GetGithubInstallationReply {
 	this := GetGithubInstallationReply{}
+	var status KgitproxyGithubInstallationStatus = KGITPROXYGITHUBINSTALLATIONSTATUS_INVALID
+	this.Status = &status
+	var indexingStatus KgitproxyIndexingStatus = KGITPROXYINDEXINGSTATUS_INVALID_INDEXING_STATUS
+	this.IndexingStatus = &indexingStatus
 	return &this
 }
 
@@ -34,6 +45,10 @@ func NewGetGithubInstallationReply() *GetGithubInstallationReply {
 // but it doesn't guarantee that properties required by API are set
 func NewGetGithubInstallationReplyWithDefaults() *GetGithubInstallationReply {
 	this := GetGithubInstallationReply{}
+	var status KgitproxyGithubInstallationStatus = KGITPROXYGITHUBINSTALLATIONSTATUS_INVALID
+	this.Status = &status
+	var indexingStatus KgitproxyIndexingStatus = KGITPROXYINDEXINGSTATUS_INVALID_INDEXING_STATUS
+	this.IndexingStatus = &indexingStatus
 	return &this
 }
 
@@ -101,6 +116,198 @@ func (o *GetGithubInstallationReply) SetInstallationUrl(v string) {
 	o.InstallationUrl = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetStatus() KgitproxyGithubInstallationStatus {
+	if o == nil || o.Status == nil {
+		var ret KgitproxyGithubInstallationStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetStatusOk() (*KgitproxyGithubInstallationStatus, bool) {
+	if o == nil || o.Status == nil {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given KgitproxyGithubInstallationStatus and assigns it to the Status field.
+func (o *GetGithubInstallationReply) SetStatus(v KgitproxyGithubInstallationStatus) {
+	o.Status = &v
+}
+
+// GetInstalledAt returns the InstalledAt field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetInstalledAt() time.Time {
+	if o == nil || o.InstalledAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.InstalledAt
+}
+
+// GetInstalledAtOk returns a tuple with the InstalledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetInstalledAtOk() (*time.Time, bool) {
+	if o == nil || o.InstalledAt == nil {
+		return nil, false
+	}
+	return o.InstalledAt, true
+}
+
+// HasInstalledAt returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasInstalledAt() bool {
+	if o != nil && o.InstalledAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstalledAt gets a reference to the given time.Time and assigns it to the InstalledAt field.
+func (o *GetGithubInstallationReply) SetInstalledAt(v time.Time) {
+	o.InstalledAt = &v
+}
+
+// GetSuspendedAt returns the SuspendedAt field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetSuspendedAt() time.Time {
+	if o == nil || o.SuspendedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.SuspendedAt
+}
+
+// GetSuspendedAtOk returns a tuple with the SuspendedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetSuspendedAtOk() (*time.Time, bool) {
+	if o == nil || o.SuspendedAt == nil {
+		return nil, false
+	}
+	return o.SuspendedAt, true
+}
+
+// HasSuspendedAt returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasSuspendedAt() bool {
+	if o != nil && o.SuspendedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSuspendedAt gets a reference to the given time.Time and assigns it to the SuspendedAt field.
+func (o *GetGithubInstallationReply) SetSuspendedAt(v time.Time) {
+	o.SuspendedAt = &v
+}
+
+// GetIndexingStatus returns the IndexingStatus field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetIndexingStatus() KgitproxyIndexingStatus {
+	if o == nil || o.IndexingStatus == nil {
+		var ret KgitproxyIndexingStatus
+		return ret
+	}
+	return *o.IndexingStatus
+}
+
+// GetIndexingStatusOk returns a tuple with the IndexingStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetIndexingStatusOk() (*KgitproxyIndexingStatus, bool) {
+	if o == nil || o.IndexingStatus == nil {
+		return nil, false
+	}
+	return o.IndexingStatus, true
+}
+
+// HasIndexingStatus returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasIndexingStatus() bool {
+	if o != nil && o.IndexingStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndexingStatus gets a reference to the given KgitproxyIndexingStatus and assigns it to the IndexingStatus field.
+func (o *GetGithubInstallationReply) SetIndexingStatus(v KgitproxyIndexingStatus) {
+	o.IndexingStatus = &v
+}
+
+// GetIndexedRepositories returns the IndexedRepositories field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetIndexedRepositories() int64 {
+	if o == nil || o.IndexedRepositories == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IndexedRepositories
+}
+
+// GetIndexedRepositoriesOk returns a tuple with the IndexedRepositories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetIndexedRepositoriesOk() (*int64, bool) {
+	if o == nil || o.IndexedRepositories == nil {
+		return nil, false
+	}
+	return o.IndexedRepositories, true
+}
+
+// HasIndexedRepositories returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasIndexedRepositories() bool {
+	if o != nil && o.IndexedRepositories != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIndexedRepositories gets a reference to the given int64 and assigns it to the IndexedRepositories field.
+func (o *GetGithubInstallationReply) SetIndexedRepositories(v int64) {
+	o.IndexedRepositories = &v
+}
+
+// GetTotalRepositories returns the TotalRepositories field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetTotalRepositories() int64 {
+	if o == nil || o.TotalRepositories == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TotalRepositories
+}
+
+// GetTotalRepositoriesOk returns a tuple with the TotalRepositories field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetTotalRepositoriesOk() (*int64, bool) {
+	if o == nil || o.TotalRepositories == nil {
+		return nil, false
+	}
+	return o.TotalRepositories, true
+}
+
+// HasTotalRepositories returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasTotalRepositories() bool {
+	if o != nil && o.TotalRepositories != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalRepositories gets a reference to the given int64 and assigns it to the TotalRepositories field.
+func (o *GetGithubInstallationReply) SetTotalRepositories(v int64) {
+	o.TotalRepositories = &v
+}
+
 func (o GetGithubInstallationReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.InstallationId != nil {
@@ -108,6 +315,24 @@ func (o GetGithubInstallationReply) MarshalJSON() ([]byte, error) {
 	}
 	if o.InstallationUrl != nil {
 		toSerialize["installation_url"] = o.InstallationUrl
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.InstalledAt != nil {
+		toSerialize["installed_at"] = o.InstalledAt
+	}
+	if o.SuspendedAt != nil {
+		toSerialize["suspended_at"] = o.SuspendedAt
+	}
+	if o.IndexingStatus != nil {
+		toSerialize["indexing_status"] = o.IndexingStatus
+	}
+	if o.IndexedRepositories != nil {
+		toSerialize["indexed_repositories"] = o.IndexedRepositories
+	}
+	if o.TotalRepositories != nil {
+		toSerialize["total_repositories"] = o.TotalRepositories
 	}
 	return json.Marshal(toSerialize)
 }

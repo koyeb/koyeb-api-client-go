@@ -4,9 +4,12 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
+[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
 [**DeleteAccount**](ProfileApi.md#DeleteAccount) | **Delete** /v1/account/profile | 
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | 
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
+[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Post** /v1/account/organization_invitations | 
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 [**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | 
 [**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | 
@@ -16,6 +19,146 @@ Method | HTTP request | Description
 [**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | 
 [**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | 
 
+
+
+## AcceptOrganizationInvitation
+
+> AcceptOrganizationInvitationReply AcceptOrganizationInvitation(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the organization invitation to accepte
+    body := *openapiclient.NewAcceptOrganizationInvitationRequest() // AcceptOrganizationInvitationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ProfileApi.AcceptOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.AcceptOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AcceptOrganizationInvitation`: AcceptOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.AcceptOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the organization invitation to accepte | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**AcceptOrganizationInvitationRequest**](AcceptOrganizationInvitationRequest.md) |  | 
+
+### Return type
+
+[**AcceptOrganizationInvitationReply**](AcceptOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeclineOrganizationInvitation
+
+> DeclineOrganizationInvitationReply DeclineOrganizationInvitation(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the organization invitation to decline
+    body := *openapiclient.NewDeclineOrganizationInvitationRequest() // DeclineOrganizationInvitationRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ProfileApi.DeclineOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.DeclineOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeclineOrganizationInvitation`: DeclineOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.DeclineOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the organization invitation to decline | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeclineOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**DeclineOrganizationInvitationRequest**](DeclineOrganizationInvitationRequest.md) |  | 
+
+### Return type
+
+[**DeclineOrganizationInvitationReply**](DeclineOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteAccount
@@ -187,6 +330,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetOAuthOptionsReply**](GetOAuthOptionsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListUserOrganizationInvitations
+
+> ListUserOrganizationInvitationsReply ListUserOrganizationInvitations(ctx).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewListUserOrganizationInvitationsRequest() // ListUserOrganizationInvitationsRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ProfileApi.ListUserOrganizationInvitations(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ListUserOrganizationInvitations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserOrganizationInvitations`: ListUserOrganizationInvitationsReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ListUserOrganizationInvitations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUserOrganizationInvitationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ListUserOrganizationInvitationsRequest**](ListUserOrganizationInvitationsRequest.md) |  | 
+
+### Return type
+
+[**ListUserOrganizationInvitationsReply**](ListUserOrganizationInvitationsReply.md)
 
 ### Authorization
 

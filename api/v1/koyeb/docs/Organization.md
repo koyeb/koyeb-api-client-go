@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **PlanUpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **HasPaymentMethod** | Pointer to **bool** |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
+**SignupQualification** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -413,6 +414,31 @@ SetSubscriptionId sets SubscriptionId field to given value.
 `func (o *Organization) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
+
+### GetSignupQualification
+
+`func (o *Organization) GetSignupQualification() interface{}`
+
+GetSignupQualification returns the SignupQualification field if non-nil, zero value otherwise.
+
+### GetSignupQualificationOk
+
+`func (o *Organization) GetSignupQualificationOk() (*interface{}, bool)`
+
+GetSignupQualificationOk returns a tuple with the SignupQualification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignupQualification
+
+`func (o *Organization) SetSignupQualification(v interface{})`
+
+SetSignupQualification sets SignupQualification field to given value.
+
+### HasSignupQualification
+
+`func (o *Organization) HasSignupQualification() bool`
+
+HasSignupQualification returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

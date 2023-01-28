@@ -19,6 +19,7 @@ type CreateAccountRequest struct {
 	Email string `json:"email"`
 	Password string `json:"password"`
 	Name *string `json:"name,omitempty"`
+	Captcha *string `json:"captcha,omitempty"`
 }
 
 // NewCreateAccountRequest instantiates a new CreateAccountRequest object
@@ -120,6 +121,38 @@ func (o *CreateAccountRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetCaptcha returns the Captcha field value if set, zero value otherwise.
+func (o *CreateAccountRequest) GetCaptcha() string {
+	if o == nil || o.Captcha == nil {
+		var ret string
+		return ret
+	}
+	return *o.Captcha
+}
+
+// GetCaptchaOk returns a tuple with the Captcha field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAccountRequest) GetCaptchaOk() (*string, bool) {
+	if o == nil || o.Captcha == nil {
+		return nil, false
+	}
+	return o.Captcha, true
+}
+
+// HasCaptcha returns a boolean if a field has been set.
+func (o *CreateAccountRequest) HasCaptcha() bool {
+	if o != nil && o.Captcha != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCaptcha gets a reference to the given string and assigns it to the Captcha field.
+func (o *CreateAccountRequest) SetCaptcha(v string) {
+	o.Captcha = &v
+}
+
 func (o CreateAccountRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -130,6 +163,9 @@ func (o CreateAccountRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Captcha != nil {
+		toSerialize["captcha"] = o.Captcha
 	}
 	return json.Marshal(toSerialize)
 }

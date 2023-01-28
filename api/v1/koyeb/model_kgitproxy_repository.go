@@ -12,6 +12,7 @@ package koyeb
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // KgitproxyRepository struct for KgitproxyRepository
@@ -22,8 +23,10 @@ type KgitproxyRepository struct {
 	Url *string `json:"url,omitempty"`
 	Description *string `json:"description,omitempty"`
 	IsPrivate *bool `json:"is_private,omitempty"`
+	IsDisabled *bool `json:"is_disabled,omitempty"`
 	DefaultBranch *string `json:"default_branch,omitempty"`
 	Provider *KgitproxyRepositoryProvider `json:"provider,omitempty"`
+	LastPushDate *time.Time `json:"last_push_date,omitempty"`
 	Github *KgitproxyGitHubRepository `json:"github,omitempty"`
 }
 
@@ -33,7 +36,7 @@ type KgitproxyRepository struct {
 // will change when the set of required properties is changed
 func NewKgitproxyRepository() *KgitproxyRepository {
 	this := KgitproxyRepository{}
-	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_UNKNOWN
+	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER
 	this.Provider = &provider
 	return &this
 }
@@ -43,7 +46,7 @@ func NewKgitproxyRepository() *KgitproxyRepository {
 // but it doesn't guarantee that properties required by API are set
 func NewKgitproxyRepositoryWithDefaults() *KgitproxyRepository {
 	this := KgitproxyRepository{}
-	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_UNKNOWN
+	var provider KgitproxyRepositoryProvider = KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER
 	this.Provider = &provider
 	return &this
 }
@@ -240,6 +243,38 @@ func (o *KgitproxyRepository) SetIsPrivate(v bool) {
 	o.IsPrivate = &v
 }
 
+// GetIsDisabled returns the IsDisabled field value if set, zero value otherwise.
+func (o *KgitproxyRepository) GetIsDisabled() bool {
+	if o == nil || o.IsDisabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsDisabled
+}
+
+// GetIsDisabledOk returns a tuple with the IsDisabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KgitproxyRepository) GetIsDisabledOk() (*bool, bool) {
+	if o == nil || o.IsDisabled == nil {
+		return nil, false
+	}
+	return o.IsDisabled, true
+}
+
+// HasIsDisabled returns a boolean if a field has been set.
+func (o *KgitproxyRepository) HasIsDisabled() bool {
+	if o != nil && o.IsDisabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsDisabled gets a reference to the given bool and assigns it to the IsDisabled field.
+func (o *KgitproxyRepository) SetIsDisabled(v bool) {
+	o.IsDisabled = &v
+}
+
 // GetDefaultBranch returns the DefaultBranch field value if set, zero value otherwise.
 func (o *KgitproxyRepository) GetDefaultBranch() string {
 	if o == nil || o.DefaultBranch == nil {
@@ -304,6 +339,38 @@ func (o *KgitproxyRepository) SetProvider(v KgitproxyRepositoryProvider) {
 	o.Provider = &v
 }
 
+// GetLastPushDate returns the LastPushDate field value if set, zero value otherwise.
+func (o *KgitproxyRepository) GetLastPushDate() time.Time {
+	if o == nil || o.LastPushDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastPushDate
+}
+
+// GetLastPushDateOk returns a tuple with the LastPushDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *KgitproxyRepository) GetLastPushDateOk() (*time.Time, bool) {
+	if o == nil || o.LastPushDate == nil {
+		return nil, false
+	}
+	return o.LastPushDate, true
+}
+
+// HasLastPushDate returns a boolean if a field has been set.
+func (o *KgitproxyRepository) HasLastPushDate() bool {
+	if o != nil && o.LastPushDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastPushDate gets a reference to the given time.Time and assigns it to the LastPushDate field.
+func (o *KgitproxyRepository) SetLastPushDate(v time.Time) {
+	o.LastPushDate = &v
+}
+
 // GetGithub returns the Github field value if set, zero value otherwise.
 func (o *KgitproxyRepository) GetGithub() KgitproxyGitHubRepository {
 	if o == nil || o.Github == nil {
@@ -356,11 +423,17 @@ func (o KgitproxyRepository) MarshalJSON() ([]byte, error) {
 	if o.IsPrivate != nil {
 		toSerialize["is_private"] = o.IsPrivate
 	}
+	if o.IsDisabled != nil {
+		toSerialize["is_disabled"] = o.IsDisabled
+	}
 	if o.DefaultBranch != nil {
 		toSerialize["default_branch"] = o.DefaultBranch
 	}
 	if o.Provider != nil {
 		toSerialize["provider"] = o.Provider
+	}
+	if o.LastPushDate != nil {
+		toSerialize["last_push_date"] = o.LastPushDate
 	}
 	if o.Github != nil {
 		toSerialize["github"] = o.Github
