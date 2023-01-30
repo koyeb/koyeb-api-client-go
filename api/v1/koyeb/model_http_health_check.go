@@ -19,8 +19,6 @@ type HTTPHealthCheck struct {
 	Port *int64 `json:"port,omitempty"`
 	Path *string `json:"path,omitempty"`
 	Method *string `json:"method,omitempty"`
-	EnableSsl *bool `json:"enable_ssl,omitempty"`
-	SkipTls *bool `json:"skip_tls,omitempty"`
 	Headers *[]HTTPHeader `json:"headers,omitempty"`
 }
 
@@ -137,70 +135,6 @@ func (o *HTTPHealthCheck) SetMethod(v string) {
 	o.Method = &v
 }
 
-// GetEnableSsl returns the EnableSsl field value if set, zero value otherwise.
-func (o *HTTPHealthCheck) GetEnableSsl() bool {
-	if o == nil || o.EnableSsl == nil {
-		var ret bool
-		return ret
-	}
-	return *o.EnableSsl
-}
-
-// GetEnableSslOk returns a tuple with the EnableSsl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HTTPHealthCheck) GetEnableSslOk() (*bool, bool) {
-	if o == nil || o.EnableSsl == nil {
-		return nil, false
-	}
-	return o.EnableSsl, true
-}
-
-// HasEnableSsl returns a boolean if a field has been set.
-func (o *HTTPHealthCheck) HasEnableSsl() bool {
-	if o != nil && o.EnableSsl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEnableSsl gets a reference to the given bool and assigns it to the EnableSsl field.
-func (o *HTTPHealthCheck) SetEnableSsl(v bool) {
-	o.EnableSsl = &v
-}
-
-// GetSkipTls returns the SkipTls field value if set, zero value otherwise.
-func (o *HTTPHealthCheck) GetSkipTls() bool {
-	if o == nil || o.SkipTls == nil {
-		var ret bool
-		return ret
-	}
-	return *o.SkipTls
-}
-
-// GetSkipTlsOk returns a tuple with the SkipTls field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *HTTPHealthCheck) GetSkipTlsOk() (*bool, bool) {
-	if o == nil || o.SkipTls == nil {
-		return nil, false
-	}
-	return o.SkipTls, true
-}
-
-// HasSkipTls returns a boolean if a field has been set.
-func (o *HTTPHealthCheck) HasSkipTls() bool {
-	if o != nil && o.SkipTls != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSkipTls gets a reference to the given bool and assigns it to the SkipTls field.
-func (o *HTTPHealthCheck) SetSkipTls(v bool) {
-	o.SkipTls = &v
-}
-
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *HTTPHealthCheck) GetHeaders() []HTTPHeader {
 	if o == nil || o.Headers == nil {
@@ -243,12 +177,6 @@ func (o HTTPHealthCheck) MarshalJSON() ([]byte, error) {
 	}
 	if o.Method != nil {
 		toSerialize["method"] = o.Method
-	}
-	if o.EnableSsl != nil {
-		toSerialize["enable_ssl"] = o.EnableSsl
-	}
-	if o.SkipTls != nil {
-		toSerialize["skip_tls"] = o.SkipTls
 	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers

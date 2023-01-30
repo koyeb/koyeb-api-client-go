@@ -7041,18 +7041,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -7062,18 +7056,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -7219,18 +7207,12 @@ components:
           http:
             path: path
             headers:
-            - values:
-              - values
-              - values
+            - value: value
               key: key
-            - values:
-              - values
-              - values
+            - value: value
               key: key
             method: method
             port: 2
-            enable_ssl: true
-            skip_tls: true
           interval: 2
           grace_period: 5
           timeout: 9
@@ -7240,18 +7222,12 @@ components:
           http:
             path: path
             headers:
-            - values:
-              - values
-              - values
+            - value: value
               key: key
-            - values:
-              - values
-              - values
+            - value: value
               key: key
             method: method
             port: 2
-            enable_ssl: true
-            skip_tls: true
           interval: 2
           grace_period: 5
           timeout: 9
@@ -7345,18 +7321,12 @@ components:
         http:
           path: path
           headers:
-          - values:
-            - values
-            - values
+          - value: value
             key: key
-          - values:
-            - values
-            - values
+          - value: value
             key: key
           method: method
           port: 2
-          enable_ssl: true
-          skip_tls: true
         interval: 2
         grace_period: 5
         timeout: 9
@@ -7511,18 +7481,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -7532,18 +7496,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -7945,18 +7903,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -7966,18 +7918,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8086,34 +8032,24 @@ components:
       type: object
     HTTPHeader:
       example:
-        values:
-        - values
-        - values
+        value: value
         key: key
       properties:
         key:
           type: string
-        values:
-          items:
-            type: string
-          type: array
+        value:
+          type: string
       type: object
     HTTPHealthCheck:
       example:
         path: path
         headers:
-        - values:
-          - values
-          - values
+        - value: value
           key: key
-        - values:
-          - values
-          - values
+        - value: value
           key: key
         method: method
         port: 2
-        enable_ssl: true
-        skip_tls: true
       properties:
         port:
           format: int64
@@ -8127,13 +8063,6 @@ components:
           title: An optional HTTP method to use to perform the health check, default
             is GET
           type: string
-        enable_ssl:
-          title: An optional flag to enable HTTPS, default is false
-          type: boolean
-        skip_tls:
-          title: An optional flag to skip the certificates verification sent by the
-            server, default is false
-          type: boolean
         headers:
           items:
             $ref: '#/components/schemas/HTTPHeader'
@@ -8253,18 +8182,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8274,18 +8197,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8428,18 +8345,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8449,18 +8360,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8659,18 +8564,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8680,18 +8579,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8761,18 +8654,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8782,18 +8669,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8851,18 +8732,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -8872,18 +8747,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -9030,18 +8899,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -9051,18 +8914,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -9196,18 +9053,12 @@ components:
           http:
             path: path
             headers:
-            - values:
-              - values
-              - values
+            - value: value
               key: key
-            - values:
-              - values
-              - values
+            - value: value
               key: key
             method: method
             port: 2
-            enable_ssl: true
-            skip_tls: true
           interval: 2
           grace_period: 5
           timeout: 9
@@ -9217,18 +9068,12 @@ components:
           http:
             path: path
             headers:
-            - values:
-              - values
-              - values
+            - value: value
               key: key
-            - values:
-              - values
-              - values
+            - value: value
               key: key
             method: method
             port: 2
-            enable_ssl: true
-            skip_tls: true
           interval: 2
           grace_period: 5
           timeout: 9
@@ -9318,18 +9163,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -9339,18 +9178,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -9658,18 +9491,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -9679,18 +9506,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -10054,18 +9875,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -10075,18 +9890,12 @@ components:
               http:
                 path: path
                 headers:
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
-                - values:
-                  - values
-                  - values
+                - value: value
                   key: key
                 method: method
                 port: 2
-                enable_ssl: true
-                skip_tls: true
               interval: 2
               grace_period: 5
               timeout: 9
@@ -10373,18 +10182,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
@@ -10394,18 +10197,12 @@ components:
             http:
               path: path
               headers:
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
-              - values:
-                - values
-                - values
+              - value: value
                 key: key
               method: method
               port: 2
-              enable_ssl: true
-              skip_tls: true
             interval: 2
             grace_period: 5
             timeout: 9
