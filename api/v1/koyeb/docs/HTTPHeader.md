@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Key** | Pointer to **string** |  | [optional] 
-**Values** | Pointer to **[]string** |  | [optional] 
+**Value** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -51,30 +51,30 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-### GetValues
+### GetValue
 
-`func (o *HTTPHeader) GetValues() []string`
+`func (o *HTTPHeader) GetValue() string`
 
-GetValues returns the Values field if non-nil, zero value otherwise.
+GetValue returns the Value field if non-nil, zero value otherwise.
 
-### GetValuesOk
+### GetValueOk
 
-`func (o *HTTPHeader) GetValuesOk() (*[]string, bool)`
+`func (o *HTTPHeader) GetValueOk() (*string, bool)`
 
-GetValuesOk returns a tuple with the Values field if it's non-nil, zero value otherwise
+GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetValues
+### SetValue
 
-`func (o *HTTPHeader) SetValues(v []string)`
+`func (o *HTTPHeader) SetValue(v string)`
 
-SetValues sets Values field to given value.
+SetValue sets Value field to given value.
 
-### HasValues
+### HasValue
 
-`func (o *HTTPHeader) HasValues() bool`
+`func (o *HTTPHeader) HasValue() bool`
 
-HasValues returns a boolean if a field has been set.
+HasValue returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

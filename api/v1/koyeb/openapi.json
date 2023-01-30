@@ -7119,11 +7119,8 @@
         "key": {
           "type": "string"
         },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "value": {
+          "type": "string"
         }
       }
     },
@@ -7142,14 +7139,6 @@
         "method": {
           "type": "string",
           "title": "An optional HTTP method to use to perform the health check, default is GET"
-        },
-        "enable_ssl": {
-          "type": "boolean",
-          "title": "An optional flag to enable HTTPS, default is false"
-        },
-        "skip_tls": {
-          "type": "boolean",
-          "title": "An optional flag to skip the certificates verification sent by the server, default is false"
         },
         "headers": {
           "type": "array",
