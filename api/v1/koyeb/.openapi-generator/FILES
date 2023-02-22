@@ -66,6 +66,7 @@ docs/CredentialsApi.md
 docs/DatacenterListItem.md
 docs/Deployment.md
 docs/DeploymentDefinition.md
+docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
@@ -192,6 +193,7 @@ docs/RegionListItem.md
 docs/RegionUsage.md
 docs/RegionalDeployment.md
 docs/RegionalDeploymentDefinition.md
+docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentListItem.md
 docs/RegionalDeploymentMetadata.md
 docs/RegionalDeploymentStatus.md
@@ -277,6 +279,7 @@ model_credential_reply.go
 model_datacenter_list_item.go
 model_deployment.go
 model_deployment_definition.go
+model_deployment_definition_type.go
 model_deployment_env.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
@@ -393,6 +396,7 @@ model_region_list_item.go
 model_region_usage.go
 model_regional_deployment.go
 model_regional_deployment_definition.go
+model_regional_deployment_definition_type.go
 model_regional_deployment_list_item.go
 model_regional_deployment_metadata.go
 model_regional_deployment_status.go

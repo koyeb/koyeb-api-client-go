@@ -17,6 +17,7 @@ import (
 // RegionalDeploymentDefinition struct for RegionalDeploymentDefinition
 type RegionalDeploymentDefinition struct {
 	Name *string `json:"name,omitempty"`
+	Type *RegionalDeploymentDefinitionType `json:"type,omitempty"`
 	Routes *[]Route `json:"routes,omitempty"`
 	Ports *[]Port `json:"ports,omitempty"`
 	Env *[]Env `json:"env,omitempty"`
@@ -35,6 +36,8 @@ type RegionalDeploymentDefinition struct {
 // will change when the set of required properties is changed
 func NewRegionalDeploymentDefinition() *RegionalDeploymentDefinition {
 	this := RegionalDeploymentDefinition{}
+	var type_ RegionalDeploymentDefinitionType = REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -43,6 +46,8 @@ func NewRegionalDeploymentDefinition() *RegionalDeploymentDefinition {
 // but it doesn't guarantee that properties required by API are set
 func NewRegionalDeploymentDefinitionWithDefaults() *RegionalDeploymentDefinition {
 	this := RegionalDeploymentDefinition{}
+	var type_ RegionalDeploymentDefinitionType = REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -76,6 +81,38 @@ func (o *RegionalDeploymentDefinition) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *RegionalDeploymentDefinition) SetName(v string) {
 	o.Name = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetType() RegionalDeploymentDefinitionType {
+	if o == nil || o.Type == nil {
+		var ret RegionalDeploymentDefinitionType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetTypeOk() (*RegionalDeploymentDefinitionType, bool) {
+	if o == nil || o.Type == nil {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given RegionalDeploymentDefinitionType and assigns it to the Type field.
+func (o *RegionalDeploymentDefinition) SetType(v RegionalDeploymentDefinitionType) {
+	o.Type = &v
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
@@ -402,6 +439,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	if o.Routes != nil {
 		toSerialize["routes"] = o.Routes

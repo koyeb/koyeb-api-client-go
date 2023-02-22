@@ -6690,6 +6690,9 @@
         "name": {
           "type": "string"
         },
+        "type": {
+          "$ref": "#/definitions/DeploymentDefinition.Type"
+        },
         "routes": {
           "type": "array",
           "items": {
@@ -6739,6 +6742,15 @@
           "$ref": "#/definitions/GitSource"
         }
       }
+    },
+    "DeploymentDefinition.Type": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "WEB",
+        "WORKER"
+      ],
+      "default": "INVALID"
     },
     "DeploymentEnv": {
       "type": "object",
@@ -7390,6 +7402,9 @@
         "name": {
           "type": "string"
         },
+        "type": {
+          "$ref": "#/definitions/RegionalDeploymentDefinition.Type"
+        },
         "routes": {
           "type": "array",
           "items": {
@@ -7433,6 +7448,15 @@
           "$ref": "#/definitions/GitSource"
         }
       }
+    },
+    "RegionalDeploymentDefinition.Type": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "WEB",
+        "WORKER"
+      ],
+      "default": "INVALID"
     },
     "RegionalDeploymentListItem": {
       "type": "object",
