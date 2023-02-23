@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**DeploymentDefinitionType**](DeploymentDefinitionType.md) |  | [optional] [default to DEPLOYMENTDEFINITIONTYPE_INVALID]
 **Routes** | Pointer to [**[]DeploymentRoute**](DeploymentRoute.md) |  | [optional] 
 **Ports** | Pointer to [**[]DeploymentPort**](DeploymentPort.md) |  | [optional] 
 **Env** | Pointer to [**[]DeploymentEnv**](DeploymentEnv.md) |  | [optional] 
@@ -58,6 +59,31 @@ SetName sets Name field to given value.
 `func (o *DeploymentDefinition) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *DeploymentDefinition) GetType() DeploymentDefinitionType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DeploymentDefinition) GetTypeOk() (*DeploymentDefinitionType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DeploymentDefinition) SetType(v DeploymentDefinitionType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *DeploymentDefinition) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetRoutes
 

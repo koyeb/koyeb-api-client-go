@@ -7260,6 +7260,8 @@ components:
       properties:
         name:
           type: string
+        type:
+          $ref: '#/components/schemas/DeploymentDefinition.Type'
         routes:
           items:
             $ref: '#/components/schemas/DeploymentRoute'
@@ -7293,6 +7295,13 @@ components:
         git:
           $ref: '#/components/schemas/GitSource'
       type: object
+    DeploymentDefinition.Type:
+      default: INVALID
+      enum:
+      - INVALID
+      - WEB
+      - WORKER
+      type: string
     DeploymentEnv:
       example:
         scopes:
@@ -9102,6 +9111,8 @@ components:
       properties:
         name:
           type: string
+        type:
+          $ref: '#/components/schemas/RegionalDeploymentDefinition.Type'
         routes:
           items:
             $ref: '#/components/schemas/Route'
@@ -9131,6 +9142,13 @@ components:
         git:
           $ref: '#/components/schemas/GitSource'
       type: object
+    RegionalDeploymentDefinition.Type:
+      default: INVALID
+      enum:
+      - INVALID
+      - WEB
+      - WORKER
+      type: string
     RegionalDeploymentListItem:
       example:
         updated_at: 2000-01-23T04:56:07.000+00:00
