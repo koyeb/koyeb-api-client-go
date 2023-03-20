@@ -38,8 +38,8 @@ func main() {
     bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string | Data is base64 encoded (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ExecCommand``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -106,8 +106,8 @@ func main() {
     id := "id_example" // string | The id of the instance
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.GetInstance(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InstancesApi.GetInstance(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.GetInstance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -171,19 +171,19 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | (Optional) Filter on application id. (optional)
-    serviceId := "serviceId_example" // string | (Optional) Filter on service id. (optional)
-    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id. (optional)
-    regionalDeploymentId := "regionalDeploymentId_example" // string | (Optional) Filter on regional deployment id. (optional)
-    allocationId := "allocationId_example" // string | (Optional) Filter on allocation id. (optional)
-    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on instance statuses. (optional)
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order. (optional)
+    appId := "appId_example" // string | (Optional) Filter on application id (optional)
+    serviceId := "serviceId_example" // string | (Optional) Filter on service id (optional)
+    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id (optional)
+    regionalDeploymentId := "regionalDeploymentId_example" // string | (Optional) Filter on regional deployment id (optional)
+    allocationId := "allocationId_example" // string | (Optional) Filter on allocation id (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on instance statuses (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,15 +204,15 @@ Other parameters are passed through a pointer to a apiListInstancesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **string** | (Optional) Filter on application id. | 
- **serviceId** | **string** | (Optional) Filter on service id. | 
- **deploymentId** | **string** | (Optional) Filter on deployment id. | 
- **regionalDeploymentId** | **string** | (Optional) Filter on regional deployment id. | 
- **allocationId** | **string** | (Optional) Filter on allocation id. | 
- **statuses** | **[]string** | (Optional) Filter on instance statuses. | 
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **order** | **string** | (Optional) Sorts the list in the ascending or the descending order. | 
+ **appId** | **string** | (Optional) Filter on application id | 
+ **serviceId** | **string** | (Optional) Filter on service id | 
+ **deploymentId** | **string** | (Optional) Filter on deployment id | 
+ **regionalDeploymentId** | **string** | (Optional) Filter on regional deployment id | 
+ **allocationId** | **string** | (Optional) Filter on allocation id | 
+ **statuses** | **[]string** | (Optional) Filter on instance statuses | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
 
 ### Return type
 

@@ -30,8 +30,8 @@ func main() {
     body := *openapiclient.NewReviewOrganizationCapacityRequest() // ReviewOrganizationCapacityRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.QuotasApi.ReviewOrganizationCapacity(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.QuotasApi.ReviewOrganizationCapacity(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `QuotasApi.ReviewOrganizationCapacity``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

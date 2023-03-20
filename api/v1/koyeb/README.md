@@ -23,7 +23,7 @@ go get golang.org/x/net/context
 Put the package under your project folder and add the following in import:
 
 ```golang
-import sw "./koyeb"
+import koyeb "github.com/koyeb/koyeb-api-client-go/koyeb"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -41,7 +41,7 @@ Default configuration comes with `Servers` field that contains server objects as
 For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), koyeb.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
@@ -49,7 +49,7 @@ ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
 Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
 
 ```golang
-ctx := context.WithValue(context.Background(), sw.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), koyeb.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -59,14 +59,14 @@ Note, enum values are always validated and all unused variables are silently ign
 ### URLs Configuration per Operation
 
 Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
-An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
-```
-ctx := context.WithValue(context.Background(), sw.ContextOperationServerIndices, map[string]int{
+```golang
+ctx := context.WithValue(context.Background(), koyeb.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), koyeb.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -91,18 +91,17 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
-*BillingApi* | [**Setup**](docs/BillingApi.md#setup) | **Post** /v1/billing/setup | 
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
-*CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | 
-*CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | 
-*CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | 
-*CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | 
-*CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | 
-*CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | 
+*CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
+*CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
+*CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | Get credential
+*CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | List credentials
+*CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | Update credential
+*CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | Update credential
 *DeploymentsApi* | [**CancelDeployment**](docs/DeploymentsApi.md#canceldeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
@@ -112,23 +111,40 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | 
 *DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | 
 *DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | 
-*HooksApi* | [**Github**](docs/HooksApi.md#github) | **Post** /v1/hooks/github/payload | Github hook receiver
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
+*OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
 *OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
+*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
+*OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
+*OrganizationInvitationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationInvitationsApi.md#createorganizationinvitation) | **Post** /v1/organization_invitations | 
+*OrganizationInvitationsApi* | [**DeleteOrganizationInvitation**](docs/OrganizationInvitationsApi.md#deleteorganizationinvitation) | **Delete** /v1/organization_invitations/{id} | 
+*OrganizationInvitationsApi* | [**ListOrganizationInvitations**](docs/OrganizationInvitationsApi.md#listorganizationinvitations) | **Get** /v1/organization_invitations | 
+*OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | 
+*OrganizationMembersApi* | [**ListOrganizationMembers**](docs/OrganizationMembersApi.md#listorganizationmembers) | **Get** /v1/organization_members | List organization members
+*OrganizationMembersApi* | [**RemoveOrganizationMember**](docs/OrganizationMembersApi.md#removeorganizationmember) | **Delete** /v1/organization_members/{id} | Remove an organization member
+*PaymentMethodsApi* | [**ConfirmPaymentAuthorization**](docs/PaymentMethodsApi.md#confirmpaymentauthorization) | **Post** /v1/payment_methods/{id}/confirm | Confirm payment authorization
+*PaymentMethodsApi* | [**CreatePaymentAuthorization**](docs/PaymentMethodsApi.md#createpaymentauthorization) | **Post** /v1/payment_methods | Create payment authorization
+*PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /v1/payment_methods/{id} | Delete payment method
+*PaymentMethodsApi* | [**GetPaymentMethod**](docs/PaymentMethodsApi.md#getpaymentmethod) | **Get** /v1/payment_methods/{id} | Get payment method
+*PaymentMethodsApi* | [**ListPaymentMethods**](docs/PaymentMethodsApi.md#listpaymentmethods) | **Get** /v1/payment_methods | List payment methods
+*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
+*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
 *ProfileApi* | [**DeleteAccount**](docs/ProfileApi.md#deleteaccount) | **Delete** /v1/account/profile | 
+*ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | 
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
+*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | 
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 *ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | 
 *ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | 
@@ -160,10 +176,9 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service Service resume action is allowed for the following status:  - paused
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
-*SessionApi* | [**Login**](docs/SessionApi.md#login) | **Post** /v1/account/login | Login user
-*SessionApi* | [**Logout**](docs/SessionApi.md#logout) | **Delete** /v1/account/logout | Logout user
-*SessionApi* | [**PasswordlessLogin**](docs/SessionApi.md#passwordlesslogin) | **Post** /v1/account/passwordless_login | 
-*SessionApi* | [**RefreshToken**](docs/SessionApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
+*SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user
+*SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user
+*SessionsApi* | [**RefreshToken**](docs/SessionsApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
 *SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
@@ -173,6 +188,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AcceptOrganizationInvitationReply](docs/AcceptOrganizationInvitationReply.md)
  - [Action](docs/Action.md)
  - [Activity](docs/Activity.md)
  - [ActivityList](docs/ActivityList.md)
@@ -186,19 +202,26 @@ Class | Method | HTTP request | Description
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
+ - [ConfirmPaymentAuthorizationReply](docs/ConfirmPaymentAuthorizationReply.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateCredential](docs/CreateCredential.md)
+ - [CreateCredentialReply](docs/CreateCredentialReply.md)
  - [CreateDomain](docs/CreateDomain.md)
  - [CreateDomainReply](docs/CreateDomainReply.md)
+ - [CreateOrganizationInvitationReply](docs/CreateOrganizationInvitationReply.md)
+ - [CreateOrganizationInvitationRequest](docs/CreateOrganizationInvitationRequest.md)
+ - [CreateOrganizationReply](docs/CreateOrganizationReply.md)
+ - [CreateOrganizationRequest](docs/CreateOrganizationRequest.md)
+ - [CreatePaymentAuthorizationReply](docs/CreatePaymentAuthorizationReply.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
- - [CredentialReply](docs/CredentialReply.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
+ - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
  - [DeploymentDefinitionType](docs/DeploymentDefinitionType.md)
@@ -236,6 +259,7 @@ Class | Method | HTTP request | Description
  - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GetAppReply](docs/GetAppReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
+ - [GetCredentialReply](docs/GetCredentialReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
  - [GetDomainReply](docs/GetDomainReply.md)
  - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
@@ -246,6 +270,7 @@ Class | Method | HTTP request | Description
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
+ - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
@@ -271,6 +296,8 @@ Class | Method | HTTP request | Description
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [KgitproxyBranch](docs/KgitproxyBranch.md)
  - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
+ - [KgitproxyGithubInstallationStatus](docs/KgitproxyGithubInstallationStatus.md)
+ - [KgitproxyIndexingStatus](docs/KgitproxyIndexingStatus.md)
  - [KgitproxyListBranchesReply](docs/KgitproxyListBranchesReply.md)
  - [KgitproxyListRepositoriesReply](docs/KgitproxyListRepositoriesReply.md)
  - [KgitproxyRepository](docs/KgitproxyRepository.md)
@@ -290,10 +317,14 @@ Class | Method | HTTP request | Description
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListDomainsReply](docs/ListDomainsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
+ - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
+ - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
+ - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
+ - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
@@ -306,11 +337,20 @@ Class | Method | HTTP request | Description
  - [OAuthProvider](docs/OAuthProvider.md)
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
- - [PasswordlessLoginRequest](docs/PasswordlessLoginRequest.md)
+ - [OrganizationDetailedStatus](docs/OrganizationDetailedStatus.md)
+ - [OrganizationInvitation](docs/OrganizationInvitation.md)
+ - [OrganizationInvitationStatus](docs/OrganizationInvitationStatus.md)
+ - [OrganizationMember](docs/OrganizationMember.md)
+ - [OrganizationMemberStatus](docs/OrganizationMemberStatus.md)
+ - [OrganizationStatus](docs/OrganizationStatus.md)
+ - [PaymentMethod](docs/PaymentMethod.md)
+ - [PaymentMethodStatus](docs/PaymentMethodStatus.md)
  - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
+ - [PublicOrganization](docs/PublicOrganization.md)
+ - [PublicUser](docs/PublicUser.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
@@ -322,6 +362,8 @@ Class | Method | HTTP request | Description
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
  - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
+ - [RemoveOrganizationMemberReply](docs/RemoveOrganizationMemberReply.md)
+ - [ResendOrganizationInvitationReply](docs/ResendOrganizationInvitationReply.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
  - [ReviewOrganizationCapacityReply](docs/ReviewOrganizationCapacityReply.md)
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
@@ -334,7 +376,6 @@ Class | Method | HTTP request | Description
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
  - [ServiceUsage](docs/ServiceUsage.md)
- - [SetupReply](docs/SetupReply.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [Subscription](docs/Subscription.md)
@@ -348,6 +389,7 @@ Class | Method | HTTP request | Description
  - [TriggerDeploymentMetadataTriggerType](docs/TriggerDeploymentMetadataTriggerType.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
+ - [UpdateCredentialReply](docs/UpdateCredentialReply.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainReply](docs/UpdateDomainReply.md)
  - [UpdateOrganizationPlanReply](docs/UpdateOrganizationPlanReply.md)
@@ -358,12 +400,14 @@ Class | Method | HTTP request | Description
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
+ - [UpsertSignupQualificationReply](docs/UpsertSignupQualificationReply.md)
+ - [UpsertSignupQualificationRequest](docs/UpsertSignupQualificationRequest.md)
  - [Usage](docs/Usage.md)
  - [UsageDetails](docs/UsageDetails.md)
  - [User](docs/User.md)
- - [UserAccountStatus](docs/UserAccountStatus.md)
  - [UserFlags](docs/UserFlags.md)
  - [UserReply](docs/UserReply.md)
+ - [UserRoleRole](docs/UserRoleRole.md)
 
 
 ## Documentation For Authorization

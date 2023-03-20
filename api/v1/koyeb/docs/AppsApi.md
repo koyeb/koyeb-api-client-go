@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## CreateApp
 
-> CreateAppReply CreateApp(ctx).Body(body).Execute()
+> CreateAppReply CreateApp(ctx).App(app).Execute()
 
 Create App
 
@@ -34,11 +34,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateApp() // CreateApp | 
+    app := *openapiclient.NewCreateApp() // CreateApp | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.CreateApp(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.CreateApp(context.Background()).App(app).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.CreateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -59,7 +59,7 @@ Other parameters are passed through a pointer to a apiCreateAppRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateApp**](CreateApp.md) |  | 
+ **app** | [**CreateApp**](CreateApp.md) |  | 
 
 ### Return type
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## DeleteApp
 
-> interface{} DeleteApp(ctx, id).Execute()
+> map[string]interface{} DeleteApp(ctx, id).Execute()
 
 Delete App App deletion is allowed for all status.
 
@@ -101,13 +101,13 @@ func main() {
     id := "id_example" // string | The id of the App to delete
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.DeleteApp(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.DeleteApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.DeleteApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteApp`: interface{}
+    // response from `DeleteApp`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `AppsApi.DeleteApp`: %v\n", resp)
 }
 ```
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -169,8 +169,8 @@ func main() {
     id := "id_example" // string | The id of the App
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.GetApp(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.GetApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.GetApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -234,13 +234,13 @@ import (
 )
 
 func main() {
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    name := "name_example" // string | (Optional) A filter for regions. (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    name := "name_example" // string | (Optional) A filter for regions (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.ListApps(context.Background()).Limit(limit).Offset(offset).Name(name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.ListApps(context.Background()).Limit(limit).Offset(offset).Name(name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.ListApps``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,9 +261,9 @@ Other parameters are passed through a pointer to a apiListAppsRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **name** | **string** | (Optional) A filter for regions. | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **name** | **string** | (Optional) A filter for regions | 
 
 ### Return type
 
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 ## PauseApp
 
-> interface{} PauseApp(ctx, id).Execute()
+> map[string]interface{} PauseApp(ctx, id).Execute()
 
 Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 
@@ -305,13 +305,13 @@ func main() {
     id := "id_example" // string | The id of the app to pause.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.PauseApp(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.PauseApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.PauseApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PauseApp`: interface{}
+    // response from `PauseApp`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `AppsApi.PauseApp`: %v\n", resp)
 }
 ```
@@ -335,7 +335,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 
 ## ResumeApp
 
-> interface{} ResumeApp(ctx, id).Execute()
+> map[string]interface{} ResumeApp(ctx, id).Execute()
 
 Resume App App resume action is allowed for the following status:  - paused
 
@@ -373,13 +373,13 @@ func main() {
     id := "id_example" // string | The id of the app to resume.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.ResumeApp(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.ResumeApp(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.ResumeApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResumeApp`: interface{}
+    // response from `ResumeApp`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `AppsApi.ResumeApp`: %v\n", resp)
 }
 ```
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApp
 
-> UpdateAppReply UpdateApp(ctx, id).Execute()
+> UpdateAppReply UpdateApp(ctx, id).AppName(appName).UpdateMask(updateMask).Execute()
 
 Update App
 
@@ -439,10 +439,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the app to update.
+    appName := "appName_example" // string |  (optional)
+    updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.UpdateApp(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.UpdateApp(context.Background(), id).AppName(appName).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.UpdateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -468,6 +470,8 @@ Other parameters are passed through a pointer to a apiUpdateAppRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **appName** | **string** |  | 
+ **updateMask** | **string** |  | 
 
 ### Return type
 
@@ -489,7 +493,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApp2
 
-> UpdateAppReply UpdateApp2(ctx, id).Body(body).UpdateMask(updateMask).Execute()
+> UpdateAppReply UpdateApp2(ctx, id).App(app).UpdateMask(updateMask).Execute()
 
 Update App
 
@@ -507,12 +511,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the app to update.
-    body := *openapiclient.NewUpdateApp() // UpdateApp | 
+    app := *openapiclient.NewUpdateApp() // UpdateApp | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.AppsApi.UpdateApp2(context.Background(), id).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.UpdateApp2(context.Background(), id).App(app).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.UpdateApp2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -538,7 +542,7 @@ Other parameters are passed through a pointer to a apiUpdateApp2Request struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateApp**](UpdateApp.md) |  | 
+ **app** | [**UpdateApp**](UpdateApp.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type

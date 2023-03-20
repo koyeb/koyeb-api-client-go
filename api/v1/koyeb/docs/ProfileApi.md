@@ -4,9 +4,13 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
+[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
 [**DeleteAccount**](ProfileApi.md#DeleteAccount) | **Delete** /v1/account/profile | 
+[**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | 
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | 
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
+[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | 
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 [**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | 
 [**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | 
@@ -18,9 +22,149 @@ Method | HTTP request | Description
 
 
 
+## AcceptOrganizationInvitation
+
+> AcceptOrganizationInvitationReply AcceptOrganizationInvitation(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the organization invitation to accept
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.AcceptOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.AcceptOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AcceptOrganizationInvitation`: AcceptOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.AcceptOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the organization invitation to accept | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAcceptOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+[**AcceptOrganizationInvitationReply**](AcceptOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeclineOrganizationInvitation
+
+> DeclineOrganizationInvitationReply DeclineOrganizationInvitation(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the organization invitation to decline
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.DeclineOrganizationInvitation(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.DeclineOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeclineOrganizationInvitation`: DeclineOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.DeclineOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the organization invitation to decline | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeclineOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+[**DeclineOrganizationInvitationReply**](DeclineOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteAccount
 
-> interface{} DeleteAccount(ctx).Execute()
+> map[string]interface{} DeleteAccount(ctx).Execute()
 
 
 
@@ -39,13 +183,13 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.DeleteAccount(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.DeleteAccount(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.DeleteAccount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteAccount`: interface{}
+    // response from `DeleteAccount`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ProfileApi.DeleteAccount`: %v\n", resp)
 }
 ```
@@ -61,7 +205,66 @@ Other parameters are passed through a pointer to a apiDeleteAccountRequest struc
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCurrentOrganization
+
+> GetOrganizationReply GetCurrentOrganization(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetCurrentOrganization(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetCurrentOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetCurrentOrganization`: GetOrganizationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.GetCurrentOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCurrentOrganizationRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetOrganizationReply**](GetOrganizationReply.md)
 
 ### Authorization
 
@@ -98,8 +301,8 @@ import (
 func main() {
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.GetCurrentUser(context.Background()).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetCurrentUser(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -155,12 +358,12 @@ import (
 )
 
 func main() {
-    action := "action_example" // string | Which authentication flow is being initiated. (optional) (default to "signin")
-    metadata := "metadata_example" // string | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state. (optional)
+    action := "action_example" // string | Which authentication flow is being initiated (optional) (default to "signin")
+    metadata := "metadata_example" // string | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.GetOAuthOptions(context.Background()).Action(action).Metadata(metadata).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetOAuthOptions(context.Background()).Action(action).Metadata(metadata).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetOAuthOptions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -181,8 +384,8 @@ Other parameters are passed through a pointer to a apiGetOAuthOptionsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **action** | **string** | Which authentication flow is being initiated. | [default to &quot;signin&quot;]
- **metadata** | **string** | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state. | 
+ **action** | **string** | Which authentication flow is being initiated | [default to &quot;signin&quot;]
+ **metadata** | **string** | A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state | 
 
 ### Return type
 
@@ -202,9 +405,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListUserOrganizationInvitations
+
+> ListUserOrganizationInvitationsReply ListUserOrganizationInvitations(ctx).Limit(limit).Offset(offset).Statuses(statuses).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on organization invitation statuses (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.ListUserOrganizationInvitations(context.Background()).Limit(limit).Offset(offset).Statuses(statuses).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ListUserOrganizationInvitations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserOrganizationInvitations`: ListUserOrganizationInvitationsReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ListUserOrganizationInvitations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUserOrganizationInvitationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **statuses** | **[]string** | (Optional) Filter on organization invitation statuses | 
+
+### Return type
+
+[**ListUserOrganizationInvitationsReply**](ListUserOrganizationInvitationsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## OAuthCallback
 
-> OAuthCallbackReply OAuthCallback(ctx).Body(body).Execute()
+> OAuthCallbackReply OAuthCallback(ctx).Body(body).SeonFp(seonFp).Execute()
 
 Authenticate using OAuth
 
@@ -222,10 +493,11 @@ import (
 
 func main() {
     body := *openapiclient.NewOAuthCallbackRequest() // OAuthCallbackRequest | 
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.OAuthCallback(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.OAuthCallback(context.Background()).Body(body).SeonFp(seonFp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.OAuthCallback``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -247,6 +519,7 @@ Other parameters are passed through a pointer to a apiOAuthCallbackRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**OAuthCallbackRequest**](OAuthCallbackRequest.md) |  | 
+ **seonFp** | **string** | Seon Fingerprint | 
 
 ### Return type
 
@@ -268,7 +541,7 @@ Name | Type | Description  | Notes
 
 ## ResendEmailValidation
 
-> interface{} ResendEmailValidation(ctx).Body(body).Execute()
+> map[string]interface{} ResendEmailValidation(ctx).Body(body).Execute()
 
 
 
@@ -285,16 +558,16 @@ import (
 )
 
 func main() {
-    body := interface{}(Object) // interface{} | 
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.ResendEmailValidation(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.ResendEmailValidation(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ResendEmailValidation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResendEmailValidation`: interface{}
+    // response from `ResendEmailValidation`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ResendEmailValidation`: %v\n", resp)
 }
 ```
@@ -310,11 +583,11 @@ Other parameters are passed through a pointer to a apiResendEmailValidationReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **interface{}** |  | 
+ **body** | **map[string]interface{}** |  | 
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -332,7 +605,7 @@ Name | Type | Description  | Notes
 
 ## ResetPassword
 
-> interface{} ResetPassword(ctx).Body(body).Execute()
+> map[string]interface{} ResetPassword(ctx).Body(body).Execute()
 
 
 
@@ -352,13 +625,13 @@ func main() {
     body := *openapiclient.NewResetPasswordRequest() // ResetPasswordRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.ResetPassword(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.ResetPassword(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ResetPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResetPassword`: interface{}
+    // response from `ResetPassword`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ResetPassword`: %v\n", resp)
 }
 ```
@@ -378,7 +651,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -396,7 +669,7 @@ Name | Type | Description  | Notes
 
 ## Signup
 
-> LoginReply Signup(ctx).Body(body).Execute()
+> LoginReply Signup(ctx).Body(body).SeonFp(seonFp).Execute()
 
 
 
@@ -413,11 +686,12 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateAccountRequest("Email_example", "Password_example") // CreateAccountRequest | 
+    body := *openapiclient.NewCreateAccountRequest("Email_example", "Password_example") // CreateAccountRequest | Create new account
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.Signup(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.Signup(context.Background()).Body(body).SeonFp(seonFp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.Signup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -438,7 +712,8 @@ Other parameters are passed through a pointer to a apiSignupRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateAccountRequest**](CreateAccountRequest.md) |  | 
+ **body** | [**CreateAccountRequest**](CreateAccountRequest.md) | Create new account | 
+ **seonFp** | **string** | Seon Fingerprint | 
 
 ### Return type
 
@@ -460,7 +735,7 @@ Name | Type | Description  | Notes
 
 ## UpdatePassword
 
-> LoginReply UpdatePassword(ctx).Body(body).Execute()
+> LoginReply UpdatePassword(ctx).Body(body).SeonFp(seonFp).Execute()
 
 
 
@@ -478,10 +753,11 @@ import (
 
 func main() {
     body := *openapiclient.NewUpdatePasswordRequest() // UpdatePasswordRequest | 
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.UpdatePassword(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdatePassword(context.Background()).Body(body).SeonFp(seonFp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdatePassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -503,6 +779,7 @@ Other parameters are passed through a pointer to a apiUpdatePasswordRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**UpdatePasswordRequest**](UpdatePasswordRequest.md) |  | 
+ **seonFp** | **string** | Seon Fingerprint | 
 
 ### Return type
 
@@ -524,7 +801,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> UserReply UpdateUser(ctx).Body(body).UpdateMask(updateMask).Execute()
+> UserReply UpdateUser(ctx).User(user).UpdateMask(updateMask).Execute()
 
 
 
@@ -541,12 +818,12 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
+    user := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.UpdateUser(context.Background()).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdateUser(context.Background()).User(user).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -567,7 +844,7 @@ Other parameters are passed through a pointer to a apiUpdateUserRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
+ **user** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type
@@ -590,7 +867,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser2
 
-> UserReply UpdateUser2(ctx).Body(body).UpdateMask(updateMask).Execute()
+> UserReply UpdateUser2(ctx).User(user).UpdateMask(updateMask).Execute()
 
 
 
@@ -607,12 +884,12 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
+    user := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.UpdateUser2(context.Background()).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdateUser2(context.Background()).User(user).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdateUser2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -633,7 +910,7 @@ Other parameters are passed through a pointer to a apiUpdateUser2Request struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
+ **user** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type
@@ -656,7 +933,7 @@ Name | Type | Description  | Notes
 
 ## Validate
 
-> LoginReply Validate(ctx, id).Execute()
+> LoginReply Validate(ctx, id).SeonFp(seonFp).Execute()
 
 
 
@@ -674,10 +951,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ProfileApi.Validate(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.Validate(context.Background(), id).SeonFp(seonFp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.Validate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -703,6 +981,7 @@ Other parameters are passed through a pointer to a apiValidateRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **seonFp** | **string** | Seon Fingerprint | 
 
 ### Return type
 

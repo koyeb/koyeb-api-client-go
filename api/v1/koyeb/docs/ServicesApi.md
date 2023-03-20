@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## CreateService
 
-> CreateServiceReply CreateService(ctx).Body(body).DryRun(dryRun).Execute()
+> CreateServiceReply CreateService(ctx).Service(service).DryRun(dryRun).Execute()
 
 Create Service
 
@@ -35,12 +35,12 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateService() // CreateService | 
-    dryRun := true // bool | If set only run validation. (optional)
+    service := *openapiclient.NewCreateService() // CreateService | 
+    dryRun := true // bool | If set only run validation (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.CreateService(context.Background()).Body(body).DryRun(dryRun).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.CreateService(context.Background()).Service(service).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.CreateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,8 +61,8 @@ Other parameters are passed through a pointer to a apiCreateServiceRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateService**](CreateService.md) |  | 
- **dryRun** | **bool** | If set only run validation. | 
+ **service** | [**CreateService**](CreateService.md) |  | 
+ **dryRun** | **bool** | If set only run validation | 
 
 ### Return type
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## DeleteService
 
-> interface{} DeleteService(ctx, id).Execute()
+> map[string]interface{} DeleteService(ctx, id).Execute()
 
 Delete Service Service deletion is allowed for all status.
 
@@ -104,13 +104,13 @@ func main() {
     id := "id_example" // string | The id of the entity to delete
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.DeleteService(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.DeleteService(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.DeleteService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteService`: interface{}
+    // response from `DeleteService`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ServicesApi.DeleteService`: %v\n", resp)
 }
 ```
@@ -134,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -172,8 +172,8 @@ func main() {
     id := "id_example" // string | The id of the Service
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.GetService(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.GetService(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.GetService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -237,14 +237,14 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | (Optional) The id of the app. (optional)
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    name := "name_example" // string | (Optional) A filter for name. (optional)
+    appId := "appId_example" // string | (Optional) The id of the app (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    name := "name_example" // string | (Optional) A filter for name (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,10 +265,10 @@ Other parameters are passed through a pointer to a apiListServicesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **string** | (Optional) The id of the app. | 
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **name** | **string** | (Optional) A filter for name. | 
+ **appId** | **string** | (Optional) The id of the app | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **name** | **string** | (Optional) A filter for name | 
 
 ### Return type
 
@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 
 ## PauseService
 
-> interface{} PauseService(ctx, id).Execute()
+> map[string]interface{} PauseService(ctx, id).Execute()
 
 Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
 
@@ -310,13 +310,13 @@ func main() {
     id := "id_example" // string | The id of the service to pause.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.PauseService(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.PauseService(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.PauseService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `PauseService`: interface{}
+    // response from `PauseService`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ServicesApi.PauseService`: %v\n", resp)
 }
 ```
@@ -340,7 +340,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ## ReDeploy
 
-> RedeployReply ReDeploy(ctx, id).Body(body).Execute()
+> RedeployReply ReDeploy(ctx, id).Info(info).Execute()
 
 ReDeploy Service
 
@@ -376,11 +376,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    body := *openapiclient.NewRedeployRequestInfo() // RedeployRequestInfo | 
+    info := *openapiclient.NewRedeployRequestInfo() // RedeployRequestInfo | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.ReDeploy(context.Background(), id).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.ReDeploy(context.Background(), id).Info(info).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ReDeploy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,7 +406,7 @@ Other parameters are passed through a pointer to a apiReDeployRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**RedeployRequestInfo**](RedeployRequestInfo.md) |  | 
+ **info** | [**RedeployRequestInfo**](RedeployRequestInfo.md) |  | 
 
 ### Return type
 
@@ -428,7 +428,7 @@ Name | Type | Description  | Notes
 
 ## ResumeService
 
-> interface{} ResumeService(ctx, id).Execute()
+> map[string]interface{} ResumeService(ctx, id).Execute()
 
 Resume Service Service resume action is allowed for the following status:  - paused
 
@@ -448,13 +448,13 @@ func main() {
     id := "id_example" // string | The id of the service to pause.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.ResumeService(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.ResumeService(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ResumeService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResumeService`: interface{}
+    // response from `ResumeService`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `ServicesApi.ResumeService`: %v\n", resp)
 }
 ```
@@ -478,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -496,7 +496,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService
 
-> UpdateServiceReply UpdateService(ctx, id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService(ctx, id).Service(service).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -514,13 +514,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the entity to update
-    body := *openapiclient.NewUpdateService() // UpdateService | 
-    updateMask := "updateMask_example" // string |  (optional)
-    dryRun := true // bool | If set, run validation and check that the service exists. (optional)
+    service := *openapiclient.NewUpdateService() // UpdateService | 
+    dryRun := true // bool | If set, run validation and check that the service exists (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.UpdateService(context.Background(), id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.UpdateService(context.Background(), id).Service(service).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -546,9 +545,8 @@ Other parameters are passed through a pointer to a apiUpdateServiceRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateService**](UpdateService.md) |  | 
- **updateMask** | **string** |  | 
- **dryRun** | **bool** | If set, run validation and check that the service exists. | 
+ **service** | [**UpdateService**](UpdateService.md) |  | 
+ **dryRun** | **bool** | If set, run validation and check that the service exists | 
 
 ### Return type
 
@@ -570,7 +568,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService2
 
-> UpdateServiceReply UpdateService2(ctx, id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService2(ctx, id).Service(service).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -588,13 +586,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the entity to update
-    body := *openapiclient.NewUpdateService() // UpdateService | 
-    updateMask := "updateMask_example" // string |  (optional)
-    dryRun := true // bool | If set, run validation and check that the service exists. (optional)
+    service := *openapiclient.NewUpdateService() // UpdateService | 
+    dryRun := true // bool | If set, run validation and check that the service exists (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ServicesApi.UpdateService2(context.Background(), id).Body(body).UpdateMask(updateMask).DryRun(dryRun).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.UpdateService2(context.Background(), id).Service(service).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -620,9 +617,8 @@ Other parameters are passed through a pointer to a apiUpdateService2Request stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateService**](UpdateService.md) |  | 
- **updateMask** | **string** |  | 
- **dryRun** | **bool** | If set, run validation and check that the service exists. | 
+ **service** | [**UpdateService**](UpdateService.md) |  | 
+ **dryRun** | **bool** | If set, run validation and check that the service exists | 
 
 ### Return type
 

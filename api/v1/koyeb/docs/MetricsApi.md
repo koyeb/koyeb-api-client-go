@@ -36,8 +36,8 @@ func main() {
     step := "step_example" // string | (Optional) Must be a valid duration in hours (h) or minutes (m). Defaulst to 5m. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetMetrics(context.Background()).ServiceId(serviceId).InstanceId(instanceId).Name(name).Start(start).End(end).Step(step).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.MetricsApi.GetMetrics(context.Background()).ServiceId(serviceId).InstanceId(instanceId).Name(name).Start(start).End(end).Step(step).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

@@ -33,8 +33,8 @@ func main() {
     offset := "offset_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ActivityApi.GetAccountActivities(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ActivityApi.GetAccountActivities(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ActivityApi.GetAccountActivities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -99,8 +99,8 @@ func main() {
     offset := "offset_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ActivityApi.ListActivities(context.Background()).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ActivityApi.ListActivities(context.Background()).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ActivityApi.ListActivities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -169,8 +169,8 @@ func main() {
     unseen := "unseen_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ActivityApi.ListNotifications(context.Background()).Limit(limit).Offset(offset).MarkRead(markRead).MarkSeen(markSeen).Unread(unread).Unseen(unseen).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ActivityApi.ListNotifications(context.Background()).Limit(limit).Offset(offset).MarkRead(markRead).MarkSeen(markSeen).Unread(unread).Unseen(unseen).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ActivityApi.ListNotifications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)

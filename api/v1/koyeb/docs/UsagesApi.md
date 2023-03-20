@@ -29,12 +29,12 @@ import (
 )
 
 func main() {
-    startingTime := time.Now() // time.Time | The starting time of the period to get data from. (optional)
-    endingTime := time.Now() // time.Time | The ending time of the period to get date from. (optional)
+    startingTime := time.Now() // time.Time | The starting time of the period to get data from (optional)
+    endingTime := time.Now() // time.Time | The ending time of the period to get date from (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsagesApi.GetOrganizationUsage(context.Background()).StartingTime(startingTime).EndingTime(endingTime).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsagesApi.GetOrganizationUsage(context.Background()).StartingTime(startingTime).EndingTime(endingTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsagesApi.GetOrganizationUsage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -55,8 +55,8 @@ Other parameters are passed through a pointer to a apiGetOrganizationUsageReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startingTime** | **time.Time** | The starting time of the period to get data from. | 
- **endingTime** | **time.Time** | The ending time of the period to get date from. | 
+ **startingTime** | **time.Time** | The starting time of the period to get data from | 
+ **endingTime** | **time.Time** | The ending time of the period to get date from | 
 
 ### Return type
 
@@ -96,15 +96,15 @@ import (
 )
 
 func main() {
-    startingTime := time.Now() // time.Time | The starting time of the period to get data from. (optional)
-    endingTime := time.Now() // time.Time | The ending time of the period to get date from. (optional)
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order. (optional)
+    startingTime := time.Now() // time.Time | The starting time of the period to get data from (optional)
+    endingTime := time.Now() // time.Time | The ending time of the period to get date from (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsagesApi.GetOrganizationUsageDetails(context.Background()).StartingTime(startingTime).EndingTime(endingTime).Limit(limit).Offset(offset).Order(order).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsagesApi.GetOrganizationUsageDetails(context.Background()).StartingTime(startingTime).EndingTime(endingTime).Limit(limit).Offset(offset).Order(order).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `UsagesApi.GetOrganizationUsageDetails``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,11 +125,11 @@ Other parameters are passed through a pointer to a apiGetOrganizationUsageDetail
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **startingTime** | **time.Time** | The starting time of the period to get data from. | 
- **endingTime** | **time.Time** | The ending time of the period to get date from. | 
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **order** | **string** | (Optional) Sorts the list in the ascending or the descending order. | 
+ **startingTime** | **time.Time** | The starting time of the period to get data from | 
+ **endingTime** | **time.Time** | The ending time of the period to get date from | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
 
 ### Return type
 

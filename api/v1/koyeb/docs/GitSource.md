@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **BuildCommand** | Pointer to **string** |  | [optional] 
 **RunCommand** | Pointer to **string** |  | [optional] 
 **NoDeployOnPush** | Pointer to **bool** |  | [optional] 
+**Workdir** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetNoDeployOnPush sets NoDeployOnPush field to given value.
 `func (o *GitSource) HasNoDeployOnPush() bool`
 
 HasNoDeployOnPush returns a boolean if a field has been set.
+
+### GetWorkdir
+
+`func (o *GitSource) GetWorkdir() string`
+
+GetWorkdir returns the Workdir field if non-nil, zero value otherwise.
+
+### GetWorkdirOk
+
+`func (o *GitSource) GetWorkdirOk() (*string, bool)`
+
+GetWorkdirOk returns a tuple with the Workdir field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkdir
+
+`func (o *GitSource) SetWorkdir(v string)`
+
+SetWorkdir sets Workdir field to given value.
+
+### HasWorkdir
+
+`func (o *GitSource) HasWorkdir() bool`
+
+HasWorkdir returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

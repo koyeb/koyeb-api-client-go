@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **interface{}** |  | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **Deleted** | Pointer to **bool** |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *Object) GetMetadata() interface{}`
+`func (o *Object) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Object) GetMetadataOk() (*interface{}, bool)`
+`func (o *Object) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Object) SetMetadata(v interface{})`
+`func (o *Object) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
