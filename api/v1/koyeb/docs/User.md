@@ -6,16 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**UserAccountStatus**](UserAccountStatus.md) |  | [optional] [default to USERACCOUNTSTATUS_WARNING]
-**StatusMessage** | Pointer to **string** |  | [optional] 
 **AvatarUrl** | Pointer to **string** |  | [optional] 
-**Verified** | Pointer to **bool** |  | [optional] 
 **TwoFactorAuthentication** | Pointer to **bool** |  | [optional] 
 **LastLogin** | Pointer to **time.Time** |  | [optional] 
 **LastLoginIp** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**DefaultOrganizationId** | Pointer to **string** |  | [optional] 
 **NewsletterSubscribed** | Pointer to **bool** |  | [optional] 
 **GithubId** | Pointer to **string** |  | [optional] 
 **GithubUser** | Pointer to **string** |  | [optional] 
@@ -91,56 +87,6 @@ SetEmail sets Email field to given value.
 
 HasEmail returns a boolean if a field has been set.
 
-### GetStatus
-
-`func (o *User) GetStatus() UserAccountStatus`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *User) GetStatusOk() (*UserAccountStatus, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatus
-
-`func (o *User) SetStatus(v UserAccountStatus)`
-
-SetStatus sets Status field to given value.
-
-### HasStatus
-
-`func (o *User) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### GetStatusMessage
-
-`func (o *User) GetStatusMessage() string`
-
-GetStatusMessage returns the StatusMessage field if non-nil, zero value otherwise.
-
-### GetStatusMessageOk
-
-`func (o *User) GetStatusMessageOk() (*string, bool)`
-
-GetStatusMessageOk returns a tuple with the StatusMessage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStatusMessage
-
-`func (o *User) SetStatusMessage(v string)`
-
-SetStatusMessage sets StatusMessage field to given value.
-
-### HasStatusMessage
-
-`func (o *User) HasStatusMessage() bool`
-
-HasStatusMessage returns a boolean if a field has been set.
-
 ### GetAvatarUrl
 
 `func (o *User) GetAvatarUrl() string`
@@ -165,31 +111,6 @@ SetAvatarUrl sets AvatarUrl field to given value.
 `func (o *User) HasAvatarUrl() bool`
 
 HasAvatarUrl returns a boolean if a field has been set.
-
-### GetVerified
-
-`func (o *User) GetVerified() bool`
-
-GetVerified returns the Verified field if non-nil, zero value otherwise.
-
-### GetVerifiedOk
-
-`func (o *User) GetVerifiedOk() (*bool, bool)`
-
-GetVerifiedOk returns a tuple with the Verified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetVerified
-
-`func (o *User) SetVerified(v bool)`
-
-SetVerified sets Verified field to given value.
-
-### HasVerified
-
-`func (o *User) HasVerified() bool`
-
-HasVerified returns a boolean if a field has been set.
 
 ### GetTwoFactorAuthentication
 
@@ -315,31 +236,6 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *User) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
-
-### GetDefaultOrganizationId
-
-`func (o *User) GetDefaultOrganizationId() string`
-
-GetDefaultOrganizationId returns the DefaultOrganizationId field if non-nil, zero value otherwise.
-
-### GetDefaultOrganizationIdOk
-
-`func (o *User) GetDefaultOrganizationIdOk() (*string, bool)`
-
-GetDefaultOrganizationIdOk returns a tuple with the DefaultOrganizationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDefaultOrganizationId
-
-`func (o *User) SetDefaultOrganizationId(v string)`
-
-SetDefaultOrganizationId sets DefaultOrganizationId field to given value.
-
-### HasDefaultOrganizationId
-
-`func (o *User) HasDefaultOrganizationId() bool`
-
-HasDefaultOrganizationId returns a boolean if a field has been set.
 
 ### GetNewsletterSubscribed
 

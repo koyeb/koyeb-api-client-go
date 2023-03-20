@@ -1,4 +1,4 @@
-# CredentialReply
+# GetCredentialReply
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCredentialReply
+### NewGetCredentialReply
 
-`func NewCredentialReply() *CredentialReply`
+`func NewGetCredentialReply() *GetCredentialReply`
 
-NewCredentialReply instantiates a new CredentialReply object
+NewGetCredentialReply instantiates a new GetCredentialReply object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewCredentialReplyWithDefaults
+### NewGetCredentialReplyWithDefaults
 
-`func NewCredentialReplyWithDefaults() *CredentialReply`
+`func NewGetCredentialReplyWithDefaults() *GetCredentialReply`
 
-NewCredentialReplyWithDefaults instantiates a new CredentialReply object
+NewGetCredentialReplyWithDefaults instantiates a new GetCredentialReply object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetCredential
 
-`func (o *CredentialReply) GetCredential() Credential`
+`func (o *GetCredentialReply) GetCredential() Credential`
 
 GetCredential returns the Credential field if non-nil, zero value otherwise.
 
 ### GetCredentialOk
 
-`func (o *CredentialReply) GetCredentialOk() (*Credential, bool)`
+`func (o *GetCredentialReply) GetCredentialOk() (*Credential, bool)`
 
 GetCredentialOk returns a tuple with the Credential field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCredential
 
-`func (o *CredentialReply) SetCredential(v Credential)`
+`func (o *GetCredentialReply) SetCredential(v Credential)`
 
 SetCredential sets Credential field to given value.
 
 ### HasCredential
 
-`func (o *CredentialReply) HasCredential() bool`
+`func (o *GetCredentialReply) HasCredential() bool`
 
 HasCredential returns a boolean if a field has been set.
 

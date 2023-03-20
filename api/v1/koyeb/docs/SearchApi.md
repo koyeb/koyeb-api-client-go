@@ -27,11 +27,11 @@ import (
 )
 
 func main() {
-    query := "query_example" // string | (Optional) Search query. (optional)
+    query := "query_example" // string | (Optional) Search query (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SearchApi.Search(context.Background()).Query(query).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SearchApi.Search(context.Background()).Query(query).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SearchApi.Search``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -52,7 +52,7 @@ Other parameters are passed through a pointer to a apiSearchRequest struct via t
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **string** | (Optional) Search query. | 
+ **query** | **string** | (Optional) Search query | 
 
 ### Return type
 

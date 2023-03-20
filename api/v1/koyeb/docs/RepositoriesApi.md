@@ -35,8 +35,8 @@ func main() {
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RepositoriesApi.ListBranches(context.Background()).RepositoryId(repositoryId).Name(name).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RepositoriesApi.ListBranches(context.Background()).RepositoryId(repositoryId).Name(name).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ListBranches``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -104,8 +104,8 @@ func main() {
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RepositoriesApi.ListRepositories(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RepositoriesApi.ListRepositories(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ListRepositories``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## ResyncOrganization
 
-> interface{} ResyncOrganization(ctx, organizationId).Execute()
+> map[string]interface{} ResyncOrganization(ctx, organizationId).Execute()
 
 
 
@@ -170,13 +170,13 @@ func main() {
     organizationId := "organizationId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RepositoriesApi.ResyncOrganization(context.Background(), organizationId).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RepositoriesApi.ResyncOrganization(context.Background(), organizationId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ResyncOrganization``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ResyncOrganization`: interface{}
+    // response from `ResyncOrganization`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `RepositoriesApi.ResyncOrganization`: %v\n", resp)
 }
 ```
@@ -200,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 

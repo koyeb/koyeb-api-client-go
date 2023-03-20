@@ -31,8 +31,8 @@ func main() {
     id := "id_example" // string | The name of the region
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CatalogRegionsApi.GetRegion(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CatalogRegionsApi.GetRegion(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CatalogRegionsApi.GetRegion``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -96,13 +96,13 @@ import (
 )
 
 func main() {
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    id := "id_example" // string | (Optional) A filter for regions. (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    id := "id_example" // string | (Optional) A filter for regions (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CatalogRegionsApi.ListRegions(context.Background()).Limit(limit).Offset(offset).Id(id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.CatalogRegionsApi.ListRegions(context.Background()).Limit(limit).Offset(offset).Id(id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CatalogRegionsApi.ListRegions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,9 +123,9 @@ Other parameters are passed through a pointer to a apiListRegionsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **id** | **string** | (Optional) A filter for regions. | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **id** | **string** | (Optional) A filter for regions | 
 
 ### Return type
 

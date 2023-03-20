@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## CancelDeployment
 
-> interface{} CancelDeployment(ctx, id).Execute()
+> map[string]interface{} CancelDeployment(ctx, id).Execute()
 
 Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
 
@@ -32,13 +32,13 @@ func main() {
     id := "id_example" // string | The id of the deployment to cancel.
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeploymentsApi.CancelDeployment(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeploymentsApi.CancelDeployment(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.CancelDeployment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CancelDeployment`: interface{}
+    // response from `CancelDeployment`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `DeploymentsApi.CancelDeployment`: %v\n", resp)
 }
 ```
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -100,8 +100,8 @@ func main() {
     id := "id_example" // string | The id of the deployment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeploymentsApi.GetDeployment(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeploymentsApi.GetDeployment(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.GetDeployment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -165,15 +165,15 @@ import (
 )
 
 func main() {
-    appId := "appId_example" // string | (Optional) Filter on application id. (optional)
-    serviceId := "serviceId_example" // string | (Optional) Filter on service id. (optional)
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on statuses. (optional)
+    appId := "appId_example" // string | (Optional) Filter on application id (optional)
+    serviceId := "serviceId_example" // string | (Optional) Filter on service id (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Filter on statuses (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DeploymentsApi.ListDeployments(context.Background()).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeploymentsApi.ListDeployments(context.Background()).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.ListDeployments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,11 +194,11 @@ Other parameters are passed through a pointer to a apiListDeploymentsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **string** | (Optional) Filter on application id. | 
- **serviceId** | **string** | (Optional) Filter on service id. | 
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **statuses** | **[]string** | (Optional) Filter on statuses. | 
+ **appId** | **string** | (Optional) Filter on application id | 
+ **serviceId** | **string** | (Optional) Filter on service id | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **statuses** | **[]string** | (Optional) Filter on statuses | 
 
 ### Return type
 

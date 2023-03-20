@@ -10,8 +10,10 @@ Name | Type | Description | Notes
 **Url** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **IsPrivate** | Pointer to **bool** |  | [optional] 
+**IsDisabled** | Pointer to **bool** |  | [optional] 
 **DefaultBranch** | Pointer to **string** |  | [optional] 
-**Provider** | Pointer to [**KgitproxyRepositoryProvider**](KgitproxyRepositoryProvider.md) |  | [optional] [default to KGITPROXYREPOSITORYPROVIDER_UNKNOWN]
+**Provider** | Pointer to [**KgitproxyRepositoryProvider**](KgitproxyRepositoryProvider.md) |  | [optional] [default to KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER]
+**LastPushDate** | Pointer to **time.Time** |  | [optional] 
 **Github** | Pointer to [**KgitproxyGitHubRepository**](KgitproxyGitHubRepository.md) |  | [optional] 
 
 ## Methods
@@ -183,6 +185,31 @@ SetIsPrivate sets IsPrivate field to given value.
 
 HasIsPrivate returns a boolean if a field has been set.
 
+### GetIsDisabled
+
+`func (o *KgitproxyRepository) GetIsDisabled() bool`
+
+GetIsDisabled returns the IsDisabled field if non-nil, zero value otherwise.
+
+### GetIsDisabledOk
+
+`func (o *KgitproxyRepository) GetIsDisabledOk() (*bool, bool)`
+
+GetIsDisabledOk returns a tuple with the IsDisabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsDisabled
+
+`func (o *KgitproxyRepository) SetIsDisabled(v bool)`
+
+SetIsDisabled sets IsDisabled field to given value.
+
+### HasIsDisabled
+
+`func (o *KgitproxyRepository) HasIsDisabled() bool`
+
+HasIsDisabled returns a boolean if a field has been set.
+
 ### GetDefaultBranch
 
 `func (o *KgitproxyRepository) GetDefaultBranch() string`
@@ -232,6 +259,31 @@ SetProvider sets Provider field to given value.
 `func (o *KgitproxyRepository) HasProvider() bool`
 
 HasProvider returns a boolean if a field has been set.
+
+### GetLastPushDate
+
+`func (o *KgitproxyRepository) GetLastPushDate() time.Time`
+
+GetLastPushDate returns the LastPushDate field if non-nil, zero value otherwise.
+
+### GetLastPushDateOk
+
+`func (o *KgitproxyRepository) GetLastPushDateOk() (*time.Time, bool)`
+
+GetLastPushDateOk returns a tuple with the LastPushDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastPushDate
+
+`func (o *KgitproxyRepository) SetLastPushDate(v time.Time)`
+
+SetLastPushDate sets LastPushDate field to given value.
+
+### HasLastPushDate
+
+`func (o *KgitproxyRepository) HasLastPushDate() bool`
+
+HasLastPushDate returns a boolean if a field has been set.
 
 ### GetGithub
 

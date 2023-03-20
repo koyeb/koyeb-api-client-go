@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateDomain
 
-> CreateDomainReply CreateDomain(ctx).Body(body).Execute()
+> CreateDomainReply CreateDomain(ctx).Domain(domain).Execute()
 
 
 
@@ -32,11 +32,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateDomain() // CreateDomain | 
+    domain := *openapiclient.NewCreateDomain() // CreateDomain | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.CreateDomain(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.CreateDomain(context.Background()).Domain(domain).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.CreateDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiCreateDomainRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateDomain**](CreateDomain.md) |  | 
+ **domain** | [**CreateDomain**](CreateDomain.md) |  | 
 
 ### Return type
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDomain
 
-> interface{} DeleteDomain(ctx, id).Execute()
+> map[string]interface{} DeleteDomain(ctx, id).Execute()
 
 
 
@@ -99,13 +99,13 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.DeleteDomain(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.DeleteDomain(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.DeleteDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteDomain`: interface{}
+    // response from `DeleteDomain`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `DomainsApi.DeleteDomain`: %v\n", resp)
 }
 ```
@@ -129,7 +129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -167,8 +167,8 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.GetDomain(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.GetDomain(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.GetDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -232,16 +232,16 @@ import (
 )
 
 func main() {
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
-    types := []string{"Types_example"} // []string | (Optional) A filter for types. (optional)
-    statuses := []string{"Statuses_example"} // []string | (Optional) A filter for statuses. (optional)
-    appIds := []string{"Inner_example"} // []string | (Optional) A filter for apps. (optional)
-    name := "name_example" // string | (Optional) A filter for name. (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    types := []string{"Types_example"} // []string | (Optional) A filter for types   - AUTOASSIGNED: Domain like <appName>-<orgName>.koyeb.app (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) A filter for statuses (optional)
+    appIds := []string{"Inner_example"} // []string | (Optional) A filter for apps (optional)
+    name := "name_example" // string | (Optional) A filter for name (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.ListDomains``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -262,12 +262,12 @@ Other parameters are passed through a pointer to a apiListDomainsRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
- **types** | **[]string** | (Optional) A filter for types. | 
- **statuses** | **[]string** | (Optional) A filter for statuses. | 
- **appIds** | **[]string** | (Optional) A filter for apps. | 
- **name** | **string** | (Optional) A filter for name. | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **types** | **[]string** | (Optional) A filter for types   - AUTOASSIGNED: Domain like &lt;appName&gt;-&lt;orgName&gt;.koyeb.app | 
+ **statuses** | **[]string** | (Optional) A filter for statuses | 
+ **appIds** | **[]string** | (Optional) A filter for apps | 
+ **name** | **string** | (Optional) A filter for name | 
 
 ### Return type
 
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 
 ## RefreshDomainStatus
 
-> interface{} RefreshDomainStatus(ctx, id).Execute()
+> map[string]interface{} RefreshDomainStatus(ctx, id).Execute()
 
 
 
@@ -309,13 +309,13 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.RefreshDomainStatus(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.RefreshDomainStatus(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.RefreshDomainStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RefreshDomainStatus`: interface{}
+    // response from `RefreshDomainStatus`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `DomainsApi.RefreshDomainStatus`: %v\n", resp)
 }
 ```
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDomain
 
-> UpdateDomainReply UpdateDomain(ctx, id).Body(body).UpdateMask(updateMask).Execute()
+> UpdateDomainReply UpdateDomain(ctx, id).Domain(domain).UpdateMask(updateMask).Execute()
 
 
 
@@ -375,12 +375,12 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    body := *openapiclient.NewUpdateDomain() // UpdateDomain | 
+    domain := *openapiclient.NewUpdateDomain() // UpdateDomain | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.DomainsApi.UpdateDomain(context.Background(), id).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DomainsApi.UpdateDomain(context.Background(), id).Domain(domain).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.UpdateDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -406,7 +406,7 @@ Other parameters are passed through a pointer to a apiUpdateDomainRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateDomain**](UpdateDomain.md) |  | 
+ **domain** | [**UpdateDomain**](UpdateDomain.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type

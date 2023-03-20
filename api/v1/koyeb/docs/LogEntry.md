@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Msg** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
-**Labels** | Pointer to **interface{}** |  | [optional] 
+**Labels** | Pointer to **map[string]interface{}** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetLabels
 
-`func (o *LogEntry) GetLabels() interface{}`
+`func (o *LogEntry) GetLabels() map[string]interface{}`
 
 GetLabels returns the Labels field if non-nil, zero value otherwise.
 
 ### GetLabelsOk
 
-`func (o *LogEntry) GetLabelsOk() (*interface{}, bool)`
+`func (o *LogEntry) GetLabelsOk() (*map[string]interface{}, bool)`
 
 GetLabelsOk returns a tuple with the Labels field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLabels
 
-`func (o *LogEntry) SetLabels(v interface{})`
+`func (o *LogEntry) SetLabels(v map[string]interface{})`
 
 SetLabels sets Labels field to given value.
 

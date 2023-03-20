@@ -1,4 +1,4 @@
-# PasswordlessLoginRequest
+# CreateOrganizationInvitationRequest
 
 ## Properties
 
@@ -8,45 +8,45 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPasswordlessLoginRequest
+### NewCreateOrganizationInvitationRequest
 
-`func NewPasswordlessLoginRequest() *PasswordlessLoginRequest`
+`func NewCreateOrganizationInvitationRequest() *CreateOrganizationInvitationRequest`
 
-NewPasswordlessLoginRequest instantiates a new PasswordlessLoginRequest object
+NewCreateOrganizationInvitationRequest instantiates a new CreateOrganizationInvitationRequest object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPasswordlessLoginRequestWithDefaults
+### NewCreateOrganizationInvitationRequestWithDefaults
 
-`func NewPasswordlessLoginRequestWithDefaults() *PasswordlessLoginRequest`
+`func NewCreateOrganizationInvitationRequestWithDefaults() *CreateOrganizationInvitationRequest`
 
-NewPasswordlessLoginRequestWithDefaults instantiates a new PasswordlessLoginRequest object
+NewCreateOrganizationInvitationRequestWithDefaults instantiates a new CreateOrganizationInvitationRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetEmail
 
-`func (o *PasswordlessLoginRequest) GetEmail() string`
+`func (o *CreateOrganizationInvitationRequest) GetEmail() string`
 
 GetEmail returns the Email field if non-nil, zero value otherwise.
 
 ### GetEmailOk
 
-`func (o *PasswordlessLoginRequest) GetEmailOk() (*string, bool)`
+`func (o *CreateOrganizationInvitationRequest) GetEmailOk() (*string, bool)`
 
 GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmail
 
-`func (o *PasswordlessLoginRequest) SetEmail(v string)`
+`func (o *CreateOrganizationInvitationRequest) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
 
 ### HasEmail
 
-`func (o *PasswordlessLoginRequest) HasEmail() bool`
+`func (o *CreateOrganizationInvitationRequest) HasEmail() bool`
 
 HasEmail returns a boolean if a field has been set.
 

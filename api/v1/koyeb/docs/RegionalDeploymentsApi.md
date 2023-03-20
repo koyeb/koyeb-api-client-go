@@ -31,8 +31,8 @@ func main() {
     id := "id_example" // string | The id of the regional deployment
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RegionalDeploymentsApi.GetRegionalDeployment(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RegionalDeploymentsApi.GetRegionalDeployment(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RegionalDeploymentsApi.GetRegionalDeployment``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -96,13 +96,13 @@ import (
 )
 
 func main() {
-    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id. (optional)
-    limit := "limit_example" // string | (Optional) The number of items to return. (optional)
-    offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
+    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RegionalDeploymentsApi.ListRegionalDeployments(context.Background()).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RegionalDeploymentsApi.ListRegionalDeployments(context.Background()).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RegionalDeploymentsApi.ListRegionalDeployments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,9 +123,9 @@ Other parameters are passed through a pointer to a apiListRegionalDeploymentsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **deploymentId** | **string** | (Optional) Filter on deployment id. | 
- **limit** | **string** | (Optional) The number of items to return. | 
- **offset** | **string** | (Optional) The offset in the list of item to return. | 
+ **deploymentId** | **string** | (Optional) Filter on deployment id | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
 
 ### Return type
 

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **Password** | **string** |  | 
 **Name** | Pointer to **string** |  | [optional] 
+**Captcha** | Pointer to **string** |  | [optional] 
+**UseV2** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -91,6 +93,56 @@ SetName sets Name field to given value.
 `func (o *CreateAccountRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetCaptcha
+
+`func (o *CreateAccountRequest) GetCaptcha() string`
+
+GetCaptcha returns the Captcha field if non-nil, zero value otherwise.
+
+### GetCaptchaOk
+
+`func (o *CreateAccountRequest) GetCaptchaOk() (*string, bool)`
+
+GetCaptchaOk returns a tuple with the Captcha field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCaptcha
+
+`func (o *CreateAccountRequest) SetCaptcha(v string)`
+
+SetCaptcha sets Captcha field to given value.
+
+### HasCaptcha
+
+`func (o *CreateAccountRequest) HasCaptcha() bool`
+
+HasCaptcha returns a boolean if a field has been set.
+
+### GetUseV2
+
+`func (o *CreateAccountRequest) GetUseV2() bool`
+
+GetUseV2 returns the UseV2 field if non-nil, zero value otherwise.
+
+### GetUseV2Ok
+
+`func (o *CreateAccountRequest) GetUseV2Ok() (*bool, bool)`
+
+GetUseV2Ok returns a tuple with the UseV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseV2
+
+`func (o *CreateAccountRequest) SetUseV2(v bool)`
+
+SetUseV2 sets UseV2 field to given value.
+
+### HasUseV2
+
+`func (o *CreateAccountRequest) HasUseV2() bool`
+
+HasUseV2 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

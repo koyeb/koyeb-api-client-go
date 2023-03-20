@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## CreateInvite
 
-> interface{} CreateInvite(ctx).Body(body).Execute()
+> map[string]interface{} CreateInvite(ctx).Body(body).Execute()
 
 
 
@@ -30,13 +30,13 @@ func main() {
     body := *openapiclient.NewInviteUserRequest() // InviteUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.InviteApi.CreateInvite(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InviteApi.CreateInvite(context.Background()).Body(body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InviteApi.CreateInvite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateInvite`: interface{}
+    // response from `CreateInvite`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `InviteApi.CreateInvite`: %v\n", resp)
 }
 ```
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 

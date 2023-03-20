@@ -1,4 +1,4 @@
-# UserAccountStatus
+# OrganizationStatus
 
 ## Enum
 

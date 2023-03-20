@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **IsDefault** | Pointer to **bool** |  | [optional] 
 **IsProtected** | Pointer to **bool** |  | [optional] 
+**Provider** | Pointer to [**KgitproxyRepositoryProvider**](KgitproxyRepositoryProvider.md) |  | [optional] [default to KGITPROXYREPOSITORYPROVIDER_INVALID_PROVIDER]
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetIsProtected sets IsProtected field to given value.
 `func (o *KgitproxyBranch) HasIsProtected() bool`
 
 HasIsProtected returns a boolean if a field has been set.
+
+### GetProvider
+
+`func (o *KgitproxyBranch) GetProvider() KgitproxyRepositoryProvider`
+
+GetProvider returns the Provider field if non-nil, zero value otherwise.
+
+### GetProviderOk
+
+`func (o *KgitproxyBranch) GetProviderOk() (*KgitproxyRepositoryProvider, bool)`
+
+GetProviderOk returns a tuple with the Provider field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvider
+
+`func (o *KgitproxyBranch) SetProvider(v KgitproxyRepositoryProvider)`
+
+SetProvider sets Provider field to given value.
+
+### HasProvider
+
+`func (o *KgitproxyBranch) HasProvider() bool`
+
+HasProvider returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

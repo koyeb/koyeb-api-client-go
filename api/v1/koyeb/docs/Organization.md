@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** |  | [optional] 
 **Address1** | Pointer to **string** |  | [optional] 
 **Address2** | Pointer to **string** |  | [optional] 
 **City** | Pointer to **string** |  | [optional] 
@@ -19,6 +20,10 @@ Name | Type | Description | Notes
 **PlanUpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **HasPaymentMethod** | Pointer to **bool** |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
+**SignupQualification** | Pointer to **map[string]interface{}** |  | [optional] 
+**Status** | Pointer to [**OrganizationStatus**](OrganizationStatus.md) |  | [optional] [default to ORGANIZATIONSTATUS_WARNING]
+**StatusMessage** | Pointer to [**OrganizationDetailedStatus**](OrganizationDetailedStatus.md) |  | [optional] [default to ORGANIZATIONDETAILEDSTATUS_NEW]
+**Verified** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -38,6 +43,31 @@ will change when the set of required properties is changed
 NewOrganizationWithDefaults instantiates a new Organization object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *Organization) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Organization) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *Organization) SetId(v string)`
+
+SetId sets Id field to given value.
+
+### HasId
+
+`func (o *Organization) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetAddress1
 
@@ -413,6 +443,106 @@ SetSubscriptionId sets SubscriptionId field to given value.
 `func (o *Organization) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
+
+### GetSignupQualification
+
+`func (o *Organization) GetSignupQualification() map[string]interface{}`
+
+GetSignupQualification returns the SignupQualification field if non-nil, zero value otherwise.
+
+### GetSignupQualificationOk
+
+`func (o *Organization) GetSignupQualificationOk() (*map[string]interface{}, bool)`
+
+GetSignupQualificationOk returns a tuple with the SignupQualification field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSignupQualification
+
+`func (o *Organization) SetSignupQualification(v map[string]interface{})`
+
+SetSignupQualification sets SignupQualification field to given value.
+
+### HasSignupQualification
+
+`func (o *Organization) HasSignupQualification() bool`
+
+HasSignupQualification returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *Organization) GetStatus() OrganizationStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Organization) GetStatusOk() (*OrganizationStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Organization) SetStatus(v OrganizationStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *Organization) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetStatusMessage
+
+`func (o *Organization) GetStatusMessage() OrganizationDetailedStatus`
+
+GetStatusMessage returns the StatusMessage field if non-nil, zero value otherwise.
+
+### GetStatusMessageOk
+
+`func (o *Organization) GetStatusMessageOk() (*OrganizationDetailedStatus, bool)`
+
+GetStatusMessageOk returns a tuple with the StatusMessage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatusMessage
+
+`func (o *Organization) SetStatusMessage(v OrganizationDetailedStatus)`
+
+SetStatusMessage sets StatusMessage field to given value.
+
+### HasStatusMessage
+
+`func (o *Organization) HasStatusMessage() bool`
+
+HasStatusMessage returns a boolean if a field has been set.
+
+### GetVerified
+
+`func (o *Organization) GetVerified() bool`
+
+GetVerified returns the Verified field if non-nil, zero value otherwise.
+
+### GetVerifiedOk
+
+`func (o *Organization) GetVerifiedOk() (*bool, bool)`
+
+GetVerifiedOk returns a tuple with the Verified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVerified
+
+`func (o *Organization) SetVerified(v bool)`
+
+SetVerified sets Verified field to given value.
+
+### HasVerified
+
+`func (o *Organization) HasVerified() bool`
+
+HasVerified returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

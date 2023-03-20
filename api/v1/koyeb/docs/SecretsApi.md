@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## CreateSecret
 
-> CreateSecretReply CreateSecret(ctx).Body(body).Execute()
+> CreateSecretReply CreateSecret(ctx).Secret(secret).Execute()
 
 
 
@@ -33,11 +33,11 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateSecret() // CreateSecret | 
+    secret := *openapiclient.NewCreateSecret() // CreateSecret | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.CreateSecret(context.Background()).Body(body).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.CreateSecret(context.Background()).Secret(secret).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.CreateSecret``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +58,7 @@ Other parameters are passed through a pointer to a apiCreateSecretRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateSecret**](CreateSecret.md) |  | 
+ **secret** | [**CreateSecret**](CreateSecret.md) |  | 
 
 ### Return type
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSecret
 
-> interface{} DeleteSecret(ctx, id).Execute()
+> map[string]interface{} DeleteSecret(ctx, id).Execute()
 
 
 
@@ -100,13 +100,13 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.DeleteSecret(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.DeleteSecret(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.DeleteSecret``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteSecret`: interface{}
+    // response from `DeleteSecret`: map[string]interface{}
     fmt.Fprintf(os.Stdout, "Response from `SecretsApi.DeleteSecret`: %v\n", resp)
 }
 ```
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+**map[string]interface{}**
 
 ### Authorization
 
@@ -168,8 +168,8 @@ func main() {
     id := "id_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.GetSecret(context.Background(), id).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.GetSecret(context.Background(), id).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.GetSecret``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -238,8 +238,8 @@ func main() {
     offset := "offset_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.GetSecretActivities(context.Background(), id).Limit(limit).Offset(offset).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.GetSecretActivities(context.Background(), id).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.GetSecretActivities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -308,11 +308,11 @@ func main() {
     name := "name_example" // string |  (optional)
     limit := "limit_example" // string |  (optional)
     offset := "offset_example" // string |  (optional)
-    types := []string{"Types_example"} // []string | Filter by secret types. (optional)
+    types := []string{"Types_example"} // []string | Filter by secret types (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.ListSecrets(context.Background()).Name(name).Limit(limit).Offset(offset).Types(types).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.ListSecrets(context.Background()).Name(name).Limit(limit).Offset(offset).Types(types).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.ListSecrets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
  **name** | **string** |  | 
  **limit** | **string** |  | 
  **offset** | **string** |  | 
- **types** | **[]string** | Filter by secret types. | 
+ **types** | **[]string** | Filter by secret types | 
 
 ### Return type
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSecret
 
-> UpdateSecretReply UpdateSecret(ctx, id).Body(body).UpdateMask(updateMask).Execute()
+> UpdateSecretReply UpdateSecret(ctx, id).Secret(secret).UpdateMask(updateMask).Execute()
 
 
 
@@ -376,12 +376,12 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    body := *openapiclient.NewSecret() // Secret | 
+    secret := *openapiclient.NewSecret() // Secret | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.UpdateSecret(context.Background(), id).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.UpdateSecret(context.Background(), id).Secret(secret).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.UpdateSecret``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -407,7 +407,7 @@ Other parameters are passed through a pointer to a apiUpdateSecretRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Secret**](Secret.md) |  | 
+ **secret** | [**Secret**](Secret.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSecret2
 
-> UpdateSecretReply UpdateSecret2(ctx, id).Body(body).UpdateMask(updateMask).Execute()
+> UpdateSecretReply UpdateSecret2(ctx, id).Secret(secret).UpdateMask(updateMask).Execute()
 
 
 
@@ -448,12 +448,12 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    body := *openapiclient.NewSecret() // Secret | 
+    secret := *openapiclient.NewSecret() // Secret | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SecretsApi.UpdateSecret2(context.Background(), id).Body(body).UpdateMask(updateMask).Execute()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.UpdateSecret2(context.Background(), id).Secret(secret).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.UpdateSecret2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -479,7 +479,7 @@ Other parameters are passed through a pointer to a apiUpdateSecret2Request struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**Secret**](Secret.md) |  | 
+ **secret** | [**Secret**](Secret.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type
