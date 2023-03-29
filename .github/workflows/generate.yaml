@@ -26,7 +26,6 @@ jobs:
           make clean
           make gen
           sudo chown -R $USER api/v1/koyeb
-          make tidy
       - name: test
         run: |
           make test
