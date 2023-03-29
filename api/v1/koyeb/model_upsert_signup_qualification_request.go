@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpsertSignupQualificationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpsertSignupQualificationRequest{}
+
 // UpsertSignupQualificationRequest struct for UpsertSignupQualificationRequest
 type UpsertSignupQualificationRequest struct {
 	SignupQualification map[string]interface{} `json:"signup_qualification,omitempty"`
@@ -38,7 +41,7 @@ func NewUpsertSignupQualificationRequestWithDefaults() *UpsertSignupQualificatio
 
 // GetSignupQualification returns the SignupQualification field value if set, zero value otherwise.
 func (o *UpsertSignupQualificationRequest) GetSignupQualification() map[string]interface{} {
-	if o == nil || isNil(o.SignupQualification) {
+	if o == nil || IsNil(o.SignupQualification) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpsertSignupQualificationRequest) GetSignupQualification() map[string]i
 // GetSignupQualificationOk returns a tuple with the SignupQualification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpsertSignupQualificationRequest) GetSignupQualificationOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.SignupQualification) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.SignupQualification) {
+		return map[string]interface{}{}, false
 	}
 	return o.SignupQualification, true
 }
 
 // HasSignupQualification returns a boolean if a field has been set.
 func (o *UpsertSignupQualificationRequest) HasSignupQualification() bool {
-	if o != nil && !isNil(o.SignupQualification) {
+	if o != nil && !IsNil(o.SignupQualification) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpsertSignupQualificationRequest) SetSignupQualification(v map[string]i
 }
 
 func (o UpsertSignupQualificationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.SignupQualification) {
-		toSerialize["signup_qualification"] = o.SignupQualification
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpsertSignupQualificationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SignupQualification) {
+		toSerialize["signup_qualification"] = o.SignupQualification
+	}
+	return toSerialize, nil
 }
 
 type NullableUpsertSignupQualificationRequest struct {

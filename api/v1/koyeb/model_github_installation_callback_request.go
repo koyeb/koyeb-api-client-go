@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GithubInstallationCallbackRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GithubInstallationCallbackRequest{}
+
 // GithubInstallationCallbackRequest struct for GithubInstallationCallbackRequest
 type GithubInstallationCallbackRequest struct {
 	InstallationId *string `json:"installation_id,omitempty"`
@@ -40,7 +43,7 @@ func NewGithubInstallationCallbackRequestWithDefaults() *GithubInstallationCallb
 
 // GetInstallationId returns the InstallationId field value if set, zero value otherwise.
 func (o *GithubInstallationCallbackRequest) GetInstallationId() string {
-	if o == nil || isNil(o.InstallationId) {
+	if o == nil || IsNil(o.InstallationId) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *GithubInstallationCallbackRequest) GetInstallationId() string {
 // GetInstallationIdOk returns a tuple with the InstallationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationCallbackRequest) GetInstallationIdOk() (*string, bool) {
-	if o == nil || isNil(o.InstallationId) {
-    return nil, false
+	if o == nil || IsNil(o.InstallationId) {
+		return nil, false
 	}
 	return o.InstallationId, true
 }
 
 // HasInstallationId returns a boolean if a field has been set.
 func (o *GithubInstallationCallbackRequest) HasInstallationId() bool {
-	if o != nil && !isNil(o.InstallationId) {
+	if o != nil && !IsNil(o.InstallationId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *GithubInstallationCallbackRequest) SetInstallationId(v string) {
 
 // GetSetupAction returns the SetupAction field value if set, zero value otherwise.
 func (o *GithubInstallationCallbackRequest) GetSetupAction() string {
-	if o == nil || isNil(o.SetupAction) {
+	if o == nil || IsNil(o.SetupAction) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *GithubInstallationCallbackRequest) GetSetupAction() string {
 // GetSetupActionOk returns a tuple with the SetupAction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationCallbackRequest) GetSetupActionOk() (*string, bool) {
-	if o == nil || isNil(o.SetupAction) {
-    return nil, false
+	if o == nil || IsNil(o.SetupAction) {
+		return nil, false
 	}
 	return o.SetupAction, true
 }
 
 // HasSetupAction returns a boolean if a field has been set.
 func (o *GithubInstallationCallbackRequest) HasSetupAction() bool {
-	if o != nil && !isNil(o.SetupAction) {
+	if o != nil && !IsNil(o.SetupAction) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *GithubInstallationCallbackRequest) SetSetupAction(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *GithubInstallationCallbackRequest) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *GithubInstallationCallbackRequest) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationCallbackRequest) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
-    return nil, false
+	if o == nil || IsNil(o.State) {
+		return nil, false
 	}
 	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *GithubInstallationCallbackRequest) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *GithubInstallationCallbackRequest) SetState(v string) {
 }
 
 func (o GithubInstallationCallbackRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.InstallationId) {
-		toSerialize["installation_id"] = o.InstallationId
-	}
-	if !isNil(o.SetupAction) {
-		toSerialize["setup_action"] = o.SetupAction
-	}
-	if !isNil(o.State) {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GithubInstallationCallbackRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InstallationId) {
+		toSerialize["installation_id"] = o.InstallationId
+	}
+	if !IsNil(o.SetupAction) {
+		toSerialize["setup_action"] = o.SetupAction
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	return toSerialize, nil
 }
 
 type NullableGithubInstallationCallbackRequest struct {

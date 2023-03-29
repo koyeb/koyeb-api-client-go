@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the GetGithubInstallationReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetGithubInstallationReply{}
+
 // GetGithubInstallationReply struct for GetGithubInstallationReply
 type GetGithubInstallationReply struct {
 	InstallationId *string `json:"installation_id,omitempty"`
@@ -55,7 +58,7 @@ func NewGetGithubInstallationReplyWithDefaults() *GetGithubInstallationReply {
 
 // GetInstallationId returns the InstallationId field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetInstallationId() string {
-	if o == nil || isNil(o.InstallationId) {
+	if o == nil || IsNil(o.InstallationId) {
 		var ret string
 		return ret
 	}
@@ -65,15 +68,15 @@ func (o *GetGithubInstallationReply) GetInstallationId() string {
 // GetInstallationIdOk returns a tuple with the InstallationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetInstallationIdOk() (*string, bool) {
-	if o == nil || isNil(o.InstallationId) {
-    return nil, false
+	if o == nil || IsNil(o.InstallationId) {
+		return nil, false
 	}
 	return o.InstallationId, true
 }
 
 // HasInstallationId returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasInstallationId() bool {
-	if o != nil && !isNil(o.InstallationId) {
+	if o != nil && !IsNil(o.InstallationId) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *GetGithubInstallationReply) SetInstallationId(v string) {
 
 // GetInstallationUrl returns the InstallationUrl field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetInstallationUrl() string {
-	if o == nil || isNil(o.InstallationUrl) {
+	if o == nil || IsNil(o.InstallationUrl) {
 		var ret string
 		return ret
 	}
@@ -97,15 +100,15 @@ func (o *GetGithubInstallationReply) GetInstallationUrl() string {
 // GetInstallationUrlOk returns a tuple with the InstallationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetInstallationUrlOk() (*string, bool) {
-	if o == nil || isNil(o.InstallationUrl) {
-    return nil, false
+	if o == nil || IsNil(o.InstallationUrl) {
+		return nil, false
 	}
 	return o.InstallationUrl, true
 }
 
 // HasInstallationUrl returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasInstallationUrl() bool {
-	if o != nil && !isNil(o.InstallationUrl) {
+	if o != nil && !IsNil(o.InstallationUrl) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *GetGithubInstallationReply) SetInstallationUrl(v string) {
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetAvatarUrl() string {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		var ret string
 		return ret
 	}
@@ -129,15 +132,15 @@ func (o *GetGithubInstallationReply) GetAvatarUrl() string {
 // GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarUrl) {
-    return nil, false
+	if o == nil || IsNil(o.AvatarUrl) {
+		return nil, false
 	}
 	return o.AvatarUrl, true
 }
 
 // HasAvatarUrl returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasAvatarUrl() bool {
-	if o != nil && !isNil(o.AvatarUrl) {
+	if o != nil && !IsNil(o.AvatarUrl) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *GetGithubInstallationReply) SetAvatarUrl(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetStatus() KgitproxyGithubInstallationStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret KgitproxyGithubInstallationStatus
 		return ret
 	}
@@ -161,15 +164,15 @@ func (o *GetGithubInstallationReply) GetStatus() KgitproxyGithubInstallationStat
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetStatusOk() (*KgitproxyGithubInstallationStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *GetGithubInstallationReply) SetStatus(v KgitproxyGithubInstallationStat
 
 // GetInstalledAt returns the InstalledAt field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetInstalledAt() time.Time {
-	if o == nil || isNil(o.InstalledAt) {
+	if o == nil || IsNil(o.InstalledAt) {
 		var ret time.Time
 		return ret
 	}
@@ -193,15 +196,15 @@ func (o *GetGithubInstallationReply) GetInstalledAt() time.Time {
 // GetInstalledAtOk returns a tuple with the InstalledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetInstalledAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.InstalledAt) {
-    return nil, false
+	if o == nil || IsNil(o.InstalledAt) {
+		return nil, false
 	}
 	return o.InstalledAt, true
 }
 
 // HasInstalledAt returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasInstalledAt() bool {
-	if o != nil && !isNil(o.InstalledAt) {
+	if o != nil && !IsNil(o.InstalledAt) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *GetGithubInstallationReply) SetInstalledAt(v time.Time) {
 
 // GetSuspendedAt returns the SuspendedAt field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetSuspendedAt() time.Time {
-	if o == nil || isNil(o.SuspendedAt) {
+	if o == nil || IsNil(o.SuspendedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -225,15 +228,15 @@ func (o *GetGithubInstallationReply) GetSuspendedAt() time.Time {
 // GetSuspendedAtOk returns a tuple with the SuspendedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetSuspendedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.SuspendedAt) {
-    return nil, false
+	if o == nil || IsNil(o.SuspendedAt) {
+		return nil, false
 	}
 	return o.SuspendedAt, true
 }
 
 // HasSuspendedAt returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasSuspendedAt() bool {
-	if o != nil && !isNil(o.SuspendedAt) {
+	if o != nil && !IsNil(o.SuspendedAt) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *GetGithubInstallationReply) SetSuspendedAt(v time.Time) {
 
 // GetIndexingStatus returns the IndexingStatus field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetIndexingStatus() KgitproxyIndexingStatus {
-	if o == nil || isNil(o.IndexingStatus) {
+	if o == nil || IsNil(o.IndexingStatus) {
 		var ret KgitproxyIndexingStatus
 		return ret
 	}
@@ -257,15 +260,15 @@ func (o *GetGithubInstallationReply) GetIndexingStatus() KgitproxyIndexingStatus
 // GetIndexingStatusOk returns a tuple with the IndexingStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetIndexingStatusOk() (*KgitproxyIndexingStatus, bool) {
-	if o == nil || isNil(o.IndexingStatus) {
-    return nil, false
+	if o == nil || IsNil(o.IndexingStatus) {
+		return nil, false
 	}
 	return o.IndexingStatus, true
 }
 
 // HasIndexingStatus returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasIndexingStatus() bool {
-	if o != nil && !isNil(o.IndexingStatus) {
+	if o != nil && !IsNil(o.IndexingStatus) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *GetGithubInstallationReply) SetIndexingStatus(v KgitproxyIndexingStatus
 
 // GetIndexedRepositories returns the IndexedRepositories field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetIndexedRepositories() int64 {
-	if o == nil || isNil(o.IndexedRepositories) {
+	if o == nil || IsNil(o.IndexedRepositories) {
 		var ret int64
 		return ret
 	}
@@ -289,15 +292,15 @@ func (o *GetGithubInstallationReply) GetIndexedRepositories() int64 {
 // GetIndexedRepositoriesOk returns a tuple with the IndexedRepositories field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetIndexedRepositoriesOk() (*int64, bool) {
-	if o == nil || isNil(o.IndexedRepositories) {
-    return nil, false
+	if o == nil || IsNil(o.IndexedRepositories) {
+		return nil, false
 	}
 	return o.IndexedRepositories, true
 }
 
 // HasIndexedRepositories returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasIndexedRepositories() bool {
-	if o != nil && !isNil(o.IndexedRepositories) {
+	if o != nil && !IsNil(o.IndexedRepositories) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *GetGithubInstallationReply) SetIndexedRepositories(v int64) {
 
 // GetTotalRepositories returns the TotalRepositories field value if set, zero value otherwise.
 func (o *GetGithubInstallationReply) GetTotalRepositories() int64 {
-	if o == nil || isNil(o.TotalRepositories) {
+	if o == nil || IsNil(o.TotalRepositories) {
 		var ret int64
 		return ret
 	}
@@ -321,15 +324,15 @@ func (o *GetGithubInstallationReply) GetTotalRepositories() int64 {
 // GetTotalRepositoriesOk returns a tuple with the TotalRepositories field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetGithubInstallationReply) GetTotalRepositoriesOk() (*int64, bool) {
-	if o == nil || isNil(o.TotalRepositories) {
-    return nil, false
+	if o == nil || IsNil(o.TotalRepositories) {
+		return nil, false
 	}
 	return o.TotalRepositories, true
 }
 
 // HasTotalRepositories returns a boolean if a field has been set.
 func (o *GetGithubInstallationReply) HasTotalRepositories() bool {
-	if o != nil && !isNil(o.TotalRepositories) {
+	if o != nil && !IsNil(o.TotalRepositories) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *GetGithubInstallationReply) SetTotalRepositories(v int64) {
 }
 
 func (o GetGithubInstallationReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.InstallationId) {
-		toSerialize["installation_id"] = o.InstallationId
-	}
-	if !isNil(o.InstallationUrl) {
-		toSerialize["installation_url"] = o.InstallationUrl
-	}
-	if !isNil(o.AvatarUrl) {
-		toSerialize["avatar_url"] = o.AvatarUrl
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.InstalledAt) {
-		toSerialize["installed_at"] = o.InstalledAt
-	}
-	if !isNil(o.SuspendedAt) {
-		toSerialize["suspended_at"] = o.SuspendedAt
-	}
-	if !isNil(o.IndexingStatus) {
-		toSerialize["indexing_status"] = o.IndexingStatus
-	}
-	if !isNil(o.IndexedRepositories) {
-		toSerialize["indexed_repositories"] = o.IndexedRepositories
-	}
-	if !isNil(o.TotalRepositories) {
-		toSerialize["total_repositories"] = o.TotalRepositories
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetGithubInstallationReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.InstallationId) {
+		toSerialize["installation_id"] = o.InstallationId
+	}
+	if !IsNil(o.InstallationUrl) {
+		toSerialize["installation_url"] = o.InstallationUrl
+	}
+	if !IsNil(o.AvatarUrl) {
+		toSerialize["avatar_url"] = o.AvatarUrl
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.InstalledAt) {
+		toSerialize["installed_at"] = o.InstalledAt
+	}
+	if !IsNil(o.SuspendedAt) {
+		toSerialize["suspended_at"] = o.SuspendedAt
+	}
+	if !IsNil(o.IndexingStatus) {
+		toSerialize["indexing_status"] = o.IndexingStatus
+	}
+	if !IsNil(o.IndexedRepositories) {
+		toSerialize["indexed_repositories"] = o.IndexedRepositories
+	}
+	if !IsNil(o.TotalRepositories) {
+		toSerialize["total_repositories"] = o.TotalRepositories
+	}
+	return toSerialize, nil
 }
 
 type NullableGetGithubInstallationReply struct {

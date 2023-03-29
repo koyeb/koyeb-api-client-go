@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListServicesReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListServicesReply{}
+
 // ListServicesReply struct for ListServicesReply
 type ListServicesReply struct {
 	Services []ServiceListItem `json:"services,omitempty"`
@@ -41,7 +44,7 @@ func NewListServicesReplyWithDefaults() *ListServicesReply {
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *ListServicesReply) GetServices() []ServiceListItem {
-	if o == nil || isNil(o.Services) {
+	if o == nil || IsNil(o.Services) {
 		var ret []ServiceListItem
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListServicesReply) GetServices() []ServiceListItem {
 // GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListServicesReply) GetServicesOk() ([]ServiceListItem, bool) {
-	if o == nil || isNil(o.Services) {
-    return nil, false
+	if o == nil || IsNil(o.Services) {
+		return nil, false
 	}
 	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
 func (o *ListServicesReply) HasServices() bool {
-	if o != nil && !isNil(o.Services) {
+	if o != nil && !IsNil(o.Services) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListServicesReply) SetServices(v []ServiceListItem) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListServicesReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListServicesReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListServicesReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListServicesReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListServicesReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListServicesReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListServicesReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListServicesReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListServicesReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListServicesReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListServicesReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListServicesReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListServicesReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListServicesReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListServicesReply) SetCount(v int64) {
 }
 
 func (o ListServicesReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Services) {
-		toSerialize["services"] = o.Services
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListServicesReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Services) {
+		toSerialize["services"] = o.Services
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListServicesReply struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentScaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentScaling{}
+
 // DeploymentScaling struct for DeploymentScaling
 type DeploymentScaling struct {
 	Scopes []string `json:"scopes,omitempty"`
@@ -40,7 +43,7 @@ func NewDeploymentScalingWithDefaults() *DeploymentScaling {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
 func (o *DeploymentScaling) GetScopes() []string {
-	if o == nil || isNil(o.Scopes) {
+	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *DeploymentScaling) GetScopes() []string {
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentScaling) GetScopesOk() ([]string, bool) {
-	if o == nil || isNil(o.Scopes) {
-    return nil, false
+	if o == nil || IsNil(o.Scopes) {
+		return nil, false
 	}
 	return o.Scopes, true
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *DeploymentScaling) HasScopes() bool {
-	if o != nil && !isNil(o.Scopes) {
+	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *DeploymentScaling) SetScopes(v []string) {
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *DeploymentScaling) GetMin() int64 {
-	if o == nil || isNil(o.Min) {
+	if o == nil || IsNil(o.Min) {
 		var ret int64
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *DeploymentScaling) GetMin() int64 {
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentScaling) GetMinOk() (*int64, bool) {
-	if o == nil || isNil(o.Min) {
-    return nil, false
+	if o == nil || IsNil(o.Min) {
+		return nil, false
 	}
 	return o.Min, true
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *DeploymentScaling) HasMin() bool {
-	if o != nil && !isNil(o.Min) {
+	if o != nil && !IsNil(o.Min) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *DeploymentScaling) SetMin(v int64) {
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *DeploymentScaling) GetMax() int64 {
-	if o == nil || isNil(o.Max) {
+	if o == nil || IsNil(o.Max) {
 		var ret int64
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *DeploymentScaling) GetMax() int64 {
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentScaling) GetMaxOk() (*int64, bool) {
-	if o == nil || isNil(o.Max) {
-    return nil, false
+	if o == nil || IsNil(o.Max) {
+		return nil, false
 	}
 	return o.Max, true
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *DeploymentScaling) HasMax() bool {
-	if o != nil && !isNil(o.Max) {
+	if o != nil && !IsNil(o.Max) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *DeploymentScaling) SetMax(v int64) {
 }
 
 func (o DeploymentScaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Scopes) {
-		toSerialize["scopes"] = o.Scopes
-	}
-	if !isNil(o.Min) {
-		toSerialize["min"] = o.Min
-	}
-	if !isNil(o.Max) {
-		toSerialize["max"] = o.Max
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentScaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Scopes) {
+		toSerialize["scopes"] = o.Scopes
+	}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentScaling struct {

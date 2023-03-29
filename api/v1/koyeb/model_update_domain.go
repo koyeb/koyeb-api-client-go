@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDomain type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDomain{}
+
 // UpdateDomain struct for UpdateDomain
 type UpdateDomain struct {
 	AppId *string `json:"app_id,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateDomainWithDefaults() *UpdateDomain {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *UpdateDomain) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateDomain) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDomain) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *UpdateDomain) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateDomain) SetAppId(v string) {
 }
 
 func (o UpdateDomain) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDomain) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDomain struct {

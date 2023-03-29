@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentHealthCheck type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentHealthCheck{}
+
 // DeploymentHealthCheck struct for DeploymentHealthCheck
 type DeploymentHealthCheck struct {
 	GracePeriod *int64 `json:"grace_period,omitempty"`
@@ -43,7 +46,7 @@ func NewDeploymentHealthCheckWithDefaults() *DeploymentHealthCheck {
 
 // GetGracePeriod returns the GracePeriod field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetGracePeriod() int64 {
-	if o == nil || isNil(o.GracePeriod) {
+	if o == nil || IsNil(o.GracePeriod) {
 		var ret int64
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *DeploymentHealthCheck) GetGracePeriod() int64 {
 // GetGracePeriodOk returns a tuple with the GracePeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetGracePeriodOk() (*int64, bool) {
-	if o == nil || isNil(o.GracePeriod) {
-    return nil, false
+	if o == nil || IsNil(o.GracePeriod) {
+		return nil, false
 	}
 	return o.GracePeriod, true
 }
 
 // HasGracePeriod returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasGracePeriod() bool {
-	if o != nil && !isNil(o.GracePeriod) {
+	if o != nil && !IsNil(o.GracePeriod) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DeploymentHealthCheck) SetGracePeriod(v int64) {
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetInterval() int64 {
-	if o == nil || isNil(o.Interval) {
+	if o == nil || IsNil(o.Interval) {
 		var ret int64
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *DeploymentHealthCheck) GetInterval() int64 {
 // GetIntervalOk returns a tuple with the Interval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetIntervalOk() (*int64, bool) {
-	if o == nil || isNil(o.Interval) {
-    return nil, false
+	if o == nil || IsNil(o.Interval) {
+		return nil, false
 	}
 	return o.Interval, true
 }
 
 // HasInterval returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasInterval() bool {
-	if o != nil && !isNil(o.Interval) {
+	if o != nil && !IsNil(o.Interval) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DeploymentHealthCheck) SetInterval(v int64) {
 
 // GetRestartLimit returns the RestartLimit field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetRestartLimit() int64 {
-	if o == nil || isNil(o.RestartLimit) {
+	if o == nil || IsNil(o.RestartLimit) {
 		var ret int64
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *DeploymentHealthCheck) GetRestartLimit() int64 {
 // GetRestartLimitOk returns a tuple with the RestartLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetRestartLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.RestartLimit) {
-    return nil, false
+	if o == nil || IsNil(o.RestartLimit) {
+		return nil, false
 	}
 	return o.RestartLimit, true
 }
 
 // HasRestartLimit returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasRestartLimit() bool {
-	if o != nil && !isNil(o.RestartLimit) {
+	if o != nil && !IsNil(o.RestartLimit) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *DeploymentHealthCheck) SetRestartLimit(v int64) {
 
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetTimeout() int64 {
-	if o == nil || isNil(o.Timeout) {
+	if o == nil || IsNil(o.Timeout) {
 		var ret int64
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *DeploymentHealthCheck) GetTimeout() int64 {
 // GetTimeoutOk returns a tuple with the Timeout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetTimeoutOk() (*int64, bool) {
-	if o == nil || isNil(o.Timeout) {
-    return nil, false
+	if o == nil || IsNil(o.Timeout) {
+		return nil, false
 	}
 	return o.Timeout, true
 }
 
 // HasTimeout returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasTimeout() bool {
-	if o != nil && !isNil(o.Timeout) {
+	if o != nil && !IsNil(o.Timeout) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *DeploymentHealthCheck) SetTimeout(v int64) {
 
 // GetTcp returns the Tcp field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetTcp() TCPHealthCheck {
-	if o == nil || isNil(o.Tcp) {
+	if o == nil || IsNil(o.Tcp) {
 		var ret TCPHealthCheck
 		return ret
 	}
@@ -181,15 +184,15 @@ func (o *DeploymentHealthCheck) GetTcp() TCPHealthCheck {
 // GetTcpOk returns a tuple with the Tcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetTcpOk() (*TCPHealthCheck, bool) {
-	if o == nil || isNil(o.Tcp) {
-    return nil, false
+	if o == nil || IsNil(o.Tcp) {
+		return nil, false
 	}
 	return o.Tcp, true
 }
 
 // HasTcp returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasTcp() bool {
-	if o != nil && !isNil(o.Tcp) {
+	if o != nil && !IsNil(o.Tcp) {
 		return true
 	}
 
@@ -203,7 +206,7 @@ func (o *DeploymentHealthCheck) SetTcp(v TCPHealthCheck) {
 
 // GetHttp returns the Http field value if set, zero value otherwise.
 func (o *DeploymentHealthCheck) GetHttp() HTTPHealthCheck {
-	if o == nil || isNil(o.Http) {
+	if o == nil || IsNil(o.Http) {
 		var ret HTTPHealthCheck
 		return ret
 	}
@@ -213,15 +216,15 @@ func (o *DeploymentHealthCheck) GetHttp() HTTPHealthCheck {
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentHealthCheck) GetHttpOk() (*HTTPHealthCheck, bool) {
-	if o == nil || isNil(o.Http) {
-    return nil, false
+	if o == nil || IsNil(o.Http) {
+		return nil, false
 	}
 	return o.Http, true
 }
 
 // HasHttp returns a boolean if a field has been set.
 func (o *DeploymentHealthCheck) HasHttp() bool {
-	if o != nil && !isNil(o.Http) {
+	if o != nil && !IsNil(o.Http) {
 		return true
 	}
 
@@ -234,26 +237,34 @@ func (o *DeploymentHealthCheck) SetHttp(v HTTPHealthCheck) {
 }
 
 func (o DeploymentHealthCheck) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.GracePeriod) {
-		toSerialize["grace_period"] = o.GracePeriod
-	}
-	if !isNil(o.Interval) {
-		toSerialize["interval"] = o.Interval
-	}
-	if !isNil(o.RestartLimit) {
-		toSerialize["restart_limit"] = o.RestartLimit
-	}
-	if !isNil(o.Timeout) {
-		toSerialize["timeout"] = o.Timeout
-	}
-	if !isNil(o.Tcp) {
-		toSerialize["tcp"] = o.Tcp
-	}
-	if !isNil(o.Http) {
-		toSerialize["http"] = o.Http
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentHealthCheck) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GracePeriod) {
+		toSerialize["grace_period"] = o.GracePeriod
+	}
+	if !IsNil(o.Interval) {
+		toSerialize["interval"] = o.Interval
+	}
+	if !IsNil(o.RestartLimit) {
+		toSerialize["restart_limit"] = o.RestartLimit
+	}
+	if !IsNil(o.Timeout) {
+		toSerialize["timeout"] = o.Timeout
+	}
+	if !IsNil(o.Tcp) {
+		toSerialize["tcp"] = o.Tcp
+	}
+	if !IsNil(o.Http) {
+		toSerialize["http"] = o.Http
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentHealthCheck struct {

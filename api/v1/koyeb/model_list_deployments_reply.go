@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListDeploymentsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListDeploymentsReply{}
+
 // ListDeploymentsReply struct for ListDeploymentsReply
 type ListDeploymentsReply struct {
 	Deployments []DeploymentListItem `json:"deployments,omitempty"`
@@ -41,7 +44,7 @@ func NewListDeploymentsReplyWithDefaults() *ListDeploymentsReply {
 
 // GetDeployments returns the Deployments field value if set, zero value otherwise.
 func (o *ListDeploymentsReply) GetDeployments() []DeploymentListItem {
-	if o == nil || isNil(o.Deployments) {
+	if o == nil || IsNil(o.Deployments) {
 		var ret []DeploymentListItem
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListDeploymentsReply) GetDeployments() []DeploymentListItem {
 // GetDeploymentsOk returns a tuple with the Deployments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDeploymentsReply) GetDeploymentsOk() ([]DeploymentListItem, bool) {
-	if o == nil || isNil(o.Deployments) {
-    return nil, false
+	if o == nil || IsNil(o.Deployments) {
+		return nil, false
 	}
 	return o.Deployments, true
 }
 
 // HasDeployments returns a boolean if a field has been set.
 func (o *ListDeploymentsReply) HasDeployments() bool {
-	if o != nil && !isNil(o.Deployments) {
+	if o != nil && !IsNil(o.Deployments) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListDeploymentsReply) SetDeployments(v []DeploymentListItem) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListDeploymentsReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListDeploymentsReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDeploymentsReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListDeploymentsReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListDeploymentsReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListDeploymentsReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListDeploymentsReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDeploymentsReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListDeploymentsReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListDeploymentsReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListDeploymentsReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListDeploymentsReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDeploymentsReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListDeploymentsReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListDeploymentsReply) SetCount(v int64) {
 }
 
 func (o ListDeploymentsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Deployments) {
-		toSerialize["deployments"] = o.Deployments
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListDeploymentsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Deployments) {
+		toSerialize["deployments"] = o.Deployments
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListDeploymentsReply struct {

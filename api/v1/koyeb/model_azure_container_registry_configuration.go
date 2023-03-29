@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AzureContainerRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureContainerRegistryConfiguration{}
+
 // AzureContainerRegistryConfiguration struct for AzureContainerRegistryConfiguration
 type AzureContainerRegistryConfiguration struct {
 	RegistryName *string `json:"registry_name,omitempty"`
@@ -40,7 +43,7 @@ func NewAzureContainerRegistryConfigurationWithDefaults() *AzureContainerRegistr
 
 // GetRegistryName returns the RegistryName field value if set, zero value otherwise.
 func (o *AzureContainerRegistryConfiguration) GetRegistryName() string {
-	if o == nil || isNil(o.RegistryName) {
+	if o == nil || IsNil(o.RegistryName) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *AzureContainerRegistryConfiguration) GetRegistryName() string {
 // GetRegistryNameOk returns a tuple with the RegistryName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureContainerRegistryConfiguration) GetRegistryNameOk() (*string, bool) {
-	if o == nil || isNil(o.RegistryName) {
-    return nil, false
+	if o == nil || IsNil(o.RegistryName) {
+		return nil, false
 	}
 	return o.RegistryName, true
 }
 
 // HasRegistryName returns a boolean if a field has been set.
 func (o *AzureContainerRegistryConfiguration) HasRegistryName() bool {
-	if o != nil && !isNil(o.RegistryName) {
+	if o != nil && !IsNil(o.RegistryName) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *AzureContainerRegistryConfiguration) SetRegistryName(v string) {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *AzureContainerRegistryConfiguration) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *AzureContainerRegistryConfiguration) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureContainerRegistryConfiguration) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *AzureContainerRegistryConfiguration) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *AzureContainerRegistryConfiguration) SetUsername(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *AzureContainerRegistryConfiguration) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *AzureContainerRegistryConfiguration) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AzureContainerRegistryConfiguration) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *AzureContainerRegistryConfiguration) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *AzureContainerRegistryConfiguration) SetPassword(v string) {
 }
 
 func (o AzureContainerRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RegistryName) {
-		toSerialize["registry_name"] = o.RegistryName
-	}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AzureContainerRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RegistryName) {
+		toSerialize["registry_name"] = o.RegistryName
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableAzureContainerRegistryConfiguration struct {

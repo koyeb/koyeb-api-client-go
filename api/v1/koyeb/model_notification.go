@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Notification type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Notification{}
+
 // Notification struct for Notification
 type Notification struct {
 	Id *string `json:"id,omitempty"`
@@ -43,7 +46,7 @@ func NewNotificationWithDefaults() *Notification {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Notification) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *Notification) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Notification) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *Notification) SetId(v string) {
 
 // GetActivity returns the Activity field value if set, zero value otherwise.
 func (o *Notification) GetActivity() Activity {
-	if o == nil || isNil(o.Activity) {
+	if o == nil || IsNil(o.Activity) {
 		var ret Activity
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *Notification) GetActivity() Activity {
 // GetActivityOk returns a tuple with the Activity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetActivityOk() (*Activity, bool) {
-	if o == nil || isNil(o.Activity) {
-    return nil, false
+	if o == nil || IsNil(o.Activity) {
+		return nil, false
 	}
 	return o.Activity, true
 }
 
 // HasActivity returns a boolean if a field has been set.
 func (o *Notification) HasActivity() bool {
-	if o != nil && !isNil(o.Activity) {
+	if o != nil && !IsNil(o.Activity) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *Notification) SetActivity(v Activity) {
 
 // GetIsRead returns the IsRead field value if set, zero value otherwise.
 func (o *Notification) GetIsRead() bool {
-	if o == nil || isNil(o.IsRead) {
+	if o == nil || IsNil(o.IsRead) {
 		var ret bool
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *Notification) GetIsRead() bool {
 // GetIsReadOk returns a tuple with the IsRead field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetIsReadOk() (*bool, bool) {
-	if o == nil || isNil(o.IsRead) {
-    return nil, false
+	if o == nil || IsNil(o.IsRead) {
+		return nil, false
 	}
 	return o.IsRead, true
 }
 
 // HasIsRead returns a boolean if a field has been set.
 func (o *Notification) HasIsRead() bool {
-	if o != nil && !isNil(o.IsRead) {
+	if o != nil && !IsNil(o.IsRead) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *Notification) SetIsRead(v bool) {
 
 // GetIsSeen returns the IsSeen field value if set, zero value otherwise.
 func (o *Notification) GetIsSeen() bool {
-	if o == nil || isNil(o.IsSeen) {
+	if o == nil || IsNil(o.IsSeen) {
 		var ret bool
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *Notification) GetIsSeen() bool {
 // GetIsSeenOk returns a tuple with the IsSeen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetIsSeenOk() (*bool, bool) {
-	if o == nil || isNil(o.IsSeen) {
-    return nil, false
+	if o == nil || IsNil(o.IsSeen) {
+		return nil, false
 	}
 	return o.IsSeen, true
 }
 
 // HasIsSeen returns a boolean if a field has been set.
 func (o *Notification) HasIsSeen() bool {
-	if o != nil && !isNil(o.IsSeen) {
+	if o != nil && !IsNil(o.IsSeen) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *Notification) SetIsSeen(v bool) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Notification) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -181,15 +184,15 @@ func (o *Notification) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Notification) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Notification) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -202,23 +205,31 @@ func (o *Notification) SetCreatedAt(v time.Time) {
 }
 
 func (o Notification) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Activity) {
-		toSerialize["activity"] = o.Activity
-	}
-	if !isNil(o.IsRead) {
-		toSerialize["is_read"] = o.IsRead
-	}
-	if !isNil(o.IsSeen) {
-		toSerialize["is_seen"] = o.IsSeen
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Notification) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Activity) {
+		toSerialize["activity"] = o.Activity
+	}
+	if !IsNil(o.IsRead) {
+		toSerialize["is_read"] = o.IsRead
+	}
+	if !IsNil(o.IsSeen) {
+		toSerialize["is_seen"] = o.IsSeen
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableNotification struct {

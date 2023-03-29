@@ -13,7 +13,7 @@ package koyeb
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -108,10 +108,10 @@ func (a *UsagesApiService) GetOrganizationUsageExecute(r ApiGetOrganizationUsage
 	localVarFormParams := url.Values{}
 
 	if r.startingTime != nil {
-		localVarQueryParams.Add("starting_time", parameterToString(*r.startingTime, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "starting_time", r.startingTime, "")
 	}
 	if r.endingTime != nil {
-		localVarQueryParams.Add("ending_time", parameterToString(*r.endingTime, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ending_time", r.endingTime, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -154,9 +154,9 @@ func (a *UsagesApiService) GetOrganizationUsageExecute(r ApiGetOrganizationUsage
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -172,8 +172,8 @@ func (a *UsagesApiService) GetOrganizationUsageExecute(r ApiGetOrganizationUsage
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -268,19 +268,19 @@ func (a *UsagesApiService) GetOrganizationUsageDetailsExecute(r ApiGetOrganizati
 	localVarFormParams := url.Values{}
 
 	if r.startingTime != nil {
-		localVarQueryParams.Add("starting_time", parameterToString(*r.startingTime, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "starting_time", r.startingTime, "")
 	}
 	if r.endingTime != nil {
-		localVarQueryParams.Add("ending_time", parameterToString(*r.endingTime, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "ending_time", r.endingTime, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	}
 	if r.order != nil {
-		localVarQueryParams.Add("order", parameterToString(*r.order, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -323,9 +323,9 @@ func (a *UsagesApiService) GetOrganizationUsageDetailsExecute(r ApiGetOrganizati
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -341,8 +341,8 @@ func (a *UsagesApiService) GetOrganizationUsageDetailsExecute(r ApiGetOrganizati
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

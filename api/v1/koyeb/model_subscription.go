@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Subscription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Subscription{}
+
 // Subscription struct for Subscription
 type Subscription struct {
 	Id *string `json:"id,omitempty"`
@@ -60,7 +63,7 @@ func NewSubscriptionWithDefaults() *Subscription {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Subscription) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -70,15 +73,15 @@ func (o *Subscription) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Subscription) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -92,7 +95,7 @@ func (o *Subscription) SetId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Subscription) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *Subscription) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Subscription) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *Subscription) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Subscription) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *Subscription) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Subscription) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *Subscription) SetUpdatedAt(v time.Time) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Subscription) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *Subscription) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *Subscription) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *Subscription) SetVersion(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Subscription) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -198,15 +201,15 @@ func (o *Subscription) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *Subscription) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *Subscription) SetOrganizationId(v string) {
 
 // GetStripeSubscriptionId returns the StripeSubscriptionId field value if set, zero value otherwise.
 func (o *Subscription) GetStripeSubscriptionId() string {
-	if o == nil || isNil(o.StripeSubscriptionId) {
+	if o == nil || IsNil(o.StripeSubscriptionId) {
 		var ret string
 		return ret
 	}
@@ -230,15 +233,15 @@ func (o *Subscription) GetStripeSubscriptionId() string {
 // GetStripeSubscriptionIdOk returns a tuple with the StripeSubscriptionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetStripeSubscriptionIdOk() (*string, bool) {
-	if o == nil || isNil(o.StripeSubscriptionId) {
-    return nil, false
+	if o == nil || IsNil(o.StripeSubscriptionId) {
+		return nil, false
 	}
 	return o.StripeSubscriptionId, true
 }
 
 // HasStripeSubscriptionId returns a boolean if a field has been set.
 func (o *Subscription) HasStripeSubscriptionId() bool {
-	if o != nil && !isNil(o.StripeSubscriptionId) {
+	if o != nil && !IsNil(o.StripeSubscriptionId) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *Subscription) SetStripeSubscriptionId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Subscription) GetStatus() SubscriptionStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret SubscriptionStatus
 		return ret
 	}
@@ -262,15 +265,15 @@ func (o *Subscription) GetStatus() SubscriptionStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetStatusOk() (*SubscriptionStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Subscription) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *Subscription) SetStatus(v SubscriptionStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *Subscription) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -294,15 +297,15 @@ func (o *Subscription) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *Subscription) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *Subscription) SetMessages(v []string) {
 
 // GetTerminateAt returns the TerminateAt field value if set, zero value otherwise.
 func (o *Subscription) GetTerminateAt() time.Time {
-	if o == nil || isNil(o.TerminateAt) {
+	if o == nil || IsNil(o.TerminateAt) {
 		var ret time.Time
 		return ret
 	}
@@ -326,15 +329,15 @@ func (o *Subscription) GetTerminateAt() time.Time {
 // GetTerminateAtOk returns a tuple with the TerminateAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetTerminateAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminateAt) {
-    return nil, false
+	if o == nil || IsNil(o.TerminateAt) {
+		return nil, false
 	}
 	return o.TerminateAt, true
 }
 
 // HasTerminateAt returns a boolean if a field has been set.
 func (o *Subscription) HasTerminateAt() bool {
-	if o != nil && !isNil(o.TerminateAt) {
+	if o != nil && !IsNil(o.TerminateAt) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *Subscription) SetTerminateAt(v time.Time) {
 
 // GetCanceledAt returns the CanceledAt field value if set, zero value otherwise.
 func (o *Subscription) GetCanceledAt() time.Time {
-	if o == nil || isNil(o.CanceledAt) {
+	if o == nil || IsNil(o.CanceledAt) {
 		var ret time.Time
 		return ret
 	}
@@ -358,15 +361,15 @@ func (o *Subscription) GetCanceledAt() time.Time {
 // GetCanceledAtOk returns a tuple with the CanceledAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCanceledAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CanceledAt) {
-    return nil, false
+	if o == nil || IsNil(o.CanceledAt) {
+		return nil, false
 	}
 	return o.CanceledAt, true
 }
 
 // HasCanceledAt returns a boolean if a field has been set.
 func (o *Subscription) HasCanceledAt() bool {
-	if o != nil && !isNil(o.CanceledAt) {
+	if o != nil && !IsNil(o.CanceledAt) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *Subscription) SetCanceledAt(v time.Time) {
 
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
 func (o *Subscription) GetTerminatedAt() time.Time {
-	if o == nil || isNil(o.TerminatedAt) {
+	if o == nil || IsNil(o.TerminatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -390,15 +393,15 @@ func (o *Subscription) GetTerminatedAt() time.Time {
 // GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetTerminatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.TerminatedAt) {
+		return nil, false
 	}
 	return o.TerminatedAt, true
 }
 
 // HasTerminatedAt returns a boolean if a field has been set.
 func (o *Subscription) HasTerminatedAt() bool {
-	if o != nil && !isNil(o.TerminatedAt) {
+	if o != nil && !IsNil(o.TerminatedAt) {
 		return true
 	}
 
@@ -412,7 +415,7 @@ func (o *Subscription) SetTerminatedAt(v time.Time) {
 
 // GetCurrentPeriodStart returns the CurrentPeriodStart field value if set, zero value otherwise.
 func (o *Subscription) GetCurrentPeriodStart() time.Time {
-	if o == nil || isNil(o.CurrentPeriodStart) {
+	if o == nil || IsNil(o.CurrentPeriodStart) {
 		var ret time.Time
 		return ret
 	}
@@ -422,15 +425,15 @@ func (o *Subscription) GetCurrentPeriodStart() time.Time {
 // GetCurrentPeriodStartOk returns a tuple with the CurrentPeriodStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCurrentPeriodStartOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CurrentPeriodStart) {
-    return nil, false
+	if o == nil || IsNil(o.CurrentPeriodStart) {
+		return nil, false
 	}
 	return o.CurrentPeriodStart, true
 }
 
 // HasCurrentPeriodStart returns a boolean if a field has been set.
 func (o *Subscription) HasCurrentPeriodStart() bool {
-	if o != nil && !isNil(o.CurrentPeriodStart) {
+	if o != nil && !IsNil(o.CurrentPeriodStart) {
 		return true
 	}
 
@@ -444,7 +447,7 @@ func (o *Subscription) SetCurrentPeriodStart(v time.Time) {
 
 // GetCurrentPeriodEnd returns the CurrentPeriodEnd field value if set, zero value otherwise.
 func (o *Subscription) GetCurrentPeriodEnd() time.Time {
-	if o == nil || isNil(o.CurrentPeriodEnd) {
+	if o == nil || IsNil(o.CurrentPeriodEnd) {
 		var ret time.Time
 		return ret
 	}
@@ -454,15 +457,15 @@ func (o *Subscription) GetCurrentPeriodEnd() time.Time {
 // GetCurrentPeriodEndOk returns a tuple with the CurrentPeriodEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCurrentPeriodEndOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CurrentPeriodEnd) {
-    return nil, false
+	if o == nil || IsNil(o.CurrentPeriodEnd) {
+		return nil, false
 	}
 	return o.CurrentPeriodEnd, true
 }
 
 // HasCurrentPeriodEnd returns a boolean if a field has been set.
 func (o *Subscription) HasCurrentPeriodEnd() bool {
-	if o != nil && !isNil(o.CurrentPeriodEnd) {
+	if o != nil && !IsNil(o.CurrentPeriodEnd) {
 		return true
 	}
 
@@ -476,7 +479,7 @@ func (o *Subscription) SetCurrentPeriodEnd(v time.Time) {
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
 func (o *Subscription) GetCurrency() string {
-	if o == nil || isNil(o.Currency) {
+	if o == nil || IsNil(o.Currency) {
 		var ret string
 		return ret
 	}
@@ -486,15 +489,15 @@ func (o *Subscription) GetCurrency() string {
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetCurrencyOk() (*string, bool) {
-	if o == nil || isNil(o.Currency) {
-    return nil, false
+	if o == nil || IsNil(o.Currency) {
+		return nil, false
 	}
 	return o.Currency, true
 }
 
 // HasCurrency returns a boolean if a field has been set.
 func (o *Subscription) HasCurrency() bool {
-	if o != nil && !isNil(o.Currency) {
+	if o != nil && !IsNil(o.Currency) {
 		return true
 	}
 
@@ -508,7 +511,7 @@ func (o *Subscription) SetCurrency(v string) {
 
 // GetAmountPayable returns the AmountPayable field value if set, zero value otherwise.
 func (o *Subscription) GetAmountPayable() string {
-	if o == nil || isNil(o.AmountPayable) {
+	if o == nil || IsNil(o.AmountPayable) {
 		var ret string
 		return ret
 	}
@@ -518,15 +521,15 @@ func (o *Subscription) GetAmountPayable() string {
 // GetAmountPayableOk returns a tuple with the AmountPayable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetAmountPayableOk() (*string, bool) {
-	if o == nil || isNil(o.AmountPayable) {
-    return nil, false
+	if o == nil || IsNil(o.AmountPayable) {
+		return nil, false
 	}
 	return o.AmountPayable, true
 }
 
 // HasAmountPayable returns a boolean if a field has been set.
 func (o *Subscription) HasAmountPayable() bool {
-	if o != nil && !isNil(o.AmountPayable) {
+	if o != nil && !IsNil(o.AmountPayable) {
 		return true
 	}
 
@@ -540,7 +543,7 @@ func (o *Subscription) SetAmountPayable(v string) {
 
 // GetAmountPaid returns the AmountPaid field value if set, zero value otherwise.
 func (o *Subscription) GetAmountPaid() string {
-	if o == nil || isNil(o.AmountPaid) {
+	if o == nil || IsNil(o.AmountPaid) {
 		var ret string
 		return ret
 	}
@@ -550,15 +553,15 @@ func (o *Subscription) GetAmountPaid() string {
 // GetAmountPaidOk returns a tuple with the AmountPaid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetAmountPaidOk() (*string, bool) {
-	if o == nil || isNil(o.AmountPaid) {
-    return nil, false
+	if o == nil || IsNil(o.AmountPaid) {
+		return nil, false
 	}
 	return o.AmountPaid, true
 }
 
 // HasAmountPaid returns a boolean if a field has been set.
 func (o *Subscription) HasAmountPaid() bool {
-	if o != nil && !isNil(o.AmountPaid) {
+	if o != nil && !IsNil(o.AmountPaid) {
 		return true
 	}
 
@@ -572,7 +575,7 @@ func (o *Subscription) SetAmountPaid(v string) {
 
 // GetAmountRemaining returns the AmountRemaining field value if set, zero value otherwise.
 func (o *Subscription) GetAmountRemaining() string {
-	if o == nil || isNil(o.AmountRemaining) {
+	if o == nil || IsNil(o.AmountRemaining) {
 		var ret string
 		return ret
 	}
@@ -582,15 +585,15 @@ func (o *Subscription) GetAmountRemaining() string {
 // GetAmountRemainingOk returns a tuple with the AmountRemaining field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetAmountRemainingOk() (*string, bool) {
-	if o == nil || isNil(o.AmountRemaining) {
-    return nil, false
+	if o == nil || IsNil(o.AmountRemaining) {
+		return nil, false
 	}
 	return o.AmountRemaining, true
 }
 
 // HasAmountRemaining returns a boolean if a field has been set.
 func (o *Subscription) HasAmountRemaining() bool {
-	if o != nil && !isNil(o.AmountRemaining) {
+	if o != nil && !IsNil(o.AmountRemaining) {
 		return true
 	}
 
@@ -604,7 +607,7 @@ func (o *Subscription) SetAmountRemaining(v string) {
 
 // GetPaymentFailure returns the PaymentFailure field value if set, zero value otherwise.
 func (o *Subscription) GetPaymentFailure() SubscriptionPaymentFailure {
-	if o == nil || isNil(o.PaymentFailure) {
+	if o == nil || IsNil(o.PaymentFailure) {
 		var ret SubscriptionPaymentFailure
 		return ret
 	}
@@ -614,15 +617,15 @@ func (o *Subscription) GetPaymentFailure() SubscriptionPaymentFailure {
 // GetPaymentFailureOk returns a tuple with the PaymentFailure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscription) GetPaymentFailureOk() (*SubscriptionPaymentFailure, bool) {
-	if o == nil || isNil(o.PaymentFailure) {
-    return nil, false
+	if o == nil || IsNil(o.PaymentFailure) {
+		return nil, false
 	}
 	return o.PaymentFailure, true
 }
 
 // HasPaymentFailure returns a boolean if a field has been set.
 func (o *Subscription) HasPaymentFailure() bool {
-	if o != nil && !isNil(o.PaymentFailure) {
+	if o != nil && !IsNil(o.PaymentFailure) {
 		return true
 	}
 
@@ -635,62 +638,70 @@ func (o *Subscription) SetPaymentFailure(v SubscriptionPaymentFailure) {
 }
 
 func (o Subscription) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.StripeSubscriptionId) {
-		toSerialize["stripe_subscription_id"] = o.StripeSubscriptionId
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.TerminateAt) {
-		toSerialize["terminate_at"] = o.TerminateAt
-	}
-	if !isNil(o.CanceledAt) {
-		toSerialize["canceled_at"] = o.CanceledAt
-	}
-	if !isNil(o.TerminatedAt) {
-		toSerialize["terminated_at"] = o.TerminatedAt
-	}
-	if !isNil(o.CurrentPeriodStart) {
-		toSerialize["current_period_start"] = o.CurrentPeriodStart
-	}
-	if !isNil(o.CurrentPeriodEnd) {
-		toSerialize["current_period_end"] = o.CurrentPeriodEnd
-	}
-	if !isNil(o.Currency) {
-		toSerialize["currency"] = o.Currency
-	}
-	if !isNil(o.AmountPayable) {
-		toSerialize["amount_payable"] = o.AmountPayable
-	}
-	if !isNil(o.AmountPaid) {
-		toSerialize["amount_paid"] = o.AmountPaid
-	}
-	if !isNil(o.AmountRemaining) {
-		toSerialize["amount_remaining"] = o.AmountRemaining
-	}
-	if !isNil(o.PaymentFailure) {
-		toSerialize["payment_failure"] = o.PaymentFailure
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Subscription) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.StripeSubscriptionId) {
+		toSerialize["stripe_subscription_id"] = o.StripeSubscriptionId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.TerminateAt) {
+		toSerialize["terminate_at"] = o.TerminateAt
+	}
+	if !IsNil(o.CanceledAt) {
+		toSerialize["canceled_at"] = o.CanceledAt
+	}
+	if !IsNil(o.TerminatedAt) {
+		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	if !IsNil(o.CurrentPeriodStart) {
+		toSerialize["current_period_start"] = o.CurrentPeriodStart
+	}
+	if !IsNil(o.CurrentPeriodEnd) {
+		toSerialize["current_period_end"] = o.CurrentPeriodEnd
+	}
+	if !IsNil(o.Currency) {
+		toSerialize["currency"] = o.Currency
+	}
+	if !IsNil(o.AmountPayable) {
+		toSerialize["amount_payable"] = o.AmountPayable
+	}
+	if !IsNil(o.AmountPaid) {
+		toSerialize["amount_paid"] = o.AmountPaid
+	}
+	if !IsNil(o.AmountRemaining) {
+		toSerialize["amount_remaining"] = o.AmountRemaining
+	}
+	if !IsNil(o.PaymentFailure) {
+		toSerialize["payment_failure"] = o.PaymentFailure
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscription struct {

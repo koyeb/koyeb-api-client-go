@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateServiceReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateServiceReply{}
+
 // UpdateServiceReply struct for UpdateServiceReply
 type UpdateServiceReply struct {
 	Service *Service `json:"service,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateServiceReplyWithDefaults() *UpdateServiceReply {
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *UpdateServiceReply) GetService() Service {
-	if o == nil || isNil(o.Service) {
+	if o == nil || IsNil(o.Service) {
 		var ret Service
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateServiceReply) GetService() Service {
 // GetServiceOk returns a tuple with the Service field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateServiceReply) GetServiceOk() (*Service, bool) {
-	if o == nil || isNil(o.Service) {
-    return nil, false
+	if o == nil || IsNil(o.Service) {
+		return nil, false
 	}
 	return o.Service, true
 }
 
 // HasService returns a boolean if a field has been set.
 func (o *UpdateServiceReply) HasService() bool {
-	if o != nil && !isNil(o.Service) {
+	if o != nil && !IsNil(o.Service) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateServiceReply) SetService(v Service) {
 }
 
 func (o UpdateServiceReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Service) {
-		toSerialize["service"] = o.Service
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateServiceReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Service) {
+		toSerialize["service"] = o.Service
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateServiceReply struct {

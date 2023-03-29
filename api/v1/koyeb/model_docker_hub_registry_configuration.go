@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DockerHubRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DockerHubRegistryConfiguration{}
+
 // DockerHubRegistryConfiguration struct for DockerHubRegistryConfiguration
 type DockerHubRegistryConfiguration struct {
 	Username *string `json:"username,omitempty"`
@@ -39,7 +42,7 @@ func NewDockerHubRegistryConfigurationWithDefaults() *DockerHubRegistryConfigura
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *DockerHubRegistryConfiguration) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DockerHubRegistryConfiguration) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerHubRegistryConfiguration) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *DockerHubRegistryConfiguration) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DockerHubRegistryConfiguration) SetUsername(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *DockerHubRegistryConfiguration) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DockerHubRegistryConfiguration) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerHubRegistryConfiguration) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *DockerHubRegistryConfiguration) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DockerHubRegistryConfiguration) SetPassword(v string) {
 }
 
 func (o DockerHubRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DockerHubRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableDockerHubRegistryConfiguration struct {

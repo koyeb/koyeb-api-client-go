@@ -5,6 +5,7 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganization**](OrganizationApi.md#CreateOrganization) | **Post** /v1/organizations | Create organization
+[**DeactivateOrganization**](OrganizationApi.md#DeactivateOrganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate organization
 [**GetGithubInstallation**](OrganizationApi.md#GetGithubInstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
@@ -32,7 +33,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -81,6 +82,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeactivateOrganization
+
+> DeactivateOrganizationReply DeactivateOrganization(ctx, id).Body(body).Execute()
+
+Deactivate organization
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.DeactivateOrganization(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.DeactivateOrganization``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeactivateOrganization`: DeactivateOrganizationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.DeactivateOrganization`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeactivateOrganizationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+[**DeactivateOrganizationReply**](DeactivateOrganizationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetGithubInstallation
 
 > GetGithubInstallationReply GetGithubInstallation(ctx).Execute()
@@ -96,7 +167,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -155,7 +226,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -223,7 +294,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -287,7 +358,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -351,7 +422,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -423,7 +494,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -495,7 +566,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -567,7 +638,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -637,7 +708,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {

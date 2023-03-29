@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateCredentialReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateCredentialReply{}
+
 // UpdateCredentialReply struct for UpdateCredentialReply
 type UpdateCredentialReply struct {
 	Credential *Credential `json:"credential,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateCredentialReplyWithDefaults() *UpdateCredentialReply {
 
 // GetCredential returns the Credential field value if set, zero value otherwise.
 func (o *UpdateCredentialReply) GetCredential() Credential {
-	if o == nil || isNil(o.Credential) {
+	if o == nil || IsNil(o.Credential) {
 		var ret Credential
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateCredentialReply) GetCredential() Credential {
 // GetCredentialOk returns a tuple with the Credential field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateCredentialReply) GetCredentialOk() (*Credential, bool) {
-	if o == nil || isNil(o.Credential) {
-    return nil, false
+	if o == nil || IsNil(o.Credential) {
+		return nil, false
 	}
 	return o.Credential, true
 }
 
 // HasCredential returns a boolean if a field has been set.
 func (o *UpdateCredentialReply) HasCredential() bool {
-	if o != nil && !isNil(o.Credential) {
+	if o != nil && !IsNil(o.Credential) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateCredentialReply) SetCredential(v Credential) {
 }
 
 func (o UpdateCredentialReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Credential) {
-		toSerialize["credential"] = o.Credential
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateCredentialReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Credential) {
+		toSerialize["credential"] = o.Credential
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateCredentialReply struct {

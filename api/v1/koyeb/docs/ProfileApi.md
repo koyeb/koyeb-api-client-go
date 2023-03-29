@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | 
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | 
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
+[**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | 
 [**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | 
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 [**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | 
@@ -37,7 +38,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -107,7 +108,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -177,7 +178,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -236,7 +237,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -295,7 +296,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -354,7 +355,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -405,6 +406,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetUserOrganizationInvitation
+
+> GetUserOrganizationInvitationReply GetUserOrganizationInvitation(ctx, id).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
+)
+
+func main() {
+    id := "id_example" // string | The id of the organization invitation to get
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetUserOrganizationInvitation(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetUserOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUserOrganizationInvitation`: GetUserOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.GetUserOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the organization invitation to get | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUserOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetUserOrganizationInvitationReply**](GetUserOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListUserOrganizationInvitations
 
 > ListUserOrganizationInvitationsReply ListUserOrganizationInvitations(ctx).Limit(limit).Offset(offset).Statuses(statuses).Execute()
@@ -420,7 +489,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -488,7 +557,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -554,7 +623,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -618,7 +687,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -682,7 +751,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -748,7 +817,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -814,7 +883,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -880,7 +949,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {
@@ -946,7 +1015,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {

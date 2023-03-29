@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExecCommandRequestBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExecCommandRequestBody{}
+
 // ExecCommandRequestBody struct for ExecCommandRequestBody
 type ExecCommandRequestBody struct {
 	// Command to exec. Mandatory in the first frame sent
@@ -41,7 +44,7 @@ func NewExecCommandRequestBodyWithDefaults() *ExecCommandRequestBody {
 
 // GetCommand returns the Command field value if set, zero value otherwise.
 func (o *ExecCommandRequestBody) GetCommand() []string {
-	if o == nil || isNil(o.Command) {
+	if o == nil || IsNil(o.Command) {
 		var ret []string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ExecCommandRequestBody) GetCommand() []string {
 // GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandRequestBody) GetCommandOk() ([]string, bool) {
-	if o == nil || isNil(o.Command) {
-    return nil, false
+	if o == nil || IsNil(o.Command) {
+		return nil, false
 	}
 	return o.Command, true
 }
 
 // HasCommand returns a boolean if a field has been set.
 func (o *ExecCommandRequestBody) HasCommand() bool {
-	if o != nil && !isNil(o.Command) {
+	if o != nil && !IsNil(o.Command) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ExecCommandRequestBody) SetCommand(v []string) {
 
 // GetTtySize returns the TtySize field value if set, zero value otherwise.
 func (o *ExecCommandRequestBody) GetTtySize() ExecCommandRequestTerminalSize {
-	if o == nil || isNil(o.TtySize) {
+	if o == nil || IsNil(o.TtySize) {
 		var ret ExecCommandRequestTerminalSize
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ExecCommandRequestBody) GetTtySize() ExecCommandRequestTerminalSize {
 // GetTtySizeOk returns a tuple with the TtySize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandRequestBody) GetTtySizeOk() (*ExecCommandRequestTerminalSize, bool) {
-	if o == nil || isNil(o.TtySize) {
-    return nil, false
+	if o == nil || IsNil(o.TtySize) {
+		return nil, false
 	}
 	return o.TtySize, true
 }
 
 // HasTtySize returns a boolean if a field has been set.
 func (o *ExecCommandRequestBody) HasTtySize() bool {
-	if o != nil && !isNil(o.TtySize) {
+	if o != nil && !IsNil(o.TtySize) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ExecCommandRequestBody) SetTtySize(v ExecCommandRequestTerminalSize) {
 
 // GetStdin returns the Stdin field value if set, zero value otherwise.
 func (o *ExecCommandRequestBody) GetStdin() ExecCommandIO {
-	if o == nil || isNil(o.Stdin) {
+	if o == nil || IsNil(o.Stdin) {
 		var ret ExecCommandIO
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ExecCommandRequestBody) GetStdin() ExecCommandIO {
 // GetStdinOk returns a tuple with the Stdin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandRequestBody) GetStdinOk() (*ExecCommandIO, bool) {
-	if o == nil || isNil(o.Stdin) {
-    return nil, false
+	if o == nil || IsNil(o.Stdin) {
+		return nil, false
 	}
 	return o.Stdin, true
 }
 
 // HasStdin returns a boolean if a field has been set.
 func (o *ExecCommandRequestBody) HasStdin() bool {
-	if o != nil && !isNil(o.Stdin) {
+	if o != nil && !IsNil(o.Stdin) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *ExecCommandRequestBody) SetStdin(v ExecCommandIO) {
 }
 
 func (o ExecCommandRequestBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Command) {
-		toSerialize["command"] = o.Command
-	}
-	if !isNil(o.TtySize) {
-		toSerialize["tty_size"] = o.TtySize
-	}
-	if !isNil(o.Stdin) {
-		toSerialize["stdin"] = o.Stdin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExecCommandRequestBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Command) {
+		toSerialize["command"] = o.Command
+	}
+	if !IsNil(o.TtySize) {
+		toSerialize["tty_size"] = o.TtySize
+	}
+	if !IsNil(o.Stdin) {
+		toSerialize["stdin"] = o.Stdin
+	}
+	return toSerialize, nil
 }
 
 type NullableExecCommandRequestBody struct {

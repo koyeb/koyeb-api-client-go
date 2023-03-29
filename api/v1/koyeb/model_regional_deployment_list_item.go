@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the RegionalDeploymentListItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegionalDeploymentListItem{}
+
 // RegionalDeploymentListItem struct for RegionalDeploymentListItem
 type RegionalDeploymentListItem struct {
 	Id *string `json:"id,omitempty"`
@@ -49,7 +52,7 @@ func NewRegionalDeploymentListItemWithDefaults() *RegionalDeploymentListItem {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *RegionalDeploymentListItem) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *RegionalDeploymentListItem) SetId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *RegionalDeploymentListItem) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *RegionalDeploymentListItem) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *RegionalDeploymentListItem) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *RegionalDeploymentListItem) SetUpdatedAt(v time.Time) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetRegion() string {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *RegionalDeploymentListItem) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetRegionOk() (*string, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *RegionalDeploymentListItem) SetRegion(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret RegionalDeploymentStatus
 		return ret
 	}
@@ -187,15 +190,15 @@ func (o *RegionalDeploymentListItem) GetStatus() RegionalDeploymentStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetStatusOk() (*RegionalDeploymentStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *RegionalDeploymentListItem) SetStatus(v RegionalDeploymentStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -219,15 +222,15 @@ func (o *RegionalDeploymentListItem) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -241,7 +244,7 @@ func (o *RegionalDeploymentListItem) SetMessages(v []string) {
 
 // GetDefinition returns the Definition field value if set, zero value otherwise.
 func (o *RegionalDeploymentListItem) GetDefinition() RegionalDeploymentDefinition {
-	if o == nil || isNil(o.Definition) {
+	if o == nil || IsNil(o.Definition) {
 		var ret RegionalDeploymentDefinition
 		return ret
 	}
@@ -251,15 +254,15 @@ func (o *RegionalDeploymentListItem) GetDefinition() RegionalDeploymentDefinitio
 // GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentListItem) GetDefinitionOk() (*RegionalDeploymentDefinition, bool) {
-	if o == nil || isNil(o.Definition) {
-    return nil, false
+	if o == nil || IsNil(o.Definition) {
+		return nil, false
 	}
 	return o.Definition, true
 }
 
 // HasDefinition returns a boolean if a field has been set.
 func (o *RegionalDeploymentListItem) HasDefinition() bool {
-	if o != nil && !isNil(o.Definition) {
+	if o != nil && !IsNil(o.Definition) {
 		return true
 	}
 
@@ -272,29 +275,37 @@ func (o *RegionalDeploymentListItem) SetDefinition(v RegionalDeploymentDefinitio
 }
 
 func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.Definition) {
-		toSerialize["definition"] = o.Definition
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RegionalDeploymentListItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.Definition) {
+		toSerialize["definition"] = o.Definition
+	}
+	return toSerialize, nil
 }
 
 type NullableRegionalDeploymentListItem struct {

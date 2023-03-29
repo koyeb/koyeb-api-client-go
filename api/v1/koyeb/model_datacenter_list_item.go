@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DatacenterListItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DatacenterListItem{}
+
 // DatacenterListItem struct for DatacenterListItem
 type DatacenterListItem struct {
 	Id *string `json:"id,omitempty"`
@@ -41,7 +44,7 @@ func NewDatacenterListItemWithDefaults() *DatacenterListItem {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DatacenterListItem) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *DatacenterListItem) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatacenterListItem) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *DatacenterListItem) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *DatacenterListItem) SetId(v string) {
 
 // GetRegionId returns the RegionId field value if set, zero value otherwise.
 func (o *DatacenterListItem) GetRegionId() string {
-	if o == nil || isNil(o.RegionId) {
+	if o == nil || IsNil(o.RegionId) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *DatacenterListItem) GetRegionId() string {
 // GetRegionIdOk returns a tuple with the RegionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatacenterListItem) GetRegionIdOk() (*string, bool) {
-	if o == nil || isNil(o.RegionId) {
-    return nil, false
+	if o == nil || IsNil(o.RegionId) {
+		return nil, false
 	}
 	return o.RegionId, true
 }
 
 // HasRegionId returns a boolean if a field has been set.
 func (o *DatacenterListItem) HasRegionId() bool {
-	if o != nil && !isNil(o.RegionId) {
+	if o != nil && !IsNil(o.RegionId) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *DatacenterListItem) SetRegionId(v string) {
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *DatacenterListItem) GetDomain() string {
-	if o == nil || isNil(o.Domain) {
+	if o == nil || IsNil(o.Domain) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *DatacenterListItem) GetDomain() string {
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatacenterListItem) GetDomainOk() (*string, bool) {
-	if o == nil || isNil(o.Domain) {
-    return nil, false
+	if o == nil || IsNil(o.Domain) {
+		return nil, false
 	}
 	return o.Domain, true
 }
 
 // HasDomain returns a boolean if a field has been set.
 func (o *DatacenterListItem) HasDomain() bool {
-	if o != nil && !isNil(o.Domain) {
+	if o != nil && !IsNil(o.Domain) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *DatacenterListItem) SetDomain(v string) {
 
 // GetCoordinates returns the Coordinates field value if set, zero value otherwise.
 func (o *DatacenterListItem) GetCoordinates() []string {
-	if o == nil || isNil(o.Coordinates) {
+	if o == nil || IsNil(o.Coordinates) {
 		var ret []string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *DatacenterListItem) GetCoordinates() []string {
 // GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DatacenterListItem) GetCoordinatesOk() ([]string, bool) {
-	if o == nil || isNil(o.Coordinates) {
-    return nil, false
+	if o == nil || IsNil(o.Coordinates) {
+		return nil, false
 	}
 	return o.Coordinates, true
 }
 
 // HasCoordinates returns a boolean if a field has been set.
 func (o *DatacenterListItem) HasCoordinates() bool {
-	if o != nil && !isNil(o.Coordinates) {
+	if o != nil && !IsNil(o.Coordinates) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *DatacenterListItem) SetCoordinates(v []string) {
 }
 
 func (o DatacenterListItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.RegionId) {
-		toSerialize["region_id"] = o.RegionId
-	}
-	if !isNil(o.Domain) {
-		toSerialize["domain"] = o.Domain
-	}
-	if !isNil(o.Coordinates) {
-		toSerialize["coordinates"] = o.Coordinates
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DatacenterListItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.RegionId) {
+		toSerialize["region_id"] = o.RegionId
+	}
+	if !IsNil(o.Domain) {
+		toSerialize["domain"] = o.Domain
+	}
+	if !IsNil(o.Coordinates) {
+		toSerialize["coordinates"] = o.Coordinates
+	}
+	return toSerialize, nil
 }
 
 type NullableDatacenterListItem struct {

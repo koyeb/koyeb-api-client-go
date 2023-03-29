@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -17,6 +16,7 @@ api_invite.go
 api_logs.go
 api_metrics.go
 api_organization.go
+api_organization_confirmations.go
 api_organization_invitations.go
 api_organization_members.go
 api_payment_methods.go
@@ -73,6 +73,7 @@ docs/CreateServiceReply.md
 docs/Credential.md
 docs/CredentialsApi.md
 docs/DatacenterListItem.md
+docs/DeactivateOrganizationReply.md
 docs/DeclineOrganizationInvitationReply.md
 docs/Deployment.md
 docs/DeploymentDefinition.md
@@ -121,6 +122,7 @@ docs/GetInstanceReply.md
 docs/GetMetricsReply.md
 docs/GetMetricsReplyMetric.md
 docs/GetOAuthOptionsReply.md
+docs/GetOrganizationInvitationReply.md
 docs/GetOrganizationReply.md
 docs/GetOrganizationUsageDetailsReply.md
 docs/GetOrganizationUsageReply.md
@@ -130,6 +132,7 @@ docs/GetRegionalDeploymentReply.md
 docs/GetSecretReply.md
 docs/GetServiceReply.md
 docs/GetSubscriptionReply.md
+docs/GetUserOrganizationInvitationReply.md
 docs/GitDeploymentMetadata.md
 docs/GitDeploymentMetadataProvider.md
 docs/GitHubRegistryConfiguration.md
@@ -196,6 +199,7 @@ docs/OAuthProvider.md
 docs/Object.md
 docs/Organization.md
 docs/OrganizationApi.md
+docs/OrganizationConfirmationsApi.md
 docs/OrganizationDetailedStatus.md
 docs/OrganizationInvitation.md
 docs/OrganizationInvitationStatus.md
@@ -317,6 +321,7 @@ model_create_service.go
 model_create_service_reply.go
 model_credential.go
 model_datacenter_list_item.go
+model_deactivate_organization_reply.go
 model_decline_organization_invitation_reply.go
 model_deployment.go
 model_deployment_definition.go
@@ -363,6 +368,7 @@ model_get_instance_reply.go
 model_get_metrics_reply.go
 model_get_metrics_reply_metric.go
 model_get_o_auth_options_reply.go
+model_get_organization_invitation_reply.go
 model_get_organization_reply.go
 model_get_organization_usage_details_reply.go
 model_get_organization_usage_reply.go
@@ -372,6 +378,7 @@ model_get_regional_deployment_reply.go
 model_get_secret_reply.go
 model_get_service_reply.go
 model_get_subscription_reply.go
+model_get_user_organization_invitation_reply.go
 model_git_deployment_metadata.go
 model_git_deployment_metadata_provider.go
 model_git_hub_registry_configuration.go
@@ -518,6 +525,7 @@ test/api_instances_test.go
 test/api_invite_test.go
 test/api_logs_test.go
 test/api_metrics_test.go
+test/api_organization_confirmations_test.go
 test/api_organization_invitations_test.go
 test/api_organization_members_test.go
 test/api_organization_test.go

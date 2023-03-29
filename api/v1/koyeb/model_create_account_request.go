@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateAccountRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateAccountRequest{}
+
 // CreateAccountRequest Create new account
 type CreateAccountRequest struct {
 	Email string `json:"email"`
@@ -56,7 +59,7 @@ func (o *CreateAccountRequest) GetEmail() string {
 // and a boolean to check if the value has been set.
 func (o *CreateAccountRequest) GetEmailOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Email, true
 }
@@ -80,7 +83,7 @@ func (o *CreateAccountRequest) GetPassword() string {
 // and a boolean to check if the value has been set.
 func (o *CreateAccountRequest) GetPasswordOk() (*string, bool) {
 	if o == nil {
-    return nil, false
+		return nil, false
 	}
 	return &o.Password, true
 }
@@ -92,7 +95,7 @@ func (o *CreateAccountRequest) SetPassword(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateAccountRequest) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -102,15 +105,15 @@ func (o *CreateAccountRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateAccountRequest) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *CreateAccountRequest) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *CreateAccountRequest) SetName(v string) {
 
 // GetCaptcha returns the Captcha field value if set, zero value otherwise.
 func (o *CreateAccountRequest) GetCaptcha() string {
-	if o == nil || isNil(o.Captcha) {
+	if o == nil || IsNil(o.Captcha) {
 		var ret string
 		return ret
 	}
@@ -134,15 +137,15 @@ func (o *CreateAccountRequest) GetCaptcha() string {
 // GetCaptchaOk returns a tuple with the Captcha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateAccountRequest) GetCaptchaOk() (*string, bool) {
-	if o == nil || isNil(o.Captcha) {
-    return nil, false
+	if o == nil || IsNil(o.Captcha) {
+		return nil, false
 	}
 	return o.Captcha, true
 }
 
 // HasCaptcha returns a boolean if a field has been set.
 func (o *CreateAccountRequest) HasCaptcha() bool {
-	if o != nil && !isNil(o.Captcha) {
+	if o != nil && !IsNil(o.Captcha) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *CreateAccountRequest) SetCaptcha(v string) {
 
 // GetUseV2 returns the UseV2 field value if set, zero value otherwise.
 func (o *CreateAccountRequest) GetUseV2() bool {
-	if o == nil || isNil(o.UseV2) {
+	if o == nil || IsNil(o.UseV2) {
 		var ret bool
 		return ret
 	}
@@ -166,15 +169,15 @@ func (o *CreateAccountRequest) GetUseV2() bool {
 // GetUseV2Ok returns a tuple with the UseV2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateAccountRequest) GetUseV2Ok() (*bool, bool) {
-	if o == nil || isNil(o.UseV2) {
-    return nil, false
+	if o == nil || IsNil(o.UseV2) {
+		return nil, false
 	}
 	return o.UseV2, true
 }
 
 // HasUseV2 returns a boolean if a field has been set.
 func (o *CreateAccountRequest) HasUseV2() bool {
-	if o != nil && !isNil(o.UseV2) {
+	if o != nil && !IsNil(o.UseV2) {
 		return true
 	}
 
@@ -187,23 +190,27 @@ func (o *CreateAccountRequest) SetUseV2(v bool) {
 }
 
 func (o CreateAccountRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Captcha) {
-		toSerialize["captcha"] = o.Captcha
-	}
-	if !isNil(o.UseV2) {
-		toSerialize["use_v2"] = o.UseV2
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateAccountRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["email"] = o.Email
+	toSerialize["password"] = o.Password
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Captcha) {
+		toSerialize["captcha"] = o.Captcha
+	}
+	if !IsNil(o.UseV2) {
+		toSerialize["use_v2"] = o.UseV2
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateAccountRequest struct {

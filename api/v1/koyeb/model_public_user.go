@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PublicUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublicUser{}
+
 // PublicUser struct for PublicUser
 type PublicUser struct {
 	Id *string `json:"id,omitempty"`
@@ -43,7 +46,7 @@ func NewPublicUserWithDefaults() *PublicUser {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PublicUser) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *PublicUser) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *PublicUser) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PublicUser) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *PublicUser) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *PublicUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *PublicUser) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PublicUser) SetEmail(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PublicUser) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *PublicUser) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PublicUser) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *PublicUser) SetName(v string) {
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
 func (o *PublicUser) GetAvatarUrl() string {
-	if o == nil || isNil(o.AvatarUrl) {
+	if o == nil || IsNil(o.AvatarUrl) {
 		var ret string
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *PublicUser) GetAvatarUrl() string {
 // GetAvatarUrlOk returns a tuple with the AvatarUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetAvatarUrlOk() (*string, bool) {
-	if o == nil || isNil(o.AvatarUrl) {
-    return nil, false
+	if o == nil || IsNil(o.AvatarUrl) {
+		return nil, false
 	}
 	return o.AvatarUrl, true
 }
 
 // HasAvatarUrl returns a boolean if a field has been set.
 func (o *PublicUser) HasAvatarUrl() bool {
-	if o != nil && !isNil(o.AvatarUrl) {
+	if o != nil && !IsNil(o.AvatarUrl) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *PublicUser) SetAvatarUrl(v string) {
 
 // GetGithubId returns the GithubId field value if set, zero value otherwise.
 func (o *PublicUser) GetGithubId() string {
-	if o == nil || isNil(o.GithubId) {
+	if o == nil || IsNil(o.GithubId) {
 		var ret string
 		return ret
 	}
@@ -181,15 +184,15 @@ func (o *PublicUser) GetGithubId() string {
 // GetGithubIdOk returns a tuple with the GithubId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetGithubIdOk() (*string, bool) {
-	if o == nil || isNil(o.GithubId) {
-    return nil, false
+	if o == nil || IsNil(o.GithubId) {
+		return nil, false
 	}
 	return o.GithubId, true
 }
 
 // HasGithubId returns a boolean if a field has been set.
 func (o *PublicUser) HasGithubId() bool {
-	if o != nil && !isNil(o.GithubId) {
+	if o != nil && !IsNil(o.GithubId) {
 		return true
 	}
 
@@ -203,7 +206,7 @@ func (o *PublicUser) SetGithubId(v string) {
 
 // GetGithubUser returns the GithubUser field value if set, zero value otherwise.
 func (o *PublicUser) GetGithubUser() string {
-	if o == nil || isNil(o.GithubUser) {
+	if o == nil || IsNil(o.GithubUser) {
 		var ret string
 		return ret
 	}
@@ -213,15 +216,15 @@ func (o *PublicUser) GetGithubUser() string {
 // GetGithubUserOk returns a tuple with the GithubUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicUser) GetGithubUserOk() (*string, bool) {
-	if o == nil || isNil(o.GithubUser) {
-    return nil, false
+	if o == nil || IsNil(o.GithubUser) {
+		return nil, false
 	}
 	return o.GithubUser, true
 }
 
 // HasGithubUser returns a boolean if a field has been set.
 func (o *PublicUser) HasGithubUser() bool {
-	if o != nil && !isNil(o.GithubUser) {
+	if o != nil && !IsNil(o.GithubUser) {
 		return true
 	}
 
@@ -234,26 +237,34 @@ func (o *PublicUser) SetGithubUser(v string) {
 }
 
 func (o PublicUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.AvatarUrl) {
-		toSerialize["avatar_url"] = o.AvatarUrl
-	}
-	if !isNil(o.GithubId) {
-		toSerialize["github_id"] = o.GithubId
-	}
-	if !isNil(o.GithubUser) {
-		toSerialize["github_user"] = o.GithubUser
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PublicUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.AvatarUrl) {
+		toSerialize["avatar_url"] = o.AvatarUrl
+	}
+	if !IsNil(o.GithubId) {
+		toSerialize["github_id"] = o.GithubId
+	}
+	if !IsNil(o.GithubUser) {
+		toSerialize["github_user"] = o.GithubUser
+	}
+	return toSerialize, nil
 }
 
 type NullablePublicUser struct {

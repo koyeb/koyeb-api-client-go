@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetDeploymentReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetDeploymentReply{}
+
 // GetDeploymentReply struct for GetDeploymentReply
 type GetDeploymentReply struct {
 	Deployment *Deployment `json:"deployment,omitempty"`
@@ -38,7 +41,7 @@ func NewGetDeploymentReplyWithDefaults() *GetDeploymentReply {
 
 // GetDeployment returns the Deployment field value if set, zero value otherwise.
 func (o *GetDeploymentReply) GetDeployment() Deployment {
-	if o == nil || isNil(o.Deployment) {
+	if o == nil || IsNil(o.Deployment) {
 		var ret Deployment
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetDeploymentReply) GetDeployment() Deployment {
 // GetDeploymentOk returns a tuple with the Deployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetDeploymentReply) GetDeploymentOk() (*Deployment, bool) {
-	if o == nil || isNil(o.Deployment) {
-    return nil, false
+	if o == nil || IsNil(o.Deployment) {
+		return nil, false
 	}
 	return o.Deployment, true
 }
 
 // HasDeployment returns a boolean if a field has been set.
 func (o *GetDeploymentReply) HasDeployment() bool {
-	if o != nil && !isNil(o.Deployment) {
+	if o != nil && !IsNil(o.Deployment) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetDeploymentReply) SetDeployment(v Deployment) {
 }
 
 func (o GetDeploymentReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Deployment) {
-		toSerialize["deployment"] = o.Deployment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetDeploymentReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Deployment) {
+		toSerialize["deployment"] = o.Deployment
+	}
+	return toSerialize, nil
 }
 
 type NullableGetDeploymentReply struct {

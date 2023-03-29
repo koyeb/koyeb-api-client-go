@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserReply{}
+
 // UserReply struct for UserReply
 type UserReply struct {
 	User *User `json:"user,omitempty"`
@@ -38,7 +41,7 @@ func NewUserReplyWithDefaults() *UserReply {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *UserReply) GetUser() User {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret User
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UserReply) GetUser() User {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserReply) GetUserOk() (*User, bool) {
-	if o == nil || isNil(o.User) {
-    return nil, false
+	if o == nil || IsNil(o.User) {
+		return nil, false
 	}
 	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
 func (o *UserReply) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UserReply) SetUser(v User) {
 }
 
 func (o UserReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.User) {
-		toSerialize["user"] = o.User
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
+	return toSerialize, nil
 }
 
 type NullableUserReply struct {

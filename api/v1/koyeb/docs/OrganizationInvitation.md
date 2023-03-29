@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**OrganizationInvitationStatus**](OrganizationInvitationStatus.md) |  | [optional] [default to ORGANIZATIONINVITATIONSTATUS_INVALID]
 **ExpiresAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
-**UserId** | Pointer to **string** |  | [optional] 
 **Organization** | Pointer to [**PublicOrganization**](PublicOrganization.md) |  | [optional] 
-**User** | Pointer to [**PublicUser**](PublicUser.md) |  | [optional] 
+**InviteeId** | Pointer to **string** |  | [optional] 
+**Invitee** | Pointer to [**PublicUser**](PublicUser.md) |  | [optional] 
+**InviterId** | Pointer to **string** |  | [optional] 
+**Inviter** | Pointer to [**PublicUser**](PublicUser.md) |  | [optional] 
 
 ## Methods
 
@@ -183,31 +185,6 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
-### GetUserId
-
-`func (o *OrganizationInvitation) GetUserId() string`
-
-GetUserId returns the UserId field if non-nil, zero value otherwise.
-
-### GetUserIdOk
-
-`func (o *OrganizationInvitation) GetUserIdOk() (*string, bool)`
-
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserId
-
-`func (o *OrganizationInvitation) SetUserId(v string)`
-
-SetUserId sets UserId field to given value.
-
-### HasUserId
-
-`func (o *OrganizationInvitation) HasUserId() bool`
-
-HasUserId returns a boolean if a field has been set.
-
 ### GetOrganization
 
 `func (o *OrganizationInvitation) GetOrganization() PublicOrganization`
@@ -233,30 +210,105 @@ SetOrganization sets Organization field to given value.
 
 HasOrganization returns a boolean if a field has been set.
 
-### GetUser
+### GetInviteeId
 
-`func (o *OrganizationInvitation) GetUser() PublicUser`
+`func (o *OrganizationInvitation) GetInviteeId() string`
 
-GetUser returns the User field if non-nil, zero value otherwise.
+GetInviteeId returns the InviteeId field if non-nil, zero value otherwise.
 
-### GetUserOk
+### GetInviteeIdOk
 
-`func (o *OrganizationInvitation) GetUserOk() (*PublicUser, bool)`
+`func (o *OrganizationInvitation) GetInviteeIdOk() (*string, bool)`
 
-GetUserOk returns a tuple with the User field if it's non-nil, zero value otherwise
+GetInviteeIdOk returns a tuple with the InviteeId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetUser
+### SetInviteeId
 
-`func (o *OrganizationInvitation) SetUser(v PublicUser)`
+`func (o *OrganizationInvitation) SetInviteeId(v string)`
 
-SetUser sets User field to given value.
+SetInviteeId sets InviteeId field to given value.
 
-### HasUser
+### HasInviteeId
 
-`func (o *OrganizationInvitation) HasUser() bool`
+`func (o *OrganizationInvitation) HasInviteeId() bool`
 
-HasUser returns a boolean if a field has been set.
+HasInviteeId returns a boolean if a field has been set.
+
+### GetInvitee
+
+`func (o *OrganizationInvitation) GetInvitee() PublicUser`
+
+GetInvitee returns the Invitee field if non-nil, zero value otherwise.
+
+### GetInviteeOk
+
+`func (o *OrganizationInvitation) GetInviteeOk() (*PublicUser, bool)`
+
+GetInviteeOk returns a tuple with the Invitee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvitee
+
+`func (o *OrganizationInvitation) SetInvitee(v PublicUser)`
+
+SetInvitee sets Invitee field to given value.
+
+### HasInvitee
+
+`func (o *OrganizationInvitation) HasInvitee() bool`
+
+HasInvitee returns a boolean if a field has been set.
+
+### GetInviterId
+
+`func (o *OrganizationInvitation) GetInviterId() string`
+
+GetInviterId returns the InviterId field if non-nil, zero value otherwise.
+
+### GetInviterIdOk
+
+`func (o *OrganizationInvitation) GetInviterIdOk() (*string, bool)`
+
+GetInviterIdOk returns a tuple with the InviterId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInviterId
+
+`func (o *OrganizationInvitation) SetInviterId(v string)`
+
+SetInviterId sets InviterId field to given value.
+
+### HasInviterId
+
+`func (o *OrganizationInvitation) HasInviterId() bool`
+
+HasInviterId returns a boolean if a field has been set.
+
+### GetInviter
+
+`func (o *OrganizationInvitation) GetInviter() PublicUser`
+
+GetInviter returns the Inviter field if non-nil, zero value otherwise.
+
+### GetInviterOk
+
+`func (o *OrganizationInvitation) GetInviterOk() (*PublicUser, bool)`
+
+GetInviterOk returns a tuple with the Inviter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInviter
+
+`func (o *OrganizationInvitation) SetInviter(v PublicUser)`
+
+SetInviter sets Inviter field to given value.
+
+### HasInviter
+
+`func (o *OrganizationInvitation) HasInviter() bool`
+
+HasInviter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

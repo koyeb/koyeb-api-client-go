@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TCPHealthCheck type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TCPHealthCheck{}
+
 // TCPHealthCheck struct for TCPHealthCheck
 type TCPHealthCheck struct {
 	Port *int64 `json:"port,omitempty"`
@@ -38,7 +41,7 @@ func NewTCPHealthCheckWithDefaults() *TCPHealthCheck {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *TCPHealthCheck) GetPort() int64 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int64
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *TCPHealthCheck) GetPort() int64 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TCPHealthCheck) GetPortOk() (*int64, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *TCPHealthCheck) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *TCPHealthCheck) SetPort(v int64) {
 }
 
 func (o TCPHealthCheck) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TCPHealthCheck) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	return toSerialize, nil
 }
 
 type NullableTCPHealthCheck struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Activity type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Activity{}
+
 // Activity struct for Activity
 type Activity struct {
 	Id *string `json:"id,omitempty"`
@@ -44,7 +47,7 @@ func NewActivityWithDefaults() *Activity {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Activity) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *Activity) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Activity) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *Activity) SetId(v string) {
 
 // GetActor returns the Actor field value if set, zero value otherwise.
 func (o *Activity) GetActor() Object {
-	if o == nil || isNil(o.Actor) {
+	if o == nil || IsNil(o.Actor) {
 		var ret Object
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *Activity) GetActor() Object {
 // GetActorOk returns a tuple with the Actor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetActorOk() (*Object, bool) {
-	if o == nil || isNil(o.Actor) {
-    return nil, false
+	if o == nil || IsNil(o.Actor) {
+		return nil, false
 	}
 	return o.Actor, true
 }
 
 // HasActor returns a boolean if a field has been set.
 func (o *Activity) HasActor() bool {
-	if o != nil && !isNil(o.Actor) {
+	if o != nil && !IsNil(o.Actor) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *Activity) SetActor(v Object) {
 
 // GetObject returns the Object field value if set, zero value otherwise.
 func (o *Activity) GetObject() Object {
-	if o == nil || isNil(o.Object) {
+	if o == nil || IsNil(o.Object) {
 		var ret Object
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *Activity) GetObject() Object {
 // GetObjectOk returns a tuple with the Object field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetObjectOk() (*Object, bool) {
-	if o == nil || isNil(o.Object) {
-    return nil, false
+	if o == nil || IsNil(o.Object) {
+		return nil, false
 	}
 	return o.Object, true
 }
 
 // HasObject returns a boolean if a field has been set.
 func (o *Activity) HasObject() bool {
-	if o != nil && !isNil(o.Object) {
+	if o != nil && !IsNil(o.Object) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *Activity) SetObject(v Object) {
 
 // GetVerb returns the Verb field value if set, zero value otherwise.
 func (o *Activity) GetVerb() string {
-	if o == nil || isNil(o.Verb) {
+	if o == nil || IsNil(o.Verb) {
 		var ret string
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *Activity) GetVerb() string {
 // GetVerbOk returns a tuple with the Verb field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetVerbOk() (*string, bool) {
-	if o == nil || isNil(o.Verb) {
-    return nil, false
+	if o == nil || IsNil(o.Verb) {
+		return nil, false
 	}
 	return o.Verb, true
 }
 
 // HasVerb returns a boolean if a field has been set.
 func (o *Activity) HasVerb() bool {
-	if o != nil && !isNil(o.Verb) {
+	if o != nil && !IsNil(o.Verb) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *Activity) SetVerb(v string) {
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *Activity) GetMetadata() map[string]interface{} {
-	if o == nil || isNil(o.Metadata) {
+	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *Activity) GetMetadata() map[string]interface{} {
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetMetadataOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Metadata) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *Activity) HasMetadata() bool {
-	if o != nil && !isNil(o.Metadata) {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *Activity) SetMetadata(v map[string]interface{}) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Activity) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -214,15 +217,15 @@ func (o *Activity) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Activity) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Activity) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -235,26 +238,34 @@ func (o *Activity) SetCreatedAt(v time.Time) {
 }
 
 func (o Activity) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Actor) {
-		toSerialize["actor"] = o.Actor
-	}
-	if !isNil(o.Object) {
-		toSerialize["object"] = o.Object
-	}
-	if !isNil(o.Verb) {
-		toSerialize["verb"] = o.Verb
-	}
-	if !isNil(o.Metadata) {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Activity) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Actor) {
+		toSerialize["actor"] = o.Actor
+	}
+	if !IsNil(o.Object) {
+		toSerialize["object"] = o.Object
+	}
+	if !IsNil(o.Verb) {
+		toSerialize["verb"] = o.Verb
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableActivity struct {

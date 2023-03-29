@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the PeriodUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PeriodUsage{}
+
 // PeriodUsage struct for PeriodUsage
 type PeriodUsage struct {
 	StartingTime *time.Time `json:"starting_time,omitempty"`
@@ -41,7 +44,7 @@ func NewPeriodUsageWithDefaults() *PeriodUsage {
 
 // GetStartingTime returns the StartingTime field value if set, zero value otherwise.
 func (o *PeriodUsage) GetStartingTime() time.Time {
-	if o == nil || isNil(o.StartingTime) {
+	if o == nil || IsNil(o.StartingTime) {
 		var ret time.Time
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *PeriodUsage) GetStartingTime() time.Time {
 // GetStartingTimeOk returns a tuple with the StartingTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodUsage) GetStartingTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartingTime) {
-    return nil, false
+	if o == nil || IsNil(o.StartingTime) {
+		return nil, false
 	}
 	return o.StartingTime, true
 }
 
 // HasStartingTime returns a boolean if a field has been set.
 func (o *PeriodUsage) HasStartingTime() bool {
-	if o != nil && !isNil(o.StartingTime) {
+	if o != nil && !IsNil(o.StartingTime) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *PeriodUsage) SetStartingTime(v time.Time) {
 
 // GetEndingTime returns the EndingTime field value if set, zero value otherwise.
 func (o *PeriodUsage) GetEndingTime() time.Time {
-	if o == nil || isNil(o.EndingTime) {
+	if o == nil || IsNil(o.EndingTime) {
 		var ret time.Time
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *PeriodUsage) GetEndingTime() time.Time {
 // GetEndingTimeOk returns a tuple with the EndingTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodUsage) GetEndingTimeOk() (*time.Time, bool) {
-	if o == nil || isNil(o.EndingTime) {
-    return nil, false
+	if o == nil || IsNil(o.EndingTime) {
+		return nil, false
 	}
 	return o.EndingTime, true
 }
 
 // HasEndingTime returns a boolean if a field has been set.
 func (o *PeriodUsage) HasEndingTime() bool {
-	if o != nil && !isNil(o.EndingTime) {
+	if o != nil && !IsNil(o.EndingTime) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *PeriodUsage) SetEndingTime(v time.Time) {
 
 // GetApps returns the Apps field value if set, zero value otherwise.
 func (o *PeriodUsage) GetApps() []AppUsage {
-	if o == nil || isNil(o.Apps) {
+	if o == nil || IsNil(o.Apps) {
 		var ret []AppUsage
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *PeriodUsage) GetApps() []AppUsage {
 // GetAppsOk returns a tuple with the Apps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PeriodUsage) GetAppsOk() ([]AppUsage, bool) {
-	if o == nil || isNil(o.Apps) {
-    return nil, false
+	if o == nil || IsNil(o.Apps) {
+		return nil, false
 	}
 	return o.Apps, true
 }
 
 // HasApps returns a boolean if a field has been set.
 func (o *PeriodUsage) HasApps() bool {
-	if o != nil && !isNil(o.Apps) {
+	if o != nil && !IsNil(o.Apps) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *PeriodUsage) SetApps(v []AppUsage) {
 }
 
 func (o PeriodUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.StartingTime) {
-		toSerialize["starting_time"] = o.StartingTime
-	}
-	if !isNil(o.EndingTime) {
-		toSerialize["ending_time"] = o.EndingTime
-	}
-	if !isNil(o.Apps) {
-		toSerialize["apps"] = o.Apps
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PeriodUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StartingTime) {
+		toSerialize["starting_time"] = o.StartingTime
+	}
+	if !IsNil(o.EndingTime) {
+		toSerialize["ending_time"] = o.EndingTime
+	}
+	if !IsNil(o.Apps) {
+		toSerialize["apps"] = o.Apps
+	}
+	return toSerialize, nil
 }
 
 type NullablePeriodUsage struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetRegionReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetRegionReply{}
+
 // GetRegionReply struct for GetRegionReply
 type GetRegionReply struct {
 	Region *Region `json:"region,omitempty"`
@@ -38,7 +41,7 @@ func NewGetRegionReplyWithDefaults() *GetRegionReply {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *GetRegionReply) GetRegion() Region {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret Region
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetRegionReply) GetRegion() Region {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetRegionReply) GetRegionOk() (*Region, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *GetRegionReply) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetRegionReply) SetRegion(v Region) {
 }
 
 func (o GetRegionReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetRegionReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	return toSerialize, nil
 }
 
 type NullableGetRegionReply struct {

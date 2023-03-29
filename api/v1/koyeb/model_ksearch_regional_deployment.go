@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KsearchRegionalDeployment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KsearchRegionalDeployment{}
+
 // KsearchRegionalDeployment struct for KsearchRegionalDeployment
 type KsearchRegionalDeployment struct {
 	Id *string `json:"id,omitempty"`
@@ -42,7 +45,7 @@ func NewKsearchRegionalDeploymentWithDefaults() *KsearchRegionalDeployment {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KsearchRegionalDeployment) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *KsearchRegionalDeployment) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchRegionalDeployment) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *KsearchRegionalDeployment) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *KsearchRegionalDeployment) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *KsearchRegionalDeployment) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *KsearchRegionalDeployment) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchRegionalDeployment) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *KsearchRegionalDeployment) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *KsearchRegionalDeployment) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *KsearchRegionalDeployment) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *KsearchRegionalDeployment) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchRegionalDeployment) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *KsearchRegionalDeployment) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *KsearchRegionalDeployment) SetAppId(v string) {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *KsearchRegionalDeployment) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *KsearchRegionalDeployment) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchRegionalDeployment) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *KsearchRegionalDeployment) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -170,7 +173,7 @@ func (o *KsearchRegionalDeployment) SetServiceId(v string) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *KsearchRegionalDeployment) GetRegion() string {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -180,15 +183,15 @@ func (o *KsearchRegionalDeployment) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchRegionalDeployment) GetRegionOk() (*string, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *KsearchRegionalDeployment) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -201,23 +204,31 @@ func (o *KsearchRegionalDeployment) SetRegion(v string) {
 }
 
 func (o KsearchRegionalDeployment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
-	}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KsearchRegionalDeployment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	return toSerialize, nil
 }
 
 type NullableKsearchRegionalDeployment struct {

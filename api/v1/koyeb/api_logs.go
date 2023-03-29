@@ -13,7 +13,7 @@ package koyeb
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -135,31 +135,31 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 	localVarFormParams := url.Values{}
 
 	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "")
 	}
 	if r.appId != nil {
-		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "app_id", r.appId, "")
 	}
 	if r.serviceId != nil {
-		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "service_id", r.serviceId, "")
 	}
 	if r.deploymentId != nil {
-		localVarQueryParams.Add("deployment_id", parameterToString(*r.deploymentId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "deployment_id", r.deploymentId, "")
 	}
 	if r.regionalDeploymentId != nil {
-		localVarQueryParams.Add("regional_deployment_id", parameterToString(*r.regionalDeploymentId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "regional_deployment_id", r.regionalDeploymentId, "")
 	}
 	if r.instanceId != nil {
-		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "instance_id", r.instanceId, "")
 	}
 	if r.stream != nil {
-		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "stream", r.stream, "")
 	}
 	if r.start != nil {
-		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "")
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -202,9 +202,9 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -221,8 +221,8 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -232,8 +232,8 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -243,8 +243,8 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 			var v GoogleRpcStatus
@@ -253,8 +253,8 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-            		newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

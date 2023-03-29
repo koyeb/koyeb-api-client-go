@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiscourseAuthRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiscourseAuthRequest{}
+
 // DiscourseAuthRequest struct for DiscourseAuthRequest
 type DiscourseAuthRequest struct {
 	Payload *string `json:"payload,omitempty"`
@@ -39,7 +42,7 @@ func NewDiscourseAuthRequestWithDefaults() *DiscourseAuthRequest {
 
 // GetPayload returns the Payload field value if set, zero value otherwise.
 func (o *DiscourseAuthRequest) GetPayload() string {
-	if o == nil || isNil(o.Payload) {
+	if o == nil || IsNil(o.Payload) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DiscourseAuthRequest) GetPayload() string {
 // GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiscourseAuthRequest) GetPayloadOk() (*string, bool) {
-	if o == nil || isNil(o.Payload) {
-    return nil, false
+	if o == nil || IsNil(o.Payload) {
+		return nil, false
 	}
 	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
 func (o *DiscourseAuthRequest) HasPayload() bool {
-	if o != nil && !isNil(o.Payload) {
+	if o != nil && !IsNil(o.Payload) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DiscourseAuthRequest) SetPayload(v string) {
 
 // GetSig returns the Sig field value if set, zero value otherwise.
 func (o *DiscourseAuthRequest) GetSig() string {
-	if o == nil || isNil(o.Sig) {
+	if o == nil || IsNil(o.Sig) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DiscourseAuthRequest) GetSig() string {
 // GetSigOk returns a tuple with the Sig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiscourseAuthRequest) GetSigOk() (*string, bool) {
-	if o == nil || isNil(o.Sig) {
-    return nil, false
+	if o == nil || IsNil(o.Sig) {
+		return nil, false
 	}
 	return o.Sig, true
 }
 
 // HasSig returns a boolean if a field has been set.
 func (o *DiscourseAuthRequest) HasSig() bool {
-	if o != nil && !isNil(o.Sig) {
+	if o != nil && !IsNil(o.Sig) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DiscourseAuthRequest) SetSig(v string) {
 }
 
 func (o DiscourseAuthRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Payload) {
-		toSerialize["payload"] = o.Payload
-	}
-	if !isNil(o.Sig) {
-		toSerialize["sig"] = o.Sig
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiscourseAuthRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Payload) {
+		toSerialize["payload"] = o.Payload
+	}
+	if !IsNil(o.Sig) {
+		toSerialize["sig"] = o.Sig
+	}
+	return toSerialize, nil
 }
 
 type NullableDiscourseAuthRequest struct {

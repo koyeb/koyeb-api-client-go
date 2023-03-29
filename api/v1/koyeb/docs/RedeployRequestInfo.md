@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Sha** | Pointer to **string** |  | [optional] 
+**UseCache** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetSha sets Sha field to given value.
 `func (o *RedeployRequestInfo) HasSha() bool`
 
 HasSha returns a boolean if a field has been set.
+
+### GetUseCache
+
+`func (o *RedeployRequestInfo) GetUseCache() bool`
+
+GetUseCache returns the UseCache field if non-nil, zero value otherwise.
+
+### GetUseCacheOk
+
+`func (o *RedeployRequestInfo) GetUseCacheOk() (*bool, bool)`
+
+GetUseCacheOk returns a tuple with the UseCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseCache
+
+`func (o *RedeployRequestInfo) SetUseCache(v bool)`
+
+SetUseCache sets UseCache field to given value.
+
+### HasUseCache
+
+`func (o *RedeployRequestInfo) HasUseCache() bool`
+
+HasUseCache returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

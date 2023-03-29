@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateSecretReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateSecretReply{}
+
 // UpdateSecretReply struct for UpdateSecretReply
 type UpdateSecretReply struct {
 	Secret *Secret `json:"secret,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateSecretReplyWithDefaults() *UpdateSecretReply {
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
 func (o *UpdateSecretReply) GetSecret() Secret {
-	if o == nil || isNil(o.Secret) {
+	if o == nil || IsNil(o.Secret) {
 		var ret Secret
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateSecretReply) GetSecret() Secret {
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateSecretReply) GetSecretOk() (*Secret, bool) {
-	if o == nil || isNil(o.Secret) {
-    return nil, false
+	if o == nil || IsNil(o.Secret) {
+		return nil, false
 	}
 	return o.Secret, true
 }
 
 // HasSecret returns a boolean if a field has been set.
 func (o *UpdateSecretReply) HasSecret() bool {
-	if o != nil && !isNil(o.Secret) {
+	if o != nil && !IsNil(o.Secret) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateSecretReply) SetSecret(v Secret) {
 }
 
 func (o UpdateSecretReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Secret) {
-		toSerialize["secret"] = o.Secret
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateSecretReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Secret) {
+		toSerialize["secret"] = o.Secret
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateSecretReply struct {

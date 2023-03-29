@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CatalogInstanceListItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CatalogInstanceListItem{}
+
 // CatalogInstanceListItem struct for CatalogInstanceListItem
 type CatalogInstanceListItem struct {
 	Id *string `json:"id,omitempty"`
@@ -47,7 +50,7 @@ func NewCatalogInstanceListItemWithDefaults() *CatalogInstanceListItem {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,15 +60,15 @@ func (o *CatalogInstanceListItem) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *CatalogInstanceListItem) SetId(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -89,15 +92,15 @@ func (o *CatalogInstanceListItem) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *CatalogInstanceListItem) SetDescription(v string) {
 
 // GetVcpu returns the Vcpu field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetVcpu() int64 {
-	if o == nil || isNil(o.Vcpu) {
+	if o == nil || IsNil(o.Vcpu) {
 		var ret int64
 		return ret
 	}
@@ -121,15 +124,15 @@ func (o *CatalogInstanceListItem) GetVcpu() int64 {
 // GetVcpuOk returns a tuple with the Vcpu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetVcpuOk() (*int64, bool) {
-	if o == nil || isNil(o.Vcpu) {
-    return nil, false
+	if o == nil || IsNil(o.Vcpu) {
+		return nil, false
 	}
 	return o.Vcpu, true
 }
 
 // HasVcpu returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasVcpu() bool {
-	if o != nil && !isNil(o.Vcpu) {
+	if o != nil && !IsNil(o.Vcpu) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *CatalogInstanceListItem) SetVcpu(v int64) {
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetMemory() string {
-	if o == nil || isNil(o.Memory) {
+	if o == nil || IsNil(o.Memory) {
 		var ret string
 		return ret
 	}
@@ -153,15 +156,15 @@ func (o *CatalogInstanceListItem) GetMemory() string {
 // GetMemoryOk returns a tuple with the Memory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetMemoryOk() (*string, bool) {
-	if o == nil || isNil(o.Memory) {
-    return nil, false
+	if o == nil || IsNil(o.Memory) {
+		return nil, false
 	}
 	return o.Memory, true
 }
 
 // HasMemory returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasMemory() bool {
-	if o != nil && !isNil(o.Memory) {
+	if o != nil && !IsNil(o.Memory) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *CatalogInstanceListItem) SetMemory(v string) {
 
 // GetDisk returns the Disk field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetDisk() string {
-	if o == nil || isNil(o.Disk) {
+	if o == nil || IsNil(o.Disk) {
 		var ret string
 		return ret
 	}
@@ -185,15 +188,15 @@ func (o *CatalogInstanceListItem) GetDisk() string {
 // GetDiskOk returns a tuple with the Disk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetDiskOk() (*string, bool) {
-	if o == nil || isNil(o.Disk) {
-    return nil, false
+	if o == nil || IsNil(o.Disk) {
+		return nil, false
 	}
 	return o.Disk, true
 }
 
 // HasDisk returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasDisk() bool {
-	if o != nil && !isNil(o.Disk) {
+	if o != nil && !IsNil(o.Disk) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *CatalogInstanceListItem) SetDisk(v string) {
 
 // GetPriceHourly returns the PriceHourly field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetPriceHourly() string {
-	if o == nil || isNil(o.PriceHourly) {
+	if o == nil || IsNil(o.PriceHourly) {
 		var ret string
 		return ret
 	}
@@ -217,15 +220,15 @@ func (o *CatalogInstanceListItem) GetPriceHourly() string {
 // GetPriceHourlyOk returns a tuple with the PriceHourly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetPriceHourlyOk() (*string, bool) {
-	if o == nil || isNil(o.PriceHourly) {
-    return nil, false
+	if o == nil || IsNil(o.PriceHourly) {
+		return nil, false
 	}
 	return o.PriceHourly, true
 }
 
 // HasPriceHourly returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasPriceHourly() bool {
-	if o != nil && !isNil(o.PriceHourly) {
+	if o != nil && !IsNil(o.PriceHourly) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *CatalogInstanceListItem) SetPriceHourly(v string) {
 
 // GetPriceMonthly returns the PriceMonthly field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetPriceMonthly() string {
-	if o == nil || isNil(o.PriceMonthly) {
+	if o == nil || IsNil(o.PriceMonthly) {
 		var ret string
 		return ret
 	}
@@ -249,15 +252,15 @@ func (o *CatalogInstanceListItem) GetPriceMonthly() string {
 // GetPriceMonthlyOk returns a tuple with the PriceMonthly field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetPriceMonthlyOk() (*string, bool) {
-	if o == nil || isNil(o.PriceMonthly) {
-    return nil, false
+	if o == nil || IsNil(o.PriceMonthly) {
+		return nil, false
 	}
 	return o.PriceMonthly, true
 }
 
 // HasPriceMonthly returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasPriceMonthly() bool {
-	if o != nil && !isNil(o.PriceMonthly) {
+	if o != nil && !IsNil(o.PriceMonthly) {
 		return true
 	}
 
@@ -271,7 +274,7 @@ func (o *CatalogInstanceListItem) SetPriceMonthly(v string) {
 
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetRegions() []string {
-	if o == nil || isNil(o.Regions) {
+	if o == nil || IsNil(o.Regions) {
 		var ret []string
 		return ret
 	}
@@ -281,15 +284,15 @@ func (o *CatalogInstanceListItem) GetRegions() []string {
 // GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetRegionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Regions) {
-    return nil, false
+	if o == nil || IsNil(o.Regions) {
+		return nil, false
 	}
 	return o.Regions, true
 }
 
 // HasRegions returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasRegions() bool {
-	if o != nil && !isNil(o.Regions) {
+	if o != nil && !IsNil(o.Regions) {
 		return true
 	}
 
@@ -303,7 +306,7 @@ func (o *CatalogInstanceListItem) SetRegions(v []string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -313,15 +316,15 @@ func (o *CatalogInstanceListItem) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -335,7 +338,7 @@ func (o *CatalogInstanceListItem) SetStatus(v string) {
 
 // GetRequirePlan returns the RequirePlan field value if set, zero value otherwise.
 func (o *CatalogInstanceListItem) GetRequirePlan() []string {
-	if o == nil || isNil(o.RequirePlan) {
+	if o == nil || IsNil(o.RequirePlan) {
 		var ret []string
 		return ret
 	}
@@ -345,15 +348,15 @@ func (o *CatalogInstanceListItem) GetRequirePlan() []string {
 // GetRequirePlanOk returns a tuple with the RequirePlan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogInstanceListItem) GetRequirePlanOk() ([]string, bool) {
-	if o == nil || isNil(o.RequirePlan) {
-    return nil, false
+	if o == nil || IsNil(o.RequirePlan) {
+		return nil, false
 	}
 	return o.RequirePlan, true
 }
 
 // HasRequirePlan returns a boolean if a field has been set.
 func (o *CatalogInstanceListItem) HasRequirePlan() bool {
-	if o != nil && !isNil(o.RequirePlan) {
+	if o != nil && !IsNil(o.RequirePlan) {
 		return true
 	}
 
@@ -366,38 +369,46 @@ func (o *CatalogInstanceListItem) SetRequirePlan(v []string) {
 }
 
 func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
-	if !isNil(o.Vcpu) {
-		toSerialize["vcpu"] = o.Vcpu
-	}
-	if !isNil(o.Memory) {
-		toSerialize["memory"] = o.Memory
-	}
-	if !isNil(o.Disk) {
-		toSerialize["disk"] = o.Disk
-	}
-	if !isNil(o.PriceHourly) {
-		toSerialize["price_hourly"] = o.PriceHourly
-	}
-	if !isNil(o.PriceMonthly) {
-		toSerialize["price_monthly"] = o.PriceMonthly
-	}
-	if !isNil(o.Regions) {
-		toSerialize["regions"] = o.Regions
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.RequirePlan) {
-		toSerialize["require_plan"] = o.RequirePlan
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CatalogInstanceListItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Vcpu) {
+		toSerialize["vcpu"] = o.Vcpu
+	}
+	if !IsNil(o.Memory) {
+		toSerialize["memory"] = o.Memory
+	}
+	if !IsNil(o.Disk) {
+		toSerialize["disk"] = o.Disk
+	}
+	if !IsNil(o.PriceHourly) {
+		toSerialize["price_hourly"] = o.PriceHourly
+	}
+	if !IsNil(o.PriceMonthly) {
+		toSerialize["price_monthly"] = o.PriceMonthly
+	}
+	if !IsNil(o.Regions) {
+		toSerialize["regions"] = o.Regions
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.RequirePlan) {
+		toSerialize["require_plan"] = o.RequirePlan
+	}
+	return toSerialize, nil
 }
 
 type NullableCatalogInstanceListItem struct {

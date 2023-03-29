@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListCatalogInstancesReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListCatalogInstancesReply{}
+
 // ListCatalogInstancesReply struct for ListCatalogInstancesReply
 type ListCatalogInstancesReply struct {
 	Instances []CatalogInstanceListItem `json:"instances,omitempty"`
@@ -41,7 +44,7 @@ func NewListCatalogInstancesReplyWithDefaults() *ListCatalogInstancesReply {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *ListCatalogInstancesReply) GetInstances() []CatalogInstanceListItem {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret []CatalogInstanceListItem
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListCatalogInstancesReply) GetInstances() []CatalogInstanceListItem {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCatalogInstancesReply) GetInstancesOk() ([]CatalogInstanceListItem, bool) {
-	if o == nil || isNil(o.Instances) {
-    return nil, false
+	if o == nil || IsNil(o.Instances) {
+		return nil, false
 	}
 	return o.Instances, true
 }
 
 // HasInstances returns a boolean if a field has been set.
 func (o *ListCatalogInstancesReply) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListCatalogInstancesReply) SetInstances(v []CatalogInstanceListItem) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListCatalogInstancesReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListCatalogInstancesReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCatalogInstancesReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListCatalogInstancesReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListCatalogInstancesReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListCatalogInstancesReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListCatalogInstancesReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCatalogInstancesReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListCatalogInstancesReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListCatalogInstancesReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListCatalogInstancesReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListCatalogInstancesReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListCatalogInstancesReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListCatalogInstancesReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListCatalogInstancesReply) SetCount(v int64) {
 }
 
 func (o ListCatalogInstancesReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Instances) {
-		toSerialize["instances"] = o.Instances
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListCatalogInstancesReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Instances) {
+		toSerialize["instances"] = o.Instances
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListCatalogInstancesReply struct {

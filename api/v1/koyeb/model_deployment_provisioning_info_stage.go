@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the DeploymentProvisioningInfoStage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentProvisioningInfoStage{}
+
 // DeploymentProvisioningInfoStage struct for DeploymentProvisioningInfoStage
 type DeploymentProvisioningInfoStage struct {
 	Name *string `json:"name,omitempty"`
@@ -48,7 +51,7 @@ func NewDeploymentProvisioningInfoStageWithDefaults() *DeploymentProvisioningInf
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *DeploymentProvisioningInfoStage) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *DeploymentProvisioningInfoStage) SetName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetStatus() DeploymentProvisioningInfoStageStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret DeploymentProvisioningInfoStageStatus
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *DeploymentProvisioningInfoStage) GetStatus() DeploymentProvisioningInfo
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetStatusOk() (*DeploymentProvisioningInfoStageStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *DeploymentProvisioningInfoStage) SetStatus(v DeploymentProvisioningInfo
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *DeploymentProvisioningInfoStage) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *DeploymentProvisioningInfoStage) SetMessages(v []string) {
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *DeploymentProvisioningInfoStage) GetStartedAt() time.Time {
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *DeploymentProvisioningInfoStage) SetStartedAt(v time.Time) {
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetFinishedAt() time.Time {
-	if o == nil || isNil(o.FinishedAt) {
+	if o == nil || IsNil(o.FinishedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *DeploymentProvisioningInfoStage) GetFinishedAt() time.Time {
 // GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetFinishedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.FinishedAt) {
-    return nil, false
+	if o == nil || IsNil(o.FinishedAt) {
+		return nil, false
 	}
 	return o.FinishedAt, true
 }
 
 // HasFinishedAt returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasFinishedAt() bool {
-	if o != nil && !isNil(o.FinishedAt) {
+	if o != nil && !IsNil(o.FinishedAt) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *DeploymentProvisioningInfoStage) SetFinishedAt(v time.Time) {
 
 // GetBuildAttempts returns the BuildAttempts field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfoStage) GetBuildAttempts() []DeploymentProvisioningInfoStageBuildAttempt {
-	if o == nil || isNil(o.BuildAttempts) {
+	if o == nil || IsNil(o.BuildAttempts) {
 		var ret []DeploymentProvisioningInfoStageBuildAttempt
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *DeploymentProvisioningInfoStage) GetBuildAttempts() []DeploymentProvisi
 // GetBuildAttemptsOk returns a tuple with the BuildAttempts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfoStage) GetBuildAttemptsOk() ([]DeploymentProvisioningInfoStageBuildAttempt, bool) {
-	if o == nil || isNil(o.BuildAttempts) {
-    return nil, false
+	if o == nil || IsNil(o.BuildAttempts) {
+		return nil, false
 	}
 	return o.BuildAttempts, true
 }
 
 // HasBuildAttempts returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfoStage) HasBuildAttempts() bool {
-	if o != nil && !isNil(o.BuildAttempts) {
+	if o != nil && !IsNil(o.BuildAttempts) {
 		return true
 	}
 
@@ -239,26 +242,34 @@ func (o *DeploymentProvisioningInfoStage) SetBuildAttempts(v []DeploymentProvisi
 }
 
 func (o DeploymentProvisioningInfoStage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["started_at"] = o.StartedAt
-	}
-	if !isNil(o.FinishedAt) {
-		toSerialize["finished_at"] = o.FinishedAt
-	}
-	if !isNil(o.BuildAttempts) {
-		toSerialize["build_attempts"] = o.BuildAttempts
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentProvisioningInfoStage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if !IsNil(o.FinishedAt) {
+		toSerialize["finished_at"] = o.FinishedAt
+	}
+	if !IsNil(o.BuildAttempts) {
+		toSerialize["build_attempts"] = o.BuildAttempts
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentProvisioningInfoStage struct {

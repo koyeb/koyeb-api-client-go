@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the NotificationList type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &NotificationList{}
+
 // NotificationList struct for NotificationList
 type NotificationList struct {
 	Notifications []Notification `json:"notifications,omitempty"`
@@ -45,7 +48,7 @@ func NewNotificationListWithDefaults() *NotificationList {
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *NotificationList) GetNotifications() []Notification {
-	if o == nil || isNil(o.Notifications) {
+	if o == nil || IsNil(o.Notifications) {
 		var ret []Notification
 		return ret
 	}
@@ -55,15 +58,15 @@ func (o *NotificationList) GetNotifications() []Notification {
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetNotificationsOk() ([]Notification, bool) {
-	if o == nil || isNil(o.Notifications) {
-    return nil, false
+	if o == nil || IsNil(o.Notifications) {
+		return nil, false
 	}
 	return o.Notifications, true
 }
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *NotificationList) HasNotifications() bool {
-	if o != nil && !isNil(o.Notifications) {
+	if o != nil && !IsNil(o.Notifications) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *NotificationList) SetNotifications(v []Notification) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *NotificationList) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -87,15 +90,15 @@ func (o *NotificationList) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *NotificationList) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *NotificationList) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *NotificationList) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -119,15 +122,15 @@ func (o *NotificationList) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *NotificationList) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *NotificationList) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *NotificationList) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -151,15 +154,15 @@ func (o *NotificationList) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *NotificationList) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *NotificationList) SetCount(v int64) {
 
 // GetIsRead returns the IsRead field value if set, zero value otherwise.
 func (o *NotificationList) GetIsRead() bool {
-	if o == nil || isNil(o.IsRead) {
+	if o == nil || IsNil(o.IsRead) {
 		var ret bool
 		return ret
 	}
@@ -183,15 +186,15 @@ func (o *NotificationList) GetIsRead() bool {
 // GetIsReadOk returns a tuple with the IsRead field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetIsReadOk() (*bool, bool) {
-	if o == nil || isNil(o.IsRead) {
-    return nil, false
+	if o == nil || IsNil(o.IsRead) {
+		return nil, false
 	}
 	return o.IsRead, true
 }
 
 // HasIsRead returns a boolean if a field has been set.
 func (o *NotificationList) HasIsRead() bool {
-	if o != nil && !isNil(o.IsRead) {
+	if o != nil && !IsNil(o.IsRead) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *NotificationList) SetIsRead(v bool) {
 
 // GetIsSeen returns the IsSeen field value if set, zero value otherwise.
 func (o *NotificationList) GetIsSeen() bool {
-	if o == nil || isNil(o.IsSeen) {
+	if o == nil || IsNil(o.IsSeen) {
 		var ret bool
 		return ret
 	}
@@ -215,15 +218,15 @@ func (o *NotificationList) GetIsSeen() bool {
 // GetIsSeenOk returns a tuple with the IsSeen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetIsSeenOk() (*bool, bool) {
-	if o == nil || isNil(o.IsSeen) {
-    return nil, false
+	if o == nil || IsNil(o.IsSeen) {
+		return nil, false
 	}
 	return o.IsSeen, true
 }
 
 // HasIsSeen returns a boolean if a field has been set.
 func (o *NotificationList) HasIsSeen() bool {
-	if o != nil && !isNil(o.IsSeen) {
+	if o != nil && !IsNil(o.IsSeen) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *NotificationList) SetIsSeen(v bool) {
 
 // GetUnread returns the Unread field value if set, zero value otherwise.
 func (o *NotificationList) GetUnread() int64 {
-	if o == nil || isNil(o.Unread) {
+	if o == nil || IsNil(o.Unread) {
 		var ret int64
 		return ret
 	}
@@ -247,15 +250,15 @@ func (o *NotificationList) GetUnread() int64 {
 // GetUnreadOk returns a tuple with the Unread field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetUnreadOk() (*int64, bool) {
-	if o == nil || isNil(o.Unread) {
-    return nil, false
+	if o == nil || IsNil(o.Unread) {
+		return nil, false
 	}
 	return o.Unread, true
 }
 
 // HasUnread returns a boolean if a field has been set.
 func (o *NotificationList) HasUnread() bool {
-	if o != nil && !isNil(o.Unread) {
+	if o != nil && !IsNil(o.Unread) {
 		return true
 	}
 
@@ -269,7 +272,7 @@ func (o *NotificationList) SetUnread(v int64) {
 
 // GetUnseen returns the Unseen field value if set, zero value otherwise.
 func (o *NotificationList) GetUnseen() int64 {
-	if o == nil || isNil(o.Unseen) {
+	if o == nil || IsNil(o.Unseen) {
 		var ret int64
 		return ret
 	}
@@ -279,15 +282,15 @@ func (o *NotificationList) GetUnseen() int64 {
 // GetUnseenOk returns a tuple with the Unseen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *NotificationList) GetUnseenOk() (*int64, bool) {
-	if o == nil || isNil(o.Unseen) {
-    return nil, false
+	if o == nil || IsNil(o.Unseen) {
+		return nil, false
 	}
 	return o.Unseen, true
 }
 
 // HasUnseen returns a boolean if a field has been set.
 func (o *NotificationList) HasUnseen() bool {
-	if o != nil && !isNil(o.Unseen) {
+	if o != nil && !IsNil(o.Unseen) {
 		return true
 	}
 
@@ -300,32 +303,40 @@ func (o *NotificationList) SetUnseen(v int64) {
 }
 
 func (o NotificationList) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Notifications) {
-		toSerialize["notifications"] = o.Notifications
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
-	}
-	if !isNil(o.IsRead) {
-		toSerialize["is_read"] = o.IsRead
-	}
-	if !isNil(o.IsSeen) {
-		toSerialize["is_seen"] = o.IsSeen
-	}
-	if !isNil(o.Unread) {
-		toSerialize["unread"] = o.Unread
-	}
-	if !isNil(o.Unseen) {
-		toSerialize["unseen"] = o.Unseen
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o NotificationList) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Notifications) {
+		toSerialize["notifications"] = o.Notifications
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	if !IsNil(o.IsRead) {
+		toSerialize["is_read"] = o.IsRead
+	}
+	if !IsNil(o.IsSeen) {
+		toSerialize["is_seen"] = o.IsSeen
+	}
+	if !IsNil(o.Unread) {
+		toSerialize["unread"] = o.Unread
+	}
+	if !IsNil(o.Unseen) {
+		toSerialize["unseen"] = o.Unseen
+	}
+	return toSerialize, nil
 }
 
 type NullableNotificationList struct {

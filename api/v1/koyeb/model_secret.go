@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Secret type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Secret{}
+
 // Secret struct for Secret
 type Secret struct {
 	Id *string `json:"id,omitempty"`
@@ -56,7 +59,7 @@ func NewSecretWithDefaults() *Secret {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Secret) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -66,15 +69,15 @@ func (o *Secret) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Secret) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *Secret) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Secret) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -98,15 +101,15 @@ func (o *Secret) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Secret) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *Secret) SetName(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Secret) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -130,15 +133,15 @@ func (o *Secret) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *Secret) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *Secret) SetOrganizationId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Secret) GetType() SecretType {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret SecretType
 		return ret
 	}
@@ -162,15 +165,15 @@ func (o *Secret) GetType() SecretType {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetTypeOk() (*SecretType, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Secret) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *Secret) SetType(v SecretType) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Secret) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -194,15 +197,15 @@ func (o *Secret) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Secret) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *Secret) SetUpdatedAt(v time.Time) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Secret) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -226,15 +229,15 @@ func (o *Secret) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Secret) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *Secret) SetCreatedAt(v time.Time) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *Secret) GetValue() string {
-	if o == nil || isNil(o.Value) {
+	if o == nil || IsNil(o.Value) {
 		var ret string
 		return ret
 	}
@@ -258,15 +261,15 @@ func (o *Secret) GetValue() string {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetValueOk() (*string, bool) {
-	if o == nil || isNil(o.Value) {
-    return nil, false
+	if o == nil || IsNil(o.Value) {
+		return nil, false
 	}
 	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
 func (o *Secret) HasValue() bool {
-	if o != nil && !isNil(o.Value) {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *Secret) SetValue(v string) {
 
 // GetDockerHubRegistry returns the DockerHubRegistry field value if set, zero value otherwise.
 func (o *Secret) GetDockerHubRegistry() DockerHubRegistryConfiguration {
-	if o == nil || isNil(o.DockerHubRegistry) {
+	if o == nil || IsNil(o.DockerHubRegistry) {
 		var ret DockerHubRegistryConfiguration
 		return ret
 	}
@@ -290,15 +293,15 @@ func (o *Secret) GetDockerHubRegistry() DockerHubRegistryConfiguration {
 // GetDockerHubRegistryOk returns a tuple with the DockerHubRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetDockerHubRegistryOk() (*DockerHubRegistryConfiguration, bool) {
-	if o == nil || isNil(o.DockerHubRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.DockerHubRegistry) {
+		return nil, false
 	}
 	return o.DockerHubRegistry, true
 }
 
 // HasDockerHubRegistry returns a boolean if a field has been set.
 func (o *Secret) HasDockerHubRegistry() bool {
-	if o != nil && !isNil(o.DockerHubRegistry) {
+	if o != nil && !IsNil(o.DockerHubRegistry) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *Secret) SetDockerHubRegistry(v DockerHubRegistryConfiguration) {
 
 // GetPrivateRegistry returns the PrivateRegistry field value if set, zero value otherwise.
 func (o *Secret) GetPrivateRegistry() PrivateRegistryConfiguration {
-	if o == nil || isNil(o.PrivateRegistry) {
+	if o == nil || IsNil(o.PrivateRegistry) {
 		var ret PrivateRegistryConfiguration
 		return ret
 	}
@@ -322,15 +325,15 @@ func (o *Secret) GetPrivateRegistry() PrivateRegistryConfiguration {
 // GetPrivateRegistryOk returns a tuple with the PrivateRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetPrivateRegistryOk() (*PrivateRegistryConfiguration, bool) {
-	if o == nil || isNil(o.PrivateRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.PrivateRegistry) {
+		return nil, false
 	}
 	return o.PrivateRegistry, true
 }
 
 // HasPrivateRegistry returns a boolean if a field has been set.
 func (o *Secret) HasPrivateRegistry() bool {
-	if o != nil && !isNil(o.PrivateRegistry) {
+	if o != nil && !IsNil(o.PrivateRegistry) {
 		return true
 	}
 
@@ -344,7 +347,7 @@ func (o *Secret) SetPrivateRegistry(v PrivateRegistryConfiguration) {
 
 // GetDigitalOceanRegistry returns the DigitalOceanRegistry field value if set, zero value otherwise.
 func (o *Secret) GetDigitalOceanRegistry() DigitalOceanRegistryConfiguration {
-	if o == nil || isNil(o.DigitalOceanRegistry) {
+	if o == nil || IsNil(o.DigitalOceanRegistry) {
 		var ret DigitalOceanRegistryConfiguration
 		return ret
 	}
@@ -354,15 +357,15 @@ func (o *Secret) GetDigitalOceanRegistry() DigitalOceanRegistryConfiguration {
 // GetDigitalOceanRegistryOk returns a tuple with the DigitalOceanRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetDigitalOceanRegistryOk() (*DigitalOceanRegistryConfiguration, bool) {
-	if o == nil || isNil(o.DigitalOceanRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.DigitalOceanRegistry) {
+		return nil, false
 	}
 	return o.DigitalOceanRegistry, true
 }
 
 // HasDigitalOceanRegistry returns a boolean if a field has been set.
 func (o *Secret) HasDigitalOceanRegistry() bool {
-	if o != nil && !isNil(o.DigitalOceanRegistry) {
+	if o != nil && !IsNil(o.DigitalOceanRegistry) {
 		return true
 	}
 
@@ -376,7 +379,7 @@ func (o *Secret) SetDigitalOceanRegistry(v DigitalOceanRegistryConfiguration) {
 
 // GetGithubRegistry returns the GithubRegistry field value if set, zero value otherwise.
 func (o *Secret) GetGithubRegistry() GitHubRegistryConfiguration {
-	if o == nil || isNil(o.GithubRegistry) {
+	if o == nil || IsNil(o.GithubRegistry) {
 		var ret GitHubRegistryConfiguration
 		return ret
 	}
@@ -386,15 +389,15 @@ func (o *Secret) GetGithubRegistry() GitHubRegistryConfiguration {
 // GetGithubRegistryOk returns a tuple with the GithubRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetGithubRegistryOk() (*GitHubRegistryConfiguration, bool) {
-	if o == nil || isNil(o.GithubRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.GithubRegistry) {
+		return nil, false
 	}
 	return o.GithubRegistry, true
 }
 
 // HasGithubRegistry returns a boolean if a field has been set.
 func (o *Secret) HasGithubRegistry() bool {
-	if o != nil && !isNil(o.GithubRegistry) {
+	if o != nil && !IsNil(o.GithubRegistry) {
 		return true
 	}
 
@@ -408,7 +411,7 @@ func (o *Secret) SetGithubRegistry(v GitHubRegistryConfiguration) {
 
 // GetGitlabRegistry returns the GitlabRegistry field value if set, zero value otherwise.
 func (o *Secret) GetGitlabRegistry() GitLabRegistryConfiguration {
-	if o == nil || isNil(o.GitlabRegistry) {
+	if o == nil || IsNil(o.GitlabRegistry) {
 		var ret GitLabRegistryConfiguration
 		return ret
 	}
@@ -418,15 +421,15 @@ func (o *Secret) GetGitlabRegistry() GitLabRegistryConfiguration {
 // GetGitlabRegistryOk returns a tuple with the GitlabRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetGitlabRegistryOk() (*GitLabRegistryConfiguration, bool) {
-	if o == nil || isNil(o.GitlabRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.GitlabRegistry) {
+		return nil, false
 	}
 	return o.GitlabRegistry, true
 }
 
 // HasGitlabRegistry returns a boolean if a field has been set.
 func (o *Secret) HasGitlabRegistry() bool {
-	if o != nil && !isNil(o.GitlabRegistry) {
+	if o != nil && !IsNil(o.GitlabRegistry) {
 		return true
 	}
 
@@ -440,7 +443,7 @@ func (o *Secret) SetGitlabRegistry(v GitLabRegistryConfiguration) {
 
 // GetGcpContainerRegistry returns the GcpContainerRegistry field value if set, zero value otherwise.
 func (o *Secret) GetGcpContainerRegistry() GCPContainerRegistryConfiguration {
-	if o == nil || isNil(o.GcpContainerRegistry) {
+	if o == nil || IsNil(o.GcpContainerRegistry) {
 		var ret GCPContainerRegistryConfiguration
 		return ret
 	}
@@ -450,15 +453,15 @@ func (o *Secret) GetGcpContainerRegistry() GCPContainerRegistryConfiguration {
 // GetGcpContainerRegistryOk returns a tuple with the GcpContainerRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetGcpContainerRegistryOk() (*GCPContainerRegistryConfiguration, bool) {
-	if o == nil || isNil(o.GcpContainerRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.GcpContainerRegistry) {
+		return nil, false
 	}
 	return o.GcpContainerRegistry, true
 }
 
 // HasGcpContainerRegistry returns a boolean if a field has been set.
 func (o *Secret) HasGcpContainerRegistry() bool {
-	if o != nil && !isNil(o.GcpContainerRegistry) {
+	if o != nil && !IsNil(o.GcpContainerRegistry) {
 		return true
 	}
 
@@ -472,7 +475,7 @@ func (o *Secret) SetGcpContainerRegistry(v GCPContainerRegistryConfiguration) {
 
 // GetAzureContainerRegistry returns the AzureContainerRegistry field value if set, zero value otherwise.
 func (o *Secret) GetAzureContainerRegistry() AzureContainerRegistryConfiguration {
-	if o == nil || isNil(o.AzureContainerRegistry) {
+	if o == nil || IsNil(o.AzureContainerRegistry) {
 		var ret AzureContainerRegistryConfiguration
 		return ret
 	}
@@ -482,15 +485,15 @@ func (o *Secret) GetAzureContainerRegistry() AzureContainerRegistryConfiguration
 // GetAzureContainerRegistryOk returns a tuple with the AzureContainerRegistry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Secret) GetAzureContainerRegistryOk() (*AzureContainerRegistryConfiguration, bool) {
-	if o == nil || isNil(o.AzureContainerRegistry) {
-    return nil, false
+	if o == nil || IsNil(o.AzureContainerRegistry) {
+		return nil, false
 	}
 	return o.AzureContainerRegistry, true
 }
 
 // HasAzureContainerRegistry returns a boolean if a field has been set.
 func (o *Secret) HasAzureContainerRegistry() bool {
-	if o != nil && !isNil(o.AzureContainerRegistry) {
+	if o != nil && !IsNil(o.AzureContainerRegistry) {
 		return true
 	}
 
@@ -503,50 +506,58 @@ func (o *Secret) SetAzureContainerRegistry(v AzureContainerRegistryConfiguration
 }
 
 func (o Secret) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.Value) {
-		toSerialize["value"] = o.Value
-	}
-	if !isNil(o.DockerHubRegistry) {
-		toSerialize["docker_hub_registry"] = o.DockerHubRegistry
-	}
-	if !isNil(o.PrivateRegistry) {
-		toSerialize["private_registry"] = o.PrivateRegistry
-	}
-	if !isNil(o.DigitalOceanRegistry) {
-		toSerialize["digital_ocean_registry"] = o.DigitalOceanRegistry
-	}
-	if !isNil(o.GithubRegistry) {
-		toSerialize["github_registry"] = o.GithubRegistry
-	}
-	if !isNil(o.GitlabRegistry) {
-		toSerialize["gitlab_registry"] = o.GitlabRegistry
-	}
-	if !isNil(o.GcpContainerRegistry) {
-		toSerialize["gcp_container_registry"] = o.GcpContainerRegistry
-	}
-	if !isNil(o.AzureContainerRegistry) {
-		toSerialize["azure_container_registry"] = o.AzureContainerRegistry
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Secret) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	if !IsNil(o.DockerHubRegistry) {
+		toSerialize["docker_hub_registry"] = o.DockerHubRegistry
+	}
+	if !IsNil(o.PrivateRegistry) {
+		toSerialize["private_registry"] = o.PrivateRegistry
+	}
+	if !IsNil(o.DigitalOceanRegistry) {
+		toSerialize["digital_ocean_registry"] = o.DigitalOceanRegistry
+	}
+	if !IsNil(o.GithubRegistry) {
+		toSerialize["github_registry"] = o.GithubRegistry
+	}
+	if !IsNil(o.GitlabRegistry) {
+		toSerialize["gitlab_registry"] = o.GitlabRegistry
+	}
+	if !IsNil(o.GcpContainerRegistry) {
+		toSerialize["gcp_container_registry"] = o.GcpContainerRegistry
+	}
+	if !IsNil(o.AzureContainerRegistry) {
+		toSerialize["azure_container_registry"] = o.AzureContainerRegistry
+	}
+	return toSerialize, nil
 }
 
 type NullableSecret struct {

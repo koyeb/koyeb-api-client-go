@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **InstanceType** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
+**SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 
@@ -285,6 +286,31 @@ SetHealthChecks sets HealthChecks field to given value.
 `func (o *RegionalDeploymentDefinition) HasHealthChecks() bool`
 
 HasHealthChecks returns a boolean if a field has been set.
+
+### GetSkipCache
+
+`func (o *RegionalDeploymentDefinition) GetSkipCache() bool`
+
+GetSkipCache returns the SkipCache field if non-nil, zero value otherwise.
+
+### GetSkipCacheOk
+
+`func (o *RegionalDeploymentDefinition) GetSkipCacheOk() (*bool, bool)`
+
+GetSkipCacheOk returns a tuple with the SkipCache field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipCache
+
+`func (o *RegionalDeploymentDefinition) SetSkipCache(v bool)`
+
+SetSkipCache sets SkipCache field to given value.
+
+### HasSkipCache
+
+`func (o *RegionalDeploymentDefinition) HasSkipCache() bool`
+
+HasSkipCache returns a boolean if a field has been set.
 
 ### GetDocker
 

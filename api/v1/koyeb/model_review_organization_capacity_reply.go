@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReviewOrganizationCapacityReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReviewOrganizationCapacityReply{}
+
 // ReviewOrganizationCapacityReply struct for ReviewOrganizationCapacityReply
 type ReviewOrganizationCapacityReply struct {
 	HasCapacity *bool `json:"has_capacity,omitempty"`
@@ -38,7 +41,7 @@ func NewReviewOrganizationCapacityReplyWithDefaults() *ReviewOrganizationCapacit
 
 // GetHasCapacity returns the HasCapacity field value if set, zero value otherwise.
 func (o *ReviewOrganizationCapacityReply) GetHasCapacity() bool {
-	if o == nil || isNil(o.HasCapacity) {
+	if o == nil || IsNil(o.HasCapacity) {
 		var ret bool
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *ReviewOrganizationCapacityReply) GetHasCapacity() bool {
 // GetHasCapacityOk returns a tuple with the HasCapacity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReviewOrganizationCapacityReply) GetHasCapacityOk() (*bool, bool) {
-	if o == nil || isNil(o.HasCapacity) {
-    return nil, false
+	if o == nil || IsNil(o.HasCapacity) {
+		return nil, false
 	}
 	return o.HasCapacity, true
 }
 
 // HasHasCapacity returns a boolean if a field has been set.
 func (o *ReviewOrganizationCapacityReply) HasHasCapacity() bool {
-	if o != nil && !isNil(o.HasCapacity) {
+	if o != nil && !IsNil(o.HasCapacity) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ReviewOrganizationCapacityReply) SetHasCapacity(v bool) {
 }
 
 func (o ReviewOrganizationCapacityReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.HasCapacity) {
-		toSerialize["has_capacity"] = o.HasCapacity
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ReviewOrganizationCapacityReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.HasCapacity) {
+		toSerialize["has_capacity"] = o.HasCapacity
+	}
+	return toSerialize, nil
 }
 
 type NullableReviewOrganizationCapacityReply struct {

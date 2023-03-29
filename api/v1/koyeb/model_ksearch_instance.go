@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KsearchInstance type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KsearchInstance{}
+
 // KsearchInstance struct for KsearchInstance
 type KsearchInstance struct {
 	Id *string `json:"id,omitempty"`
@@ -42,7 +45,7 @@ func NewKsearchInstanceWithDefaults() *KsearchInstance {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KsearchInstance) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -52,15 +55,15 @@ func (o *KsearchInstance) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchInstance) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *KsearchInstance) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *KsearchInstance) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *KsearchInstance) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -84,15 +87,15 @@ func (o *KsearchInstance) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchInstance) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *KsearchInstance) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *KsearchInstance) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *KsearchInstance) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -116,15 +119,15 @@ func (o *KsearchInstance) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchInstance) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *KsearchInstance) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *KsearchInstance) SetAppId(v string) {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *KsearchInstance) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -148,15 +151,15 @@ func (o *KsearchInstance) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchInstance) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *KsearchInstance) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -170,7 +173,7 @@ func (o *KsearchInstance) SetServiceId(v string) {
 
 // GetAllocationId returns the AllocationId field value if set, zero value otherwise.
 func (o *KsearchInstance) GetAllocationId() string {
-	if o == nil || isNil(o.AllocationId) {
+	if o == nil || IsNil(o.AllocationId) {
 		var ret string
 		return ret
 	}
@@ -180,15 +183,15 @@ func (o *KsearchInstance) GetAllocationId() string {
 // GetAllocationIdOk returns a tuple with the AllocationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchInstance) GetAllocationIdOk() (*string, bool) {
-	if o == nil || isNil(o.AllocationId) {
-    return nil, false
+	if o == nil || IsNil(o.AllocationId) {
+		return nil, false
 	}
 	return o.AllocationId, true
 }
 
 // HasAllocationId returns a boolean if a field has been set.
 func (o *KsearchInstance) HasAllocationId() bool {
-	if o != nil && !isNil(o.AllocationId) {
+	if o != nil && !IsNil(o.AllocationId) {
 		return true
 	}
 
@@ -201,23 +204,31 @@ func (o *KsearchInstance) SetAllocationId(v string) {
 }
 
 func (o KsearchInstance) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
-	}
-	if !isNil(o.AllocationId) {
-		toSerialize["allocation_id"] = o.AllocationId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KsearchInstance) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.AllocationId) {
+		toSerialize["allocation_id"] = o.AllocationId
+	}
+	return toSerialize, nil
 }
 
 type NullableKsearchInstance struct {

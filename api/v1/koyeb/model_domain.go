@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Domain type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Domain{}
+
 // Domain struct for Domain
 type Domain struct {
 	Id *string `json:"id,omitempty"`
@@ -59,7 +62,7 @@ func NewDomainWithDefaults() *Domain {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Domain) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -69,15 +72,15 @@ func (o *Domain) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Domain) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -91,7 +94,7 @@ func (o *Domain) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Domain) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -101,15 +104,15 @@ func (o *Domain) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *Domain) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -123,7 +126,7 @@ func (o *Domain) SetOrganizationId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Domain) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -133,15 +136,15 @@ func (o *Domain) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Domain) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -155,7 +158,7 @@ func (o *Domain) SetName(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Domain) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -165,15 +168,15 @@ func (o *Domain) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Domain) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -187,7 +190,7 @@ func (o *Domain) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Domain) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -197,15 +200,15 @@ func (o *Domain) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Domain) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -219,7 +222,7 @@ func (o *Domain) SetUpdatedAt(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Domain) GetStatus() DomainStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret DomainStatus
 		return ret
 	}
@@ -229,15 +232,15 @@ func (o *Domain) GetStatus() DomainStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetStatusOk() (*DomainStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Domain) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -251,7 +254,7 @@ func (o *Domain) SetStatus(v DomainStatus) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Domain) GetType() DomainType {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret DomainType
 		return ret
 	}
@@ -261,15 +264,15 @@ func (o *Domain) GetType() DomainType {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetTypeOk() (*DomainType, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *Domain) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -283,7 +286,7 @@ func (o *Domain) SetType(v DomainType) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *Domain) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -293,15 +296,15 @@ func (o *Domain) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *Domain) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -315,7 +318,7 @@ func (o *Domain) SetAppId(v string) {
 
 // GetDeploymentGroup returns the DeploymentGroup field value if set, zero value otherwise.
 func (o *Domain) GetDeploymentGroup() string {
-	if o == nil || isNil(o.DeploymentGroup) {
+	if o == nil || IsNil(o.DeploymentGroup) {
 		var ret string
 		return ret
 	}
@@ -325,15 +328,15 @@ func (o *Domain) GetDeploymentGroup() string {
 // GetDeploymentGroupOk returns a tuple with the DeploymentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetDeploymentGroupOk() (*string, bool) {
-	if o == nil || isNil(o.DeploymentGroup) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentGroup) {
+		return nil, false
 	}
 	return o.DeploymentGroup, true
 }
 
 // HasDeploymentGroup returns a boolean if a field has been set.
 func (o *Domain) HasDeploymentGroup() bool {
-	if o != nil && !isNil(o.DeploymentGroup) {
+	if o != nil && !IsNil(o.DeploymentGroup) {
 		return true
 	}
 
@@ -347,7 +350,7 @@ func (o *Domain) SetDeploymentGroup(v string) {
 
 // GetVerifiedAt returns the VerifiedAt field value if set, zero value otherwise.
 func (o *Domain) GetVerifiedAt() time.Time {
-	if o == nil || isNil(o.VerifiedAt) {
+	if o == nil || IsNil(o.VerifiedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -357,15 +360,15 @@ func (o *Domain) GetVerifiedAt() time.Time {
 // GetVerifiedAtOk returns a tuple with the VerifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetVerifiedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.VerifiedAt) {
-    return nil, false
+	if o == nil || IsNil(o.VerifiedAt) {
+		return nil, false
 	}
 	return o.VerifiedAt, true
 }
 
 // HasVerifiedAt returns a boolean if a field has been set.
 func (o *Domain) HasVerifiedAt() bool {
-	if o != nil && !isNil(o.VerifiedAt) {
+	if o != nil && !IsNil(o.VerifiedAt) {
 		return true
 	}
 
@@ -379,7 +382,7 @@ func (o *Domain) SetVerifiedAt(v time.Time) {
 
 // GetIntendedCname returns the IntendedCname field value if set, zero value otherwise.
 func (o *Domain) GetIntendedCname() string {
-	if o == nil || isNil(o.IntendedCname) {
+	if o == nil || IsNil(o.IntendedCname) {
 		var ret string
 		return ret
 	}
@@ -389,15 +392,15 @@ func (o *Domain) GetIntendedCname() string {
 // GetIntendedCnameOk returns a tuple with the IntendedCname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetIntendedCnameOk() (*string, bool) {
-	if o == nil || isNil(o.IntendedCname) {
-    return nil, false
+	if o == nil || IsNil(o.IntendedCname) {
+		return nil, false
 	}
 	return o.IntendedCname, true
 }
 
 // HasIntendedCname returns a boolean if a field has been set.
 func (o *Domain) HasIntendedCname() bool {
-	if o != nil && !isNil(o.IntendedCname) {
+	if o != nil && !IsNil(o.IntendedCname) {
 		return true
 	}
 
@@ -411,7 +414,7 @@ func (o *Domain) SetIntendedCname(v string) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *Domain) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -421,15 +424,15 @@ func (o *Domain) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *Domain) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -443,7 +446,7 @@ func (o *Domain) SetMessages(v []string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Domain) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -453,15 +456,15 @@ func (o *Domain) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Domain) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *Domain) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -474,47 +477,55 @@ func (o *Domain) SetVersion(v string) {
 }
 
 func (o Domain) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.DeploymentGroup) {
-		toSerialize["deployment_group"] = o.DeploymentGroup
-	}
-	if !isNil(o.VerifiedAt) {
-		toSerialize["verified_at"] = o.VerifiedAt
-	}
-	if !isNil(o.IntendedCname) {
-		toSerialize["intended_cname"] = o.IntendedCname
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Domain) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.DeploymentGroup) {
+		toSerialize["deployment_group"] = o.DeploymentGroup
+	}
+	if !IsNil(o.VerifiedAt) {
+		toSerialize["verified_at"] = o.VerifiedAt
+	}
+	if !IsNil(o.IntendedCname) {
+		toSerialize["intended_cname"] = o.IntendedCname
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	return toSerialize, nil
 }
 
 type NullableDomain struct {

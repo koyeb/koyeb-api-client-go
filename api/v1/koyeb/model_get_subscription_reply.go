@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetSubscriptionReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetSubscriptionReply{}
+
 // GetSubscriptionReply struct for GetSubscriptionReply
 type GetSubscriptionReply struct {
 	Subscription *Subscription `json:"subscription,omitempty"`
@@ -38,7 +41,7 @@ func NewGetSubscriptionReplyWithDefaults() *GetSubscriptionReply {
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *GetSubscriptionReply) GetSubscription() Subscription {
-	if o == nil || isNil(o.Subscription) {
+	if o == nil || IsNil(o.Subscription) {
 		var ret Subscription
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetSubscriptionReply) GetSubscription() Subscription {
 // GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetSubscriptionReply) GetSubscriptionOk() (*Subscription, bool) {
-	if o == nil || isNil(o.Subscription) {
-    return nil, false
+	if o == nil || IsNil(o.Subscription) {
+		return nil, false
 	}
 	return o.Subscription, true
 }
 
 // HasSubscription returns a boolean if a field has been set.
 func (o *GetSubscriptionReply) HasSubscription() bool {
-	if o != nil && !isNil(o.Subscription) {
+	if o != nil && !IsNil(o.Subscription) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetSubscriptionReply) SetSubscription(v Subscription) {
 }
 
 func (o GetSubscriptionReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Subscription) {
-		toSerialize["subscription"] = o.Subscription
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetSubscriptionReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Subscription) {
+		toSerialize["subscription"] = o.Subscription
+	}
+	return toSerialize, nil
 }
 
 type NullableGetSubscriptionReply struct {

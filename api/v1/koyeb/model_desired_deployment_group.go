@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DesiredDeploymentGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DesiredDeploymentGroup{}
+
 // DesiredDeploymentGroup struct for DesiredDeploymentGroup
 type DesiredDeploymentGroup struct {
 	Name *string `json:"name,omitempty"`
@@ -39,7 +42,7 @@ func NewDesiredDeploymentGroupWithDefaults() *DesiredDeploymentGroup {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DesiredDeploymentGroup) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DesiredDeploymentGroup) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DesiredDeploymentGroup) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DesiredDeploymentGroup) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DesiredDeploymentGroup) SetName(v string) {
 
 // GetDeploymentIds returns the DeploymentIds field value if set, zero value otherwise.
 func (o *DesiredDeploymentGroup) GetDeploymentIds() []string {
-	if o == nil || isNil(o.DeploymentIds) {
+	if o == nil || IsNil(o.DeploymentIds) {
 		var ret []string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DesiredDeploymentGroup) GetDeploymentIds() []string {
 // GetDeploymentIdsOk returns a tuple with the DeploymentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DesiredDeploymentGroup) GetDeploymentIdsOk() ([]string, bool) {
-	if o == nil || isNil(o.DeploymentIds) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentIds) {
+		return nil, false
 	}
 	return o.DeploymentIds, true
 }
 
 // HasDeploymentIds returns a boolean if a field has been set.
 func (o *DesiredDeploymentGroup) HasDeploymentIds() bool {
-	if o != nil && !isNil(o.DeploymentIds) {
+	if o != nil && !IsNil(o.DeploymentIds) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DesiredDeploymentGroup) SetDeploymentIds(v []string) {
 }
 
 func (o DesiredDeploymentGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.DeploymentIds) {
-		toSerialize["deployment_ids"] = o.DeploymentIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DesiredDeploymentGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.DeploymentIds) {
+		toSerialize["deployment_ids"] = o.DeploymentIds
+	}
+	return toSerialize, nil
 }
 
 type NullableDesiredDeploymentGroup struct {

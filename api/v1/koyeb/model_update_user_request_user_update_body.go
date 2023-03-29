@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateUserRequestUserUpdateBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateUserRequestUserUpdateBody{}
+
 // UpdateUserRequestUserUpdateBody struct for UpdateUserRequestUserUpdateBody
 type UpdateUserRequestUserUpdateBody struct {
 	Id *string `json:"id,omitempty"`
@@ -43,7 +46,7 @@ func NewUpdateUserRequestUserUpdateBodyWithDefaults() *UpdateUserRequestUserUpda
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *UpdateUserRequestUserUpdateBody) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *UpdateUserRequestUserUpdateBody) SetEmail(v string) {
 
 // GetCurrentPassword returns the CurrentPassword field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetCurrentPassword() string {
-	if o == nil || isNil(o.CurrentPassword) {
+	if o == nil || IsNil(o.CurrentPassword) {
 		var ret string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetCurrentPassword() string {
 // GetCurrentPasswordOk returns a tuple with the CurrentPassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetCurrentPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.CurrentPassword) {
-    return nil, false
+	if o == nil || IsNil(o.CurrentPassword) {
+		return nil, false
 	}
 	return o.CurrentPassword, true
 }
 
 // HasCurrentPassword returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasCurrentPassword() bool {
-	if o != nil && !isNil(o.CurrentPassword) {
+	if o != nil && !IsNil(o.CurrentPassword) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *UpdateUserRequestUserUpdateBody) SetCurrentPassword(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *UpdateUserRequestUserUpdateBody) SetPassword(v string) {
 
 // GetNewsletterSubscribed returns the NewsletterSubscribed field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetNewsletterSubscribed() bool {
-	if o == nil || isNil(o.NewsletterSubscribed) {
+	if o == nil || IsNil(o.NewsletterSubscribed) {
 		var ret bool
 		return ret
 	}
@@ -181,15 +184,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetNewsletterSubscribed() bool {
 // GetNewsletterSubscribedOk returns a tuple with the NewsletterSubscribed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetNewsletterSubscribedOk() (*bool, bool) {
-	if o == nil || isNil(o.NewsletterSubscribed) {
-    return nil, false
+	if o == nil || IsNil(o.NewsletterSubscribed) {
+		return nil, false
 	}
 	return o.NewsletterSubscribed, true
 }
 
 // HasNewsletterSubscribed returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasNewsletterSubscribed() bool {
-	if o != nil && !isNil(o.NewsletterSubscribed) {
+	if o != nil && !IsNil(o.NewsletterSubscribed) {
 		return true
 	}
 
@@ -203,7 +206,7 @@ func (o *UpdateUserRequestUserUpdateBody) SetNewsletterSubscribed(v bool) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateUserRequestUserUpdateBody) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -213,15 +216,15 @@ func (o *UpdateUserRequestUserUpdateBody) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateUserRequestUserUpdateBody) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *UpdateUserRequestUserUpdateBody) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -234,26 +237,34 @@ func (o *UpdateUserRequestUserUpdateBody) SetName(v string) {
 }
 
 func (o UpdateUserRequestUserUpdateBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.CurrentPassword) {
-		toSerialize["current_password"] = o.CurrentPassword
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
-	}
-	if !isNil(o.NewsletterSubscribed) {
-		toSerialize["newsletter_subscribed"] = o.NewsletterSubscribed
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateUserRequestUserUpdateBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.CurrentPassword) {
+		toSerialize["current_password"] = o.CurrentPassword
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.NewsletterSubscribed) {
+		toSerialize["newsletter_subscribed"] = o.NewsletterSubscribed
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateUserRequestUserUpdateBody struct {

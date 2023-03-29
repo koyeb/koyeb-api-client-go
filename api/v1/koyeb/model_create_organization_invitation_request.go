@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateOrganizationInvitationRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateOrganizationInvitationRequest{}
+
 // CreateOrganizationInvitationRequest struct for CreateOrganizationInvitationRequest
 type CreateOrganizationInvitationRequest struct {
 	Email *string `json:"email,omitempty"`
@@ -38,7 +41,7 @@ func NewCreateOrganizationInvitationRequestWithDefaults() *CreateOrganizationInv
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CreateOrganizationInvitationRequest) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *CreateOrganizationInvitationRequest) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateOrganizationInvitationRequest) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *CreateOrganizationInvitationRequest) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CreateOrganizationInvitationRequest) SetEmail(v string) {
 }
 
 func (o CreateOrganizationInvitationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateOrganizationInvitationRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateOrganizationInvitationRequest struct {

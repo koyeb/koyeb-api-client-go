@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentPort type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentPort{}
+
 // DeploymentPort struct for DeploymentPort
 type DeploymentPort struct {
 	Port *int64 `json:"port,omitempty"`
@@ -39,7 +42,7 @@ func NewDeploymentPortWithDefaults() *DeploymentPort {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *DeploymentPort) GetPort() int64 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int64
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DeploymentPort) GetPort() int64 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentPort) GetPortOk() (*int64, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *DeploymentPort) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DeploymentPort) SetPort(v int64) {
 
 // GetProtocol returns the Protocol field value if set, zero value otherwise.
 func (o *DeploymentPort) GetProtocol() string {
-	if o == nil || isNil(o.Protocol) {
+	if o == nil || IsNil(o.Protocol) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DeploymentPort) GetProtocol() string {
 // GetProtocolOk returns a tuple with the Protocol field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentPort) GetProtocolOk() (*string, bool) {
-	if o == nil || isNil(o.Protocol) {
-    return nil, false
+	if o == nil || IsNil(o.Protocol) {
+		return nil, false
 	}
 	return o.Protocol, true
 }
 
 // HasProtocol returns a boolean if a field has been set.
 func (o *DeploymentPort) HasProtocol() bool {
-	if o != nil && !isNil(o.Protocol) {
+	if o != nil && !IsNil(o.Protocol) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DeploymentPort) SetProtocol(v string) {
 }
 
 func (o DeploymentPort) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Protocol) {
-		toSerialize["protocol"] = o.Protocol
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentPort) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Protocol) {
+		toSerialize["protocol"] = o.Protocol
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentPort struct {

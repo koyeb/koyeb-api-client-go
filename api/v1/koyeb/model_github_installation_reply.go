@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GithubInstallationReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GithubInstallationReply{}
+
 // GithubInstallationReply struct for GithubInstallationReply
 type GithubInstallationReply struct {
 	AppName *string `json:"app_name,omitempty"`
@@ -41,7 +44,7 @@ func NewGithubInstallationReplyWithDefaults() *GithubInstallationReply {
 
 // GetAppName returns the AppName field value if set, zero value otherwise.
 func (o *GithubInstallationReply) GetAppName() string {
-	if o == nil || isNil(o.AppName) {
+	if o == nil || IsNil(o.AppName) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *GithubInstallationReply) GetAppName() string {
 // GetAppNameOk returns a tuple with the AppName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationReply) GetAppNameOk() (*string, bool) {
-	if o == nil || isNil(o.AppName) {
-    return nil, false
+	if o == nil || IsNil(o.AppName) {
+		return nil, false
 	}
 	return o.AppName, true
 }
 
 // HasAppName returns a boolean if a field has been set.
 func (o *GithubInstallationReply) HasAppName() bool {
-	if o != nil && !isNil(o.AppName) {
+	if o != nil && !IsNil(o.AppName) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *GithubInstallationReply) SetAppName(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *GithubInstallationReply) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *GithubInstallationReply) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationReply) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *GithubInstallationReply) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *GithubInstallationReply) SetAppId(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GithubInstallationReply) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *GithubInstallationReply) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationReply) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GithubInstallationReply) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *GithubInstallationReply) SetUrl(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *GithubInstallationReply) GetState() string {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *GithubInstallationReply) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GithubInstallationReply) GetStateOk() (*string, bool) {
-	if o == nil || isNil(o.State) {
-    return nil, false
+	if o == nil || IsNil(o.State) {
+		return nil, false
 	}
 	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *GithubInstallationReply) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *GithubInstallationReply) SetState(v string) {
 }
 
 func (o GithubInstallationReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppName) {
-		toSerialize["app_name"] = o.AppName
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
-	}
-	if !isNil(o.State) {
-		toSerialize["state"] = o.State
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GithubInstallationReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppName) {
+		toSerialize["app_name"] = o.AppName
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	return toSerialize, nil
 }
 
 type NullableGithubInstallationReply struct {

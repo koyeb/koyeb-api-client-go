@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KsearchGlobalDeployment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KsearchGlobalDeployment{}
+
 // KsearchGlobalDeployment struct for KsearchGlobalDeployment
 type KsearchGlobalDeployment struct {
 	Id *string `json:"id,omitempty"`
@@ -41,7 +44,7 @@ func NewKsearchGlobalDeploymentWithDefaults() *KsearchGlobalDeployment {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KsearchGlobalDeployment) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *KsearchGlobalDeployment) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchGlobalDeployment) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *KsearchGlobalDeployment) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *KsearchGlobalDeployment) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *KsearchGlobalDeployment) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *KsearchGlobalDeployment) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchGlobalDeployment) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *KsearchGlobalDeployment) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *KsearchGlobalDeployment) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *KsearchGlobalDeployment) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *KsearchGlobalDeployment) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchGlobalDeployment) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *KsearchGlobalDeployment) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *KsearchGlobalDeployment) SetAppId(v string) {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *KsearchGlobalDeployment) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *KsearchGlobalDeployment) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchGlobalDeployment) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *KsearchGlobalDeployment) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *KsearchGlobalDeployment) SetServiceId(v string) {
 }
 
 func (o KsearchGlobalDeployment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KsearchGlobalDeployment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	return toSerialize, nil
 }
 
 type NullableKsearchGlobalDeployment struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetMetricsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetMetricsReply{}
+
 // GetMetricsReply struct for GetMetricsReply
 type GetMetricsReply struct {
 	Metrics []GetMetricsReplyMetric `json:"metrics,omitempty"`
@@ -38,7 +41,7 @@ func NewGetMetricsReplyWithDefaults() *GetMetricsReply {
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *GetMetricsReply) GetMetrics() []GetMetricsReplyMetric {
-	if o == nil || isNil(o.Metrics) {
+	if o == nil || IsNil(o.Metrics) {
 		var ret []GetMetricsReplyMetric
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetMetricsReply) GetMetrics() []GetMetricsReplyMetric {
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetMetricsReply) GetMetricsOk() ([]GetMetricsReplyMetric, bool) {
-	if o == nil || isNil(o.Metrics) {
-    return nil, false
+	if o == nil || IsNil(o.Metrics) {
+		return nil, false
 	}
 	return o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
 func (o *GetMetricsReply) HasMetrics() bool {
-	if o != nil && !isNil(o.Metrics) {
+	if o != nil && !IsNil(o.Metrics) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetMetricsReply) SetMetrics(v []GetMetricsReplyMetric) {
 }
 
 func (o GetMetricsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Metrics) {
-		toSerialize["metrics"] = o.Metrics
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetMetricsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Metrics) {
+		toSerialize["metrics"] = o.Metrics
+	}
+	return toSerialize, nil
 }
 
 type NullableGetMetricsReply struct {

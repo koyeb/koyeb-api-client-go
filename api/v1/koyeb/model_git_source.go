@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GitSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GitSource{}
+
 // GitSource struct for GitSource
 type GitSource struct {
 	// A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test.
@@ -46,7 +49,7 @@ func NewGitSourceWithDefaults() *GitSource {
 
 // GetRepository returns the Repository field value if set, zero value otherwise.
 func (o *GitSource) GetRepository() string {
-	if o == nil || isNil(o.Repository) {
+	if o == nil || IsNil(o.Repository) {
 		var ret string
 		return ret
 	}
@@ -56,15 +59,15 @@ func (o *GitSource) GetRepository() string {
 // GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetRepositoryOk() (*string, bool) {
-	if o == nil || isNil(o.Repository) {
-    return nil, false
+	if o == nil || IsNil(o.Repository) {
+		return nil, false
 	}
 	return o.Repository, true
 }
 
 // HasRepository returns a boolean if a field has been set.
 func (o *GitSource) HasRepository() bool {
-	if o != nil && !isNil(o.Repository) {
+	if o != nil && !IsNil(o.Repository) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *GitSource) SetRepository(v string) {
 
 // GetBranch returns the Branch field value if set, zero value otherwise.
 func (o *GitSource) GetBranch() string {
-	if o == nil || isNil(o.Branch) {
+	if o == nil || IsNil(o.Branch) {
 		var ret string
 		return ret
 	}
@@ -88,15 +91,15 @@ func (o *GitSource) GetBranch() string {
 // GetBranchOk returns a tuple with the Branch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetBranchOk() (*string, bool) {
-	if o == nil || isNil(o.Branch) {
-    return nil, false
+	if o == nil || IsNil(o.Branch) {
+		return nil, false
 	}
 	return o.Branch, true
 }
 
 // HasBranch returns a boolean if a field has been set.
 func (o *GitSource) HasBranch() bool {
-	if o != nil && !isNil(o.Branch) {
+	if o != nil && !IsNil(o.Branch) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *GitSource) SetBranch(v string) {
 
 // GetTag returns the Tag field value if set, zero value otherwise.
 func (o *GitSource) GetTag() string {
-	if o == nil || isNil(o.Tag) {
+	if o == nil || IsNil(o.Tag) {
 		var ret string
 		return ret
 	}
@@ -120,15 +123,15 @@ func (o *GitSource) GetTag() string {
 // GetTagOk returns a tuple with the Tag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetTagOk() (*string, bool) {
-	if o == nil || isNil(o.Tag) {
-    return nil, false
+	if o == nil || IsNil(o.Tag) {
+		return nil, false
 	}
 	return o.Tag, true
 }
 
 // HasTag returns a boolean if a field has been set.
 func (o *GitSource) HasTag() bool {
-	if o != nil && !isNil(o.Tag) {
+	if o != nil && !IsNil(o.Tag) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *GitSource) SetTag(v string) {
 
 // GetSha returns the Sha field value if set, zero value otherwise.
 func (o *GitSource) GetSha() string {
-	if o == nil || isNil(o.Sha) {
+	if o == nil || IsNil(o.Sha) {
 		var ret string
 		return ret
 	}
@@ -152,15 +155,15 @@ func (o *GitSource) GetSha() string {
 // GetShaOk returns a tuple with the Sha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetShaOk() (*string, bool) {
-	if o == nil || isNil(o.Sha) {
-    return nil, false
+	if o == nil || IsNil(o.Sha) {
+		return nil, false
 	}
 	return o.Sha, true
 }
 
 // HasSha returns a boolean if a field has been set.
 func (o *GitSource) HasSha() bool {
-	if o != nil && !isNil(o.Sha) {
+	if o != nil && !IsNil(o.Sha) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *GitSource) SetSha(v string) {
 
 // GetBuildCommand returns the BuildCommand field value if set, zero value otherwise.
 func (o *GitSource) GetBuildCommand() string {
-	if o == nil || isNil(o.BuildCommand) {
+	if o == nil || IsNil(o.BuildCommand) {
 		var ret string
 		return ret
 	}
@@ -184,15 +187,15 @@ func (o *GitSource) GetBuildCommand() string {
 // GetBuildCommandOk returns a tuple with the BuildCommand field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetBuildCommandOk() (*string, bool) {
-	if o == nil || isNil(o.BuildCommand) {
-    return nil, false
+	if o == nil || IsNil(o.BuildCommand) {
+		return nil, false
 	}
 	return o.BuildCommand, true
 }
 
 // HasBuildCommand returns a boolean if a field has been set.
 func (o *GitSource) HasBuildCommand() bool {
-	if o != nil && !isNil(o.BuildCommand) {
+	if o != nil && !IsNil(o.BuildCommand) {
 		return true
 	}
 
@@ -206,7 +209,7 @@ func (o *GitSource) SetBuildCommand(v string) {
 
 // GetRunCommand returns the RunCommand field value if set, zero value otherwise.
 func (o *GitSource) GetRunCommand() string {
-	if o == nil || isNil(o.RunCommand) {
+	if o == nil || IsNil(o.RunCommand) {
 		var ret string
 		return ret
 	}
@@ -216,15 +219,15 @@ func (o *GitSource) GetRunCommand() string {
 // GetRunCommandOk returns a tuple with the RunCommand field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetRunCommandOk() (*string, bool) {
-	if o == nil || isNil(o.RunCommand) {
-    return nil, false
+	if o == nil || IsNil(o.RunCommand) {
+		return nil, false
 	}
 	return o.RunCommand, true
 }
 
 // HasRunCommand returns a boolean if a field has been set.
 func (o *GitSource) HasRunCommand() bool {
-	if o != nil && !isNil(o.RunCommand) {
+	if o != nil && !IsNil(o.RunCommand) {
 		return true
 	}
 
@@ -238,7 +241,7 @@ func (o *GitSource) SetRunCommand(v string) {
 
 // GetNoDeployOnPush returns the NoDeployOnPush field value if set, zero value otherwise.
 func (o *GitSource) GetNoDeployOnPush() bool {
-	if o == nil || isNil(o.NoDeployOnPush) {
+	if o == nil || IsNil(o.NoDeployOnPush) {
 		var ret bool
 		return ret
 	}
@@ -248,15 +251,15 @@ func (o *GitSource) GetNoDeployOnPush() bool {
 // GetNoDeployOnPushOk returns a tuple with the NoDeployOnPush field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetNoDeployOnPushOk() (*bool, bool) {
-	if o == nil || isNil(o.NoDeployOnPush) {
-    return nil, false
+	if o == nil || IsNil(o.NoDeployOnPush) {
+		return nil, false
 	}
 	return o.NoDeployOnPush, true
 }
 
 // HasNoDeployOnPush returns a boolean if a field has been set.
 func (o *GitSource) HasNoDeployOnPush() bool {
-	if o != nil && !isNil(o.NoDeployOnPush) {
+	if o != nil && !IsNil(o.NoDeployOnPush) {
 		return true
 	}
 
@@ -270,7 +273,7 @@ func (o *GitSource) SetNoDeployOnPush(v bool) {
 
 // GetWorkdir returns the Workdir field value if set, zero value otherwise.
 func (o *GitSource) GetWorkdir() string {
-	if o == nil || isNil(o.Workdir) {
+	if o == nil || IsNil(o.Workdir) {
 		var ret string
 		return ret
 	}
@@ -280,15 +283,15 @@ func (o *GitSource) GetWorkdir() string {
 // GetWorkdirOk returns a tuple with the Workdir field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitSource) GetWorkdirOk() (*string, bool) {
-	if o == nil || isNil(o.Workdir) {
-    return nil, false
+	if o == nil || IsNil(o.Workdir) {
+		return nil, false
 	}
 	return o.Workdir, true
 }
 
 // HasWorkdir returns a boolean if a field has been set.
 func (o *GitSource) HasWorkdir() bool {
-	if o != nil && !isNil(o.Workdir) {
+	if o != nil && !IsNil(o.Workdir) {
 		return true
 	}
 
@@ -301,32 +304,40 @@ func (o *GitSource) SetWorkdir(v string) {
 }
 
 func (o GitSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Repository) {
-		toSerialize["repository"] = o.Repository
-	}
-	if !isNil(o.Branch) {
-		toSerialize["branch"] = o.Branch
-	}
-	if !isNil(o.Tag) {
-		toSerialize["tag"] = o.Tag
-	}
-	if !isNil(o.Sha) {
-		toSerialize["sha"] = o.Sha
-	}
-	if !isNil(o.BuildCommand) {
-		toSerialize["build_command"] = o.BuildCommand
-	}
-	if !isNil(o.RunCommand) {
-		toSerialize["run_command"] = o.RunCommand
-	}
-	if !isNil(o.NoDeployOnPush) {
-		toSerialize["no_deploy_on_push"] = o.NoDeployOnPush
-	}
-	if !isNil(o.Workdir) {
-		toSerialize["workdir"] = o.Workdir
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GitSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Repository) {
+		toSerialize["repository"] = o.Repository
+	}
+	if !IsNil(o.Branch) {
+		toSerialize["branch"] = o.Branch
+	}
+	if !IsNil(o.Tag) {
+		toSerialize["tag"] = o.Tag
+	}
+	if !IsNil(o.Sha) {
+		toSerialize["sha"] = o.Sha
+	}
+	if !IsNil(o.BuildCommand) {
+		toSerialize["build_command"] = o.BuildCommand
+	}
+	if !IsNil(o.RunCommand) {
+		toSerialize["run_command"] = o.RunCommand
+	}
+	if !IsNil(o.NoDeployOnPush) {
+		toSerialize["no_deploy_on_push"] = o.NoDeployOnPush
+	}
+	if !IsNil(o.Workdir) {
+		toSerialize["workdir"] = o.Workdir
+	}
+	return toSerialize, nil
 }
 
 type NullableGitSource struct {

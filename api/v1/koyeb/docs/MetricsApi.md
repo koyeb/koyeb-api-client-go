@@ -24,7 +24,7 @@ import (
     "fmt"
     "os"
     "time"
-    openapiclient "./openapi"
+    openapiclient "github.com/koyeb/koyeb-api-client-go/koyeb"
 )
 
 func main() {

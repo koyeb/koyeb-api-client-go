@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AppUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AppUsage{}
+
 // AppUsage struct for AppUsage
 type AppUsage struct {
 	AppId *string `json:"app_id,omitempty"`
@@ -40,7 +43,7 @@ func NewAppUsageWithDefaults() *AppUsage {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *AppUsage) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *AppUsage) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppUsage) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *AppUsage) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *AppUsage) SetAppId(v string) {
 
 // GetAppName returns the AppName field value if set, zero value otherwise.
 func (o *AppUsage) GetAppName() string {
-	if o == nil || isNil(o.AppName) {
+	if o == nil || IsNil(o.AppName) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *AppUsage) GetAppName() string {
 // GetAppNameOk returns a tuple with the AppName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppUsage) GetAppNameOk() (*string, bool) {
-	if o == nil || isNil(o.AppName) {
-    return nil, false
+	if o == nil || IsNil(o.AppName) {
+		return nil, false
 	}
 	return o.AppName, true
 }
 
 // HasAppName returns a boolean if a field has been set.
 func (o *AppUsage) HasAppName() bool {
-	if o != nil && !isNil(o.AppName) {
+	if o != nil && !IsNil(o.AppName) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *AppUsage) SetAppName(v string) {
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *AppUsage) GetServices() []ServiceUsage {
-	if o == nil || isNil(o.Services) {
+	if o == nil || IsNil(o.Services) {
 		var ret []ServiceUsage
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *AppUsage) GetServices() []ServiceUsage {
 // GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppUsage) GetServicesOk() ([]ServiceUsage, bool) {
-	if o == nil || isNil(o.Services) {
-    return nil, false
+	if o == nil || IsNil(o.Services) {
+		return nil, false
 	}
 	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
 func (o *AppUsage) HasServices() bool {
-	if o != nil && !isNil(o.Services) {
+	if o != nil && !IsNil(o.Services) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *AppUsage) SetServices(v []ServiceUsage) {
 }
 
 func (o AppUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.AppName) {
-		toSerialize["app_name"] = o.AppName
-	}
-	if !isNil(o.Services) {
-		toSerialize["services"] = o.Services
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AppUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.AppName) {
+		toSerialize["app_name"] = o.AppName
+	}
+	if !IsNil(o.Services) {
+		toSerialize["services"] = o.Services
+	}
+	return toSerialize, nil
 }
 
 type NullableAppUsage struct {

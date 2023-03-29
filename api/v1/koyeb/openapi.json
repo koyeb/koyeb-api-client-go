@@ -37,6 +37,7 @@
         "organization",
         "OrganizationMembers",
         "OrganizationInvitations",
+        "OrganizationConfirmations",
         "Subscriptions",
         "Credentials",
         "Secrets",
@@ -327,6 +328,53 @@
       }
     },
     "/v1/organization_invitations/{id}": {
+      "get": {
+        "operationId": "GetOrganizationInvitation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetOrganizationInvitationReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the invitation to get",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrganizationInvitations"
+        ]
+      },
       "delete": {
         "operationId": "DeleteOrganizationInvitation",
         "responses": {
@@ -1041,6 +1089,55 @@
               ]
             },
             "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "profile"
+        ]
+      }
+    },
+    "/v1/account/organization_invitations/{id}": {
+      "get": {
+        "operationId": "GetUserOrganizationInvitation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUserOrganizationInvitationReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the organization invitation to get",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -2021,6 +2118,63 @@
         ]
       }
     },
+    "/v1/organizations/{id}/deactivate": {
+      "post": {
+        "summary": "Deactivate organization",
+        "operationId": "DeactivateOrganization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeactivateOrganizationReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      }
+    },
     "/v1/organizations/{id}/plan": {
       "post": {
         "summary": "Update organization plan",
@@ -2306,6 +2460,55 @@
         ],
         "tags": [
           "sso"
+        ]
+      }
+    },
+    "/v1/organization_confirmations/{id}": {
+      "post": {
+        "summary": "Confirm organization action",
+        "operationId": "ConfirmOrganizationAction",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ConfirmOrganizationActionReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "OrganizationConfirmations"
         ]
       }
     },
@@ -6155,6 +6358,14 @@
     "DeleteOrganizationInvitationReply": {
       "type": "object"
     },
+    "GetOrganizationInvitationReply": {
+      "type": "object",
+      "properties": {
+        "invitation": {
+          "$ref": "#/definitions/OrganizationInvitation"
+        }
+      }
+    },
     "ListOrganizationInvitationsReply": {
       "type": "object",
       "properties": {
@@ -6187,7 +6398,11 @@
       "enum": [
         "WARNING",
         "LOCKED",
-        "ACTIVE"
+        "ACTIVE",
+        "DEACTIVATING",
+        "DEACTIVATED",
+        "DELETING",
+        "DELETED"
       ],
       "default": "WARNING"
     },
@@ -6213,13 +6428,19 @@
         "organization_id": {
           "type": "string"
         },
-        "user_id": {
-          "type": "string"
-        },
         "organization": {
           "$ref": "#/definitions/PublicOrganization"
         },
-        "user": {
+        "invitee_id": {
+          "type": "string"
+        },
+        "invitee": {
+          "$ref": "#/definitions/PublicUser"
+        },
+        "inviter_id": {
+          "type": "string"
+        },
+        "inviter": {
           "$ref": "#/definitions/PublicUser"
         }
       }
@@ -6534,6 +6755,14 @@
         }
       }
     },
+    "DeactivateOrganizationReply": {
+      "type": "object",
+      "properties": {
+        "organization": {
+          "$ref": "#/definitions/Organization"
+        }
+      }
+    },
     "DeclineOrganizationInvitationReply": {
       "type": "object",
       "properties": {
@@ -6621,6 +6850,14 @@
       "properties": {
         "organization": {
           "$ref": "#/definitions/Organization"
+        }
+      }
+    },
+    "GetUserOrganizationInvitationReply": {
+      "type": "object",
+      "properties": {
+        "invitation": {
+          "$ref": "#/definitions/OrganizationInvitation"
         }
       }
     },
@@ -6832,7 +7069,6 @@
       "enum": [
         "NEW",
         "EMAIL_NOT_VALIDATED",
-        "PENDING_VALIDATION",
         "BILLING_INFO_MISSING",
         "LOCKED",
         "PAYMENT_FAILURE",
@@ -6940,7 +7176,8 @@
         "last_login_id": "10.1.1.1",
         "updated_at": "0001-01-01T00:00:00Z",
         "created_at": "0001-01-01T00:00:00Z",
-        "newsletter_subscribed": true
+        "newsletter_subscribed": true,
+        "email_validated": true
       },
       "properties": {
         "id": {
@@ -6987,6 +7224,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "email_validated": {
+          "type": "boolean"
         }
       },
       "title": "Represent a User"
@@ -7100,6 +7340,9 @@
         "COMPLETED"
       ],
       "default": "INVALID_INDEXING_STATUS"
+    },
+    "ConfirmOrganizationActionReply": {
+      "type": "object"
     },
     "ListOrganizationMembersReply": {
       "type": "object",
@@ -8294,6 +8537,9 @@
             "$ref": "#/definitions/DeploymentHealthCheck"
           }
         },
+        "skip_cache": {
+          "type": "boolean"
+        },
         "docker": {
           "$ref": "#/definitions/DockerSource"
         },
@@ -9218,6 +9464,9 @@
             "$ref": "#/definitions/DeploymentHealthCheck"
           }
         },
+        "skip_cache": {
+          "type": "boolean"
+        },
         "docker": {
           "$ref": "#/definitions/DockerSource"
         },
@@ -9630,6 +9879,9 @@
         },
         "sha": {
           "type": "string"
+        },
+        "use_cache": {
+          "type": "boolean"
         }
       }
     },

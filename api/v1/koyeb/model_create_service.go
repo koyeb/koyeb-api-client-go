@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CreateService type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CreateService{}
+
 // CreateService struct for CreateService
 type CreateService struct {
 	AppId *string `json:"app_id,omitempty"`
@@ -39,7 +42,7 @@ func NewCreateServiceWithDefaults() *CreateService {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *CreateService) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *CreateService) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateService) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *CreateService) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *CreateService) SetAppId(v string) {
 
 // GetDefinition returns the Definition field value if set, zero value otherwise.
 func (o *CreateService) GetDefinition() DeploymentDefinition {
-	if o == nil || isNil(o.Definition) {
+	if o == nil || IsNil(o.Definition) {
 		var ret DeploymentDefinition
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *CreateService) GetDefinition() DeploymentDefinition {
 // GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateService) GetDefinitionOk() (*DeploymentDefinition, bool) {
-	if o == nil || isNil(o.Definition) {
-    return nil, false
+	if o == nil || IsNil(o.Definition) {
+		return nil, false
 	}
 	return o.Definition, true
 }
 
 // HasDefinition returns a boolean if a field has been set.
 func (o *CreateService) HasDefinition() bool {
-	if o != nil && !isNil(o.Definition) {
+	if o != nil && !IsNil(o.Definition) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *CreateService) SetDefinition(v DeploymentDefinition) {
 }
 
 func (o CreateService) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.Definition) {
-		toSerialize["definition"] = o.Definition
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CreateService) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.Definition) {
+		toSerialize["definition"] = o.Definition
+	}
+	return toSerialize, nil
 }
 
 type NullableCreateService struct {

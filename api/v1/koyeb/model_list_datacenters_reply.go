@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListDatacentersReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListDatacentersReply{}
+
 // ListDatacentersReply struct for ListDatacentersReply
 type ListDatacentersReply struct {
 	Datacenters []DatacenterListItem `json:"datacenters,omitempty"`
@@ -38,7 +41,7 @@ func NewListDatacentersReplyWithDefaults() *ListDatacentersReply {
 
 // GetDatacenters returns the Datacenters field value if set, zero value otherwise.
 func (o *ListDatacentersReply) GetDatacenters() []DatacenterListItem {
-	if o == nil || isNil(o.Datacenters) {
+	if o == nil || IsNil(o.Datacenters) {
 		var ret []DatacenterListItem
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *ListDatacentersReply) GetDatacenters() []DatacenterListItem {
 // GetDatacentersOk returns a tuple with the Datacenters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDatacentersReply) GetDatacentersOk() ([]DatacenterListItem, bool) {
-	if o == nil || isNil(o.Datacenters) {
-    return nil, false
+	if o == nil || IsNil(o.Datacenters) {
+		return nil, false
 	}
 	return o.Datacenters, true
 }
 
 // HasDatacenters returns a boolean if a field has been set.
 func (o *ListDatacentersReply) HasDatacenters() bool {
-	if o != nil && !isNil(o.Datacenters) {
+	if o != nil && !IsNil(o.Datacenters) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ListDatacentersReply) SetDatacenters(v []DatacenterListItem) {
 }
 
 func (o ListDatacentersReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Datacenters) {
-		toSerialize["datacenters"] = o.Datacenters
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListDatacentersReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Datacenters) {
+		toSerialize["datacenters"] = o.Datacenters
+	}
+	return toSerialize, nil
 }
 
 type NullableListDatacentersReply struct {

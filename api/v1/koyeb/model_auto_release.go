@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AutoRelease type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AutoRelease{}
+
 // AutoRelease struct for AutoRelease
 type AutoRelease struct {
 	Groups []AutoReleaseGroup `json:"groups,omitempty"`
@@ -38,7 +41,7 @@ func NewAutoReleaseWithDefaults() *AutoRelease {
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *AutoRelease) GetGroups() []AutoReleaseGroup {
-	if o == nil || isNil(o.Groups) {
+	if o == nil || IsNil(o.Groups) {
 		var ret []AutoReleaseGroup
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *AutoRelease) GetGroups() []AutoReleaseGroup {
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoRelease) GetGroupsOk() ([]AutoReleaseGroup, bool) {
-	if o == nil || isNil(o.Groups) {
-    return nil, false
+	if o == nil || IsNil(o.Groups) {
+		return nil, false
 	}
 	return o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
 func (o *AutoRelease) HasGroups() bool {
-	if o != nil && !isNil(o.Groups) {
+	if o != nil && !IsNil(o.Groups) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *AutoRelease) SetGroups(v []AutoReleaseGroup) {
 }
 
 func (o AutoRelease) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Groups) {
-		toSerialize["groups"] = o.Groups
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AutoRelease) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
+	return toSerialize, nil
 }
 
 type NullableAutoRelease struct {

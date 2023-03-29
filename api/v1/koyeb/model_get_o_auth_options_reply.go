@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOAuthOptionsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOAuthOptionsReply{}
+
 // GetOAuthOptionsReply A list of providers which you can use for single sign-on.
 type GetOAuthOptionsReply struct {
 	OauthProviders []OAuthProvider `json:"oauth_providers,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOAuthOptionsReplyWithDefaults() *GetOAuthOptionsReply {
 
 // GetOauthProviders returns the OauthProviders field value if set, zero value otherwise.
 func (o *GetOAuthOptionsReply) GetOauthProviders() []OAuthProvider {
-	if o == nil || isNil(o.OauthProviders) {
+	if o == nil || IsNil(o.OauthProviders) {
 		var ret []OAuthProvider
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOAuthOptionsReply) GetOauthProviders() []OAuthProvider {
 // GetOauthProvidersOk returns a tuple with the OauthProviders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOAuthOptionsReply) GetOauthProvidersOk() ([]OAuthProvider, bool) {
-	if o == nil || isNil(o.OauthProviders) {
-    return nil, false
+	if o == nil || IsNil(o.OauthProviders) {
+		return nil, false
 	}
 	return o.OauthProviders, true
 }
 
 // HasOauthProviders returns a boolean if a field has been set.
 func (o *GetOAuthOptionsReply) HasOauthProviders() bool {
-	if o != nil && !isNil(o.OauthProviders) {
+	if o != nil && !IsNil(o.OauthProviders) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOAuthOptionsReply) SetOauthProviders(v []OAuthProvider) {
 }
 
 func (o GetOAuthOptionsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.OauthProviders) {
-		toSerialize["oauth_providers"] = o.OauthProviders
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOAuthOptionsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OauthProviders) {
+		toSerialize["oauth_providers"] = o.OauthProviders
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOAuthOptionsReply struct {

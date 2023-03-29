@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorWithFields type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorWithFields{}
+
 // ErrorWithFields struct for ErrorWithFields
 type ErrorWithFields struct {
 	Status *int32 `json:"status,omitempty"`
@@ -41,7 +44,7 @@ func NewErrorWithFieldsWithDefaults() *ErrorWithFields {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ErrorWithFields) GetStatus() int32 {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ErrorWithFields) GetStatus() int32 {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorWithFields) GetStatusOk() (*int32, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ErrorWithFields) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ErrorWithFields) SetStatus(v int32) {
 
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *ErrorWithFields) GetCode() string {
-	if o == nil || isNil(o.Code) {
+	if o == nil || IsNil(o.Code) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ErrorWithFields) GetCode() string {
 // GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorWithFields) GetCodeOk() (*string, bool) {
-	if o == nil || isNil(o.Code) {
-    return nil, false
+	if o == nil || IsNil(o.Code) {
+		return nil, false
 	}
 	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
 func (o *ErrorWithFields) HasCode() bool {
-	if o != nil && !isNil(o.Code) {
+	if o != nil && !IsNil(o.Code) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ErrorWithFields) SetCode(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ErrorWithFields) GetMessage() string {
-	if o == nil || isNil(o.Message) {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ErrorWithFields) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorWithFields) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
+	if o == nil || IsNil(o.Message) {
+		return nil, false
 	}
 	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorWithFields) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ErrorWithFields) SetMessage(v string) {
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *ErrorWithFields) GetFields() []ErrorField {
-	if o == nil || isNil(o.Fields) {
+	if o == nil || IsNil(o.Fields) {
 		var ret []ErrorField
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ErrorWithFields) GetFields() []ErrorField {
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorWithFields) GetFieldsOk() ([]ErrorField, bool) {
-	if o == nil || isNil(o.Fields) {
-    return nil, false
+	if o == nil || IsNil(o.Fields) {
+		return nil, false
 	}
 	return o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
 func (o *ErrorWithFields) HasFields() bool {
-	if o != nil && !isNil(o.Fields) {
+	if o != nil && !IsNil(o.Fields) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ErrorWithFields) SetFields(v []ErrorField) {
 }
 
 func (o ErrorWithFields) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Code) {
-		toSerialize["code"] = o.Code
-	}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
-	}
-	if !isNil(o.Fields) {
-		toSerialize["fields"] = o.Fields
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ErrorWithFields) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Fields) {
+		toSerialize["fields"] = o.Fields
+	}
+	return toSerialize, nil
 }
 
 type NullableErrorWithFields struct {

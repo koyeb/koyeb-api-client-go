@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Scaling type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Scaling{}
+
 // Scaling struct for Scaling
 type Scaling struct {
 	Min *int64 `json:"min,omitempty"`
@@ -39,7 +42,7 @@ func NewScalingWithDefaults() *Scaling {
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *Scaling) GetMin() int64 {
-	if o == nil || isNil(o.Min) {
+	if o == nil || IsNil(o.Min) {
 		var ret int64
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *Scaling) GetMin() int64 {
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Scaling) GetMinOk() (*int64, bool) {
-	if o == nil || isNil(o.Min) {
-    return nil, false
+	if o == nil || IsNil(o.Min) {
+		return nil, false
 	}
 	return o.Min, true
 }
 
 // HasMin returns a boolean if a field has been set.
 func (o *Scaling) HasMin() bool {
-	if o != nil && !isNil(o.Min) {
+	if o != nil && !IsNil(o.Min) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *Scaling) SetMin(v int64) {
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *Scaling) GetMax() int64 {
-	if o == nil || isNil(o.Max) {
+	if o == nil || IsNil(o.Max) {
 		var ret int64
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *Scaling) GetMax() int64 {
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Scaling) GetMaxOk() (*int64, bool) {
-	if o == nil || isNil(o.Max) {
-    return nil, false
+	if o == nil || IsNil(o.Max) {
+		return nil, false
 	}
 	return o.Max, true
 }
 
 // HasMax returns a boolean if a field has been set.
 func (o *Scaling) HasMax() bool {
-	if o != nil && !isNil(o.Max) {
+	if o != nil && !IsNil(o.Max) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *Scaling) SetMax(v int64) {
 }
 
 func (o Scaling) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Min) {
-		toSerialize["min"] = o.Min
-	}
-	if !isNil(o.Max) {
-		toSerialize["max"] = o.Max
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Scaling) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Min) {
+		toSerialize["min"] = o.Min
+	}
+	if !IsNil(o.Max) {
+		toSerialize["max"] = o.Max
+	}
+	return toSerialize, nil
 }
 
 type NullableScaling struct {

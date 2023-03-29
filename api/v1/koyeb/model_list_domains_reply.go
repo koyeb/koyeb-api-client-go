@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListDomainsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListDomainsReply{}
+
 // ListDomainsReply struct for ListDomainsReply
 type ListDomainsReply struct {
 	Domains []Domain `json:"domains,omitempty"`
@@ -41,7 +44,7 @@ func NewListDomainsReplyWithDefaults() *ListDomainsReply {
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *ListDomainsReply) GetDomains() []Domain {
-	if o == nil || isNil(o.Domains) {
+	if o == nil || IsNil(o.Domains) {
 		var ret []Domain
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListDomainsReply) GetDomains() []Domain {
 // GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDomainsReply) GetDomainsOk() ([]Domain, bool) {
-	if o == nil || isNil(o.Domains) {
-    return nil, false
+	if o == nil || IsNil(o.Domains) {
+		return nil, false
 	}
 	return o.Domains, true
 }
 
 // HasDomains returns a boolean if a field has been set.
 func (o *ListDomainsReply) HasDomains() bool {
-	if o != nil && !isNil(o.Domains) {
+	if o != nil && !IsNil(o.Domains) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListDomainsReply) SetDomains(v []Domain) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListDomainsReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListDomainsReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDomainsReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListDomainsReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListDomainsReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListDomainsReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListDomainsReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDomainsReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListDomainsReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListDomainsReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListDomainsReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListDomainsReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListDomainsReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListDomainsReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListDomainsReply) SetCount(v int64) {
 }
 
 func (o ListDomainsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Domains) {
-		toSerialize["domains"] = o.Domains
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListDomainsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Domains) {
+		toSerialize["domains"] = o.Domains
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListDomainsReply struct {

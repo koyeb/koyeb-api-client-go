@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Region type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Region{}
+
 // Region struct for Region
 type Region struct {
 	Id *string `json:"id,omitempty"`
@@ -43,7 +46,7 @@ func NewRegionWithDefaults() *Region {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Region) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *Region) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Region) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *Region) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Region) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *Region) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Region) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *Region) SetName(v string) {
 
 // GetCoordinates returns the Coordinates field value if set, zero value otherwise.
 func (o *Region) GetCoordinates() []string {
-	if o == nil || isNil(o.Coordinates) {
+	if o == nil || IsNil(o.Coordinates) {
 		var ret []string
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *Region) GetCoordinates() []string {
 // GetCoordinatesOk returns a tuple with the Coordinates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetCoordinatesOk() ([]string, bool) {
-	if o == nil || isNil(o.Coordinates) {
-    return nil, false
+	if o == nil || IsNil(o.Coordinates) {
+		return nil, false
 	}
 	return o.Coordinates, true
 }
 
 // HasCoordinates returns a boolean if a field has been set.
 func (o *Region) HasCoordinates() bool {
-	if o != nil && !isNil(o.Coordinates) {
+	if o != nil && !IsNil(o.Coordinates) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *Region) SetCoordinates(v []string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Region) GetStatus() string {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -149,15 +152,15 @@ func (o *Region) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetStatusOk() (*string, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Region) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *Region) SetStatus(v string) {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *Region) GetInstances() []string {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret []string
 		return ret
 	}
@@ -181,15 +184,15 @@ func (o *Region) GetInstances() []string {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetInstancesOk() ([]string, bool) {
-	if o == nil || isNil(o.Instances) {
-    return nil, false
+	if o == nil || IsNil(o.Instances) {
+		return nil, false
 	}
 	return o.Instances, true
 }
 
 // HasInstances returns a boolean if a field has been set.
 func (o *Region) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -203,7 +206,7 @@ func (o *Region) SetInstances(v []string) {
 
 // GetDatacenters returns the Datacenters field value if set, zero value otherwise.
 func (o *Region) GetDatacenters() []string {
-	if o == nil || isNil(o.Datacenters) {
+	if o == nil || IsNil(o.Datacenters) {
 		var ret []string
 		return ret
 	}
@@ -213,15 +216,15 @@ func (o *Region) GetDatacenters() []string {
 // GetDatacentersOk returns a tuple with the Datacenters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Region) GetDatacentersOk() ([]string, bool) {
-	if o == nil || isNil(o.Datacenters) {
-    return nil, false
+	if o == nil || IsNil(o.Datacenters) {
+		return nil, false
 	}
 	return o.Datacenters, true
 }
 
 // HasDatacenters returns a boolean if a field has been set.
 func (o *Region) HasDatacenters() bool {
-	if o != nil && !isNil(o.Datacenters) {
+	if o != nil && !IsNil(o.Datacenters) {
 		return true
 	}
 
@@ -234,26 +237,34 @@ func (o *Region) SetDatacenters(v []string) {
 }
 
 func (o Region) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Coordinates) {
-		toSerialize["coordinates"] = o.Coordinates
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Instances) {
-		toSerialize["instances"] = o.Instances
-	}
-	if !isNil(o.Datacenters) {
-		toSerialize["datacenters"] = o.Datacenters
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Region) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Coordinates) {
+		toSerialize["coordinates"] = o.Coordinates
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Instances) {
+		toSerialize["instances"] = o.Instances
+	}
+	if !IsNil(o.Datacenters) {
+		toSerialize["datacenters"] = o.Datacenters
+	}
+	return toSerialize, nil
 }
 
 type NullableRegion struct {

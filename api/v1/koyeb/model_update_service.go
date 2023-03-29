@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateService type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateService{}
+
 // UpdateService struct for UpdateService
 type UpdateService struct {
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateServiceWithDefaults() *UpdateService {
 
 // GetDefinition returns the Definition field value if set, zero value otherwise.
 func (o *UpdateService) GetDefinition() DeploymentDefinition {
-	if o == nil || isNil(o.Definition) {
+	if o == nil || IsNil(o.Definition) {
 		var ret DeploymentDefinition
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateService) GetDefinition() DeploymentDefinition {
 // GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateService) GetDefinitionOk() (*DeploymentDefinition, bool) {
-	if o == nil || isNil(o.Definition) {
-    return nil, false
+	if o == nil || IsNil(o.Definition) {
+		return nil, false
 	}
 	return o.Definition, true
 }
 
 // HasDefinition returns a boolean if a field has been set.
 func (o *UpdateService) HasDefinition() bool {
-	if o != nil && !isNil(o.Definition) {
+	if o != nil && !IsNil(o.Definition) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateService) SetDefinition(v DeploymentDefinition) {
 }
 
 func (o UpdateService) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Definition) {
-		toSerialize["definition"] = o.Definition
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateService) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Definition) {
+		toSerialize["definition"] = o.Definition
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateService struct {

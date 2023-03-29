@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KgitproxyBranch type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KgitproxyBranch{}
+
 // KgitproxyBranch struct for KgitproxyBranch
 type KgitproxyBranch struct {
 	Id *string `json:"id,omitempty"`
@@ -48,7 +51,7 @@ func NewKgitproxyBranchWithDefaults() *KgitproxyBranch {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *KgitproxyBranch) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *KgitproxyBranch) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *KgitproxyBranch) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *KgitproxyBranch) SetOrganizationId(v string) {
 
 // GetRepositoryId returns the RepositoryId field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetRepositoryId() string {
-	if o == nil || isNil(o.RepositoryId) {
+	if o == nil || IsNil(o.RepositoryId) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *KgitproxyBranch) GetRepositoryId() string {
 // GetRepositoryIdOk returns a tuple with the RepositoryId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetRepositoryIdOk() (*string, bool) {
-	if o == nil || isNil(o.RepositoryId) {
-    return nil, false
+	if o == nil || IsNil(o.RepositoryId) {
+		return nil, false
 	}
 	return o.RepositoryId, true
 }
 
 // HasRepositoryId returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasRepositoryId() bool {
-	if o != nil && !isNil(o.RepositoryId) {
+	if o != nil && !IsNil(o.RepositoryId) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *KgitproxyBranch) SetRepositoryId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *KgitproxyBranch) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *KgitproxyBranch) SetName(v string) {
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetIsDefault() bool {
-	if o == nil || isNil(o.IsDefault) {
+	if o == nil || IsNil(o.IsDefault) {
 		var ret bool
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *KgitproxyBranch) GetIsDefault() bool {
 // GetIsDefaultOk returns a tuple with the IsDefault field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetIsDefaultOk() (*bool, bool) {
-	if o == nil || isNil(o.IsDefault) {
-    return nil, false
+	if o == nil || IsNil(o.IsDefault) {
+		return nil, false
 	}
 	return o.IsDefault, true
 }
 
 // HasIsDefault returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasIsDefault() bool {
-	if o != nil && !isNil(o.IsDefault) {
+	if o != nil && !IsNil(o.IsDefault) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *KgitproxyBranch) SetIsDefault(v bool) {
 
 // GetIsProtected returns the IsProtected field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetIsProtected() bool {
-	if o == nil || isNil(o.IsProtected) {
+	if o == nil || IsNil(o.IsProtected) {
 		var ret bool
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *KgitproxyBranch) GetIsProtected() bool {
 // GetIsProtectedOk returns a tuple with the IsProtected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetIsProtectedOk() (*bool, bool) {
-	if o == nil || isNil(o.IsProtected) {
-    return nil, false
+	if o == nil || IsNil(o.IsProtected) {
+		return nil, false
 	}
 	return o.IsProtected, true
 }
 
 // HasIsProtected returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasIsProtected() bool {
-	if o != nil && !isNil(o.IsProtected) {
+	if o != nil && !IsNil(o.IsProtected) {
 		return true
 	}
 
@@ -240,7 +243,7 @@ func (o *KgitproxyBranch) SetIsProtected(v bool) {
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *KgitproxyBranch) GetProvider() KgitproxyRepositoryProvider {
-	if o == nil || isNil(o.Provider) {
+	if o == nil || IsNil(o.Provider) {
 		var ret KgitproxyRepositoryProvider
 		return ret
 	}
@@ -250,15 +253,15 @@ func (o *KgitproxyBranch) GetProvider() KgitproxyRepositoryProvider {
 // GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KgitproxyBranch) GetProviderOk() (*KgitproxyRepositoryProvider, bool) {
-	if o == nil || isNil(o.Provider) {
-    return nil, false
+	if o == nil || IsNil(o.Provider) {
+		return nil, false
 	}
 	return o.Provider, true
 }
 
 // HasProvider returns a boolean if a field has been set.
 func (o *KgitproxyBranch) HasProvider() bool {
-	if o != nil && !isNil(o.Provider) {
+	if o != nil && !IsNil(o.Provider) {
 		return true
 	}
 
@@ -271,29 +274,37 @@ func (o *KgitproxyBranch) SetProvider(v KgitproxyRepositoryProvider) {
 }
 
 func (o KgitproxyBranch) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.RepositoryId) {
-		toSerialize["repository_id"] = o.RepositoryId
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.IsDefault) {
-		toSerialize["is_default"] = o.IsDefault
-	}
-	if !isNil(o.IsProtected) {
-		toSerialize["is_protected"] = o.IsProtected
-	}
-	if !isNil(o.Provider) {
-		toSerialize["provider"] = o.Provider
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KgitproxyBranch) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.RepositoryId) {
+		toSerialize["repository_id"] = o.RepositoryId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.IsDefault) {
+		toSerialize["is_default"] = o.IsDefault
+	}
+	if !IsNil(o.IsProtected) {
+		toSerialize["is_protected"] = o.IsProtected
+	}
+	if !IsNil(o.Provider) {
+		toSerialize["provider"] = o.Provider
+	}
+	return toSerialize, nil
 }
 
 type NullableKgitproxyBranch struct {

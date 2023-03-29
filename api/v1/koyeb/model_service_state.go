@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServiceState type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceState{}
+
 // ServiceState struct for ServiceState
 type ServiceState struct {
 	DesiredDeployment *DesiredDeployment `json:"desired_deployment,omitempty"`
@@ -39,7 +42,7 @@ func NewServiceStateWithDefaults() *ServiceState {
 
 // GetDesiredDeployment returns the DesiredDeployment field value if set, zero value otherwise.
 func (o *ServiceState) GetDesiredDeployment() DesiredDeployment {
-	if o == nil || isNil(o.DesiredDeployment) {
+	if o == nil || IsNil(o.DesiredDeployment) {
 		var ret DesiredDeployment
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ServiceState) GetDesiredDeployment() DesiredDeployment {
 // GetDesiredDeploymentOk returns a tuple with the DesiredDeployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceState) GetDesiredDeploymentOk() (*DesiredDeployment, bool) {
-	if o == nil || isNil(o.DesiredDeployment) {
-    return nil, false
+	if o == nil || IsNil(o.DesiredDeployment) {
+		return nil, false
 	}
 	return o.DesiredDeployment, true
 }
 
 // HasDesiredDeployment returns a boolean if a field has been set.
 func (o *ServiceState) HasDesiredDeployment() bool {
-	if o != nil && !isNil(o.DesiredDeployment) {
+	if o != nil && !IsNil(o.DesiredDeployment) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ServiceState) SetDesiredDeployment(v DesiredDeployment) {
 
 // GetAutoRelease returns the AutoRelease field value if set, zero value otherwise.
 func (o *ServiceState) GetAutoRelease() AutoRelease {
-	if o == nil || isNil(o.AutoRelease) {
+	if o == nil || IsNil(o.AutoRelease) {
 		var ret AutoRelease
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *ServiceState) GetAutoRelease() AutoRelease {
 // GetAutoReleaseOk returns a tuple with the AutoRelease field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceState) GetAutoReleaseOk() (*AutoRelease, bool) {
-	if o == nil || isNil(o.AutoRelease) {
-    return nil, false
+	if o == nil || IsNil(o.AutoRelease) {
+		return nil, false
 	}
 	return o.AutoRelease, true
 }
 
 // HasAutoRelease returns a boolean if a field has been set.
 func (o *ServiceState) HasAutoRelease() bool {
-	if o != nil && !isNil(o.AutoRelease) {
+	if o != nil && !IsNil(o.AutoRelease) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *ServiceState) SetAutoRelease(v AutoRelease) {
 }
 
 func (o ServiceState) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DesiredDeployment) {
-		toSerialize["desired_deployment"] = o.DesiredDeployment
-	}
-	if !isNil(o.AutoRelease) {
-		toSerialize["auto_release"] = o.AutoRelease
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceState) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DesiredDeployment) {
+		toSerialize["desired_deployment"] = o.DesiredDeployment
+	}
+	if !IsNil(o.AutoRelease) {
+		toSerialize["auto_release"] = o.AutoRelease
+	}
+	return toSerialize, nil
 }
 
 type NullableServiceState struct {

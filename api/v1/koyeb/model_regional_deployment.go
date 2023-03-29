@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the RegionalDeployment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegionalDeployment{}
+
 // RegionalDeployment struct for RegionalDeployment
 type RegionalDeployment struct {
 	Id *string `json:"id,omitempty"`
@@ -64,7 +67,7 @@ func NewRegionalDeploymentWithDefaults() *RegionalDeployment {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -74,15 +77,15 @@ func (o *RegionalDeployment) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *RegionalDeployment) SetId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -106,15 +109,15 @@ func (o *RegionalDeployment) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -128,7 +131,7 @@ func (o *RegionalDeployment) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -138,15 +141,15 @@ func (o *RegionalDeployment) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *RegionalDeployment) SetUpdatedAt(v time.Time) {
 
 // GetAllocatedAt returns the AllocatedAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetAllocatedAt() time.Time {
-	if o == nil || isNil(o.AllocatedAt) {
+	if o == nil || IsNil(o.AllocatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -170,15 +173,15 @@ func (o *RegionalDeployment) GetAllocatedAt() time.Time {
 // GetAllocatedAtOk returns a tuple with the AllocatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetAllocatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.AllocatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.AllocatedAt) {
+		return nil, false
 	}
 	return o.AllocatedAt, true
 }
 
 // HasAllocatedAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasAllocatedAt() bool {
-	if o != nil && !isNil(o.AllocatedAt) {
+	if o != nil && !IsNil(o.AllocatedAt) {
 		return true
 	}
 
@@ -192,7 +195,7 @@ func (o *RegionalDeployment) SetAllocatedAt(v time.Time) {
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -202,15 +205,15 @@ func (o *RegionalDeployment) GetStartedAt() time.Time {
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -224,7 +227,7 @@ func (o *RegionalDeployment) SetStartedAt(v time.Time) {
 
 // GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetSucceededAt() time.Time {
-	if o == nil || isNil(o.SucceededAt) {
+	if o == nil || IsNil(o.SucceededAt) {
 		var ret time.Time
 		return ret
 	}
@@ -234,15 +237,15 @@ func (o *RegionalDeployment) GetSucceededAt() time.Time {
 // GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetSucceededAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.SucceededAt) {
-    return nil, false
+	if o == nil || IsNil(o.SucceededAt) {
+		return nil, false
 	}
 	return o.SucceededAt, true
 }
 
 // HasSucceededAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasSucceededAt() bool {
-	if o != nil && !isNil(o.SucceededAt) {
+	if o != nil && !IsNil(o.SucceededAt) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *RegionalDeployment) SetSucceededAt(v time.Time) {
 
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetTerminatedAt() time.Time {
-	if o == nil || isNil(o.TerminatedAt) {
+	if o == nil || IsNil(o.TerminatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -266,15 +269,15 @@ func (o *RegionalDeployment) GetTerminatedAt() time.Time {
 // GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetTerminatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.TerminatedAt) {
+		return nil, false
 	}
 	return o.TerminatedAt, true
 }
 
 // HasTerminatedAt returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasTerminatedAt() bool {
-	if o != nil && !isNil(o.TerminatedAt) {
+	if o != nil && !IsNil(o.TerminatedAt) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *RegionalDeployment) SetTerminatedAt(v time.Time) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -298,15 +301,15 @@ func (o *RegionalDeployment) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *RegionalDeployment) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -330,15 +333,15 @@ func (o *RegionalDeployment) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *RegionalDeployment) SetAppId(v string) {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -362,15 +365,15 @@ func (o *RegionalDeployment) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *RegionalDeployment) SetServiceId(v string) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetRegion() string {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -394,15 +397,15 @@ func (o *RegionalDeployment) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetRegionOk() (*string, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *RegionalDeployment) SetRegion(v string) {
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetParentId() string {
-	if o == nil || isNil(o.ParentId) {
+	if o == nil || IsNil(o.ParentId) {
 		var ret string
 		return ret
 	}
@@ -426,15 +429,15 @@ func (o *RegionalDeployment) GetParentId() string {
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetParentIdOk() (*string, bool) {
-	if o == nil || isNil(o.ParentId) {
-    return nil, false
+	if o == nil || IsNil(o.ParentId) {
+		return nil, false
 	}
 	return o.ParentId, true
 }
 
 // HasParentId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasParentId() bool {
-	if o != nil && !isNil(o.ParentId) {
+	if o != nil && !IsNil(o.ParentId) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *RegionalDeployment) SetParentId(v string) {
 
 // GetChildId returns the ChildId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetChildId() string {
-	if o == nil || isNil(o.ChildId) {
+	if o == nil || IsNil(o.ChildId) {
 		var ret string
 		return ret
 	}
@@ -458,15 +461,15 @@ func (o *RegionalDeployment) GetChildId() string {
 // GetChildIdOk returns a tuple with the ChildId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetChildIdOk() (*string, bool) {
-	if o == nil || isNil(o.ChildId) {
-    return nil, false
+	if o == nil || IsNil(o.ChildId) {
+		return nil, false
 	}
 	return o.ChildId, true
 }
 
 // HasChildId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasChildId() bool {
-	if o != nil && !isNil(o.ChildId) {
+	if o != nil && !IsNil(o.ChildId) {
 		return true
 	}
 
@@ -480,7 +483,7 @@ func (o *RegionalDeployment) SetChildId(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetStatus() RegionalDeploymentStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret RegionalDeploymentStatus
 		return ret
 	}
@@ -490,15 +493,15 @@ func (o *RegionalDeployment) GetStatus() RegionalDeploymentStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetStatusOk() (*RegionalDeploymentStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -512,7 +515,7 @@ func (o *RegionalDeployment) SetStatus(v RegionalDeploymentStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -522,15 +525,15 @@ func (o *RegionalDeployment) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -544,7 +547,7 @@ func (o *RegionalDeployment) SetMessages(v []string) {
 
 // GetDefinition returns the Definition field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetDefinition() RegionalDeploymentDefinition {
-	if o == nil || isNil(o.Definition) {
+	if o == nil || IsNil(o.Definition) {
 		var ret RegionalDeploymentDefinition
 		return ret
 	}
@@ -554,15 +557,15 @@ func (o *RegionalDeployment) GetDefinition() RegionalDeploymentDefinition {
 // GetDefinitionOk returns a tuple with the Definition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetDefinitionOk() (*RegionalDeploymentDefinition, bool) {
-	if o == nil || isNil(o.Definition) {
-    return nil, false
+	if o == nil || IsNil(o.Definition) {
+		return nil, false
 	}
 	return o.Definition, true
 }
 
 // HasDefinition returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasDefinition() bool {
-	if o != nil && !isNil(o.Definition) {
+	if o != nil && !IsNil(o.Definition) {
 		return true
 	}
 
@@ -576,7 +579,7 @@ func (o *RegionalDeployment) SetDefinition(v RegionalDeploymentDefinition) {
 
 // GetDatacenters returns the Datacenters field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetDatacenters() []string {
-	if o == nil || isNil(o.Datacenters) {
+	if o == nil || IsNil(o.Datacenters) {
 		var ret []string
 		return ret
 	}
@@ -586,15 +589,15 @@ func (o *RegionalDeployment) GetDatacenters() []string {
 // GetDatacentersOk returns a tuple with the Datacenters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetDatacentersOk() ([]string, bool) {
-	if o == nil || isNil(o.Datacenters) {
-    return nil, false
+	if o == nil || IsNil(o.Datacenters) {
+		return nil, false
 	}
 	return o.Datacenters, true
 }
 
 // HasDatacenters returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasDatacenters() bool {
-	if o != nil && !isNil(o.Datacenters) {
+	if o != nil && !IsNil(o.Datacenters) {
 		return true
 	}
 
@@ -608,7 +611,7 @@ func (o *RegionalDeployment) SetDatacenters(v []string) {
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetMetadata() RegionalDeploymentMetadata {
-	if o == nil || isNil(o.Metadata) {
+	if o == nil || IsNil(o.Metadata) {
 		var ret RegionalDeploymentMetadata
 		return ret
 	}
@@ -618,15 +621,15 @@ func (o *RegionalDeployment) GetMetadata() RegionalDeploymentMetadata {
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetMetadataOk() (*RegionalDeploymentMetadata, bool) {
-	if o == nil || isNil(o.Metadata) {
-    return nil, false
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
 	}
 	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasMetadata() bool {
-	if o != nil && !isNil(o.Metadata) {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
@@ -640,7 +643,7 @@ func (o *RegionalDeployment) SetMetadata(v RegionalDeploymentMetadata) {
 
 // GetProvisioningInfo returns the ProvisioningInfo field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetProvisioningInfo() DeploymentProvisioningInfo {
-	if o == nil || isNil(o.ProvisioningInfo) {
+	if o == nil || IsNil(o.ProvisioningInfo) {
 		var ret DeploymentProvisioningInfo
 		return ret
 	}
@@ -650,15 +653,15 @@ func (o *RegionalDeployment) GetProvisioningInfo() DeploymentProvisioningInfo {
 // GetProvisioningInfoOk returns a tuple with the ProvisioningInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetProvisioningInfoOk() (*DeploymentProvisioningInfo, bool) {
-	if o == nil || isNil(o.ProvisioningInfo) {
-    return nil, false
+	if o == nil || IsNil(o.ProvisioningInfo) {
+		return nil, false
 	}
 	return o.ProvisioningInfo, true
 }
 
 // HasProvisioningInfo returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasProvisioningInfo() bool {
-	if o != nil && !isNil(o.ProvisioningInfo) {
+	if o != nil && !IsNil(o.ProvisioningInfo) {
 		return true
 	}
 
@@ -672,7 +675,7 @@ func (o *RegionalDeployment) SetProvisioningInfo(v DeploymentProvisioningInfo) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -682,15 +685,15 @@ func (o *RegionalDeployment) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -704,7 +707,7 @@ func (o *RegionalDeployment) SetVersion(v string) {
 
 // GetDeploymentGroup returns the DeploymentGroup field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetDeploymentGroup() string {
-	if o == nil || isNil(o.DeploymentGroup) {
+	if o == nil || IsNil(o.DeploymentGroup) {
 		var ret string
 		return ret
 	}
@@ -714,15 +717,15 @@ func (o *RegionalDeployment) GetDeploymentGroup() string {
 // GetDeploymentGroupOk returns a tuple with the DeploymentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetDeploymentGroupOk() (*string, bool) {
-	if o == nil || isNil(o.DeploymentGroup) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentGroup) {
+		return nil, false
 	}
 	return o.DeploymentGroup, true
 }
 
 // HasDeploymentGroup returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasDeploymentGroup() bool {
-	if o != nil && !isNil(o.DeploymentGroup) {
+	if o != nil && !IsNil(o.DeploymentGroup) {
 		return true
 	}
 
@@ -736,7 +739,7 @@ func (o *RegionalDeployment) SetDeploymentGroup(v string) {
 
 // GetDeploymentId returns the DeploymentId field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetDeploymentId() string {
-	if o == nil || isNil(o.DeploymentId) {
+	if o == nil || IsNil(o.DeploymentId) {
 		var ret string
 		return ret
 	}
@@ -746,15 +749,15 @@ func (o *RegionalDeployment) GetDeploymentId() string {
 // GetDeploymentIdOk returns a tuple with the DeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeployment) GetDeploymentIdOk() (*string, bool) {
-	if o == nil || isNil(o.DeploymentId) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentId) {
+		return nil, false
 	}
 	return o.DeploymentId, true
 }
 
 // HasDeploymentId returns a boolean if a field has been set.
 func (o *RegionalDeployment) HasDeploymentId() bool {
-	if o != nil && !isNil(o.DeploymentId) {
+	if o != nil && !IsNil(o.DeploymentId) {
 		return true
 	}
 
@@ -767,74 +770,82 @@ func (o *RegionalDeployment) SetDeploymentId(v string) {
 }
 
 func (o RegionalDeployment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.AllocatedAt) {
-		toSerialize["allocated_at"] = o.AllocatedAt
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["started_at"] = o.StartedAt
-	}
-	if !isNil(o.SucceededAt) {
-		toSerialize["succeeded_at"] = o.SucceededAt
-	}
-	if !isNil(o.TerminatedAt) {
-		toSerialize["terminated_at"] = o.TerminatedAt
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
-	}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
-	if !isNil(o.ParentId) {
-		toSerialize["parent_id"] = o.ParentId
-	}
-	if !isNil(o.ChildId) {
-		toSerialize["child_id"] = o.ChildId
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.Definition) {
-		toSerialize["definition"] = o.Definition
-	}
-	if !isNil(o.Datacenters) {
-		toSerialize["datacenters"] = o.Datacenters
-	}
-	if !isNil(o.Metadata) {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if !isNil(o.ProvisioningInfo) {
-		toSerialize["provisioning_info"] = o.ProvisioningInfo
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.DeploymentGroup) {
-		toSerialize["deployment_group"] = o.DeploymentGroup
-	}
-	if !isNil(o.DeploymentId) {
-		toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RegionalDeployment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.AllocatedAt) {
+		toSerialize["allocated_at"] = o.AllocatedAt
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if !IsNil(o.SucceededAt) {
+		toSerialize["succeeded_at"] = o.SucceededAt
+	}
+	if !IsNil(o.TerminatedAt) {
+		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.ParentId) {
+		toSerialize["parent_id"] = o.ParentId
+	}
+	if !IsNil(o.ChildId) {
+		toSerialize["child_id"] = o.ChildId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.Definition) {
+		toSerialize["definition"] = o.Definition
+	}
+	if !IsNil(o.Datacenters) {
+		toSerialize["datacenters"] = o.Datacenters
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.ProvisioningInfo) {
+		toSerialize["provisioning_info"] = o.ProvisioningInfo
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.DeploymentGroup) {
+		toSerialize["deployment_group"] = o.DeploymentGroup
+	}
+	if !IsNil(o.DeploymentId) {
+		toSerialize["deployment_id"] = o.DeploymentId
+	}
+	return toSerialize, nil
 }
 
 type NullableRegionalDeployment struct {

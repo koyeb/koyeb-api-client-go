@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateDomainReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateDomainReply{}
+
 // UpdateDomainReply struct for UpdateDomainReply
 type UpdateDomainReply struct {
 	Domain *Domain `json:"domain,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateDomainReplyWithDefaults() *UpdateDomainReply {
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *UpdateDomainReply) GetDomain() Domain {
-	if o == nil || isNil(o.Domain) {
+	if o == nil || IsNil(o.Domain) {
 		var ret Domain
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateDomainReply) GetDomain() Domain {
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateDomainReply) GetDomainOk() (*Domain, bool) {
-	if o == nil || isNil(o.Domain) {
-    return nil, false
+	if o == nil || IsNil(o.Domain) {
+		return nil, false
 	}
 	return o.Domain, true
 }
 
 // HasDomain returns a boolean if a field has been set.
 func (o *UpdateDomainReply) HasDomain() bool {
-	if o != nil && !isNil(o.Domain) {
+	if o != nil && !IsNil(o.Domain) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateDomainReply) SetDomain(v Domain) {
 }
 
 func (o UpdateDomainReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Domain) {
-		toSerialize["domain"] = o.Domain
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateDomainReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Domain) {
+		toSerialize["domain"] = o.Domain
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateDomainReply struct {

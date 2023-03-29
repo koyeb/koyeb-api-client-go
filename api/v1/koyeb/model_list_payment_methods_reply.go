@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListPaymentMethodsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListPaymentMethodsReply{}
+
 // ListPaymentMethodsReply struct for ListPaymentMethodsReply
 type ListPaymentMethodsReply struct {
 	PaymentMethods []PaymentMethod `json:"payment_methods,omitempty"`
@@ -41,7 +44,7 @@ func NewListPaymentMethodsReplyWithDefaults() *ListPaymentMethodsReply {
 
 // GetPaymentMethods returns the PaymentMethods field value if set, zero value otherwise.
 func (o *ListPaymentMethodsReply) GetPaymentMethods() []PaymentMethod {
-	if o == nil || isNil(o.PaymentMethods) {
+	if o == nil || IsNil(o.PaymentMethods) {
 		var ret []PaymentMethod
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListPaymentMethodsReply) GetPaymentMethods() []PaymentMethod {
 // GetPaymentMethodsOk returns a tuple with the PaymentMethods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPaymentMethodsReply) GetPaymentMethodsOk() ([]PaymentMethod, bool) {
-	if o == nil || isNil(o.PaymentMethods) {
-    return nil, false
+	if o == nil || IsNil(o.PaymentMethods) {
+		return nil, false
 	}
 	return o.PaymentMethods, true
 }
 
 // HasPaymentMethods returns a boolean if a field has been set.
 func (o *ListPaymentMethodsReply) HasPaymentMethods() bool {
-	if o != nil && !isNil(o.PaymentMethods) {
+	if o != nil && !IsNil(o.PaymentMethods) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListPaymentMethodsReply) SetPaymentMethods(v []PaymentMethod) {
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListPaymentMethodsReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListPaymentMethodsReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPaymentMethodsReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListPaymentMethodsReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListPaymentMethodsReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListPaymentMethodsReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListPaymentMethodsReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPaymentMethodsReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListPaymentMethodsReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListPaymentMethodsReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListPaymentMethodsReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListPaymentMethodsReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListPaymentMethodsReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListPaymentMethodsReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListPaymentMethodsReply) SetCount(v int64) {
 }
 
 func (o ListPaymentMethodsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.PaymentMethods) {
-		toSerialize["payment_methods"] = o.PaymentMethods
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListPaymentMethodsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PaymentMethods) {
+		toSerialize["payment_methods"] = o.PaymentMethods
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListPaymentMethodsReply struct {

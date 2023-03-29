@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DockerSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DockerSource{}
+
 // DockerSource struct for DockerSource
 type DockerSource struct {
 	Image *string `json:"image,omitempty"`
@@ -41,7 +44,7 @@ func NewDockerSourceWithDefaults() *DockerSource {
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *DockerSource) GetImage() string {
-	if o == nil || isNil(o.Image) {
+	if o == nil || IsNil(o.Image) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *DockerSource) GetImage() string {
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerSource) GetImageOk() (*string, bool) {
-	if o == nil || isNil(o.Image) {
-    return nil, false
+	if o == nil || IsNil(o.Image) {
+		return nil, false
 	}
 	return o.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *DockerSource) HasImage() bool {
-	if o != nil && !isNil(o.Image) {
+	if o != nil && !IsNil(o.Image) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *DockerSource) SetImage(v string) {
 
 // GetCommand returns the Command field value if set, zero value otherwise.
 func (o *DockerSource) GetCommand() string {
-	if o == nil || isNil(o.Command) {
+	if o == nil || IsNil(o.Command) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *DockerSource) GetCommand() string {
 // GetCommandOk returns a tuple with the Command field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerSource) GetCommandOk() (*string, bool) {
-	if o == nil || isNil(o.Command) {
-    return nil, false
+	if o == nil || IsNil(o.Command) {
+		return nil, false
 	}
 	return o.Command, true
 }
 
 // HasCommand returns a boolean if a field has been set.
 func (o *DockerSource) HasCommand() bool {
-	if o != nil && !isNil(o.Command) {
+	if o != nil && !IsNil(o.Command) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *DockerSource) SetCommand(v string) {
 
 // GetArgs returns the Args field value if set, zero value otherwise.
 func (o *DockerSource) GetArgs() []string {
-	if o == nil || isNil(o.Args) {
+	if o == nil || IsNil(o.Args) {
 		var ret []string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *DockerSource) GetArgs() []string {
 // GetArgsOk returns a tuple with the Args field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerSource) GetArgsOk() ([]string, bool) {
-	if o == nil || isNil(o.Args) {
-    return nil, false
+	if o == nil || IsNil(o.Args) {
+		return nil, false
 	}
 	return o.Args, true
 }
 
 // HasArgs returns a boolean if a field has been set.
 func (o *DockerSource) HasArgs() bool {
-	if o != nil && !isNil(o.Args) {
+	if o != nil && !IsNil(o.Args) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *DockerSource) SetArgs(v []string) {
 
 // GetImageRegistrySecret returns the ImageRegistrySecret field value if set, zero value otherwise.
 func (o *DockerSource) GetImageRegistrySecret() string {
-	if o == nil || isNil(o.ImageRegistrySecret) {
+	if o == nil || IsNil(o.ImageRegistrySecret) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *DockerSource) GetImageRegistrySecret() string {
 // GetImageRegistrySecretOk returns a tuple with the ImageRegistrySecret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DockerSource) GetImageRegistrySecretOk() (*string, bool) {
-	if o == nil || isNil(o.ImageRegistrySecret) {
-    return nil, false
+	if o == nil || IsNil(o.ImageRegistrySecret) {
+		return nil, false
 	}
 	return o.ImageRegistrySecret, true
 }
 
 // HasImageRegistrySecret returns a boolean if a field has been set.
 func (o *DockerSource) HasImageRegistrySecret() bool {
-	if o != nil && !isNil(o.ImageRegistrySecret) {
+	if o != nil && !IsNil(o.ImageRegistrySecret) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *DockerSource) SetImageRegistrySecret(v string) {
 }
 
 func (o DockerSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Image) {
-		toSerialize["image"] = o.Image
-	}
-	if !isNil(o.Command) {
-		toSerialize["command"] = o.Command
-	}
-	if !isNil(o.Args) {
-		toSerialize["args"] = o.Args
-	}
-	if !isNil(o.ImageRegistrySecret) {
-		toSerialize["image_registry_secret"] = o.ImageRegistrySecret
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DockerSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
+	if !IsNil(o.Command) {
+		toSerialize["command"] = o.Command
+	}
+	if !IsNil(o.Args) {
+		toSerialize["args"] = o.Args
+	}
+	if !IsNil(o.ImageRegistrySecret) {
+		toSerialize["image_registry_secret"] = o.ImageRegistrySecret
+	}
+	return toSerialize, nil
 }
 
 type NullableDockerSource struct {

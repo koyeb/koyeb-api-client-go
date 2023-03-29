@@ -14,10 +14,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the RedeployRequestInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RedeployRequestInfo{}
+
 // RedeployRequestInfo struct for RedeployRequestInfo
 type RedeployRequestInfo struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	Sha *string `json:"sha,omitempty"`
+	UseCache *bool `json:"use_cache,omitempty"`
 }
 
 // NewRedeployRequestInfo instantiates a new RedeployRequestInfo object
@@ -39,7 +43,7 @@ func NewRedeployRequestInfoWithDefaults() *RedeployRequestInfo {
 
 // GetDeploymentGroup returns the DeploymentGroup field value if set, zero value otherwise.
 func (o *RedeployRequestInfo) GetDeploymentGroup() string {
-	if o == nil || isNil(o.DeploymentGroup) {
+	if o == nil || IsNil(o.DeploymentGroup) {
 		var ret string
 		return ret
 	}
@@ -49,15 +53,15 @@ func (o *RedeployRequestInfo) GetDeploymentGroup() string {
 // GetDeploymentGroupOk returns a tuple with the DeploymentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RedeployRequestInfo) GetDeploymentGroupOk() (*string, bool) {
-	if o == nil || isNil(o.DeploymentGroup) {
-    return nil, false
+	if o == nil || IsNil(o.DeploymentGroup) {
+		return nil, false
 	}
 	return o.DeploymentGroup, true
 }
 
 // HasDeploymentGroup returns a boolean if a field has been set.
 func (o *RedeployRequestInfo) HasDeploymentGroup() bool {
-	if o != nil && !isNil(o.DeploymentGroup) {
+	if o != nil && !IsNil(o.DeploymentGroup) {
 		return true
 	}
 
@@ -71,7 +75,7 @@ func (o *RedeployRequestInfo) SetDeploymentGroup(v string) {
 
 // GetSha returns the Sha field value if set, zero value otherwise.
 func (o *RedeployRequestInfo) GetSha() string {
-	if o == nil || isNil(o.Sha) {
+	if o == nil || IsNil(o.Sha) {
 		var ret string
 		return ret
 	}
@@ -81,15 +85,15 @@ func (o *RedeployRequestInfo) GetSha() string {
 // GetShaOk returns a tuple with the Sha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RedeployRequestInfo) GetShaOk() (*string, bool) {
-	if o == nil || isNil(o.Sha) {
-    return nil, false
+	if o == nil || IsNil(o.Sha) {
+		return nil, false
 	}
 	return o.Sha, true
 }
 
 // HasSha returns a boolean if a field has been set.
 func (o *RedeployRequestInfo) HasSha() bool {
-	if o != nil && !isNil(o.Sha) {
+	if o != nil && !IsNil(o.Sha) {
 		return true
 	}
 
@@ -101,15 +105,58 @@ func (o *RedeployRequestInfo) SetSha(v string) {
 	o.Sha = &v
 }
 
-func (o RedeployRequestInfo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DeploymentGroup) {
-		toSerialize["deployment_group"] = o.DeploymentGroup
+// GetUseCache returns the UseCache field value if set, zero value otherwise.
+func (o *RedeployRequestInfo) GetUseCache() bool {
+	if o == nil || IsNil(o.UseCache) {
+		var ret bool
+		return ret
 	}
-	if !isNil(o.Sha) {
-		toSerialize["sha"] = o.Sha
+	return *o.UseCache
+}
+
+// GetUseCacheOk returns a tuple with the UseCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RedeployRequestInfo) GetUseCacheOk() (*bool, bool) {
+	if o == nil || IsNil(o.UseCache) {
+		return nil, false
+	}
+	return o.UseCache, true
+}
+
+// HasUseCache returns a boolean if a field has been set.
+func (o *RedeployRequestInfo) HasUseCache() bool {
+	if o != nil && !IsNil(o.UseCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseCache gets a reference to the given bool and assigns it to the UseCache field.
+func (o *RedeployRequestInfo) SetUseCache(v bool) {
+	o.UseCache = &v
+}
+
+func (o RedeployRequestInfo) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RedeployRequestInfo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeploymentGroup) {
+		toSerialize["deployment_group"] = o.DeploymentGroup
+	}
+	if !IsNil(o.Sha) {
+		toSerialize["sha"] = o.Sha
+	}
+	if !IsNil(o.UseCache) {
+		toSerialize["use_cache"] = o.UseCache
+	}
+	return toSerialize, nil
 }
 
 type NullableRedeployRequestInfo struct {

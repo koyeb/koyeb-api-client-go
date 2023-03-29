@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetOrganizationUsageReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetOrganizationUsageReply{}
+
 // GetOrganizationUsageReply struct for GetOrganizationUsageReply
 type GetOrganizationUsageReply struct {
 	Usage *Usage `json:"usage,omitempty"`
@@ -38,7 +41,7 @@ func NewGetOrganizationUsageReplyWithDefaults() *GetOrganizationUsageReply {
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *GetOrganizationUsageReply) GetUsage() Usage {
-	if o == nil || isNil(o.Usage) {
+	if o == nil || IsNil(o.Usage) {
 		var ret Usage
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetOrganizationUsageReply) GetUsage() Usage {
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetOrganizationUsageReply) GetUsageOk() (*Usage, bool) {
-	if o == nil || isNil(o.Usage) {
-    return nil, false
+	if o == nil || IsNil(o.Usage) {
+		return nil, false
 	}
 	return o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
 func (o *GetOrganizationUsageReply) HasUsage() bool {
-	if o != nil && !isNil(o.Usage) {
+	if o != nil && !IsNil(o.Usage) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetOrganizationUsageReply) SetUsage(v Usage) {
 }
 
 func (o GetOrganizationUsageReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Usage) {
-		toSerialize["usage"] = o.Usage
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetOrganizationUsageReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Usage) {
+		toSerialize["usage"] = o.Usage
+	}
+	return toSerialize, nil
 }
 
 type NullableGetOrganizationUsageReply struct {

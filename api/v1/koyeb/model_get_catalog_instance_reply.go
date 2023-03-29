@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetCatalogInstanceReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetCatalogInstanceReply{}
+
 // GetCatalogInstanceReply struct for GetCatalogInstanceReply
 type GetCatalogInstanceReply struct {
 	Instance *CatalogInstance `json:"instance,omitempty"`
@@ -38,7 +41,7 @@ func NewGetCatalogInstanceReplyWithDefaults() *GetCatalogInstanceReply {
 
 // GetInstance returns the Instance field value if set, zero value otherwise.
 func (o *GetCatalogInstanceReply) GetInstance() CatalogInstance {
-	if o == nil || isNil(o.Instance) {
+	if o == nil || IsNil(o.Instance) {
 		var ret CatalogInstance
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetCatalogInstanceReply) GetInstance() CatalogInstance {
 // GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetCatalogInstanceReply) GetInstanceOk() (*CatalogInstance, bool) {
-	if o == nil || isNil(o.Instance) {
-    return nil, false
+	if o == nil || IsNil(o.Instance) {
+		return nil, false
 	}
 	return o.Instance, true
 }
 
 // HasInstance returns a boolean if a field has been set.
 func (o *GetCatalogInstanceReply) HasInstance() bool {
-	if o != nil && !isNil(o.Instance) {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetCatalogInstanceReply) SetInstance(v CatalogInstance) {
 }
 
 func (o GetCatalogInstanceReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Instance) {
-		toSerialize["instance"] = o.Instance
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetCatalogInstanceReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Instance) {
+		toSerialize["instance"] = o.Instance
+	}
+	return toSerialize, nil
 }
 
 type NullableGetCatalogInstanceReply struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RegionalDeploymentMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegionalDeploymentMetadata{}
+
 // RegionalDeploymentMetadata struct for RegionalDeploymentMetadata
 type RegionalDeploymentMetadata struct {
 	RuntimeJobId *string `json:"runtime_job_id,omitempty"`
@@ -38,7 +41,7 @@ func NewRegionalDeploymentMetadataWithDefaults() *RegionalDeploymentMetadata {
 
 // GetRuntimeJobId returns the RuntimeJobId field value if set, zero value otherwise.
 func (o *RegionalDeploymentMetadata) GetRuntimeJobId() string {
-	if o == nil || isNil(o.RuntimeJobId) {
+	if o == nil || IsNil(o.RuntimeJobId) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *RegionalDeploymentMetadata) GetRuntimeJobId() string {
 // GetRuntimeJobIdOk returns a tuple with the RuntimeJobId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionalDeploymentMetadata) GetRuntimeJobIdOk() (*string, bool) {
-	if o == nil || isNil(o.RuntimeJobId) {
-    return nil, false
+	if o == nil || IsNil(o.RuntimeJobId) {
+		return nil, false
 	}
 	return o.RuntimeJobId, true
 }
 
 // HasRuntimeJobId returns a boolean if a field has been set.
 func (o *RegionalDeploymentMetadata) HasRuntimeJobId() bool {
-	if o != nil && !isNil(o.RuntimeJobId) {
+	if o != nil && !IsNil(o.RuntimeJobId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *RegionalDeploymentMetadata) SetRuntimeJobId(v string) {
 }
 
 func (o RegionalDeploymentMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RuntimeJobId) {
-		toSerialize["runtime_job_id"] = o.RuntimeJobId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RegionalDeploymentMetadata) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RuntimeJobId) {
+		toSerialize["runtime_job_id"] = o.RuntimeJobId
+	}
+	return toSerialize, nil
 }
 
 type NullableRegionalDeploymentMetadata struct {

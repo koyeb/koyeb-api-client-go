@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InstanceUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InstanceUsage{}
+
 // InstanceUsage struct for InstanceUsage
 type InstanceUsage struct {
 	DurationSeconds *int64 `json:"duration_seconds,omitempty"`
@@ -38,7 +41,7 @@ func NewInstanceUsageWithDefaults() *InstanceUsage {
 
 // GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
 func (o *InstanceUsage) GetDurationSeconds() int64 {
-	if o == nil || isNil(o.DurationSeconds) {
+	if o == nil || IsNil(o.DurationSeconds) {
 		var ret int64
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *InstanceUsage) GetDurationSeconds() int64 {
 // GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InstanceUsage) GetDurationSecondsOk() (*int64, bool) {
-	if o == nil || isNil(o.DurationSeconds) {
-    return nil, false
+	if o == nil || IsNil(o.DurationSeconds) {
+		return nil, false
 	}
 	return o.DurationSeconds, true
 }
 
 // HasDurationSeconds returns a boolean if a field has been set.
 func (o *InstanceUsage) HasDurationSeconds() bool {
-	if o != nil && !isNil(o.DurationSeconds) {
+	if o != nil && !IsNil(o.DurationSeconds) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *InstanceUsage) SetDurationSeconds(v int64) {
 }
 
 func (o InstanceUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.DurationSeconds) {
-		toSerialize["duration_seconds"] = o.DurationSeconds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o InstanceUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DurationSeconds) {
+		toSerialize["duration_seconds"] = o.DurationSeconds
+	}
+	return toSerialize, nil
 }
 
 type NullableInstanceUsage struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Instance type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Instance{}
+
 // Instance struct for Instance
 type Instance struct {
 	Id *string `json:"id,omitempty"`
@@ -57,7 +60,7 @@ func NewInstanceWithDefaults() *Instance {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Instance) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -67,15 +70,15 @@ func (o *Instance) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Instance) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -89,7 +92,7 @@ func (o *Instance) SetId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Instance) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -99,15 +102,15 @@ func (o *Instance) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Instance) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -121,7 +124,7 @@ func (o *Instance) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Instance) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -131,15 +134,15 @@ func (o *Instance) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Instance) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -153,7 +156,7 @@ func (o *Instance) SetUpdatedAt(v time.Time) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Instance) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -163,15 +166,15 @@ func (o *Instance) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *Instance) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -185,7 +188,7 @@ func (o *Instance) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *Instance) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -195,15 +198,15 @@ func (o *Instance) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *Instance) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -217,7 +220,7 @@ func (o *Instance) SetAppId(v string) {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *Instance) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -227,15 +230,15 @@ func (o *Instance) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *Instance) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -249,7 +252,7 @@ func (o *Instance) SetServiceId(v string) {
 
 // GetRegionalDeploymentId returns the RegionalDeploymentId field value if set, zero value otherwise.
 func (o *Instance) GetRegionalDeploymentId() string {
-	if o == nil || isNil(o.RegionalDeploymentId) {
+	if o == nil || IsNil(o.RegionalDeploymentId) {
 		var ret string
 		return ret
 	}
@@ -259,15 +262,15 @@ func (o *Instance) GetRegionalDeploymentId() string {
 // GetRegionalDeploymentIdOk returns a tuple with the RegionalDeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetRegionalDeploymentIdOk() (*string, bool) {
-	if o == nil || isNil(o.RegionalDeploymentId) {
-    return nil, false
+	if o == nil || IsNil(o.RegionalDeploymentId) {
+		return nil, false
 	}
 	return o.RegionalDeploymentId, true
 }
 
 // HasRegionalDeploymentId returns a boolean if a field has been set.
 func (o *Instance) HasRegionalDeploymentId() bool {
-	if o != nil && !isNil(o.RegionalDeploymentId) {
+	if o != nil && !IsNil(o.RegionalDeploymentId) {
 		return true
 	}
 
@@ -281,7 +284,7 @@ func (o *Instance) SetRegionalDeploymentId(v string) {
 
 // GetAllocationId returns the AllocationId field value if set, zero value otherwise.
 func (o *Instance) GetAllocationId() string {
-	if o == nil || isNil(o.AllocationId) {
+	if o == nil || IsNil(o.AllocationId) {
 		var ret string
 		return ret
 	}
@@ -291,15 +294,15 @@ func (o *Instance) GetAllocationId() string {
 // GetAllocationIdOk returns a tuple with the AllocationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetAllocationIdOk() (*string, bool) {
-	if o == nil || isNil(o.AllocationId) {
-    return nil, false
+	if o == nil || IsNil(o.AllocationId) {
+		return nil, false
 	}
 	return o.AllocationId, true
 }
 
 // HasAllocationId returns a boolean if a field has been set.
 func (o *Instance) HasAllocationId() bool {
-	if o != nil && !isNil(o.AllocationId) {
+	if o != nil && !IsNil(o.AllocationId) {
 		return true
 	}
 
@@ -313,7 +316,7 @@ func (o *Instance) SetAllocationId(v string) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *Instance) GetRegion() string {
-	if o == nil || isNil(o.Region) {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -323,15 +326,15 @@ func (o *Instance) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetRegionOk() (*string, bool) {
-	if o == nil || isNil(o.Region) {
-    return nil, false
+	if o == nil || IsNil(o.Region) {
+		return nil, false
 	}
 	return o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *Instance) HasRegion() bool {
-	if o != nil && !isNil(o.Region) {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -345,7 +348,7 @@ func (o *Instance) SetRegion(v string) {
 
 // GetDatacenter returns the Datacenter field value if set, zero value otherwise.
 func (o *Instance) GetDatacenter() string {
-	if o == nil || isNil(o.Datacenter) {
+	if o == nil || IsNil(o.Datacenter) {
 		var ret string
 		return ret
 	}
@@ -355,15 +358,15 @@ func (o *Instance) GetDatacenter() string {
 // GetDatacenterOk returns a tuple with the Datacenter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetDatacenterOk() (*string, bool) {
-	if o == nil || isNil(o.Datacenter) {
-    return nil, false
+	if o == nil || IsNil(o.Datacenter) {
+		return nil, false
 	}
 	return o.Datacenter, true
 }
 
 // HasDatacenter returns a boolean if a field has been set.
 func (o *Instance) HasDatacenter() bool {
-	if o != nil && !isNil(o.Datacenter) {
+	if o != nil && !IsNil(o.Datacenter) {
 		return true
 	}
 
@@ -377,7 +380,7 @@ func (o *Instance) SetDatacenter(v string) {
 
 // GetHypervisor returns the Hypervisor field value if set, zero value otherwise.
 func (o *Instance) GetHypervisor() string {
-	if o == nil || isNil(o.Hypervisor) {
+	if o == nil || IsNil(o.Hypervisor) {
 		var ret string
 		return ret
 	}
@@ -387,15 +390,15 @@ func (o *Instance) GetHypervisor() string {
 // GetHypervisorOk returns a tuple with the Hypervisor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetHypervisorOk() (*string, bool) {
-	if o == nil || isNil(o.Hypervisor) {
-    return nil, false
+	if o == nil || IsNil(o.Hypervisor) {
+		return nil, false
 	}
 	return o.Hypervisor, true
 }
 
 // HasHypervisor returns a boolean if a field has been set.
 func (o *Instance) HasHypervisor() bool {
-	if o != nil && !isNil(o.Hypervisor) {
+	if o != nil && !IsNil(o.Hypervisor) {
 		return true
 	}
 
@@ -409,7 +412,7 @@ func (o *Instance) SetHypervisor(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Instance) GetStatus() InstanceStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret InstanceStatus
 		return ret
 	}
@@ -419,15 +422,15 @@ func (o *Instance) GetStatus() InstanceStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetStatusOk() (*InstanceStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Instance) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -441,7 +444,7 @@ func (o *Instance) SetStatus(v InstanceStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *Instance) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -451,15 +454,15 @@ func (o *Instance) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *Instance) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -473,7 +476,7 @@ func (o *Instance) SetMessages(v []string) {
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *Instance) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -483,15 +486,15 @@ func (o *Instance) GetStartedAt() time.Time {
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *Instance) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -505,7 +508,7 @@ func (o *Instance) SetStartedAt(v time.Time) {
 
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
 func (o *Instance) GetTerminatedAt() time.Time {
-	if o == nil || isNil(o.TerminatedAt) {
+	if o == nil || IsNil(o.TerminatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -515,15 +518,15 @@ func (o *Instance) GetTerminatedAt() time.Time {
 // GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Instance) GetTerminatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.TerminatedAt) {
+		return nil, false
 	}
 	return o.TerminatedAt, true
 }
 
 // HasTerminatedAt returns a boolean if a field has been set.
 func (o *Instance) HasTerminatedAt() bool {
-	if o != nil && !isNil(o.TerminatedAt) {
+	if o != nil && !IsNil(o.TerminatedAt) {
 		return true
 	}
 
@@ -536,53 +539,61 @@ func (o *Instance) SetTerminatedAt(v time.Time) {
 }
 
 func (o Instance) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
-	}
-	if !isNil(o.RegionalDeploymentId) {
-		toSerialize["regional_deployment_id"] = o.RegionalDeploymentId
-	}
-	if !isNil(o.AllocationId) {
-		toSerialize["allocation_id"] = o.AllocationId
-	}
-	if !isNil(o.Region) {
-		toSerialize["region"] = o.Region
-	}
-	if !isNil(o.Datacenter) {
-		toSerialize["datacenter"] = o.Datacenter
-	}
-	if !isNil(o.Hypervisor) {
-		toSerialize["hypervisor"] = o.Hypervisor
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["started_at"] = o.StartedAt
-	}
-	if !isNil(o.TerminatedAt) {
-		toSerialize["terminated_at"] = o.TerminatedAt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Instance) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.RegionalDeploymentId) {
+		toSerialize["regional_deployment_id"] = o.RegionalDeploymentId
+	}
+	if !IsNil(o.AllocationId) {
+		toSerialize["allocation_id"] = o.AllocationId
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.Datacenter) {
+		toSerialize["datacenter"] = o.Datacenter
+	}
+	if !IsNil(o.Hypervisor) {
+		toSerialize["hypervisor"] = o.Hypervisor
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if !IsNil(o.TerminatedAt) {
+		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableInstance struct {

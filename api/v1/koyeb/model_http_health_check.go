@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the HTTPHealthCheck type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HTTPHealthCheck{}
+
 // HTTPHealthCheck struct for HTTPHealthCheck
 type HTTPHealthCheck struct {
 	Port *int64 `json:"port,omitempty"`
@@ -41,7 +44,7 @@ func NewHTTPHealthCheckWithDefaults() *HTTPHealthCheck {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *HTTPHealthCheck) GetPort() int64 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int64
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *HTTPHealthCheck) GetPort() int64 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HTTPHealthCheck) GetPortOk() (*int64, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *HTTPHealthCheck) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *HTTPHealthCheck) SetPort(v int64) {
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *HTTPHealthCheck) GetPath() string {
-	if o == nil || isNil(o.Path) {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *HTTPHealthCheck) GetPath() string {
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HTTPHealthCheck) GetPathOk() (*string, bool) {
-	if o == nil || isNil(o.Path) {
-    return nil, false
+	if o == nil || IsNil(o.Path) {
+		return nil, false
 	}
 	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *HTTPHealthCheck) HasPath() bool {
-	if o != nil && !isNil(o.Path) {
+	if o != nil && !IsNil(o.Path) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *HTTPHealthCheck) SetPath(v string) {
 
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *HTTPHealthCheck) GetMethod() string {
-	if o == nil || isNil(o.Method) {
+	if o == nil || IsNil(o.Method) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *HTTPHealthCheck) GetMethod() string {
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HTTPHealthCheck) GetMethodOk() (*string, bool) {
-	if o == nil || isNil(o.Method) {
-    return nil, false
+	if o == nil || IsNil(o.Method) {
+		return nil, false
 	}
 	return o.Method, true
 }
 
 // HasMethod returns a boolean if a field has been set.
 func (o *HTTPHealthCheck) HasMethod() bool {
-	if o != nil && !isNil(o.Method) {
+	if o != nil && !IsNil(o.Method) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *HTTPHealthCheck) SetMethod(v string) {
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *HTTPHealthCheck) GetHeaders() []HTTPHeader {
-	if o == nil || isNil(o.Headers) {
+	if o == nil || IsNil(o.Headers) {
 		var ret []HTTPHeader
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *HTTPHealthCheck) GetHeaders() []HTTPHeader {
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *HTTPHealthCheck) GetHeadersOk() ([]HTTPHeader, bool) {
-	if o == nil || isNil(o.Headers) {
-    return nil, false
+	if o == nil || IsNil(o.Headers) {
+		return nil, false
 	}
 	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *HTTPHealthCheck) HasHeaders() bool {
-	if o != nil && !isNil(o.Headers) {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *HTTPHealthCheck) SetHeaders(v []HTTPHeader) {
 }
 
 func (o HTTPHealthCheck) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Path) {
-		toSerialize["path"] = o.Path
-	}
-	if !isNil(o.Method) {
-		toSerialize["method"] = o.Method
-	}
-	if !isNil(o.Headers) {
-		toSerialize["headers"] = o.Headers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o HTTPHealthCheck) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	if !IsNil(o.Method) {
+		toSerialize["method"] = o.Method
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
+	}
+	return toSerialize, nil
 }
 
 type NullableHTTPHealthCheck struct {

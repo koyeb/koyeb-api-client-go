@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubscriptionPaymentFailureStripeSDK type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriptionPaymentFailureStripeSDK{}
+
 // SubscriptionPaymentFailureStripeSDK struct for SubscriptionPaymentFailureStripeSDK
 type SubscriptionPaymentFailureStripeSDK struct {
 	ClientSecretKey *string `json:"client_secret_key,omitempty"`
@@ -39,7 +42,7 @@ func NewSubscriptionPaymentFailureStripeSDKWithDefaults() *SubscriptionPaymentFa
 
 // GetClientSecretKey returns the ClientSecretKey field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailureStripeSDK) GetClientSecretKey() string {
-	if o == nil || isNil(o.ClientSecretKey) {
+	if o == nil || IsNil(o.ClientSecretKey) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *SubscriptionPaymentFailureStripeSDK) GetClientSecretKey() string {
 // GetClientSecretKeyOk returns a tuple with the ClientSecretKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailureStripeSDK) GetClientSecretKeyOk() (*string, bool) {
-	if o == nil || isNil(o.ClientSecretKey) {
-    return nil, false
+	if o == nil || IsNil(o.ClientSecretKey) {
+		return nil, false
 	}
 	return o.ClientSecretKey, true
 }
 
 // HasClientSecretKey returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailureStripeSDK) HasClientSecretKey() bool {
-	if o != nil && !isNil(o.ClientSecretKey) {
+	if o != nil && !IsNil(o.ClientSecretKey) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *SubscriptionPaymentFailureStripeSDK) SetClientSecretKey(v string) {
 
 // GetRawJson returns the RawJson field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailureStripeSDK) GetRawJson() string {
-	if o == nil || isNil(o.RawJson) {
+	if o == nil || IsNil(o.RawJson) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *SubscriptionPaymentFailureStripeSDK) GetRawJson() string {
 // GetRawJsonOk returns a tuple with the RawJson field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailureStripeSDK) GetRawJsonOk() (*string, bool) {
-	if o == nil || isNil(o.RawJson) {
-    return nil, false
+	if o == nil || IsNil(o.RawJson) {
+		return nil, false
 	}
 	return o.RawJson, true
 }
 
 // HasRawJson returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailureStripeSDK) HasRawJson() bool {
-	if o != nil && !isNil(o.RawJson) {
+	if o != nil && !IsNil(o.RawJson) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *SubscriptionPaymentFailureStripeSDK) SetRawJson(v string) {
 }
 
 func (o SubscriptionPaymentFailureStripeSDK) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ClientSecretKey) {
-		toSerialize["client_secret_key"] = o.ClientSecretKey
-	}
-	if !isNil(o.RawJson) {
-		toSerialize["raw_json"] = o.RawJson
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubscriptionPaymentFailureStripeSDK) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClientSecretKey) {
+		toSerialize["client_secret_key"] = o.ClientSecretKey
+	}
+	if !IsNil(o.RawJson) {
+		toSerialize["raw_json"] = o.RawJson
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscriptionPaymentFailureStripeSDK struct {

@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the App type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &App{}
+
 // App struct for App
 type App struct {
 	Id *string `json:"id,omitempty"`
@@ -56,7 +59,7 @@ func NewAppWithDefaults() *App {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *App) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -66,15 +69,15 @@ func (o *App) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *App) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -88,7 +91,7 @@ func (o *App) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *App) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -98,15 +101,15 @@ func (o *App) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *App) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -120,7 +123,7 @@ func (o *App) SetName(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *App) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -130,15 +133,15 @@ func (o *App) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *App) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *App) SetOrganizationId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *App) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -162,15 +165,15 @@ func (o *App) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *App) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *App) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *App) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -194,15 +197,15 @@ func (o *App) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *App) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *App) SetUpdatedAt(v time.Time) {
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *App) GetStartedAt() time.Time {
-	if o == nil || isNil(o.StartedAt) {
+	if o == nil || IsNil(o.StartedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -226,15 +229,15 @@ func (o *App) GetStartedAt() time.Time {
 // GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetStartedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.StartedAt) {
-    return nil, false
+	if o == nil || IsNil(o.StartedAt) {
+		return nil, false
 	}
 	return o.StartedAt, true
 }
 
 // HasStartedAt returns a boolean if a field has been set.
 func (o *App) HasStartedAt() bool {
-	if o != nil && !isNil(o.StartedAt) {
+	if o != nil && !IsNil(o.StartedAt) {
 		return true
 	}
 
@@ -248,7 +251,7 @@ func (o *App) SetStartedAt(v time.Time) {
 
 // GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
 func (o *App) GetSucceededAt() time.Time {
-	if o == nil || isNil(o.SucceededAt) {
+	if o == nil || IsNil(o.SucceededAt) {
 		var ret time.Time
 		return ret
 	}
@@ -258,15 +261,15 @@ func (o *App) GetSucceededAt() time.Time {
 // GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetSucceededAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.SucceededAt) {
-    return nil, false
+	if o == nil || IsNil(o.SucceededAt) {
+		return nil, false
 	}
 	return o.SucceededAt, true
 }
 
 // HasSucceededAt returns a boolean if a field has been set.
 func (o *App) HasSucceededAt() bool {
-	if o != nil && !isNil(o.SucceededAt) {
+	if o != nil && !IsNil(o.SucceededAt) {
 		return true
 	}
 
@@ -280,7 +283,7 @@ func (o *App) SetSucceededAt(v time.Time) {
 
 // GetPausedAt returns the PausedAt field value if set, zero value otherwise.
 func (o *App) GetPausedAt() time.Time {
-	if o == nil || isNil(o.PausedAt) {
+	if o == nil || IsNil(o.PausedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -290,15 +293,15 @@ func (o *App) GetPausedAt() time.Time {
 // GetPausedAtOk returns a tuple with the PausedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetPausedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.PausedAt) {
-    return nil, false
+	if o == nil || IsNil(o.PausedAt) {
+		return nil, false
 	}
 	return o.PausedAt, true
 }
 
 // HasPausedAt returns a boolean if a field has been set.
 func (o *App) HasPausedAt() bool {
-	if o != nil && !isNil(o.PausedAt) {
+	if o != nil && !IsNil(o.PausedAt) {
 		return true
 	}
 
@@ -312,7 +315,7 @@ func (o *App) SetPausedAt(v time.Time) {
 
 // GetResumedAt returns the ResumedAt field value if set, zero value otherwise.
 func (o *App) GetResumedAt() time.Time {
-	if o == nil || isNil(o.ResumedAt) {
+	if o == nil || IsNil(o.ResumedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -322,15 +325,15 @@ func (o *App) GetResumedAt() time.Time {
 // GetResumedAtOk returns a tuple with the ResumedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetResumedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.ResumedAt) {
-    return nil, false
+	if o == nil || IsNil(o.ResumedAt) {
+		return nil, false
 	}
 	return o.ResumedAt, true
 }
 
 // HasResumedAt returns a boolean if a field has been set.
 func (o *App) HasResumedAt() bool {
-	if o != nil && !isNil(o.ResumedAt) {
+	if o != nil && !IsNil(o.ResumedAt) {
 		return true
 	}
 
@@ -344,7 +347,7 @@ func (o *App) SetResumedAt(v time.Time) {
 
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
 func (o *App) GetTerminatedAt() time.Time {
-	if o == nil || isNil(o.TerminatedAt) {
+	if o == nil || IsNil(o.TerminatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -354,15 +357,15 @@ func (o *App) GetTerminatedAt() time.Time {
 // GetTerminatedAtOk returns a tuple with the TerminatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetTerminatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.TerminatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.TerminatedAt) {
+		return nil, false
 	}
 	return o.TerminatedAt, true
 }
 
 // HasTerminatedAt returns a boolean if a field has been set.
 func (o *App) HasTerminatedAt() bool {
-	if o != nil && !isNil(o.TerminatedAt) {
+	if o != nil && !IsNil(o.TerminatedAt) {
 		return true
 	}
 
@@ -376,7 +379,7 @@ func (o *App) SetTerminatedAt(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *App) GetStatus() AppStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret AppStatus
 		return ret
 	}
@@ -386,15 +389,15 @@ func (o *App) GetStatus() AppStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetStatusOk() (*AppStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *App) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -408,7 +411,7 @@ func (o *App) SetStatus(v AppStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *App) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -418,15 +421,15 @@ func (o *App) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *App) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -440,7 +443,7 @@ func (o *App) SetMessages(v []string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *App) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -450,15 +453,15 @@ func (o *App) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *App) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -472,7 +475,7 @@ func (o *App) SetVersion(v string) {
 
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *App) GetDomains() []Domain {
-	if o == nil || isNil(o.Domains) {
+	if o == nil || IsNil(o.Domains) {
 		var ret []Domain
 		return ret
 	}
@@ -482,15 +485,15 @@ func (o *App) GetDomains() []Domain {
 // GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *App) GetDomainsOk() ([]Domain, bool) {
-	if o == nil || isNil(o.Domains) {
-    return nil, false
+	if o == nil || IsNil(o.Domains) {
+		return nil, false
 	}
 	return o.Domains, true
 }
 
 // HasDomains returns a boolean if a field has been set.
 func (o *App) HasDomains() bool {
-	if o != nil && !isNil(o.Domains) {
+	if o != nil && !IsNil(o.Domains) {
 		return true
 	}
 
@@ -503,50 +506,58 @@ func (o *App) SetDomains(v []Domain) {
 }
 
 func (o App) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.StartedAt) {
-		toSerialize["started_at"] = o.StartedAt
-	}
-	if !isNil(o.SucceededAt) {
-		toSerialize["succeeded_at"] = o.SucceededAt
-	}
-	if !isNil(o.PausedAt) {
-		toSerialize["paused_at"] = o.PausedAt
-	}
-	if !isNil(o.ResumedAt) {
-		toSerialize["resumed_at"] = o.ResumedAt
-	}
-	if !isNil(o.TerminatedAt) {
-		toSerialize["terminated_at"] = o.TerminatedAt
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.Domains) {
-		toSerialize["domains"] = o.Domains
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o App) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.StartedAt) {
+		toSerialize["started_at"] = o.StartedAt
+	}
+	if !IsNil(o.SucceededAt) {
+		toSerialize["succeeded_at"] = o.SucceededAt
+	}
+	if !IsNil(o.PausedAt) {
+		toSerialize["paused_at"] = o.PausedAt
+	}
+	if !IsNil(o.ResumedAt) {
+		toSerialize["resumed_at"] = o.ResumedAt
+	}
+	if !IsNil(o.TerminatedAt) {
+		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.Domains) {
+		toSerialize["domains"] = o.Domains
+	}
+	return toSerialize, nil
 }
 
 type NullableApp struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetInstanceReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetInstanceReply{}
+
 // GetInstanceReply struct for GetInstanceReply
 type GetInstanceReply struct {
 	Instance *Instance `json:"instance,omitempty"`
@@ -38,7 +41,7 @@ func NewGetInstanceReplyWithDefaults() *GetInstanceReply {
 
 // GetInstance returns the Instance field value if set, zero value otherwise.
 func (o *GetInstanceReply) GetInstance() Instance {
-	if o == nil || isNil(o.Instance) {
+	if o == nil || IsNil(o.Instance) {
 		var ret Instance
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetInstanceReply) GetInstance() Instance {
 // GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetInstanceReply) GetInstanceOk() (*Instance, bool) {
-	if o == nil || isNil(o.Instance) {
-    return nil, false
+	if o == nil || IsNil(o.Instance) {
+		return nil, false
 	}
 	return o.Instance, true
 }
 
 // HasInstance returns a boolean if a field has been set.
 func (o *GetInstanceReply) HasInstance() bool {
-	if o != nil && !isNil(o.Instance) {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetInstanceReply) SetInstance(v Instance) {
 }
 
 func (o GetInstanceReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Instance) {
-		toSerialize["instance"] = o.Instance
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetInstanceReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Instance) {
+		toSerialize["instance"] = o.Instance
+	}
+	return toSerialize, nil
 }
 
 type NullableGetInstanceReply struct {

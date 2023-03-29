@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentInstanceType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentInstanceType{}
+
 // DeploymentInstanceType struct for DeploymentInstanceType
 type DeploymentInstanceType struct {
 	Scopes []string `json:"scopes,omitempty"`
@@ -39,7 +42,7 @@ func NewDeploymentInstanceTypeWithDefaults() *DeploymentInstanceType {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise.
 func (o *DeploymentInstanceType) GetScopes() []string {
-	if o == nil || isNil(o.Scopes) {
+	if o == nil || IsNil(o.Scopes) {
 		var ret []string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DeploymentInstanceType) GetScopes() []string {
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentInstanceType) GetScopesOk() ([]string, bool) {
-	if o == nil || isNil(o.Scopes) {
-    return nil, false
+	if o == nil || IsNil(o.Scopes) {
+		return nil, false
 	}
 	return o.Scopes, true
 }
 
 // HasScopes returns a boolean if a field has been set.
 func (o *DeploymentInstanceType) HasScopes() bool {
-	if o != nil && !isNil(o.Scopes) {
+	if o != nil && !IsNil(o.Scopes) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DeploymentInstanceType) SetScopes(v []string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DeploymentInstanceType) GetType() string {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DeploymentInstanceType) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentInstanceType) GetTypeOk() (*string, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *DeploymentInstanceType) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DeploymentInstanceType) SetType(v string) {
 }
 
 func (o DeploymentInstanceType) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Scopes) {
-		toSerialize["scopes"] = o.Scopes
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentInstanceType) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Scopes) {
+		toSerialize["scopes"] = o.Scopes
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentInstanceType struct {

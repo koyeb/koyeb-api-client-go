@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExecCommandReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExecCommandReply{}
+
 // ExecCommandReply struct for ExecCommandReply
 type ExecCommandReply struct {
 	Stdout *ExecCommandIO `json:"stdout,omitempty"`
@@ -41,7 +44,7 @@ func NewExecCommandReplyWithDefaults() *ExecCommandReply {
 
 // GetStdout returns the Stdout field value if set, zero value otherwise.
 func (o *ExecCommandReply) GetStdout() ExecCommandIO {
-	if o == nil || isNil(o.Stdout) {
+	if o == nil || IsNil(o.Stdout) {
 		var ret ExecCommandIO
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ExecCommandReply) GetStdout() ExecCommandIO {
 // GetStdoutOk returns a tuple with the Stdout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandReply) GetStdoutOk() (*ExecCommandIO, bool) {
-	if o == nil || isNil(o.Stdout) {
-    return nil, false
+	if o == nil || IsNil(o.Stdout) {
+		return nil, false
 	}
 	return o.Stdout, true
 }
 
 // HasStdout returns a boolean if a field has been set.
 func (o *ExecCommandReply) HasStdout() bool {
-	if o != nil && !isNil(o.Stdout) {
+	if o != nil && !IsNil(o.Stdout) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ExecCommandReply) SetStdout(v ExecCommandIO) {
 
 // GetStderr returns the Stderr field value if set, zero value otherwise.
 func (o *ExecCommandReply) GetStderr() ExecCommandIO {
-	if o == nil || isNil(o.Stderr) {
+	if o == nil || IsNil(o.Stderr) {
 		var ret ExecCommandIO
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ExecCommandReply) GetStderr() ExecCommandIO {
 // GetStderrOk returns a tuple with the Stderr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandReply) GetStderrOk() (*ExecCommandIO, bool) {
-	if o == nil || isNil(o.Stderr) {
-    return nil, false
+	if o == nil || IsNil(o.Stderr) {
+		return nil, false
 	}
 	return o.Stderr, true
 }
 
 // HasStderr returns a boolean if a field has been set.
 func (o *ExecCommandReply) HasStderr() bool {
-	if o != nil && !isNil(o.Stderr) {
+	if o != nil && !IsNil(o.Stderr) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ExecCommandReply) SetStderr(v ExecCommandIO) {
 
 // GetExited returns the Exited field value if set, zero value otherwise.
 func (o *ExecCommandReply) GetExited() bool {
-	if o == nil || isNil(o.Exited) {
+	if o == nil || IsNil(o.Exited) {
 		var ret bool
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ExecCommandReply) GetExited() bool {
 // GetExitedOk returns a tuple with the Exited field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandReply) GetExitedOk() (*bool, bool) {
-	if o == nil || isNil(o.Exited) {
-    return nil, false
+	if o == nil || IsNil(o.Exited) {
+		return nil, false
 	}
 	return o.Exited, true
 }
 
 // HasExited returns a boolean if a field has been set.
 func (o *ExecCommandReply) HasExited() bool {
-	if o != nil && !isNil(o.Exited) {
+	if o != nil && !IsNil(o.Exited) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ExecCommandReply) SetExited(v bool) {
 
 // GetExitCode returns the ExitCode field value if set, zero value otherwise.
 func (o *ExecCommandReply) GetExitCode() int32 {
-	if o == nil || isNil(o.ExitCode) {
+	if o == nil || IsNil(o.ExitCode) {
 		var ret int32
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ExecCommandReply) GetExitCode() int32 {
 // GetExitCodeOk returns a tuple with the ExitCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandReply) GetExitCodeOk() (*int32, bool) {
-	if o == nil || isNil(o.ExitCode) {
-    return nil, false
+	if o == nil || IsNil(o.ExitCode) {
+		return nil, false
 	}
 	return o.ExitCode, true
 }
 
 // HasExitCode returns a boolean if a field has been set.
 func (o *ExecCommandReply) HasExitCode() bool {
-	if o != nil && !isNil(o.ExitCode) {
+	if o != nil && !IsNil(o.ExitCode) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ExecCommandReply) SetExitCode(v int32) {
 }
 
 func (o ExecCommandReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Stdout) {
-		toSerialize["stdout"] = o.Stdout
-	}
-	if !isNil(o.Stderr) {
-		toSerialize["stderr"] = o.Stderr
-	}
-	if !isNil(o.Exited) {
-		toSerialize["exited"] = o.Exited
-	}
-	if !isNil(o.ExitCode) {
-		toSerialize["exit_code"] = o.ExitCode
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExecCommandReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Stdout) {
+		toSerialize["stdout"] = o.Stdout
+	}
+	if !IsNil(o.Stderr) {
+		toSerialize["stderr"] = o.Stderr
+	}
+	if !IsNil(o.Exited) {
+		toSerialize["exited"] = o.Exited
+	}
+	if !IsNil(o.ExitCode) {
+		toSerialize["exit_code"] = o.ExitCode
+	}
+	return toSerialize, nil
 }
 
 type NullableExecCommandReply struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpsertSignupQualificationReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpsertSignupQualificationReply{}
+
 // UpsertSignupQualificationReply struct for UpsertSignupQualificationReply
 type UpsertSignupQualificationReply struct {
 	Organization *Organization `json:"organization,omitempty"`
@@ -38,7 +41,7 @@ func NewUpsertSignupQualificationReplyWithDefaults() *UpsertSignupQualificationR
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *UpsertSignupQualificationReply) GetOrganization() Organization {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		var ret Organization
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpsertSignupQualificationReply) GetOrganization() Organization {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpsertSignupQualificationReply) GetOrganizationOk() (*Organization, bool) {
-	if o == nil || isNil(o.Organization) {
-    return nil, false
+	if o == nil || IsNil(o.Organization) {
+		return nil, false
 	}
 	return o.Organization, true
 }
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *UpsertSignupQualificationReply) HasOrganization() bool {
-	if o != nil && !isNil(o.Organization) {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpsertSignupQualificationReply) SetOrganization(v Organization) {
 }
 
 func (o UpsertSignupQualificationReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Organization) {
-		toSerialize["organization"] = o.Organization
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpsertSignupQualificationReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Organization) {
+		toSerialize["organization"] = o.Organization
+	}
+	return toSerialize, nil
 }
 
 type NullableUpsertSignupQualificationReply struct {

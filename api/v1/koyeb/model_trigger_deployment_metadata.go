@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the TriggerDeploymentMetadata type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &TriggerDeploymentMetadata{}
+
 // TriggerDeploymentMetadata struct for TriggerDeploymentMetadata
 type TriggerDeploymentMetadata struct {
 	Type *TriggerDeploymentMetadataTriggerType `json:"type,omitempty"`
@@ -48,7 +51,7 @@ func NewTriggerDeploymentMetadataWithDefaults() *TriggerDeploymentMetadata {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *TriggerDeploymentMetadata) GetType() TriggerDeploymentMetadataTriggerType {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret TriggerDeploymentMetadataTriggerType
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *TriggerDeploymentMetadata) GetType() TriggerDeploymentMetadataTriggerTy
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TriggerDeploymentMetadata) GetTypeOk() (*TriggerDeploymentMetadataTriggerType, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *TriggerDeploymentMetadata) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *TriggerDeploymentMetadata) SetType(v TriggerDeploymentMetadataTriggerTy
 
 // GetActor returns the Actor field value if set, zero value otherwise.
 func (o *TriggerDeploymentMetadata) GetActor() TriggerDeploymentMetadataActorType {
-	if o == nil || isNil(o.Actor) {
+	if o == nil || IsNil(o.Actor) {
 		var ret TriggerDeploymentMetadataActorType
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *TriggerDeploymentMetadata) GetActor() TriggerDeploymentMetadataActorTyp
 // GetActorOk returns a tuple with the Actor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TriggerDeploymentMetadata) GetActorOk() (*TriggerDeploymentMetadataActorType, bool) {
-	if o == nil || isNil(o.Actor) {
-    return nil, false
+	if o == nil || IsNil(o.Actor) {
+		return nil, false
 	}
 	return o.Actor, true
 }
 
 // HasActor returns a boolean if a field has been set.
 func (o *TriggerDeploymentMetadata) HasActor() bool {
-	if o != nil && !isNil(o.Actor) {
+	if o != nil && !IsNil(o.Actor) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *TriggerDeploymentMetadata) SetActor(v TriggerDeploymentMetadataActorTyp
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *TriggerDeploymentMetadata) GetGit() GitDeploymentMetadata {
-	if o == nil || isNil(o.Git) {
+	if o == nil || IsNil(o.Git) {
 		var ret GitDeploymentMetadata
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *TriggerDeploymentMetadata) GetGit() GitDeploymentMetadata {
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TriggerDeploymentMetadata) GetGitOk() (*GitDeploymentMetadata, bool) {
-	if o == nil || isNil(o.Git) {
-    return nil, false
+	if o == nil || IsNil(o.Git) {
+		return nil, false
 	}
 	return o.Git, true
 }
 
 // HasGit returns a boolean if a field has been set.
 func (o *TriggerDeploymentMetadata) HasGit() bool {
-	if o != nil && !isNil(o.Git) {
+	if o != nil && !IsNil(o.Git) {
 		return true
 	}
 
@@ -143,17 +146,25 @@ func (o *TriggerDeploymentMetadata) SetGit(v GitDeploymentMetadata) {
 }
 
 func (o TriggerDeploymentMetadata) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Actor) {
-		toSerialize["actor"] = o.Actor
-	}
-	if !isNil(o.Git) {
-		toSerialize["git"] = o.Git
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o TriggerDeploymentMetadata) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Actor) {
+		toSerialize["actor"] = o.Actor
+	}
+	if !IsNil(o.Git) {
+		toSerialize["git"] = o.Git
+	}
+	return toSerialize, nil
 }
 
 type NullableTriggerDeploymentMetadata struct {

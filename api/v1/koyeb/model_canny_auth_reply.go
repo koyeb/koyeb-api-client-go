@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the CannyAuthReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &CannyAuthReply{}
+
 // CannyAuthReply struct for CannyAuthReply
 type CannyAuthReply struct {
 	Token *string `json:"token,omitempty"`
@@ -38,7 +41,7 @@ func NewCannyAuthReplyWithDefaults() *CannyAuthReply {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *CannyAuthReply) GetToken() string {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *CannyAuthReply) GetToken() string {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CannyAuthReply) GetTokenOk() (*string, bool) {
-	if o == nil || isNil(o.Token) {
-    return nil, false
+	if o == nil || IsNil(o.Token) {
+		return nil, false
 	}
 	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *CannyAuthReply) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *CannyAuthReply) SetToken(v string) {
 }
 
 func (o CannyAuthReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Token) {
-		toSerialize["token"] = o.Token
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o CannyAuthReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	return toSerialize, nil
 }
 
 type NullableCannyAuthReply struct {

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PublicOrganization type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublicOrganization{}
+
 // PublicOrganization struct for PublicOrganization
 type PublicOrganization struct {
 	Id *string `json:"id,omitempty"`
@@ -49,7 +52,7 @@ func NewPublicOrganizationWithDefaults() *PublicOrganization {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PublicOrganization) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -59,15 +62,15 @@ func (o *PublicOrganization) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicOrganization) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *PublicOrganization) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *PublicOrganization) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PublicOrganization) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -91,15 +94,15 @@ func (o *PublicOrganization) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicOrganization) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *PublicOrganization) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *PublicOrganization) SetName(v string) {
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *PublicOrganization) GetPlan() Plan {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret Plan
 		return ret
 	}
@@ -123,15 +126,15 @@ func (o *PublicOrganization) GetPlan() Plan {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicOrganization) GetPlanOk() (*Plan, bool) {
-	if o == nil || isNil(o.Plan) {
-    return nil, false
+	if o == nil || IsNil(o.Plan) {
+		return nil, false
 	}
 	return o.Plan, true
 }
 
 // HasPlan returns a boolean if a field has been set.
 func (o *PublicOrganization) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *PublicOrganization) SetPlan(v Plan) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *PublicOrganization) GetStatus() OrganizationStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret OrganizationStatus
 		return ret
 	}
@@ -155,15 +158,15 @@ func (o *PublicOrganization) GetStatus() OrganizationStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PublicOrganization) GetStatusOk() (*OrganizationStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *PublicOrganization) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -176,20 +179,28 @@ func (o *PublicOrganization) SetStatus(v OrganizationStatus) {
 }
 
 func (o PublicOrganization) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Plan) {
-		toSerialize["plan"] = o.Plan
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PublicOrganization) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Plan) {
+		toSerialize["plan"] = o.Plan
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	return toSerialize, nil
 }
 
 type NullablePublicOrganization struct {

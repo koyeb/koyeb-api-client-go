@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RemoveOrganizationMemberReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RemoveOrganizationMemberReply{}
+
 // RemoveOrganizationMemberReply struct for RemoveOrganizationMemberReply
 type RemoveOrganizationMemberReply struct {
 	Member *OrganizationMember `json:"member,omitempty"`
@@ -38,7 +41,7 @@ func NewRemoveOrganizationMemberReplyWithDefaults() *RemoveOrganizationMemberRep
 
 // GetMember returns the Member field value if set, zero value otherwise.
 func (o *RemoveOrganizationMemberReply) GetMember() OrganizationMember {
-	if o == nil || isNil(o.Member) {
+	if o == nil || IsNil(o.Member) {
 		var ret OrganizationMember
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *RemoveOrganizationMemberReply) GetMember() OrganizationMember {
 // GetMemberOk returns a tuple with the Member field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RemoveOrganizationMemberReply) GetMemberOk() (*OrganizationMember, bool) {
-	if o == nil || isNil(o.Member) {
-    return nil, false
+	if o == nil || IsNil(o.Member) {
+		return nil, false
 	}
 	return o.Member, true
 }
 
 // HasMember returns a boolean if a field has been set.
 func (o *RemoveOrganizationMemberReply) HasMember() bool {
-	if o != nil && !isNil(o.Member) {
+	if o != nil && !IsNil(o.Member) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *RemoveOrganizationMemberReply) SetMember(v OrganizationMember) {
 }
 
 func (o RemoveOrganizationMemberReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Member) {
-		toSerialize["member"] = o.Member
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RemoveOrganizationMemberReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Member) {
+		toSerialize["member"] = o.Member
+	}
+	return toSerialize, nil
 }
 
 type NullableRemoveOrganizationMemberReply struct {

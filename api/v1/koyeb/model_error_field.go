@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorField type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorField{}
+
 // ErrorField struct for ErrorField
 type ErrorField struct {
 	Field *string `json:"field,omitempty"`
@@ -39,7 +42,7 @@ func NewErrorFieldWithDefaults() *ErrorField {
 
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *ErrorField) GetField() string {
-	if o == nil || isNil(o.Field) {
+	if o == nil || IsNil(o.Field) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ErrorField) GetField() string {
 // GetFieldOk returns a tuple with the Field field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorField) GetFieldOk() (*string, bool) {
-	if o == nil || isNil(o.Field) {
-    return nil, false
+	if o == nil || IsNil(o.Field) {
+		return nil, false
 	}
 	return o.Field, true
 }
 
 // HasField returns a boolean if a field has been set.
 func (o *ErrorField) HasField() bool {
-	if o != nil && !isNil(o.Field) {
+	if o != nil && !IsNil(o.Field) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ErrorField) SetField(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ErrorField) GetDescription() string {
-	if o == nil || isNil(o.Description) {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *ErrorField) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorField) GetDescriptionOk() (*string, bool) {
-	if o == nil || isNil(o.Description) {
-    return nil, false
+	if o == nil || IsNil(o.Description) {
+		return nil, false
 	}
 	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ErrorField) HasDescription() bool {
-	if o != nil && !isNil(o.Description) {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *ErrorField) SetDescription(v string) {
 }
 
 func (o ErrorField) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Field) {
-		toSerialize["field"] = o.Field
-	}
-	if !isNil(o.Description) {
-		toSerialize["description"] = o.Description
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ErrorField) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Field) {
+		toSerialize["field"] = o.Field
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	return toSerialize, nil
 }
 
 type NullableErrorField struct {

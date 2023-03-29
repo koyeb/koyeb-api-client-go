@@ -23,6 +23,10 @@ const (
 	ORGANIZATIONSTATUS_WARNING OrganizationStatus = "WARNING"
 	ORGANIZATIONSTATUS_LOCKED OrganizationStatus = "LOCKED"
 	ORGANIZATIONSTATUS_ACTIVE OrganizationStatus = "ACTIVE"
+	ORGANIZATIONSTATUS_DEACTIVATING OrganizationStatus = "DEACTIVATING"
+	ORGANIZATIONSTATUS_DEACTIVATED OrganizationStatus = "DEACTIVATED"
+	ORGANIZATIONSTATUS_DELETING OrganizationStatus = "DELETING"
+	ORGANIZATIONSTATUS_DELETED OrganizationStatus = "DELETED"
 )
 
 // All allowed values of OrganizationStatus enum
@@ -30,6 +34,10 @@ var AllowedOrganizationStatusEnumValues = []OrganizationStatus{
 	"WARNING",
 	"LOCKED",
 	"ACTIVE",
+	"DEACTIVATING",
+	"DEACTIVATED",
+	"DELETING",
+	"DELETED",
 }
 
 func (v *OrganizationStatus) UnmarshalJSON(src []byte) error {

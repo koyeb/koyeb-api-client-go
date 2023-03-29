@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentRoute type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentRoute{}
+
 // DeploymentRoute struct for DeploymentRoute
 type DeploymentRoute struct {
 	Port *int64 `json:"port,omitempty"`
@@ -39,7 +42,7 @@ func NewDeploymentRouteWithDefaults() *DeploymentRoute {
 
 // GetPort returns the Port field value if set, zero value otherwise.
 func (o *DeploymentRoute) GetPort() int64 {
-	if o == nil || isNil(o.Port) {
+	if o == nil || IsNil(o.Port) {
 		var ret int64
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DeploymentRoute) GetPort() int64 {
 // GetPortOk returns a tuple with the Port field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentRoute) GetPortOk() (*int64, bool) {
-	if o == nil || isNil(o.Port) {
-    return nil, false
+	if o == nil || IsNil(o.Port) {
+		return nil, false
 	}
 	return o.Port, true
 }
 
 // HasPort returns a boolean if a field has been set.
 func (o *DeploymentRoute) HasPort() bool {
-	if o != nil && !isNil(o.Port) {
+	if o != nil && !IsNil(o.Port) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DeploymentRoute) SetPort(v int64) {
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *DeploymentRoute) GetPath() string {
-	if o == nil || isNil(o.Path) {
+	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DeploymentRoute) GetPath() string {
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentRoute) GetPathOk() (*string, bool) {
-	if o == nil || isNil(o.Path) {
-    return nil, false
+	if o == nil || IsNil(o.Path) {
+		return nil, false
 	}
 	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
 func (o *DeploymentRoute) HasPath() bool {
-	if o != nil && !isNil(o.Path) {
+	if o != nil && !IsNil(o.Path) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DeploymentRoute) SetPath(v string) {
 }
 
 func (o DeploymentRoute) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Port) {
-		toSerialize["port"] = o.Port
-	}
-	if !isNil(o.Path) {
-		toSerialize["path"] = o.Path
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentRoute) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Port) {
+		toSerialize["port"] = o.Port
+	}
+	if !IsNil(o.Path) {
+		toSerialize["path"] = o.Path
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentRoute struct {

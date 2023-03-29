@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the LogEntry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LogEntry{}
+
 // LogEntry struct for LogEntry
 type LogEntry struct {
 	Msg *string `json:"msg,omitempty"`
@@ -41,7 +44,7 @@ func NewLogEntryWithDefaults() *LogEntry {
 
 // GetMsg returns the Msg field value if set, zero value otherwise.
 func (o *LogEntry) GetMsg() string {
-	if o == nil || isNil(o.Msg) {
+	if o == nil || IsNil(o.Msg) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *LogEntry) GetMsg() string {
 // GetMsgOk returns a tuple with the Msg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogEntry) GetMsgOk() (*string, bool) {
-	if o == nil || isNil(o.Msg) {
-    return nil, false
+	if o == nil || IsNil(o.Msg) {
+		return nil, false
 	}
 	return o.Msg, true
 }
 
 // HasMsg returns a boolean if a field has been set.
 func (o *LogEntry) HasMsg() bool {
-	if o != nil && !isNil(o.Msg) {
+	if o != nil && !IsNil(o.Msg) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *LogEntry) SetMsg(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *LogEntry) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *LogEntry) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogEntry) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *LogEntry) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *LogEntry) SetCreatedAt(v time.Time) {
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *LogEntry) GetLabels() map[string]interface{} {
-	if o == nil || isNil(o.Labels) {
+	if o == nil || IsNil(o.Labels) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *LogEntry) GetLabels() map[string]interface{} {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LogEntry) GetLabelsOk() (map[string]interface{}, bool) {
-	if o == nil || isNil(o.Labels) {
-    return map[string]interface{}{}, false
+	if o == nil || IsNil(o.Labels) {
+		return map[string]interface{}{}, false
 	}
 	return o.Labels, true
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *LogEntry) HasLabels() bool {
-	if o != nil && !isNil(o.Labels) {
+	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *LogEntry) SetLabels(v map[string]interface{}) {
 }
 
 func (o LogEntry) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Msg) {
-		toSerialize["msg"] = o.Msg
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.Labels) {
-		toSerialize["labels"] = o.Labels
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o LogEntry) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Msg) {
+		toSerialize["msg"] = o.Msg
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	return toSerialize, nil
 }
 
 type NullableLogEntry struct {

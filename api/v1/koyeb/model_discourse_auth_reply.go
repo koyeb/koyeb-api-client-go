@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DiscourseAuthReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DiscourseAuthReply{}
+
 // DiscourseAuthReply struct for DiscourseAuthReply
 type DiscourseAuthReply struct {
 	Sso *string `json:"sso,omitempty"`
@@ -39,7 +42,7 @@ func NewDiscourseAuthReplyWithDefaults() *DiscourseAuthReply {
 
 // GetSso returns the Sso field value if set, zero value otherwise.
 func (o *DiscourseAuthReply) GetSso() string {
-	if o == nil || isNil(o.Sso) {
+	if o == nil || IsNil(o.Sso) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DiscourseAuthReply) GetSso() string {
 // GetSsoOk returns a tuple with the Sso field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiscourseAuthReply) GetSsoOk() (*string, bool) {
-	if o == nil || isNil(o.Sso) {
-    return nil, false
+	if o == nil || IsNil(o.Sso) {
+		return nil, false
 	}
 	return o.Sso, true
 }
 
 // HasSso returns a boolean if a field has been set.
 func (o *DiscourseAuthReply) HasSso() bool {
-	if o != nil && !isNil(o.Sso) {
+	if o != nil && !IsNil(o.Sso) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DiscourseAuthReply) SetSso(v string) {
 
 // GetSig returns the Sig field value if set, zero value otherwise.
 func (o *DiscourseAuthReply) GetSig() string {
-	if o == nil || isNil(o.Sig) {
+	if o == nil || IsNil(o.Sig) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DiscourseAuthReply) GetSig() string {
 // GetSigOk returns a tuple with the Sig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DiscourseAuthReply) GetSigOk() (*string, bool) {
-	if o == nil || isNil(o.Sig) {
-    return nil, false
+	if o == nil || IsNil(o.Sig) {
+		return nil, false
 	}
 	return o.Sig, true
 }
 
 // HasSig returns a boolean if a field has been set.
 func (o *DiscourseAuthReply) HasSig() bool {
-	if o != nil && !isNil(o.Sig) {
+	if o != nil && !IsNil(o.Sig) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DiscourseAuthReply) SetSig(v string) {
 }
 
 func (o DiscourseAuthReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Sso) {
-		toSerialize["sso"] = o.Sso
-	}
-	if !isNil(o.Sig) {
-		toSerialize["sig"] = o.Sig
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DiscourseAuthReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Sso) {
+		toSerialize["sso"] = o.Sso
+	}
+	if !IsNil(o.Sig) {
+		toSerialize["sig"] = o.Sig
+	}
+	return toSerialize, nil
 }
 
 type NullableDiscourseAuthReply struct {

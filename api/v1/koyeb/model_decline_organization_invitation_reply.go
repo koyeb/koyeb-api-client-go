@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeclineOrganizationInvitationReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeclineOrganizationInvitationReply{}
+
 // DeclineOrganizationInvitationReply struct for DeclineOrganizationInvitationReply
 type DeclineOrganizationInvitationReply struct {
 	Invitation *OrganizationInvitation `json:"invitation,omitempty"`
@@ -38,7 +41,7 @@ func NewDeclineOrganizationInvitationReplyWithDefaults() *DeclineOrganizationInv
 
 // GetInvitation returns the Invitation field value if set, zero value otherwise.
 func (o *DeclineOrganizationInvitationReply) GetInvitation() OrganizationInvitation {
-	if o == nil || isNil(o.Invitation) {
+	if o == nil || IsNil(o.Invitation) {
 		var ret OrganizationInvitation
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *DeclineOrganizationInvitationReply) GetInvitation() OrganizationInvitat
 // GetInvitationOk returns a tuple with the Invitation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeclineOrganizationInvitationReply) GetInvitationOk() (*OrganizationInvitation, bool) {
-	if o == nil || isNil(o.Invitation) {
-    return nil, false
+	if o == nil || IsNil(o.Invitation) {
+		return nil, false
 	}
 	return o.Invitation, true
 }
 
 // HasInvitation returns a boolean if a field has been set.
 func (o *DeclineOrganizationInvitationReply) HasInvitation() bool {
-	if o != nil && !isNil(o.Invitation) {
+	if o != nil && !IsNil(o.Invitation) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *DeclineOrganizationInvitationReply) SetInvitation(v OrganizationInvitat
 }
 
 func (o DeclineOrganizationInvitationReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Invitation) {
-		toSerialize["invitation"] = o.Invitation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeclineOrganizationInvitationReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Invitation) {
+		toSerialize["invitation"] = o.Invitation
+	}
+	return toSerialize, nil
 }
 
 type NullableDeclineOrganizationInvitationReply struct {

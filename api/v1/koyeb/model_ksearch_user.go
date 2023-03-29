@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KsearchUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KsearchUser{}
+
 // KsearchUser struct for KsearchUser
 type KsearchUser struct {
 	Id *string `json:"id,omitempty"`
@@ -41,7 +44,7 @@ func NewKsearchUserWithDefaults() *KsearchUser {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KsearchUser) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *KsearchUser) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchUser) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *KsearchUser) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *KsearchUser) SetId(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *KsearchUser) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *KsearchUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchUser) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *KsearchUser) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *KsearchUser) SetEmail(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *KsearchUser) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *KsearchUser) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchUser) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *KsearchUser) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *KsearchUser) SetName(v string) {
 
 // GetGithubUser returns the GithubUser field value if set, zero value otherwise.
 func (o *KsearchUser) GetGithubUser() string {
-	if o == nil || isNil(o.GithubUser) {
+	if o == nil || IsNil(o.GithubUser) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *KsearchUser) GetGithubUser() string {
 // GetGithubUserOk returns a tuple with the GithubUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchUser) GetGithubUserOk() (*string, bool) {
-	if o == nil || isNil(o.GithubUser) {
-    return nil, false
+	if o == nil || IsNil(o.GithubUser) {
+		return nil, false
 	}
 	return o.GithubUser, true
 }
 
 // HasGithubUser returns a boolean if a field has been set.
 func (o *KsearchUser) HasGithubUser() bool {
-	if o != nil && !isNil(o.GithubUser) {
+	if o != nil && !IsNil(o.GithubUser) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *KsearchUser) SetGithubUser(v string) {
 }
 
 func (o KsearchUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.GithubUser) {
-		toSerialize["github_user"] = o.GithubUser
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KsearchUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.GithubUser) {
+		toSerialize["github_user"] = o.GithubUser
+	}
+	return toSerialize, nil
 }
 
 type NullableKsearchUser struct {

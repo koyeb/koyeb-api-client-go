@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentDefinition type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentDefinition{}
+
 // DeploymentDefinition struct for DeploymentDefinition
 type DeploymentDefinition struct {
 	Name *string `json:"name,omitempty"`
@@ -25,6 +28,7 @@ type DeploymentDefinition struct {
 	Scalings []DeploymentScaling `json:"scalings,omitempty"`
 	InstanceTypes []DeploymentInstanceType `json:"instance_types,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
+	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 }
@@ -52,7 +56,7 @@ func NewDeploymentDefinitionWithDefaults() *DeploymentDefinition {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -62,15 +66,15 @@ func (o *DeploymentDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -84,7 +88,7 @@ func (o *DeploymentDefinition) SetName(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetType() DeploymentDefinitionType {
-	if o == nil || isNil(o.Type) {
+	if o == nil || IsNil(o.Type) {
 		var ret DeploymentDefinitionType
 		return ret
 	}
@@ -94,15 +98,15 @@ func (o *DeploymentDefinition) GetType() DeploymentDefinitionType {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetTypeOk() (*DeploymentDefinitionType, bool) {
-	if o == nil || isNil(o.Type) {
-    return nil, false
+	if o == nil || IsNil(o.Type) {
+		return nil, false
 	}
 	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasType() bool {
-	if o != nil && !isNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -116,7 +120,7 @@ func (o *DeploymentDefinition) SetType(v DeploymentDefinitionType) {
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetRoutes() []DeploymentRoute {
-	if o == nil || isNil(o.Routes) {
+	if o == nil || IsNil(o.Routes) {
 		var ret []DeploymentRoute
 		return ret
 	}
@@ -126,15 +130,15 @@ func (o *DeploymentDefinition) GetRoutes() []DeploymentRoute {
 // GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetRoutesOk() ([]DeploymentRoute, bool) {
-	if o == nil || isNil(o.Routes) {
-    return nil, false
+	if o == nil || IsNil(o.Routes) {
+		return nil, false
 	}
 	return o.Routes, true
 }
 
 // HasRoutes returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasRoutes() bool {
-	if o != nil && !isNil(o.Routes) {
+	if o != nil && !IsNil(o.Routes) {
 		return true
 	}
 
@@ -148,7 +152,7 @@ func (o *DeploymentDefinition) SetRoutes(v []DeploymentRoute) {
 
 // GetPorts returns the Ports field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetPorts() []DeploymentPort {
-	if o == nil || isNil(o.Ports) {
+	if o == nil || IsNil(o.Ports) {
 		var ret []DeploymentPort
 		return ret
 	}
@@ -158,15 +162,15 @@ func (o *DeploymentDefinition) GetPorts() []DeploymentPort {
 // GetPortsOk returns a tuple with the Ports field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetPortsOk() ([]DeploymentPort, bool) {
-	if o == nil || isNil(o.Ports) {
-    return nil, false
+	if o == nil || IsNil(o.Ports) {
+		return nil, false
 	}
 	return o.Ports, true
 }
 
 // HasPorts returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasPorts() bool {
-	if o != nil && !isNil(o.Ports) {
+	if o != nil && !IsNil(o.Ports) {
 		return true
 	}
 
@@ -180,7 +184,7 @@ func (o *DeploymentDefinition) SetPorts(v []DeploymentPort) {
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetEnv() []DeploymentEnv {
-	if o == nil || isNil(o.Env) {
+	if o == nil || IsNil(o.Env) {
 		var ret []DeploymentEnv
 		return ret
 	}
@@ -190,15 +194,15 @@ func (o *DeploymentDefinition) GetEnv() []DeploymentEnv {
 // GetEnvOk returns a tuple with the Env field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetEnvOk() ([]DeploymentEnv, bool) {
-	if o == nil || isNil(o.Env) {
-    return nil, false
+	if o == nil || IsNil(o.Env) {
+		return nil, false
 	}
 	return o.Env, true
 }
 
 // HasEnv returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasEnv() bool {
-	if o != nil && !isNil(o.Env) {
+	if o != nil && !IsNil(o.Env) {
 		return true
 	}
 
@@ -212,7 +216,7 @@ func (o *DeploymentDefinition) SetEnv(v []DeploymentEnv) {
 
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetRegions() []string {
-	if o == nil || isNil(o.Regions) {
+	if o == nil || IsNil(o.Regions) {
 		var ret []string
 		return ret
 	}
@@ -222,15 +226,15 @@ func (o *DeploymentDefinition) GetRegions() []string {
 // GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetRegionsOk() ([]string, bool) {
-	if o == nil || isNil(o.Regions) {
-    return nil, false
+	if o == nil || IsNil(o.Regions) {
+		return nil, false
 	}
 	return o.Regions, true
 }
 
 // HasRegions returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasRegions() bool {
-	if o != nil && !isNil(o.Regions) {
+	if o != nil && !IsNil(o.Regions) {
 		return true
 	}
 
@@ -244,7 +248,7 @@ func (o *DeploymentDefinition) SetRegions(v []string) {
 
 // GetScalings returns the Scalings field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetScalings() []DeploymentScaling {
-	if o == nil || isNil(o.Scalings) {
+	if o == nil || IsNil(o.Scalings) {
 		var ret []DeploymentScaling
 		return ret
 	}
@@ -254,15 +258,15 @@ func (o *DeploymentDefinition) GetScalings() []DeploymentScaling {
 // GetScalingsOk returns a tuple with the Scalings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetScalingsOk() ([]DeploymentScaling, bool) {
-	if o == nil || isNil(o.Scalings) {
-    return nil, false
+	if o == nil || IsNil(o.Scalings) {
+		return nil, false
 	}
 	return o.Scalings, true
 }
 
 // HasScalings returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasScalings() bool {
-	if o != nil && !isNil(o.Scalings) {
+	if o != nil && !IsNil(o.Scalings) {
 		return true
 	}
 
@@ -276,7 +280,7 @@ func (o *DeploymentDefinition) SetScalings(v []DeploymentScaling) {
 
 // GetInstanceTypes returns the InstanceTypes field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetInstanceTypes() []DeploymentInstanceType {
-	if o == nil || isNil(o.InstanceTypes) {
+	if o == nil || IsNil(o.InstanceTypes) {
 		var ret []DeploymentInstanceType
 		return ret
 	}
@@ -286,15 +290,15 @@ func (o *DeploymentDefinition) GetInstanceTypes() []DeploymentInstanceType {
 // GetInstanceTypesOk returns a tuple with the InstanceTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetInstanceTypesOk() ([]DeploymentInstanceType, bool) {
-	if o == nil || isNil(o.InstanceTypes) {
-    return nil, false
+	if o == nil || IsNil(o.InstanceTypes) {
+		return nil, false
 	}
 	return o.InstanceTypes, true
 }
 
 // HasInstanceTypes returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasInstanceTypes() bool {
-	if o != nil && !isNil(o.InstanceTypes) {
+	if o != nil && !IsNil(o.InstanceTypes) {
 		return true
 	}
 
@@ -308,7 +312,7 @@ func (o *DeploymentDefinition) SetInstanceTypes(v []DeploymentInstanceType) {
 
 // GetHealthChecks returns the HealthChecks field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetHealthChecks() []DeploymentHealthCheck {
-	if o == nil || isNil(o.HealthChecks) {
+	if o == nil || IsNil(o.HealthChecks) {
 		var ret []DeploymentHealthCheck
 		return ret
 	}
@@ -318,15 +322,15 @@ func (o *DeploymentDefinition) GetHealthChecks() []DeploymentHealthCheck {
 // GetHealthChecksOk returns a tuple with the HealthChecks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetHealthChecksOk() ([]DeploymentHealthCheck, bool) {
-	if o == nil || isNil(o.HealthChecks) {
-    return nil, false
+	if o == nil || IsNil(o.HealthChecks) {
+		return nil, false
 	}
 	return o.HealthChecks, true
 }
 
 // HasHealthChecks returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasHealthChecks() bool {
-	if o != nil && !isNil(o.HealthChecks) {
+	if o != nil && !IsNil(o.HealthChecks) {
 		return true
 	}
 
@@ -338,9 +342,41 @@ func (o *DeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck) {
 	o.HealthChecks = v
 }
 
+// GetSkipCache returns the SkipCache field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetSkipCache() bool {
+	if o == nil || IsNil(o.SkipCache) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipCache
+}
+
+// GetSkipCacheOk returns a tuple with the SkipCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetSkipCacheOk() (*bool, bool) {
+	if o == nil || IsNil(o.SkipCache) {
+		return nil, false
+	}
+	return o.SkipCache, true
+}
+
+// HasSkipCache returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasSkipCache() bool {
+	if o != nil && !IsNil(o.SkipCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipCache gets a reference to the given bool and assigns it to the SkipCache field.
+func (o *DeploymentDefinition) SetSkipCache(v bool) {
+	o.SkipCache = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetDocker() DockerSource {
-	if o == nil || isNil(o.Docker) {
+	if o == nil || IsNil(o.Docker) {
 		var ret DockerSource
 		return ret
 	}
@@ -350,15 +386,15 @@ func (o *DeploymentDefinition) GetDocker() DockerSource {
 // GetDockerOk returns a tuple with the Docker field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetDockerOk() (*DockerSource, bool) {
-	if o == nil || isNil(o.Docker) {
-    return nil, false
+	if o == nil || IsNil(o.Docker) {
+		return nil, false
 	}
 	return o.Docker, true
 }
 
 // HasDocker returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasDocker() bool {
-	if o != nil && !isNil(o.Docker) {
+	if o != nil && !IsNil(o.Docker) {
 		return true
 	}
 
@@ -372,7 +408,7 @@ func (o *DeploymentDefinition) SetDocker(v DockerSource) {
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetGit() GitSource {
-	if o == nil || isNil(o.Git) {
+	if o == nil || IsNil(o.Git) {
 		var ret GitSource
 		return ret
 	}
@@ -382,15 +418,15 @@ func (o *DeploymentDefinition) GetGit() GitSource {
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentDefinition) GetGitOk() (*GitSource, bool) {
-	if o == nil || isNil(o.Git) {
-    return nil, false
+	if o == nil || IsNil(o.Git) {
+		return nil, false
 	}
 	return o.Git, true
 }
 
 // HasGit returns a boolean if a field has been set.
 func (o *DeploymentDefinition) HasGit() bool {
-	if o != nil && !isNil(o.Git) {
+	if o != nil && !IsNil(o.Git) {
 		return true
 	}
 
@@ -403,41 +439,52 @@ func (o *DeploymentDefinition) SetGit(v GitSource) {
 }
 
 func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Type) {
-		toSerialize["type"] = o.Type
-	}
-	if !isNil(o.Routes) {
-		toSerialize["routes"] = o.Routes
-	}
-	if !isNil(o.Ports) {
-		toSerialize["ports"] = o.Ports
-	}
-	if !isNil(o.Env) {
-		toSerialize["env"] = o.Env
-	}
-	if !isNil(o.Regions) {
-		toSerialize["regions"] = o.Regions
-	}
-	if !isNil(o.Scalings) {
-		toSerialize["scalings"] = o.Scalings
-	}
-	if !isNil(o.InstanceTypes) {
-		toSerialize["instance_types"] = o.InstanceTypes
-	}
-	if !isNil(o.HealthChecks) {
-		toSerialize["health_checks"] = o.HealthChecks
-	}
-	if !isNil(o.Docker) {
-		toSerialize["docker"] = o.Docker
-	}
-	if !isNil(o.Git) {
-		toSerialize["git"] = o.Git
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentDefinition) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Routes) {
+		toSerialize["routes"] = o.Routes
+	}
+	if !IsNil(o.Ports) {
+		toSerialize["ports"] = o.Ports
+	}
+	if !IsNil(o.Env) {
+		toSerialize["env"] = o.Env
+	}
+	if !IsNil(o.Regions) {
+		toSerialize["regions"] = o.Regions
+	}
+	if !IsNil(o.Scalings) {
+		toSerialize["scalings"] = o.Scalings
+	}
+	if !IsNil(o.InstanceTypes) {
+		toSerialize["instance_types"] = o.InstanceTypes
+	}
+	if !IsNil(o.HealthChecks) {
+		toSerialize["health_checks"] = o.HealthChecks
+	}
+	if !IsNil(o.SkipCache) {
+		toSerialize["skip_cache"] = o.SkipCache
+	}
+	if !IsNil(o.Docker) {
+		toSerialize["docker"] = o.Docker
+	}
+	if !IsNil(o.Git) {
+		toSerialize["git"] = o.Git
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentDefinition struct {

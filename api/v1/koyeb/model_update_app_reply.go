@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UpdateAppReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UpdateAppReply{}
+
 // UpdateAppReply struct for UpdateAppReply
 type UpdateAppReply struct {
 	App *App `json:"app,omitempty"`
@@ -38,7 +41,7 @@ func NewUpdateAppReplyWithDefaults() *UpdateAppReply {
 
 // GetApp returns the App field value if set, zero value otherwise.
 func (o *UpdateAppReply) GetApp() App {
-	if o == nil || isNil(o.App) {
+	if o == nil || IsNil(o.App) {
 		var ret App
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *UpdateAppReply) GetApp() App {
 // GetAppOk returns a tuple with the App field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateAppReply) GetAppOk() (*App, bool) {
-	if o == nil || isNil(o.App) {
-    return nil, false
+	if o == nil || IsNil(o.App) {
+		return nil, false
 	}
 	return o.App, true
 }
 
 // HasApp returns a boolean if a field has been set.
 func (o *UpdateAppReply) HasApp() bool {
-	if o != nil && !isNil(o.App) {
+	if o != nil && !IsNil(o.App) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *UpdateAppReply) SetApp(v App) {
 }
 
 func (o UpdateAppReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.App) {
-		toSerialize["app"] = o.App
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UpdateAppReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.App) {
+		toSerialize["app"] = o.App
+	}
+	return toSerialize, nil
 }
 
 type NullableUpdateAppReply struct {

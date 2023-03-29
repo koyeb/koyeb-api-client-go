@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServiceUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceUsage{}
+
 // ServiceUsage struct for ServiceUsage
 type ServiceUsage struct {
 	ServiceId *string `json:"service_id,omitempty"`
@@ -40,7 +43,7 @@ func NewServiceUsageWithDefaults() *ServiceUsage {
 
 // GetServiceId returns the ServiceId field value if set, zero value otherwise.
 func (o *ServiceUsage) GetServiceId() string {
-	if o == nil || isNil(o.ServiceId) {
+	if o == nil || IsNil(o.ServiceId) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *ServiceUsage) GetServiceId() string {
 // GetServiceIdOk returns a tuple with the ServiceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceUsage) GetServiceIdOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceId) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceId) {
+		return nil, false
 	}
 	return o.ServiceId, true
 }
 
 // HasServiceId returns a boolean if a field has been set.
 func (o *ServiceUsage) HasServiceId() bool {
-	if o != nil && !isNil(o.ServiceId) {
+	if o != nil && !IsNil(o.ServiceId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ServiceUsage) SetServiceId(v string) {
 
 // GetServiceName returns the ServiceName field value if set, zero value otherwise.
 func (o *ServiceUsage) GetServiceName() string {
-	if o == nil || isNil(o.ServiceName) {
+	if o == nil || IsNil(o.ServiceName) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *ServiceUsage) GetServiceName() string {
 // GetServiceNameOk returns a tuple with the ServiceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceUsage) GetServiceNameOk() (*string, bool) {
-	if o == nil || isNil(o.ServiceName) {
-    return nil, false
+	if o == nil || IsNil(o.ServiceName) {
+		return nil, false
 	}
 	return o.ServiceName, true
 }
 
 // HasServiceName returns a boolean if a field has been set.
 func (o *ServiceUsage) HasServiceName() bool {
-	if o != nil && !isNil(o.ServiceName) {
+	if o != nil && !IsNil(o.ServiceName) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *ServiceUsage) SetServiceName(v string) {
 
 // GetRegions returns the Regions field value if set, zero value otherwise.
 func (o *ServiceUsage) GetRegions() map[string]RegionUsage {
-	if o == nil || isNil(o.Regions) {
+	if o == nil || IsNil(o.Regions) {
 		var ret map[string]RegionUsage
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *ServiceUsage) GetRegions() map[string]RegionUsage {
 // GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceUsage) GetRegionsOk() (*map[string]RegionUsage, bool) {
-	if o == nil || isNil(o.Regions) {
-    return nil, false
+	if o == nil || IsNil(o.Regions) {
+		return nil, false
 	}
 	return o.Regions, true
 }
 
 // HasRegions returns a boolean if a field has been set.
 func (o *ServiceUsage) HasRegions() bool {
-	if o != nil && !isNil(o.Regions) {
+	if o != nil && !IsNil(o.Regions) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *ServiceUsage) SetRegions(v map[string]RegionUsage) {
 }
 
 func (o ServiceUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.ServiceId) {
-		toSerialize["service_id"] = o.ServiceId
-	}
-	if !isNil(o.ServiceName) {
-		toSerialize["service_name"] = o.ServiceName
-	}
-	if !isNil(o.Regions) {
-		toSerialize["regions"] = o.Regions
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ServiceId) {
+		toSerialize["service_id"] = o.ServiceId
+	}
+	if !IsNil(o.ServiceName) {
+		toSerialize["service_name"] = o.ServiceName
+	}
+	if !IsNil(o.Regions) {
+		toSerialize["regions"] = o.Regions
+	}
+	return toSerialize, nil
 }
 
 type NullableServiceUsage struct {

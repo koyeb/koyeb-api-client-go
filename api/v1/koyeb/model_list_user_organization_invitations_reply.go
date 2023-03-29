@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListUserOrganizationInvitationsReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListUserOrganizationInvitationsReply{}
+
 // ListUserOrganizationInvitationsReply struct for ListUserOrganizationInvitationsReply
 type ListUserOrganizationInvitationsReply struct {
 	Invitations []OrganizationInvitation `json:"invitations,omitempty"`
@@ -41,7 +44,7 @@ func NewListUserOrganizationInvitationsReplyWithDefaults() *ListUserOrganization
 
 // GetInvitations returns the Invitations field value if set, zero value otherwise.
 func (o *ListUserOrganizationInvitationsReply) GetInvitations() []OrganizationInvitation {
-	if o == nil || isNil(o.Invitations) {
+	if o == nil || IsNil(o.Invitations) {
 		var ret []OrganizationInvitation
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ListUserOrganizationInvitationsReply) GetInvitations() []OrganizationIn
 // GetInvitationsOk returns a tuple with the Invitations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUserOrganizationInvitationsReply) GetInvitationsOk() ([]OrganizationInvitation, bool) {
-	if o == nil || isNil(o.Invitations) {
-    return nil, false
+	if o == nil || IsNil(o.Invitations) {
+		return nil, false
 	}
 	return o.Invitations, true
 }
 
 // HasInvitations returns a boolean if a field has been set.
 func (o *ListUserOrganizationInvitationsReply) HasInvitations() bool {
-	if o != nil && !isNil(o.Invitations) {
+	if o != nil && !IsNil(o.Invitations) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ListUserOrganizationInvitationsReply) SetInvitations(v []OrganizationIn
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ListUserOrganizationInvitationsReply) GetLimit() int64 {
-	if o == nil || isNil(o.Limit) {
+	if o == nil || IsNil(o.Limit) {
 		var ret int64
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *ListUserOrganizationInvitationsReply) GetLimit() int64 {
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUserOrganizationInvitationsReply) GetLimitOk() (*int64, bool) {
-	if o == nil || isNil(o.Limit) {
-    return nil, false
+	if o == nil || IsNil(o.Limit) {
+		return nil, false
 	}
 	return o.Limit, true
 }
 
 // HasLimit returns a boolean if a field has been set.
 func (o *ListUserOrganizationInvitationsReply) HasLimit() bool {
-	if o != nil && !isNil(o.Limit) {
+	if o != nil && !IsNil(o.Limit) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ListUserOrganizationInvitationsReply) SetLimit(v int64) {
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *ListUserOrganizationInvitationsReply) GetOffset() int64 {
-	if o == nil || isNil(o.Offset) {
+	if o == nil || IsNil(o.Offset) {
 		var ret int64
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ListUserOrganizationInvitationsReply) GetOffset() int64 {
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUserOrganizationInvitationsReply) GetOffsetOk() (*int64, bool) {
-	if o == nil || isNil(o.Offset) {
-    return nil, false
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
 	}
 	return o.Offset, true
 }
 
 // HasOffset returns a boolean if a field has been set.
 func (o *ListUserOrganizationInvitationsReply) HasOffset() bool {
-	if o != nil && !isNil(o.Offset) {
+	if o != nil && !IsNil(o.Offset) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *ListUserOrganizationInvitationsReply) SetOffset(v int64) {
 
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ListUserOrganizationInvitationsReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
+	if o == nil || IsNil(o.Count) {
 		var ret int64
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *ListUserOrganizationInvitationsReply) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListUserOrganizationInvitationsReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
+	if o == nil || IsNil(o.Count) {
+		return nil, false
 	}
 	return o.Count, true
 }
 
 // HasCount returns a boolean if a field has been set.
 func (o *ListUserOrganizationInvitationsReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
+	if o != nil && !IsNil(o.Count) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *ListUserOrganizationInvitationsReply) SetCount(v int64) {
 }
 
 func (o ListUserOrganizationInvitationsReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Invitations) {
-		toSerialize["invitations"] = o.Invitations
-	}
-	if !isNil(o.Limit) {
-		toSerialize["limit"] = o.Limit
-	}
-	if !isNil(o.Offset) {
-		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListUserOrganizationInvitationsReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Invitations) {
+		toSerialize["invitations"] = o.Invitations
+	}
+	if !IsNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	return toSerialize, nil
 }
 
 type NullableListUserOrganizationInvitationsReply struct {

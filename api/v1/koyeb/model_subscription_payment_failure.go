@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the SubscriptionPaymentFailure type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriptionPaymentFailure{}
+
 // SubscriptionPaymentFailure struct for SubscriptionPaymentFailure
 type SubscriptionPaymentFailure struct {
 	FailedAt *time.Time `json:"failed_at,omitempty"`
@@ -48,7 +51,7 @@ func NewSubscriptionPaymentFailureWithDefaults() *SubscriptionPaymentFailure {
 
 // GetFailedAt returns the FailedAt field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetFailedAt() time.Time {
-	if o == nil || isNil(o.FailedAt) {
+	if o == nil || IsNil(o.FailedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -58,15 +61,15 @@ func (o *SubscriptionPaymentFailure) GetFailedAt() time.Time {
 // GetFailedAtOk returns a tuple with the FailedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetFailedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.FailedAt) {
-    return nil, false
+	if o == nil || IsNil(o.FailedAt) {
+		return nil, false
 	}
 	return o.FailedAt, true
 }
 
 // HasFailedAt returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasFailedAt() bool {
-	if o != nil && !isNil(o.FailedAt) {
+	if o != nil && !IsNil(o.FailedAt) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *SubscriptionPaymentFailure) SetFailedAt(v time.Time) {
 
 // GetNextAttempt returns the NextAttempt field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetNextAttempt() time.Time {
-	if o == nil || isNil(o.NextAttempt) {
+	if o == nil || IsNil(o.NextAttempt) {
 		var ret time.Time
 		return ret
 	}
@@ -90,15 +93,15 @@ func (o *SubscriptionPaymentFailure) GetNextAttempt() time.Time {
 // GetNextAttemptOk returns a tuple with the NextAttempt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetNextAttemptOk() (*time.Time, bool) {
-	if o == nil || isNil(o.NextAttempt) {
-    return nil, false
+	if o == nil || IsNil(o.NextAttempt) {
+		return nil, false
 	}
 	return o.NextAttempt, true
 }
 
 // HasNextAttempt returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasNextAttempt() bool {
-	if o != nil && !isNil(o.NextAttempt) {
+	if o != nil && !IsNil(o.NextAttempt) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *SubscriptionPaymentFailure) SetNextAttempt(v time.Time) {
 
 // GetAttemptCount returns the AttemptCount field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetAttemptCount() string {
-	if o == nil || isNil(o.AttemptCount) {
+	if o == nil || IsNil(o.AttemptCount) {
 		var ret string
 		return ret
 	}
@@ -122,15 +125,15 @@ func (o *SubscriptionPaymentFailure) GetAttemptCount() string {
 // GetAttemptCountOk returns a tuple with the AttemptCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetAttemptCountOk() (*string, bool) {
-	if o == nil || isNil(o.AttemptCount) {
-    return nil, false
+	if o == nil || IsNil(o.AttemptCount) {
+		return nil, false
 	}
 	return o.AttemptCount, true
 }
 
 // HasAttemptCount returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasAttemptCount() bool {
-	if o != nil && !isNil(o.AttemptCount) {
+	if o != nil && !IsNil(o.AttemptCount) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *SubscriptionPaymentFailure) SetAttemptCount(v string) {
 
 // GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetErrorCode() string {
-	if o == nil || isNil(o.ErrorCode) {
+	if o == nil || IsNil(o.ErrorCode) {
 		var ret string
 		return ret
 	}
@@ -154,15 +157,15 @@ func (o *SubscriptionPaymentFailure) GetErrorCode() string {
 // GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetErrorCodeOk() (*string, bool) {
-	if o == nil || isNil(o.ErrorCode) {
-    return nil, false
+	if o == nil || IsNil(o.ErrorCode) {
+		return nil, false
 	}
 	return o.ErrorCode, true
 }
 
 // HasErrorCode returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasErrorCode() bool {
-	if o != nil && !isNil(o.ErrorCode) {
+	if o != nil && !IsNil(o.ErrorCode) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *SubscriptionPaymentFailure) SetErrorCode(v string) {
 
 // GetErrorReason returns the ErrorReason field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetErrorReason() string {
-	if o == nil || isNil(o.ErrorReason) {
+	if o == nil || IsNil(o.ErrorReason) {
 		var ret string
 		return ret
 	}
@@ -186,15 +189,15 @@ func (o *SubscriptionPaymentFailure) GetErrorReason() string {
 // GetErrorReasonOk returns a tuple with the ErrorReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetErrorReasonOk() (*string, bool) {
-	if o == nil || isNil(o.ErrorReason) {
-    return nil, false
+	if o == nil || IsNil(o.ErrorReason) {
+		return nil, false
 	}
 	return o.ErrorReason, true
 }
 
 // HasErrorReason returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasErrorReason() bool {
-	if o != nil && !isNil(o.ErrorReason) {
+	if o != nil && !IsNil(o.ErrorReason) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *SubscriptionPaymentFailure) SetErrorReason(v string) {
 
 // GetErrorType returns the ErrorType field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetErrorType() string {
-	if o == nil || isNil(o.ErrorType) {
+	if o == nil || IsNil(o.ErrorType) {
 		var ret string
 		return ret
 	}
@@ -218,15 +221,15 @@ func (o *SubscriptionPaymentFailure) GetErrorType() string {
 // GetErrorTypeOk returns a tuple with the ErrorType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetErrorTypeOk() (*string, bool) {
-	if o == nil || isNil(o.ErrorType) {
-    return nil, false
+	if o == nil || IsNil(o.ErrorType) {
+		return nil, false
 	}
 	return o.ErrorType, true
 }
 
 // HasErrorType returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasErrorType() bool {
-	if o != nil && !isNil(o.ErrorType) {
+	if o != nil && !IsNil(o.ErrorType) {
 		return true
 	}
 
@@ -240,7 +243,7 @@ func (o *SubscriptionPaymentFailure) SetErrorType(v string) {
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetErrorMessage() string {
-	if o == nil || isNil(o.ErrorMessage) {
+	if o == nil || IsNil(o.ErrorMessage) {
 		var ret string
 		return ret
 	}
@@ -250,15 +253,15 @@ func (o *SubscriptionPaymentFailure) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetErrorMessageOk() (*string, bool) {
-	if o == nil || isNil(o.ErrorMessage) {
-    return nil, false
+	if o == nil || IsNil(o.ErrorMessage) {
+		return nil, false
 	}
 	return o.ErrorMessage, true
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasErrorMessage() bool {
-	if o != nil && !isNil(o.ErrorMessage) {
+	if o != nil && !IsNil(o.ErrorMessage) {
 		return true
 	}
 
@@ -272,7 +275,7 @@ func (o *SubscriptionPaymentFailure) SetErrorMessage(v string) {
 
 // GetPaymentMethodRequired returns the PaymentMethodRequired field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetPaymentMethodRequired() bool {
-	if o == nil || isNil(o.PaymentMethodRequired) {
+	if o == nil || IsNil(o.PaymentMethodRequired) {
 		var ret bool
 		return ret
 	}
@@ -282,15 +285,15 @@ func (o *SubscriptionPaymentFailure) GetPaymentMethodRequired() bool {
 // GetPaymentMethodRequiredOk returns a tuple with the PaymentMethodRequired field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetPaymentMethodRequiredOk() (*bool, bool) {
-	if o == nil || isNil(o.PaymentMethodRequired) {
-    return nil, false
+	if o == nil || IsNil(o.PaymentMethodRequired) {
+		return nil, false
 	}
 	return o.PaymentMethodRequired, true
 }
 
 // HasPaymentMethodRequired returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasPaymentMethodRequired() bool {
-	if o != nil && !isNil(o.PaymentMethodRequired) {
+	if o != nil && !IsNil(o.PaymentMethodRequired) {
 		return true
 	}
 
@@ -304,7 +307,7 @@ func (o *SubscriptionPaymentFailure) SetPaymentMethodRequired(v bool) {
 
 // GetRedirectUrl returns the RedirectUrl field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetRedirectUrl() string {
-	if o == nil || isNil(o.RedirectUrl) {
+	if o == nil || IsNil(o.RedirectUrl) {
 		var ret string
 		return ret
 	}
@@ -314,15 +317,15 @@ func (o *SubscriptionPaymentFailure) GetRedirectUrl() string {
 // GetRedirectUrlOk returns a tuple with the RedirectUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetRedirectUrlOk() (*string, bool) {
-	if o == nil || isNil(o.RedirectUrl) {
-    return nil, false
+	if o == nil || IsNil(o.RedirectUrl) {
+		return nil, false
 	}
 	return o.RedirectUrl, true
 }
 
 // HasRedirectUrl returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasRedirectUrl() bool {
-	if o != nil && !isNil(o.RedirectUrl) {
+	if o != nil && !IsNil(o.RedirectUrl) {
 		return true
 	}
 
@@ -336,7 +339,7 @@ func (o *SubscriptionPaymentFailure) SetRedirectUrl(v string) {
 
 // GetStripeSdk returns the StripeSdk field value if set, zero value otherwise.
 func (o *SubscriptionPaymentFailure) GetStripeSdk() SubscriptionPaymentFailureStripeSDK {
-	if o == nil || isNil(o.StripeSdk) {
+	if o == nil || IsNil(o.StripeSdk) {
 		var ret SubscriptionPaymentFailureStripeSDK
 		return ret
 	}
@@ -346,15 +349,15 @@ func (o *SubscriptionPaymentFailure) GetStripeSdk() SubscriptionPaymentFailureSt
 // GetStripeSdkOk returns a tuple with the StripeSdk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriptionPaymentFailure) GetStripeSdkOk() (*SubscriptionPaymentFailureStripeSDK, bool) {
-	if o == nil || isNil(o.StripeSdk) {
-    return nil, false
+	if o == nil || IsNil(o.StripeSdk) {
+		return nil, false
 	}
 	return o.StripeSdk, true
 }
 
 // HasStripeSdk returns a boolean if a field has been set.
 func (o *SubscriptionPaymentFailure) HasStripeSdk() bool {
-	if o != nil && !isNil(o.StripeSdk) {
+	if o != nil && !IsNil(o.StripeSdk) {
 		return true
 	}
 
@@ -367,38 +370,46 @@ func (o *SubscriptionPaymentFailure) SetStripeSdk(v SubscriptionPaymentFailureSt
 }
 
 func (o SubscriptionPaymentFailure) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.FailedAt) {
-		toSerialize["failed_at"] = o.FailedAt
-	}
-	if !isNil(o.NextAttempt) {
-		toSerialize["next_attempt"] = o.NextAttempt
-	}
-	if !isNil(o.AttemptCount) {
-		toSerialize["attempt_count"] = o.AttemptCount
-	}
-	if !isNil(o.ErrorCode) {
-		toSerialize["error_code"] = o.ErrorCode
-	}
-	if !isNil(o.ErrorReason) {
-		toSerialize["error_reason"] = o.ErrorReason
-	}
-	if !isNil(o.ErrorType) {
-		toSerialize["error_type"] = o.ErrorType
-	}
-	if !isNil(o.ErrorMessage) {
-		toSerialize["error_message"] = o.ErrorMessage
-	}
-	if !isNil(o.PaymentMethodRequired) {
-		toSerialize["payment_method_required"] = o.PaymentMethodRequired
-	}
-	if !isNil(o.RedirectUrl) {
-		toSerialize["redirect_url"] = o.RedirectUrl
-	}
-	if !isNil(o.StripeSdk) {
-		toSerialize["stripe_sdk"] = o.StripeSdk
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubscriptionPaymentFailure) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FailedAt) {
+		toSerialize["failed_at"] = o.FailedAt
+	}
+	if !IsNil(o.NextAttempt) {
+		toSerialize["next_attempt"] = o.NextAttempt
+	}
+	if !IsNil(o.AttemptCount) {
+		toSerialize["attempt_count"] = o.AttemptCount
+	}
+	if !IsNil(o.ErrorCode) {
+		toSerialize["error_code"] = o.ErrorCode
+	}
+	if !IsNil(o.ErrorReason) {
+		toSerialize["error_reason"] = o.ErrorReason
+	}
+	if !IsNil(o.ErrorType) {
+		toSerialize["error_type"] = o.ErrorType
+	}
+	if !IsNil(o.ErrorMessage) {
+		toSerialize["error_message"] = o.ErrorMessage
+	}
+	if !IsNil(o.PaymentMethodRequired) {
+		toSerialize["payment_method_required"] = o.PaymentMethodRequired
+	}
+	if !IsNil(o.RedirectUrl) {
+		toSerialize["redirect_url"] = o.RedirectUrl
+	}
+	if !IsNil(o.StripeSdk) {
+		toSerialize["stripe_sdk"] = o.StripeSdk
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscriptionPaymentFailure struct {

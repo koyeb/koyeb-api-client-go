@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeploymentProvisioningInfo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeploymentProvisioningInfo{}
+
 // DeploymentProvisioningInfo struct for DeploymentProvisioningInfo
 type DeploymentProvisioningInfo struct {
 	// The git sha for this build (we resolve the reference at the start of the build).
@@ -43,7 +46,7 @@ func NewDeploymentProvisioningInfoWithDefaults() *DeploymentProvisioningInfo {
 
 // GetSha returns the Sha field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfo) GetSha() string {
-	if o == nil || isNil(o.Sha) {
+	if o == nil || IsNil(o.Sha) {
 		var ret string
 		return ret
 	}
@@ -53,15 +56,15 @@ func (o *DeploymentProvisioningInfo) GetSha() string {
 // GetShaOk returns a tuple with the Sha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfo) GetShaOk() (*string, bool) {
-	if o == nil || isNil(o.Sha) {
-    return nil, false
+	if o == nil || IsNil(o.Sha) {
+		return nil, false
 	}
 	return o.Sha, true
 }
 
 // HasSha returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfo) HasSha() bool {
-	if o != nil && !isNil(o.Sha) {
+	if o != nil && !IsNil(o.Sha) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *DeploymentProvisioningInfo) SetSha(v string) {
 
 // GetImage returns the Image field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfo) GetImage() string {
-	if o == nil || isNil(o.Image) {
+	if o == nil || IsNil(o.Image) {
 		var ret string
 		return ret
 	}
@@ -85,15 +88,15 @@ func (o *DeploymentProvisioningInfo) GetImage() string {
 // GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfo) GetImageOk() (*string, bool) {
-	if o == nil || isNil(o.Image) {
-    return nil, false
+	if o == nil || IsNil(o.Image) {
+		return nil, false
 	}
 	return o.Image, true
 }
 
 // HasImage returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfo) HasImage() bool {
-	if o != nil && !isNil(o.Image) {
+	if o != nil && !IsNil(o.Image) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *DeploymentProvisioningInfo) SetImage(v string) {
 
 // GetStages returns the Stages field value if set, zero value otherwise.
 func (o *DeploymentProvisioningInfo) GetStages() []DeploymentProvisioningInfoStage {
-	if o == nil || isNil(o.Stages) {
+	if o == nil || IsNil(o.Stages) {
 		var ret []DeploymentProvisioningInfoStage
 		return ret
 	}
@@ -117,15 +120,15 @@ func (o *DeploymentProvisioningInfo) GetStages() []DeploymentProvisioningInfoSta
 // GetStagesOk returns a tuple with the Stages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeploymentProvisioningInfo) GetStagesOk() ([]DeploymentProvisioningInfoStage, bool) {
-	if o == nil || isNil(o.Stages) {
-    return nil, false
+	if o == nil || IsNil(o.Stages) {
+		return nil, false
 	}
 	return o.Stages, true
 }
 
 // HasStages returns a boolean if a field has been set.
 func (o *DeploymentProvisioningInfo) HasStages() bool {
-	if o != nil && !isNil(o.Stages) {
+	if o != nil && !IsNil(o.Stages) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *DeploymentProvisioningInfo) SetStages(v []DeploymentProvisioningInfoSta
 }
 
 func (o DeploymentProvisioningInfo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Sha) {
-		toSerialize["sha"] = o.Sha
-	}
-	if !isNil(o.Image) {
-		toSerialize["image"] = o.Image
-	}
-	if !isNil(o.Stages) {
-		toSerialize["stages"] = o.Stages
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeploymentProvisioningInfo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Sha) {
+		toSerialize["sha"] = o.Sha
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
+	if !IsNil(o.Stages) {
+		toSerialize["stages"] = o.Stages
+	}
+	return toSerialize, nil
 }
 
 type NullableDeploymentProvisioningInfo struct {

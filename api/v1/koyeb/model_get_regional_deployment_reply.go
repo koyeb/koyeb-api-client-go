@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetRegionalDeploymentReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetRegionalDeploymentReply{}
+
 // GetRegionalDeploymentReply struct for GetRegionalDeploymentReply
 type GetRegionalDeploymentReply struct {
 	RegionalDeployment *RegionalDeployment `json:"regional_deployment,omitempty"`
@@ -38,7 +41,7 @@ func NewGetRegionalDeploymentReplyWithDefaults() *GetRegionalDeploymentReply {
 
 // GetRegionalDeployment returns the RegionalDeployment field value if set, zero value otherwise.
 func (o *GetRegionalDeploymentReply) GetRegionalDeployment() RegionalDeployment {
-	if o == nil || isNil(o.RegionalDeployment) {
+	if o == nil || IsNil(o.RegionalDeployment) {
 		var ret RegionalDeployment
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *GetRegionalDeploymentReply) GetRegionalDeployment() RegionalDeployment 
 // GetRegionalDeploymentOk returns a tuple with the RegionalDeployment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetRegionalDeploymentReply) GetRegionalDeploymentOk() (*RegionalDeployment, bool) {
-	if o == nil || isNil(o.RegionalDeployment) {
-    return nil, false
+	if o == nil || IsNil(o.RegionalDeployment) {
+		return nil, false
 	}
 	return o.RegionalDeployment, true
 }
 
 // HasRegionalDeployment returns a boolean if a field has been set.
 func (o *GetRegionalDeploymentReply) HasRegionalDeployment() bool {
-	if o != nil && !isNil(o.RegionalDeployment) {
+	if o != nil && !IsNil(o.RegionalDeployment) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *GetRegionalDeploymentReply) SetRegionalDeployment(v RegionalDeployment)
 }
 
 func (o GetRegionalDeploymentReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.RegionalDeployment) {
-		toSerialize["regional_deployment"] = o.RegionalDeployment
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetRegionalDeploymentReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RegionalDeployment) {
+		toSerialize["regional_deployment"] = o.RegionalDeployment
+	}
+	return toSerialize, nil
 }
 
 type NullableGetRegionalDeploymentReply struct {

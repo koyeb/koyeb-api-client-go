@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ReviewOrganizationCapacityRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ReviewOrganizationCapacityRequest{}
+
 // ReviewOrganizationCapacityRequest struct for ReviewOrganizationCapacityRequest
 type ReviewOrganizationCapacityRequest struct {
 	Plan *string `json:"plan,omitempty"`
@@ -38,7 +41,7 @@ func NewReviewOrganizationCapacityRequestWithDefaults() *ReviewOrganizationCapac
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *ReviewOrganizationCapacityRequest) GetPlan() string {
-	if o == nil || isNil(o.Plan) {
+	if o == nil || IsNil(o.Plan) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *ReviewOrganizationCapacityRequest) GetPlan() string {
 // GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReviewOrganizationCapacityRequest) GetPlanOk() (*string, bool) {
-	if o == nil || isNil(o.Plan) {
-    return nil, false
+	if o == nil || IsNil(o.Plan) {
+		return nil, false
 	}
 	return o.Plan, true
 }
 
 // HasPlan returns a boolean if a field has been set.
 func (o *ReviewOrganizationCapacityRequest) HasPlan() bool {
-	if o != nil && !isNil(o.Plan) {
+	if o != nil && !IsNil(o.Plan) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ReviewOrganizationCapacityRequest) SetPlan(v string) {
 }
 
 func (o ReviewOrganizationCapacityRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Plan) {
-		toSerialize["plan"] = o.Plan
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ReviewOrganizationCapacityRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Plan) {
+		toSerialize["plan"] = o.Plan
+	}
+	return toSerialize, nil
 }
 
 type NullableReviewOrganizationCapacityRequest struct {

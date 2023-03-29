@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the KsearchSearchReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &KsearchSearchReply{}
+
 // KsearchSearchReply struct for KsearchSearchReply
 type KsearchSearchReply struct {
 	Organizations []KsearchOrganization `json:"organizations,omitempty"`
@@ -44,7 +47,7 @@ func NewKsearchSearchReplyWithDefaults() *KsearchSearchReply {
 
 // GetOrganizations returns the Organizations field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetOrganizations() []KsearchOrganization {
-	if o == nil || isNil(o.Organizations) {
+	if o == nil || IsNil(o.Organizations) {
 		var ret []KsearchOrganization
 		return ret
 	}
@@ -54,15 +57,15 @@ func (o *KsearchSearchReply) GetOrganizations() []KsearchOrganization {
 // GetOrganizationsOk returns a tuple with the Organizations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetOrganizationsOk() ([]KsearchOrganization, bool) {
-	if o == nil || isNil(o.Organizations) {
-    return nil, false
+	if o == nil || IsNil(o.Organizations) {
+		return nil, false
 	}
 	return o.Organizations, true
 }
 
 // HasOrganizations returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasOrganizations() bool {
-	if o != nil && !isNil(o.Organizations) {
+	if o != nil && !IsNil(o.Organizations) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *KsearchSearchReply) SetOrganizations(v []KsearchOrganization) {
 
 // GetUsers returns the Users field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetUsers() []KsearchUser {
-	if o == nil || isNil(o.Users) {
+	if o == nil || IsNil(o.Users) {
 		var ret []KsearchUser
 		return ret
 	}
@@ -86,15 +89,15 @@ func (o *KsearchSearchReply) GetUsers() []KsearchUser {
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetUsersOk() ([]KsearchUser, bool) {
-	if o == nil || isNil(o.Users) {
-    return nil, false
+	if o == nil || IsNil(o.Users) {
+		return nil, false
 	}
 	return o.Users, true
 }
 
 // HasUsers returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasUsers() bool {
-	if o != nil && !isNil(o.Users) {
+	if o != nil && !IsNil(o.Users) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *KsearchSearchReply) SetUsers(v []KsearchUser) {
 
 // GetApps returns the Apps field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetApps() []KsearchApp {
-	if o == nil || isNil(o.Apps) {
+	if o == nil || IsNil(o.Apps) {
 		var ret []KsearchApp
 		return ret
 	}
@@ -118,15 +121,15 @@ func (o *KsearchSearchReply) GetApps() []KsearchApp {
 // GetAppsOk returns a tuple with the Apps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetAppsOk() ([]KsearchApp, bool) {
-	if o == nil || isNil(o.Apps) {
-    return nil, false
+	if o == nil || IsNil(o.Apps) {
+		return nil, false
 	}
 	return o.Apps, true
 }
 
 // HasApps returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasApps() bool {
-	if o != nil && !isNil(o.Apps) {
+	if o != nil && !IsNil(o.Apps) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *KsearchSearchReply) SetApps(v []KsearchApp) {
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetServices() []KsearchService {
-	if o == nil || isNil(o.Services) {
+	if o == nil || IsNil(o.Services) {
 		var ret []KsearchService
 		return ret
 	}
@@ -150,15 +153,15 @@ func (o *KsearchSearchReply) GetServices() []KsearchService {
 // GetServicesOk returns a tuple with the Services field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetServicesOk() ([]KsearchService, bool) {
-	if o == nil || isNil(o.Services) {
-    return nil, false
+	if o == nil || IsNil(o.Services) {
+		return nil, false
 	}
 	return o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasServices() bool {
-	if o != nil && !isNil(o.Services) {
+	if o != nil && !IsNil(o.Services) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *KsearchSearchReply) SetServices(v []KsearchService) {
 
 // GetGlobalDeployments returns the GlobalDeployments field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetGlobalDeployments() []KsearchGlobalDeployment {
-	if o == nil || isNil(o.GlobalDeployments) {
+	if o == nil || IsNil(o.GlobalDeployments) {
 		var ret []KsearchGlobalDeployment
 		return ret
 	}
@@ -182,15 +185,15 @@ func (o *KsearchSearchReply) GetGlobalDeployments() []KsearchGlobalDeployment {
 // GetGlobalDeploymentsOk returns a tuple with the GlobalDeployments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetGlobalDeploymentsOk() ([]KsearchGlobalDeployment, bool) {
-	if o == nil || isNil(o.GlobalDeployments) {
-    return nil, false
+	if o == nil || IsNil(o.GlobalDeployments) {
+		return nil, false
 	}
 	return o.GlobalDeployments, true
 }
 
 // HasGlobalDeployments returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasGlobalDeployments() bool {
-	if o != nil && !isNil(o.GlobalDeployments) {
+	if o != nil && !IsNil(o.GlobalDeployments) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *KsearchSearchReply) SetGlobalDeployments(v []KsearchGlobalDeployment) {
 
 // GetRegionalDeployments returns the RegionalDeployments field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetRegionalDeployments() []KsearchRegionalDeployment {
-	if o == nil || isNil(o.RegionalDeployments) {
+	if o == nil || IsNil(o.RegionalDeployments) {
 		var ret []KsearchRegionalDeployment
 		return ret
 	}
@@ -214,15 +217,15 @@ func (o *KsearchSearchReply) GetRegionalDeployments() []KsearchRegionalDeploymen
 // GetRegionalDeploymentsOk returns a tuple with the RegionalDeployments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetRegionalDeploymentsOk() ([]KsearchRegionalDeployment, bool) {
-	if o == nil || isNil(o.RegionalDeployments) {
-    return nil, false
+	if o == nil || IsNil(o.RegionalDeployments) {
+		return nil, false
 	}
 	return o.RegionalDeployments, true
 }
 
 // HasRegionalDeployments returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasRegionalDeployments() bool {
-	if o != nil && !isNil(o.RegionalDeployments) {
+	if o != nil && !IsNil(o.RegionalDeployments) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *KsearchSearchReply) SetRegionalDeployments(v []KsearchRegionalDeploymen
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *KsearchSearchReply) GetInstances() []KsearchInstance {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret []KsearchInstance
 		return ret
 	}
@@ -246,15 +249,15 @@ func (o *KsearchSearchReply) GetInstances() []KsearchInstance {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *KsearchSearchReply) GetInstancesOk() ([]KsearchInstance, bool) {
-	if o == nil || isNil(o.Instances) {
-    return nil, false
+	if o == nil || IsNil(o.Instances) {
+		return nil, false
 	}
 	return o.Instances, true
 }
 
 // HasInstances returns a boolean if a field has been set.
 func (o *KsearchSearchReply) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -267,29 +270,37 @@ func (o *KsearchSearchReply) SetInstances(v []KsearchInstance) {
 }
 
 func (o KsearchSearchReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Organizations) {
-		toSerialize["organizations"] = o.Organizations
-	}
-	if !isNil(o.Users) {
-		toSerialize["users"] = o.Users
-	}
-	if !isNil(o.Apps) {
-		toSerialize["apps"] = o.Apps
-	}
-	if !isNil(o.Services) {
-		toSerialize["services"] = o.Services
-	}
-	if !isNil(o.GlobalDeployments) {
-		toSerialize["global_deployments"] = o.GlobalDeployments
-	}
-	if !isNil(o.RegionalDeployments) {
-		toSerialize["regional_deployments"] = o.RegionalDeployments
-	}
-	if !isNil(o.Instances) {
-		toSerialize["instances"] = o.Instances
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o KsearchSearchReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Organizations) {
+		toSerialize["organizations"] = o.Organizations
+	}
+	if !IsNil(o.Users) {
+		toSerialize["users"] = o.Users
+	}
+	if !IsNil(o.Apps) {
+		toSerialize["apps"] = o.Apps
+	}
+	if !IsNil(o.Services) {
+		toSerialize["services"] = o.Services
+	}
+	if !IsNil(o.GlobalDeployments) {
+		toSerialize["global_deployments"] = o.GlobalDeployments
+	}
+	if !IsNil(o.RegionalDeployments) {
+		toSerialize["regional_deployments"] = o.RegionalDeployments
+	}
+	if !IsNil(o.Instances) {
+		toSerialize["instances"] = o.Instances
+	}
+	return toSerialize, nil
 }
 
 type NullableKsearchSearchReply struct {

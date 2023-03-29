@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the LoginReply type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &LoginReply{}
+
 // LoginReply struct for LoginReply
 type LoginReply struct {
 	Token *Token `json:"token,omitempty"`
@@ -38,7 +41,7 @@ func NewLoginReplyWithDefaults() *LoginReply {
 
 // GetToken returns the Token field value if set, zero value otherwise.
 func (o *LoginReply) GetToken() Token {
-	if o == nil || isNil(o.Token) {
+	if o == nil || IsNil(o.Token) {
 		var ret Token
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *LoginReply) GetToken() Token {
 // GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LoginReply) GetTokenOk() (*Token, bool) {
-	if o == nil || isNil(o.Token) {
-    return nil, false
+	if o == nil || IsNil(o.Token) {
+		return nil, false
 	}
 	return o.Token, true
 }
 
 // HasToken returns a boolean if a field has been set.
 func (o *LoginReply) HasToken() bool {
-	if o != nil && !isNil(o.Token) {
+	if o != nil && !IsNil(o.Token) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *LoginReply) SetToken(v Token) {
 }
 
 func (o LoginReply) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Token) {
-		toSerialize["token"] = o.Token
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o LoginReply) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	return toSerialize, nil
 }
 
 type NullableLoginReply struct {

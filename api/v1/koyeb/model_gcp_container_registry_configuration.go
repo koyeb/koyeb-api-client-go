@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GCPContainerRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GCPContainerRegistryConfiguration{}
+
 // GCPContainerRegistryConfiguration struct for GCPContainerRegistryConfiguration
 type GCPContainerRegistryConfiguration struct {
 	KeyfileContent *string `json:"keyfile_content,omitempty"`
@@ -39,7 +42,7 @@ func NewGCPContainerRegistryConfigurationWithDefaults() *GCPContainerRegistryCon
 
 // GetKeyfileContent returns the KeyfileContent field value if set, zero value otherwise.
 func (o *GCPContainerRegistryConfiguration) GetKeyfileContent() string {
-	if o == nil || isNil(o.KeyfileContent) {
+	if o == nil || IsNil(o.KeyfileContent) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GCPContainerRegistryConfiguration) GetKeyfileContent() string {
 // GetKeyfileContentOk returns a tuple with the KeyfileContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPContainerRegistryConfiguration) GetKeyfileContentOk() (*string, bool) {
-	if o == nil || isNil(o.KeyfileContent) {
-    return nil, false
+	if o == nil || IsNil(o.KeyfileContent) {
+		return nil, false
 	}
 	return o.KeyfileContent, true
 }
 
 // HasKeyfileContent returns a boolean if a field has been set.
 func (o *GCPContainerRegistryConfiguration) HasKeyfileContent() bool {
-	if o != nil && !isNil(o.KeyfileContent) {
+	if o != nil && !IsNil(o.KeyfileContent) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GCPContainerRegistryConfiguration) SetKeyfileContent(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *GCPContainerRegistryConfiguration) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GCPContainerRegistryConfiguration) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GCPContainerRegistryConfiguration) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *GCPContainerRegistryConfiguration) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GCPContainerRegistryConfiguration) SetUrl(v string) {
 }
 
 func (o GCPContainerRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.KeyfileContent) {
-		toSerialize["keyfile_content"] = o.KeyfileContent
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GCPContainerRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.KeyfileContent) {
+		toSerialize["keyfile_content"] = o.KeyfileContent
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	return toSerialize, nil
 }
 
 type NullableGCPContainerRegistryConfiguration struct {

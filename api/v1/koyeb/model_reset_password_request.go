@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ResetPasswordRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ResetPasswordRequest{}
+
 // ResetPasswordRequest struct for ResetPasswordRequest
 type ResetPasswordRequest struct {
 	Email *string `json:"email,omitempty"`
@@ -38,7 +41,7 @@ func NewResetPasswordRequestWithDefaults() *ResetPasswordRequest {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *ResetPasswordRequest) GetEmail() string {
-	if o == nil || isNil(o.Email) {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *ResetPasswordRequest) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ResetPasswordRequest) GetEmailOk() (*string, bool) {
-	if o == nil || isNil(o.Email) {
-    return nil, false
+	if o == nil || IsNil(o.Email) {
+		return nil, false
 	}
 	return o.Email, true
 }
 
 // HasEmail returns a boolean if a field has been set.
 func (o *ResetPasswordRequest) HasEmail() bool {
-	if o != nil && !isNil(o.Email) {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ResetPasswordRequest) SetEmail(v string) {
 }
 
 func (o ResetPasswordRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Email) {
-		toSerialize["email"] = o.Email
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ResetPasswordRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	return toSerialize, nil
 }
 
 type NullableResetPasswordRequest struct {

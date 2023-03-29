@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the OrganizationMember type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrganizationMember{}
+
 // OrganizationMember struct for OrganizationMember
 type OrganizationMember struct {
 	Id *string `json:"id,omitempty"`
@@ -54,7 +57,7 @@ func NewOrganizationMemberWithDefaults() *OrganizationMember {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *OrganizationMember) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *OrganizationMember) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *OrganizationMember) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *OrganizationMember) SetId(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *OrganizationMember) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *OrganizationMember) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *OrganizationMember) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *OrganizationMember) SetOrganizationId(v string) {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *OrganizationMember) GetUserId() string {
-	if o == nil || isNil(o.UserId) {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *OrganizationMember) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetUserIdOk() (*string, bool) {
-	if o == nil || isNil(o.UserId) {
-    return nil, false
+	if o == nil || IsNil(o.UserId) {
+		return nil, false
 	}
 	return o.UserId, true
 }
 
 // HasUserId returns a boolean if a field has been set.
 func (o *OrganizationMember) HasUserId() bool {
-	if o != nil && !isNil(o.UserId) {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *OrganizationMember) SetUserId(v string) {
 
 // GetJoinedAt returns the JoinedAt field value if set, zero value otherwise.
 func (o *OrganizationMember) GetJoinedAt() time.Time {
-	if o == nil || isNil(o.JoinedAt) {
+	if o == nil || IsNil(o.JoinedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *OrganizationMember) GetJoinedAt() time.Time {
 // GetJoinedAtOk returns a tuple with the JoinedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetJoinedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.JoinedAt) {
-    return nil, false
+	if o == nil || IsNil(o.JoinedAt) {
+		return nil, false
 	}
 	return o.JoinedAt, true
 }
 
 // HasJoinedAt returns a boolean if a field has been set.
 func (o *OrganizationMember) HasJoinedAt() bool {
-	if o != nil && !isNil(o.JoinedAt) {
+	if o != nil && !IsNil(o.JoinedAt) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *OrganizationMember) SetJoinedAt(v time.Time) {
 
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *OrganizationMember) GetRole() UserRoleRole {
-	if o == nil || isNil(o.Role) {
+	if o == nil || IsNil(o.Role) {
 		var ret UserRoleRole
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *OrganizationMember) GetRole() UserRoleRole {
 // GetRoleOk returns a tuple with the Role field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetRoleOk() (*UserRoleRole, bool) {
-	if o == nil || isNil(o.Role) {
-    return nil, false
+	if o == nil || IsNil(o.Role) {
+		return nil, false
 	}
 	return o.Role, true
 }
 
 // HasRole returns a boolean if a field has been set.
 func (o *OrganizationMember) HasRole() bool {
-	if o != nil && !isNil(o.Role) {
+	if o != nil && !IsNil(o.Role) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *OrganizationMember) SetRole(v UserRoleRole) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *OrganizationMember) GetStatus() OrganizationMemberStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret OrganizationMemberStatus
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *OrganizationMember) GetStatus() OrganizationMemberStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetStatusOk() (*OrganizationMemberStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *OrganizationMember) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *OrganizationMember) SetStatus(v OrganizationMemberStatus) {
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *OrganizationMember) GetUser() PublicUser {
-	if o == nil || isNil(o.User) {
+	if o == nil || IsNil(o.User) {
 		var ret PublicUser
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *OrganizationMember) GetUser() PublicUser {
 // GetUserOk returns a tuple with the User field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetUserOk() (*PublicUser, bool) {
-	if o == nil || isNil(o.User) {
-    return nil, false
+	if o == nil || IsNil(o.User) {
+		return nil, false
 	}
 	return o.User, true
 }
 
 // HasUser returns a boolean if a field has been set.
 func (o *OrganizationMember) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+	if o != nil && !IsNil(o.User) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *OrganizationMember) SetUser(v PublicUser) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *OrganizationMember) GetOrganization() PublicOrganization {
-	if o == nil || isNil(o.Organization) {
+	if o == nil || IsNil(o.Organization) {
 		var ret PublicOrganization
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *OrganizationMember) GetOrganization() PublicOrganization {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrganizationMember) GetOrganizationOk() (*PublicOrganization, bool) {
-	if o == nil || isNil(o.Organization) {
-    return nil, false
+	if o == nil || IsNil(o.Organization) {
+		return nil, false
 	}
 	return o.Organization, true
 }
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *OrganizationMember) HasOrganization() bool {
-	if o != nil && !isNil(o.Organization) {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -309,32 +312,40 @@ func (o *OrganizationMember) SetOrganization(v PublicOrganization) {
 }
 
 func (o OrganizationMember) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.UserId) {
-		toSerialize["user_id"] = o.UserId
-	}
-	if !isNil(o.JoinedAt) {
-		toSerialize["joined_at"] = o.JoinedAt
-	}
-	if !isNil(o.Role) {
-		toSerialize["role"] = o.Role
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.User) {
-		toSerialize["user"] = o.User
-	}
-	if !isNil(o.Organization) {
-		toSerialize["organization"] = o.Organization
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OrganizationMember) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.JoinedAt) {
+		toSerialize["joined_at"] = o.JoinedAt
+	}
+	if !IsNil(o.Role) {
+		toSerialize["role"] = o.Role
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.User) {
+		toSerialize["user"] = o.User
+	}
+	if !IsNil(o.Organization) {
+		toSerialize["organization"] = o.Organization
+	}
+	return toSerialize, nil
 }
 
 type NullableOrganizationMember struct {

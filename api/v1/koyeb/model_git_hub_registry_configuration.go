@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GitHubRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GitHubRegistryConfiguration{}
+
 // GitHubRegistryConfiguration struct for GitHubRegistryConfiguration
 type GitHubRegistryConfiguration struct {
 	Username *string `json:"username,omitempty"`
@@ -39,7 +42,7 @@ func NewGitHubRegistryConfigurationWithDefaults() *GitHubRegistryConfiguration {
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *GitHubRegistryConfiguration) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *GitHubRegistryConfiguration) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitHubRegistryConfiguration) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *GitHubRegistryConfiguration) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *GitHubRegistryConfiguration) SetUsername(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *GitHubRegistryConfiguration) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *GitHubRegistryConfiguration) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GitHubRegistryConfiguration) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *GitHubRegistryConfiguration) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *GitHubRegistryConfiguration) SetPassword(v string) {
 }
 
 func (o GitHubRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GitHubRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableGitHubRegistryConfiguration struct {

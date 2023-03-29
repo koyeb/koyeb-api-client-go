@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PrivateRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PrivateRegistryConfiguration{}
+
 // PrivateRegistryConfiguration struct for PrivateRegistryConfiguration
 type PrivateRegistryConfiguration struct {
 	Username *string `json:"username,omitempty"`
@@ -40,7 +43,7 @@ func NewPrivateRegistryConfigurationWithDefaults() *PrivateRegistryConfiguration
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *PrivateRegistryConfiguration) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -50,15 +53,15 @@ func (o *PrivateRegistryConfiguration) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateRegistryConfiguration) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *PrivateRegistryConfiguration) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *PrivateRegistryConfiguration) SetUsername(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *PrivateRegistryConfiguration) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -82,15 +85,15 @@ func (o *PrivateRegistryConfiguration) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateRegistryConfiguration) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *PrivateRegistryConfiguration) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *PrivateRegistryConfiguration) SetPassword(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *PrivateRegistryConfiguration) GetUrl() string {
-	if o == nil || isNil(o.Url) {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -114,15 +117,15 @@ func (o *PrivateRegistryConfiguration) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PrivateRegistryConfiguration) GetUrlOk() (*string, bool) {
-	if o == nil || isNil(o.Url) {
-    return nil, false
+	if o == nil || IsNil(o.Url) {
+		return nil, false
 	}
 	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
 func (o *PrivateRegistryConfiguration) HasUrl() bool {
-	if o != nil && !isNil(o.Url) {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *PrivateRegistryConfiguration) SetUrl(v string) {
 }
 
 func (o PrivateRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
-	}
-	if !isNil(o.Url) {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PrivateRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	return toSerialize, nil
 }
 
 type NullablePrivateRegistryConfiguration struct {

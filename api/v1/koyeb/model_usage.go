@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Usage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Usage{}
+
 // Usage struct for Usage
 type Usage struct {
 	OrganizationId *string `json:"organization_id,omitempty"`
@@ -39,7 +42,7 @@ func NewUsageWithDefaults() *Usage {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Usage) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *Usage) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Usage) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *Usage) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *Usage) SetOrganizationId(v string) {
 
 // GetPeriods returns the Periods field value if set, zero value otherwise.
 func (o *Usage) GetPeriods() map[string]PeriodUsage {
-	if o == nil || isNil(o.Periods) {
+	if o == nil || IsNil(o.Periods) {
 		var ret map[string]PeriodUsage
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *Usage) GetPeriods() map[string]PeriodUsage {
 // GetPeriodsOk returns a tuple with the Periods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Usage) GetPeriodsOk() (*map[string]PeriodUsage, bool) {
-	if o == nil || isNil(o.Periods) {
-    return nil, false
+	if o == nil || IsNil(o.Periods) {
+		return nil, false
 	}
 	return o.Periods, true
 }
 
 // HasPeriods returns a boolean if a field has been set.
 func (o *Usage) HasPeriods() bool {
-	if o != nil && !isNil(o.Periods) {
+	if o != nil && !IsNil(o.Periods) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *Usage) SetPeriods(v map[string]PeriodUsage) {
 }
 
 func (o Usage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.Periods) {
-		toSerialize["periods"] = o.Periods
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Usage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.Periods) {
+		toSerialize["periods"] = o.Periods
+	}
+	return toSerialize, nil
 }
 
 type NullableUsage struct {

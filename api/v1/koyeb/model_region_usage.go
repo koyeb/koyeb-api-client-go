@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the RegionUsage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &RegionUsage{}
+
 // RegionUsage struct for RegionUsage
 type RegionUsage struct {
 	Instances *map[string]InstanceUsage `json:"instances,omitempty"`
@@ -38,7 +41,7 @@ func NewRegionUsageWithDefaults() *RegionUsage {
 
 // GetInstances returns the Instances field value if set, zero value otherwise.
 func (o *RegionUsage) GetInstances() map[string]InstanceUsage {
-	if o == nil || isNil(o.Instances) {
+	if o == nil || IsNil(o.Instances) {
 		var ret map[string]InstanceUsage
 		return ret
 	}
@@ -48,15 +51,15 @@ func (o *RegionUsage) GetInstances() map[string]InstanceUsage {
 // GetInstancesOk returns a tuple with the Instances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *RegionUsage) GetInstancesOk() (*map[string]InstanceUsage, bool) {
-	if o == nil || isNil(o.Instances) {
-    return nil, false
+	if o == nil || IsNil(o.Instances) {
+		return nil, false
 	}
 	return o.Instances, true
 }
 
 // HasInstances returns a boolean if a field has been set.
 func (o *RegionUsage) HasInstances() bool {
-	if o != nil && !isNil(o.Instances) {
+	if o != nil && !IsNil(o.Instances) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *RegionUsage) SetInstances(v map[string]InstanceUsage) {
 }
 
 func (o RegionUsage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Instances) {
-		toSerialize["instances"] = o.Instances
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o RegionUsage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Instances) {
+		toSerialize["instances"] = o.Instances
+	}
+	return toSerialize, nil
 }
 
 type NullableRegionUsage struct {

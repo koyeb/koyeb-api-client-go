@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExecCommandIO type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExecCommandIO{}
+
 // ExecCommandIO struct for ExecCommandIO
 type ExecCommandIO struct {
 	// Data is base64 encoded
@@ -39,7 +42,7 @@ func NewExecCommandIOWithDefaults() *ExecCommandIO {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ExecCommandIO) GetData() string {
-	if o == nil || isNil(o.Data) {
+	if o == nil || IsNil(o.Data) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ExecCommandIO) GetData() string {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandIO) GetDataOk() (*string, bool) {
-	if o == nil || isNil(o.Data) {
-    return nil, false
+	if o == nil || IsNil(o.Data) {
+		return nil, false
 	}
 	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
 func (o *ExecCommandIO) HasData() bool {
-	if o != nil && !isNil(o.Data) {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -70,11 +73,19 @@ func (o *ExecCommandIO) SetData(v string) {
 }
 
 func (o ExecCommandIO) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Data) {
-		toSerialize["data"] = o.Data
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExecCommandIO) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
+	return toSerialize, nil
 }
 
 type NullableExecCommandIO struct {

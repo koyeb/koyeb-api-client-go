@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the DigitalOceanRegistryConfiguration type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DigitalOceanRegistryConfiguration{}
+
 // DigitalOceanRegistryConfiguration struct for DigitalOceanRegistryConfiguration
 type DigitalOceanRegistryConfiguration struct {
 	Username *string `json:"username,omitempty"`
@@ -39,7 +42,7 @@ func NewDigitalOceanRegistryConfigurationWithDefaults() *DigitalOceanRegistryCon
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *DigitalOceanRegistryConfiguration) GetUsername() string {
-	if o == nil || isNil(o.Username) {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *DigitalOceanRegistryConfiguration) GetUsername() string {
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DigitalOceanRegistryConfiguration) GetUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.Username) {
-    return nil, false
+	if o == nil || IsNil(o.Username) {
+		return nil, false
 	}
 	return o.Username, true
 }
 
 // HasUsername returns a boolean if a field has been set.
 func (o *DigitalOceanRegistryConfiguration) HasUsername() bool {
-	if o != nil && !isNil(o.Username) {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *DigitalOceanRegistryConfiguration) SetUsername(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *DigitalOceanRegistryConfiguration) GetPassword() string {
-	if o == nil || isNil(o.Password) {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *DigitalOceanRegistryConfiguration) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DigitalOceanRegistryConfiguration) GetPasswordOk() (*string, bool) {
-	if o == nil || isNil(o.Password) {
-    return nil, false
+	if o == nil || IsNil(o.Password) {
+		return nil, false
 	}
 	return o.Password, true
 }
 
 // HasPassword returns a boolean if a field has been set.
 func (o *DigitalOceanRegistryConfiguration) HasPassword() bool {
-	if o != nil && !isNil(o.Password) {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *DigitalOceanRegistryConfiguration) SetPassword(v string) {
 }
 
 func (o DigitalOceanRegistryConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Username) {
-		toSerialize["username"] = o.Username
-	}
-	if !isNil(o.Password) {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DigitalOceanRegistryConfiguration) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableDigitalOceanRegistryConfiguration struct {

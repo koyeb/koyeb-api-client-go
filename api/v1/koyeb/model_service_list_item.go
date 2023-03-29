@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ServiceListItem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceListItem{}
+
 // ServiceListItem struct for ServiceListItem
 type ServiceListItem struct {
 	Id *string `json:"id,omitempty"`
@@ -54,7 +57,7 @@ func NewServiceListItemWithDefaults() *ServiceListItem {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ServiceListItem) GetId() string {
-	if o == nil || isNil(o.Id) {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -64,15 +67,15 @@ func (o *ServiceListItem) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetIdOk() (*string, bool) {
-	if o == nil || isNil(o.Id) {
-    return nil, false
+	if o == nil || IsNil(o.Id) {
+		return nil, false
 	}
 	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *ServiceListItem) HasId() bool {
-	if o != nil && !isNil(o.Id) {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *ServiceListItem) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceListItem) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -96,15 +99,15 @@ func (o *ServiceListItem) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ServiceListItem) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *ServiceListItem) SetName(v string) {
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *ServiceListItem) GetOrganizationId() string {
-	if o == nil || isNil(o.OrganizationId) {
+	if o == nil || IsNil(o.OrganizationId) {
 		var ret string
 		return ret
 	}
@@ -128,15 +131,15 @@ func (o *ServiceListItem) GetOrganizationId() string {
 // GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetOrganizationIdOk() (*string, bool) {
-	if o == nil || isNil(o.OrganizationId) {
-    return nil, false
+	if o == nil || IsNil(o.OrganizationId) {
+		return nil, false
 	}
 	return o.OrganizationId, true
 }
 
 // HasOrganizationId returns a boolean if a field has been set.
 func (o *ServiceListItem) HasOrganizationId() bool {
-	if o != nil && !isNil(o.OrganizationId) {
+	if o != nil && !IsNil(o.OrganizationId) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *ServiceListItem) SetOrganizationId(v string) {
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
 func (o *ServiceListItem) GetAppId() string {
-	if o == nil || isNil(o.AppId) {
+	if o == nil || IsNil(o.AppId) {
 		var ret string
 		return ret
 	}
@@ -160,15 +163,15 @@ func (o *ServiceListItem) GetAppId() string {
 // GetAppIdOk returns a tuple with the AppId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetAppIdOk() (*string, bool) {
-	if o == nil || isNil(o.AppId) {
-    return nil, false
+	if o == nil || IsNil(o.AppId) {
+		return nil, false
 	}
 	return o.AppId, true
 }
 
 // HasAppId returns a boolean if a field has been set.
 func (o *ServiceListItem) HasAppId() bool {
-	if o != nil && !isNil(o.AppId) {
+	if o != nil && !IsNil(o.AppId) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *ServiceListItem) SetAppId(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *ServiceListItem) GetUpdatedAt() time.Time {
-	if o == nil || isNil(o.UpdatedAt) {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -192,15 +195,15 @@ func (o *ServiceListItem) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.UpdatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.UpdatedAt) {
+		return nil, false
 	}
 	return o.UpdatedAt, true
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *ServiceListItem) HasUpdatedAt() bool {
-	if o != nil && !isNil(o.UpdatedAt) {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *ServiceListItem) SetUpdatedAt(v time.Time) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ServiceListItem) GetCreatedAt() time.Time {
-	if o == nil || isNil(o.CreatedAt) {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -224,15 +227,15 @@ func (o *ServiceListItem) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || isNil(o.CreatedAt) {
-    return nil, false
+	if o == nil || IsNil(o.CreatedAt) {
+		return nil, false
 	}
 	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *ServiceListItem) HasCreatedAt() bool {
-	if o != nil && !isNil(o.CreatedAt) {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *ServiceListItem) SetCreatedAt(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ServiceListItem) GetStatus() ServiceStatus {
-	if o == nil || isNil(o.Status) {
+	if o == nil || IsNil(o.Status) {
 		var ret ServiceStatus
 		return ret
 	}
@@ -256,15 +259,15 @@ func (o *ServiceListItem) GetStatus() ServiceStatus {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetStatusOk() (*ServiceStatus, bool) {
-	if o == nil || isNil(o.Status) {
-    return nil, false
+	if o == nil || IsNil(o.Status) {
+		return nil, false
 	}
 	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ServiceListItem) HasStatus() bool {
-	if o != nil && !isNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -278,7 +281,7 @@ func (o *ServiceListItem) SetStatus(v ServiceStatus) {
 
 // GetMessages returns the Messages field value if set, zero value otherwise.
 func (o *ServiceListItem) GetMessages() []string {
-	if o == nil || isNil(o.Messages) {
+	if o == nil || IsNil(o.Messages) {
 		var ret []string
 		return ret
 	}
@@ -288,15 +291,15 @@ func (o *ServiceListItem) GetMessages() []string {
 // GetMessagesOk returns a tuple with the Messages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetMessagesOk() ([]string, bool) {
-	if o == nil || isNil(o.Messages) {
-    return nil, false
+	if o == nil || IsNil(o.Messages) {
+		return nil, false
 	}
 	return o.Messages, true
 }
 
 // HasMessages returns a boolean if a field has been set.
 func (o *ServiceListItem) HasMessages() bool {
-	if o != nil && !isNil(o.Messages) {
+	if o != nil && !IsNil(o.Messages) {
 		return true
 	}
 
@@ -310,7 +313,7 @@ func (o *ServiceListItem) SetMessages(v []string) {
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *ServiceListItem) GetVersion() string {
-	if o == nil || isNil(o.Version) {
+	if o == nil || IsNil(o.Version) {
 		var ret string
 		return ret
 	}
@@ -320,15 +323,15 @@ func (o *ServiceListItem) GetVersion() string {
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetVersionOk() (*string, bool) {
-	if o == nil || isNil(o.Version) {
-    return nil, false
+	if o == nil || IsNil(o.Version) {
+		return nil, false
 	}
 	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *ServiceListItem) HasVersion() bool {
-	if o != nil && !isNil(o.Version) {
+	if o != nil && !IsNil(o.Version) {
 		return true
 	}
 
@@ -342,7 +345,7 @@ func (o *ServiceListItem) SetVersion(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *ServiceListItem) GetState() ServiceState {
-	if o == nil || isNil(o.State) {
+	if o == nil || IsNil(o.State) {
 		var ret ServiceState
 		return ret
 	}
@@ -352,15 +355,15 @@ func (o *ServiceListItem) GetState() ServiceState {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetStateOk() (*ServiceState, bool) {
-	if o == nil || isNil(o.State) {
-    return nil, false
+	if o == nil || IsNil(o.State) {
+		return nil, false
 	}
 	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
 func (o *ServiceListItem) HasState() bool {
-	if o != nil && !isNil(o.State) {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -374,7 +377,7 @@ func (o *ServiceListItem) SetState(v ServiceState) {
 
 // GetActiveDeploymentId returns the ActiveDeploymentId field value if set, zero value otherwise.
 func (o *ServiceListItem) GetActiveDeploymentId() string {
-	if o == nil || isNil(o.ActiveDeploymentId) {
+	if o == nil || IsNil(o.ActiveDeploymentId) {
 		var ret string
 		return ret
 	}
@@ -384,15 +387,15 @@ func (o *ServiceListItem) GetActiveDeploymentId() string {
 // GetActiveDeploymentIdOk returns a tuple with the ActiveDeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetActiveDeploymentIdOk() (*string, bool) {
-	if o == nil || isNil(o.ActiveDeploymentId) {
-    return nil, false
+	if o == nil || IsNil(o.ActiveDeploymentId) {
+		return nil, false
 	}
 	return o.ActiveDeploymentId, true
 }
 
 // HasActiveDeploymentId returns a boolean if a field has been set.
 func (o *ServiceListItem) HasActiveDeploymentId() bool {
-	if o != nil && !isNil(o.ActiveDeploymentId) {
+	if o != nil && !IsNil(o.ActiveDeploymentId) {
 		return true
 	}
 
@@ -406,7 +409,7 @@ func (o *ServiceListItem) SetActiveDeploymentId(v string) {
 
 // GetLatestDeploymentId returns the LatestDeploymentId field value if set, zero value otherwise.
 func (o *ServiceListItem) GetLatestDeploymentId() string {
-	if o == nil || isNil(o.LatestDeploymentId) {
+	if o == nil || IsNil(o.LatestDeploymentId) {
 		var ret string
 		return ret
 	}
@@ -416,15 +419,15 @@ func (o *ServiceListItem) GetLatestDeploymentId() string {
 // GetLatestDeploymentIdOk returns a tuple with the LatestDeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceListItem) GetLatestDeploymentIdOk() (*string, bool) {
-	if o == nil || isNil(o.LatestDeploymentId) {
-    return nil, false
+	if o == nil || IsNil(o.LatestDeploymentId) {
+		return nil, false
 	}
 	return o.LatestDeploymentId, true
 }
 
 // HasLatestDeploymentId returns a boolean if a field has been set.
 func (o *ServiceListItem) HasLatestDeploymentId() bool {
-	if o != nil && !isNil(o.LatestDeploymentId) {
+	if o != nil && !IsNil(o.LatestDeploymentId) {
 		return true
 	}
 
@@ -437,44 +440,52 @@ func (o *ServiceListItem) SetLatestDeploymentId(v string) {
 }
 
 func (o ServiceListItem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Id) {
-		toSerialize["id"] = o.Id
-	}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.OrganizationId) {
-		toSerialize["organization_id"] = o.OrganizationId
-	}
-	if !isNil(o.AppId) {
-		toSerialize["app_id"] = o.AppId
-	}
-	if !isNil(o.UpdatedAt) {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if !isNil(o.CreatedAt) {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if !isNil(o.Status) {
-		toSerialize["status"] = o.Status
-	}
-	if !isNil(o.Messages) {
-		toSerialize["messages"] = o.Messages
-	}
-	if !isNil(o.Version) {
-		toSerialize["version"] = o.Version
-	}
-	if !isNil(o.State) {
-		toSerialize["state"] = o.State
-	}
-	if !isNil(o.ActiveDeploymentId) {
-		toSerialize["active_deployment_id"] = o.ActiveDeploymentId
-	}
-	if !isNil(o.LatestDeploymentId) {
-		toSerialize["latest_deployment_id"] = o.LatestDeploymentId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceListItem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !IsNil(o.AppId) {
+		toSerialize["app_id"] = o.AppId
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Messages) {
+		toSerialize["messages"] = o.Messages
+	}
+	if !IsNil(o.Version) {
+		toSerialize["version"] = o.Version
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.ActiveDeploymentId) {
+		toSerialize["active_deployment_id"] = o.ActiveDeploymentId
+	}
+	if !IsNil(o.LatestDeploymentId) {
+		toSerialize["latest_deployment_id"] = o.LatestDeploymentId
+	}
+	return toSerialize, nil
 }
 
 type NullableServiceListItem struct {

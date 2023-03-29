@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ExecCommandRequestTerminalSize type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ExecCommandRequestTerminalSize{}
+
 // ExecCommandRequestTerminalSize struct for ExecCommandRequestTerminalSize
 type ExecCommandRequestTerminalSize struct {
 	Height *int32 `json:"height,omitempty"`
@@ -39,7 +42,7 @@ func NewExecCommandRequestTerminalSizeWithDefaults() *ExecCommandRequestTerminal
 
 // GetHeight returns the Height field value if set, zero value otherwise.
 func (o *ExecCommandRequestTerminalSize) GetHeight() int32 {
-	if o == nil || isNil(o.Height) {
+	if o == nil || IsNil(o.Height) {
 		var ret int32
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ExecCommandRequestTerminalSize) GetHeight() int32 {
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandRequestTerminalSize) GetHeightOk() (*int32, bool) {
-	if o == nil || isNil(o.Height) {
-    return nil, false
+	if o == nil || IsNil(o.Height) {
+		return nil, false
 	}
 	return o.Height, true
 }
 
 // HasHeight returns a boolean if a field has been set.
 func (o *ExecCommandRequestTerminalSize) HasHeight() bool {
-	if o != nil && !isNil(o.Height) {
+	if o != nil && !IsNil(o.Height) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ExecCommandRequestTerminalSize) SetHeight(v int32) {
 
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *ExecCommandRequestTerminalSize) GetWidth() int32 {
-	if o == nil || isNil(o.Width) {
+	if o == nil || IsNil(o.Width) {
 		var ret int32
 		return ret
 	}
@@ -81,15 +84,15 @@ func (o *ExecCommandRequestTerminalSize) GetWidth() int32 {
 // GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ExecCommandRequestTerminalSize) GetWidthOk() (*int32, bool) {
-	if o == nil || isNil(o.Width) {
-    return nil, false
+	if o == nil || IsNil(o.Width) {
+		return nil, false
 	}
 	return o.Width, true
 }
 
 // HasWidth returns a boolean if a field has been set.
 func (o *ExecCommandRequestTerminalSize) HasWidth() bool {
-	if o != nil && !isNil(o.Width) {
+	if o != nil && !IsNil(o.Width) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *ExecCommandRequestTerminalSize) SetWidth(v int32) {
 }
 
 func (o ExecCommandRequestTerminalSize) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Height) {
-		toSerialize["height"] = o.Height
-	}
-	if !isNil(o.Width) {
-		toSerialize["width"] = o.Width
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ExecCommandRequestTerminalSize) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Height) {
+		toSerialize["height"] = o.Height
+	}
+	if !IsNil(o.Width) {
+		toSerialize["width"] = o.Width
+	}
+	return toSerialize, nil
 }
 
 type NullableExecCommandRequestTerminalSize struct {

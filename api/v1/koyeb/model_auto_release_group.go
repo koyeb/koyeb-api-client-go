@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AutoReleaseGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AutoReleaseGroup{}
+
 // AutoReleaseGroup struct for AutoReleaseGroup
 type AutoReleaseGroup struct {
 	Name *string `json:"name,omitempty"`
@@ -41,7 +44,7 @@ func NewAutoReleaseGroupWithDefaults() *AutoReleaseGroup {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AutoReleaseGroup) GetName() string {
-	if o == nil || isNil(o.Name) {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *AutoReleaseGroup) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoReleaseGroup) GetNameOk() (*string, bool) {
-	if o == nil || isNil(o.Name) {
-    return nil, false
+	if o == nil || IsNil(o.Name) {
+		return nil, false
 	}
 	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *AutoReleaseGroup) HasName() bool {
-	if o != nil && !isNil(o.Name) {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *AutoReleaseGroup) SetName(v string) {
 
 // GetRepository returns the Repository field value if set, zero value otherwise.
 func (o *AutoReleaseGroup) GetRepository() string {
-	if o == nil || isNil(o.Repository) {
+	if o == nil || IsNil(o.Repository) {
 		var ret string
 		return ret
 	}
@@ -83,15 +86,15 @@ func (o *AutoReleaseGroup) GetRepository() string {
 // GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoReleaseGroup) GetRepositoryOk() (*string, bool) {
-	if o == nil || isNil(o.Repository) {
-    return nil, false
+	if o == nil || IsNil(o.Repository) {
+		return nil, false
 	}
 	return o.Repository, true
 }
 
 // HasRepository returns a boolean if a field has been set.
 func (o *AutoReleaseGroup) HasRepository() bool {
-	if o != nil && !isNil(o.Repository) {
+	if o != nil && !IsNil(o.Repository) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *AutoReleaseGroup) SetRepository(v string) {
 
 // GetGitRef returns the GitRef field value if set, zero value otherwise.
 func (o *AutoReleaseGroup) GetGitRef() string {
-	if o == nil || isNil(o.GitRef) {
+	if o == nil || IsNil(o.GitRef) {
 		var ret string
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *AutoReleaseGroup) GetGitRef() string {
 // GetGitRefOk returns a tuple with the GitRef field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoReleaseGroup) GetGitRefOk() (*string, bool) {
-	if o == nil || isNil(o.GitRef) {
-    return nil, false
+	if o == nil || IsNil(o.GitRef) {
+		return nil, false
 	}
 	return o.GitRef, true
 }
 
 // HasGitRef returns a boolean if a field has been set.
 func (o *AutoReleaseGroup) HasGitRef() bool {
-	if o != nil && !isNil(o.GitRef) {
+	if o != nil && !IsNil(o.GitRef) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *AutoReleaseGroup) SetGitRef(v string) {
 
 // GetLatestSha returns the LatestSha field value if set, zero value otherwise.
 func (o *AutoReleaseGroup) GetLatestSha() string {
-	if o == nil || isNil(o.LatestSha) {
+	if o == nil || IsNil(o.LatestSha) {
 		var ret string
 		return ret
 	}
@@ -147,15 +150,15 @@ func (o *AutoReleaseGroup) GetLatestSha() string {
 // GetLatestShaOk returns a tuple with the LatestSha field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AutoReleaseGroup) GetLatestShaOk() (*string, bool) {
-	if o == nil || isNil(o.LatestSha) {
-    return nil, false
+	if o == nil || IsNil(o.LatestSha) {
+		return nil, false
 	}
 	return o.LatestSha, true
 }
 
 // HasLatestSha returns a boolean if a field has been set.
 func (o *AutoReleaseGroup) HasLatestSha() bool {
-	if o != nil && !isNil(o.LatestSha) {
+	if o != nil && !IsNil(o.LatestSha) {
 		return true
 	}
 
@@ -168,20 +171,28 @@ func (o *AutoReleaseGroup) SetLatestSha(v string) {
 }
 
 func (o AutoReleaseGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if !isNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
-	if !isNil(o.Repository) {
-		toSerialize["repository"] = o.Repository
-	}
-	if !isNil(o.GitRef) {
-		toSerialize["git_ref"] = o.GitRef
-	}
-	if !isNil(o.LatestSha) {
-		toSerialize["latest_sha"] = o.LatestSha
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AutoReleaseGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Repository) {
+		toSerialize["repository"] = o.Repository
+	}
+	if !IsNil(o.GitRef) {
+		toSerialize["git_ref"] = o.GitRef
+	}
+	if !IsNil(o.LatestSha) {
+		toSerialize["latest_sha"] = o.LatestSha
+	}
+	return toSerialize, nil
 }
 
 type NullableAutoReleaseGroup struct {
