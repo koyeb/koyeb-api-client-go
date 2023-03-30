@@ -23,9 +23,11 @@ type OrganizationInvitation struct {
 	Status *OrganizationInvitationStatus `json:"status,omitempty"`
 	ExpiresAt *time.Time `json:"expires_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
-	UserId *string `json:"user_id,omitempty"`
 	Organization *PublicOrganization `json:"organization,omitempty"`
-	User *PublicUser `json:"user,omitempty"`
+	InviteeId *string `json:"invitee_id,omitempty"`
+	Invitee *PublicUser `json:"invitee,omitempty"`
+	InviterId *string `json:"inviter_id,omitempty"`
+	Inviter *PublicUser `json:"inviter,omitempty"`
 }
 
 // NewOrganizationInvitation instantiates a new OrganizationInvitation object
@@ -245,38 +247,6 @@ func (o *OrganizationInvitation) SetOrganizationId(v string) {
 	o.OrganizationId = &v
 }
 
-// GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *OrganizationInvitation) GetUserId() string {
-	if o == nil || isNil(o.UserId) {
-		var ret string
-		return ret
-	}
-	return *o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrganizationInvitation) GetUserIdOk() (*string, bool) {
-	if o == nil || isNil(o.UserId) {
-    return nil, false
-	}
-	return o.UserId, true
-}
-
-// HasUserId returns a boolean if a field has been set.
-func (o *OrganizationInvitation) HasUserId() bool {
-	if o != nil && !isNil(o.UserId) {
-		return true
-	}
-
-	return false
-}
-
-// SetUserId gets a reference to the given string and assigns it to the UserId field.
-func (o *OrganizationInvitation) SetUserId(v string) {
-	o.UserId = &v
-}
-
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *OrganizationInvitation) GetOrganization() PublicOrganization {
 	if o == nil || isNil(o.Organization) {
@@ -309,36 +279,132 @@ func (o *OrganizationInvitation) SetOrganization(v PublicOrganization) {
 	o.Organization = &v
 }
 
-// GetUser returns the User field value if set, zero value otherwise.
-func (o *OrganizationInvitation) GetUser() PublicUser {
-	if o == nil || isNil(o.User) {
-		var ret PublicUser
+// GetInviteeId returns the InviteeId field value if set, zero value otherwise.
+func (o *OrganizationInvitation) GetInviteeId() string {
+	if o == nil || isNil(o.InviteeId) {
+		var ret string
 		return ret
 	}
-	return *o.User
+	return *o.InviteeId
 }
 
-// GetUserOk returns a tuple with the User field value if set, nil otherwise
+// GetInviteeIdOk returns a tuple with the InviteeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrganizationInvitation) GetUserOk() (*PublicUser, bool) {
-	if o == nil || isNil(o.User) {
+func (o *OrganizationInvitation) GetInviteeIdOk() (*string, bool) {
+	if o == nil || isNil(o.InviteeId) {
     return nil, false
 	}
-	return o.User, true
+	return o.InviteeId, true
 }
 
-// HasUser returns a boolean if a field has been set.
-func (o *OrganizationInvitation) HasUser() bool {
-	if o != nil && !isNil(o.User) {
+// HasInviteeId returns a boolean if a field has been set.
+func (o *OrganizationInvitation) HasInviteeId() bool {
+	if o != nil && !isNil(o.InviteeId) {
 		return true
 	}
 
 	return false
 }
 
-// SetUser gets a reference to the given PublicUser and assigns it to the User field.
-func (o *OrganizationInvitation) SetUser(v PublicUser) {
-	o.User = &v
+// SetInviteeId gets a reference to the given string and assigns it to the InviteeId field.
+func (o *OrganizationInvitation) SetInviteeId(v string) {
+	o.InviteeId = &v
+}
+
+// GetInvitee returns the Invitee field value if set, zero value otherwise.
+func (o *OrganizationInvitation) GetInvitee() PublicUser {
+	if o == nil || isNil(o.Invitee) {
+		var ret PublicUser
+		return ret
+	}
+	return *o.Invitee
+}
+
+// GetInviteeOk returns a tuple with the Invitee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationInvitation) GetInviteeOk() (*PublicUser, bool) {
+	if o == nil || isNil(o.Invitee) {
+    return nil, false
+	}
+	return o.Invitee, true
+}
+
+// HasInvitee returns a boolean if a field has been set.
+func (o *OrganizationInvitation) HasInvitee() bool {
+	if o != nil && !isNil(o.Invitee) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvitee gets a reference to the given PublicUser and assigns it to the Invitee field.
+func (o *OrganizationInvitation) SetInvitee(v PublicUser) {
+	o.Invitee = &v
+}
+
+// GetInviterId returns the InviterId field value if set, zero value otherwise.
+func (o *OrganizationInvitation) GetInviterId() string {
+	if o == nil || isNil(o.InviterId) {
+		var ret string
+		return ret
+	}
+	return *o.InviterId
+}
+
+// GetInviterIdOk returns a tuple with the InviterId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationInvitation) GetInviterIdOk() (*string, bool) {
+	if o == nil || isNil(o.InviterId) {
+    return nil, false
+	}
+	return o.InviterId, true
+}
+
+// HasInviterId returns a boolean if a field has been set.
+func (o *OrganizationInvitation) HasInviterId() bool {
+	if o != nil && !isNil(o.InviterId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInviterId gets a reference to the given string and assigns it to the InviterId field.
+func (o *OrganizationInvitation) SetInviterId(v string) {
+	o.InviterId = &v
+}
+
+// GetInviter returns the Inviter field value if set, zero value otherwise.
+func (o *OrganizationInvitation) GetInviter() PublicUser {
+	if o == nil || isNil(o.Inviter) {
+		var ret PublicUser
+		return ret
+	}
+	return *o.Inviter
+}
+
+// GetInviterOk returns a tuple with the Inviter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationInvitation) GetInviterOk() (*PublicUser, bool) {
+	if o == nil || isNil(o.Inviter) {
+    return nil, false
+	}
+	return o.Inviter, true
+}
+
+// HasInviter returns a boolean if a field has been set.
+func (o *OrganizationInvitation) HasInviter() bool {
+	if o != nil && !isNil(o.Inviter) {
+		return true
+	}
+
+	return false
+}
+
+// SetInviter gets a reference to the given PublicUser and assigns it to the Inviter field.
+func (o *OrganizationInvitation) SetInviter(v PublicUser) {
+	o.Inviter = &v
 }
 
 func (o OrganizationInvitation) MarshalJSON() ([]byte, error) {
@@ -361,14 +427,20 @@ func (o OrganizationInvitation) MarshalJSON() ([]byte, error) {
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
-	if !isNil(o.UserId) {
-		toSerialize["user_id"] = o.UserId
-	}
 	if !isNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
 	}
-	if !isNil(o.User) {
-		toSerialize["user"] = o.User
+	if !isNil(o.InviteeId) {
+		toSerialize["invitee_id"] = o.InviteeId
+	}
+	if !isNil(o.Invitee) {
+		toSerialize["invitee"] = o.Invitee
+	}
+	if !isNil(o.InviterId) {
+		toSerialize["inviter_id"] = o.InviterId
+	}
+	if !isNil(o.Inviter) {
+		toSerialize["inviter"] = o.Inviter
 	}
 	return json.Marshal(toSerialize)
 }

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateOrganizationInvitation**](OrganizationInvitationsApi.md#CreateOrganizationInvitation) | **Post** /v1/organization_invitations | 
 [**DeleteOrganizationInvitation**](OrganizationInvitationsApi.md#DeleteOrganizationInvitation) | **Delete** /v1/organization_invitations/{id} | 
+[**GetOrganizationInvitation**](OrganizationInvitationsApi.md#GetOrganizationInvitation) | **Get** /v1/organization_invitations/{id} | 
 [**ListOrganizationInvitations**](OrganizationInvitationsApi.md#ListOrganizationInvitations) | **Get** /v1/organization_invitations | 
 [**ResendOrganizationInvitation**](OrganizationInvitationsApi.md#ResendOrganizationInvitation) | **Post** /v1/organization_invitations/{id}/resend | 
 
@@ -128,6 +129,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationInvitation
+
+> GetOrganizationInvitationReply GetOrganizationInvitation(ctx, id).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the invitation to get
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationInvitationsApi.GetOrganizationInvitation(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationInvitationsApi.GetOrganizationInvitation``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationInvitation`: GetOrganizationInvitationReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationInvitationsApi.GetOrganizationInvitation`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the invitation to get | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationInvitationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetOrganizationInvitationReply**](GetOrganizationInvitationReply.md)
 
 ### Authorization
 

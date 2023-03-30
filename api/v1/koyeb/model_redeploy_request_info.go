@@ -18,6 +18,7 @@ import (
 type RedeployRequestInfo struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	Sha *string `json:"sha,omitempty"`
+	UseCache *bool `json:"use_cache,omitempty"`
 }
 
 // NewRedeployRequestInfo instantiates a new RedeployRequestInfo object
@@ -101,6 +102,38 @@ func (o *RedeployRequestInfo) SetSha(v string) {
 	o.Sha = &v
 }
 
+// GetUseCache returns the UseCache field value if set, zero value otherwise.
+func (o *RedeployRequestInfo) GetUseCache() bool {
+	if o == nil || isNil(o.UseCache) {
+		var ret bool
+		return ret
+	}
+	return *o.UseCache
+}
+
+// GetUseCacheOk returns a tuple with the UseCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RedeployRequestInfo) GetUseCacheOk() (*bool, bool) {
+	if o == nil || isNil(o.UseCache) {
+    return nil, false
+	}
+	return o.UseCache, true
+}
+
+// HasUseCache returns a boolean if a field has been set.
+func (o *RedeployRequestInfo) HasUseCache() bool {
+	if o != nil && !isNil(o.UseCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseCache gets a reference to the given bool and assigns it to the UseCache field.
+func (o *RedeployRequestInfo) SetUseCache(v bool) {
+	o.UseCache = &v
+}
+
 func (o RedeployRequestInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.DeploymentGroup) {
@@ -108,6 +141,9 @@ func (o RedeployRequestInfo) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Sha) {
 		toSerialize["sha"] = o.Sha
+	}
+	if !isNil(o.UseCache) {
+		toSerialize["use_cache"] = o.UseCache
 	}
 	return json.Marshal(toSerialize)
 }

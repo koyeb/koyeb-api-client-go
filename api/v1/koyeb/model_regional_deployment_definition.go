@@ -26,6 +26,7 @@ type RegionalDeploymentDefinition struct {
 	InstanceType *string `json:"instance_type,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
+	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 }
@@ -371,6 +372,38 @@ func (o *RegionalDeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck
 	o.HealthChecks = v
 }
 
+// GetSkipCache returns the SkipCache field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetSkipCache() bool {
+	if o == nil || isNil(o.SkipCache) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipCache
+}
+
+// GetSkipCacheOk returns a tuple with the SkipCache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetSkipCacheOk() (*bool, bool) {
+	if o == nil || isNil(o.SkipCache) {
+    return nil, false
+	}
+	return o.SkipCache, true
+}
+
+// HasSkipCache returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasSkipCache() bool {
+	if o != nil && !isNil(o.SkipCache) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipCache gets a reference to the given bool and assigns it to the SkipCache field.
+func (o *RegionalDeploymentDefinition) SetSkipCache(v bool) {
+	o.SkipCache = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *RegionalDeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || isNil(o.Docker) {
@@ -466,6 +499,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.HealthChecks) {
 		toSerialize["health_checks"] = o.HealthChecks
+	}
+	if !isNil(o.SkipCache) {
+		toSerialize["skip_cache"] = o.SkipCache
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker
