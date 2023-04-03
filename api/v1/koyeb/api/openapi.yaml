@@ -480,6 +480,49 @@ paths:
           description: An unexpected error response.
       tags:
       - OrganizationInvitations
+    get:
+      operationId: GetOrganizationInvitation
+      parameters:
+      - description: The id of the invitation to get
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetOrganizationInvitationReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - OrganizationInvitations
   /v1/organization_invitations/{id}/resend:
     post:
       operationId: ResendOrganizationInvitation
@@ -1046,6 +1089,50 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ListUserOrganizationInvitationsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - profile
+  /v1/account/organization_invitations/{id}:
+    get:
+      operationId: GetUserOrganizationInvitation
+      parameters:
+      - description: The id of the organization invitation to get
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetUserOrganizationInvitationReply'
           description: A successful response.
         "400":
           content:
@@ -1943,6 +2030,57 @@ paths:
       tags:
       - organization
       x-codegen-request-body-name: organization
+  /v1/organizations/{id}/deactivate:
+    post:
+      operationId: DeactivateOrganization
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeactivateOrganizationReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Deactivate organization
+      tags:
+      - organization
+      x-codegen-request-body-name: body
   /v1/organizations/{id}/plan:
     post:
       operationId: UpdateOrganizationPlan
@@ -2189,6 +2327,50 @@ paths:
       tags:
       - sso
       x-codegen-request-body-name: body
+  /v1/organization_confirmations/{id}:
+    post:
+      operationId: ConfirmOrganizationAction
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ConfirmOrganizationActionReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Confirm organization action
+      tags:
+      - OrganizationConfirmations
   /v1/organization_members:
     get:
       operationId: ListOrganizationMembers
@@ -5511,23 +5693,31 @@ components:
         invitation:
           role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
       properties:
         invitation:
           $ref: '#/components/schemas/OrganizationInvitation'
@@ -5542,48 +5732,98 @@ components:
       type: object
     DeleteOrganizationInvitationReply:
       type: object
+    GetOrganizationInvitationReply:
+      example:
+        invitation:
+          role: null
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          organization:
+            name: name
+            id: id
+            plan: null
+            status: null
+          inviter_id: inviter_id
+          inviter:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
+          id: id
+          email: email
+          invitee_id: invitee_id
+          status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
+      properties:
+        invitation:
+          $ref: '#/components/schemas/OrganizationInvitation'
+      type: object
     ListOrganizationInvitationsReply:
       example:
         offset: 6
         invitations:
         - role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
         - role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
         limit: 0
         count: 1
       properties:
@@ -5611,28 +5851,40 @@ components:
       - WARNING
       - LOCKED
       - ACTIVE
+      - DEACTIVATING
+      - DEACTIVATED
+      - DELETING
+      - DELETED
       type: string
     OrganizationInvitation:
       example:
         role: null
         expires_at: 2000-01-23T04:56:07.000+00:00
-        user_id: user_id
         organization_id: organization_id
         organization:
           name: name
           id: id
           plan: null
           status: null
-        id: id
-        user:
+        inviter_id: inviter_id
+        inviter:
           github_user: github_user
           avatar_url: avatar_url
           name: name
           github_id: github_id
           id: id
           email: email
+        id: id
         email: email
+        invitee_id: invitee_id
         status: null
+        invitee:
+          github_user: github_user
+          avatar_url: avatar_url
+          name: name
+          github_id: github_id
+          id: id
+          email: email
       properties:
         id:
           type: string
@@ -5647,11 +5899,15 @@ components:
           type: string
         organization_id:
           type: string
-        user_id:
-          type: string
         organization:
           $ref: '#/components/schemas/PublicOrganization'
-        user:
+        invitee_id:
+          type: string
+        invitee:
+          $ref: '#/components/schemas/PublicUser'
+        inviter_id:
+          type: string
+        inviter:
           $ref: '#/components/schemas/PublicUser'
       type: object
     OrganizationInvitation.Status:
@@ -5715,23 +5971,31 @@ components:
         invitation:
           role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
       properties:
         invitation:
           $ref: '#/components/schemas/OrganizationInvitation'
@@ -6013,23 +6277,31 @@ components:
         invitation:
           role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
       properties:
         invitation:
           $ref: '#/components/schemas/OrganizationInvitation'
@@ -6105,28 +6377,63 @@ components:
         name:
           type: string
       type: object
+    DeactivateOrganizationReply:
+      example:
+        organization:
+          status_message: null
+          country: country
+          address2: address2
+          city: city
+          address1: address1
+          vat_number: vat_number
+          plan_updated_at: 2000-01-23T04:56:07.000+00:00
+          has_payment_method: true
+          verified: true
+          billing_name: billing_name
+          subscription_id: subscription_id
+          signup_qualification: "{}"
+          billing_email: billing_email
+          name: name
+          company: true
+          id: id
+          state: state
+          postal_code: postal_code
+          plan: null
+          status: null
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization'
+      type: object
     DeclineOrganizationInvitationReply:
       example:
         invitation:
           role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
       properties:
         invitation:
           $ref: '#/components/schemas/OrganizationInvitation'
@@ -6231,6 +6538,40 @@ components:
         organization:
           $ref: '#/components/schemas/Organization'
       type: object
+    GetUserOrganizationInvitationReply:
+      example:
+        invitation:
+          role: null
+          expires_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          organization:
+            name: name
+            id: id
+            plan: null
+            status: null
+          inviter_id: inviter_id
+          inviter:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
+          id: id
+          email: email
+          invitee_id: invitee_id
+          status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
+      properties:
+        invitation:
+          $ref: '#/components/schemas/OrganizationInvitation'
+      type: object
     GithubInstallationCallbackReply:
       type: object
     GithubInstallationCallbackRequest:
@@ -6296,42 +6637,58 @@ components:
         invitations:
         - role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
         - role: null
           expires_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
           organization_id: organization_id
           organization:
             name: name
             id: id
             plan: null
             status: null
-          id: id
-          user:
+          inviter_id: inviter_id
+          inviter:
             github_user: github_user
             avatar_url: avatar_url
             name: name
             github_id: github_id
             id: id
             email: email
+          id: id
           email: email
+          invitee_id: invitee_id
           status: null
+          invitee:
+            github_user: github_user
+            avatar_url: avatar_url
+            name: name
+            github_id: github_id
+            id: id
+            email: email
         limit: 0
         count: 1
       properties:
@@ -6472,7 +6829,6 @@ components:
       enum:
       - NEW
       - EMAIL_NOT_VALIDATED
-      - PENDING_VALIDATION
       - BILLING_INFO_MISSING
       - LOCKED
       - PAYMENT_FAILURE
@@ -6615,6 +6971,7 @@ components:
         updated_at: 0001-01-01T00:00:00Z
         created_at: 0001-01-01T00:00:00Z
         newsletter_subscribed: true
+        email_validated: true
       properties:
         id:
           type: string
@@ -6647,6 +7004,8 @@ components:
           type: array
         name:
           type: string
+        email_validated:
+          type: boolean
       title: Represent a User
       type: object
     UserFlags:
@@ -6679,6 +7038,7 @@ components:
           updated_at: 0001-01-01T00:00:00Z
           created_at: 0001-01-01T00:00:00Z
           newsletter_subscribed: true
+          email_validated: true
       properties:
         user:
           $ref: '#/components/schemas/User'
@@ -6808,6 +7168,8 @@ components:
       - IN_PROGRESS
       - COMPLETED
       type: string
+    ConfirmOrganizationActionReply:
+      type: object
     ListOrganizationMembersReply:
       example:
         offset: 6
@@ -8121,14 +8483,35 @@ components:
           - messages
           - messages
           definition:
+            scaling:
+              min: 1
+              max: 5
+            skip_cache: true
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
             routes:
             - path: path
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
             git:
               run_command: run_command
               workdir: workdir
@@ -8171,28 +8554,8 @@ components:
               grace_period: 5
               timeout: 9
             name: name
-            type: null
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
             region: region
             instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
           id: id
           deployment_id: deployment_id
           region: region
@@ -8294,14 +8657,35 @@ components:
           - messages
           - messages
           definition:
+            scaling:
+              min: 1
+              max: 5
+            skip_cache: true
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
             routes:
             - path: path
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
             git:
               run_command: run_command
               workdir: workdir
@@ -8344,28 +8728,8 @@ components:
               grace_period: 5
               timeout: 9
             name: name
-            type: null
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
             region: region
             instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
           id: id
           region: region
           status: null
@@ -8375,14 +8739,35 @@ components:
           - messages
           - messages
           definition:
+            scaling:
+              min: 1
+              max: 5
+            skip_cache: true
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - secret: secret
+              value: value
+              key: key
+            - secret: secret
+              value: value
+              key: key
+            docker:
+              args:
+              - args
+              - args
+              image: image
+              image_registry_secret: image_registry_secret
+              command: command
             routes:
             - path: path
               port: 0
             - path: path
               port: 0
-            scaling:
-              min: 1
-              max: 5
             git:
               run_command: run_command
               workdir: workdir
@@ -8425,28 +8810,8 @@ components:
               grace_period: 5
               timeout: 9
             name: name
-            type: null
-            ports:
-            - protocol: protocol
-              port: 6
-            - protocol: protocol
-              port: 6
-            env:
-            - secret: secret
-              value: value
-              key: key
-            - secret: secret
-              value: value
-              key: key
             region: region
             instance_type: instance_type
-            docker:
-              args:
-              - args
-              - args
-              image: image
-              image_registry_secret: image_registry_secret
-              command: command
           id: id
           region: region
           status: null
@@ -8551,14 +8916,35 @@ components:
         - messages
         - messages
         definition:
+          scaling:
+            min: 1
+            max: 5
+          skip_cache: true
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
           routes:
           - path: path
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
           git:
             run_command: run_command
             workdir: workdir
@@ -8601,28 +8987,8 @@ components:
             grace_period: 5
             timeout: 9
           name: name
-          type: null
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
           region: region
           instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
         id: id
         deployment_id: deployment_id
         region: region
@@ -8708,14 +9074,35 @@ components:
       type: string
     RegionalDeploymentDefinition:
       example:
+        scaling:
+          min: 1
+          max: 5
+        skip_cache: true
+        type: null
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - secret: secret
+          value: value
+          key: key
+        - secret: secret
+          value: value
+          key: key
+        docker:
+          args:
+          - args
+          - args
+          image: image
+          image_registry_secret: image_registry_secret
+          command: command
         routes:
         - path: path
           port: 0
         - path: path
           port: 0
-        scaling:
-          min: 1
-          max: 5
         git:
           run_command: run_command
           workdir: workdir
@@ -8758,28 +9145,8 @@ components:
           grace_period: 5
           timeout: 9
         name: name
-        type: null
-        ports:
-        - protocol: protocol
-          port: 6
-        - protocol: protocol
-          port: 6
-        env:
-        - secret: secret
-          value: value
-          key: key
-        - secret: secret
-          value: value
-          key: key
         region: region
         instance_type: instance_type
-        docker:
-          args:
-          - args
-          - args
-          image: image
-          image_registry_secret: image_registry_secret
-          command: command
       properties:
         name:
           type: string
@@ -8809,6 +9176,8 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentHealthCheck'
           type: array
+        skip_cache:
+          type: boolean
         docker:
           $ref: '#/components/schemas/DockerSource'
         git:
@@ -8829,14 +9198,35 @@ components:
         - messages
         - messages
         definition:
+          scaling:
+            min: 1
+            max: 5
+          skip_cache: true
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - secret: secret
+            value: value
+            key: key
+          - secret: secret
+            value: value
+            key: key
+          docker:
+            args:
+            - args
+            - args
+            image: image
+            image_registry_secret: image_registry_secret
+            command: command
           routes:
           - path: path
             port: 0
           - path: path
             port: 0
-          scaling:
-            min: 1
-            max: 5
           git:
             run_command: run_command
             workdir: workdir
@@ -8879,28 +9269,8 @@ components:
             grace_period: 5
             timeout: 9
           name: name
-          type: null
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - secret: secret
-            value: value
-            key: key
-          - secret: secret
-            value: value
-            key: key
           region: region
           instance_type: instance_type
-          docker:
-            args:
-            - args
-            - args
-            image: image
-            image_registry_secret: image_registry_secret
-            command: command
         id: id
         region: region
         status: null
@@ -10302,6 +10672,7 @@ components:
             grace_period: 5
             timeout: 9
           name: name
+          skip_cache: true
           type: null
           ports:
           - protocol: protocol
@@ -10471,6 +10842,7 @@ components:
           grace_period: 5
           timeout: 9
         name: name
+        skip_cache: true
         type: null
         ports:
         - protocol: protocol
@@ -10530,6 +10902,8 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentHealthCheck'
           type: array
+        skip_cache:
+          type: boolean
         docker:
           $ref: '#/components/schemas/DockerSource'
         git:
@@ -10722,6 +11096,7 @@ components:
             grace_period: 5
             timeout: 9
           name: name
+          skip_cache: true
           type: null
           ports:
           - protocol: protocol
@@ -11008,6 +11383,7 @@ components:
               grace_period: 5
               timeout: 9
             name: name
+            skip_cache: true
             type: null
             ports:
             - protocol: protocol
@@ -11224,6 +11600,7 @@ components:
               grace_period: 5
               timeout: 9
             name: name
+            skip_cache: true
             type: null
             ports:
             - protocol: protocol
@@ -11399,6 +11776,7 @@ components:
               grace_period: 5
               timeout: 9
             name: name
+            skip_cache: true
             type: null
             ports:
             - protocol: protocol
@@ -11596,6 +11974,7 @@ components:
             grace_period: 5
             timeout: 9
           name: name
+          skip_cache: true
           type: null
           ports:
           - protocol: protocol
@@ -11995,6 +12374,7 @@ components:
               grace_period: 5
               timeout: 9
             name: name
+            skip_cache: true
             type: null
             ports:
             - protocol: protocol
@@ -12036,6 +12416,8 @@ components:
           type: string
         sha:
           type: string
+        use_cache:
+          type: boolean
       type: object
     ResumeServiceReply:
       type: object
@@ -12307,6 +12689,7 @@ components:
             grace_period: 5
             timeout: 9
           name: name
+          skip_cache: true
           type: null
           ports:
           - protocol: protocol
@@ -13212,6 +13595,7 @@ x-tagGroups:
   - organization
   - OrganizationMembers
   - OrganizationInvitations
+  - OrganizationConfirmations
   - Subscriptions
   - Credentials
   - Secrets

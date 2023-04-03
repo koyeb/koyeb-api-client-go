@@ -30,6 +30,7 @@ type User struct {
 	GithubUser *string `json:"github_user,omitempty"`
 	Flags []UserFlags `json:"flags,omitempty"`
 	Name *string `json:"name,omitempty"`
+	EmailValidated *bool `json:"email_validated,omitempty"`
 }
 
 // NewUser instantiates a new User object
@@ -465,6 +466,38 @@ func (o *User) SetName(v string) {
 	o.Name = &v
 }
 
+// GetEmailValidated returns the EmailValidated field value if set, zero value otherwise.
+func (o *User) GetEmailValidated() bool {
+	if o == nil || isNil(o.EmailValidated) {
+		var ret bool
+		return ret
+	}
+	return *o.EmailValidated
+}
+
+// GetEmailValidatedOk returns a tuple with the EmailValidated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetEmailValidatedOk() (*bool, bool) {
+	if o == nil || isNil(o.EmailValidated) {
+    return nil, false
+	}
+	return o.EmailValidated, true
+}
+
+// HasEmailValidated returns a boolean if a field has been set.
+func (o *User) HasEmailValidated() bool {
+	if o != nil && !isNil(o.EmailValidated) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailValidated gets a reference to the given bool and assigns it to the EmailValidated field.
+func (o *User) SetEmailValidated(v bool) {
+	o.EmailValidated = &v
+}
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -505,6 +538,9 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.EmailValidated) {
+		toSerialize["email_validated"] = o.EmailValidated
 	}
 	return json.Marshal(toSerialize)
 }

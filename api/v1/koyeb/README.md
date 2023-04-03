@@ -118,6 +118,7 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
 *OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
+*OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate organization
 *OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
@@ -127,8 +128,10 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
 *OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
+*OrganizationConfirmationsApi* | [**ConfirmOrganizationAction**](docs/OrganizationConfirmationsApi.md#confirmorganizationaction) | **Post** /v1/organization_confirmations/{id} | Confirm organization action
 *OrganizationInvitationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationInvitationsApi.md#createorganizationinvitation) | **Post** /v1/organization_invitations | 
 *OrganizationInvitationsApi* | [**DeleteOrganizationInvitation**](docs/OrganizationInvitationsApi.md#deleteorganizationinvitation) | **Delete** /v1/organization_invitations/{id} | 
+*OrganizationInvitationsApi* | [**GetOrganizationInvitation**](docs/OrganizationInvitationsApi.md#getorganizationinvitation) | **Get** /v1/organization_invitations/{id} | 
 *OrganizationInvitationsApi* | [**ListOrganizationInvitations**](docs/OrganizationInvitationsApi.md#listorganizationinvitations) | **Get** /v1/organization_invitations | 
 *OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | 
 *OrganizationMembersApi* | [**ListOrganizationMembers**](docs/OrganizationMembersApi.md#listorganizationmembers) | **Get** /v1/organization_members | List organization members
@@ -144,6 +147,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | 
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
+*ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | 
 *ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | 
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 *ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | 
@@ -221,6 +225,7 @@ Class | Method | HTTP request | Description
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
+ - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
@@ -267,6 +272,7 @@ Class | Method | HTTP request | Description
  - [GetMetricsReply](docs/GetMetricsReply.md)
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
+ - [GetOrganizationInvitationReply](docs/GetOrganizationInvitationReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
@@ -276,6 +282,7 @@ Class | Method | HTTP request | Description
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
  - [GetSubscriptionReply](docs/GetSubscriptionReply.md)
+ - [GetUserOrganizationInvitationReply](docs/GetUserOrganizationInvitationReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
  - [GitDeploymentMetadataProvider](docs/GitDeploymentMetadataProvider.md)
  - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
