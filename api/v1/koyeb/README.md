@@ -83,14 +83,16 @@ Class | Method | HTTP request | Description
 *ActivityApi* | [**ListActivities**](docs/ActivityApi.md#listactivities) | **Get** /v1/activities | 
 *ActivityApi* | [**ListNotifications**](docs/ActivityApi.md#listnotifications) | **Get** /v1/notifications | 
 *AppsApi* | [**CreateApp**](docs/AppsApi.md#createapp) | **Post** /v1/apps | Create App
-*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App App deletion is allowed for all status.
+*AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App
 *AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id} | Get App
+*AppsApi* | [**ListAppEvents**](docs/AppsApi.md#listappevents) | **Get** /v1/app_events | List App events
 *AppsApi* | [**ListApps**](docs/AppsApi.md#listapps) | **Get** /v1/apps | List App
-*AppsApi* | [**PauseApp**](docs/AppsApi.md#pauseapp) | **Post** /v1/apps/{id}/pause | Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
-*AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App App resume action is allowed for the following status:  - paused
+*AppsApi* | [**PauseApp**](docs/AppsApi.md#pauseapp) | **Post** /v1/apps/{id}/pause | Pause App
+*AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
+*BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
@@ -102,8 +104,9 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**ListCredentials**](docs/CredentialsApi.md#listcredentials) | **Get** /v1/credentials | List credentials
 *CredentialsApi* | [**UpdateCredential**](docs/CredentialsApi.md#updatecredential) | **Put** /v1/credentials/{id} | Update credential
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | Update credential
-*DeploymentsApi* | [**CancelDeployment**](docs/DeploymentsApi.md#canceldeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
+*DeploymentsApi* | [**CancelDeployment**](docs/DeploymentsApi.md#canceldeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
+*DeploymentsApi* | [**ListDeploymentEvents**](docs/DeploymentsApi.md#listdeploymentevents) | **Get** /v1/deployment_events | List Deployment events
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
 *DomainsApi* | [**DeleteDomain**](docs/DomainsApi.md#deletedomain) | **Delete** /v1/domains/{id} | 
@@ -113,6 +116,7 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | 
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
+*InstancesApi* | [**ListInstanceEvents**](docs/InstancesApi.md#listinstanceevents) | **Get** /v1/instance_events | List Instance events
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
@@ -159,6 +163,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
 *QuotasApi* | [**ReviewOrganizationCapacity**](docs/QuotasApi.md#revieworganizationcapacity) | **Post** /v1/quotas/capacity | Review Organization Capacity
 *RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
+*RegionalDeploymentsApi* | [**ListRegionalDeploymentEvents**](docs/RegionalDeploymentsApi.md#listregionaldeploymentevents) | **Get** /v1/regional_deployment_events | List Regional Deployment events
 *RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
 *RepositoriesApi* | [**ListBranches**](docs/RepositoriesApi.md#listbranches) | **Get** /v1/git/branches | 
 *RepositoriesApi* | [**ListRepositories**](docs/RepositoriesApi.md#listrepositories) | **Get** /v1/git/repositories | 
@@ -172,12 +177,13 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
-*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service Service deletion is allowed for all status.
+*ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
-*ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Service
-*ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+*ServicesApi* | [**ListServiceEvents**](docs/ServicesApi.md#listserviceevents) | **Get** /v1/service_events | List Service events
+*ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Services
+*ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service
 *ServicesApi* | [**ReDeploy**](docs/ServicesApi.md#redeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
-*ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service Service resume action is allowed for the following status:  - paused
+*ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user
@@ -197,12 +203,14 @@ Class | Method | HTTP request | Description
  - [Activity](docs/Activity.md)
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
+ - [AppEvent](docs/AppEvent.md)
  - [AppListItem](docs/AppListItem.md)
  - [AppStatus](docs/AppStatus.md)
  - [AppUsage](docs/AppUsage.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
+ - [BuildpackBuilder](docs/BuildpackBuilder.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
@@ -231,6 +239,7 @@ Class | Method | HTTP request | Description
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
  - [DeploymentDefinitionType](docs/DeploymentDefinitionType.md)
  - [DeploymentEnv](docs/DeploymentEnv.md)
+ - [DeploymentEvent](docs/DeploymentEvent.md)
  - [DeploymentHealthCheck](docs/DeploymentHealthCheck.md)
  - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
@@ -248,6 +257,7 @@ Class | Method | HTTP request | Description
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
  - [DiscourseAuthReply](docs/DiscourseAuthReply.md)
  - [DiscourseAuthRequest](docs/DiscourseAuthRequest.md)
+ - [DockerBuilder](docs/DockerBuilder.md)
  - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
@@ -297,6 +307,7 @@ Class | Method | HTTP request | Description
  - [HTTPHeader](docs/HTTPHeader.md)
  - [HTTPHealthCheck](docs/HTTPHealthCheck.md)
  - [Instance](docs/Instance.md)
+ - [InstanceEvent](docs/InstanceEvent.md)
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InstanceUsage](docs/InstanceUsage.md)
@@ -317,19 +328,24 @@ Class | Method | HTTP request | Description
  - [KsearchSearchReply](docs/KsearchSearchReply.md)
  - [KsearchService](docs/KsearchService.md)
  - [KsearchUser](docs/KsearchUser.md)
+ - [ListAppEventsReply](docs/ListAppEventsReply.md)
  - [ListAppsReply](docs/ListAppsReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
  - [ListDatacentersReply](docs/ListDatacentersReply.md)
+ - [ListDeploymentEventsReply](docs/ListDeploymentEventsReply.md)
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListDomainsReply](docs/ListDomainsReply.md)
+ - [ListInstanceEventsReply](docs/ListInstanceEventsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
  - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
  - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
+ - [ListRegionalDeploymentEventsReply](docs/ListRegionalDeploymentEventsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
+ - [ListServiceEventsReply](docs/ListServiceEventsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
  - [LogEntry](docs/LogEntry.md)
@@ -337,6 +353,7 @@ Class | Method | HTTP request | Description
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)
  - [MetricName](docs/MetricName.md)
+ - [NextInvoiceReply](docs/NextInvoiceReply.md)
  - [Notification](docs/Notification.md)
  - [NotificationList](docs/NotificationList.md)
  - [OAuthCallbackReply](docs/OAuthCallbackReply.md)
@@ -366,6 +383,7 @@ Class | Method | HTTP request | Description
  - [RegionalDeployment](docs/RegionalDeployment.md)
  - [RegionalDeploymentDefinition](docs/RegionalDeploymentDefinition.md)
  - [RegionalDeploymentDefinitionType](docs/RegionalDeploymentDefinitionType.md)
+ - [RegionalDeploymentEvent](docs/RegionalDeploymentEvent.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
  - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
@@ -379,6 +397,7 @@ Class | Method | HTTP request | Description
  - [Secret](docs/Secret.md)
  - [SecretType](docs/SecretType.md)
  - [Service](docs/Service.md)
+ - [ServiceEvent](docs/ServiceEvent.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)

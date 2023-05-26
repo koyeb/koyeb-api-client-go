@@ -25,6 +25,8 @@ type GitSource struct {
 	RunCommand *string `json:"run_command,omitempty"`
 	NoDeployOnPush *bool `json:"no_deploy_on_push,omitempty"`
 	Workdir *string `json:"workdir,omitempty"`
+	Buildpack *BuildpackBuilder `json:"buildpack,omitempty"`
+	Docker *DockerBuilder `json:"docker,omitempty"`
 }
 
 // NewGitSource instantiates a new GitSource object
@@ -300,6 +302,70 @@ func (o *GitSource) SetWorkdir(v string) {
 	o.Workdir = &v
 }
 
+// GetBuildpack returns the Buildpack field value if set, zero value otherwise.
+func (o *GitSource) GetBuildpack() BuildpackBuilder {
+	if o == nil || isNil(o.Buildpack) {
+		var ret BuildpackBuilder
+		return ret
+	}
+	return *o.Buildpack
+}
+
+// GetBuildpackOk returns a tuple with the Buildpack field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetBuildpackOk() (*BuildpackBuilder, bool) {
+	if o == nil || isNil(o.Buildpack) {
+    return nil, false
+	}
+	return o.Buildpack, true
+}
+
+// HasBuildpack returns a boolean if a field has been set.
+func (o *GitSource) HasBuildpack() bool {
+	if o != nil && !isNil(o.Buildpack) {
+		return true
+	}
+
+	return false
+}
+
+// SetBuildpack gets a reference to the given BuildpackBuilder and assigns it to the Buildpack field.
+func (o *GitSource) SetBuildpack(v BuildpackBuilder) {
+	o.Buildpack = &v
+}
+
+// GetDocker returns the Docker field value if set, zero value otherwise.
+func (o *GitSource) GetDocker() DockerBuilder {
+	if o == nil || isNil(o.Docker) {
+		var ret DockerBuilder
+		return ret
+	}
+	return *o.Docker
+}
+
+// GetDockerOk returns a tuple with the Docker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetDockerOk() (*DockerBuilder, bool) {
+	if o == nil || isNil(o.Docker) {
+    return nil, false
+	}
+	return o.Docker, true
+}
+
+// HasDocker returns a boolean if a field has been set.
+func (o *GitSource) HasDocker() bool {
+	if o != nil && !isNil(o.Docker) {
+		return true
+	}
+
+	return false
+}
+
+// SetDocker gets a reference to the given DockerBuilder and assigns it to the Docker field.
+func (o *GitSource) SetDocker(v DockerBuilder) {
+	o.Docker = &v
+}
+
 func (o GitSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Repository) {
@@ -325,6 +391,12 @@ func (o GitSource) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Workdir) {
 		toSerialize["workdir"] = o.Workdir
+	}
+	if !isNil(o.Buildpack) {
+		toSerialize["buildpack"] = o.Buildpack
+	}
+	if !isNil(o.Docker) {
+		toSerialize["docker"] = o.Docker
 	}
 	return json.Marshal(toSerialize)
 }

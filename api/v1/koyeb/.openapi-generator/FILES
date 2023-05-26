@@ -40,6 +40,7 @@ docs/Activity.md
 docs/ActivityApi.md
 docs/ActivityList.md
 docs/App.md
+docs/AppEvent.md
 docs/AppListItem.md
 docs/AppStatus.md
 docs/AppUsage.md
@@ -48,6 +49,7 @@ docs/AutoRelease.md
 docs/AutoReleaseGroup.md
 docs/AzureContainerRegistryConfiguration.md
 docs/BillingApi.md
+docs/BuildpackBuilder.md
 docs/CannyAuthReply.md
 docs/CatalogDatacentersApi.md
 docs/CatalogInstance.md
@@ -80,6 +82,7 @@ docs/Deployment.md
 docs/DeploymentDefinition.md
 docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
+docs/DeploymentEvent.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
@@ -98,6 +101,7 @@ docs/DesiredDeploymentGroup.md
 docs/DigitalOceanRegistryConfiguration.md
 docs/DiscourseAuthReply.md
 docs/DiscourseAuthRequest.md
+docs/DockerBuilder.md
 docs/DockerHubRegistryConfiguration.md
 docs/DockerSource.md
 docs/Domain.md
@@ -148,6 +152,7 @@ docs/GoogleRpcStatus.md
 docs/HTTPHeader.md
 docs/HTTPHealthCheck.md
 docs/Instance.md
+docs/InstanceEvent.md
 docs/InstanceListItem.md
 docs/InstanceStatus.md
 docs/InstanceUsage.md
@@ -170,19 +175,24 @@ docs/KsearchRegionalDeployment.md
 docs/KsearchSearchReply.md
 docs/KsearchService.md
 docs/KsearchUser.md
+docs/ListAppEventsReply.md
 docs/ListAppsReply.md
 docs/ListCatalogInstancesReply.md
 docs/ListCredentialsReply.md
 docs/ListDatacentersReply.md
+docs/ListDeploymentEventsReply.md
 docs/ListDeploymentsReply.md
 docs/ListDomainsReply.md
+docs/ListInstanceEventsReply.md
 docs/ListInstancesReply.md
 docs/ListOrganizationInvitationsReply.md
 docs/ListOrganizationMembersReply.md
 docs/ListPaymentMethodsReply.md
+docs/ListRegionalDeploymentEventsReply.md
 docs/ListRegionalDeploymentsReply.md
 docs/ListRegionsReply.md
 docs/ListSecretsReply.md
+docs/ListServiceEventsReply.md
 docs/ListServicesReply.md
 docs/ListUserOrganizationInvitationsReply.md
 docs/LogEntry.md
@@ -192,6 +202,7 @@ docs/LogsApi.md
 docs/ManageReply.md
 docs/MetricName.md
 docs/MetricsApi.md
+docs/NextInvoiceReply.md
 docs/Notification.md
 docs/NotificationList.md
 docs/OAuthCallbackReply.md
@@ -228,6 +239,7 @@ docs/RegionUsage.md
 docs/RegionalDeployment.md
 docs/RegionalDeploymentDefinition.md
 docs/RegionalDeploymentDefinitionType.md
+docs/RegionalDeploymentEvent.md
 docs/RegionalDeploymentListItem.md
 docs/RegionalDeploymentMetadata.md
 docs/RegionalDeploymentStatus.md
@@ -245,6 +257,7 @@ docs/Secret.md
 docs/SecretType.md
 docs/SecretsApi.md
 docs/Service.md
+docs/ServiceEvent.md
 docs/ServiceListItem.md
 docs/ServiceState.md
 docs/ServiceStatus.md
@@ -294,12 +307,14 @@ model_action.go
 model_activity.go
 model_activity_list.go
 model_app.go
+model_app_event.go
 model_app_list_item.go
 model_app_status.go
 model_app_usage.go
 model_auto_release.go
 model_auto_release_group.go
 model_azure_container_registry_configuration.go
+model_buildpack_builder.go
 model_canny_auth_reply.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
@@ -328,6 +343,7 @@ model_deployment.go
 model_deployment_definition.go
 model_deployment_definition_type.go
 model_deployment_env.go
+model_deployment_event.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go
@@ -345,6 +361,7 @@ model_desired_deployment_group.go
 model_digital_ocean_registry_configuration.go
 model_discourse_auth_reply.go
 model_discourse_auth_request.go
+model_docker_builder.go
 model_docker_hub_registry_configuration.go
 model_docker_source.go
 model_domain.go
@@ -394,6 +411,7 @@ model_google_rpc_status.go
 model_http_header.go
 model_http_health_check.go
 model_instance.go
+model_instance_event.go
 model_instance_list_item.go
 model_instance_status.go
 model_instance_usage.go
@@ -414,19 +432,24 @@ model_ksearch_regional_deployment.go
 model_ksearch_search_reply.go
 model_ksearch_service.go
 model_ksearch_user.go
+model_list_app_events_reply.go
 model_list_apps_reply.go
 model_list_catalog_instances_reply.go
 model_list_credentials_reply.go
 model_list_datacenters_reply.go
+model_list_deployment_events_reply.go
 model_list_deployments_reply.go
 model_list_domains_reply.go
+model_list_instance_events_reply.go
 model_list_instances_reply.go
 model_list_organization_invitations_reply.go
 model_list_organization_members_reply.go
 model_list_payment_methods_reply.go
+model_list_regional_deployment_events_reply.go
 model_list_regional_deployments_reply.go
 model_list_regions_reply.go
 model_list_secrets_reply.go
+model_list_service_events_reply.go
 model_list_services_reply.go
 model_list_user_organization_invitations_reply.go
 model_log_entry.go
@@ -434,6 +457,7 @@ model_login_reply.go
 model_login_request.go
 model_manage_reply.go
 model_metric_name.go
+model_next_invoice_reply.go
 model_notification.go
 model_notification_list.go
 model_o_auth_callback_reply.go
@@ -463,6 +487,7 @@ model_region_usage.go
 model_regional_deployment.go
 model_regional_deployment_definition.go
 model_regional_deployment_definition_type.go
+model_regional_deployment_event.go
 model_regional_deployment_list_item.go
 model_regional_deployment_metadata.go
 model_regional_deployment_status.go
@@ -476,6 +501,7 @@ model_scaling.go
 model_secret.go
 model_secret_type.go
 model_service.go
+model_service_event.go
 model_service_list_item.go
 model_service_state.go
 model_service_status.go

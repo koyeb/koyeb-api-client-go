@@ -25,6 +25,8 @@ type Subscription struct {
 	StripeSubscriptionId *string `json:"stripe_subscription_id,omitempty"`
 	Status *SubscriptionStatus `json:"status,omitempty"`
 	Messages []string `json:"messages,omitempty"`
+	HasPendingUpdate *bool `json:"has_pending_update,omitempty"`
+	StripePendingInvoiceId *string `json:"stripe_pending_invoice_id,omitempty"`
 	TerminateAt *time.Time `json:"terminate_at,omitempty"`
 	CanceledAt *time.Time `json:"canceled_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
@@ -312,6 +314,70 @@ func (o *Subscription) HasMessages() bool {
 // SetMessages gets a reference to the given []string and assigns it to the Messages field.
 func (o *Subscription) SetMessages(v []string) {
 	o.Messages = v
+}
+
+// GetHasPendingUpdate returns the HasPendingUpdate field value if set, zero value otherwise.
+func (o *Subscription) GetHasPendingUpdate() bool {
+	if o == nil || isNil(o.HasPendingUpdate) {
+		var ret bool
+		return ret
+	}
+	return *o.HasPendingUpdate
+}
+
+// GetHasPendingUpdateOk returns a tuple with the HasPendingUpdate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetHasPendingUpdateOk() (*bool, bool) {
+	if o == nil || isNil(o.HasPendingUpdate) {
+    return nil, false
+	}
+	return o.HasPendingUpdate, true
+}
+
+// HasHasPendingUpdate returns a boolean if a field has been set.
+func (o *Subscription) HasHasPendingUpdate() bool {
+	if o != nil && !isNil(o.HasPendingUpdate) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasPendingUpdate gets a reference to the given bool and assigns it to the HasPendingUpdate field.
+func (o *Subscription) SetHasPendingUpdate(v bool) {
+	o.HasPendingUpdate = &v
+}
+
+// GetStripePendingInvoiceId returns the StripePendingInvoiceId field value if set, zero value otherwise.
+func (o *Subscription) GetStripePendingInvoiceId() string {
+	if o == nil || isNil(o.StripePendingInvoiceId) {
+		var ret string
+		return ret
+	}
+	return *o.StripePendingInvoiceId
+}
+
+// GetStripePendingInvoiceIdOk returns a tuple with the StripePendingInvoiceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetStripePendingInvoiceIdOk() (*string, bool) {
+	if o == nil || isNil(o.StripePendingInvoiceId) {
+    return nil, false
+	}
+	return o.StripePendingInvoiceId, true
+}
+
+// HasStripePendingInvoiceId returns a boolean if a field has been set.
+func (o *Subscription) HasStripePendingInvoiceId() bool {
+	if o != nil && !isNil(o.StripePendingInvoiceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetStripePendingInvoiceId gets a reference to the given string and assigns it to the StripePendingInvoiceId field.
+func (o *Subscription) SetStripePendingInvoiceId(v string) {
+	o.StripePendingInvoiceId = &v
 }
 
 // GetTerminateAt returns the TerminateAt field value if set, zero value otherwise.
@@ -659,6 +725,12 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Messages) {
 		toSerialize["messages"] = o.Messages
+	}
+	if !isNil(o.HasPendingUpdate) {
+		toSerialize["has_pending_update"] = o.HasPendingUpdate
+	}
+	if !isNil(o.StripePendingInvoiceId) {
+		toSerialize["stripe_pending_invoice_id"] = o.StripePendingInvoiceId
 	}
 	if !isNil(o.TerminateAt) {
 		toSerialize["terminate_at"] = o.TerminateAt

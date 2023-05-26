@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**ExecCommand**](InstancesApi.md#ExecCommand) | **Get** /v1/streams/instances/exec | Exec Command
 [**GetInstance**](InstancesApi.md#GetInstance) | **Get** /v1/instances/{id} | Get Instance
+[**ListInstanceEvents**](InstancesApi.md#ListInstanceEvents) | **Get** /v1/instance_events | List Instance events
 [**ListInstances**](InstancesApi.md#ListInstances) | **Get** /v1/instances | List Instances
 
 
@@ -137,6 +138,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetInstanceReply**](GetInstanceReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListInstanceEvents
+
+> ListInstanceEventsReply ListInstanceEvents(ctx).InstanceId(instanceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+
+List Instance events
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    instanceId := "instanceId_example" // string | (Optional) Filter on instance id (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on instance event types (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.InstancesApi.ListInstanceEvents(context.Background()).InstanceId(instanceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstanceEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListInstanceEvents`: ListInstanceEventsReply
+    fmt.Fprintf(os.Stdout, "Response from `InstancesApi.ListInstanceEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListInstanceEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **instanceId** | **string** | (Optional) Filter on instance id | 
+ **types** | **[]string** | (Optional) Filter on instance event types | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+
+### Return type
+
+[**ListInstanceEventsReply**](ListInstanceEventsReply.md)
 
 ### Authorization
 

@@ -63,7 +63,7 @@ func (r ApiGetOrganizationUsageRequest) StartingTime(startingTime time.Time) Api
 	return r
 }
 
-// The ending time of the period to get date from
+// The ending time of the period to get data from
 func (r ApiGetOrganizationUsageRequest) EndingTime(endingTime time.Time) ApiGetOrganizationUsageRequest {
 	r.endingTime = &endingTime
 	return r
@@ -197,6 +197,7 @@ type ApiGetOrganizationUsageDetailsRequest struct {
 	limit *string
 	offset *string
 	order *string
+	accept *string
 }
 
 // The starting time of the period to get data from
@@ -205,7 +206,7 @@ func (r ApiGetOrganizationUsageDetailsRequest) StartingTime(startingTime time.Ti
 	return r
 }
 
-// The ending time of the period to get date from
+// The ending time of the period to get data from
 func (r ApiGetOrganizationUsageDetailsRequest) EndingTime(endingTime time.Time) ApiGetOrganizationUsageDetailsRequest {
 	r.endingTime = &endingTime
 	return r
@@ -226,6 +227,12 @@ func (r ApiGetOrganizationUsageDetailsRequest) Offset(offset string) ApiGetOrgan
 // (Optional) Sorts the list in the ascending or the descending order
 func (r ApiGetOrganizationUsageDetailsRequest) Order(order string) ApiGetOrganizationUsageDetailsRequest {
 	r.order = &order
+	return r
+}
+
+// If defined with the value &#39;text/csv&#39;, a csv file is returned
+func (r ApiGetOrganizationUsageDetailsRequest) Accept(accept string) ApiGetOrganizationUsageDetailsRequest {
+	r.accept = &accept
 	return r
 }
 
@@ -298,6 +305,9 @@ func (a *UsagesApiService) GetOrganizationUsageDetailsExecute(r ApiGetOrganizati
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.accept != nil {
+		localVarHeaderParams["Accept"] = parameterToString(*r.accept, "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication

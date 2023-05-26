@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **RunCommand** | Pointer to **string** |  | [optional] 
 **NoDeployOnPush** | Pointer to **bool** |  | [optional] 
 **Workdir** | Pointer to **string** |  | [optional] 
+**Buildpack** | Pointer to [**BuildpackBuilder**](BuildpackBuilder.md) |  | [optional] 
+**Docker** | Pointer to [**DockerBuilder**](DockerBuilder.md) |  | [optional] 
 
 ## Methods
 
@@ -231,6 +233,56 @@ SetWorkdir sets Workdir field to given value.
 `func (o *GitSource) HasWorkdir() bool`
 
 HasWorkdir returns a boolean if a field has been set.
+
+### GetBuildpack
+
+`func (o *GitSource) GetBuildpack() BuildpackBuilder`
+
+GetBuildpack returns the Buildpack field if non-nil, zero value otherwise.
+
+### GetBuildpackOk
+
+`func (o *GitSource) GetBuildpackOk() (*BuildpackBuilder, bool)`
+
+GetBuildpackOk returns a tuple with the Buildpack field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBuildpack
+
+`func (o *GitSource) SetBuildpack(v BuildpackBuilder)`
+
+SetBuildpack sets Buildpack field to given value.
+
+### HasBuildpack
+
+`func (o *GitSource) HasBuildpack() bool`
+
+HasBuildpack returns a boolean if a field has been set.
+
+### GetDocker
+
+`func (o *GitSource) GetDocker() DockerBuilder`
+
+GetDocker returns the Docker field if non-nil, zero value otherwise.
+
+### GetDockerOk
+
+`func (o *GitSource) GetDockerOk() (*DockerBuilder, bool)`
+
+GetDockerOk returns a tuple with the Docker field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDocker
+
+`func (o *GitSource) SetDocker(v DockerBuilder)`
+
+SetDocker sets Docker field to given value.
+
+### HasDocker
+
+`func (o *GitSource) HasDocker() bool`
+
+HasDocker returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
