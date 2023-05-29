@@ -29,6 +29,8 @@ type InstanceListItem struct {
 	Datacenter *string `json:"datacenter,omitempty"`
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages []string `json:"messages,omitempty"`
+	// WARNING: Please don't use the following attribute. Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice. USE AT YOUR OWN RISK.
+	XyzDeploymentId *string `json:"xyz_deployment_id,omitempty"`
 }
 
 // NewInstanceListItem instantiates a new InstanceListItem object
@@ -436,6 +438,38 @@ func (o *InstanceListItem) SetMessages(v []string) {
 	o.Messages = v
 }
 
+// GetXyzDeploymentId returns the XyzDeploymentId field value if set, zero value otherwise.
+func (o *InstanceListItem) GetXyzDeploymentId() string {
+	if o == nil || isNil(o.XyzDeploymentId) {
+		var ret string
+		return ret
+	}
+	return *o.XyzDeploymentId
+}
+
+// GetXyzDeploymentIdOk returns a tuple with the XyzDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetXyzDeploymentIdOk() (*string, bool) {
+	if o == nil || isNil(o.XyzDeploymentId) {
+    return nil, false
+	}
+	return o.XyzDeploymentId, true
+}
+
+// HasXyzDeploymentId returns a boolean if a field has been set.
+func (o *InstanceListItem) HasXyzDeploymentId() bool {
+	if o != nil && !isNil(o.XyzDeploymentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetXyzDeploymentId gets a reference to the given string and assigns it to the XyzDeploymentId field.
+func (o *InstanceListItem) SetXyzDeploymentId(v string) {
+	o.XyzDeploymentId = &v
+}
+
 func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -473,6 +507,9 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Messages) {
 		toSerialize["messages"] = o.Messages
+	}
+	if !isNil(o.XyzDeploymentId) {
+		toSerialize["xyz_deployment_id"] = o.XyzDeploymentId
 	}
 	return json.Marshal(toSerialize)
 }

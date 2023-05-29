@@ -25,6 +25,7 @@ const (
 	PLAN_STARTUP Plan = "startup"
 	PLAN_BUSINESS Plan = "business"
 	PLAN_ENTERPRISE Plan = "enterprise"
+	PLAN_INTERNAL Plan = "internal"
 )
 
 // All allowed values of Plan enum
@@ -34,6 +35,7 @@ var AllowedPlanEnumValues = []Plan{
 	"startup",
 	"business",
 	"enterprise",
+	"internal",
 }
 
 func (v *Plan) UnmarshalJSON(src []byte) error {

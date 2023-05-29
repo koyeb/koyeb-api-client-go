@@ -32,6 +32,8 @@ type Instance struct {
 	Messages []string `json:"messages,omitempty"`
 	StartedAt *time.Time `json:"started_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
+	// WARNING: Please don't use the following attribute. Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice. USE AT YOUR OWN RISK.
+	XyzDeploymentId *string `json:"xyz_deployment_id,omitempty"`
 }
 
 // NewInstance instantiates a new Instance object
@@ -535,6 +537,38 @@ func (o *Instance) SetTerminatedAt(v time.Time) {
 	o.TerminatedAt = &v
 }
 
+// GetXyzDeploymentId returns the XyzDeploymentId field value if set, zero value otherwise.
+func (o *Instance) GetXyzDeploymentId() string {
+	if o == nil || isNil(o.XyzDeploymentId) {
+		var ret string
+		return ret
+	}
+	return *o.XyzDeploymentId
+}
+
+// GetXyzDeploymentIdOk returns a tuple with the XyzDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetXyzDeploymentIdOk() (*string, bool) {
+	if o == nil || isNil(o.XyzDeploymentId) {
+    return nil, false
+	}
+	return o.XyzDeploymentId, true
+}
+
+// HasXyzDeploymentId returns a boolean if a field has been set.
+func (o *Instance) HasXyzDeploymentId() bool {
+	if o != nil && !isNil(o.XyzDeploymentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetXyzDeploymentId gets a reference to the given string and assigns it to the XyzDeploymentId field.
+func (o *Instance) SetXyzDeploymentId(v string) {
+	o.XyzDeploymentId = &v
+}
+
 func (o Instance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -581,6 +615,9 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.TerminatedAt) {
 		toSerialize["terminated_at"] = o.TerminatedAt
+	}
+	if !isNil(o.XyzDeploymentId) {
+		toSerialize["xyz_deployment_id"] = o.XyzDeploymentId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -5,11 +5,12 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateApp**](AppsApi.md#CreateApp) | **Post** /v1/apps | Create App
-[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App App deletion is allowed for all status.
+[**DeleteApp**](AppsApi.md#DeleteApp) | **Delete** /v1/apps/{id} | Delete App
 [**GetApp**](AppsApi.md#GetApp) | **Get** /v1/apps/{id} | Get App
+[**ListAppEvents**](AppsApi.md#ListAppEvents) | **Get** /v1/app_events | List App events
 [**ListApps**](AppsApi.md#ListApps) | **Get** /v1/apps | List App
-[**PauseApp**](AppsApi.md#PauseApp) | **Post** /v1/apps/{id}/pause | Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
-[**ResumeApp**](AppsApi.md#ResumeApp) | **Post** /v1/apps/{id}/resume | Resume App App resume action is allowed for the following status:  - paused
+[**PauseApp**](AppsApi.md#PauseApp) | **Post** /v1/apps/{id}/pause | Pause App
+[**ResumeApp**](AppsApi.md#ResumeApp) | **Post** /v1/apps/{id}/resume | Resume App
 [**UpdateApp**](AppsApi.md#UpdateApp) | **Put** /v1/apps/{id} | Update App
 [**UpdateApp2**](AppsApi.md#UpdateApp2) | **Patch** /v1/apps/{id} | Update App
 
@@ -83,7 +84,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteApp(ctx, id).Execute()
 
-Delete App App deletion is allowed for all status.
+Delete App
+
+
 
 ### Example
 
@@ -215,6 +218,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListAppEvents
+
+> ListAppEventsReply ListAppEvents(ctx).AppId(appId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+
+List App events
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    appId := "appId_example" // string | (Optional) Filter on app id (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on app event types (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.AppsApi.ListAppEvents(context.Background()).AppId(appId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.ListAppEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAppEvents`: ListAppEventsReply
+    fmt.Fprintf(os.Stdout, "Response from `AppsApi.ListAppEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAppEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appId** | **string** | (Optional) Filter on app id | 
+ **types** | **[]string** | (Optional) Filter on app event types | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+
+### Return type
+
+[**ListAppEventsReply**](ListAppEventsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListApps
 
 > ListAppsReply ListApps(ctx).Limit(limit).Offset(offset).Name(name).Execute()
@@ -287,7 +362,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} PauseApp(ctx, id).Execute()
 
-Pause App App pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+Pause App
+
+
 
 ### Example
 
@@ -355,7 +432,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResumeApp(ctx, id).Execute()
 
-Resume App App resume action is allowed for the following status:  - paused
+Resume App
+
+
 
 ### Example
 

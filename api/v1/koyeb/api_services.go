@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -35,7 +36,9 @@ type ServicesApi interface {
 	CreateServiceExecute(r ApiCreateServiceRequest) (*CreateServiceReply, *http.Response, error)
 
 	/*
-	DeleteService Delete Service Service deletion is allowed for all status.
+	DeleteService Delete Service
+
+	Service deletion is allowed for all status.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the entity to delete
@@ -61,7 +64,19 @@ type ServicesApi interface {
 	GetServiceExecute(r ApiGetServiceRequest) (*GetServiceReply, *http.Response, error)
 
 	/*
-	ListServices List Service
+	ListServiceEvents List Service events
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListServiceEventsRequest
+	*/
+	ListServiceEvents(ctx context.Context) ApiListServiceEventsRequest
+
+	// ListServiceEventsExecute executes the request
+	//  @return ListServiceEventsReply
+	ListServiceEventsExecute(r ApiListServiceEventsRequest) (*ListServiceEventsReply, *http.Response, error)
+
+	/*
+	ListServices List Services
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListServicesRequest
@@ -73,7 +88,14 @@ type ServicesApi interface {
 	ListServicesExecute(r ApiListServicesRequest) (*ListServicesReply, *http.Response, error)
 
 	/*
-	PauseService Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+	PauseService Pause Service
+
+	Service pause action is allowed for the following status:
+ - starting
+ - healthy
+ - degraded
+ - unhealthy
+ - resuming
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the service to pause.
@@ -99,7 +121,10 @@ type ServicesApi interface {
 	ReDeployExecute(r ApiReDeployRequest) (*RedeployReply, *http.Response, error)
 
 	/*
-	ResumeService Resume Service Service resume action is allowed for the following status:  - paused
+	ResumeService Resume Service
+
+	Service resume action is allowed for the following status:
+ - paused
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the service to pause.
@@ -325,7 +350,9 @@ func (r ApiDeleteServiceRequest) Execute() (map[string]interface{}, *http.Respon
 }
 
 /*
-DeleteService Delete Service Service deletion is allowed for all status.
+DeleteService Delete Service
+
+Service deletion is allowed for all status.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the entity to delete
@@ -626,6 +653,216 @@ func (a *ServicesApiService) GetServiceExecute(r ApiGetServiceRequest) (*GetServ
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiListServiceEventsRequest struct {
+	ctx context.Context
+	ApiService ServicesApi
+	serviceId *string
+	types *[]string
+	limit *string
+	offset *string
+	order *string
+}
+
+// (Optional) Filter on service id
+func (r ApiListServiceEventsRequest) ServiceId(serviceId string) ApiListServiceEventsRequest {
+	r.serviceId = &serviceId
+	return r
+}
+
+// (Optional) Filter on service event types
+func (r ApiListServiceEventsRequest) Types(types []string) ApiListServiceEventsRequest {
+	r.types = &types
+	return r
+}
+
+// (Optional) The number of items to return
+func (r ApiListServiceEventsRequest) Limit(limit string) ApiListServiceEventsRequest {
+	r.limit = &limit
+	return r
+}
+
+// (Optional) The offset in the list of item to return
+func (r ApiListServiceEventsRequest) Offset(offset string) ApiListServiceEventsRequest {
+	r.offset = &offset
+	return r
+}
+
+// (Optional) Sorts the list in the ascending or the descending order
+func (r ApiListServiceEventsRequest) Order(order string) ApiListServiceEventsRequest {
+	r.order = &order
+	return r
+}
+
+func (r ApiListServiceEventsRequest) Execute() (*ListServiceEventsReply, *http.Response, error) {
+	return r.ApiService.ListServiceEventsExecute(r)
+}
+
+/*
+ListServiceEvents List Service events
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListServiceEventsRequest
+*/
+func (a *ServicesApiService) ListServiceEvents(ctx context.Context) ApiListServiceEventsRequest {
+	return ApiListServiceEventsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ListServiceEventsReply
+func (a *ServicesApiService) ListServiceEventsExecute(r ApiListServiceEventsRequest) (*ListServiceEventsReply, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListServiceEventsReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.ListServiceEvents")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/service_events"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.serviceId != nil {
+		localVarQueryParams.Add("service_id", parameterToString(*r.serviceId, ""))
+	}
+	if r.types != nil {
+		t := *r.types
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("types", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("types", parameterToString(t, "multi"))
+		}
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.order != nil {
+		localVarQueryParams.Add("order", parameterToString(*r.order, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiListServicesRequest struct {
 	ctx context.Context
 	ApiService ServicesApi
@@ -664,7 +901,7 @@ func (r ApiListServicesRequest) Execute() (*ListServicesReply, *http.Response, e
 }
 
 /*
-ListServices List Service
+ListServices List Services
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListServicesRequest
@@ -829,7 +1066,14 @@ func (r ApiPauseServiceRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-PauseService Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+PauseService Pause Service
+
+Service pause action is allowed for the following status:
+ - starting
+ - healthy
+ - degraded
+ - unhealthy
+ - resuming
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the service to pause.
@@ -1152,7 +1396,10 @@ func (r ApiResumeServiceRequest) Execute() (map[string]interface{}, *http.Respon
 }
 
 /*
-ResumeService Resume Service Service resume action is allowed for the following status:  - paused
+ResumeService Resume Service
+
+Service resume action is allowed for the following status:
+ - paused
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the service to pause.

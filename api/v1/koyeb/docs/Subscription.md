@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **StripeSubscriptionId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**SubscriptionStatus**](SubscriptionStatus.md) |  | [optional] [default to SUBSCRIPTIONSTATUS_INVALID]
 **Messages** | Pointer to **[]string** |  | [optional] 
+**HasPendingUpdate** | Pointer to **bool** |  | [optional] 
+**StripePendingInvoiceId** | Pointer to **string** |  | [optional] 
 **TerminateAt** | Pointer to **time.Time** |  | [optional] 
 **CanceledAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -241,6 +243,56 @@ SetMessages sets Messages field to given value.
 `func (o *Subscription) HasMessages() bool`
 
 HasMessages returns a boolean if a field has been set.
+
+### GetHasPendingUpdate
+
+`func (o *Subscription) GetHasPendingUpdate() bool`
+
+GetHasPendingUpdate returns the HasPendingUpdate field if non-nil, zero value otherwise.
+
+### GetHasPendingUpdateOk
+
+`func (o *Subscription) GetHasPendingUpdateOk() (*bool, bool)`
+
+GetHasPendingUpdateOk returns a tuple with the HasPendingUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasPendingUpdate
+
+`func (o *Subscription) SetHasPendingUpdate(v bool)`
+
+SetHasPendingUpdate sets HasPendingUpdate field to given value.
+
+### HasHasPendingUpdate
+
+`func (o *Subscription) HasHasPendingUpdate() bool`
+
+HasHasPendingUpdate returns a boolean if a field has been set.
+
+### GetStripePendingInvoiceId
+
+`func (o *Subscription) GetStripePendingInvoiceId() string`
+
+GetStripePendingInvoiceId returns the StripePendingInvoiceId field if non-nil, zero value otherwise.
+
+### GetStripePendingInvoiceIdOk
+
+`func (o *Subscription) GetStripePendingInvoiceIdOk() (*string, bool)`
+
+GetStripePendingInvoiceIdOk returns a tuple with the StripePendingInvoiceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStripePendingInvoiceId
+
+`func (o *Subscription) SetStripePendingInvoiceId(v string)`
+
+SetStripePendingInvoiceId sets StripePendingInvoiceId field to given value.
+
+### HasStripePendingInvoiceId
+
+`func (o *Subscription) HasStripePendingInvoiceId() bool`
+
+HasStripePendingInvoiceId returns a boolean if a field has been set.
 
 ### GetTerminateAt
 

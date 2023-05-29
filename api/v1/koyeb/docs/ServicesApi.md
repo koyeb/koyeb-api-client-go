@@ -5,12 +5,13 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/services | Create Service
-[**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service Service deletion is allowed for all status.
+[**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
-[**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Service
-[**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+[**ListServiceEvents**](ServicesApi.md#ListServiceEvents) | **Get** /v1/service_events | List Service events
+[**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Services
+[**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service
 [**ReDeploy**](ServicesApi.md#ReDeploy) | **Post** /v1/services/{id}/redeploy | ReDeploy Service
-[**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service Service resume action is allowed for the following status:  - paused
+[**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/services/{id} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/services/{id} | Update Service
 
@@ -86,7 +87,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteService(ctx, id).Execute()
 
-Delete Service Service deletion is allowed for all status.
+Delete Service
+
+
 
 ### Example
 
@@ -218,11 +221,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListServiceEvents
+
+> ListServiceEventsReply ListServiceEvents(ctx).ServiceId(serviceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+
+List Service events
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serviceId := "serviceId_example" // string | (Optional) Filter on service id (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on service event types (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.ListServiceEvents(context.Background()).ServiceId(serviceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServiceEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListServiceEvents`: ListServiceEventsReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.ListServiceEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListServiceEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **serviceId** | **string** | (Optional) Filter on service id | 
+ **types** | **[]string** | (Optional) Filter on service event types | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+
+### Return type
+
+[**ListServiceEventsReply**](ListServiceEventsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListServices
 
 > ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
 
-List Service
+List Services
 
 ### Example
 
@@ -292,7 +367,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} PauseService(ctx, id).Execute()
 
-Pause Service Service pause action is allowed for the following status:  - starting  - healthy  - degraded  - unhealthy  - resuming
+Pause Service
+
+
 
 ### Example
 
@@ -430,7 +507,9 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResumeService(ctx, id).Execute()
 
-Resume Service Service resume action is allowed for the following status:  - paused
+Resume Service
+
+
 
 ### Example
 

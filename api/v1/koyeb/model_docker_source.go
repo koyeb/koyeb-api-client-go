@@ -20,6 +20,7 @@ type DockerSource struct {
 	Command *string `json:"command,omitempty"`
 	Args []string `json:"args,omitempty"`
 	ImageRegistrySecret *string `json:"image_registry_secret,omitempty"`
+	Entrypoint []string `json:"entrypoint,omitempty"`
 }
 
 // NewDockerSource instantiates a new DockerSource object
@@ -167,6 +168,38 @@ func (o *DockerSource) SetImageRegistrySecret(v string) {
 	o.ImageRegistrySecret = &v
 }
 
+// GetEntrypoint returns the Entrypoint field value if set, zero value otherwise.
+func (o *DockerSource) GetEntrypoint() []string {
+	if o == nil || isNil(o.Entrypoint) {
+		var ret []string
+		return ret
+	}
+	return o.Entrypoint
+}
+
+// GetEntrypointOk returns a tuple with the Entrypoint field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DockerSource) GetEntrypointOk() ([]string, bool) {
+	if o == nil || isNil(o.Entrypoint) {
+    return nil, false
+	}
+	return o.Entrypoint, true
+}
+
+// HasEntrypoint returns a boolean if a field has been set.
+func (o *DockerSource) HasEntrypoint() bool {
+	if o != nil && !isNil(o.Entrypoint) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntrypoint gets a reference to the given []string and assigns it to the Entrypoint field.
+func (o *DockerSource) SetEntrypoint(v []string) {
+	o.Entrypoint = v
+}
+
 func (o DockerSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Image) {
@@ -180,6 +213,9 @@ func (o DockerSource) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ImageRegistrySecret) {
 		toSerialize["image_registry_secret"] = o.ImageRegistrySecret
+	}
+	if !isNil(o.Entrypoint) {
+		toSerialize["entrypoint"] = o.Entrypoint
 	}
 	return json.Marshal(toSerialize)
 }

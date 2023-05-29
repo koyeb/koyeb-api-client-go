@@ -4,8 +4,9 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelDeployment**](DeploymentsApi.md#CancelDeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
+[**CancelDeployment**](DeploymentsApi.md#CancelDeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment
 [**GetDeployment**](DeploymentsApi.md#GetDeployment) | **Get** /v1/deployments/{id} | Get Deployment
+[**ListDeploymentEvents**](DeploymentsApi.md#ListDeploymentEvents) | **Get** /v1/deployment_events | List Deployment events
 [**ListDeployments**](DeploymentsApi.md#ListDeployments) | **Get** /v1/deployments | List Deployments
 
 
@@ -14,7 +15,9 @@ Method | HTTP request | Description
 
 > map[string]interface{} CancelDeployment(ctx, id).Execute()
 
-Cancel Deployment Deployment cancellation is allowed for the following status:  - pending  - provisioning  - scheduled
+Cancel Deployment
+
+
 
 ### Example
 
@@ -131,6 +134,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetDeploymentReply**](GetDeploymentReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListDeploymentEvents
+
+> ListDeploymentEventsReply ListDeploymentEvents(ctx).DeploymentId(deploymentId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+
+List Deployment events
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on deployment event types (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeploymentsApi.ListDeploymentEvents(context.Background()).DeploymentId(deploymentId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.ListDeploymentEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListDeploymentEvents`: ListDeploymentEventsReply
+    fmt.Fprintf(os.Stdout, "Response from `DeploymentsApi.ListDeploymentEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListDeploymentEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deploymentId** | **string** | (Optional) Filter on deployment id | 
+ **types** | **[]string** | (Optional) Filter on deployment event types | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+
+### Return type
+
+[**ListDeploymentEventsReply**](ListDeploymentEventsReply.md)
 
 ### Authorization
 
