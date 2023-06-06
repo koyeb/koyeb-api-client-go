@@ -6604,7 +6604,7 @@
         "parameters": [
           {
             "name": "id",
-            "description": "ID of the instance to exec on. Mandatory in the first frame sent",
+            "description": "ID of the resource to exec on.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6641,6 +6641,19 @@
             "required": false,
             "type": "string",
             "format": "byte"
+          },
+          {
+            "name": "id_type",
+            "description": "When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "INVALID",
+              "INSTANCE_ID",
+              "SERVICE_ID"
+            ],
+            "default": "INVALID"
           }
         ],
         "tags": [
@@ -7658,11 +7671,11 @@
         },
         "build_command": {
           "type": "string",
-          "title": "A command used to override the build command, run after all build steps"
+          "title": "A command used to override the build command, run after all build steps \u2014\u00a0deprecated, use buildpack.build_command instead"
         },
         "run_command": {
           "type": "string",
-          "title": "A command used to override the default run command"
+          "title": "A command used to override the default run command - deprecated, use buildpack.run_command instead"
         },
         "no_deploy_on_push": {
           "type": "boolean",
@@ -11379,6 +11392,15 @@
           "$ref": "#/definitions/ExecCommandIO"
         }
       }
+    },
+    "ExecCommandRequest.IdType": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "INSTANCE_ID",
+        "SERVICE_ID"
+      ],
+      "default": "INVALID"
     },
     "ExecCommandRequest.TerminalSize": {
       "type": "object",
