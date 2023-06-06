@@ -270,6 +270,7 @@ Class | Method | HTTP request | Description
  - [ExecCommandIO](docs/ExecCommandIO.md)
  - [ExecCommandReply](docs/ExecCommandReply.md)
  - [ExecCommandRequestBody](docs/ExecCommandRequestBody.md)
+ - [ExecCommandRequestIdType](docs/ExecCommandRequestIdType.md)
  - [ExecCommandRequestTerminalSize](docs/ExecCommandRequestTerminalSize.md)
  - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GetAppReply](docs/GetAppReply.md)

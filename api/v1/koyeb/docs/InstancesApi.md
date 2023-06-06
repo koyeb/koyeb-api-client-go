@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ExecCommand
 
-> StreamResultOfExecCommandReply ExecCommand(ctx).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
+> StreamResultOfExecCommandReply ExecCommand(ctx).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).IdType(idType).Execute()
 
 Exec Command
 
@@ -32,15 +32,16 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | ID of the instance to exec on. Mandatory in the first frame sent (optional)
+    id := "id_example" // string | ID of the resource to exec on. (optional)
     bodyCommand := []string{"Inner_example"} // []string | Command to exec. Mandatory in the first frame sent (optional)
     bodyTtySizeHeight := int32(56) // int32 |  (optional)
     bodyTtySizeWidth := int32(56) // int32 |  (optional)
     bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string | Data is base64 encoded (optional)
+    idType := "idType_example" // string | When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id. (optional) (default to "INVALID")
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).Execute()
+    resp, r, err := apiClient.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).IdType(idType).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ExecCommand``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,11 +62,12 @@ Other parameters are passed through a pointer to a apiExecCommandRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **string** | ID of the instance to exec on. Mandatory in the first frame sent | 
+ **id** | **string** | ID of the resource to exec on. | 
  **bodyCommand** | **[]string** | Command to exec. Mandatory in the first frame sent | 
  **bodyTtySizeHeight** | **int32** |  | 
  **bodyTtySizeWidth** | **int32** |  | 
  **bodyStdinData** | **string** | Data is base64 encoded | 
+ **idType** | **string** | When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id. | [default to &quot;INVALID&quot;]
 
 ### Return type
 

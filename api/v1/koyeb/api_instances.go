@@ -86,9 +86,10 @@ type ApiExecCommandRequest struct {
 	bodyTtySizeHeight *int32
 	bodyTtySizeWidth *int32
 	bodyStdinData *string
+	idType *string
 }
 
-// ID of the instance to exec on. Mandatory in the first frame sent
+// ID of the resource to exec on.
 func (r ApiExecCommandRequest) Id(id string) ApiExecCommandRequest {
 	r.id = &id
 	return r
@@ -113,6 +114,12 @@ func (r ApiExecCommandRequest) BodyTtySizeWidth(bodyTtySizeWidth int32) ApiExecC
 // Data is base64 encoded
 func (r ApiExecCommandRequest) BodyStdinData(bodyStdinData string) ApiExecCommandRequest {
 	r.bodyStdinData = &bodyStdinData
+	return r
+}
+
+// When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id.
+func (r ApiExecCommandRequest) IdType(idType string) ApiExecCommandRequest {
+	r.idType = &idType
 	return r
 }
 
@@ -178,6 +185,9 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (*Stre
 	}
 	if r.bodyStdinData != nil {
 		localVarQueryParams.Add("body.stdin.data", parameterToString(*r.bodyStdinData, ""))
+	}
+	if r.idType != nil {
+		localVarQueryParams.Add("id_type", parameterToString(*r.idType, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -5886,7 +5886,7 @@ paths:
         \ format specified below. Output frames will match the response schema."
       operationId: ExecCommand
       parameters:
-      - description: ID of the instance to exec on. Mandatory in the first frame sent
+      - description: ID of the resource to exec on.
         in: query
         name: id
         schema:
@@ -5915,6 +5915,17 @@ paths:
         name: body.stdin.data
         schema:
           format: byte
+          type: string
+      - description: "When specified, it is used to determine if the kind of resource\
+          \ the id refers to. If missing, defaults to the instance id."
+        in: query
+        name: id_type
+        schema:
+          default: INVALID
+          enum:
+          - INVALID
+          - INSTANCE_ID
+          - SERVICE_ID
           type: string
       responses:
         "200":
@@ -7765,10 +7776,11 @@ components:
           type: string
         build_command:
           title: "A command used to override the build command, run after all build\
-            \ steps"
+            \ steps —\_deprecated, use buildpack.build_command instead"
           type: string
         run_command:
-          title: A command used to override the default run command
+          title: "A command used to override the default run command - deprecated,\
+            \ use buildpack.run_command instead"
           type: string
         no_deploy_on_push:
           title: A flag to disable a new deployment when a push event is detected
@@ -14602,6 +14614,13 @@ components:
         stdin:
           $ref: '#/components/schemas/ExecCommandIO'
       type: object
+    ExecCommandRequest.IdType:
+      default: INVALID
+      enum:
+      - INVALID
+      - INSTANCE_ID
+      - SERVICE_ID
+      type: string
     ExecCommandRequest.TerminalSize:
       properties:
         height:
