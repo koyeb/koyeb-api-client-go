@@ -3443,6 +3443,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3456,6 +3462,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3540,6 +3552,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3553,6 +3571,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3585,6 +3609,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3598,6 +3628,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3739,6 +3775,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3752,6 +3794,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3793,6 +3841,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3806,6 +3860,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3840,6 +3900,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3853,6 +3919,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3911,6 +3983,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3924,6 +4002,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -3965,6 +4049,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -3978,6 +4068,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4008,6 +4104,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4021,6 +4123,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4055,6 +4163,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4068,6 +4182,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4099,6 +4219,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4112,6 +4238,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4153,6 +4285,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4166,6 +4304,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4206,6 +4350,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4219,6 +4369,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4258,6 +4414,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4271,6 +4433,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4306,6 +4474,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4319,6 +4493,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4350,6 +4530,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4363,6 +4549,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4420,6 +4612,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4433,6 +4631,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4503,6 +4707,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4516,6 +4726,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4548,6 +4764,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4561,6 +4783,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4598,6 +4826,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4611,6 +4845,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4691,6 +4931,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4704,6 +4950,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4733,6 +4985,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4746,6 +5004,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4777,6 +5041,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4790,6 +5060,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4819,6 +5095,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4832,6 +5114,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4871,6 +5159,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4884,6 +5178,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4915,6 +5215,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4928,6 +5234,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -4983,6 +5295,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -4996,6 +5314,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5042,6 +5366,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5055,6 +5385,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5091,6 +5427,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5104,6 +5446,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5138,6 +5486,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5151,6 +5505,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5182,6 +5542,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5195,6 +5561,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5237,6 +5609,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5250,6 +5628,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5293,6 +5677,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5306,6 +5696,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5346,6 +5742,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5359,6 +5761,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5396,6 +5804,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5409,6 +5823,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5445,6 +5865,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5458,6 +5884,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5508,6 +5940,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5521,6 +5959,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5550,6 +5994,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5563,6 +6013,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5594,6 +6050,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5607,6 +6069,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5636,6 +6104,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5649,6 +6123,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5688,6 +6168,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5701,6 +6187,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5741,6 +6233,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5754,6 +6252,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
@@ -5793,6 +6297,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorWithFields'
           description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
         "403":
           content:
             '*/*':
@@ -5806,6 +6316,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
           description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
         default:
           content:
             '*/*':
