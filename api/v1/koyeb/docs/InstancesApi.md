@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## ListInstanceEvents
 
-> ListInstanceEventsReply ListInstanceEvents(ctx).InstanceId(instanceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+> ListInstanceEventsReply ListInstanceEvents(ctx).InstanceId(instanceId).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
 
 List Instance events
 
@@ -175,6 +175,7 @@ import (
 
 func main() {
     instanceId := "instanceId_example" // string | (Optional) Filter on instance id (optional)
+    instanceIds := []string{"Inner_example"} // []string | (Optional) Filter on list of instance id (optional)
     types := []string{"Inner_example"} // []string | (Optional) Filter on instance event types (optional)
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
@@ -182,7 +183,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ListInstanceEvents(context.Background()).InstanceId(instanceId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    resp, r, err := apiClient.InstancesApi.ListInstanceEvents(context.Background()).InstanceId(instanceId).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstanceEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -204,6 +205,7 @@ Other parameters are passed through a pointer to a apiListInstanceEventsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **instanceId** | **string** | (Optional) Filter on instance id | 
+ **instanceIds** | **[]string** | (Optional) Filter on list of instance id | 
  **types** | **[]string** | (Optional) Filter on instance event types | 
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 

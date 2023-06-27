@@ -458,6 +458,7 @@ type ApiListInstanceEventsRequest struct {
 	ctx context.Context
 	ApiService InstancesApi
 	instanceId *string
+	instanceIds *[]string
 	types *[]string
 	limit *string
 	offset *string
@@ -467,6 +468,12 @@ type ApiListInstanceEventsRequest struct {
 // (Optional) Filter on instance id
 func (r ApiListInstanceEventsRequest) InstanceId(instanceId string) ApiListInstanceEventsRequest {
 	r.instanceId = &instanceId
+	return r
+}
+
+// (Optional) Filter on list of instance id
+func (r ApiListInstanceEventsRequest) InstanceIds(instanceIds []string) ApiListInstanceEventsRequest {
+	r.instanceIds = &instanceIds
 	return r
 }
 
@@ -534,6 +541,17 @@ func (a *InstancesApiService) ListInstanceEventsExecute(r ApiListInstanceEventsR
 
 	if r.instanceId != nil {
 		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
+	}
+	if r.instanceIds != nil {
+		t := *r.instanceIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("instance_ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("instance_ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.types != nil {
 		t := *r.types

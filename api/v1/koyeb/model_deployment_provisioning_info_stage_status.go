@@ -24,6 +24,7 @@ const (
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_RUNNING DeploymentProvisioningInfoStageStatus = "RUNNING"
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_FAILED DeploymentProvisioningInfoStageStatus = "FAILED"
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_COMPLETED DeploymentProvisioningInfoStageStatus = "COMPLETED"
+	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_ABORTED DeploymentProvisioningInfoStageStatus = "ABORTED"
 )
 
 // All allowed values of DeploymentProvisioningInfoStageStatus enum
@@ -32,6 +33,7 @@ var AllowedDeploymentProvisioningInfoStageStatusEnumValues = []DeploymentProvisi
 	"RUNNING",
 	"FAILED",
 	"COMPLETED",
+	"ABORTED",
 }
 
 func (v *DeploymentProvisioningInfoStageStatus) UnmarshalJSON(src []byte) error {
