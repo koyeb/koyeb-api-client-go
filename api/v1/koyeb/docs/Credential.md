@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**CredentialType**](CredentialType.md) |  | [optional] [default to CREDENTIALTYPE_INVALID]
 **Name** | Pointer to **string** |  | [optional] 
 **Token** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -56,6 +57,31 @@ SetId sets Id field to given value.
 `func (o *Credential) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Credential) GetType() CredentialType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Credential) GetTypeOk() (*CredentialType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Credential) SetType(v CredentialType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Credential) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetName
 

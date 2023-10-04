@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BuildCommand** | Pointer to **string** |  | [optional] 
 **RunCommand** | Pointer to **string** |  | [optional] 
+**Privileged** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetRunCommand sets RunCommand field to given value.
 `func (o *BuildpackBuilder) HasRunCommand() bool`
 
 HasRunCommand returns a boolean if a field has been set.
+
+### GetPrivileged
+
+`func (o *BuildpackBuilder) GetPrivileged() bool`
+
+GetPrivileged returns the Privileged field if non-nil, zero value otherwise.
+
+### GetPrivilegedOk
+
+`func (o *BuildpackBuilder) GetPrivilegedOk() (*bool, bool)`
+
+GetPrivilegedOk returns a tuple with the Privileged field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrivileged
+
+`func (o *BuildpackBuilder) SetPrivileged(v bool)`
+
+SetPrivileged sets Privileged field to given value.
+
+### HasPrivileged
+
+`func (o *BuildpackBuilder) HasPrivileged() bool`
+
+HasPrivileged returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

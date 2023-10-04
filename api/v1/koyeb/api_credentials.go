@@ -580,21 +580,45 @@ func (a *CredentialsApiService) GetCredentialExecute(r ApiGetCredentialRequest) 
 type ApiListCredentialsRequest struct {
 	ctx context.Context
 	ApiService CredentialsApi
+	type_ *string
 	name *string
+	organizationId *string
+	userId *string
 	limit *string
 	offset *string
 }
 
+// (Optional) A filter for type
+func (r ApiListCredentialsRequest) Type_(type_ string) ApiListCredentialsRequest {
+	r.type_ = &type_
+	return r
+}
+
+// (Optional) A filter for name
 func (r ApiListCredentialsRequest) Name(name string) ApiListCredentialsRequest {
 	r.name = &name
 	return r
 }
 
+// (Optional) Filter for an organization
+func (r ApiListCredentialsRequest) OrganizationId(organizationId string) ApiListCredentialsRequest {
+	r.organizationId = &organizationId
+	return r
+}
+
+// (Optional) Filter for an user
+func (r ApiListCredentialsRequest) UserId(userId string) ApiListCredentialsRequest {
+	r.userId = &userId
+	return r
+}
+
+// (Optional) The number of items to return
 func (r ApiListCredentialsRequest) Limit(limit string) ApiListCredentialsRequest {
 	r.limit = &limit
 	return r
 }
 
+// (Optional) The offset in the list of item to return
 func (r ApiListCredentialsRequest) Offset(offset string) ApiListCredentialsRequest {
 	r.offset = &offset
 	return r
@@ -638,8 +662,17 @@ func (a *CredentialsApiService) ListCredentialsExecute(r ApiListCredentialsReque
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.type_ != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.organizationId != nil {
+		localVarQueryParams.Add("organization_id", parameterToString(*r.organizationId, ""))
+	}
+	if r.userId != nil {
+		localVarQueryParams.Add("user_id", parameterToString(*r.userId, ""))
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))

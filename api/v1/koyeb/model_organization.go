@@ -33,10 +33,14 @@ type Organization struct {
 	PlanUpdatedAt *time.Time `json:"plan_updated_at,omitempty"`
 	HasPaymentMethod *bool `json:"has_payment_method,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	CurrentSubscriptionId *string `json:"current_subscription_id,omitempty"`
+	LatestSubscriptionId *string `json:"latest_subscription_id,omitempty"`
 	SignupQualification map[string]interface{} `json:"signup_qualification,omitempty"`
 	Status *OrganizationStatus `json:"status,omitempty"`
 	StatusMessage *OrganizationDetailedStatus `json:"status_message,omitempty"`
+	DeactivationReason *OrganizationDeactivationReason `json:"deactivation_reason,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
+	QualifiesForHobby23 *bool `json:"qualifies_for_hobby23,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -51,6 +55,8 @@ func NewOrganization() *Organization {
 	this.Status = &status
 	var statusMessage OrganizationDetailedStatus = ORGANIZATIONDETAILEDSTATUS_NEW
 	this.StatusMessage = &statusMessage
+	var deactivationReason OrganizationDeactivationReason = ORGANIZATIONDEACTIVATIONREASON_INVALID
+	this.DeactivationReason = &deactivationReason
 	return &this
 }
 
@@ -65,6 +71,8 @@ func NewOrganizationWithDefaults() *Organization {
 	this.Status = &status
 	var statusMessage OrganizationDetailedStatus = ORGANIZATIONDETAILEDSTATUS_NEW
 	this.StatusMessage = &statusMessage
+	var deactivationReason OrganizationDeactivationReason = ORGANIZATIONDEACTIVATIONREASON_INVALID
+	this.DeactivationReason = &deactivationReason
 	return &this
 }
 
@@ -580,6 +588,70 @@ func (o *Organization) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
+// GetCurrentSubscriptionId returns the CurrentSubscriptionId field value if set, zero value otherwise.
+func (o *Organization) GetCurrentSubscriptionId() string {
+	if o == nil || isNil(o.CurrentSubscriptionId) {
+		var ret string
+		return ret
+	}
+	return *o.CurrentSubscriptionId
+}
+
+// GetCurrentSubscriptionIdOk returns a tuple with the CurrentSubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetCurrentSubscriptionIdOk() (*string, bool) {
+	if o == nil || isNil(o.CurrentSubscriptionId) {
+    return nil, false
+	}
+	return o.CurrentSubscriptionId, true
+}
+
+// HasCurrentSubscriptionId returns a boolean if a field has been set.
+func (o *Organization) HasCurrentSubscriptionId() bool {
+	if o != nil && !isNil(o.CurrentSubscriptionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentSubscriptionId gets a reference to the given string and assigns it to the CurrentSubscriptionId field.
+func (o *Organization) SetCurrentSubscriptionId(v string) {
+	o.CurrentSubscriptionId = &v
+}
+
+// GetLatestSubscriptionId returns the LatestSubscriptionId field value if set, zero value otherwise.
+func (o *Organization) GetLatestSubscriptionId() string {
+	if o == nil || isNil(o.LatestSubscriptionId) {
+		var ret string
+		return ret
+	}
+	return *o.LatestSubscriptionId
+}
+
+// GetLatestSubscriptionIdOk returns a tuple with the LatestSubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetLatestSubscriptionIdOk() (*string, bool) {
+	if o == nil || isNil(o.LatestSubscriptionId) {
+    return nil, false
+	}
+	return o.LatestSubscriptionId, true
+}
+
+// HasLatestSubscriptionId returns a boolean if a field has been set.
+func (o *Organization) HasLatestSubscriptionId() bool {
+	if o != nil && !isNil(o.LatestSubscriptionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestSubscriptionId gets a reference to the given string and assigns it to the LatestSubscriptionId field.
+func (o *Organization) SetLatestSubscriptionId(v string) {
+	o.LatestSubscriptionId = &v
+}
+
 // GetSignupQualification returns the SignupQualification field value if set, zero value otherwise.
 func (o *Organization) GetSignupQualification() map[string]interface{} {
 	if o == nil || isNil(o.SignupQualification) {
@@ -676,6 +748,38 @@ func (o *Organization) SetStatusMessage(v OrganizationDetailedStatus) {
 	o.StatusMessage = &v
 }
 
+// GetDeactivationReason returns the DeactivationReason field value if set, zero value otherwise.
+func (o *Organization) GetDeactivationReason() OrganizationDeactivationReason {
+	if o == nil || isNil(o.DeactivationReason) {
+		var ret OrganizationDeactivationReason
+		return ret
+	}
+	return *o.DeactivationReason
+}
+
+// GetDeactivationReasonOk returns a tuple with the DeactivationReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetDeactivationReasonOk() (*OrganizationDeactivationReason, bool) {
+	if o == nil || isNil(o.DeactivationReason) {
+    return nil, false
+	}
+	return o.DeactivationReason, true
+}
+
+// HasDeactivationReason returns a boolean if a field has been set.
+func (o *Organization) HasDeactivationReason() bool {
+	if o != nil && !isNil(o.DeactivationReason) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeactivationReason gets a reference to the given OrganizationDeactivationReason and assigns it to the DeactivationReason field.
+func (o *Organization) SetDeactivationReason(v OrganizationDeactivationReason) {
+	o.DeactivationReason = &v
+}
+
 // GetVerified returns the Verified field value if set, zero value otherwise.
 func (o *Organization) GetVerified() bool {
 	if o == nil || isNil(o.Verified) {
@@ -706,6 +810,38 @@ func (o *Organization) HasVerified() bool {
 // SetVerified gets a reference to the given bool and assigns it to the Verified field.
 func (o *Organization) SetVerified(v bool) {
 	o.Verified = &v
+}
+
+// GetQualifiesForHobby23 returns the QualifiesForHobby23 field value if set, zero value otherwise.
+func (o *Organization) GetQualifiesForHobby23() bool {
+	if o == nil || isNil(o.QualifiesForHobby23) {
+		var ret bool
+		return ret
+	}
+	return *o.QualifiesForHobby23
+}
+
+// GetQualifiesForHobby23Ok returns a tuple with the QualifiesForHobby23 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetQualifiesForHobby23Ok() (*bool, bool) {
+	if o == nil || isNil(o.QualifiesForHobby23) {
+    return nil, false
+	}
+	return o.QualifiesForHobby23, true
+}
+
+// HasQualifiesForHobby23 returns a boolean if a field has been set.
+func (o *Organization) HasQualifiesForHobby23() bool {
+	if o != nil && !isNil(o.QualifiesForHobby23) {
+		return true
+	}
+
+	return false
+}
+
+// SetQualifiesForHobby23 gets a reference to the given bool and assigns it to the QualifiesForHobby23 field.
+func (o *Organization) SetQualifiesForHobby23(v bool) {
+	o.QualifiesForHobby23 = &v
 }
 
 func (o Organization) MarshalJSON() ([]byte, error) {
@@ -758,6 +894,12 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if !isNil(o.SubscriptionId) {
 		toSerialize["subscription_id"] = o.SubscriptionId
 	}
+	if !isNil(o.CurrentSubscriptionId) {
+		toSerialize["current_subscription_id"] = o.CurrentSubscriptionId
+	}
+	if !isNil(o.LatestSubscriptionId) {
+		toSerialize["latest_subscription_id"] = o.LatestSubscriptionId
+	}
 	if !isNil(o.SignupQualification) {
 		toSerialize["signup_qualification"] = o.SignupQualification
 	}
@@ -767,8 +909,14 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if !isNil(o.StatusMessage) {
 		toSerialize["status_message"] = o.StatusMessage
 	}
+	if !isNil(o.DeactivationReason) {
+		toSerialize["deactivation_reason"] = o.DeactivationReason
+	}
 	if !isNil(o.Verified) {
 		toSerialize["verified"] = o.Verified
+	}
+	if !isNil(o.QualifiesForHobby23) {
+		toSerialize["qualifies_for_hobby23"] = o.QualifiesForHobby23
 	}
 	return json.Marshal(toSerialize)
 }

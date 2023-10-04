@@ -31,6 +31,7 @@ type Secret struct {
 	GitlabRegistry *GitLabRegistryConfiguration `json:"gitlab_registry,omitempty"`
 	GcpContainerRegistry *GCPContainerRegistryConfiguration `json:"gcp_container_registry,omitempty"`
 	AzureContainerRegistry *AzureContainerRegistryConfiguration `json:"azure_container_registry,omitempty"`
+	DatabaseRolePassword *DatabaseRolePassword `json:"database_role_password,omitempty"`
 }
 
 // NewSecret instantiates a new Secret object
@@ -502,6 +503,38 @@ func (o *Secret) SetAzureContainerRegistry(v AzureContainerRegistryConfiguration
 	o.AzureContainerRegistry = &v
 }
 
+// GetDatabaseRolePassword returns the DatabaseRolePassword field value if set, zero value otherwise.
+func (o *Secret) GetDatabaseRolePassword() DatabaseRolePassword {
+	if o == nil || isNil(o.DatabaseRolePassword) {
+		var ret DatabaseRolePassword
+		return ret
+	}
+	return *o.DatabaseRolePassword
+}
+
+// GetDatabaseRolePasswordOk returns a tuple with the DatabaseRolePassword field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetDatabaseRolePasswordOk() (*DatabaseRolePassword, bool) {
+	if o == nil || isNil(o.DatabaseRolePassword) {
+    return nil, false
+	}
+	return o.DatabaseRolePassword, true
+}
+
+// HasDatabaseRolePassword returns a boolean if a field has been set.
+func (o *Secret) HasDatabaseRolePassword() bool {
+	if o != nil && !isNil(o.DatabaseRolePassword) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseRolePassword gets a reference to the given DatabaseRolePassword and assigns it to the DatabaseRolePassword field.
+func (o *Secret) SetDatabaseRolePassword(v DatabaseRolePassword) {
+	o.DatabaseRolePassword = &v
+}
+
 func (o Secret) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -545,6 +578,9 @@ func (o Secret) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AzureContainerRegistry) {
 		toSerialize["azure_container_registry"] = o.AzureContainerRegistry
+	}
+	if !isNil(o.DatabaseRolePassword) {
+		toSerialize["database_role_password"] = o.DatabaseRolePassword
 	}
 	return json.Marshal(toSerialize)
 }

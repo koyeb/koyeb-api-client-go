@@ -18,6 +18,7 @@ import (
 type CatalogInstanceListItem struct {
 	Id *string `json:"id,omitempty"`
 	Description *string `json:"description,omitempty"`
+	// The number of cpus. Deprecated. Use vcpu_shares instead.
 	Vcpu *int64 `json:"vcpu,omitempty"`
 	Memory *string `json:"memory,omitempty"`
 	Disk *string `json:"disk,omitempty"`
@@ -26,6 +27,8 @@ type CatalogInstanceListItem struct {
 	Regions []string `json:"regions,omitempty"`
 	Status *string `json:"status,omitempty"`
 	RequirePlan []string `json:"require_plan,omitempty"`
+	// The number of vcpu shares reserved for the instance.
+	VcpuShares *float32 `json:"vcpu_shares,omitempty"`
 }
 
 // NewCatalogInstanceListItem instantiates a new CatalogInstanceListItem object
@@ -365,6 +368,38 @@ func (o *CatalogInstanceListItem) SetRequirePlan(v []string) {
 	o.RequirePlan = v
 }
 
+// GetVcpuShares returns the VcpuShares field value if set, zero value otherwise.
+func (o *CatalogInstanceListItem) GetVcpuShares() float32 {
+	if o == nil || isNil(o.VcpuShares) {
+		var ret float32
+		return ret
+	}
+	return *o.VcpuShares
+}
+
+// GetVcpuSharesOk returns a tuple with the VcpuShares field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogInstanceListItem) GetVcpuSharesOk() (*float32, bool) {
+	if o == nil || isNil(o.VcpuShares) {
+    return nil, false
+	}
+	return o.VcpuShares, true
+}
+
+// HasVcpuShares returns a boolean if a field has been set.
+func (o *CatalogInstanceListItem) HasVcpuShares() bool {
+	if o != nil && !isNil(o.VcpuShares) {
+		return true
+	}
+
+	return false
+}
+
+// SetVcpuShares gets a reference to the given float32 and assigns it to the VcpuShares field.
+func (o *CatalogInstanceListItem) SetVcpuShares(v float32) {
+	o.VcpuShares = &v
+}
+
 func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -396,6 +431,9 @@ func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.RequirePlan) {
 		toSerialize["require_plan"] = o.RequirePlan
+	}
+	if !isNil(o.VcpuShares) {
+		toSerialize["vcpu_shares"] = o.VcpuShares
 	}
 	return json.Marshal(toSerialize)
 }

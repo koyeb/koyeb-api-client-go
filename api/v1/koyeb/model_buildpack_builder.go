@@ -18,6 +18,7 @@ import (
 type BuildpackBuilder struct {
 	BuildCommand *string `json:"build_command,omitempty"`
 	RunCommand *string `json:"run_command,omitempty"`
+	Privileged *bool `json:"privileged,omitempty"`
 }
 
 // NewBuildpackBuilder instantiates a new BuildpackBuilder object
@@ -101,6 +102,38 @@ func (o *BuildpackBuilder) SetRunCommand(v string) {
 	o.RunCommand = &v
 }
 
+// GetPrivileged returns the Privileged field value if set, zero value otherwise.
+func (o *BuildpackBuilder) GetPrivileged() bool {
+	if o == nil || isNil(o.Privileged) {
+		var ret bool
+		return ret
+	}
+	return *o.Privileged
+}
+
+// GetPrivilegedOk returns a tuple with the Privileged field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BuildpackBuilder) GetPrivilegedOk() (*bool, bool) {
+	if o == nil || isNil(o.Privileged) {
+    return nil, false
+	}
+	return o.Privileged, true
+}
+
+// HasPrivileged returns a boolean if a field has been set.
+func (o *BuildpackBuilder) HasPrivileged() bool {
+	if o != nil && !isNil(o.Privileged) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivileged gets a reference to the given bool and assigns it to the Privileged field.
+func (o *BuildpackBuilder) SetPrivileged(v bool) {
+	o.Privileged = &v
+}
+
 func (o BuildpackBuilder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.BuildCommand) {
@@ -108,6 +141,9 @@ func (o BuildpackBuilder) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.RunCommand) {
 		toSerialize["run_command"] = o.RunCommand
+	}
+	if !isNil(o.Privileged) {
+		toSerialize["privileged"] = o.Privileged
 	}
 	return json.Marshal(toSerialize)
 }

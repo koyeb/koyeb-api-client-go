@@ -18,6 +18,8 @@ import (
 type CreateCredential struct {
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
+	Type *CredentialType `json:"type,omitempty"`
+	OrganizationId *string `json:"organization_id,omitempty"`
 }
 
 // NewCreateCredential instantiates a new CreateCredential object
@@ -26,6 +28,8 @@ type CreateCredential struct {
 // will change when the set of required properties is changed
 func NewCreateCredential() *CreateCredential {
 	this := CreateCredential{}
+	var type_ CredentialType = CREDENTIALTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -34,6 +38,8 @@ func NewCreateCredential() *CreateCredential {
 // but it doesn't guarantee that properties required by API are set
 func NewCreateCredentialWithDefaults() *CreateCredential {
 	this := CreateCredential{}
+	var type_ CredentialType = CREDENTIALTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -101,6 +107,70 @@ func (o *CreateCredential) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *CreateCredential) GetType() CredentialType {
+	if o == nil || isNil(o.Type) {
+		var ret CredentialType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredential) GetTypeOk() (*CredentialType, bool) {
+	if o == nil || isNil(o.Type) {
+    return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *CreateCredential) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given CredentialType and assigns it to the Type field.
+func (o *CreateCredential) SetType(v CredentialType) {
+	o.Type = &v
+}
+
+// GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
+func (o *CreateCredential) GetOrganizationId() string {
+	if o == nil || isNil(o.OrganizationId) {
+		var ret string
+		return ret
+	}
+	return *o.OrganizationId
+}
+
+// GetOrganizationIdOk returns a tuple with the OrganizationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateCredential) GetOrganizationIdOk() (*string, bool) {
+	if o == nil || isNil(o.OrganizationId) {
+    return nil, false
+	}
+	return o.OrganizationId, true
+}
+
+// HasOrganizationId returns a boolean if a field has been set.
+func (o *CreateCredential) HasOrganizationId() bool {
+	if o != nil && !isNil(o.OrganizationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
+func (o *CreateCredential) SetOrganizationId(v string) {
+	o.OrganizationId = &v
+}
+
 func (o CreateCredential) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -108,6 +178,12 @@ func (o CreateCredential) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !isNil(o.OrganizationId) {
+		toSerialize["organization_id"] = o.OrganizationId
 	}
 	return json.Marshal(toSerialize)
 }

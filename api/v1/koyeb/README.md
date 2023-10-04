@@ -122,11 +122,13 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
 *OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
-*OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate organization
+*OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an organization
+*OrganizationApi* | [**DeleteOrganization**](docs/OrganizationApi.md#deleteorganization) | **Delete** /v1/organizations/{id} | Delete an organization
 *OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
+*OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 *OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
@@ -147,7 +149,6 @@ Class | Method | HTTP request | Description
 *PaymentMethodsApi* | [**ListPaymentMethods**](docs/PaymentMethodsApi.md#listpaymentmethods) | **Get** /v1/payment_methods | List payment methods
 *ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
 *ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
-*ProfileApi* | [**DeleteAccount**](docs/ProfileApi.md#deleteaccount) | **Delete** /v1/account/profile | 
 *ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | 
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
@@ -172,7 +173,6 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
-*SecretsApi* | [**GetSecretActivities**](docs/SecretsApi.md#getsecretactivities) | **Get** /v1/secrets/{id}/activities | View stack activities
 *SecretsApi* | [**ListSecrets**](docs/SecretsApi.md#listsecrets) | **Get** /v1/secrets | 
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
@@ -188,12 +188,14 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user
 *SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user
+*SessionsApi* | [**NewSession**](docs/SessionsApi.md#newsession) | **Post** /v1/account/session | New session
 *SessionsApi* | [**RefreshToken**](docs/SessionsApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
 *SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
 *UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
 *UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
+*UsersApi* | [**DeleteUser**](docs/UsersApi.md#deleteuser) | **Delete** /v1/users/{id} | Delete user
 
 
 ## Documentation For Models
@@ -232,10 +234,16 @@ Class | Method | HTTP request | Description
  - [CreateService](docs/CreateService.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
+ - [CredentialType](docs/CredentialType.md)
+ - [DatabaseRolePassword](docs/DatabaseRolePassword.md)
+ - [DatabaseSource](docs/DatabaseSource.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
  - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
+ - [DeleteOrganizationReply](docs/DeleteOrganizationReply.md)
+ - [DeleteUserReply](docs/DeleteUserReply.md)
  - [Deployment](docs/Deployment.md)
+ - [DeploymentDatabaseInfo](docs/DeploymentDatabaseInfo.md)
  - [DeploymentDefinition](docs/DeploymentDefinition.md)
  - [DeploymentDefinitionType](docs/DeploymentDefinitionType.md)
  - [DeploymentEnv](docs/DeploymentEnv.md)
@@ -244,6 +252,7 @@ Class | Method | HTTP request | Description
  - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
+ - [DeploymentNeonPostgresDatabaseInfo](docs/DeploymentNeonPostgresDatabaseInfo.md)
  - [DeploymentPort](docs/DeploymentPort.md)
  - [DeploymentProvisioningInfo](docs/DeploymentProvisioningInfo.md)
  - [DeploymentProvisioningInfoStage](docs/DeploymentProvisioningInfoStage.md)
@@ -362,6 +371,7 @@ Class | Method | HTTP request | Description
  - [OAuthProvider](docs/OAuthProvider.md)
  - [Object](docs/Object.md)
  - [Organization](docs/Organization.md)
+ - [OrganizationDeactivationReason](docs/OrganizationDeactivationReason.md)
  - [OrganizationDetailedStatus](docs/OrganizationDetailedStatus.md)
  - [OrganizationInvitation](docs/OrganizationInvitation.md)
  - [OrganizationInvitationStatus](docs/OrganizationInvitationStatus.md)
@@ -373,9 +383,13 @@ Class | Method | HTTP request | Description
  - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
+ - [PostgresNeonDatabase](docs/PostgresNeonDatabase.md)
+ - [PostgresNeonDatabaseNeonDatabase](docs/PostgresNeonDatabaseNeonDatabase.md)
+ - [PostgresNeonDatabaseNeonRole](docs/PostgresNeonDatabaseNeonRole.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
+ - [ReactivateOrganizationReply](docs/ReactivateOrganizationReply.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
@@ -402,6 +416,7 @@ Class | Method | HTTP request | Description
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
+ - [ServiceType](docs/ServiceType.md)
  - [ServiceUsage](docs/ServiceUsage.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
@@ -435,6 +450,7 @@ Class | Method | HTTP request | Description
  - [UserFlags](docs/UserFlags.md)
  - [UserReply](docs/UserReply.md)
  - [UserRoleRole](docs/UserRoleRole.md)
+ - [XyzDeploymentNeonPostgresDatabaseInfoRoleObject](docs/XyzDeploymentNeonPostgresDatabaseInfoRoleObject.md)
 
 
 ## Documentation For Authorization

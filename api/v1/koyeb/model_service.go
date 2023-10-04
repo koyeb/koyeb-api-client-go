@@ -26,6 +26,7 @@ type Service struct {
 	ResumedAt *time.Time `json:"resumed_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Type *ServiceType `json:"type,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	Status *ServiceStatus `json:"status,omitempty"`
@@ -42,6 +43,8 @@ type Service struct {
 // will change when the set of required properties is changed
 func NewService() *Service {
 	this := Service{}
+	var type_ ServiceType = SERVICETYPE_INVALID_TYPE
+	this.Type = &type_
 	var status ServiceStatus = SERVICESTATUS_STARTING
 	this.Status = &status
 	return &this
@@ -52,6 +55,8 @@ func NewService() *Service {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceWithDefaults() *Service {
 	this := Service{}
+	var type_ ServiceType = SERVICETYPE_INVALID_TYPE
+	this.Type = &type_
 	var status ServiceStatus = SERVICESTATUS_STARTING
 	this.Status = &status
 	return &this
@@ -345,6 +350,38 @@ func (o *Service) SetName(v string) {
 	o.Name = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Service) GetType() ServiceType {
+	if o == nil || isNil(o.Type) {
+		var ret ServiceType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetTypeOk() (*ServiceType, bool) {
+	if o == nil || isNil(o.Type) {
+    return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Service) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ServiceType and assigns it to the Type field.
+func (o *Service) SetType(v ServiceType) {
+	o.Type = &v
+}
+
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
 func (o *Service) GetOrganizationId() string {
 	if o == nil || isNil(o.OrganizationId) {
@@ -629,6 +666,9 @@ func (o Service) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId

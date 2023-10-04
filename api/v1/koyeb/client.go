@@ -106,6 +106,8 @@ type APIClient struct {
 	SubscriptionsApi SubscriptionsApi
 
 	UsagesApi UsagesApi
+
+	UsersApi UsersApi
 }
 
 type service struct {
@@ -153,6 +155,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SsoApi = (*SsoApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.UsagesApi = (*UsagesApiService)(&c.common)
+	c.UsersApi = (*UsersApiService)(&c.common)
 
 	return c
 }

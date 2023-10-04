@@ -20,7 +20,6 @@ type CreateAccountRequest struct {
 	Password string `json:"password"`
 	Name *string `json:"name,omitempty"`
 	Captcha *string `json:"captcha,omitempty"`
-	UseV2 *bool `json:"use_v2,omitempty"`
 }
 
 // NewCreateAccountRequest instantiates a new CreateAccountRequest object
@@ -154,38 +153,6 @@ func (o *CreateAccountRequest) SetCaptcha(v string) {
 	o.Captcha = &v
 }
 
-// GetUseV2 returns the UseV2 field value if set, zero value otherwise.
-func (o *CreateAccountRequest) GetUseV2() bool {
-	if o == nil || isNil(o.UseV2) {
-		var ret bool
-		return ret
-	}
-	return *o.UseV2
-}
-
-// GetUseV2Ok returns a tuple with the UseV2 field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateAccountRequest) GetUseV2Ok() (*bool, bool) {
-	if o == nil || isNil(o.UseV2) {
-    return nil, false
-	}
-	return o.UseV2, true
-}
-
-// HasUseV2 returns a boolean if a field has been set.
-func (o *CreateAccountRequest) HasUseV2() bool {
-	if o != nil && !isNil(o.UseV2) {
-		return true
-	}
-
-	return false
-}
-
-// SetUseV2 gets a reference to the given bool and assigns it to the UseV2 field.
-func (o *CreateAccountRequest) SetUseV2(v bool) {
-	o.UseV2 = &v
-}
-
 func (o CreateAccountRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -199,9 +166,6 @@ func (o CreateAccountRequest) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Captcha) {
 		toSerialize["captcha"] = o.Captcha
-	}
-	if !isNil(o.UseV2) {
-		toSerialize["use_v2"] = o.UseV2
 	}
 	return json.Marshal(toSerialize)
 }

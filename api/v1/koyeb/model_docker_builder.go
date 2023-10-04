@@ -21,6 +21,7 @@ type DockerBuilder struct {
 	Command *string `json:"command,omitempty"`
 	Args []string `json:"args,omitempty"`
 	Target *string `json:"target,omitempty"`
+	Privileged *bool `json:"privileged,omitempty"`
 }
 
 // NewDockerBuilder instantiates a new DockerBuilder object
@@ -200,6 +201,38 @@ func (o *DockerBuilder) SetTarget(v string) {
 	o.Target = &v
 }
 
+// GetPrivileged returns the Privileged field value if set, zero value otherwise.
+func (o *DockerBuilder) GetPrivileged() bool {
+	if o == nil || isNil(o.Privileged) {
+		var ret bool
+		return ret
+	}
+	return *o.Privileged
+}
+
+// GetPrivilegedOk returns a tuple with the Privileged field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DockerBuilder) GetPrivilegedOk() (*bool, bool) {
+	if o == nil || isNil(o.Privileged) {
+    return nil, false
+	}
+	return o.Privileged, true
+}
+
+// HasPrivileged returns a boolean if a field has been set.
+func (o *DockerBuilder) HasPrivileged() bool {
+	if o != nil && !isNil(o.Privileged) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrivileged gets a reference to the given bool and assigns it to the Privileged field.
+func (o *DockerBuilder) SetPrivileged(v bool) {
+	o.Privileged = &v
+}
+
 func (o DockerBuilder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Dockerfile) {
@@ -216,6 +249,9 @@ func (o DockerBuilder) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Target) {
 		toSerialize["target"] = o.Target
+	}
+	if !isNil(o.Privileged) {
+		toSerialize["privileged"] = o.Privileged
 	}
 	return json.Marshal(toSerialize)
 }

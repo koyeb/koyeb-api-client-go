@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Definition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 **Messages** | Pointer to **[]string** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
+**DatabaseInfo** | Pointer to [**DeploymentDatabaseInfo**](DeploymentDatabaseInfo.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 
@@ -467,6 +468,31 @@ SetProvisioningInfo sets ProvisioningInfo field to given value.
 `func (o *DeploymentListItem) HasProvisioningInfo() bool`
 
 HasProvisioningInfo returns a boolean if a field has been set.
+
+### GetDatabaseInfo
+
+`func (o *DeploymentListItem) GetDatabaseInfo() DeploymentDatabaseInfo`
+
+GetDatabaseInfo returns the DatabaseInfo field if non-nil, zero value otherwise.
+
+### GetDatabaseInfoOk
+
+`func (o *DeploymentListItem) GetDatabaseInfoOk() (*DeploymentDatabaseInfo, bool)`
+
+GetDatabaseInfoOk returns a tuple with the DatabaseInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatabaseInfo
+
+`func (o *DeploymentListItem) SetDatabaseInfo(v DeploymentDatabaseInfo)`
+
+SetDatabaseInfo sets DatabaseInfo field to given value.
+
+### HasDatabaseInfo
+
+`func (o *DeploymentListItem) HasDatabaseInfo() bool`
+
+HasDatabaseInfo returns a boolean if a field has been set.
 
 ### GetVersion
 

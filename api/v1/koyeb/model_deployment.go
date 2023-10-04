@@ -34,6 +34,7 @@ type Deployment struct {
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
 	Messages []string `json:"messages,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
+	DatabaseInfo *DeploymentDatabaseInfo `json:"database_info,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 }
@@ -603,6 +604,38 @@ func (o *Deployment) SetProvisioningInfo(v DeploymentProvisioningInfo) {
 	o.ProvisioningInfo = &v
 }
 
+// GetDatabaseInfo returns the DatabaseInfo field value if set, zero value otherwise.
+func (o *Deployment) GetDatabaseInfo() DeploymentDatabaseInfo {
+	if o == nil || isNil(o.DatabaseInfo) {
+		var ret DeploymentDatabaseInfo
+		return ret
+	}
+	return *o.DatabaseInfo
+}
+
+// GetDatabaseInfoOk returns a tuple with the DatabaseInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetDatabaseInfoOk() (*DeploymentDatabaseInfo, bool) {
+	if o == nil || isNil(o.DatabaseInfo) {
+    return nil, false
+	}
+	return o.DatabaseInfo, true
+}
+
+// HasDatabaseInfo returns a boolean if a field has been set.
+func (o *Deployment) HasDatabaseInfo() bool {
+	if o != nil && !isNil(o.DatabaseInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseInfo gets a reference to the given DeploymentDatabaseInfo and assigns it to the DatabaseInfo field.
+func (o *Deployment) SetDatabaseInfo(v DeploymentDatabaseInfo) {
+	o.DatabaseInfo = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Deployment) GetVersion() string {
 	if o == nil || isNil(o.Version) {
@@ -719,6 +752,9 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ProvisioningInfo) {
 		toSerialize["provisioning_info"] = o.ProvisioningInfo
+	}
+	if !isNil(o.DatabaseInfo) {
+		toSerialize["database_info"] = o.DatabaseInfo
 	}
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version

@@ -948,7 +948,7 @@ func (r ApiListAppsRequest) Offset(offset string) ApiListAppsRequest {
 	return r
 }
 
-// (Optional) A filter for regions
+// (Optional) A filter for name
 func (r ApiListAppsRequest) Name(name string) ApiListAppsRequest {
 	r.name = &name
 	return r

@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
 [**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
-[**DeleteAccount**](ProfileApi.md#DeleteAccount) | **Delete** /v1/account/profile | 
 [**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | 
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | 
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
@@ -148,65 +147,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeclineOrganizationInvitationReply**](DeclineOrganizationInvitationReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteAccount
-
-> map[string]interface{} DeleteAccount(ctx).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProfileApi.DeleteAccount(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.DeleteAccount``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteAccount`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.DeleteAccount`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAccountRequest struct via the builder pattern
-
-
-### Return type
-
-**map[string]interface{}**
 
 ### Authorization
 

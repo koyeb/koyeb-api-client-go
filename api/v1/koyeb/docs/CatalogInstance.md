@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
-**Vcpu** | Pointer to **int64** |  | [optional] 
+**Vcpu** | Pointer to **int64** | The number of cpus. Deprecated. Use vcpu_shares instead. | [optional] 
 **Memory** | Pointer to **string** |  | [optional] 
 **Disk** | Pointer to **string** |  | [optional] 
 **PriceHourly** | Pointer to **string** |  | [optional] 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Regions** | Pointer to **[]string** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
 **RequirePlan** | Pointer to **[]string** |  | [optional] 
+**VcpuShares** | Pointer to **float32** | The number of vcpu shares reserved for the instance. | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetRequirePlan sets RequirePlan field to given value.
 `func (o *CatalogInstance) HasRequirePlan() bool`
 
 HasRequirePlan returns a boolean if a field has been set.
+
+### GetVcpuShares
+
+`func (o *CatalogInstance) GetVcpuShares() float32`
+
+GetVcpuShares returns the VcpuShares field if non-nil, zero value otherwise.
+
+### GetVcpuSharesOk
+
+`func (o *CatalogInstance) GetVcpuSharesOk() (*float32, bool)`
+
+GetVcpuSharesOk returns a tuple with the VcpuShares field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVcpuShares
+
+`func (o *CatalogInstance) SetVcpuShares(v float32)`
+
+SetVcpuShares sets VcpuShares field to given value.
+
+### HasVcpuShares
+
+`func (o *CatalogInstance) HasVcpuShares() bool`
+
+HasVcpuShares returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
