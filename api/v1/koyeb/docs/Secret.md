@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **GitlabRegistry** | Pointer to [**GitLabRegistryConfiguration**](GitLabRegistryConfiguration.md) |  | [optional] 
 **GcpContainerRegistry** | Pointer to [**GCPContainerRegistryConfiguration**](GCPContainerRegistryConfiguration.md) |  | [optional] 
 **AzureContainerRegistry** | Pointer to [**AzureContainerRegistryConfiguration**](AzureContainerRegistryConfiguration.md) |  | [optional] 
+**DatabaseRolePassword** | Pointer to [**DatabaseRolePassword**](DatabaseRolePassword.md) |  | [optional] 
 
 ## Methods
 
@@ -387,6 +388,31 @@ SetAzureContainerRegistry sets AzureContainerRegistry field to given value.
 `func (o *Secret) HasAzureContainerRegistry() bool`
 
 HasAzureContainerRegistry returns a boolean if a field has been set.
+
+### GetDatabaseRolePassword
+
+`func (o *Secret) GetDatabaseRolePassword() DatabaseRolePassword`
+
+GetDatabaseRolePassword returns the DatabaseRolePassword field if non-nil, zero value otherwise.
+
+### GetDatabaseRolePasswordOk
+
+`func (o *Secret) GetDatabaseRolePasswordOk() (*DatabaseRolePassword, bool)`
+
+GetDatabaseRolePasswordOk returns a tuple with the DatabaseRolePassword field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatabaseRolePassword
+
+`func (o *Secret) SetDatabaseRolePassword(v DatabaseRolePassword)`
+
+SetDatabaseRolePassword sets DatabaseRolePassword field to given value.
+
+### HasDatabaseRolePassword
+
+`func (o *Secret) HasDatabaseRolePassword() bool`
+
+HasDatabaseRolePassword returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

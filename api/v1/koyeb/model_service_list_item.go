@@ -19,6 +19,7 @@ import (
 type ServiceListItem struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Type *ServiceType `json:"type,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
@@ -37,6 +38,8 @@ type ServiceListItem struct {
 // will change when the set of required properties is changed
 func NewServiceListItem() *ServiceListItem {
 	this := ServiceListItem{}
+	var type_ ServiceType = SERVICETYPE_INVALID_TYPE
+	this.Type = &type_
 	var status ServiceStatus = SERVICESTATUS_STARTING
 	this.Status = &status
 	return &this
@@ -47,6 +50,8 @@ func NewServiceListItem() *ServiceListItem {
 // but it doesn't guarantee that properties required by API are set
 func NewServiceListItemWithDefaults() *ServiceListItem {
 	this := ServiceListItem{}
+	var type_ ServiceType = SERVICETYPE_INVALID_TYPE
+	this.Type = &type_
 	var status ServiceStatus = SERVICESTATUS_STARTING
 	this.Status = &status
 	return &this
@@ -114,6 +119,38 @@ func (o *ServiceListItem) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *ServiceListItem) SetName(v string) {
 	o.Name = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ServiceListItem) GetType() ServiceType {
+	if o == nil || isNil(o.Type) {
+		var ret ServiceType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetTypeOk() (*ServiceType, bool) {
+	if o == nil || isNil(o.Type) {
+    return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ServiceListItem) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given ServiceType and assigns it to the Type field.
+func (o *ServiceListItem) SetType(v ServiceType) {
+	o.Type = &v
 }
 
 // GetOrganizationId returns the OrganizationId field value if set, zero value otherwise.
@@ -443,6 +480,9 @@ func (o ServiceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId

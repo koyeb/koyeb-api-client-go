@@ -20,10 +20,14 @@ Name | Type | Description | Notes
 **PlanUpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **HasPaymentMethod** | Pointer to **bool** |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
+**CurrentSubscriptionId** | Pointer to **string** |  | [optional] 
+**LatestSubscriptionId** | Pointer to **string** |  | [optional] 
 **SignupQualification** | Pointer to **map[string]interface{}** |  | [optional] 
 **Status** | Pointer to [**OrganizationStatus**](OrganizationStatus.md) |  | [optional] [default to ORGANIZATIONSTATUS_WARNING]
 **StatusMessage** | Pointer to [**OrganizationDetailedStatus**](OrganizationDetailedStatus.md) |  | [optional] [default to ORGANIZATIONDETAILEDSTATUS_NEW]
+**DeactivationReason** | Pointer to [**OrganizationDeactivationReason**](OrganizationDeactivationReason.md) |  | [optional] [default to ORGANIZATIONDEACTIVATIONREASON_INVALID]
 **Verified** | Pointer to **bool** |  | [optional] 
+**QualifiesForHobby23** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -444,6 +448,56 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### GetCurrentSubscriptionId
+
+`func (o *Organization) GetCurrentSubscriptionId() string`
+
+GetCurrentSubscriptionId returns the CurrentSubscriptionId field if non-nil, zero value otherwise.
+
+### GetCurrentSubscriptionIdOk
+
+`func (o *Organization) GetCurrentSubscriptionIdOk() (*string, bool)`
+
+GetCurrentSubscriptionIdOk returns a tuple with the CurrentSubscriptionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrentSubscriptionId
+
+`func (o *Organization) SetCurrentSubscriptionId(v string)`
+
+SetCurrentSubscriptionId sets CurrentSubscriptionId field to given value.
+
+### HasCurrentSubscriptionId
+
+`func (o *Organization) HasCurrentSubscriptionId() bool`
+
+HasCurrentSubscriptionId returns a boolean if a field has been set.
+
+### GetLatestSubscriptionId
+
+`func (o *Organization) GetLatestSubscriptionId() string`
+
+GetLatestSubscriptionId returns the LatestSubscriptionId field if non-nil, zero value otherwise.
+
+### GetLatestSubscriptionIdOk
+
+`func (o *Organization) GetLatestSubscriptionIdOk() (*string, bool)`
+
+GetLatestSubscriptionIdOk returns a tuple with the LatestSubscriptionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestSubscriptionId
+
+`func (o *Organization) SetLatestSubscriptionId(v string)`
+
+SetLatestSubscriptionId sets LatestSubscriptionId field to given value.
+
+### HasLatestSubscriptionId
+
+`func (o *Organization) HasLatestSubscriptionId() bool`
+
+HasLatestSubscriptionId returns a boolean if a field has been set.
+
 ### GetSignupQualification
 
 `func (o *Organization) GetSignupQualification() map[string]interface{}`
@@ -519,6 +573,31 @@ SetStatusMessage sets StatusMessage field to given value.
 
 HasStatusMessage returns a boolean if a field has been set.
 
+### GetDeactivationReason
+
+`func (o *Organization) GetDeactivationReason() OrganizationDeactivationReason`
+
+GetDeactivationReason returns the DeactivationReason field if non-nil, zero value otherwise.
+
+### GetDeactivationReasonOk
+
+`func (o *Organization) GetDeactivationReasonOk() (*OrganizationDeactivationReason, bool)`
+
+GetDeactivationReasonOk returns a tuple with the DeactivationReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeactivationReason
+
+`func (o *Organization) SetDeactivationReason(v OrganizationDeactivationReason)`
+
+SetDeactivationReason sets DeactivationReason field to given value.
+
+### HasDeactivationReason
+
+`func (o *Organization) HasDeactivationReason() bool`
+
+HasDeactivationReason returns a boolean if a field has been set.
+
 ### GetVerified
 
 `func (o *Organization) GetVerified() bool`
@@ -543,6 +622,31 @@ SetVerified sets Verified field to given value.
 `func (o *Organization) HasVerified() bool`
 
 HasVerified returns a boolean if a field has been set.
+
+### GetQualifiesForHobby23
+
+`func (o *Organization) GetQualifiesForHobby23() bool`
+
+GetQualifiesForHobby23 returns the QualifiesForHobby23 field if non-nil, zero value otherwise.
+
+### GetQualifiesForHobby23Ok
+
+`func (o *Organization) GetQualifiesForHobby23Ok() (*bool, bool)`
+
+GetQualifiesForHobby23Ok returns a tuple with the QualifiesForHobby23 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetQualifiesForHobby23
+
+`func (o *Organization) SetQualifiesForHobby23(v bool)`
+
+SetQualifiesForHobby23 sets QualifiesForHobby23 field to given value.
+
+### HasQualifiesForHobby23
+
+`func (o *Organization) HasQualifiesForHobby23() bool`
+
+HasQualifiesForHobby23 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

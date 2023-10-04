@@ -311,7 +311,7 @@ import (
 func main() {
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
-    name := "name_example" // string | (Optional) A filter for regions (optional)
+    name := "name_example" // string | (Optional) A filter for name (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -338,7 +338,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
- **name** | **string** | (Optional) A filter for regions | 
+ **name** | **string** | (Optional) A filter for name | 
 
 ### Return type
 

@@ -958,6 +958,7 @@ type ApiListServicesRequest struct {
 	limit *string
 	offset *string
 	name *string
+	types *[]string
 }
 
 // (Optional) The id of the app
@@ -981,6 +982,12 @@ func (r ApiListServicesRequest) Offset(offset string) ApiListServicesRequest {
 // (Optional) A filter for name
 func (r ApiListServicesRequest) Name(name string) ApiListServicesRequest {
 	r.name = &name
+	return r
+}
+
+// (Optional) Filter on service types
+func (r ApiListServicesRequest) Types(types []string) ApiListServicesRequest {
+	r.types = &types
 	return r
 }
 
@@ -1033,6 +1040,17 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (*Lis
 	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.types != nil {
+		t := *r.types
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("types", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("types", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

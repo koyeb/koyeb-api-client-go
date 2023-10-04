@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**CreateSecret**](SecretsApi.md#CreateSecret) | **Post** /v1/secrets | 
 [**DeleteSecret**](SecretsApi.md#DeleteSecret) | **Delete** /v1/secrets/{id} | 
 [**GetSecret**](SecretsApi.md#GetSecret) | **Get** /v1/secrets/{id} | 
-[**GetSecretActivities**](SecretsApi.md#GetSecretActivities) | **Get** /v1/secrets/{id}/activities | View stack activities
 [**ListSecrets**](SecretsApi.md#ListSecrets) | **Get** /v1/secrets | 
 [**UpdateSecret**](SecretsApi.md#UpdateSecret) | **Put** /v1/secrets/{id} | 
 [**UpdateSecret2**](SecretsApi.md#UpdateSecret2) | **Patch** /v1/secrets/{id} | 
@@ -199,78 +198,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetSecretReply**](GetSecretReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetSecretActivities
-
-> ActivityList GetSecretActivities(ctx, id).Limit(limit).Offset(offset).Execute()
-
-View stack activities
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-    limit := "limit_example" // string |  (optional)
-    offset := "offset_example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecretsApi.GetSecretActivities(context.Background(), id).Limit(limit).Offset(offset).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.GetSecretActivities``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetSecretActivities`: ActivityList
-    fmt.Fprintf(os.Stdout, "Response from `SecretsApi.GetSecretActivities`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetSecretActivitiesRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **limit** | **string** |  | 
- **offset** | **string** |  | 
-
-### Return type
-
-[**ActivityList**](ActivityList.md)
 
 ### Authorization
 

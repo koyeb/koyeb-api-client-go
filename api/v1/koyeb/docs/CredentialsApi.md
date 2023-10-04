@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ## ListCredentials
 
-> ListCredentialsReply ListCredentials(ctx).Name(name).Limit(limit).Offset(offset).Execute()
+> ListCredentialsReply ListCredentials(ctx).Type_(type_).Name(name).OrganizationId(organizationId).UserId(userId).Limit(limit).Offset(offset).Execute()
 
 List credentials
 
@@ -232,13 +232,16 @@ import (
 )
 
 func main() {
-    name := "name_example" // string |  (optional)
-    limit := "limit_example" // string |  (optional)
-    offset := "offset_example" // string |  (optional)
+    type_ := "type__example" // string | (Optional) A filter for type (optional) (default to "INVALID")
+    name := "name_example" // string | (Optional) A filter for name (optional)
+    organizationId := "organizationId_example" // string | (Optional) Filter for an organization (optional)
+    userId := "userId_example" // string | (Optional) Filter for an user (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CredentialsApi.ListCredentials(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.CredentialsApi.ListCredentials(context.Background()).Type_(type_).Name(name).OrganizationId(organizationId).UserId(userId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CredentialsApi.ListCredentials``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -259,9 +262,12 @@ Other parameters are passed through a pointer to a apiListCredentialsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **string** |  | 
- **limit** | **string** |  | 
- **offset** | **string** |  | 
+ **type_** | **string** | (Optional) A filter for type | [default to &quot;INVALID&quot;]
+ **name** | **string** | (Optional) A filter for name | 
+ **organizationId** | **string** | (Optional) Filter for an organization | 
+ **userId** | **string** | (Optional) Filter for an user | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
 
 ### Return type
 

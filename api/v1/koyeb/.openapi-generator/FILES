@@ -32,6 +32,7 @@ api_sessions.go
 api_sso.go
 api_subscriptions.go
 api_usages.go
+api_users.go
 client.go
 configuration.go
 docs/AcceptOrganizationInvitationReply.md
@@ -74,11 +75,17 @@ docs/CreateSecretReply.md
 docs/CreateService.md
 docs/CreateServiceReply.md
 docs/Credential.md
+docs/CredentialType.md
 docs/CredentialsApi.md
+docs/DatabaseRolePassword.md
+docs/DatabaseSource.md
 docs/DatacenterListItem.md
 docs/DeactivateOrganizationReply.md
 docs/DeclineOrganizationInvitationReply.md
+docs/DeleteOrganizationReply.md
+docs/DeleteUserReply.md
 docs/Deployment.md
+docs/DeploymentDatabaseInfo.md
 docs/DeploymentDefinition.md
 docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
@@ -87,6 +94,7 @@ docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
+docs/DeploymentNeonPostgresDatabaseInfo.md
 docs/DeploymentPort.md
 docs/DeploymentProvisioningInfo.md
 docs/DeploymentProvisioningInfoStage.md
@@ -213,6 +221,7 @@ docs/Object.md
 docs/Organization.md
 docs/OrganizationApi.md
 docs/OrganizationConfirmationsApi.md
+docs/OrganizationDeactivationReason.md
 docs/OrganizationDetailedStatus.md
 docs/OrganizationInvitation.md
 docs/OrganizationInvitationStatus.md
@@ -227,11 +236,15 @@ docs/PaymentMethodsApi.md
 docs/PeriodUsage.md
 docs/Plan.md
 docs/Port.md
+docs/PostgresNeonDatabase.md
+docs/PostgresNeonDatabaseNeonDatabase.md
+docs/PostgresNeonDatabaseNeonRole.md
 docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
 docs/PublicOrganization.md
 docs/PublicUser.md
 docs/QuotasApi.md
+docs/ReactivateOrganizationReply.md
 docs/RedeployReply.md
 docs/RedeployRequestInfo.md
 docs/Region.md
@@ -262,6 +275,7 @@ docs/ServiceEvent.md
 docs/ServiceListItem.md
 docs/ServiceState.md
 docs/ServiceStatus.md
+docs/ServiceType.md
 docs/ServiceUsage.md
 docs/ServicesApi.md
 docs/SessionsApi.md
@@ -300,6 +314,8 @@ docs/User.md
 docs/UserFlags.md
 docs/UserReply.md
 docs/UserRoleRole.md
+docs/UsersApi.md
+docs/XyzDeploymentNeonPostgresDatabaseInfoRoleObject.md
 git_push.sh
 go.mod
 go.sum
@@ -337,10 +353,16 @@ model_create_secret_reply.go
 model_create_service.go
 model_create_service_reply.go
 model_credential.go
+model_credential_type.go
+model_database_role_password.go
+model_database_source.go
 model_datacenter_list_item.go
 model_deactivate_organization_reply.go
 model_decline_organization_invitation_reply.go
+model_delete_organization_reply.go
+model_delete_user_reply.go
 model_deployment.go
+model_deployment_database_info.go
 model_deployment_definition.go
 model_deployment_definition_type.go
 model_deployment_env.go
@@ -349,6 +371,7 @@ model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go
 model_deployment_metadata.go
+model_deployment_neon_postgres_database_info.go
 model_deployment_port.go
 model_deployment_provisioning_info.go
 model_deployment_provisioning_info_stage.go
@@ -467,6 +490,7 @@ model_o_auth_callback_request.go
 model_o_auth_provider.go
 model_object.go
 model_organization.go
+model_organization_deactivation_reason.go
 model_organization_detailed_status.go
 model_organization_invitation.go
 model_organization_invitation_status.go
@@ -478,9 +502,13 @@ model_payment_method_status.go
 model_period_usage.go
 model_plan.go
 model_port.go
+model_postgres_neon_database.go
+model_postgres_neon_database_neon_database.go
+model_postgres_neon_database_neon_role.go
 model_private_registry_configuration.go
 model_public_organization.go
 model_public_user.go
+model_reactivate_organization_reply.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
 model_region.go
@@ -507,6 +535,7 @@ model_service_event.go
 model_service_list_item.go
 model_service_state.go
 model_service_status.go
+model_service_type.go
 model_service_usage.go
 model_stream_result_of_exec_command_reply.go
 model_stream_result_of_log_entry.go
@@ -540,6 +569,7 @@ model_user.go
 model_user_flags.go
 model_user_reply.go
 model_user_role_role.go
+model_xyz_deployment_neon_postgres_database_info_role_object.go
 response.go
 test/api_activity_test.go
 test/api_apps_test.go
@@ -570,4 +600,5 @@ test/api_sessions_test.go
 test/api_sso_test.go
 test/api_subscriptions_test.go
 test/api_usages_test.go
+test/api_users_test.go
 utils.go

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ResumedAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**ServiceType**](ServiceType.md) |  | [optional] [default to SERVICETYPE_INVALID_TYPE]
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**ServiceStatus**](ServiceStatus.md) |  | [optional] [default to SERVICESTATUS_STARTING]
@@ -265,6 +266,31 @@ SetName sets Name field to given value.
 `func (o *Service) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Service) GetType() ServiceType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Service) GetTypeOk() (*ServiceType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Service) SetType(v ServiceType)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Service) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetOrganizationId
 

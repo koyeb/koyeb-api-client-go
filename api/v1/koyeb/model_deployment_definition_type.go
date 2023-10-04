@@ -23,6 +23,7 @@ const (
 	DEPLOYMENTDEFINITIONTYPE_INVALID DeploymentDefinitionType = "INVALID"
 	DEPLOYMENTDEFINITIONTYPE_WEB DeploymentDefinitionType = "WEB"
 	DEPLOYMENTDEFINITIONTYPE_WORKER DeploymentDefinitionType = "WORKER"
+	DEPLOYMENTDEFINITIONTYPE_DATABASE DeploymentDefinitionType = "DATABASE"
 )
 
 // All allowed values of DeploymentDefinitionType enum
@@ -30,6 +31,7 @@ var AllowedDeploymentDefinitionTypeEnumValues = []DeploymentDefinitionType{
 	"INVALID",
 	"WEB",
 	"WORKER",
+	"DATABASE",
 }
 
 func (v *DeploymentDefinitionType) UnmarshalJSON(src []byte) error {

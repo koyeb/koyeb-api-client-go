@@ -22,12 +22,14 @@ type SecretType string
 const (
 	SECRETTYPE_SIMPLE SecretType = "SIMPLE"
 	SECRETTYPE_REGISTRY SecretType = "REGISTRY"
+	SECRETTYPE_MANAGED SecretType = "MANAGED"
 )
 
 // All allowed values of SecretType enum
 var AllowedSecretTypeEnumValues = []SecretType{
 	"SIMPLE",
 	"REGISTRY",
+	"MANAGED",
 }
 
 func (v *SecretType) UnmarshalJSON(src []byte) error {

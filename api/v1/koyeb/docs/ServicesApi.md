@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ## ListServices
 
-> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
+> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Execute()
 
 List Services
 
@@ -316,10 +316,11 @@ func main() {
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
     name := "name_example" // string | (Optional) A filter for name (optional)
+    types := []string{"Types_example"} // []string | (Optional) Filter on service types (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Execute()
+    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -344,6 +345,7 @@ Name | Type | Description  | Notes
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
  **name** | **string** | (Optional) A filter for name | 
+ **types** | **[]string** | (Optional) Filter on service types | 
 
 ### Return type
 

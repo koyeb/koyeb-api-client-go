@@ -18,6 +18,7 @@ import (
 // Credential struct for Credential
 type Credential struct {
 	Id *string `json:"id,omitempty"`
+	Type *CredentialType `json:"type,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Token *string `json:"token,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -33,6 +34,8 @@ type Credential struct {
 // will change when the set of required properties is changed
 func NewCredential() *Credential {
 	this := Credential{}
+	var type_ CredentialType = CREDENTIALTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -41,6 +44,8 @@ func NewCredential() *Credential {
 // but it doesn't guarantee that properties required by API are set
 func NewCredentialWithDefaults() *Credential {
 	this := Credential{}
+	var type_ CredentialType = CREDENTIALTYPE_INVALID
+	this.Type = &type_
 	return &this
 }
 
@@ -74,6 +79,38 @@ func (o *Credential) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Credential) SetId(v string) {
 	o.Id = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Credential) GetType() CredentialType {
+	if o == nil || isNil(o.Type) {
+		var ret CredentialType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Credential) GetTypeOk() (*CredentialType, bool) {
+	if o == nil || isNil(o.Type) {
+    return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Credential) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given CredentialType and assigns it to the Type field.
+func (o *Credential) SetType(v CredentialType) {
+	o.Type = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -304,6 +341,9 @@ func (o Credential) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name

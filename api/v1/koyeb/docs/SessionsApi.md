@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**Login**](SessionsApi.md#Login) | **Post** /v1/account/login | Login user
 [**Logout**](SessionsApi.md#Logout) | **Delete** /v1/account/logout | Logout user
+[**NewSession**](SessionsApi.md#NewSession) | **Post** /v1/account/session | New session
 [**RefreshToken**](SessionsApi.md#RefreshToken) | **Put** /v1/account/refresh | Refresh token
 
 
@@ -120,6 +121,67 @@ Other parameters are passed through a pointer to a apiLogoutRequest struct via t
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NewSession
+
+> LoginReply NewSession(ctx).Execute()
+
+New session
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SessionsApi.NewSession(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SessionsApi.NewSession``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `NewSession`: LoginReply
+    fmt.Fprintf(os.Stdout, "Response from `SessionsApi.NewSession`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNewSessionRequest struct via the builder pattern
+
+
+### Return type
+
+[**LoginReply**](LoginReply.md)
 
 ### Authorization
 

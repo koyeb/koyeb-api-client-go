@@ -28,6 +28,7 @@ type DeploymentDefinition struct {
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
+	Database *DatabaseSource `json:"database,omitempty"`
 }
 
 // NewDeploymentDefinition instantiates a new DeploymentDefinition object
@@ -435,6 +436,38 @@ func (o *DeploymentDefinition) SetGit(v GitSource) {
 	o.Git = &v
 }
 
+// GetDatabase returns the Database field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetDatabase() DatabaseSource {
+	if o == nil || isNil(o.Database) {
+		var ret DatabaseSource
+		return ret
+	}
+	return *o.Database
+}
+
+// GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetDatabaseOk() (*DatabaseSource, bool) {
+	if o == nil || isNil(o.Database) {
+    return nil, false
+	}
+	return o.Database, true
+}
+
+// HasDatabase returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasDatabase() bool {
+	if o != nil && !isNil(o.Database) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabase gets a reference to the given DatabaseSource and assigns it to the Database field.
+func (o *DeploymentDefinition) SetDatabase(v DatabaseSource) {
+	o.Database = &v
+}
+
 func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -472,6 +505,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Git) {
 		toSerialize["git"] = o.Git
+	}
+	if !isNil(o.Database) {
+		toSerialize["database"] = o.Database
 	}
 	return json.Marshal(toSerialize)
 }
