@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **DefaultBranchName** | Pointer to **string** |  | [optional] 
 **DefaultBranchState** | Pointer to **string** |  | [optional] 
 **DefaultBranchLogicalSize** | Pointer to **string** |  | [optional] 
-**XyzRoles** | Pointer to [**[]XyzDeploymentNeonPostgresDatabaseInfoRoleObject**](XyzDeploymentNeonPostgresDatabaseInfoRoleObject.md) |  | [optional] 
+**Roles** | Pointer to [**[]DeploymentNeonPostgresDatabaseInfoRole**](DeploymentNeonPostgresDatabaseInfoRole.md) |  | [optional] 
 
 ## Methods
 
@@ -363,30 +363,30 @@ SetDefaultBranchLogicalSize sets DefaultBranchLogicalSize field to given value.
 
 HasDefaultBranchLogicalSize returns a boolean if a field has been set.
 
-### GetXyzRoles
+### GetRoles
 
-`func (o *DeploymentNeonPostgresDatabaseInfo) GetXyzRoles() []XyzDeploymentNeonPostgresDatabaseInfoRoleObject`
+`func (o *DeploymentNeonPostgresDatabaseInfo) GetRoles() []DeploymentNeonPostgresDatabaseInfoRole`
 
-GetXyzRoles returns the XyzRoles field if non-nil, zero value otherwise.
+GetRoles returns the Roles field if non-nil, zero value otherwise.
 
-### GetXyzRolesOk
+### GetRolesOk
 
-`func (o *DeploymentNeonPostgresDatabaseInfo) GetXyzRolesOk() (*[]XyzDeploymentNeonPostgresDatabaseInfoRoleObject, bool)`
+`func (o *DeploymentNeonPostgresDatabaseInfo) GetRolesOk() (*[]DeploymentNeonPostgresDatabaseInfoRole, bool)`
 
-GetXyzRolesOk returns a tuple with the XyzRoles field if it's non-nil, zero value otherwise
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetXyzRoles
+### SetRoles
 
-`func (o *DeploymentNeonPostgresDatabaseInfo) SetXyzRoles(v []XyzDeploymentNeonPostgresDatabaseInfoRoleObject)`
+`func (o *DeploymentNeonPostgresDatabaseInfo) SetRoles(v []DeploymentNeonPostgresDatabaseInfoRole)`
 
-SetXyzRoles sets XyzRoles field to given value.
+SetRoles sets Roles field to given value.
 
-### HasXyzRoles
+### HasRoles
 
-`func (o *DeploymentNeonPostgresDatabaseInfo) HasXyzRoles() bool`
+`func (o *DeploymentNeonPostgresDatabaseInfo) HasRoles() bool`
 
-HasXyzRoles returns a boolean if a field has been set.
+HasRoles returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

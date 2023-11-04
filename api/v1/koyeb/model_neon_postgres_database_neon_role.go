@@ -14,31 +14,31 @@ import (
 	"encoding/json"
 )
 
-// PostgresNeonDatabaseNeonRole struct for PostgresNeonDatabaseNeonRole
-type PostgresNeonDatabaseNeonRole struct {
+// NeonPostgresDatabaseNeonRole struct for NeonPostgresDatabaseNeonRole
+type NeonPostgresDatabaseNeonRole struct {
 	Name *string `json:"name,omitempty"`
 	Secret *string `json:"secret,omitempty"`
 }
 
-// NewPostgresNeonDatabaseNeonRole instantiates a new PostgresNeonDatabaseNeonRole object
+// NewNeonPostgresDatabaseNeonRole instantiates a new NeonPostgresDatabaseNeonRole object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostgresNeonDatabaseNeonRole() *PostgresNeonDatabaseNeonRole {
-	this := PostgresNeonDatabaseNeonRole{}
+func NewNeonPostgresDatabaseNeonRole() *NeonPostgresDatabaseNeonRole {
+	this := NeonPostgresDatabaseNeonRole{}
 	return &this
 }
 
-// NewPostgresNeonDatabaseNeonRoleWithDefaults instantiates a new PostgresNeonDatabaseNeonRole object
+// NewNeonPostgresDatabaseNeonRoleWithDefaults instantiates a new NeonPostgresDatabaseNeonRole object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPostgresNeonDatabaseNeonRoleWithDefaults() *PostgresNeonDatabaseNeonRole {
-	this := PostgresNeonDatabaseNeonRole{}
+func NewNeonPostgresDatabaseNeonRoleWithDefaults() *NeonPostgresDatabaseNeonRole {
+	this := NeonPostgresDatabaseNeonRole{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PostgresNeonDatabaseNeonRole) GetName() string {
+func (o *NeonPostgresDatabaseNeonRole) GetName() string {
 	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *PostgresNeonDatabaseNeonRole) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresNeonDatabaseNeonRole) GetNameOk() (*string, bool) {
+func (o *NeonPostgresDatabaseNeonRole) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
     return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *PostgresNeonDatabaseNeonRole) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PostgresNeonDatabaseNeonRole) HasName() bool {
+func (o *NeonPostgresDatabaseNeonRole) HasName() bool {
 	if o != nil && !isNil(o.Name) {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *PostgresNeonDatabaseNeonRole) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PostgresNeonDatabaseNeonRole) SetName(v string) {
+func (o *NeonPostgresDatabaseNeonRole) SetName(v string) {
 	o.Name = &v
 }
 
 // GetSecret returns the Secret field value if set, zero value otherwise.
-func (o *PostgresNeonDatabaseNeonRole) GetSecret() string {
+func (o *NeonPostgresDatabaseNeonRole) GetSecret() string {
 	if o == nil || isNil(o.Secret) {
 		var ret string
 		return ret
@@ -80,7 +80,7 @@ func (o *PostgresNeonDatabaseNeonRole) GetSecret() string {
 
 // GetSecretOk returns a tuple with the Secret field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresNeonDatabaseNeonRole) GetSecretOk() (*string, bool) {
+func (o *NeonPostgresDatabaseNeonRole) GetSecretOk() (*string, bool) {
 	if o == nil || isNil(o.Secret) {
     return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *PostgresNeonDatabaseNeonRole) GetSecretOk() (*string, bool) {
 }
 
 // HasSecret returns a boolean if a field has been set.
-func (o *PostgresNeonDatabaseNeonRole) HasSecret() bool {
+func (o *NeonPostgresDatabaseNeonRole) HasSecret() bool {
 	if o != nil && !isNil(o.Secret) {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *PostgresNeonDatabaseNeonRole) HasSecret() bool {
 }
 
 // SetSecret gets a reference to the given string and assigns it to the Secret field.
-func (o *PostgresNeonDatabaseNeonRole) SetSecret(v string) {
+func (o *NeonPostgresDatabaseNeonRole) SetSecret(v string) {
 	o.Secret = &v
 }
 
-func (o PostgresNeonDatabaseNeonRole) MarshalJSON() ([]byte, error) {
+func (o NeonPostgresDatabaseNeonRole) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -112,38 +112,38 @@ func (o PostgresNeonDatabaseNeonRole) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullablePostgresNeonDatabaseNeonRole struct {
-	value *PostgresNeonDatabaseNeonRole
+type NullableNeonPostgresDatabaseNeonRole struct {
+	value *NeonPostgresDatabaseNeonRole
 	isSet bool
 }
 
-func (v NullablePostgresNeonDatabaseNeonRole) Get() *PostgresNeonDatabaseNeonRole {
+func (v NullableNeonPostgresDatabaseNeonRole) Get() *NeonPostgresDatabaseNeonRole {
 	return v.value
 }
 
-func (v *NullablePostgresNeonDatabaseNeonRole) Set(val *PostgresNeonDatabaseNeonRole) {
+func (v *NullableNeonPostgresDatabaseNeonRole) Set(val *NeonPostgresDatabaseNeonRole) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePostgresNeonDatabaseNeonRole) IsSet() bool {
+func (v NullableNeonPostgresDatabaseNeonRole) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePostgresNeonDatabaseNeonRole) Unset() {
+func (v *NullableNeonPostgresDatabaseNeonRole) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePostgresNeonDatabaseNeonRole(val *PostgresNeonDatabaseNeonRole) *NullablePostgresNeonDatabaseNeonRole {
-	return &NullablePostgresNeonDatabaseNeonRole{value: val, isSet: true}
+func NewNullableNeonPostgresDatabaseNeonRole(val *NeonPostgresDatabaseNeonRole) *NullableNeonPostgresDatabaseNeonRole {
+	return &NullableNeonPostgresDatabaseNeonRole{value: val, isSet: true}
 }
 
-func (v NullablePostgresNeonDatabaseNeonRole) MarshalJSON() ([]byte, error) {
+func (v NullableNeonPostgresDatabaseNeonRole) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePostgresNeonDatabaseNeonRole) UnmarshalJSON(src []byte) error {
+func (v *NullableNeonPostgresDatabaseNeonRole) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

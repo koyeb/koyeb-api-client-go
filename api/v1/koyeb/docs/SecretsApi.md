@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteSecret**](SecretsApi.md#DeleteSecret) | **Delete** /v1/secrets/{id} | 
 [**GetSecret**](SecretsApi.md#GetSecret) | **Get** /v1/secrets/{id} | 
 [**ListSecrets**](SecretsApi.md#ListSecrets) | **Get** /v1/secrets | 
+[**RevealSecret**](SecretsApi.md#RevealSecret) | **Post** /v1/secrets/{id}/reveal | 
 [**UpdateSecret**](SecretsApi.md#UpdateSecret) | **Put** /v1/secrets/{id} | 
 [**UpdateSecret2**](SecretsApi.md#UpdateSecret2) | **Patch** /v1/secrets/{id} | 
 
@@ -268,6 +269,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListSecretsReply**](ListSecretsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## RevealSecret
+
+> RevealSecretReply RevealSecret(ctx, id).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.SecretsApi.RevealSecret(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.RevealSecret``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RevealSecret`: RevealSecretReply
+    fmt.Fprintf(os.Stdout, "Response from `SecretsApi.RevealSecret`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRevealSecretRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+[**RevealSecretReply**](RevealSecretReply.md)
 
 ### Authorization
 

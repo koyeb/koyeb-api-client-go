@@ -77,6 +77,7 @@ docs/CreateServiceReply.md
 docs/Credential.md
 docs/CredentialType.md
 docs/CredentialsApi.md
+docs/DatabaseDeploymentMetadata.md
 docs/DatabaseRolePassword.md
 docs/DatabaseSource.md
 docs/DatacenterListItem.md
@@ -95,6 +96,7 @@ docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
 docs/DeploymentMetadata.md
 docs/DeploymentNeonPostgresDatabaseInfo.md
+docs/DeploymentNeonPostgresDatabaseInfoRole.md
 docs/DeploymentPort.md
 docs/DeploymentProvisioningInfo.md
 docs/DeploymentProvisioningInfoStage.md
@@ -211,6 +213,10 @@ docs/LogsApi.md
 docs/ManageReply.md
 docs/MetricName.md
 docs/MetricsApi.md
+docs/NeonPostgresDatabase.md
+docs/NeonPostgresDatabaseDeploymentMetadata.md
+docs/NeonPostgresDatabaseNeonDatabase.md
+docs/NeonPostgresDatabaseNeonRole.md
 docs/NextInvoiceReply.md
 docs/Notification.md
 docs/NotificationList.md
@@ -236,9 +242,6 @@ docs/PaymentMethodsApi.md
 docs/PeriodUsage.md
 docs/Plan.md
 docs/Port.md
-docs/PostgresNeonDatabase.md
-docs/PostgresNeonDatabaseNeonDatabase.md
-docs/PostgresNeonDatabaseNeonRole.md
 docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
 docs/PublicOrganization.md
@@ -262,6 +265,7 @@ docs/RemoveOrganizationMemberReply.md
 docs/RepositoriesApi.md
 docs/ResendOrganizationInvitationReply.md
 docs/ResetPasswordRequest.md
+docs/RevealSecretReply.md
 docs/ReviewOrganizationCapacityReply.md
 docs/ReviewOrganizationCapacityRequest.md
 docs/Route.md
@@ -315,7 +319,6 @@ docs/UserFlags.md
 docs/UserReply.md
 docs/UserRoleRole.md
 docs/UsersApi.md
-docs/XyzDeploymentNeonPostgresDatabaseInfoRoleObject.md
 git_push.sh
 go.mod
 go.sum
@@ -354,6 +357,7 @@ model_create_service.go
 model_create_service_reply.go
 model_credential.go
 model_credential_type.go
+model_database_deployment_metadata.go
 model_database_role_password.go
 model_database_source.go
 model_datacenter_list_item.go
@@ -372,6 +376,7 @@ model_deployment_instance_type.go
 model_deployment_list_item.go
 model_deployment_metadata.go
 model_deployment_neon_postgres_database_info.go
+model_deployment_neon_postgres_database_info_role.go
 model_deployment_port.go
 model_deployment_provisioning_info.go
 model_deployment_provisioning_info_stage.go
@@ -482,6 +487,10 @@ model_login_reply.go
 model_login_request.go
 model_manage_reply.go
 model_metric_name.go
+model_neon_postgres_database.go
+model_neon_postgres_database_deployment_metadata.go
+model_neon_postgres_database_neon_database.go
+model_neon_postgres_database_neon_role.go
 model_next_invoice_reply.go
 model_notification.go
 model_notification_list.go
@@ -502,9 +511,6 @@ model_payment_method_status.go
 model_period_usage.go
 model_plan.go
 model_port.go
-model_postgres_neon_database.go
-model_postgres_neon_database_neon_database.go
-model_postgres_neon_database_neon_role.go
 model_private_registry_configuration.go
 model_public_organization.go
 model_public_user.go
@@ -524,6 +530,7 @@ model_regional_deployment_status.go
 model_remove_organization_member_reply.go
 model_resend_organization_invitation_reply.go
 model_reset_password_request.go
+model_reveal_secret_reply.go
 model_review_organization_capacity_reply.go
 model_review_organization_capacity_request.go
 model_route.go
@@ -569,7 +576,6 @@ model_user.go
 model_user_flags.go
 model_user_reply.go
 model_user_role_role.go
-model_xyz_deployment_neon_postgres_database_info_role_object.go
 response.go
 test/api_activity_test.go
 test/api_apps_test.go

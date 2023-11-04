@@ -1,4 +1,4 @@
-# PostgresNeonDatabaseNeonRole
+# NeonPostgresDatabaseNeonRole
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPostgresNeonDatabaseNeonRole
+### NewNeonPostgresDatabaseNeonRole
 
-`func NewPostgresNeonDatabaseNeonRole() *PostgresNeonDatabaseNeonRole`
+`func NewNeonPostgresDatabaseNeonRole() *NeonPostgresDatabaseNeonRole`
 
-NewPostgresNeonDatabaseNeonRole instantiates a new PostgresNeonDatabaseNeonRole object
+NewNeonPostgresDatabaseNeonRole instantiates a new NeonPostgresDatabaseNeonRole object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPostgresNeonDatabaseNeonRoleWithDefaults
+### NewNeonPostgresDatabaseNeonRoleWithDefaults
 
-`func NewPostgresNeonDatabaseNeonRoleWithDefaults() *PostgresNeonDatabaseNeonRole`
+`func NewNeonPostgresDatabaseNeonRoleWithDefaults() *NeonPostgresDatabaseNeonRole`
 
-NewPostgresNeonDatabaseNeonRoleWithDefaults instantiates a new PostgresNeonDatabaseNeonRole object
+NewNeonPostgresDatabaseNeonRoleWithDefaults instantiates a new NeonPostgresDatabaseNeonRole object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
-`func (o *PostgresNeonDatabaseNeonRole) GetName() string`
+`func (o *NeonPostgresDatabaseNeonRole) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PostgresNeonDatabaseNeonRole) GetNameOk() (*string, bool)`
+`func (o *NeonPostgresDatabaseNeonRole) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *PostgresNeonDatabaseNeonRole) SetName(v string)`
+`func (o *NeonPostgresDatabaseNeonRole) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### HasName
 
-`func (o *PostgresNeonDatabaseNeonRole) HasName() bool`
+`func (o *NeonPostgresDatabaseNeonRole) HasName() bool`
 
 HasName returns a boolean if a field has been set.
 
 ### GetSecret
 
-`func (o *PostgresNeonDatabaseNeonRole) GetSecret() string`
+`func (o *NeonPostgresDatabaseNeonRole) GetSecret() string`
 
 GetSecret returns the Secret field if non-nil, zero value otherwise.
 
 ### GetSecretOk
 
-`func (o *PostgresNeonDatabaseNeonRole) GetSecretOk() (*string, bool)`
+`func (o *NeonPostgresDatabaseNeonRole) GetSecretOk() (*string, bool)`
 
 GetSecretOk returns a tuple with the Secret field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSecret
 
-`func (o *PostgresNeonDatabaseNeonRole) SetSecret(v string)`
+`func (o *NeonPostgresDatabaseNeonRole) SetSecret(v string)`
 
 SetSecret sets Secret field to given value.
 
 ### HasSecret
 
-`func (o *PostgresNeonDatabaseNeonRole) HasSecret() bool`
+`func (o *NeonPostgresDatabaseNeonRole) HasSecret() bool`
 
 HasSecret returns a boolean if a field has been set.
 

@@ -17,6 +17,7 @@ import (
 // UpdateService struct for UpdateService
 type UpdateService struct {
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
+	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -68,10 +69,45 @@ func (o *UpdateService) SetDefinition(v DeploymentDefinition) {
 	o.Definition = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *UpdateService) GetMetadata() DeploymentMetadata {
+	if o == nil || isNil(o.Metadata) {
+		var ret DeploymentMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetMetadataOk() (*DeploymentMetadata, bool) {
+	if o == nil || isNil(o.Metadata) {
+    return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *UpdateService) HasMetadata() bool {
+	if o != nil && !isNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given DeploymentMetadata and assigns it to the Metadata field.
+func (o *UpdateService) SetMetadata(v DeploymentMetadata) {
+	o.Metadata = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Definition) {
 		toSerialize["definition"] = o.Definition
+	}
+	if !isNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	return json.Marshal(toSerialize)
 }

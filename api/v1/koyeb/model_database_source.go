@@ -16,7 +16,7 @@ import (
 
 // DatabaseSource struct for DatabaseSource
 type DatabaseSource struct {
-	PostgresNeon *PostgresNeonDatabase `json:"postgres_neon,omitempty"`
+	NeonPostgres *NeonPostgresDatabase `json:"neon_postgres,omitempty"`
 }
 
 // NewDatabaseSource instantiates a new DatabaseSource object
@@ -36,42 +36,42 @@ func NewDatabaseSourceWithDefaults() *DatabaseSource {
 	return &this
 }
 
-// GetPostgresNeon returns the PostgresNeon field value if set, zero value otherwise.
-func (o *DatabaseSource) GetPostgresNeon() PostgresNeonDatabase {
-	if o == nil || isNil(o.PostgresNeon) {
-		var ret PostgresNeonDatabase
+// GetNeonPostgres returns the NeonPostgres field value if set, zero value otherwise.
+func (o *DatabaseSource) GetNeonPostgres() NeonPostgresDatabase {
+	if o == nil || isNil(o.NeonPostgres) {
+		var ret NeonPostgresDatabase
 		return ret
 	}
-	return *o.PostgresNeon
+	return *o.NeonPostgres
 }
 
-// GetPostgresNeonOk returns a tuple with the PostgresNeon field value if set, nil otherwise
+// GetNeonPostgresOk returns a tuple with the NeonPostgres field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DatabaseSource) GetPostgresNeonOk() (*PostgresNeonDatabase, bool) {
-	if o == nil || isNil(o.PostgresNeon) {
+func (o *DatabaseSource) GetNeonPostgresOk() (*NeonPostgresDatabase, bool) {
+	if o == nil || isNil(o.NeonPostgres) {
     return nil, false
 	}
-	return o.PostgresNeon, true
+	return o.NeonPostgres, true
 }
 
-// HasPostgresNeon returns a boolean if a field has been set.
-func (o *DatabaseSource) HasPostgresNeon() bool {
-	if o != nil && !isNil(o.PostgresNeon) {
+// HasNeonPostgres returns a boolean if a field has been set.
+func (o *DatabaseSource) HasNeonPostgres() bool {
+	if o != nil && !isNil(o.NeonPostgres) {
 		return true
 	}
 
 	return false
 }
 
-// SetPostgresNeon gets a reference to the given PostgresNeonDatabase and assigns it to the PostgresNeon field.
-func (o *DatabaseSource) SetPostgresNeon(v PostgresNeonDatabase) {
-	o.PostgresNeon = &v
+// SetNeonPostgres gets a reference to the given NeonPostgresDatabase and assigns it to the NeonPostgres field.
+func (o *DatabaseSource) SetNeonPostgres(v NeonPostgresDatabase) {
+	o.NeonPostgres = &v
 }
 
 func (o DatabaseSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.PostgresNeon) {
-		toSerialize["postgres_neon"] = o.PostgresNeon
+	if !isNil(o.NeonPostgres) {
+		toSerialize["neon_postgres"] = o.NeonPostgres
 	}
 	return json.Marshal(toSerialize)
 }

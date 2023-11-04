@@ -14,31 +14,31 @@ import (
 	"encoding/json"
 )
 
-// PostgresNeonDatabaseNeonDatabase struct for PostgresNeonDatabaseNeonDatabase
-type PostgresNeonDatabaseNeonDatabase struct {
+// NeonPostgresDatabaseNeonDatabase struct for NeonPostgresDatabaseNeonDatabase
+type NeonPostgresDatabaseNeonDatabase struct {
 	Name *string `json:"name,omitempty"`
 	Owner *string `json:"owner,omitempty"`
 }
 
-// NewPostgresNeonDatabaseNeonDatabase instantiates a new PostgresNeonDatabaseNeonDatabase object
+// NewNeonPostgresDatabaseNeonDatabase instantiates a new NeonPostgresDatabaseNeonDatabase object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostgresNeonDatabaseNeonDatabase() *PostgresNeonDatabaseNeonDatabase {
-	this := PostgresNeonDatabaseNeonDatabase{}
+func NewNeonPostgresDatabaseNeonDatabase() *NeonPostgresDatabaseNeonDatabase {
+	this := NeonPostgresDatabaseNeonDatabase{}
 	return &this
 }
 
-// NewPostgresNeonDatabaseNeonDatabaseWithDefaults instantiates a new PostgresNeonDatabaseNeonDatabase object
+// NewNeonPostgresDatabaseNeonDatabaseWithDefaults instantiates a new NeonPostgresDatabaseNeonDatabase object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPostgresNeonDatabaseNeonDatabaseWithDefaults() *PostgresNeonDatabaseNeonDatabase {
-	this := PostgresNeonDatabaseNeonDatabase{}
+func NewNeonPostgresDatabaseNeonDatabaseWithDefaults() *NeonPostgresDatabaseNeonDatabase {
+	this := NeonPostgresDatabaseNeonDatabase{}
 	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PostgresNeonDatabaseNeonDatabase) GetName() string {
+func (o *NeonPostgresDatabaseNeonDatabase) GetName() string {
 	if o == nil || isNil(o.Name) {
 		var ret string
 		return ret
@@ -48,7 +48,7 @@ func (o *PostgresNeonDatabaseNeonDatabase) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresNeonDatabaseNeonDatabase) GetNameOk() (*string, bool) {
+func (o *NeonPostgresDatabaseNeonDatabase) GetNameOk() (*string, bool) {
 	if o == nil || isNil(o.Name) {
     return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *PostgresNeonDatabaseNeonDatabase) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PostgresNeonDatabaseNeonDatabase) HasName() bool {
+func (o *NeonPostgresDatabaseNeonDatabase) HasName() bool {
 	if o != nil && !isNil(o.Name) {
 		return true
 	}
@@ -65,12 +65,12 @@ func (o *PostgresNeonDatabaseNeonDatabase) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PostgresNeonDatabaseNeonDatabase) SetName(v string) {
+func (o *NeonPostgresDatabaseNeonDatabase) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
-func (o *PostgresNeonDatabaseNeonDatabase) GetOwner() string {
+func (o *NeonPostgresDatabaseNeonDatabase) GetOwner() string {
 	if o == nil || isNil(o.Owner) {
 		var ret string
 		return ret
@@ -80,7 +80,7 @@ func (o *PostgresNeonDatabaseNeonDatabase) GetOwner() string {
 
 // GetOwnerOk returns a tuple with the Owner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostgresNeonDatabaseNeonDatabase) GetOwnerOk() (*string, bool) {
+func (o *NeonPostgresDatabaseNeonDatabase) GetOwnerOk() (*string, bool) {
 	if o == nil || isNil(o.Owner) {
     return nil, false
 	}
@@ -88,7 +88,7 @@ func (o *PostgresNeonDatabaseNeonDatabase) GetOwnerOk() (*string, bool) {
 }
 
 // HasOwner returns a boolean if a field has been set.
-func (o *PostgresNeonDatabaseNeonDatabase) HasOwner() bool {
+func (o *NeonPostgresDatabaseNeonDatabase) HasOwner() bool {
 	if o != nil && !isNil(o.Owner) {
 		return true
 	}
@@ -97,11 +97,11 @@ func (o *PostgresNeonDatabaseNeonDatabase) HasOwner() bool {
 }
 
 // SetOwner gets a reference to the given string and assigns it to the Owner field.
-func (o *PostgresNeonDatabaseNeonDatabase) SetOwner(v string) {
+func (o *NeonPostgresDatabaseNeonDatabase) SetOwner(v string) {
 	o.Owner = &v
 }
 
-func (o PostgresNeonDatabaseNeonDatabase) MarshalJSON() ([]byte, error) {
+func (o NeonPostgresDatabaseNeonDatabase) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
@@ -112,38 +112,38 @@ func (o PostgresNeonDatabaseNeonDatabase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullablePostgresNeonDatabaseNeonDatabase struct {
-	value *PostgresNeonDatabaseNeonDatabase
+type NullableNeonPostgresDatabaseNeonDatabase struct {
+	value *NeonPostgresDatabaseNeonDatabase
 	isSet bool
 }
 
-func (v NullablePostgresNeonDatabaseNeonDatabase) Get() *PostgresNeonDatabaseNeonDatabase {
+func (v NullableNeonPostgresDatabaseNeonDatabase) Get() *NeonPostgresDatabaseNeonDatabase {
 	return v.value
 }
 
-func (v *NullablePostgresNeonDatabaseNeonDatabase) Set(val *PostgresNeonDatabaseNeonDatabase) {
+func (v *NullableNeonPostgresDatabaseNeonDatabase) Set(val *NeonPostgresDatabaseNeonDatabase) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePostgresNeonDatabaseNeonDatabase) IsSet() bool {
+func (v NullableNeonPostgresDatabaseNeonDatabase) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePostgresNeonDatabaseNeonDatabase) Unset() {
+func (v *NullableNeonPostgresDatabaseNeonDatabase) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePostgresNeonDatabaseNeonDatabase(val *PostgresNeonDatabaseNeonDatabase) *NullablePostgresNeonDatabaseNeonDatabase {
-	return &NullablePostgresNeonDatabaseNeonDatabase{value: val, isSet: true}
+func NewNullableNeonPostgresDatabaseNeonDatabase(val *NeonPostgresDatabaseNeonDatabase) *NullableNeonPostgresDatabaseNeonDatabase {
+	return &NullableNeonPostgresDatabaseNeonDatabase{value: val, isSet: true}
 }
 
-func (v NullablePostgresNeonDatabaseNeonDatabase) MarshalJSON() ([]byte, error) {
+func (v NullableNeonPostgresDatabaseNeonDatabase) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePostgresNeonDatabaseNeonDatabase) UnmarshalJSON(src []byte) error {
+func (v *NullableNeonPostgresDatabaseNeonDatabase) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
