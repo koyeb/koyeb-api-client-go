@@ -18,6 +18,8 @@ import (
 type ExecCommandIO struct {
 	// Data is base64 encoded
 	Data *string `json:"data,omitempty"`
+	// Indicate last data frame
+	Close *bool `json:"close,omitempty"`
 }
 
 // NewExecCommandIO instantiates a new ExecCommandIO object
@@ -69,10 +71,45 @@ func (o *ExecCommandIO) SetData(v string) {
 	o.Data = &v
 }
 
+// GetClose returns the Close field value if set, zero value otherwise.
+func (o *ExecCommandIO) GetClose() bool {
+	if o == nil || isNil(o.Close) {
+		var ret bool
+		return ret
+	}
+	return *o.Close
+}
+
+// GetCloseOk returns a tuple with the Close field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecCommandIO) GetCloseOk() (*bool, bool) {
+	if o == nil || isNil(o.Close) {
+    return nil, false
+	}
+	return o.Close, true
+}
+
+// HasClose returns a boolean if a field has been set.
+func (o *ExecCommandIO) HasClose() bool {
+	if o != nil && !isNil(o.Close) {
+		return true
+	}
+
+	return false
+}
+
+// SetClose gets a reference to the given bool and assigns it to the Close field.
+func (o *ExecCommandIO) SetClose(v bool) {
+	o.Close = &v
+}
+
 func (o ExecCommandIO) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Data) {
 		toSerialize["data"] = o.Data
+	}
+	if !isNil(o.Close) {
+		toSerialize["close"] = o.Close
 	}
 	return json.Marshal(toSerialize)
 }

@@ -86,6 +86,7 @@ type ApiExecCommandRequest struct {
 	bodyTtySizeHeight *int32
 	bodyTtySizeWidth *int32
 	bodyStdinData *string
+	bodyStdinClose *bool
 	idType *string
 }
 
@@ -114,6 +115,12 @@ func (r ApiExecCommandRequest) BodyTtySizeWidth(bodyTtySizeWidth int32) ApiExecC
 // Data is base64 encoded
 func (r ApiExecCommandRequest) BodyStdinData(bodyStdinData string) ApiExecCommandRequest {
 	r.bodyStdinData = &bodyStdinData
+	return r
+}
+
+// Indicate last data frame
+func (r ApiExecCommandRequest) BodyStdinClose(bodyStdinClose bool) ApiExecCommandRequest {
+	r.bodyStdinClose = &bodyStdinClose
 	return r
 }
 
@@ -185,6 +192,9 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (*Stre
 	}
 	if r.bodyStdinData != nil {
 		localVarQueryParams.Add("body.stdin.data", parameterToString(*r.bodyStdinData, ""))
+	}
+	if r.bodyStdinClose != nil {
+		localVarQueryParams.Add("body.stdin.close", parameterToString(*r.bodyStdinClose, ""))
 	}
 	if r.idType != nil {
 		localVarQueryParams.Add("id_type", parameterToString(*r.idType, ""))

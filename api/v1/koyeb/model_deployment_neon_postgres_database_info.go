@@ -30,7 +30,7 @@ type DeploymentNeonPostgresDatabaseInfo struct {
 	DefaultBranchName *string `json:"default_branch_name,omitempty"`
 	DefaultBranchState *string `json:"default_branch_state,omitempty"`
 	DefaultBranchLogicalSize *string `json:"default_branch_logical_size,omitempty"`
-	XyzRoles []XyzDeploymentNeonPostgresDatabaseInfoRoleObject `json:"xyz_roles,omitempty"`
+	Roles []DeploymentNeonPostgresDatabaseInfoRole `json:"roles,omitempty"`
 }
 
 // NewDeploymentNeonPostgresDatabaseInfo instantiates a new DeploymentNeonPostgresDatabaseInfo object
@@ -466,36 +466,36 @@ func (o *DeploymentNeonPostgresDatabaseInfo) SetDefaultBranchLogicalSize(v strin
 	o.DefaultBranchLogicalSize = &v
 }
 
-// GetXyzRoles returns the XyzRoles field value if set, zero value otherwise.
-func (o *DeploymentNeonPostgresDatabaseInfo) GetXyzRoles() []XyzDeploymentNeonPostgresDatabaseInfoRoleObject {
-	if o == nil || isNil(o.XyzRoles) {
-		var ret []XyzDeploymentNeonPostgresDatabaseInfoRoleObject
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *DeploymentNeonPostgresDatabaseInfo) GetRoles() []DeploymentNeonPostgresDatabaseInfoRole {
+	if o == nil || isNil(o.Roles) {
+		var ret []DeploymentNeonPostgresDatabaseInfoRole
 		return ret
 	}
-	return o.XyzRoles
+	return o.Roles
 }
 
-// GetXyzRolesOk returns a tuple with the XyzRoles field value if set, nil otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentNeonPostgresDatabaseInfo) GetXyzRolesOk() ([]XyzDeploymentNeonPostgresDatabaseInfoRoleObject, bool) {
-	if o == nil || isNil(o.XyzRoles) {
+func (o *DeploymentNeonPostgresDatabaseInfo) GetRolesOk() ([]DeploymentNeonPostgresDatabaseInfoRole, bool) {
+	if o == nil || isNil(o.Roles) {
     return nil, false
 	}
-	return o.XyzRoles, true
+	return o.Roles, true
 }
 
-// HasXyzRoles returns a boolean if a field has been set.
-func (o *DeploymentNeonPostgresDatabaseInfo) HasXyzRoles() bool {
-	if o != nil && !isNil(o.XyzRoles) {
+// HasRoles returns a boolean if a field has been set.
+func (o *DeploymentNeonPostgresDatabaseInfo) HasRoles() bool {
+	if o != nil && !isNil(o.Roles) {
 		return true
 	}
 
 	return false
 }
 
-// SetXyzRoles gets a reference to the given []XyzDeploymentNeonPostgresDatabaseInfoRoleObject and assigns it to the XyzRoles field.
-func (o *DeploymentNeonPostgresDatabaseInfo) SetXyzRoles(v []XyzDeploymentNeonPostgresDatabaseInfoRoleObject) {
-	o.XyzRoles = v
+// SetRoles gets a reference to the given []DeploymentNeonPostgresDatabaseInfoRole and assigns it to the Roles field.
+func (o *DeploymentNeonPostgresDatabaseInfo) SetRoles(v []DeploymentNeonPostgresDatabaseInfoRole) {
+	o.Roles = v
 }
 
 func (o DeploymentNeonPostgresDatabaseInfo) MarshalJSON() ([]byte, error) {
@@ -539,8 +539,8 @@ func (o DeploymentNeonPostgresDatabaseInfo) MarshalJSON() ([]byte, error) {
 	if !isNil(o.DefaultBranchLogicalSize) {
 		toSerialize["default_branch_logical_size"] = o.DefaultBranchLogicalSize
 	}
-	if !isNil(o.XyzRoles) {
-		toSerialize["xyz_roles"] = o.XyzRoles
+	if !isNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,6 +17,7 @@ import (
 // DeploymentMetadata struct for DeploymentMetadata
 type DeploymentMetadata struct {
 	Trigger *TriggerDeploymentMetadata `json:"trigger,omitempty"`
+	Database *DatabaseDeploymentMetadata `json:"database,omitempty"`
 }
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object
@@ -68,10 +69,45 @@ func (o *DeploymentMetadata) SetTrigger(v TriggerDeploymentMetadata) {
 	o.Trigger = &v
 }
 
+// GetDatabase returns the Database field value if set, zero value otherwise.
+func (o *DeploymentMetadata) GetDatabase() DatabaseDeploymentMetadata {
+	if o == nil || isNil(o.Database) {
+		var ret DatabaseDeploymentMetadata
+		return ret
+	}
+	return *o.Database
+}
+
+// GetDatabaseOk returns a tuple with the Database field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentMetadata) GetDatabaseOk() (*DatabaseDeploymentMetadata, bool) {
+	if o == nil || isNil(o.Database) {
+    return nil, false
+	}
+	return o.Database, true
+}
+
+// HasDatabase returns a boolean if a field has been set.
+func (o *DeploymentMetadata) HasDatabase() bool {
+	if o != nil && !isNil(o.Database) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabase gets a reference to the given DatabaseDeploymentMetadata and assigns it to the Database field.
+func (o *DeploymentMetadata) SetDatabase(v DatabaseDeploymentMetadata) {
+	o.Database = &v
+}
+
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Trigger) {
 		toSerialize["trigger"] = o.Trigger
+	}
+	if !isNil(o.Database) {
+		toSerialize["database"] = o.Database
 	}
 	return json.Marshal(toSerialize)
 }

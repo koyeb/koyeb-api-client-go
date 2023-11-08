@@ -174,6 +174,7 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
 *SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
 *SecretsApi* | [**ListSecrets**](docs/SecretsApi.md#listsecrets) | **Get** /v1/secrets | 
+*SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | 
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
@@ -235,6 +236,7 @@ Class | Method | HTTP request | Description
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [Credential](docs/Credential.md)
  - [CredentialType](docs/CredentialType.md)
+ - [DatabaseDeploymentMetadata](docs/DatabaseDeploymentMetadata.md)
  - [DatabaseRolePassword](docs/DatabaseRolePassword.md)
  - [DatabaseSource](docs/DatabaseSource.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
@@ -253,6 +255,7 @@ Class | Method | HTTP request | Description
  - [DeploymentListItem](docs/DeploymentListItem.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentNeonPostgresDatabaseInfo](docs/DeploymentNeonPostgresDatabaseInfo.md)
+ - [DeploymentNeonPostgresDatabaseInfoRole](docs/DeploymentNeonPostgresDatabaseInfoRole.md)
  - [DeploymentPort](docs/DeploymentPort.md)
  - [DeploymentProvisioningInfo](docs/DeploymentProvisioningInfo.md)
  - [DeploymentProvisioningInfoStage](docs/DeploymentProvisioningInfoStage.md)
@@ -363,6 +366,10 @@ Class | Method | HTTP request | Description
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)
  - [MetricName](docs/MetricName.md)
+ - [NeonPostgresDatabase](docs/NeonPostgresDatabase.md)
+ - [NeonPostgresDatabaseDeploymentMetadata](docs/NeonPostgresDatabaseDeploymentMetadata.md)
+ - [NeonPostgresDatabaseNeonDatabase](docs/NeonPostgresDatabaseNeonDatabase.md)
+ - [NeonPostgresDatabaseNeonRole](docs/NeonPostgresDatabaseNeonRole.md)
  - [NextInvoiceReply](docs/NextInvoiceReply.md)
  - [Notification](docs/Notification.md)
  - [NotificationList](docs/NotificationList.md)
@@ -383,9 +390,6 @@ Class | Method | HTTP request | Description
  - [PeriodUsage](docs/PeriodUsage.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
- - [PostgresNeonDatabase](docs/PostgresNeonDatabase.md)
- - [PostgresNeonDatabaseNeonDatabase](docs/PostgresNeonDatabaseNeonDatabase.md)
- - [PostgresNeonDatabaseNeonRole](docs/PostgresNeonDatabaseNeonRole.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
@@ -405,6 +409,7 @@ Class | Method | HTTP request | Description
  - [RemoveOrganizationMemberReply](docs/RemoveOrganizationMemberReply.md)
  - [ResendOrganizationInvitationReply](docs/ResendOrganizationInvitationReply.md)
  - [ResetPasswordRequest](docs/ResetPasswordRequest.md)
+ - [RevealSecretReply](docs/RevealSecretReply.md)
  - [ReviewOrganizationCapacityReply](docs/ReviewOrganizationCapacityReply.md)
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
  - [Route](docs/Route.md)
@@ -450,7 +455,6 @@ Class | Method | HTTP request | Description
  - [UserFlags](docs/UserFlags.md)
  - [UserReply](docs/UserReply.md)
  - [UserRoleRole](docs/UserRoleRole.md)
- - [XyzDeploymentNeonPostgresDatabaseInfoRoleObject](docs/XyzDeploymentNeonPostgresDatabaseInfoRoleObject.md)
 
 
 ## Documentation For Authorization
