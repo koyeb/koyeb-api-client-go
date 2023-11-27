@@ -20,6 +20,7 @@ api_organization.go
 api_organization_confirmations.go
 api_organization_invitations.go
 api_organization_members.go
+api_organization_quotas.go
 api_payment_methods.go
 api_profile.go
 api_quotas.go
@@ -143,6 +144,7 @@ docs/GetOrganizationReply.md
 docs/GetOrganizationUsageDetailsReply.md
 docs/GetOrganizationUsageReply.md
 docs/GetPaymentMethodReply.md
+docs/GetQuotasReply.md
 docs/GetRegionReply.md
 docs/GetRegionalDeploymentReply.md
 docs/GetSecretReply.md
@@ -235,6 +237,7 @@ docs/OrganizationInvitationsApi.md
 docs/OrganizationMember.md
 docs/OrganizationMemberStatus.md
 docs/OrganizationMembersApi.md
+docs/OrganizationQuotasApi.md
 docs/OrganizationStatus.md
 docs/PaymentMethod.md
 docs/PaymentMethodStatus.md
@@ -246,6 +249,7 @@ docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
 docs/PublicOrganization.md
 docs/PublicUser.md
+docs/Quotas.md
 docs/QuotasApi.md
 docs/ReactivateOrganizationReply.md
 docs/RedeployReply.md
@@ -421,6 +425,7 @@ model_get_organization_reply.go
 model_get_organization_usage_details_reply.go
 model_get_organization_usage_reply.go
 model_get_payment_method_reply.go
+model_get_quotas_reply.go
 model_get_region_reply.go
 model_get_regional_deployment_reply.go
 model_get_secret_reply.go
@@ -514,6 +519,7 @@ model_port.go
 model_private_registry_configuration.go
 model_public_organization.go
 model_public_user.go
+model_quotas.go
 model_reactivate_organization_reply.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
@@ -593,6 +599,7 @@ test/api_metrics_test.go
 test/api_organization_confirmations_test.go
 test/api_organization_invitations_test.go
 test/api_organization_members_test.go
+test/api_organization_quotas_test.go
 test/api_organization_test.go
 test/api_payment_methods_test.go
 test/api_profile_test.go

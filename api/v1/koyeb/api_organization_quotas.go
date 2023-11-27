@@ -20,67 +20,67 @@ import (
 )
 
 
-type SubscriptionsApi interface {
+type OrganizationQuotasApi interface {
 
 	/*
-	GetSubscription Get Subscription
+	GetQuotas Method for GetQuotas
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param id The id of the instance
-	@return ApiGetSubscriptionRequest
+	@param organizationId
+	@return ApiGetQuotasRequest
 	*/
-	GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest
+	GetQuotas(ctx context.Context, organizationId string) ApiGetQuotasRequest
 
-	// GetSubscriptionExecute executes the request
-	//  @return GetSubscriptionReply
-	GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*GetSubscriptionReply, *http.Response, error)
+	// GetQuotasExecute executes the request
+	//  @return GetQuotasReply
+	GetQuotasExecute(r ApiGetQuotasRequest) (*GetQuotasReply, *http.Response, error)
 }
 
-// SubscriptionsApiService SubscriptionsApi service
-type SubscriptionsApiService service
+// OrganizationQuotasApiService OrganizationQuotasApi service
+type OrganizationQuotasApiService service
 
-type ApiGetSubscriptionRequest struct {
+type ApiGetQuotasRequest struct {
 	ctx context.Context
-	ApiService SubscriptionsApi
-	id string
+	ApiService OrganizationQuotasApi
+	organizationId string
 }
 
-func (r ApiGetSubscriptionRequest) Execute() (*GetSubscriptionReply, *http.Response, error) {
-	return r.ApiService.GetSubscriptionExecute(r)
+func (r ApiGetQuotasRequest) Execute() (*GetQuotasReply, *http.Response, error) {
+	return r.ApiService.GetQuotasExecute(r)
 }
 
 /*
-GetSubscription Get Subscription
+GetQuotas Method for GetQuotas
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id The id of the instance
- @return ApiGetSubscriptionRequest
+ @param organizationId
+ @return ApiGetQuotasRequest
 */
-func (a *SubscriptionsApiService) GetSubscription(ctx context.Context, id string) ApiGetSubscriptionRequest {
-	return ApiGetSubscriptionRequest{
+func (a *OrganizationQuotasApiService) GetQuotas(ctx context.Context, organizationId string) ApiGetQuotasRequest {
+	return ApiGetQuotasRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
+		organizationId: organizationId,
 	}
 }
 
 // Execute executes the request
-//  @return GetSubscriptionReply
-func (a *SubscriptionsApiService) GetSubscriptionExecute(r ApiGetSubscriptionRequest) (*GetSubscriptionReply, *http.Response, error) {
+//  @return GetQuotasReply
+func (a *OrganizationQuotasApiService) GetQuotasExecute(r ApiGetQuotasRequest) (*GetQuotasReply, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetSubscriptionReply
+		localVarReturnValue  *GetQuotasReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsApiService.GetSubscription")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationQuotasApiService.GetQuotas")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/subscriptions/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath := localBasePath + "/v1/organizations/{organization_id}/quotas"
+	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

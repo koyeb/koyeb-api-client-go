@@ -142,6 +142,7 @@ Class | Method | HTTP request | Description
 *OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | 
 *OrganizationMembersApi* | [**ListOrganizationMembers**](docs/OrganizationMembersApi.md#listorganizationmembers) | **Get** /v1/organization_members | List organization members
 *OrganizationMembersApi* | [**RemoveOrganizationMember**](docs/OrganizationMembersApi.md#removeorganizationmember) | **Delete** /v1/organization_members/{id} | Remove an organization member
+*OrganizationQuotasApi* | [**GetQuotas**](docs/OrganizationQuotasApi.md#getquotas) | **Get** /v1/organizations/{organization_id}/quotas | 
 *PaymentMethodsApi* | [**ConfirmPaymentAuthorization**](docs/PaymentMethodsApi.md#confirmpaymentauthorization) | **Post** /v1/payment_methods/{id}/confirm | Confirm payment authorization
 *PaymentMethodsApi* | [**CreatePaymentAuthorization**](docs/PaymentMethodsApi.md#createpaymentauthorization) | **Post** /v1/payment_methods | Create payment authorization
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /v1/payment_methods/{id} | Delete payment method
@@ -300,6 +301,7 @@ Class | Method | HTTP request | Description
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
+ - [GetQuotasReply](docs/GetQuotasReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
@@ -393,6 +395,7 @@ Class | Method | HTTP request | Description
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
+ - [Quotas](docs/Quotas.md)
  - [ReactivateOrganizationReply](docs/ReactivateOrganizationReply.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
