@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Labels** | Pointer to **map[string]string** |  | [optional] 
 **Values** | Pointer to **[][]interface{}** |  | [optional] 
+**Samples** | Pointer to [**[]Sample**](Sample.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetValues sets Values field to given value.
 `func (o *GetMetricsReplyMetric) HasValues() bool`
 
 HasValues returns a boolean if a field has been set.
+
+### GetSamples
+
+`func (o *GetMetricsReplyMetric) GetSamples() []Sample`
+
+GetSamples returns the Samples field if non-nil, zero value otherwise.
+
+### GetSamplesOk
+
+`func (o *GetMetricsReplyMetric) GetSamplesOk() (*[]Sample, bool)`
+
+GetSamplesOk returns a tuple with the Samples field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSamples
+
+`func (o *GetMetricsReplyMetric) SetSamples(v []Sample)`
+
+SetSamples sets Samples field to given value.
+
+### HasSamples
+
+`func (o *GetMetricsReplyMetric) HasSamples() bool`
+
+HasSamples returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

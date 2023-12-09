@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
+**UseKumaV2** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 
@@ -311,6 +312,31 @@ SetSkipCache sets SkipCache field to given value.
 `func (o *RegionalDeploymentDefinition) HasSkipCache() bool`
 
 HasSkipCache returns a boolean if a field has been set.
+
+### GetUseKumaV2
+
+`func (o *RegionalDeploymentDefinition) GetUseKumaV2() bool`
+
+GetUseKumaV2 returns the UseKumaV2 field if non-nil, zero value otherwise.
+
+### GetUseKumaV2Ok
+
+`func (o *RegionalDeploymentDefinition) GetUseKumaV2Ok() (*bool, bool)`
+
+GetUseKumaV2Ok returns a tuple with the UseKumaV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseKumaV2
+
+`func (o *RegionalDeploymentDefinition) SetUseKumaV2(v bool)`
+
+SetUseKumaV2 sets UseKumaV2 field to given value.
+
+### HasUseKumaV2
+
+`func (o *RegionalDeploymentDefinition) HasUseKumaV2() bool`
+
+HasUseKumaV2 returns a boolean if a field has been set.
 
 ### GetDocker
 
