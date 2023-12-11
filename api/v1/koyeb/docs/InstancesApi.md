@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## ExecCommand
 
-> StreamResultOfExecCommandReply ExecCommand(ctx).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).BodyStdinClose(bodyStdinClose).IdType(idType).Execute()
+> StreamResultOfExecCommandReply ExecCommand(ctx).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).BodyStdinClose(bodyStdinClose).BodyDisableTty(bodyDisableTty).IdType(idType).Execute()
 
 Exec Command
 
@@ -38,11 +38,12 @@ func main() {
     bodyTtySizeWidth := int32(56) // int32 |  (optional)
     bodyStdinData := string(BYTE_ARRAY_DATA_HERE) // string | Data is base64 encoded (optional)
     bodyStdinClose := true // bool | Indicate last data frame (optional)
+    bodyDisableTty := true // bool | Disable TTY. It's enough to specify it in the first frame (optional)
     idType := "idType_example" // string | When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id. (optional) (default to "INVALID")
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).BodyStdinClose(bodyStdinClose).IdType(idType).Execute()
+    resp, r, err := apiClient.InstancesApi.ExecCommand(context.Background()).Id(id).BodyCommand(bodyCommand).BodyTtySizeHeight(bodyTtySizeHeight).BodyTtySizeWidth(bodyTtySizeWidth).BodyStdinData(bodyStdinData).BodyStdinClose(bodyStdinClose).BodyDisableTty(bodyDisableTty).IdType(idType).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ExecCommand``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +70,7 @@ Name | Type | Description  | Notes
  **bodyTtySizeWidth** | **int32** |  | 
  **bodyStdinData** | **string** | Data is base64 encoded | 
  **bodyStdinClose** | **bool** | Indicate last data frame | 
+ **bodyDisableTty** | **bool** | Disable TTY. It&#39;s enough to specify it in the first frame | 
  **idType** | **string** | When specified, it is used to determine if the kind of resource the id refers to. If missing, defaults to the instance id. | [default to &quot;INVALID&quot;]
 
 ### Return type
@@ -159,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## ListInstanceEvents
 
-> ListInstanceEventsReply ListInstanceEvents(ctx).InstanceId(instanceId).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+> ListInstanceEventsReply ListInstanceEvents(ctx).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
 
 List Instance events
 
@@ -176,7 +178,6 @@ import (
 )
 
 func main() {
-    instanceId := "instanceId_example" // string | (Optional) Filter on instance id (optional)
     instanceIds := []string{"Inner_example"} // []string | (Optional) Filter on list of instance id (optional)
     types := []string{"Inner_example"} // []string | (Optional) Filter on instance event types (optional)
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
@@ -185,7 +186,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ListInstanceEvents(context.Background()).InstanceId(instanceId).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    resp, r, err := apiClient.InstancesApi.ListInstanceEvents(context.Background()).InstanceIds(instanceIds).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstanceEvents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -206,7 +207,6 @@ Other parameters are passed through a pointer to a apiListInstanceEventsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **instanceId** | **string** | (Optional) Filter on instance id | 
  **instanceIds** | **[]string** | (Optional) Filter on list of instance id | 
  **types** | **[]string** | (Optional) Filter on instance event types | 
  **limit** | **string** | (Optional) The number of items to return | 

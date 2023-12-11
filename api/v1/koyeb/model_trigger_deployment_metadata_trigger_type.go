@@ -23,6 +23,7 @@ const (
 	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE TriggerDeploymentMetadataTriggerType = "UNKNOWN_TYPE"
 	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_GIT TriggerDeploymentMetadataTriggerType = "GIT"
 	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_RESUME TriggerDeploymentMetadataTriggerType = "RESUME"
+	TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_DATABASE_SYNC TriggerDeploymentMetadataTriggerType = "DATABASE_SYNC"
 )
 
 // All allowed values of TriggerDeploymentMetadataTriggerType enum
@@ -30,6 +31,7 @@ var AllowedTriggerDeploymentMetadataTriggerTypeEnumValues = []TriggerDeploymentM
 	"UNKNOWN_TYPE",
 	"GIT",
 	"RESUME",
+	"DATABASE_SYNC",
 }
 
 func (v *TriggerDeploymentMetadataTriggerType) UnmarshalJSON(src []byte) error {

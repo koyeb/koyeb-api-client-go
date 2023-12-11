@@ -29,6 +29,7 @@ type CatalogInstanceListItem struct {
 	RequirePlan []string `json:"require_plan,omitempty"`
 	// The number of vcpu shares reserved for the instance.
 	VcpuShares *float32 `json:"vcpu_shares,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
 }
 
 // NewCatalogInstanceListItem instantiates a new CatalogInstanceListItem object
@@ -400,6 +401,38 @@ func (o *CatalogInstanceListItem) SetVcpuShares(v float32) {
 	o.VcpuShares = &v
 }
 
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *CatalogInstanceListItem) GetDisplayName() string {
+	if o == nil || isNil(o.DisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogInstanceListItem) GetDisplayNameOk() (*string, bool) {
+	if o == nil || isNil(o.DisplayName) {
+    return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *CatalogInstanceListItem) HasDisplayName() bool {
+	if o != nil && !isNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *CatalogInstanceListItem) SetDisplayName(v string) {
+	o.DisplayName = &v
+}
+
 func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -434,6 +467,9 @@ func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.VcpuShares) {
 		toSerialize["vcpu_shares"] = o.VcpuShares
+	}
+	if !isNil(o.DisplayName) {
+		toSerialize["display_name"] = o.DisplayName
 	}
 	return json.Marshal(toSerialize)
 }

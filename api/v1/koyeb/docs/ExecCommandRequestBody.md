@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Command** | Pointer to **[]string** | Command to exec. Mandatory in the first frame sent | [optional] 
 **TtySize** | Pointer to [**ExecCommandRequestTerminalSize**](ExecCommandRequestTerminalSize.md) |  | [optional] 
 **Stdin** | Pointer to [**ExecCommandIO**](ExecCommandIO.md) |  | [optional] 
+**DisableTty** | Pointer to **bool** | Disable TTY. It&#39;s enough to specify it in the first frame | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetStdin sets Stdin field to given value.
 `func (o *ExecCommandRequestBody) HasStdin() bool`
 
 HasStdin returns a boolean if a field has been set.
+
+### GetDisableTty
+
+`func (o *ExecCommandRequestBody) GetDisableTty() bool`
+
+GetDisableTty returns the DisableTty field if non-nil, zero value otherwise.
+
+### GetDisableTtyOk
+
+`func (o *ExecCommandRequestBody) GetDisableTtyOk() (*bool, bool)`
+
+GetDisableTtyOk returns a tuple with the DisableTty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisableTty
+
+`func (o *ExecCommandRequestBody) SetDisableTty(v bool)`
+
+SetDisableTty sets DisableTty field to given value.
+
+### HasDisableTty
+
+`func (o *ExecCommandRequestBody) HasDisableTty() bool`
+
+HasDisableTty returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -20,6 +20,8 @@ type ExecCommandRequestBody struct {
 	Command []string `json:"command,omitempty"`
 	TtySize *ExecCommandRequestTerminalSize `json:"tty_size,omitempty"`
 	Stdin *ExecCommandIO `json:"stdin,omitempty"`
+	// Disable TTY. It's enough to specify it in the first frame
+	DisableTty *bool `json:"disableTty,omitempty"`
 }
 
 // NewExecCommandRequestBody instantiates a new ExecCommandRequestBody object
@@ -135,6 +137,38 @@ func (o *ExecCommandRequestBody) SetStdin(v ExecCommandIO) {
 	o.Stdin = &v
 }
 
+// GetDisableTty returns the DisableTty field value if set, zero value otherwise.
+func (o *ExecCommandRequestBody) GetDisableTty() bool {
+	if o == nil || isNil(o.DisableTty) {
+		var ret bool
+		return ret
+	}
+	return *o.DisableTty
+}
+
+// GetDisableTtyOk returns a tuple with the DisableTty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExecCommandRequestBody) GetDisableTtyOk() (*bool, bool) {
+	if o == nil || isNil(o.DisableTty) {
+    return nil, false
+	}
+	return o.DisableTty, true
+}
+
+// HasDisableTty returns a boolean if a field has been set.
+func (o *ExecCommandRequestBody) HasDisableTty() bool {
+	if o != nil && !isNil(o.DisableTty) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisableTty gets a reference to the given bool and assigns it to the DisableTty field.
+func (o *ExecCommandRequestBody) SetDisableTty(v bool) {
+	o.DisableTty = &v
+}
+
 func (o ExecCommandRequestBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Command) {
@@ -145,6 +179,9 @@ func (o ExecCommandRequestBody) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Stdin) {
 		toSerialize["stdin"] = o.Stdin
+	}
+	if !isNil(o.DisableTty) {
+		toSerialize["disableTty"] = o.DisableTty
 	}
 	return json.Marshal(toSerialize)
 }

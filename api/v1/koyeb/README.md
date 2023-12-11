@@ -195,6 +195,7 @@ Class | Method | HTTP request | Description
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
 *SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
+*SummaryApi* | [**GetOrganizationSummary**](docs/SummaryApi.md#getorganizationsummary) | **Get** /v1/organizations/{organization_id}/summary | Get organization usage summary
 *UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
 *UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
 *UsersApi* | [**DeleteUser**](docs/UsersApi.md#deleteuser) | **Delete** /v1/users/{id} | Delete user
@@ -211,6 +212,7 @@ Class | Method | HTTP request | Description
  - [AppListItem](docs/AppListItem.md)
  - [AppStatus](docs/AppStatus.md)
  - [AppUsage](docs/AppUsage.md)
+ - [AppsSummary](docs/AppsSummary.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
@@ -276,6 +278,7 @@ Class | Method | HTTP request | Description
  - [Domain](docs/Domain.md)
  - [DomainStatus](docs/DomainStatus.md)
  - [DomainType](docs/DomainType.md)
+ - [DomainsSummary](docs/DomainsSummary.md)
  - [Env](docs/Env.md)
  - [Error](docs/Error.md)
  - [ErrorField](docs/ErrorField.md)
@@ -298,6 +301,7 @@ Class | Method | HTTP request | Description
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
  - [GetOrganizationInvitationReply](docs/GetOrganizationInvitationReply.md)
  - [GetOrganizationReply](docs/GetOrganizationReply.md)
+ - [GetOrganizationSummaryReply](docs/GetOrganizationSummaryReply.md)
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
@@ -326,6 +330,7 @@ Class | Method | HTTP request | Description
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InstanceUsage](docs/InstanceUsage.md)
+ - [InstancesSummary](docs/InstancesSummary.md)
  - [InviteUserRequest](docs/InviteUserRequest.md)
  - [KgitproxyBranch](docs/KgitproxyBranch.md)
  - [KgitproxyGitHubRepository](docs/KgitproxyGitHubRepository.md)
@@ -367,6 +372,7 @@ Class | Method | HTTP request | Description
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)
+ - [MembersSummary](docs/MembersSummary.md)
  - [MetricName](docs/MetricName.md)
  - [NeonPostgresDatabase](docs/NeonPostgresDatabase.md)
  - [NeonPostgresDatabaseDeploymentMetadata](docs/NeonPostgresDatabaseDeploymentMetadata.md)
@@ -387,6 +393,7 @@ Class | Method | HTTP request | Description
  - [OrganizationMember](docs/OrganizationMember.md)
  - [OrganizationMemberStatus](docs/OrganizationMemberStatus.md)
  - [OrganizationStatus](docs/OrganizationStatus.md)
+ - [OrganizationSummary](docs/OrganizationSummary.md)
  - [PaymentMethod](docs/PaymentMethod.md)
  - [PaymentMethodStatus](docs/PaymentMethodStatus.md)
  - [PeriodUsage](docs/PeriodUsage.md)
@@ -416,14 +423,17 @@ Class | Method | HTTP request | Description
  - [ReviewOrganizationCapacityReply](docs/ReviewOrganizationCapacityReply.md)
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
  - [Route](docs/Route.md)
+ - [Sample](docs/Sample.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
  - [SecretType](docs/SecretType.md)
+ - [SecretsSummary](docs/SecretsSummary.md)
  - [Service](docs/Service.md)
  - [ServiceEvent](docs/ServiceEvent.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
+ - [ServiceSummary](docs/ServiceSummary.md)
  - [ServiceType](docs/ServiceType.md)
  - [ServiceUsage](docs/ServiceUsage.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)

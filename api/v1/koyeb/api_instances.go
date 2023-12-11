@@ -87,6 +87,7 @@ type ApiExecCommandRequest struct {
 	bodyTtySizeWidth *int32
 	bodyStdinData *string
 	bodyStdinClose *bool
+	bodyDisableTty *bool
 	idType *string
 }
 
@@ -121,6 +122,12 @@ func (r ApiExecCommandRequest) BodyStdinData(bodyStdinData string) ApiExecComman
 // Indicate last data frame
 func (r ApiExecCommandRequest) BodyStdinClose(bodyStdinClose bool) ApiExecCommandRequest {
 	r.bodyStdinClose = &bodyStdinClose
+	return r
+}
+
+// Disable TTY. It&#39;s enough to specify it in the first frame
+func (r ApiExecCommandRequest) BodyDisableTty(bodyDisableTty bool) ApiExecCommandRequest {
+	r.bodyDisableTty = &bodyDisableTty
 	return r
 }
 
@@ -195,6 +202,9 @@ func (a *InstancesApiService) ExecCommandExecute(r ApiExecCommandRequest) (*Stre
 	}
 	if r.bodyStdinClose != nil {
 		localVarQueryParams.Add("body.stdin.close", parameterToString(*r.bodyStdinClose, ""))
+	}
+	if r.bodyDisableTty != nil {
+		localVarQueryParams.Add("body.disableTty", parameterToString(*r.bodyDisableTty, ""))
 	}
 	if r.idType != nil {
 		localVarQueryParams.Add("id_type", parameterToString(*r.idType, ""))
@@ -511,18 +521,11 @@ func (a *InstancesApiService) GetInstanceExecute(r ApiGetInstanceRequest) (*GetI
 type ApiListInstanceEventsRequest struct {
 	ctx context.Context
 	ApiService InstancesApi
-	instanceId *string
 	instanceIds *[]string
 	types *[]string
 	limit *string
 	offset *string
 	order *string
-}
-
-// (Optional) Filter on instance id
-func (r ApiListInstanceEventsRequest) InstanceId(instanceId string) ApiListInstanceEventsRequest {
-	r.instanceId = &instanceId
-	return r
 }
 
 // (Optional) Filter on list of instance id
@@ -593,9 +596,6 @@ func (a *InstancesApiService) ListInstanceEventsExecute(r ApiListInstanceEventsR
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.instanceId != nil {
-		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
-	}
 	if r.instanceIds != nil {
 		t := *r.instanceIds
 		if reflect.TypeOf(t).Kind() == reflect.Slice {

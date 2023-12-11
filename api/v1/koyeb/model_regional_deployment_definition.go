@@ -27,6 +27,7 @@ type RegionalDeploymentDefinition struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
+	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 }
@@ -404,6 +405,38 @@ func (o *RegionalDeploymentDefinition) SetSkipCache(v bool) {
 	o.SkipCache = &v
 }
 
+// GetUseKumaV2 returns the UseKumaV2 field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetUseKumaV2() bool {
+	if o == nil || isNil(o.UseKumaV2) {
+		var ret bool
+		return ret
+	}
+	return *o.UseKumaV2
+}
+
+// GetUseKumaV2Ok returns a tuple with the UseKumaV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetUseKumaV2Ok() (*bool, bool) {
+	if o == nil || isNil(o.UseKumaV2) {
+    return nil, false
+	}
+	return o.UseKumaV2, true
+}
+
+// HasUseKumaV2 returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasUseKumaV2() bool {
+	if o != nil && !isNil(o.UseKumaV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseKumaV2 gets a reference to the given bool and assigns it to the UseKumaV2 field.
+func (o *RegionalDeploymentDefinition) SetUseKumaV2(v bool) {
+	o.UseKumaV2 = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *RegionalDeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || isNil(o.Docker) {
@@ -502,6 +535,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache
+	}
+	if !isNil(o.UseKumaV2) {
+		toSerialize["use_kuma_v2"] = o.UseKumaV2
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker
