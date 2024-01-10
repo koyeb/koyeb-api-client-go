@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PgVersion** | Pointer to **int64** |  | [optional] 
 **Region** | Pointer to **string** |  | [optional] 
+**InstanceType** | Pointer to **string** |  | [optional] 
 **Roles** | Pointer to [**[]NeonPostgresDatabaseNeonRole**](NeonPostgresDatabaseNeonRole.md) |  | [optional] 
 **Databases** | Pointer to [**[]NeonPostgresDatabaseNeonDatabase**](NeonPostgresDatabaseNeonDatabase.md) |  | [optional] 
 
@@ -77,6 +78,31 @@ SetRegion sets Region field to given value.
 `func (o *NeonPostgresDatabase) HasRegion() bool`
 
 HasRegion returns a boolean if a field has been set.
+
+### GetInstanceType
+
+`func (o *NeonPostgresDatabase) GetInstanceType() string`
+
+GetInstanceType returns the InstanceType field if non-nil, zero value otherwise.
+
+### GetInstanceTypeOk
+
+`func (o *NeonPostgresDatabase) GetInstanceTypeOk() (*string, bool)`
+
+GetInstanceTypeOk returns a tuple with the InstanceType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceType
+
+`func (o *NeonPostgresDatabase) SetInstanceType(v string)`
+
+SetInstanceType sets InstanceType field to given value.
+
+### HasInstanceType
+
+`func (o *NeonPostgresDatabase) HasInstanceType() bool`
+
+HasInstanceType returns a boolean if a field has been set.
 
 ### GetRoles
 

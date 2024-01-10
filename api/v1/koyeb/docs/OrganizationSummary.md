@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Services** | Pointer to [**map[string]ServiceSummary**](ServiceSummary.md) |  | [optional] 
 **Domains** | Pointer to [**DomainsSummary**](DomainsSummary.md) |  | [optional] 
 **Secrets** | Pointer to [**SecretsSummary**](SecretsSummary.md) |  | [optional] 
+**NeonPostgres** | Pointer to [**NeonPostgresSummary**](NeonPostgresSummary.md) |  | [optional] 
 **Members** | Pointer to [**MembersSummary**](MembersSummary.md) |  | [optional] 
 
 ## Methods
@@ -180,6 +181,31 @@ SetSecrets sets Secrets field to given value.
 `func (o *OrganizationSummary) HasSecrets() bool`
 
 HasSecrets returns a boolean if a field has been set.
+
+### GetNeonPostgres
+
+`func (o *OrganizationSummary) GetNeonPostgres() NeonPostgresSummary`
+
+GetNeonPostgres returns the NeonPostgres field if non-nil, zero value otherwise.
+
+### GetNeonPostgresOk
+
+`func (o *OrganizationSummary) GetNeonPostgresOk() (*NeonPostgresSummary, bool)`
+
+GetNeonPostgresOk returns a tuple with the NeonPostgres field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNeonPostgres
+
+`func (o *OrganizationSummary) SetNeonPostgres(v NeonPostgresSummary)`
+
+SetNeonPostgres sets NeonPostgres field to given value.
+
+### HasNeonPostgres
+
+`func (o *OrganizationSummary) HasNeonPostgres() bool`
+
+HasNeonPostgres returns a boolean if a field has been set.
 
 ### GetMembers
 

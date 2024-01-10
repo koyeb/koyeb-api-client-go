@@ -107,6 +107,10 @@ docs/DeploymentProvisioningInfoStageBuildAttempt.md
 docs/DeploymentProvisioningInfoStageStatus.md
 docs/DeploymentRoute.md
 docs/DeploymentScaling.md
+docs/DeploymentScalingTarget.md
+docs/DeploymentScalingTargetAverageCPU.md
+docs/DeploymentScalingTargetAverageMem.md
+docs/DeploymentScalingTargetRequestsPerSecond.md
 docs/DeploymentStatus.md
 docs/DeploymentsApi.md
 docs/DesiredDeployment.md
@@ -225,6 +229,7 @@ docs/NeonPostgresDatabase.md
 docs/NeonPostgresDatabaseDeploymentMetadata.md
 docs/NeonPostgresDatabaseNeonDatabase.md
 docs/NeonPostgresDatabaseNeonRole.md
+docs/NeonPostgresSummary.md
 docs/NextInvoiceReply.md
 docs/Notification.md
 docs/NotificationList.md
@@ -400,6 +405,10 @@ model_deployment_provisioning_info_stage_build_attempt.go
 model_deployment_provisioning_info_stage_status.go
 model_deployment_route.go
 model_deployment_scaling.go
+model_deployment_scaling_target.go
+model_deployment_scaling_target_average_cpu.go
+model_deployment_scaling_target_average_mem.go
+model_deployment_scaling_target_requests_per_second.go
 model_deployment_status.go
 model_desired_deployment.go
 model_desired_deployment_group.go
@@ -512,6 +521,7 @@ model_neon_postgres_database.go
 model_neon_postgres_database_deployment_metadata.go
 model_neon_postgres_database_neon_database.go
 model_neon_postgres_database_neon_role.go
+model_neon_postgres_summary.go
 model_next_invoice_reply.go
 model_notification.go
 model_notification_list.go

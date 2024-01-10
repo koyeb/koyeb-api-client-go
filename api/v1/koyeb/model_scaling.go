@@ -18,6 +18,7 @@ import (
 type Scaling struct {
 	Min *int64 `json:"min,omitempty"`
 	Max *int64 `json:"max,omitempty"`
+	Targets []DeploymentScalingTarget `json:"targets,omitempty"`
 }
 
 // NewScaling instantiates a new Scaling object
@@ -101,6 +102,38 @@ func (o *Scaling) SetMax(v int64) {
 	o.Max = &v
 }
 
+// GetTargets returns the Targets field value if set, zero value otherwise.
+func (o *Scaling) GetTargets() []DeploymentScalingTarget {
+	if o == nil || isNil(o.Targets) {
+		var ret []DeploymentScalingTarget
+		return ret
+	}
+	return o.Targets
+}
+
+// GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Scaling) GetTargetsOk() ([]DeploymentScalingTarget, bool) {
+	if o == nil || isNil(o.Targets) {
+    return nil, false
+	}
+	return o.Targets, true
+}
+
+// HasTargets returns a boolean if a field has been set.
+func (o *Scaling) HasTargets() bool {
+	if o != nil && !isNil(o.Targets) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargets gets a reference to the given []DeploymentScalingTarget and assigns it to the Targets field.
+func (o *Scaling) SetTargets(v []DeploymentScalingTarget) {
+	o.Targets = v
+}
+
 func (o Scaling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Min) {
@@ -108,6 +141,9 @@ func (o Scaling) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Max) {
 		toSerialize["max"] = o.Max
+	}
+	if !isNil(o.Targets) {
+		toSerialize["targets"] = o.Targets
 	}
 	return json.Marshal(toSerialize)
 }
