@@ -18,6 +18,7 @@ import (
 type NeonPostgresDatabase struct {
 	PgVersion *int64 `json:"pg_version,omitempty"`
 	Region *string `json:"region,omitempty"`
+	InstanceType *string `json:"instance_type,omitempty"`
 	Roles []NeonPostgresDatabaseNeonRole `json:"roles,omitempty"`
 	Databases []NeonPostgresDatabaseNeonDatabase `json:"databases,omitempty"`
 }
@@ -103,6 +104,38 @@ func (o *NeonPostgresDatabase) SetRegion(v string) {
 	o.Region = &v
 }
 
+// GetInstanceType returns the InstanceType field value if set, zero value otherwise.
+func (o *NeonPostgresDatabase) GetInstanceType() string {
+	if o == nil || isNil(o.InstanceType) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceType
+}
+
+// GetInstanceTypeOk returns a tuple with the InstanceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NeonPostgresDatabase) GetInstanceTypeOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceType) {
+    return nil, false
+	}
+	return o.InstanceType, true
+}
+
+// HasInstanceType returns a boolean if a field has been set.
+func (o *NeonPostgresDatabase) HasInstanceType() bool {
+	if o != nil && !isNil(o.InstanceType) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceType gets a reference to the given string and assigns it to the InstanceType field.
+func (o *NeonPostgresDatabase) SetInstanceType(v string) {
+	o.InstanceType = &v
+}
+
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *NeonPostgresDatabase) GetRoles() []NeonPostgresDatabaseNeonRole {
 	if o == nil || isNil(o.Roles) {
@@ -174,6 +207,9 @@ func (o NeonPostgresDatabase) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Region) {
 		toSerialize["region"] = o.Region
+	}
+	if !isNil(o.InstanceType) {
+		toSerialize["instance_type"] = o.InstanceType
 	}
 	if !isNil(o.Roles) {
 		toSerialize["roles"] = o.Roles

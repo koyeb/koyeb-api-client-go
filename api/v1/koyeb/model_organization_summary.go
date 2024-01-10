@@ -22,6 +22,7 @@ type OrganizationSummary struct {
 	Services *map[string]ServiceSummary `json:"services,omitempty"`
 	Domains *DomainsSummary `json:"domains,omitempty"`
 	Secrets *SecretsSummary `json:"secrets,omitempty"`
+	NeonPostgres *NeonPostgresSummary `json:"neon_postgres,omitempty"`
 	Members *MembersSummary `json:"members,omitempty"`
 }
 
@@ -234,6 +235,38 @@ func (o *OrganizationSummary) SetSecrets(v SecretsSummary) {
 	o.Secrets = &v
 }
 
+// GetNeonPostgres returns the NeonPostgres field value if set, zero value otherwise.
+func (o *OrganizationSummary) GetNeonPostgres() NeonPostgresSummary {
+	if o == nil || isNil(o.NeonPostgres) {
+		var ret NeonPostgresSummary
+		return ret
+	}
+	return *o.NeonPostgres
+}
+
+// GetNeonPostgresOk returns a tuple with the NeonPostgres field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationSummary) GetNeonPostgresOk() (*NeonPostgresSummary, bool) {
+	if o == nil || isNil(o.NeonPostgres) {
+    return nil, false
+	}
+	return o.NeonPostgres, true
+}
+
+// HasNeonPostgres returns a boolean if a field has been set.
+func (o *OrganizationSummary) HasNeonPostgres() bool {
+	if o != nil && !isNil(o.NeonPostgres) {
+		return true
+	}
+
+	return false
+}
+
+// SetNeonPostgres gets a reference to the given NeonPostgresSummary and assigns it to the NeonPostgres field.
+func (o *OrganizationSummary) SetNeonPostgres(v NeonPostgresSummary) {
+	o.NeonPostgres = &v
+}
+
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *OrganizationSummary) GetMembers() MembersSummary {
 	if o == nil || isNil(o.Members) {
@@ -285,6 +318,9 @@ func (o OrganizationSummary) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Secrets) {
 		toSerialize["secrets"] = o.Secrets
+	}
+	if !isNil(o.NeonPostgres) {
+		toSerialize["neon_postgres"] = o.NeonPostgres
 	}
 	if !isNil(o.Members) {
 		toSerialize["members"] = o.Members

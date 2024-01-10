@@ -41,6 +41,7 @@ type Organization struct {
 	DeactivationReason *OrganizationDeactivationReason `json:"deactivation_reason,omitempty"`
 	Verified *bool `json:"verified,omitempty"`
 	QualifiesForHobby23 *bool `json:"qualifies_for_hobby23,omitempty"`
+	ReprocessAfter *time.Time `json:"reprocess_after,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -844,6 +845,38 @@ func (o *Organization) SetQualifiesForHobby23(v bool) {
 	o.QualifiesForHobby23 = &v
 }
 
+// GetReprocessAfter returns the ReprocessAfter field value if set, zero value otherwise.
+func (o *Organization) GetReprocessAfter() time.Time {
+	if o == nil || isNil(o.ReprocessAfter) {
+		var ret time.Time
+		return ret
+	}
+	return *o.ReprocessAfter
+}
+
+// GetReprocessAfterOk returns a tuple with the ReprocessAfter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetReprocessAfterOk() (*time.Time, bool) {
+	if o == nil || isNil(o.ReprocessAfter) {
+    return nil, false
+	}
+	return o.ReprocessAfter, true
+}
+
+// HasReprocessAfter returns a boolean if a field has been set.
+func (o *Organization) HasReprocessAfter() bool {
+	if o != nil && !isNil(o.ReprocessAfter) {
+		return true
+	}
+
+	return false
+}
+
+// SetReprocessAfter gets a reference to the given time.Time and assigns it to the ReprocessAfter field.
+func (o *Organization) SetReprocessAfter(v time.Time) {
+	o.ReprocessAfter = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -917,6 +950,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.QualifiesForHobby23) {
 		toSerialize["qualifies_for_hobby23"] = o.QualifiesForHobby23
+	}
+	if !isNil(o.ReprocessAfter) {
+		toSerialize["reprocess_after"] = o.ReprocessAfter
 	}
 	return json.Marshal(toSerialize)
 }

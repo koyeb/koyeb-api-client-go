@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **DeactivationReason** | Pointer to [**OrganizationDeactivationReason**](OrganizationDeactivationReason.md) |  | [optional] [default to ORGANIZATIONDEACTIVATIONREASON_INVALID]
 **Verified** | Pointer to **bool** |  | [optional] 
 **QualifiesForHobby23** | Pointer to **bool** |  | [optional] 
+**ReprocessAfter** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -647,6 +648,31 @@ SetQualifiesForHobby23 sets QualifiesForHobby23 field to given value.
 `func (o *Organization) HasQualifiesForHobby23() bool`
 
 HasQualifiesForHobby23 returns a boolean if a field has been set.
+
+### GetReprocessAfter
+
+`func (o *Organization) GetReprocessAfter() time.Time`
+
+GetReprocessAfter returns the ReprocessAfter field if non-nil, zero value otherwise.
+
+### GetReprocessAfterOk
+
+`func (o *Organization) GetReprocessAfterOk() (*time.Time, bool)`
+
+GetReprocessAfterOk returns a tuple with the ReprocessAfter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReprocessAfter
+
+`func (o *Organization) SetReprocessAfter(v time.Time)`
+
+SetReprocessAfter sets ReprocessAfter field to given value.
+
+### HasReprocessAfter
+
+`func (o *Organization) HasReprocessAfter() bool`
+
+HasReprocessAfter returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

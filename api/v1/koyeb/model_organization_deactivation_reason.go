@@ -24,6 +24,7 @@ const (
 	ORGANIZATIONDEACTIVATIONREASON_REQUESTED_BY_OWNER OrganizationDeactivationReason = "REQUESTED_BY_OWNER"
 	ORGANIZATIONDEACTIVATIONREASON_SUBSCRIPTION_TERMINATION OrganizationDeactivationReason = "SUBSCRIPTION_TERMINATION"
 	ORGANIZATIONDEACTIVATIONREASON_LOCKED_BY_ADMIN OrganizationDeactivationReason = "LOCKED_BY_ADMIN"
+	ORGANIZATIONDEACTIVATIONREASON_VERIFICATION_FAILED OrganizationDeactivationReason = "VERIFICATION_FAILED"
 )
 
 // All allowed values of OrganizationDeactivationReason enum
@@ -32,6 +33,7 @@ var AllowedOrganizationDeactivationReasonEnumValues = []OrganizationDeactivation
 	"REQUESTED_BY_OWNER",
 	"SUBSCRIPTION_TERMINATION",
 	"LOCKED_BY_ADMIN",
+	"VERIFICATION_FAILED",
 }
 
 func (v *OrganizationDeactivationReason) UnmarshalJSON(src []byte) error {

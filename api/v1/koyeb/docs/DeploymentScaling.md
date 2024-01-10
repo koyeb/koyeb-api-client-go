@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Scopes** | Pointer to **[]string** |  | [optional] 
 **Min** | Pointer to **int64** |  | [optional] 
 **Max** | Pointer to **int64** |  | [optional] 
+**Targets** | Pointer to [**[]DeploymentScalingTarget**](DeploymentScalingTarget.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetMax sets Max field to given value.
 `func (o *DeploymentScaling) HasMax() bool`
 
 HasMax returns a boolean if a field has been set.
+
+### GetTargets
+
+`func (o *DeploymentScaling) GetTargets() []DeploymentScalingTarget`
+
+GetTargets returns the Targets field if non-nil, zero value otherwise.
+
+### GetTargetsOk
+
+`func (o *DeploymentScaling) GetTargetsOk() (*[]DeploymentScalingTarget, bool)`
+
+GetTargetsOk returns a tuple with the Targets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargets
+
+`func (o *DeploymentScaling) SetTargets(v []DeploymentScalingTarget)`
+
+SetTargets sets Targets field to given value.
+
+### HasTargets
+
+`func (o *DeploymentScaling) HasTargets() bool`
+
+HasTargets returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
