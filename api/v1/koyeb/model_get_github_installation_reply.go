@@ -19,6 +19,7 @@ import (
 type GetGithubInstallationReply struct {
 	InstallationId *string `json:"installation_id,omitempty"`
 	InstallationUrl *string `json:"installation_url,omitempty"`
+	Name *string `json:"name,omitempty"`
 	AvatarUrl *string `json:"avatar_url,omitempty"`
 	Status *KgitproxyGithubInstallationStatus `json:"status,omitempty"`
 	InstalledAt *time.Time `json:"installed_at,omitempty"`
@@ -115,6 +116,38 @@ func (o *GetGithubInstallationReply) HasInstallationUrl() bool {
 // SetInstallationUrl gets a reference to the given string and assigns it to the InstallationUrl field.
 func (o *GetGithubInstallationReply) SetInstallationUrl(v string) {
 	o.InstallationUrl = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *GetGithubInstallationReply) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetGithubInstallationReply) GetNameOk() (*string, bool) {
+	if o == nil || isNil(o.Name) {
+    return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GetGithubInstallationReply) HasName() bool {
+	if o != nil && !isNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *GetGithubInstallationReply) SetName(v string) {
+	o.Name = &v
 }
 
 // GetAvatarUrl returns the AvatarUrl field value if set, zero value otherwise.
@@ -348,6 +381,9 @@ func (o GetGithubInstallationReply) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.InstallationUrl) {
 		toSerialize["installation_url"] = o.InstallationUrl
+	}
+	if !isNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	if !isNil(o.AvatarUrl) {
 		toSerialize["avatar_url"] = o.AvatarUrl

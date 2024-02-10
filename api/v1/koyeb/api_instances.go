@@ -18,6 +18,7 @@ import (
 	"net/url"
 	"strings"
 	"reflect"
+	"time"
 )
 
 
@@ -770,6 +771,8 @@ type ApiListInstancesRequest struct {
 	limit *string
 	offset *string
 	order *string
+	startingTime *time.Time
+	endingTime *time.Time
 }
 
 // (Optional) Filter on application id
@@ -823,6 +826,18 @@ func (r ApiListInstancesRequest) Offset(offset string) ApiListInstancesRequest {
 // (Optional) Sorts the list in the ascending or the descending order
 func (r ApiListInstancesRequest) Order(order string) ApiListInstancesRequest {
 	r.order = &order
+	return r
+}
+
+// (Optional) The starting time of the period of running instance
+func (r ApiListInstancesRequest) StartingTime(startingTime time.Time) ApiListInstancesRequest {
+	r.startingTime = &startingTime
+	return r
+}
+
+// (Optional) The ending time of the period of running instance
+func (r ApiListInstancesRequest) EndingTime(endingTime time.Time) ApiListInstancesRequest {
+	r.endingTime = &endingTime
 	return r
 }
 
@@ -898,6 +913,12 @@ func (a *InstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (*
 	}
 	if r.order != nil {
 		localVarQueryParams.Add("order", parameterToString(*r.order, ""))
+	}
+	if r.startingTime != nil {
+		localVarQueryParams.Add("starting_time", parameterToString(*r.startingTime, ""))
+	}
+	if r.endingTime != nil {
+		localVarQueryParams.Add("ending_time", parameterToString(*r.endingTime, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
