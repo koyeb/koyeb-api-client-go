@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
 *DeploymentsApi* | [**ListDeploymentEvents**](docs/DeploymentsApi.md#listdeploymentevents) | **Get** /v1/deployment_events | List Deployment events
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
+*DockerHelperApi* | [**VerifyDockerImage**](docs/DockerHelperApi.md#verifydockerimage) | **Get** /v1/docker-helper/verify | Verify if a docker image is reachable
 *DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
 *DomainsApi* | [**DeleteDomain**](docs/DomainsApi.md#deletedomain) | **Delete** /v1/domains/{id} | 
 *DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /v1/domains/{id} | 
@@ -473,6 +474,7 @@ Class | Method | HTTP request | Description
  - [UserFlags](docs/UserFlags.md)
  - [UserReply](docs/UserReply.md)
  - [UserRoleRole](docs/UserRoleRole.md)
+ - [VerifyDockerImageReply](docs/VerifyDockerImageReply.md)
 
 
 ## Documentation For Authorization

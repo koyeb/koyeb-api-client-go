@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InstallationId** | Pointer to **string** |  | [optional] 
 **InstallationUrl** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 **AvatarUrl** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**KgitproxyGithubInstallationStatus**](KgitproxyGithubInstallationStatus.md) |  | [optional] [default to KGITPROXYGITHUBINSTALLATIONSTATUS_INVALID]
 **InstalledAt** | Pointer to **time.Time** |  | [optional] 
@@ -82,6 +83,31 @@ SetInstallationUrl sets InstallationUrl field to given value.
 `func (o *GetGithubInstallationReply) HasInstallationUrl() bool`
 
 HasInstallationUrl returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *GetGithubInstallationReply) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *GetGithubInstallationReply) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *GetGithubInstallationReply) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *GetGithubInstallationReply) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetAvatarUrl
 

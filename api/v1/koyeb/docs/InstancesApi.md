@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## ListInstances
 
-> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
+> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
 
 List Instances
 
@@ -246,6 +246,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
@@ -259,10 +260,12 @@ func main() {
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
     order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+    startingTime := time.Now() // time.Time | (Optional) The starting time of the period of running instance (optional)
+    endingTime := time.Now() // time.Time | (Optional) The ending time of the period of running instance (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).Execute()
+    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -292,6 +295,8 @@ Name | Type | Description  | Notes
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
  **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+ **startingTime** | **time.Time** | (Optional) The starting time of the period of running instance | 
+ **endingTime** | **time.Time** | (Optional) The ending time of the period of running instance | 
 
 ### Return type
 

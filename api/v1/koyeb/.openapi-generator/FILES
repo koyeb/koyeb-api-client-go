@@ -11,6 +11,7 @@ api_catalog_instances.go
 api_catalog_regions.go
 api_credentials.go
 api_deployments.go
+api_docker_helper.go
 api_domains.go
 api_instances.go
 api_invite.go
@@ -119,6 +120,7 @@ docs/DigitalOceanRegistryConfiguration.md
 docs/DiscourseAuthReply.md
 docs/DiscourseAuthRequest.md
 docs/DockerBuilder.md
+docs/DockerHelperApi.md
 docs/DockerHubRegistryConfiguration.md
 docs/DockerSource.md
 docs/Domain.md
@@ -339,6 +341,7 @@ docs/UserFlags.md
 docs/UserReply.md
 docs/UserRoleRole.md
 docs/UsersApi.md
+docs/VerifyDockerImageReply.md
 git_push.sh
 go.mod
 go.sum
@@ -612,6 +615,7 @@ model_user.go
 model_user_flags.go
 model_user_reply.go
 model_user_role_role.go
+model_verify_docker_image_reply.go
 response.go
 test/api_activity_test.go
 test/api_apps_test.go
@@ -621,6 +625,7 @@ test/api_catalog_instances_test.go
 test/api_catalog_regions_test.go
 test/api_credentials_test.go
 test/api_deployments_test.go
+test/api_docker_helper_test.go
 test/api_domains_test.go
 test/api_instances_test.go
 test/api_invite_test.go
