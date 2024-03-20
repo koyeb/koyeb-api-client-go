@@ -34,6 +34,7 @@ type Service struct {
 	Version *string `json:"version,omitempty"`
 	ActiveDeploymentId *string `json:"active_deployment_id,omitempty"`
 	LatestDeploymentId *string `json:"latest_deployment_id,omitempty"`
+	LastProvisionedDeploymentId *string `json:"last_provisioned_deployment_id,omitempty"`
 	State *ServiceState `json:"state,omitempty"`
 }
 
@@ -606,6 +607,38 @@ func (o *Service) SetLatestDeploymentId(v string) {
 	o.LatestDeploymentId = &v
 }
 
+// GetLastProvisionedDeploymentId returns the LastProvisionedDeploymentId field value if set, zero value otherwise.
+func (o *Service) GetLastProvisionedDeploymentId() string {
+	if o == nil || isNil(o.LastProvisionedDeploymentId) {
+		var ret string
+		return ret
+	}
+	return *o.LastProvisionedDeploymentId
+}
+
+// GetLastProvisionedDeploymentIdOk returns a tuple with the LastProvisionedDeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Service) GetLastProvisionedDeploymentIdOk() (*string, bool) {
+	if o == nil || isNil(o.LastProvisionedDeploymentId) {
+    return nil, false
+	}
+	return o.LastProvisionedDeploymentId, true
+}
+
+// HasLastProvisionedDeploymentId returns a boolean if a field has been set.
+func (o *Service) HasLastProvisionedDeploymentId() bool {
+	if o != nil && !isNil(o.LastProvisionedDeploymentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastProvisionedDeploymentId gets a reference to the given string and assigns it to the LastProvisionedDeploymentId field.
+func (o *Service) SetLastProvisionedDeploymentId(v string) {
+	o.LastProvisionedDeploymentId = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Service) GetState() ServiceState {
 	if o == nil || isNil(o.State) {
@@ -690,6 +723,9 @@ func (o Service) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.LatestDeploymentId) {
 		toSerialize["latest_deployment_id"] = o.LatestDeploymentId
+	}
+	if !isNil(o.LastProvisionedDeploymentId) {
+		toSerialize["last_provisioned_deployment_id"] = o.LastProvisionedDeploymentId
 	}
 	if !isNil(o.State) {
 		toSerialize["state"] = o.State

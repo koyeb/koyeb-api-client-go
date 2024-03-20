@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** |  | [optional] 
 **ActiveDeploymentId** | Pointer to **string** |  | [optional] 
 **LatestDeploymentId** | Pointer to **string** |  | [optional] 
+**LastProvisionedDeploymentId** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**ServiceState**](ServiceState.md) |  | [optional] 
 
 ## Methods
@@ -466,6 +467,31 @@ SetLatestDeploymentId sets LatestDeploymentId field to given value.
 `func (o *Service) HasLatestDeploymentId() bool`
 
 HasLatestDeploymentId returns a boolean if a field has been set.
+
+### GetLastProvisionedDeploymentId
+
+`func (o *Service) GetLastProvisionedDeploymentId() string`
+
+GetLastProvisionedDeploymentId returns the LastProvisionedDeploymentId field if non-nil, zero value otherwise.
+
+### GetLastProvisionedDeploymentIdOk
+
+`func (o *Service) GetLastProvisionedDeploymentIdOk() (*string, bool)`
+
+GetLastProvisionedDeploymentIdOk returns a tuple with the LastProvisionedDeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastProvisionedDeploymentId
+
+`func (o *Service) SetLastProvisionedDeploymentId(v string)`
+
+SetLastProvisionedDeploymentId sets LastProvisionedDeploymentId field to given value.
+
+### HasLastProvisionedDeploymentId
+
+`func (o *Service) HasLastProvisionedDeploymentId() bool`
+
+HasLastProvisionedDeploymentId returns a boolean if a field has been set.
 
 ### GetState
 

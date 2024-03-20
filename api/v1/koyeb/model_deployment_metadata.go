@@ -18,6 +18,7 @@ import (
 type DeploymentMetadata struct {
 	Trigger *TriggerDeploymentMetadata `json:"trigger,omitempty"`
 	Database *DatabaseDeploymentMetadata `json:"database,omitempty"`
+	Git *GitDeploymentMetadata `json:"git,omitempty"`
 }
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object
@@ -101,6 +102,38 @@ func (o *DeploymentMetadata) SetDatabase(v DatabaseDeploymentMetadata) {
 	o.Database = &v
 }
 
+// GetGit returns the Git field value if set, zero value otherwise.
+func (o *DeploymentMetadata) GetGit() GitDeploymentMetadata {
+	if o == nil || isNil(o.Git) {
+		var ret GitDeploymentMetadata
+		return ret
+	}
+	return *o.Git
+}
+
+// GetGitOk returns a tuple with the Git field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentMetadata) GetGitOk() (*GitDeploymentMetadata, bool) {
+	if o == nil || isNil(o.Git) {
+    return nil, false
+	}
+	return o.Git, true
+}
+
+// HasGit returns a boolean if a field has been set.
+func (o *DeploymentMetadata) HasGit() bool {
+	if o != nil && !isNil(o.Git) {
+		return true
+	}
+
+	return false
+}
+
+// SetGit gets a reference to the given GitDeploymentMetadata and assigns it to the Git field.
+func (o *DeploymentMetadata) SetGit(v GitDeploymentMetadata) {
+	o.Git = &v
+}
+
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Trigger) {
@@ -108,6 +141,9 @@ func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Database) {
 		toSerialize["database"] = o.Database
+	}
+	if !isNil(o.Git) {
+		toSerialize["git"] = o.Git
 	}
 	return json.Marshal(toSerialize)
 }

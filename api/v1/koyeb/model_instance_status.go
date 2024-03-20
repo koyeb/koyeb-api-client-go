@@ -27,6 +27,7 @@ const (
 	INSTANCESTATUS_STOPPING InstanceStatus = "STOPPING"
 	INSTANCESTATUS_STOPPED InstanceStatus = "STOPPED"
 	INSTANCESTATUS_ERROR InstanceStatus = "ERROR"
+	INSTANCESTATUS_SLEEPING InstanceStatus = "SLEEPING"
 )
 
 // All allowed values of InstanceStatus enum
@@ -38,6 +39,7 @@ var AllowedInstanceStatusEnumValues = []InstanceStatus{
 	"STOPPING",
 	"STOPPED",
 	"ERROR",
+	"SLEEPING",
 }
 
 func (v *InstanceStatus) UnmarshalJSON(src []byte) error {

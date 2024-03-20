@@ -18,7 +18,7 @@ import (
 type TriggerDeploymentMetadata struct {
 	Type *TriggerDeploymentMetadataTriggerType `json:"type,omitempty"`
 	Actor *TriggerDeploymentMetadataActorType `json:"actor,omitempty"`
-	Git *GitDeploymentMetadata `json:"git,omitempty"`
+	Git *TriggerGitDeploymentMetadata `json:"git,omitempty"`
 }
 
 // NewTriggerDeploymentMetadata instantiates a new TriggerDeploymentMetadata object
@@ -111,9 +111,9 @@ func (o *TriggerDeploymentMetadata) SetActor(v TriggerDeploymentMetadataActorTyp
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
-func (o *TriggerDeploymentMetadata) GetGit() GitDeploymentMetadata {
+func (o *TriggerDeploymentMetadata) GetGit() TriggerGitDeploymentMetadata {
 	if o == nil || isNil(o.Git) {
-		var ret GitDeploymentMetadata
+		var ret TriggerGitDeploymentMetadata
 		return ret
 	}
 	return *o.Git
@@ -121,7 +121,7 @@ func (o *TriggerDeploymentMetadata) GetGit() GitDeploymentMetadata {
 
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TriggerDeploymentMetadata) GetGitOk() (*GitDeploymentMetadata, bool) {
+func (o *TriggerDeploymentMetadata) GetGitOk() (*TriggerGitDeploymentMetadata, bool) {
 	if o == nil || isNil(o.Git) {
     return nil, false
 	}
@@ -137,8 +137,8 @@ func (o *TriggerDeploymentMetadata) HasGit() bool {
 	return false
 }
 
-// SetGit gets a reference to the given GitDeploymentMetadata and assigns it to the Git field.
-func (o *TriggerDeploymentMetadata) SetGit(v GitDeploymentMetadata) {
+// SetGit gets a reference to the given TriggerGitDeploymentMetadata and assigns it to the Git field.
+func (o *TriggerDeploymentMetadata) SetGit(v TriggerGitDeploymentMetadata) {
 	o.Git = &v
 }
 

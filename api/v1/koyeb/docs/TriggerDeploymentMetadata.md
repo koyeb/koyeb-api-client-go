@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to [**TriggerDeploymentMetadataTriggerType**](TriggerDeploymentMetadataTriggerType.md) |  | [optional] [default to TRIGGERDEPLOYMENTMETADATATRIGGERTYPE_UNKNOWN_TYPE]
 **Actor** | Pointer to [**TriggerDeploymentMetadataActorType**](TriggerDeploymentMetadataActorType.md) |  | [optional] [default to TRIGGERDEPLOYMENTMETADATAACTORTYPE_UNKNOWN_ACTOR]
-**Git** | Pointer to [**GitDeploymentMetadata**](GitDeploymentMetadata.md) |  | [optional] 
+**Git** | Pointer to [**TriggerGitDeploymentMetadata**](TriggerGitDeploymentMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasActor returns a boolean if a field has been set.
 
 ### GetGit
 
-`func (o *TriggerDeploymentMetadata) GetGit() GitDeploymentMetadata`
+`func (o *TriggerDeploymentMetadata) GetGit() TriggerGitDeploymentMetadata`
 
 GetGit returns the Git field if non-nil, zero value otherwise.
 
 ### GetGitOk
 
-`func (o *TriggerDeploymentMetadata) GetGitOk() (*GitDeploymentMetadata, bool)`
+`func (o *TriggerDeploymentMetadata) GetGitOk() (*TriggerGitDeploymentMetadata, bool)`
 
 GetGitOk returns a tuple with the Git field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGit
 
-`func (o *TriggerDeploymentMetadata) SetGit(v GitDeploymentMetadata)`
+`func (o *TriggerDeploymentMetadata) SetGit(v TriggerGitDeploymentMetadata)`
 
 SetGit sets Git field to given value.
 

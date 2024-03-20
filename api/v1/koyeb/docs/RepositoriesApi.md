@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## ListRepositories
 
-> KgitproxyListRepositoriesReply ListRepositories(ctx).Name(name).Limit(limit).Offset(offset).Execute()
+> KgitproxyListRepositoriesReply ListRepositories(ctx).Name(name).NameSearchOp(nameSearchOp).Limit(limit).Offset(offset).Execute()
 
 
 
@@ -100,12 +100,13 @@ import (
 
 func main() {
     name := "name_example" // string | (Optional) Filter on repository name using a fuzzy search. (optional)
+    nameSearchOp := "nameSearchOp_example" // string | (Optional) Define search operation for repository name. Accept either \"fuzzy\" or \"equality\", use \"fuzzy\" by default. (optional)
     limit := "limit_example" // string | (Optional) The number of items to return. (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RepositoriesApi.ListRepositories(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.RepositoriesApi.ListRepositories(context.Background()).Name(name).NameSearchOp(nameSearchOp).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RepositoriesApi.ListRepositories``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,6 +128,7 @@ Other parameters are passed through a pointer to a apiListRepositoriesRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | (Optional) Filter on repository name using a fuzzy search. | 
+ **nameSearchOp** | **string** | (Optional) Define search operation for repository name. Accept either \&quot;fuzzy\&quot; or \&quot;equality\&quot;, use \&quot;fuzzy\&quot; by default. | 
  **limit** | **string** | (Optional) The number of items to return. | 
  **offset** | **string** | (Optional) The offset in the list of item to return. | 
 

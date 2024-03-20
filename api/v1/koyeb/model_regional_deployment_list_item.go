@@ -24,6 +24,7 @@ type RegionalDeploymentListItem struct {
 	Status *RegionalDeploymentStatus `json:"status,omitempty"`
 	Messages []string `json:"messages,omitempty"`
 	Definition *RegionalDeploymentDefinition `json:"definition,omitempty"`
+	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 }
 
 // NewRegionalDeploymentListItem instantiates a new RegionalDeploymentListItem object
@@ -271,6 +272,38 @@ func (o *RegionalDeploymentListItem) SetDefinition(v RegionalDeploymentDefinitio
 	o.Definition = &v
 }
 
+// GetUseKumaV2 returns the UseKumaV2 field value if set, zero value otherwise.
+func (o *RegionalDeploymentListItem) GetUseKumaV2() bool {
+	if o == nil || isNil(o.UseKumaV2) {
+		var ret bool
+		return ret
+	}
+	return *o.UseKumaV2
+}
+
+// GetUseKumaV2Ok returns a tuple with the UseKumaV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentListItem) GetUseKumaV2Ok() (*bool, bool) {
+	if o == nil || isNil(o.UseKumaV2) {
+    return nil, false
+	}
+	return o.UseKumaV2, true
+}
+
+// HasUseKumaV2 returns a boolean if a field has been set.
+func (o *RegionalDeploymentListItem) HasUseKumaV2() bool {
+	if o != nil && !isNil(o.UseKumaV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseKumaV2 gets a reference to the given bool and assigns it to the UseKumaV2 field.
+func (o *RegionalDeploymentListItem) SetUseKumaV2(v bool) {
+	o.UseKumaV2 = &v
+}
+
 func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -293,6 +326,9 @@ func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Definition) {
 		toSerialize["definition"] = o.Definition
+	}
+	if !isNil(o.UseKumaV2) {
+		toSerialize["use_kuma_v2"] = o.UseKumaV2
 	}
 	return json.Marshal(toSerialize)
 }
