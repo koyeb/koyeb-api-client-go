@@ -162,7 +162,6 @@ docs/GetServiceReply.md
 docs/GetSubscriptionReply.md
 docs/GetUserOrganizationInvitationReply.md
 docs/GitDeploymentMetadata.md
-docs/GitDeploymentMetadataProvider.md
 docs/GitHubRegistryConfiguration.md
 docs/GitLabRegistryConfiguration.md
 docs/GitSource.md
@@ -318,6 +317,8 @@ docs/Token.md
 docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataActorType.md
 docs/TriggerDeploymentMetadataTriggerType.md
+docs/TriggerGitDeploymentMetadata.md
+docs/TriggerGitDeploymentMetadataProvider.md
 docs/UpdateApp.md
 docs/UpdateAppReply.md
 docs/UpdateCredentialReply.md
@@ -459,7 +460,6 @@ model_get_service_reply.go
 model_get_subscription_reply.go
 model_get_user_organization_invitation_reply.go
 model_git_deployment_metadata.go
-model_git_deployment_metadata_provider.go
 model_git_hub_registry_configuration.go
 model_git_lab_registry_configuration.go
 model_git_source.go
@@ -594,6 +594,8 @@ model_token.go
 model_trigger_deployment_metadata.go
 model_trigger_deployment_metadata_actor_type.go
 model_trigger_deployment_metadata_trigger_type.go
+model_trigger_git_deployment_metadata.go
+model_trigger_git_deployment_metadata_provider.go
 model_update_app.go
 model_update_app_reply.go
 model_update_credential_reply.go

@@ -36,6 +36,7 @@ type RegionalDeployment struct {
 	Datacenters []string `json:"datacenters,omitempty"`
 	Metadata *RegionalDeploymentMetadata `json:"metadata,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
+	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	DeploymentId *string `json:"deployment_id,omitempty"`
@@ -670,6 +671,38 @@ func (o *RegionalDeployment) SetProvisioningInfo(v DeploymentProvisioningInfo) {
 	o.ProvisioningInfo = &v
 }
 
+// GetUseKumaV2 returns the UseKumaV2 field value if set, zero value otherwise.
+func (o *RegionalDeployment) GetUseKumaV2() bool {
+	if o == nil || isNil(o.UseKumaV2) {
+		var ret bool
+		return ret
+	}
+	return *o.UseKumaV2
+}
+
+// GetUseKumaV2Ok returns a tuple with the UseKumaV2 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeployment) GetUseKumaV2Ok() (*bool, bool) {
+	if o == nil || isNil(o.UseKumaV2) {
+    return nil, false
+	}
+	return o.UseKumaV2, true
+}
+
+// HasUseKumaV2 returns a boolean if a field has been set.
+func (o *RegionalDeployment) HasUseKumaV2() bool {
+	if o != nil && !isNil(o.UseKumaV2) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseKumaV2 gets a reference to the given bool and assigns it to the UseKumaV2 field.
+func (o *RegionalDeployment) SetUseKumaV2(v bool) {
+	o.UseKumaV2 = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetVersion() string {
 	if o == nil || isNil(o.Version) {
@@ -824,6 +857,9 @@ func (o RegionalDeployment) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ProvisioningInfo) {
 		toSerialize["provisioning_info"] = o.ProvisioningInfo
+	}
+	if !isNil(o.UseKumaV2) {
+		toSerialize["use_kuma_v2"] = o.UseKumaV2
 	}
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**InstanceStatus**](InstanceStatus.md) |  | [optional] [default to INSTANCESTATUS_ALLOCATING]
 **Messages** | Pointer to **[]string** |  | [optional] 
 **StartedAt** | Pointer to **time.Time** |  | [optional] 
+**SucceededAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **XyzDeploymentId** | Pointer to **string** | WARNING: Please don&#39;t use the following attribute. Koyeb doesn&#39;t guarantee backwards compatible breaking change and reserve the right to completely drop it without notice. USE AT YOUR OWN RISK. | [optional] 
 
@@ -389,6 +390,31 @@ SetStartedAt sets StartedAt field to given value.
 `func (o *Instance) HasStartedAt() bool`
 
 HasStartedAt returns a boolean if a field has been set.
+
+### GetSucceededAt
+
+`func (o *Instance) GetSucceededAt() time.Time`
+
+GetSucceededAt returns the SucceededAt field if non-nil, zero value otherwise.
+
+### GetSucceededAtOk
+
+`func (o *Instance) GetSucceededAtOk() (*time.Time, bool)`
+
+GetSucceededAtOk returns a tuple with the SucceededAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSucceededAt
+
+`func (o *Instance) SetSucceededAt(v time.Time)`
+
+SetSucceededAt sets SucceededAt field to given value.
+
+### HasSucceededAt
+
+`func (o *Instance) HasSucceededAt() bool`
+
+HasSucceededAt returns a boolean if a field has been set.
 
 ### GetTerminatedAt
 

@@ -1,4 +1,4 @@
-# GitDeploymentMetadataProvider
+# TriggerGitDeploymentMetadataProvider
 
 ## Enum
 

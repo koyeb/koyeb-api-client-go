@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Trigger** | Pointer to [**TriggerDeploymentMetadata**](TriggerDeploymentMetadata.md) |  | [optional] 
 **Database** | Pointer to [**DatabaseDeploymentMetadata**](DatabaseDeploymentMetadata.md) |  | [optional] 
+**Git** | Pointer to [**GitDeploymentMetadata**](GitDeploymentMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetDatabase sets Database field to given value.
 `func (o *DeploymentMetadata) HasDatabase() bool`
 
 HasDatabase returns a boolean if a field has been set.
+
+### GetGit
+
+`func (o *DeploymentMetadata) GetGit() GitDeploymentMetadata`
+
+GetGit returns the Git field if non-nil, zero value otherwise.
+
+### GetGitOk
+
+`func (o *DeploymentMetadata) GetGitOk() (*GitDeploymentMetadata, bool)`
+
+GetGitOk returns a tuple with the Git field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGit
+
+`func (o *DeploymentMetadata) SetGit(v GitDeploymentMetadata)`
+
+SetGit sets Git field to given value.
+
+### HasGit
+
+`func (o *DeploymentMetadata) HasGit() bool`
+
+HasGit returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -18,6 +18,8 @@ import (
 type UpdateService struct {
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
+	// If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened.
+	SkipBuild *bool `json:"skip_build,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -101,6 +103,38 @@ func (o *UpdateService) SetMetadata(v DeploymentMetadata) {
 	o.Metadata = &v
 }
 
+// GetSkipBuild returns the SkipBuild field value if set, zero value otherwise.
+func (o *UpdateService) GetSkipBuild() bool {
+	if o == nil || isNil(o.SkipBuild) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipBuild
+}
+
+// GetSkipBuildOk returns a tuple with the SkipBuild field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetSkipBuildOk() (*bool, bool) {
+	if o == nil || isNil(o.SkipBuild) {
+    return nil, false
+	}
+	return o.SkipBuild, true
+}
+
+// HasSkipBuild returns a boolean if a field has been set.
+func (o *UpdateService) HasSkipBuild() bool {
+	if o != nil && !isNil(o.SkipBuild) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipBuild gets a reference to the given bool and assigns it to the SkipBuild field.
+func (o *UpdateService) SetSkipBuild(v bool) {
+	o.SkipBuild = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Definition) {
@@ -108,6 +142,9 @@ func (o UpdateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !isNil(o.SkipBuild) {
+		toSerialize["skip_build"] = o.SkipBuild
 	}
 	return json.Marshal(toSerialize)
 }

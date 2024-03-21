@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Datacenters** | Pointer to **[]string** |  | [optional] 
 **Metadata** | Pointer to [**RegionalDeploymentMetadata**](RegionalDeploymentMetadata.md) |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
+**UseKumaV2** | Pointer to **bool** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **string** |  | [optional] 
@@ -520,6 +521,31 @@ SetProvisioningInfo sets ProvisioningInfo field to given value.
 `func (o *RegionalDeployment) HasProvisioningInfo() bool`
 
 HasProvisioningInfo returns a boolean if a field has been set.
+
+### GetUseKumaV2
+
+`func (o *RegionalDeployment) GetUseKumaV2() bool`
+
+GetUseKumaV2 returns the UseKumaV2 field if non-nil, zero value otherwise.
+
+### GetUseKumaV2Ok
+
+`func (o *RegionalDeployment) GetUseKumaV2Ok() (*bool, bool)`
+
+GetUseKumaV2Ok returns a tuple with the UseKumaV2 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseKumaV2
+
+`func (o *RegionalDeployment) SetUseKumaV2(v bool)`
+
+SetUseKumaV2 sets UseKumaV2 field to given value.
+
+### HasUseKumaV2
+
+`func (o *RegionalDeployment) HasUseKumaV2() bool`
+
+HasUseKumaV2 returns a boolean if a field has been set.
 
 ### GetVersion
 

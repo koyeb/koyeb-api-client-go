@@ -16,14 +16,7 @@ import (
 
 // GitDeploymentMetadata struct for GitDeploymentMetadata
 type GitDeploymentMetadata struct {
-	Provider *GitDeploymentMetadataProvider `json:"provider,omitempty"`
-	Repository *string `json:"repository,omitempty"`
-	Branch *string `json:"branch,omitempty"`
-	Sha *string `json:"sha,omitempty"`
-	Message *string `json:"message,omitempty"`
-	SenderUsername *string `json:"sender_username,omitempty"`
-	SenderAvatarUrl *string `json:"sender_avatar_url,omitempty"`
-	SenderProfileUrl *string `json:"sender_profile_url,omitempty"`
+	LastProvisionedDeploymentId *string `json:"last_provisioned_deployment_id,omitempty"`
 }
 
 // NewGitDeploymentMetadata instantiates a new GitDeploymentMetadata object
@@ -32,8 +25,6 @@ type GitDeploymentMetadata struct {
 // will change when the set of required properties is changed
 func NewGitDeploymentMetadata() *GitDeploymentMetadata {
 	this := GitDeploymentMetadata{}
-	var provider GitDeploymentMetadataProvider = GITDEPLOYMENTMETADATAPROVIDER_UNKNOWN
-	this.Provider = &provider
 	return &this
 }
 
@@ -42,292 +33,45 @@ func NewGitDeploymentMetadata() *GitDeploymentMetadata {
 // but it doesn't guarantee that properties required by API are set
 func NewGitDeploymentMetadataWithDefaults() *GitDeploymentMetadata {
 	this := GitDeploymentMetadata{}
-	var provider GitDeploymentMetadataProvider = GITDEPLOYMENTMETADATAPROVIDER_UNKNOWN
-	this.Provider = &provider
 	return &this
 }
 
-// GetProvider returns the Provider field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetProvider() GitDeploymentMetadataProvider {
-	if o == nil || isNil(o.Provider) {
-		var ret GitDeploymentMetadataProvider
-		return ret
-	}
-	return *o.Provider
-}
-
-// GetProviderOk returns a tuple with the Provider field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetProviderOk() (*GitDeploymentMetadataProvider, bool) {
-	if o == nil || isNil(o.Provider) {
-    return nil, false
-	}
-	return o.Provider, true
-}
-
-// HasProvider returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasProvider() bool {
-	if o != nil && !isNil(o.Provider) {
-		return true
-	}
-
-	return false
-}
-
-// SetProvider gets a reference to the given GitDeploymentMetadataProvider and assigns it to the Provider field.
-func (o *GitDeploymentMetadata) SetProvider(v GitDeploymentMetadataProvider) {
-	o.Provider = &v
-}
-
-// GetRepository returns the Repository field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetRepository() string {
-	if o == nil || isNil(o.Repository) {
+// GetLastProvisionedDeploymentId returns the LastProvisionedDeploymentId field value if set, zero value otherwise.
+func (o *GitDeploymentMetadata) GetLastProvisionedDeploymentId() string {
+	if o == nil || isNil(o.LastProvisionedDeploymentId) {
 		var ret string
 		return ret
 	}
-	return *o.Repository
+	return *o.LastProvisionedDeploymentId
 }
 
-// GetRepositoryOk returns a tuple with the Repository field value if set, nil otherwise
+// GetLastProvisionedDeploymentIdOk returns a tuple with the LastProvisionedDeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetRepositoryOk() (*string, bool) {
-	if o == nil || isNil(o.Repository) {
+func (o *GitDeploymentMetadata) GetLastProvisionedDeploymentIdOk() (*string, bool) {
+	if o == nil || isNil(o.LastProvisionedDeploymentId) {
     return nil, false
 	}
-	return o.Repository, true
+	return o.LastProvisionedDeploymentId, true
 }
 
-// HasRepository returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasRepository() bool {
-	if o != nil && !isNil(o.Repository) {
+// HasLastProvisionedDeploymentId returns a boolean if a field has been set.
+func (o *GitDeploymentMetadata) HasLastProvisionedDeploymentId() bool {
+	if o != nil && !isNil(o.LastProvisionedDeploymentId) {
 		return true
 	}
 
 	return false
 }
 
-// SetRepository gets a reference to the given string and assigns it to the Repository field.
-func (o *GitDeploymentMetadata) SetRepository(v string) {
-	o.Repository = &v
-}
-
-// GetBranch returns the Branch field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetBranch() string {
-	if o == nil || isNil(o.Branch) {
-		var ret string
-		return ret
-	}
-	return *o.Branch
-}
-
-// GetBranchOk returns a tuple with the Branch field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetBranchOk() (*string, bool) {
-	if o == nil || isNil(o.Branch) {
-    return nil, false
-	}
-	return o.Branch, true
-}
-
-// HasBranch returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasBranch() bool {
-	if o != nil && !isNil(o.Branch) {
-		return true
-	}
-
-	return false
-}
-
-// SetBranch gets a reference to the given string and assigns it to the Branch field.
-func (o *GitDeploymentMetadata) SetBranch(v string) {
-	o.Branch = &v
-}
-
-// GetSha returns the Sha field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetSha() string {
-	if o == nil || isNil(o.Sha) {
-		var ret string
-		return ret
-	}
-	return *o.Sha
-}
-
-// GetShaOk returns a tuple with the Sha field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetShaOk() (*string, bool) {
-	if o == nil || isNil(o.Sha) {
-    return nil, false
-	}
-	return o.Sha, true
-}
-
-// HasSha returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasSha() bool {
-	if o != nil && !isNil(o.Sha) {
-		return true
-	}
-
-	return false
-}
-
-// SetSha gets a reference to the given string and assigns it to the Sha field.
-func (o *GitDeploymentMetadata) SetSha(v string) {
-	o.Sha = &v
-}
-
-// GetMessage returns the Message field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetMessage() string {
-	if o == nil || isNil(o.Message) {
-		var ret string
-		return ret
-	}
-	return *o.Message
-}
-
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetMessageOk() (*string, bool) {
-	if o == nil || isNil(o.Message) {
-    return nil, false
-	}
-	return o.Message, true
-}
-
-// HasMessage returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasMessage() bool {
-	if o != nil && !isNil(o.Message) {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *GitDeploymentMetadata) SetMessage(v string) {
-	o.Message = &v
-}
-
-// GetSenderUsername returns the SenderUsername field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetSenderUsername() string {
-	if o == nil || isNil(o.SenderUsername) {
-		var ret string
-		return ret
-	}
-	return *o.SenderUsername
-}
-
-// GetSenderUsernameOk returns a tuple with the SenderUsername field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetSenderUsernameOk() (*string, bool) {
-	if o == nil || isNil(o.SenderUsername) {
-    return nil, false
-	}
-	return o.SenderUsername, true
-}
-
-// HasSenderUsername returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasSenderUsername() bool {
-	if o != nil && !isNil(o.SenderUsername) {
-		return true
-	}
-
-	return false
-}
-
-// SetSenderUsername gets a reference to the given string and assigns it to the SenderUsername field.
-func (o *GitDeploymentMetadata) SetSenderUsername(v string) {
-	o.SenderUsername = &v
-}
-
-// GetSenderAvatarUrl returns the SenderAvatarUrl field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetSenderAvatarUrl() string {
-	if o == nil || isNil(o.SenderAvatarUrl) {
-		var ret string
-		return ret
-	}
-	return *o.SenderAvatarUrl
-}
-
-// GetSenderAvatarUrlOk returns a tuple with the SenderAvatarUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetSenderAvatarUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SenderAvatarUrl) {
-    return nil, false
-	}
-	return o.SenderAvatarUrl, true
-}
-
-// HasSenderAvatarUrl returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasSenderAvatarUrl() bool {
-	if o != nil && !isNil(o.SenderAvatarUrl) {
-		return true
-	}
-
-	return false
-}
-
-// SetSenderAvatarUrl gets a reference to the given string and assigns it to the SenderAvatarUrl field.
-func (o *GitDeploymentMetadata) SetSenderAvatarUrl(v string) {
-	o.SenderAvatarUrl = &v
-}
-
-// GetSenderProfileUrl returns the SenderProfileUrl field value if set, zero value otherwise.
-func (o *GitDeploymentMetadata) GetSenderProfileUrl() string {
-	if o == nil || isNil(o.SenderProfileUrl) {
-		var ret string
-		return ret
-	}
-	return *o.SenderProfileUrl
-}
-
-// GetSenderProfileUrlOk returns a tuple with the SenderProfileUrl field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GitDeploymentMetadata) GetSenderProfileUrlOk() (*string, bool) {
-	if o == nil || isNil(o.SenderProfileUrl) {
-    return nil, false
-	}
-	return o.SenderProfileUrl, true
-}
-
-// HasSenderProfileUrl returns a boolean if a field has been set.
-func (o *GitDeploymentMetadata) HasSenderProfileUrl() bool {
-	if o != nil && !isNil(o.SenderProfileUrl) {
-		return true
-	}
-
-	return false
-}
-
-// SetSenderProfileUrl gets a reference to the given string and assigns it to the SenderProfileUrl field.
-func (o *GitDeploymentMetadata) SetSenderProfileUrl(v string) {
-	o.SenderProfileUrl = &v
+// SetLastProvisionedDeploymentId gets a reference to the given string and assigns it to the LastProvisionedDeploymentId field.
+func (o *GitDeploymentMetadata) SetLastProvisionedDeploymentId(v string) {
+	o.LastProvisionedDeploymentId = &v
 }
 
 func (o GitDeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if !isNil(o.Provider) {
-		toSerialize["provider"] = o.Provider
-	}
-	if !isNil(o.Repository) {
-		toSerialize["repository"] = o.Repository
-	}
-	if !isNil(o.Branch) {
-		toSerialize["branch"] = o.Branch
-	}
-	if !isNil(o.Sha) {
-		toSerialize["sha"] = o.Sha
-	}
-	if !isNil(o.Message) {
-		toSerialize["message"] = o.Message
-	}
-	if !isNil(o.SenderUsername) {
-		toSerialize["sender_username"] = o.SenderUsername
-	}
-	if !isNil(o.SenderAvatarUrl) {
-		toSerialize["sender_avatar_url"] = o.SenderAvatarUrl
-	}
-	if !isNil(o.SenderProfileUrl) {
-		toSerialize["sender_profile_url"] = o.SenderProfileUrl
+	if !isNil(o.LastProvisionedDeploymentId) {
+		toSerialize["last_provisioned_deployment_id"] = o.LastProvisionedDeploymentId
 	}
 	return json.Marshal(toSerialize)
 }

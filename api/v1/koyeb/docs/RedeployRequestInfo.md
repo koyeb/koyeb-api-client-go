@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **Sha** | Pointer to **string** |  | [optional] 
 **UseCache** | Pointer to **bool** |  | [optional] 
+**SkipBuild** | Pointer to **bool** | If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened. | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetUseCache sets UseCache field to given value.
 `func (o *RedeployRequestInfo) HasUseCache() bool`
 
 HasUseCache returns a boolean if a field has been set.
+
+### GetSkipBuild
+
+`func (o *RedeployRequestInfo) GetSkipBuild() bool`
+
+GetSkipBuild returns the SkipBuild field if non-nil, zero value otherwise.
+
+### GetSkipBuildOk
+
+`func (o *RedeployRequestInfo) GetSkipBuildOk() (*bool, bool)`
+
+GetSkipBuildOk returns a tuple with the SkipBuild field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipBuild
+
+`func (o *RedeployRequestInfo) SetSkipBuild(v bool)`
+
+SetSkipBuild sets SkipBuild field to given value.
+
+### HasSkipBuild
+
+`func (o *RedeployRequestInfo) HasSkipBuild() bool`
+
+HasSkipBuild returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -31,6 +31,7 @@ type Instance struct {
 	Status *InstanceStatus `json:"status,omitempty"`
 	Messages []string `json:"messages,omitempty"`
 	StartedAt *time.Time `json:"started_at,omitempty"`
+	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 	// WARNING: Please don't use the following attribute. Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice. USE AT YOUR OWN RISK.
 	XyzDeploymentId *string `json:"xyz_deployment_id,omitempty"`
@@ -505,6 +506,38 @@ func (o *Instance) SetStartedAt(v time.Time) {
 	o.StartedAt = &v
 }
 
+// GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
+func (o *Instance) GetSucceededAt() time.Time {
+	if o == nil || isNil(o.SucceededAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.SucceededAt
+}
+
+// GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetSucceededAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.SucceededAt) {
+    return nil, false
+	}
+	return o.SucceededAt, true
+}
+
+// HasSucceededAt returns a boolean if a field has been set.
+func (o *Instance) HasSucceededAt() bool {
+	if o != nil && !isNil(o.SucceededAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetSucceededAt gets a reference to the given time.Time and assigns it to the SucceededAt field.
+func (o *Instance) SetSucceededAt(v time.Time) {
+	o.SucceededAt = &v
+}
+
 // GetTerminatedAt returns the TerminatedAt field value if set, zero value otherwise.
 func (o *Instance) GetTerminatedAt() time.Time {
 	if o == nil || isNil(o.TerminatedAt) {
@@ -612,6 +645,9 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.StartedAt) {
 		toSerialize["started_at"] = o.StartedAt
+	}
+	if !isNil(o.SucceededAt) {
+		toSerialize["succeeded_at"] = o.SucceededAt
 	}
 	if !isNil(o.TerminatedAt) {
 		toSerialize["terminated_at"] = o.TerminatedAt
