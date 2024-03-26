@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Success** | Pointer to **bool** |  | [optional] 
 **Reason** | Pointer to **string** |  | [optional] 
+**Code** | Pointer to [**VerifyDockerImageReplyErrCode**](VerifyDockerImageReplyErrCode.md) |  | [optional] [default to VERIFYDOCKERIMAGEREPLYERRCODE_UNKNOWN]
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetReason sets Reason field to given value.
 `func (o *VerifyDockerImageReply) HasReason() bool`
 
 HasReason returns a boolean if a field has been set.
+
+### GetCode
+
+`func (o *VerifyDockerImageReply) GetCode() VerifyDockerImageReplyErrCode`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *VerifyDockerImageReply) GetCodeOk() (*VerifyDockerImageReplyErrCode, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCode
+
+`func (o *VerifyDockerImageReply) SetCode(v VerifyDockerImageReplyErrCode)`
+
+SetCode sets Code field to given value.
+
+### HasCode
+
+`func (o *VerifyDockerImageReply) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
