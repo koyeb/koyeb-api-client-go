@@ -173,6 +173,7 @@ docs/GoogleProtobufNullValue.md
 docs/GoogleRpcStatus.md
 docs/HTTPHeader.md
 docs/HTTPHealthCheck.md
+docs/HasUnpaidInvoicesReply.md
 docs/Instance.md
 docs/InstanceEvent.md
 docs/InstanceListItem.md
@@ -343,6 +344,7 @@ docs/UserReply.md
 docs/UserRoleRole.md
 docs/UsersApi.md
 docs/VerifyDockerImageReply.md
+docs/VerifyDockerImageReplyErrCode.md
 git_push.sh
 go.mod
 go.sum
@@ -469,6 +471,7 @@ model_github_installation_request.go
 model_google_protobuf_any.go
 model_google_protobuf_null_value.go
 model_google_rpc_status.go
+model_has_unpaid_invoices_reply.go
 model_http_header.go
 model_http_health_check.go
 model_instance.go
@@ -618,6 +621,7 @@ model_user_flags.go
 model_user_reply.go
 model_user_role_role.go
 model_verify_docker_image_reply.go
+model_verify_docker_image_reply_err_code.go
 response.go
 test/api_activity_test.go
 test/api_apps_test.go
