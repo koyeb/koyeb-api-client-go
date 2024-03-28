@@ -17,7 +17,6 @@ import (
 // GetMetricsReplyMetric struct for GetMetricsReplyMetric
 type GetMetricsReplyMetric struct {
 	Labels *map[string]string `json:"labels,omitempty"`
-	Values [][]interface{} `json:"values,omitempty"`
 	Samples []Sample `json:"samples,omitempty"`
 }
 
@@ -70,38 +69,6 @@ func (o *GetMetricsReplyMetric) SetLabels(v map[string]string) {
 	o.Labels = &v
 }
 
-// GetValues returns the Values field value if set, zero value otherwise.
-func (o *GetMetricsReplyMetric) GetValues() [][]interface{} {
-	if o == nil || isNil(o.Values) {
-		var ret [][]interface{}
-		return ret
-	}
-	return o.Values
-}
-
-// GetValuesOk returns a tuple with the Values field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetMetricsReplyMetric) GetValuesOk() ([][]interface{}, bool) {
-	if o == nil || isNil(o.Values) {
-    return nil, false
-	}
-	return o.Values, true
-}
-
-// HasValues returns a boolean if a field has been set.
-func (o *GetMetricsReplyMetric) HasValues() bool {
-	if o != nil && !isNil(o.Values) {
-		return true
-	}
-
-	return false
-}
-
-// SetValues gets a reference to the given [][]interface{} and assigns it to the Values field.
-func (o *GetMetricsReplyMetric) SetValues(v [][]interface{}) {
-	o.Values = v
-}
-
 // GetSamples returns the Samples field value if set, zero value otherwise.
 func (o *GetMetricsReplyMetric) GetSamples() []Sample {
 	if o == nil || isNil(o.Samples) {
@@ -138,9 +105,6 @@ func (o GetMetricsReplyMetric) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
-	}
-	if !isNil(o.Values) {
-		toSerialize["values"] = o.Values
 	}
 	if !isNil(o.Samples) {
 		toSerialize["samples"] = o.Samples
