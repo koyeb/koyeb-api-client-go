@@ -1979,6 +1979,7 @@ paths:
             - STOPPED
             - ERRORING
             - ERROR
+            - STASHED
             type: string
           type: array
         style: form
@@ -5658,6 +5659,60 @@ paths:
           description: An unexpected error response.
       tags:
       - profile
+  /v1/billing/has_unpaid_invoices:
+    get:
+      description: |-
+        WARNING: Please don't use the following method.
+        Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
+        USE AT YOUR OWN RISK.
+      operationId: HasUnpaidInvoices
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/HasUnpaidInvoicesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: "Experimental: Has unpaid invoices"
+      tags:
+      - billing
   /v1/billing/manage:
     get:
       operationId: Manage
@@ -7683,37 +7738,6 @@ paths:
       x-codegen-request-body-name: body
 components:
   schemas:
-    GetMetricsReply.Metric:
-      example:
-        values:
-        - - values
-          - values
-        - - values
-          - values
-        samples:
-        - value: 0.8008281904610115
-          timestamp: timestamp
-        - value: 0.8008281904610115
-          timestamp: timestamp
-        labels:
-          key: labels
-      properties:
-        labels:
-          additionalProperties:
-            type: string
-          type: object
-        values:
-          items:
-            items:
-              description: TODO default missing array inner type to string
-              type: string
-            type: array
-          type: array
-        samples:
-          items:
-            $ref: '#/components/schemas/Sample'
-          type: array
-      type: object
     google.protobuf.Any:
       additionalProperties:
         type: object
@@ -11447,6 +11471,7 @@ components:
       - STOPPED
       - ERRORING
       - ERROR
+      - STASHED
       type: string
     DeploymentDatabaseInfo:
       example:
@@ -13224,6 +13249,7 @@ components:
     VerifyDockerImageReply:
       example:
         reason: reason
+        code: null
         success: true
       properties:
         success:
@@ -13232,7 +13258,33 @@ components:
         reason:
           title: "(Optional) If the image is not accessible, the reason"
           type: string
+        code:
+          $ref: '#/components/schemas/VerifyDockerImageReply.ErrCode'
       type: object
+    VerifyDockerImageReply.ErrCode:
+      default: UNKNOWN
+      description: |-
+        - UNKNOWN: Default value
+         - AUTH_ACCESS_DENIED: The registry denied access to an authenticated request
+         - ANON_ACCESS_DENIED: The registry denied access to an anonymous request
+         - AUTH_NOT_FOUND: The image has not been found after an authenticated request
+         - ANON_NOT_FOUND: The image has not been found after an anonymous request
+         - REGISTRY_ERROR: The registry returned an error
+         - TIMEOUT: The request to the registry timed out
+         - DNS: There was an error trying to resolve the name of the registry
+         - MALFORMED: The provided image name is malformed
+      enum:
+      - UNKNOWN
+      - AUTH_ACCESS_DENIED
+      - ANON_ACCESS_DENIED
+      - AUTH_NOT_FOUND
+      - ANON_NOT_FOUND
+      - REGISTRY_ERROR
+      - TIMEOUT
+      - DNS
+      - MALFORMED
+      title: The error code associated to each specific failure mode
+      type: string
     AutoRelease:
       example:
         groups:
@@ -14253,6 +14305,7 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
+        save_only: true
         definition:
           instance_types:
           - scopes:
@@ -14420,6 +14473,9 @@ components:
           description: |-
             If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead.
             The call fails if no previous successful builds happened.
+          type: boolean
+        save_only:
+          title: "If set, do not trigger a deployment, only store the new settings"
           type: boolean
       type: object
     UpdateServiceReply:
@@ -15117,24 +15173,14 @@ components:
     GetMetricsReply:
       example:
         metrics:
-        - values:
-          - - values
-            - values
-          - - values
-            - values
-          samples:
+        - samples:
           - value: 0.8008281904610115
             timestamp: timestamp
           - value: 0.8008281904610115
             timestamp: timestamp
           labels:
             key: labels
-        - values:
-          - - values
-            - values
-          - - values
-            - values
-          samples:
+        - samples:
           - value: 0.8008281904610115
             timestamp: timestamp
           - value: 0.8008281904610115
@@ -15145,6 +15191,25 @@ components:
         metrics:
           items:
             $ref: '#/components/schemas/GetMetricsReply.Metric'
+          type: array
+      type: object
+    GetMetricsReply.Metric:
+      example:
+        samples:
+        - value: 0.8008281904610115
+          timestamp: timestamp
+        - value: 0.8008281904610115
+          timestamp: timestamp
+        labels:
+          key: labels
+      properties:
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        samples:
+          items:
+            $ref: '#/components/schemas/Sample'
           type: array
       type: object
     MetricName:
@@ -16889,6 +16954,13 @@ components:
           title: A small (limited to 400 characters) string of arbitrary metadata
             which will be encoded in the state
           type: string
+      type: object
+    HasUnpaidInvoicesReply:
+      example:
+        has_unpaid_invoices: true
+      properties:
+        has_unpaid_invoices:
+          type: boolean
       type: object
     InviteUserRequest:
       example:

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Definition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 **SkipBuild** | Pointer to **bool** | If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened. | [optional] 
+**SaveOnly** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetSkipBuild sets SkipBuild field to given value.
 `func (o *UpdateService) HasSkipBuild() bool`
 
 HasSkipBuild returns a boolean if a field has been set.
+
+### GetSaveOnly
+
+`func (o *UpdateService) GetSaveOnly() bool`
+
+GetSaveOnly returns the SaveOnly field if non-nil, zero value otherwise.
+
+### GetSaveOnlyOk
+
+`func (o *UpdateService) GetSaveOnlyOk() (*bool, bool)`
+
+GetSaveOnlyOk returns a tuple with the SaveOnly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSaveOnly
+
+`func (o *UpdateService) SetSaveOnly(v bool)`
+
+SetSaveOnly sets SaveOnly field to given value.
+
+### HasSaveOnly
+
+`func (o *UpdateService) HasSaveOnly() bool`
+
+HasSaveOnly returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

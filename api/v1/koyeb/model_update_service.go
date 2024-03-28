@@ -20,6 +20,7 @@ type UpdateService struct {
 	Metadata *DeploymentMetadata `json:"metadata,omitempty"`
 	// If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened.
 	SkipBuild *bool `json:"skip_build,omitempty"`
+	SaveOnly *bool `json:"save_only,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -135,6 +136,38 @@ func (o *UpdateService) SetSkipBuild(v bool) {
 	o.SkipBuild = &v
 }
 
+// GetSaveOnly returns the SaveOnly field value if set, zero value otherwise.
+func (o *UpdateService) GetSaveOnly() bool {
+	if o == nil || isNil(o.SaveOnly) {
+		var ret bool
+		return ret
+	}
+	return *o.SaveOnly
+}
+
+// GetSaveOnlyOk returns a tuple with the SaveOnly field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetSaveOnlyOk() (*bool, bool) {
+	if o == nil || isNil(o.SaveOnly) {
+    return nil, false
+	}
+	return o.SaveOnly, true
+}
+
+// HasSaveOnly returns a boolean if a field has been set.
+func (o *UpdateService) HasSaveOnly() bool {
+	if o != nil && !isNil(o.SaveOnly) {
+		return true
+	}
+
+	return false
+}
+
+// SetSaveOnly gets a reference to the given bool and assigns it to the SaveOnly field.
+func (o *UpdateService) SetSaveOnly(v bool) {
+	o.SaveOnly = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Definition) {
@@ -145,6 +178,9 @@ func (o UpdateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SkipBuild) {
 		toSerialize["skip_build"] = o.SkipBuild
+	}
+	if !isNil(o.SaveOnly) {
+		toSerialize["save_only"] = o.SaveOnly
 	}
 	return json.Marshal(toSerialize)
 }

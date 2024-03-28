@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Labels** | Pointer to **map[string]string** |  | [optional] 
-**Values** | Pointer to **[][]interface{}** |  | [optional] 
 **Samples** | Pointer to [**[]Sample**](Sample.md) |  | [optional] 
 
 ## Methods
@@ -51,31 +50,6 @@ SetLabels sets Labels field to given value.
 `func (o *GetMetricsReplyMetric) HasLabels() bool`
 
 HasLabels returns a boolean if a field has been set.
-
-### GetValues
-
-`func (o *GetMetricsReplyMetric) GetValues() [][]interface{}`
-
-GetValues returns the Values field if non-nil, zero value otherwise.
-
-### GetValuesOk
-
-`func (o *GetMetricsReplyMetric) GetValuesOk() (*[][]interface{}, bool)`
-
-GetValuesOk returns a tuple with the Values field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValues
-
-`func (o *GetMetricsReplyMetric) SetValues(v [][]interface{})`
-
-SetValues sets Values field to given value.
-
-### HasValues
-
-`func (o *GetMetricsReplyMetric) HasValues() bool`
-
-HasValues returns a boolean if a field has been set.
 
 ### GetSamples
 

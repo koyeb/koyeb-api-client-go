@@ -91,6 +91,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
+*BillingApi* | [**HasUnpaidInvoices**](docs/BillingApi.md#hasunpaidinvoices) | **Get** /v1/billing/has_unpaid_invoices | Experimental: Has unpaid invoices
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
@@ -329,6 +330,7 @@ Class | Method | HTTP request | Description
  - [GoogleRpcStatus](docs/GoogleRpcStatus.md)
  - [HTTPHeader](docs/HTTPHeader.md)
  - [HTTPHealthCheck](docs/HTTPHealthCheck.md)
+ - [HasUnpaidInvoicesReply](docs/HasUnpaidInvoicesReply.md)
  - [Instance](docs/Instance.md)
  - [InstanceEvent](docs/InstanceEvent.md)
  - [InstanceListItem](docs/InstanceListItem.md)
@@ -476,6 +478,7 @@ Class | Method | HTTP request | Description
  - [UserReply](docs/UserReply.md)
  - [UserRoleRole](docs/UserRoleRole.md)
  - [VerifyDockerImageReply](docs/VerifyDockerImageReply.md)
+ - [VerifyDockerImageReplyErrCode](docs/VerifyDockerImageReplyErrCode.md)
 
 
 ## Documentation For Authorization

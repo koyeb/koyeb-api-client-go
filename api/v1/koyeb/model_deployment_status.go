@@ -34,6 +34,7 @@ const (
 	DEPLOYMENTSTATUS_STOPPED DeploymentStatus = "STOPPED"
 	DEPLOYMENTSTATUS_ERRORING DeploymentStatus = "ERRORING"
 	DEPLOYMENTSTATUS_ERROR DeploymentStatus = "ERROR"
+	DEPLOYMENTSTATUS_STASHED DeploymentStatus = "STASHED"
 )
 
 // All allowed values of DeploymentStatus enum
@@ -52,6 +53,7 @@ var AllowedDeploymentStatusEnumValues = []DeploymentStatus{
 	"STOPPED",
 	"ERRORING",
 	"ERROR",
+	"STASHED",
 }
 
 func (v *DeploymentStatus) UnmarshalJSON(src []byte) error {
