@@ -2139,7 +2139,8 @@
                 "STOPPING",
                 "STOPPED",
                 "ERRORING",
-                "ERROR"
+                "ERROR",
+                "STASHED"
               ]
             },
             "collectionFormat": "multi"
@@ -6209,6 +6210,60 @@
         ]
       }
     },
+    "/v1/billing/has_unpaid_invoices": {
+      "get": {
+        "summary": "Experimental: Has unpaid invoices",
+        "description": "WARNING: Please don't use the following method.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.\nUSE AT YOUR OWN RISK.",
+        "operationId": "HasUnpaidInvoices",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/HasUnpaidInvoicesReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "billing"
+        ]
+      }
+    },
     "/v1/billing/manage": {
       "get": {
         "operationId": "Manage",
@@ -8433,35 +8488,6 @@
     }
   },
   "definitions": {
-    "GetMetricsReply.Metric": {
-      "type": "object",
-      "properties": {
-        "labels": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "values": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": [
-                "string",
-                "number"
-              ]
-            }
-          }
-        },
-        "samples": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Sample"
-          }
-        }
-      }
-    },
     "google.protobuf.Any": {
       "type": "object",
       "properties": {
@@ -10461,7 +10487,8 @@
         "STOPPING",
         "STOPPED",
         "ERRORING",
-        "ERROR"
+        "ERROR",
+        "STASHED"
       ],
       "default": "PENDING"
     },
@@ -11031,8 +11058,29 @@
         "reason": {
           "type": "string",
           "title": "(Optional) If the image is not accessible, the reason"
+        },
+        "code": {
+          "$ref": "#/definitions/VerifyDockerImageReply.ErrCode",
+          "title": "(Optional) If the image is not accessible, return an error code"
         }
       }
+    },
+    "VerifyDockerImageReply.ErrCode": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "AUTH_ACCESS_DENIED",
+        "ANON_ACCESS_DENIED",
+        "AUTH_NOT_FOUND",
+        "ANON_NOT_FOUND",
+        "REGISTRY_ERROR",
+        "TIMEOUT",
+        "DNS",
+        "MALFORMED"
+      ],
+      "default": "UNKNOWN",
+      "description": "- UNKNOWN: Default value\n - AUTH_ACCESS_DENIED: The registry denied access to an authenticated request\n - ANON_ACCESS_DENIED: The registry denied access to an anonymous request\n - AUTH_NOT_FOUND: The image has not been found after an authenticated request\n - ANON_NOT_FOUND: The image has not been found after an anonymous request\n - REGISTRY_ERROR: The registry returned an error\n - TIMEOUT: The request to the registry timed out\n - DNS: There was an error trying to resolve the name of the registry\n - MALFORMED: The provided image name is malformed",
+      "title": "The error code associated to each specific failure mode"
     },
     "AutoRelease": {
       "type": "object",
@@ -11412,6 +11460,10 @@
         "skip_build": {
           "type": "boolean",
           "description": "If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead.\nThe call fails if no previous successful builds happened."
+        },
+        "save_only": {
+          "type": "boolean",
+          "title": "If set, do not trigger a deployment, only store the new settings"
         }
       }
     },
@@ -11856,6 +11908,23 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/GetMetricsReply.Metric"
+          }
+        }
+      }
+    },
+    "GetMetricsReply.Metric": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Sample"
           }
         }
       }
@@ -13092,6 +13161,14 @@
         "metadata": {
           "type": "string",
           "title": "A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state"
+        }
+      }
+    },
+    "HasUnpaidInvoicesReply": {
+      "type": "object",
+      "properties": {
+        "has_unpaid_invoices": {
+          "type": "boolean"
         }
       }
     },
