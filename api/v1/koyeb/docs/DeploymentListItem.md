@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **DatabaseInfo** | Pointer to [**DeploymentDatabaseInfo**](DeploymentDatabaseInfo.md) |  | [optional] 
+**GpuInfo** | Pointer to [**DeploymentGPUInfo**](DeploymentGPUInfo.md) |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 
@@ -493,6 +494,31 @@ SetDatabaseInfo sets DatabaseInfo field to given value.
 `func (o *DeploymentListItem) HasDatabaseInfo() bool`
 
 HasDatabaseInfo returns a boolean if a field has been set.
+
+### GetGpuInfo
+
+`func (o *DeploymentListItem) GetGpuInfo() DeploymentGPUInfo`
+
+GetGpuInfo returns the GpuInfo field if non-nil, zero value otherwise.
+
+### GetGpuInfoOk
+
+`func (o *DeploymentListItem) GetGpuInfoOk() (*DeploymentGPUInfo, bool)`
+
+GetGpuInfoOk returns a tuple with the GpuInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpuInfo
+
+`func (o *DeploymentListItem) SetGpuInfo(v DeploymentGPUInfo)`
+
+SetGpuInfo sets GpuInfo field to given value.
+
+### HasGpuInfo
+
+`func (o *DeploymentListItem) HasGpuInfo() bool`
+
+HasGpuInfo returns a boolean if a field has been set.
 
 ### GetVersion
 

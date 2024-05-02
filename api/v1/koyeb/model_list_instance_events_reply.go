@@ -19,7 +19,6 @@ type ListInstanceEventsReply struct {
 	Events []InstanceEvent `json:"events,omitempty"`
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
-	Count *int64 `json:"count,omitempty"`
 	Order *string `json:"order,omitempty"`
 }
 
@@ -136,38 +135,6 @@ func (o *ListInstanceEventsReply) SetOffset(v int64) {
 	o.Offset = &v
 }
 
-// GetCount returns the Count field value if set, zero value otherwise.
-func (o *ListInstanceEventsReply) GetCount() int64 {
-	if o == nil || isNil(o.Count) {
-		var ret int64
-		return ret
-	}
-	return *o.Count
-}
-
-// GetCountOk returns a tuple with the Count field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListInstanceEventsReply) GetCountOk() (*int64, bool) {
-	if o == nil || isNil(o.Count) {
-    return nil, false
-	}
-	return o.Count, true
-}
-
-// HasCount returns a boolean if a field has been set.
-func (o *ListInstanceEventsReply) HasCount() bool {
-	if o != nil && !isNil(o.Count) {
-		return true
-	}
-
-	return false
-}
-
-// SetCount gets a reference to the given int64 and assigns it to the Count field.
-func (o *ListInstanceEventsReply) SetCount(v int64) {
-	o.Count = &v
-}
-
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *ListInstanceEventsReply) GetOrder() string {
 	if o == nil || isNil(o.Order) {
@@ -210,9 +177,6 @@ func (o ListInstanceEventsReply) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
-	}
-	if !isNil(o.Count) {
-		toSerialize["count"] = o.Count
 	}
 	if !isNil(o.Order) {
 		toSerialize["order"] = o.Order

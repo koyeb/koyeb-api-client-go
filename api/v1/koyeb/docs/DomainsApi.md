@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 ## UpdateDomain
 
-> UpdateDomainReply UpdateDomain(ctx, id).Domain(domain).UpdateMask(updateMask).Execute()
+> UpdateDomainReply UpdateDomain(ctx, id).Domain(domain).UpdateMask(updateMask).DryRun(dryRun).Execute()
 
 
 
@@ -377,10 +377,11 @@ func main() {
     id := "id_example" // string | 
     domain := *openapiclient.NewUpdateDomain() // UpdateDomain | 
     updateMask := "updateMask_example" // string |  (optional)
+    dryRun := true // bool | If set, run validation and check that the domain is available. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DomainsApi.UpdateDomain(context.Background(), id).Domain(domain).UpdateMask(updateMask).Execute()
+    resp, r, err := apiClient.DomainsApi.UpdateDomain(context.Background(), id).Domain(domain).UpdateMask(updateMask).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.UpdateDomain``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -408,6 +409,7 @@ Name | Type | Description  | Notes
 
  **domain** | [**UpdateDomain**](UpdateDomain.md) |  | 
  **updateMask** | **string** |  | 
+ **dryRun** | **bool** | If set, run validation and check that the domain is available. | 
 
 ### Return type
 

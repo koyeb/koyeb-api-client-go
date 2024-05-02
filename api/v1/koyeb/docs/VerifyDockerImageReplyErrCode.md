@@ -21,6 +21,10 @@
 
 * `MALFORMED` (value: `"MALFORMED"`)
 
+* `INVALID_OS` (value: `"INVALID_OS"`)
+
+* `INVALID_ARCH` (value: `"INVALID_ARCH"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -36,6 +36,7 @@ type Deployment struct {
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	DatabaseInfo *DeploymentDatabaseInfo `json:"database_info,omitempty"`
 	SkipBuild *bool `json:"skip_build,omitempty"`
+	GpuInfo *DeploymentGPUInfo `json:"gpu_info,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 }
@@ -669,6 +670,38 @@ func (o *Deployment) SetSkipBuild(v bool) {
 	o.SkipBuild = &v
 }
 
+// GetGpuInfo returns the GpuInfo field value if set, zero value otherwise.
+func (o *Deployment) GetGpuInfo() DeploymentGPUInfo {
+	if o == nil || isNil(o.GpuInfo) {
+		var ret DeploymentGPUInfo
+		return ret
+	}
+	return *o.GpuInfo
+}
+
+// GetGpuInfoOk returns a tuple with the GpuInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetGpuInfoOk() (*DeploymentGPUInfo, bool) {
+	if o == nil || isNil(o.GpuInfo) {
+    return nil, false
+	}
+	return o.GpuInfo, true
+}
+
+// HasGpuInfo returns a boolean if a field has been set.
+func (o *Deployment) HasGpuInfo() bool {
+	if o != nil && !isNil(o.GpuInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpuInfo gets a reference to the given DeploymentGPUInfo and assigns it to the GpuInfo field.
+func (o *Deployment) SetGpuInfo(v DeploymentGPUInfo) {
+	o.GpuInfo = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Deployment) GetVersion() string {
 	if o == nil || isNil(o.Version) {
@@ -791,6 +824,9 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SkipBuild) {
 		toSerialize["skip_build"] = o.SkipBuild
+	}
+	if !isNil(o.GpuInfo) {
+		toSerialize["gpu_info"] = o.GpuInfo
 	}
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version

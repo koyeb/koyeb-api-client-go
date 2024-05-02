@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **RegionId** | Pointer to **string** |  | [optional] 
 **Domain** | Pointer to **string** |  | [optional] 
 **Coordinates** | Pointer to **[]string** |  | [optional] 
+**UseKata** | Pointer to **bool** |  | [optional] 
+**UseGpu** | Pointer to **bool** |  | [optional] 
+**UseKuma** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +130,81 @@ SetCoordinates sets Coordinates field to given value.
 `func (o *DatacenterListItem) HasCoordinates() bool`
 
 HasCoordinates returns a boolean if a field has been set.
+
+### GetUseKata
+
+`func (o *DatacenterListItem) GetUseKata() bool`
+
+GetUseKata returns the UseKata field if non-nil, zero value otherwise.
+
+### GetUseKataOk
+
+`func (o *DatacenterListItem) GetUseKataOk() (*bool, bool)`
+
+GetUseKataOk returns a tuple with the UseKata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseKata
+
+`func (o *DatacenterListItem) SetUseKata(v bool)`
+
+SetUseKata sets UseKata field to given value.
+
+### HasUseKata
+
+`func (o *DatacenterListItem) HasUseKata() bool`
+
+HasUseKata returns a boolean if a field has been set.
+
+### GetUseGpu
+
+`func (o *DatacenterListItem) GetUseGpu() bool`
+
+GetUseGpu returns the UseGpu field if non-nil, zero value otherwise.
+
+### GetUseGpuOk
+
+`func (o *DatacenterListItem) GetUseGpuOk() (*bool, bool)`
+
+GetUseGpuOk returns a tuple with the UseGpu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseGpu
+
+`func (o *DatacenterListItem) SetUseGpu(v bool)`
+
+SetUseGpu sets UseGpu field to given value.
+
+### HasUseGpu
+
+`func (o *DatacenterListItem) HasUseGpu() bool`
+
+HasUseGpu returns a boolean if a field has been set.
+
+### GetUseKuma
+
+`func (o *DatacenterListItem) GetUseKuma() bool`
+
+GetUseKuma returns the UseKuma field if non-nil, zero value otherwise.
+
+### GetUseKumaOk
+
+`func (o *DatacenterListItem) GetUseKumaOk() (*bool, bool)`
+
+GetUseKumaOk returns a tuple with the UseKuma field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUseKuma
+
+`func (o *DatacenterListItem) SetUseKuma(v bool)`
+
+SetUseKuma sets UseKuma field to given value.
+
+### HasUseKuma
+
+`func (o *DatacenterListItem) HasUseKuma() bool`
+
+HasUseKuma returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
