@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **RequirePlan** | Pointer to **[]string** |  | [optional] 
 **VcpuShares** | Pointer to **float32** | The number of vcpu shares reserved for the instance. | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
+**Aliases** | Pointer to **[]string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
+**Gpu** | Pointer to [**CatalogGPUDetails**](CatalogGPUDetails.md) |  | [optional] 
+**ServiceTypes** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -335,6 +339,106 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *CatalogInstance) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
+
+### GetAliases
+
+`func (o *CatalogInstance) GetAliases() []string`
+
+GetAliases returns the Aliases field if non-nil, zero value otherwise.
+
+### GetAliasesOk
+
+`func (o *CatalogInstance) GetAliasesOk() (*[]string, bool)`
+
+GetAliasesOk returns a tuple with the Aliases field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAliases
+
+`func (o *CatalogInstance) SetAliases(v []string)`
+
+SetAliases sets Aliases field to given value.
+
+### HasAliases
+
+`func (o *CatalogInstance) HasAliases() bool`
+
+HasAliases returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *CatalogInstance) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CatalogInstance) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CatalogInstance) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *CatalogInstance) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### GetGpu
+
+`func (o *CatalogInstance) GetGpu() CatalogGPUDetails`
+
+GetGpu returns the Gpu field if non-nil, zero value otherwise.
+
+### GetGpuOk
+
+`func (o *CatalogInstance) GetGpuOk() (*CatalogGPUDetails, bool)`
+
+GetGpuOk returns a tuple with the Gpu field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGpu
+
+`func (o *CatalogInstance) SetGpu(v CatalogGPUDetails)`
+
+SetGpu sets Gpu field to given value.
+
+### HasGpu
+
+`func (o *CatalogInstance) HasGpu() bool`
+
+HasGpu returns a boolean if a field has been set.
+
+### GetServiceTypes
+
+`func (o *CatalogInstance) GetServiceTypes() []string`
+
+GetServiceTypes returns the ServiceTypes field if non-nil, zero value otherwise.
+
+### GetServiceTypesOk
+
+`func (o *CatalogInstance) GetServiceTypesOk() (*[]string, bool)`
+
+GetServiceTypesOk returns a tuple with the ServiceTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceTypes
+
+`func (o *CatalogInstance) SetServiceTypes(v []string)`
+
+SetServiceTypes sets ServiceTypes field to given value.
+
+### HasServiceTypes
+
+`func (o *CatalogInstance) HasServiceTypes() bool`
+
+HasServiceTypes returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

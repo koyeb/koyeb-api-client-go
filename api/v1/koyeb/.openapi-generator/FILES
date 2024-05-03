@@ -57,6 +57,7 @@ docs/BillingApi.md
 docs/BuildpackBuilder.md
 docs/CannyAuthReply.md
 docs/CatalogDatacentersApi.md
+docs/CatalogGPUDetails.md
 docs/CatalogInstance.md
 docs/CatalogInstanceListItem.md
 docs/CatalogInstancesApi.md
@@ -95,6 +96,7 @@ docs/DeploymentDefinition.md
 docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
 docs/DeploymentEvent.md
+docs/DeploymentGPUInfo.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
@@ -363,6 +365,7 @@ model_auto_release_group.go
 model_azure_container_registry_configuration.go
 model_buildpack_builder.go
 model_canny_auth_reply.go
+model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
 model_confirm_payment_authorization_reply.go
@@ -398,6 +401,7 @@ model_deployment_definition.go
 model_deployment_definition_type.go
 model_deployment_env.go
 model_deployment_event.go
+model_deployment_gpu_info.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go

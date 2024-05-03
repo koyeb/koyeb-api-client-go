@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 ## UpdateApp
 
-> UpdateAppReply UpdateApp(ctx, id).AppName(appName).UpdateMask(updateMask).Execute()
+> UpdateAppReply UpdateApp(ctx, id).App(app).UpdateMask(updateMask).Execute()
 
 Update App
 
@@ -518,12 +518,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the app to update.
-    appName := "appName_example" // string |  (optional)
+    app := *openapiclient.NewUpdateApp() // UpdateApp | 
     updateMask := "updateMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.UpdateApp(context.Background(), id).AppName(appName).UpdateMask(updateMask).Execute()
+    resp, r, err := apiClient.AppsApi.UpdateApp(context.Background(), id).App(app).UpdateMask(updateMask).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.UpdateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -549,7 +549,7 @@ Other parameters are passed through a pointer to a apiUpdateAppRequest struct vi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **appName** | **string** |  | 
+ **app** | [**UpdateApp**](UpdateApp.md) |  | 
  **updateMask** | **string** |  | 
 
 ### Return type

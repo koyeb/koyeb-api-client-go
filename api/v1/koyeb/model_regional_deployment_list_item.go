@@ -25,6 +25,7 @@ type RegionalDeploymentListItem struct {
 	Messages []string `json:"messages,omitempty"`
 	Definition *RegionalDeploymentDefinition `json:"definition,omitempty"`
 	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
+	UseKata *bool `json:"use_kata,omitempty"`
 }
 
 // NewRegionalDeploymentListItem instantiates a new RegionalDeploymentListItem object
@@ -304,6 +305,38 @@ func (o *RegionalDeploymentListItem) SetUseKumaV2(v bool) {
 	o.UseKumaV2 = &v
 }
 
+// GetUseKata returns the UseKata field value if set, zero value otherwise.
+func (o *RegionalDeploymentListItem) GetUseKata() bool {
+	if o == nil || isNil(o.UseKata) {
+		var ret bool
+		return ret
+	}
+	return *o.UseKata
+}
+
+// GetUseKataOk returns a tuple with the UseKata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentListItem) GetUseKataOk() (*bool, bool) {
+	if o == nil || isNil(o.UseKata) {
+    return nil, false
+	}
+	return o.UseKata, true
+}
+
+// HasUseKata returns a boolean if a field has been set.
+func (o *RegionalDeploymentListItem) HasUseKata() bool {
+	if o != nil && !isNil(o.UseKata) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseKata gets a reference to the given bool and assigns it to the UseKata field.
+func (o *RegionalDeploymentListItem) SetUseKata(v bool) {
+	o.UseKata = &v
+}
+
 func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -329,6 +362,9 @@ func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.UseKumaV2) {
 		toSerialize["use_kuma_v2"] = o.UseKumaV2
+	}
+	if !isNil(o.UseKata) {
+		toSerialize["use_kata"] = o.UseKata
 	}
 	return json.Marshal(toSerialize)
 }

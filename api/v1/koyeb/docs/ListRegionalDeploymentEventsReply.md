@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Events** | Pointer to [**[]RegionalDeploymentEvent**](RegionalDeploymentEvent.md) |  | [optional] 
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
 **Order** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -103,31 +102,6 @@ SetOffset sets Offset field to given value.
 `func (o *ListRegionalDeploymentEventsReply) HasOffset() bool`
 
 HasOffset returns a boolean if a field has been set.
-
-### GetCount
-
-`func (o *ListRegionalDeploymentEventsReply) GetCount() int64`
-
-GetCount returns the Count field if non-nil, zero value otherwise.
-
-### GetCountOk
-
-`func (o *ListRegionalDeploymentEventsReply) GetCountOk() (*int64, bool)`
-
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCount
-
-`func (o *ListRegionalDeploymentEventsReply) SetCount(v int64)`
-
-SetCount sets Count field to given value.
-
-### HasCount
-
-`func (o *ListRegionalDeploymentEventsReply) HasCount() bool`
-
-HasCount returns a boolean if a field has been set.
 
 ### GetOrder
 

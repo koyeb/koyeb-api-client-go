@@ -16,7 +16,10 @@ import (
 
 // UpdateDomain struct for UpdateDomain
 type UpdateDomain struct {
+	// To attach or detach from an app for custom domain.
 	AppId *string `json:"app_id,omitempty"`
+	// To change subdomain for auto-assigned domain.
+	Subdomain *string `json:"subdomain,omitempty"`
 }
 
 // NewUpdateDomain instantiates a new UpdateDomain object
@@ -68,10 +71,45 @@ func (o *UpdateDomain) SetAppId(v string) {
 	o.AppId = &v
 }
 
+// GetSubdomain returns the Subdomain field value if set, zero value otherwise.
+func (o *UpdateDomain) GetSubdomain() string {
+	if o == nil || isNil(o.Subdomain) {
+		var ret string
+		return ret
+	}
+	return *o.Subdomain
+}
+
+// GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateDomain) GetSubdomainOk() (*string, bool) {
+	if o == nil || isNil(o.Subdomain) {
+    return nil, false
+	}
+	return o.Subdomain, true
+}
+
+// HasSubdomain returns a boolean if a field has been set.
+func (o *UpdateDomain) HasSubdomain() bool {
+	if o != nil && !isNil(o.Subdomain) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubdomain gets a reference to the given string and assigns it to the Subdomain field.
+func (o *UpdateDomain) SetSubdomain(v string) {
+	o.Subdomain = &v
+}
+
 func (o UpdateDomain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId
+	}
+	if !isNil(o.Subdomain) {
+		toSerialize["subdomain"] = o.Subdomain
 	}
 	return json.Marshal(toSerialize)
 }
