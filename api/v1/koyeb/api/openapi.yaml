@@ -2248,6 +2248,69 @@ paths:
       summary: Resume App
       tags:
       - Apps
+  /v1/archives:
+    post:
+      operationId: CreateArchive
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateArchive'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateArchiveReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create a signed URL to upload an archive.
+      tags:
+      - Archives
+      x-codegen-request-body-name: archive
   /v1/domains:
     get:
       operationId: ListDomains
@@ -10733,9 +10796,6 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
-        gpu_info:
-          name: name
-          count: 6
         created_at: 2000-01-23T04:56:07.000+00:00
         skip_build: true
         version: version
@@ -11027,8 +11087,6 @@ components:
           $ref: '#/components/schemas/DeploymentDatabaseInfo'
         skip_build:
           type: boolean
-        gpu_info:
-          $ref: '#/components/schemas/DeploymentGPUInfo'
         version:
           format: uint64
           type: string
@@ -11306,17 +11364,6 @@ components:
           type: string
         secret:
           type: string
-      type: object
-    DeploymentGPUInfo:
-      example:
-        name: name
-        count: 6
-      properties:
-        name:
-          type: string
-        count:
-          format: int64
-          type: integer
       type: object
     DeploymentInstanceType:
       example:
@@ -11796,9 +11843,6 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
-          gpu_info:
-            name: name
-            count: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           skip_build: true
           version: version
@@ -12667,9 +12711,6 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
-        gpu_info:
-          name: name
-          count: 6
         created_at: 2000-01-23T04:56:07.000+00:00
         version: version
         succeeded_at: 2000-01-23T04:56:07.000+00:00
@@ -12958,8 +12999,6 @@ components:
           $ref: '#/components/schemas/DeploymentProvisioningInfo'
         database_info:
           $ref: '#/components/schemas/DeploymentDatabaseInfo'
-        gpu_info:
-          $ref: '#/components/schemas/DeploymentGPUInfo'
         version:
           format: uint64
           type: string
@@ -12989,9 +13028,6 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
-          gpu_info:
-            name: name
-            count: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           skip_build: true
           version: version
@@ -13301,9 +13337,6 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
-          gpu_info:
-            name: name
-            count: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
           succeeded_at: 2000-01-23T04:56:07.000+00:00
@@ -13567,9 +13600,6 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
-          gpu_info:
-            name: name
-            count: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           version: version
           succeeded_at: 2000-01-23T04:56:07.000+00:00
@@ -14418,6 +14448,64 @@ components:
       properties:
         app:
           $ref: '#/components/schemas/App'
+      type: object
+    Archive:
+      example:
+        size: size
+        organization_id: organization_id
+        upload_url: upload_url
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        deleted_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "The archive id, that can be referenced when creating or updating\
+            \ a service."
+          type: string
+        organization_id:
+          description: Organization owning the archive.
+          type: string
+        upload_url:
+          description: |-
+            The URL where to upload the archive. This URL is signed and can only be
+            used to upload the archive until `valid_until`.
+          type: string
+        size:
+          description: The provisioned space for the archive.
+          format: uint64
+          type: string
+        created_at:
+          description: Date of creation of the archive.
+          format: date-time
+          type: string
+        deleted_at:
+          description: |-
+            This field is automatically set by Koyeb when the
+            archive is garbage collected.
+          format: date-time
+          type: string
+      type: object
+    CreateArchive:
+      example:
+        size: size
+      properties:
+        size:
+          description: "How much space to provision for the archive, in bytes."
+          format: uint64
+          type: string
+      type: object
+    CreateArchiveReply:
+      example:
+        archive:
+          size: size
+          organization_id: organization_id
+          upload_url: upload_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+      properties:
+        archive:
+          $ref: '#/components/schemas/Archive'
       type: object
     CreateDomain:
       example:
@@ -15445,6 +15533,7 @@ components:
       example:
         memory: memory
         count: 1
+        name: name
         brand: brand
       properties:
         count:
@@ -15456,6 +15545,9 @@ components:
           type: string
         memory:
           title: GPU memory
+          type: string
+        name:
+          title: Name of GPU
           type: string
       type: object
     CatalogInstance:
@@ -15474,6 +15566,7 @@ components:
         gpu:
           memory: memory
           count: 1
+          name: name
           brand: brand
         price_monthly: price_monthly
         require_plan:
@@ -15563,6 +15656,7 @@ components:
         gpu:
           memory: memory
           count: 1
+          name: name
           brand: brand
         price_monthly: price_monthly
         require_plan:
@@ -15653,6 +15747,7 @@ components:
           gpu:
             memory: memory
             count: 1
+            name: name
             brand: brand
           price_monthly: price_monthly
           require_plan:
@@ -15688,6 +15783,7 @@ components:
           gpu:
             memory: memory
             count: 1
+            name: name
             brand: brand
           price_monthly: price_monthly
           require_plan:
@@ -15715,6 +15811,7 @@ components:
           gpu:
             memory: memory
             count: 1
+            name: name
             brand: brand
           price_monthly: price_monthly
           require_plan:

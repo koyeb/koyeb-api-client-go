@@ -19,6 +19,7 @@ type CatalogGPUDetails struct {
 	Count *int64 `json:"count,omitempty"`
 	Brand *string `json:"brand,omitempty"`
 	Memory *string `json:"memory,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewCatalogGPUDetails instantiates a new CatalogGPUDetails object
@@ -134,6 +135,38 @@ func (o *CatalogGPUDetails) SetMemory(v string) {
 	o.Memory = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CatalogGPUDetails) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogGPUDetails) GetNameOk() (*string, bool) {
+	if o == nil || isNil(o.Name) {
+    return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CatalogGPUDetails) HasName() bool {
+	if o != nil && !isNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CatalogGPUDetails) SetName(v string) {
+	o.Name = &v
+}
+
 func (o CatalogGPUDetails) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Count) {
@@ -144,6 +177,9 @@ func (o CatalogGPUDetails) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Memory) {
 		toSerialize["memory"] = o.Memory
+	}
+	if !isNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
 }
