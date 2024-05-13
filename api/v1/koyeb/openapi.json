@@ -2323,6 +2323,75 @@
         ]
       }
     },
+    "/v1/archives": {
+      "post": {
+        "summary": "Create a signed URL to upload an archive.",
+        "operationId": "CreateArchive",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateArchiveReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "archive",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateArchive"
+            }
+          }
+        ],
+        "tags": [
+          "Archives"
+        ]
+      }
+    },
     "/v1/domains": {
       "get": {
         "operationId": "ListDomains",
@@ -10318,9 +10387,6 @@
         "skip_build": {
           "type": "boolean"
         },
-        "gpu_info": {
-          "$ref": "#/definitions/DeploymentGPUInfo"
-        },
         "version": {
           "type": "string",
           "format": "uint64"
@@ -10451,18 +10517,6 @@
         },
         "secret": {
           "type": "string"
-        }
-      }
-    },
-    "DeploymentGPUInfo": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int64"
         }
       }
     },
@@ -11182,9 +11236,6 @@
         "database_info": {
           "$ref": "#/definitions/DeploymentDatabaseInfo"
         },
-        "gpu_info": {
-          "$ref": "#/definitions/DeploymentGPUInfo"
-        },
         "version": {
           "type": "string",
           "format": "uint64"
@@ -11567,6 +11618,56 @@
         "app": {
           "$ref": "#/definitions/App",
           "title": "The entity updated"
+        }
+      }
+    },
+    "Archive": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The archive id, that can be referenced when creating or updating a service."
+        },
+        "organization_id": {
+          "type": "string",
+          "description": "Organization owning the archive."
+        },
+        "upload_url": {
+          "type": "string",
+          "description": "The URL where to upload the archive. This URL is signed and can only be\nused to upload the archive until `valid_until`."
+        },
+        "size": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The provisioned space for the archive."
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date of creation of the archive."
+        },
+        "deleted_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "This field is automatically set by Koyeb when the\narchive is garbage collected."
+        }
+      }
+    },
+    "CreateArchive": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "string",
+          "format": "uint64",
+          "description": "How much space to provision for the archive, in bytes."
+        }
+      }
+    },
+    "CreateArchiveReply": {
+      "type": "object",
+      "properties": {
+        "archive": {
+          "$ref": "#/definitions/Archive"
         }
       }
     },
@@ -12263,6 +12364,10 @@
         "memory": {
           "type": "string",
           "title": "GPU memory"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of GPU"
         }
       }
     },

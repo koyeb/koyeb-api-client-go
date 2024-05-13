@@ -5,6 +5,7 @@ README.md
 api/openapi.yaml
 api_activity.go
 api_apps.go
+api_archives.go
 api_billing.go
 api_catalog_datacenters.go
 api_catalog_instances.go
@@ -50,6 +51,8 @@ docs/AppStatus.md
 docs/AppUsage.md
 docs/AppsApi.md
 docs/AppsSummary.md
+docs/Archive.md
+docs/ArchivesApi.md
 docs/AutoRelease.md
 docs/AutoReleaseGroup.md
 docs/AzureContainerRegistryConfiguration.md
@@ -66,6 +69,8 @@ docs/ConfirmPaymentAuthorizationReply.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
 docs/CreateAppReply.md
+docs/CreateArchive.md
+docs/CreateArchiveReply.md
 docs/CreateCredential.md
 docs/CreateCredentialReply.md
 docs/CreateDomain.md
@@ -96,7 +101,6 @@ docs/DeploymentDefinition.md
 docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
 docs/DeploymentEvent.md
-docs/DeploymentGPUInfo.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
@@ -360,6 +364,7 @@ model_app_list_item.go
 model_app_status.go
 model_app_usage.go
 model_apps_summary.go
+model_archive.go
 model_auto_release.go
 model_auto_release_group.go
 model_azure_container_registry_configuration.go
@@ -372,6 +377,8 @@ model_confirm_payment_authorization_reply.go
 model_create_account_request.go
 model_create_app.go
 model_create_app_reply.go
+model_create_archive.go
+model_create_archive_reply.go
 model_create_credential.go
 model_create_credential_reply.go
 model_create_domain.go
@@ -401,7 +408,6 @@ model_deployment_definition.go
 model_deployment_definition_type.go
 model_deployment_env.go
 model_deployment_event.go
-model_deployment_gpu_info.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go
@@ -629,6 +635,7 @@ model_verify_docker_image_reply_err_code.go
 response.go
 test/api_activity_test.go
 test/api_apps_test.go
+test/api_archives_test.go
 test/api_billing_test.go
 test/api_catalog_datacenters_test.go
 test/api_catalog_instances_test.go

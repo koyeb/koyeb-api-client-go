@@ -91,6 +91,7 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
+*ArchivesApi* | [**CreateArchive**](docs/ArchivesApi.md#createarchive) | **Post** /v1/archives | Create a signed URL to upload an archive.
 *BillingApi* | [**HasUnpaidInvoices**](docs/BillingApi.md#hasunpaidinvoices) | **Get** /v1/billing/has_unpaid_invoices | Experimental: Has unpaid invoices
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
@@ -215,6 +216,7 @@ Class | Method | HTTP request | Description
  - [AppStatus](docs/AppStatus.md)
  - [AppUsage](docs/AppUsage.md)
  - [AppsSummary](docs/AppsSummary.md)
+ - [Archive](docs/Archive.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
@@ -227,6 +229,8 @@ Class | Method | HTTP request | Description
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
+ - [CreateArchive](docs/CreateArchive.md)
+ - [CreateArchiveReply](docs/CreateArchiveReply.md)
  - [CreateCredential](docs/CreateCredential.md)
  - [CreateCredentialReply](docs/CreateCredentialReply.md)
  - [CreateDomain](docs/CreateDomain.md)
@@ -256,7 +260,6 @@ Class | Method | HTTP request | Description
  - [DeploymentDefinitionType](docs/DeploymentDefinitionType.md)
  - [DeploymentEnv](docs/DeploymentEnv.md)
  - [DeploymentEvent](docs/DeploymentEvent.md)
- - [DeploymentGPUInfo](docs/DeploymentGPUInfo.md)
  - [DeploymentHealthCheck](docs/DeploymentHealthCheck.md)
  - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
