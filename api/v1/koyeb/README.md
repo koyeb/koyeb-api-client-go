@@ -217,6 +217,8 @@ Class | Method | HTTP request | Description
  - [AppUsage](docs/AppUsage.md)
  - [AppsSummary](docs/AppsSummary.md)
  - [Archive](docs/Archive.md)
+ - [ArchiveDeploymentMetadata](docs/ArchiveDeploymentMetadata.md)
+ - [ArchiveSource](docs/ArchiveSource.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)

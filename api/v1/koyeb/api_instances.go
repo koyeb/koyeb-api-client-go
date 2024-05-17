@@ -800,6 +800,7 @@ type ApiListInstancesRequest struct {
 	deploymentId *string
 	regionalDeploymentId *string
 	allocationId *string
+	replicaIndex *string
 	statuses *[]string
 	limit *string
 	offset *string
@@ -835,6 +836,12 @@ func (r ApiListInstancesRequest) RegionalDeploymentId(regionalDeploymentId strin
 // (Optional) Filter on allocation id
 func (r ApiListInstancesRequest) AllocationId(allocationId string) ApiListInstancesRequest {
 	r.allocationId = &allocationId
+	return r
+}
+
+// (Optional) Filter on replica index
+func (r ApiListInstancesRequest) ReplicaIndex(replicaIndex string) ApiListInstancesRequest {
+	r.replicaIndex = &replicaIndex
 	return r
 }
 
@@ -926,6 +933,9 @@ func (a *InstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (*
 	}
 	if r.allocationId != nil {
 		localVarQueryParams.Add("allocation_id", parameterToString(*r.allocationId, ""))
+	}
+	if r.replicaIndex != nil {
+		localVarQueryParams.Add("replica_index", parameterToString(*r.replicaIndex, ""))
 	}
 	if r.statuses != nil {
 		t := *r.statuses
