@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## ListInstances
 
-> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
+> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
 
 List Instances
 
@@ -256,6 +256,7 @@ func main() {
     deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id (optional)
     regionalDeploymentId := "regionalDeploymentId_example" // string | (Optional) Filter on regional deployment id (optional)
     allocationId := "allocationId_example" // string | (Optional) Filter on allocation id (optional)
+    replicaIndex := "replicaIndex_example" // string | (Optional) Filter on replica index (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter on instance statuses (optional)
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
@@ -265,7 +266,7 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
+    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -291,6 +292,7 @@ Name | Type | Description  | Notes
  **deploymentId** | **string** | (Optional) Filter on deployment id | 
  **regionalDeploymentId** | **string** | (Optional) Filter on regional deployment id | 
  **allocationId** | **string** | (Optional) Filter on allocation id | 
+ **replicaIndex** | **string** | (Optional) Filter on replica index | 
  **statuses** | **[]string** | (Optional) Filter on instance statuses | 
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 

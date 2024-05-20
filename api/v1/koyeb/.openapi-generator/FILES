@@ -52,6 +52,8 @@ docs/AppUsage.md
 docs/AppsApi.md
 docs/AppsSummary.md
 docs/Archive.md
+docs/ArchiveDeploymentMetadata.md
+docs/ArchiveSource.md
 docs/ArchivesApi.md
 docs/AutoRelease.md
 docs/AutoReleaseGroup.md
@@ -365,6 +367,8 @@ model_app_status.go
 model_app_usage.go
 model_apps_summary.go
 model_archive.go
+model_archive_deployment_metadata.go
+model_archive_source.go
 model_auto_release.go
 model_auto_release_group.go
 model_azure_container_registry_configuration.go

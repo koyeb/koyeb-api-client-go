@@ -30,6 +30,7 @@ type RegionalDeploymentDefinition struct {
 	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
+	Archive *ArchiveSource `json:"archive,omitempty"`
 }
 
 // NewRegionalDeploymentDefinition instantiates a new RegionalDeploymentDefinition object
@@ -501,6 +502,38 @@ func (o *RegionalDeploymentDefinition) SetGit(v GitSource) {
 	o.Git = &v
 }
 
+// GetArchive returns the Archive field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetArchive() ArchiveSource {
+	if o == nil || isNil(o.Archive) {
+		var ret ArchiveSource
+		return ret
+	}
+	return *o.Archive
+}
+
+// GetArchiveOk returns a tuple with the Archive field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetArchiveOk() (*ArchiveSource, bool) {
+	if o == nil || isNil(o.Archive) {
+    return nil, false
+	}
+	return o.Archive, true
+}
+
+// HasArchive returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasArchive() bool {
+	if o != nil && !isNil(o.Archive) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchive gets a reference to the given ArchiveSource and assigns it to the Archive field.
+func (o *RegionalDeploymentDefinition) SetArchive(v ArchiveSource) {
+	o.Archive = &v
+}
+
 func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -544,6 +577,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Git) {
 		toSerialize["git"] = o.Git
+	}
+	if !isNil(o.Archive) {
+		toSerialize["archive"] = o.Archive
 	}
 	return json.Marshal(toSerialize)
 }

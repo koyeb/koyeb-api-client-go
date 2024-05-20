@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Database** | Pointer to [**DatabaseSource**](DatabaseSource.md) |  | [optional] 
+**Archive** | Pointer to [**ArchiveSource**](ArchiveSource.md) |  | [optional] 
 
 ## Methods
 
@@ -361,6 +362,31 @@ SetDatabase sets Database field to given value.
 `func (o *DeploymentDefinition) HasDatabase() bool`
 
 HasDatabase returns a boolean if a field has been set.
+
+### GetArchive
+
+`func (o *DeploymentDefinition) GetArchive() ArchiveSource`
+
+GetArchive returns the Archive field if non-nil, zero value otherwise.
+
+### GetArchiveOk
+
+`func (o *DeploymentDefinition) GetArchiveOk() (*ArchiveSource, bool)`
+
+GetArchiveOk returns a tuple with the Archive field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchive
+
+`func (o *DeploymentDefinition) SetArchive(v ArchiveSource)`
+
+SetArchive sets Archive field to given value.
+
+### HasArchive
+
+`func (o *DeploymentDefinition) HasArchive() bool`
+
+HasArchive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -25,6 +25,7 @@ type Instance struct {
 	ServiceId *string `json:"service_id,omitempty"`
 	RegionalDeploymentId *string `json:"regional_deployment_id,omitempty"`
 	AllocationId *string `json:"allocation_id,omitempty"`
+	ReplicaIndex *int64 `json:"replica_index,omitempty"`
 	Region *string `json:"region,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
 	Hypervisor *string `json:"hypervisor,omitempty"`
@@ -312,6 +313,38 @@ func (o *Instance) HasAllocationId() bool {
 // SetAllocationId gets a reference to the given string and assigns it to the AllocationId field.
 func (o *Instance) SetAllocationId(v string) {
 	o.AllocationId = &v
+}
+
+// GetReplicaIndex returns the ReplicaIndex field value if set, zero value otherwise.
+func (o *Instance) GetReplicaIndex() int64 {
+	if o == nil || isNil(o.ReplicaIndex) {
+		var ret int64
+		return ret
+	}
+	return *o.ReplicaIndex
+}
+
+// GetReplicaIndexOk returns a tuple with the ReplicaIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Instance) GetReplicaIndexOk() (*int64, bool) {
+	if o == nil || isNil(o.ReplicaIndex) {
+    return nil, false
+	}
+	return o.ReplicaIndex, true
+}
+
+// HasReplicaIndex returns a boolean if a field has been set.
+func (o *Instance) HasReplicaIndex() bool {
+	if o != nil && !isNil(o.ReplicaIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplicaIndex gets a reference to the given int64 and assigns it to the ReplicaIndex field.
+func (o *Instance) SetReplicaIndex(v int64) {
+	o.ReplicaIndex = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
@@ -627,6 +660,9 @@ func (o Instance) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AllocationId) {
 		toSerialize["allocation_id"] = o.AllocationId
+	}
+	if !isNil(o.ReplicaIndex) {
+		toSerialize["replica_index"] = o.ReplicaIndex
 	}
 	if !isNil(o.Region) {
 		toSerialize["region"] = o.Region

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **UseKumaV2** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
+**Archive** | Pointer to [**ArchiveSource**](ArchiveSource.md) |  | [optional] 
 
 ## Methods
 
@@ -387,6 +388,31 @@ SetGit sets Git field to given value.
 `func (o *RegionalDeploymentDefinition) HasGit() bool`
 
 HasGit returns a boolean if a field has been set.
+
+### GetArchive
+
+`func (o *RegionalDeploymentDefinition) GetArchive() ArchiveSource`
+
+GetArchive returns the Archive field if non-nil, zero value otherwise.
+
+### GetArchiveOk
+
+`func (o *RegionalDeploymentDefinition) GetArchiveOk() (*ArchiveSource, bool)`
+
+GetArchiveOk returns a tuple with the Archive field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchive
+
+`func (o *RegionalDeploymentDefinition) SetArchive(v ArchiveSource)`
+
+SetArchive sets Archive field to given value.
+
+### HasArchive
+
+`func (o *RegionalDeploymentDefinition) HasArchive() bool`
+
+HasArchive returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
