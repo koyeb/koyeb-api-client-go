@@ -3114,6 +3114,69 @@ paths:
       tags:
       - Services
       x-codegen-request-body-name: service
+  /v1/services-autocomplete:
+    post:
+      operationId: Autocomplete
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/AutocompleteRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AutocompleteReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Generate autocomplete definition for a service
+      tags:
+      - Services
+      x-codegen-request-body-name: body
   /v1/services/{id}:
     delete:
       description: Service deletion is allowed for all status.
@@ -9955,14 +10018,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -9977,14 +10040,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -10014,6 +10077,19 @@ components:
           regions:
           - regions
           - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
           skip_cache: true
           archive:
             id: id
@@ -10192,7 +10268,7 @@ components:
             active_time_seconds: active_time_seconds
             default_branch_logical_size: default_branch_logical_size
             default_branch_name: default_branch_name
-            server_port: 6
+            server_port: 7
             default_branch_id: default_branch_id
             compute_time_seconds: compute_time_seconds
             data_storage_bytes_hour: data_storage_bytes_hour
@@ -10289,7 +10365,7 @@ components:
           active_time_seconds: active_time_seconds
           default_branch_logical_size: default_branch_logical_size
           default_branch_name: default_branch_name
-          server_port: 6
+          server_port: 7
           default_branch_id: default_branch_id
           compute_time_seconds: compute_time_seconds
           data_storage_bytes_hour: data_storage_bytes_hour
@@ -10311,6 +10387,19 @@ components:
         regions:
         - regions
         - regions
+        volumes:
+        - path: path
+          replica_index: 1
+          id: id
+          scopes:
+          - scopes
+          - scopes
+        - path: path
+          replica_index: 1
+          id: id
+          scopes:
+          - scopes
+          - scopes
         skip_cache: true
         archive:
           id: id
@@ -10505,6 +10594,10 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentHealthCheck'
           type: array
+        volumes:
+          items:
+            $ref: '#/components/schemas/DeploymentVolume'
+          type: array
         skip_cache:
           type: boolean
         docker:
@@ -10667,14 +10760,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -10689,14 +10782,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -10726,6 +10819,19 @@ components:
           regions:
           - regions
           - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
           skip_cache: true
           archive:
             id: id
@@ -10904,7 +11010,7 @@ components:
             active_time_seconds: active_time_seconds
             default_branch_logical_size: default_branch_logical_size
             default_branch_name: default_branch_name
-            server_port: 6
+            server_port: 7
             default_branch_id: default_branch_id
             compute_time_seconds: compute_time_seconds
             data_storage_bytes_hour: data_storage_bytes_hour
@@ -11012,7 +11118,7 @@ components:
         active_time_seconds: active_time_seconds
         default_branch_logical_size: default_branch_logical_size
         default_branch_name: default_branch_name
-        server_port: 6
+        server_port: 7
         default_branch_id: default_branch_id
         compute_time_seconds: compute_time_seconds
         data_storage_bytes_hour: data_storage_bytes_hour
@@ -11089,14 +11195,14 @@ components:
             - messages
             - messages
             started_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 6
             status: null
           - finished_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
             started_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 6
             status: null
           name: name
           messages:
@@ -11111,14 +11217,14 @@ components:
             - messages
             - messages
             started_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 6
             status: null
           - finished_at: 2000-01-23T04:56:07.000+00:00
             messages:
             - messages
             - messages
             started_at: 2000-01-23T04:56:07.000+00:00
-            id: 1
+            id: 6
             status: null
           name: name
           messages:
@@ -11150,14 +11256,14 @@ components:
           - messages
           - messages
           started_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 6
           status: null
         - finished_at: 2000-01-23T04:56:07.000+00:00
           messages:
           - messages
           - messages
           started_at: 2000-01-23T04:56:07.000+00:00
-          id: 1
+          id: 6
           status: null
         name: name
         messages:
@@ -11192,7 +11298,7 @@ components:
         - messages
         - messages
         started_at: 2000-01-23T04:56:07.000+00:00
-        id: 1
+        id: 6
         status: null
       properties:
         id:
@@ -11307,6 +11413,32 @@ components:
           format: int64
           type: integer
       type: object
+    DeploymentVolume:
+      example:
+        path: path
+        replica_index: 1
+        id: id
+        scopes:
+        - scopes
+        - scopes
+      properties:
+        id:
+          title: the id of the volume
+          type: string
+        path:
+          title: the path where the volume is mounted to
+          type: string
+        replica_index:
+          format: int64
+          title: "optionally, explicitly choose the replica index to mount the volume\
+            \ to"
+          type: integer
+        scopes:
+          items:
+            type: string
+          title: scope of the associated
+          type: array
+      type: object
     DockerBuilder:
       example:
         args:
@@ -11415,14 +11547,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -11437,14 +11569,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -11474,6 +11606,19 @@ components:
             regions:
             - regions
             - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
             skip_cache: true
             archive:
               id: id
@@ -11652,7 +11797,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 6
+              server_port: 7
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -11849,14 +11994,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -11871,14 +12016,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -11908,6 +12053,19 @@ components:
             regions:
             - regions
             - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
             skip_cache: true
             archive:
               id: id
@@ -12086,7 +12244,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 6
+              server_port: 7
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -12131,14 +12289,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -12153,14 +12311,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -12190,6 +12348,19 @@ components:
             regions:
             - regions
             - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
             skip_cache: true
             archive:
               id: id
@@ -12368,7 +12539,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 6
+              server_port: 7
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -12376,9 +12547,9 @@ components:
           terminated_at: 2000-01-23T04:56:07.000+00:00
           allocated_at: 2000-01-23T04:56:07.000+00:00
           status: null
-        offset: 1
-        limit: 7
-        count: 4
+        offset: 4
+        limit: 1
+        count: 5
       properties:
         deployments:
           items:
@@ -13487,14 +13658,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -13509,14 +13680,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -14034,14 +14205,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -14056,14 +14227,14 @@ components:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             - finished_at: 2000-01-23T04:56:07.000+00:00
               messages:
               - messages
               - messages
               started_at: 2000-01-23T04:56:07.000+00:00
-              id: 1
+              id: 6
               status: null
             name: name
             messages:
@@ -14734,6 +14905,227 @@ components:
           type: string
       title: Configuration extracted from the latest deployment in this deployment_group
       type: object
+    AutocompleteReply:
+      example:
+        user_env:
+        - user_env
+        - user_env
+        system_env:
+        - system_env
+        - system_env
+        secrets:
+        - secrets
+        - secrets
+      properties:
+        secrets:
+          items:
+            type: string
+          title: List of available secrets
+          type: array
+        user_env:
+          items:
+            type: string
+          title: List of available user's environment variables
+          type: array
+        system_env:
+          items:
+            type: string
+          title: List of available system's environment variables
+          type: array
+      type: object
+    AutocompleteRequest:
+      example:
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          regions:
+          - regions
+          - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          skip_cache: true
+          archive:
+            id: id
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            image: image
+            image_registry_secret: image_registry_secret
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            command: command
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          database:
+            neon_postgres:
+              databases:
+              - owner: owner
+                name: name
+              - owner: owner
+                name: name
+              roles:
+              - name: name
+                secret: secret
+              - name: name
+                secret: secret
+              region: region
+              instance_type: instance_type
+              pg_version: 1
+          git:
+            run_command: run_command
+            workdir: workdir
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            branch: branch
+            sha: sha
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+          health_checks:
+          - tcp:
+              port: 7
+            restart_limit: 2
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 1
+            interval: 3
+            grace_period: 9
+            timeout: 4
+          - tcp:
+              port: 7
+            restart_limit: 2
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 1
+            interval: 3
+            grace_period: 9
+            timeout: 4
+          name: name
+      properties:
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+      type: object
     CreateService:
       example:
         definition:
@@ -14749,6 +15141,19 @@ components:
           regions:
           - regions
           - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
           skip_cache: true
           archive:
             id: id
@@ -15221,14 +15626,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -15243,14 +15648,14 @@ components:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               - finished_at: 2000-01-23T04:56:07.000+00:00
                 messages:
                 - messages
                 - messages
                 started_at: 2000-01-23T04:56:07.000+00:00
-                id: 1
+                id: 6
                 status: null
               name: name
               messages:
@@ -15280,6 +15685,19 @@ components:
             regions:
             - regions
             - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
             skip_cache: true
             archive:
               id: id
@@ -15458,7 +15876,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 6
+              server_port: 7
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -15764,6 +16182,19 @@ components:
           regions:
           - regions
           - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
           skip_cache: true
           archive:
             id: id
@@ -16656,7 +17087,6 @@ components:
             id: id
             type: type
         limit: 0
-        count: 1
       properties:
         activities:
           items:
@@ -16666,9 +17096,6 @@ components:
           format: int64
           type: integer
         offset:
-          format: int64
-          type: integer
-        count:
           format: int64
           type: integer
       type: object

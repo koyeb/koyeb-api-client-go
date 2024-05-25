@@ -3358,6 +3358,75 @@
         ]
       }
     },
+    "/v1/services-autocomplete": {
+      "post": {
+        "summary": "Generate autocomplete definition for a service",
+        "operationId": "Autocomplete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AutocompleteReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AutocompleteRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Services"
+        ]
+      }
+    },
     "/v1/services/{id}": {
       "get": {
         "summary": "Get Service",
@@ -10405,6 +10474,12 @@
             "$ref": "#/definitions/DeploymentHealthCheck"
           }
         },
+        "volumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentVolume"
+          }
+        },
         "skip_cache": {
           "type": "boolean"
         },
@@ -10861,6 +10936,31 @@
         "value": {
           "type": "integer",
           "format": "int64"
+        }
+      }
+    },
+    "DeploymentVolume": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the id of the volume"
+        },
+        "path": {
+          "type": "string",
+          "title": "the path where the volume is mounted to"
+        },
+        "replica_index": {
+          "type": "integer",
+          "format": "int64",
+          "title": "optionally, explicitly choose the replica index to mount the volume to"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "scope of the associated"
         }
       }
     },
@@ -12140,6 +12240,41 @@
       },
       "title": "Configuration extracted from the latest deployment in this deployment_group"
     },
+    "AutocompleteReply": {
+      "type": "object",
+      "properties": {
+        "secrets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of available secrets"
+        },
+        "user_env": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of available user's environment variables"
+        },
+        "system_env": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "List of available system's environment variables"
+        }
+      }
+    },
+    "AutocompleteRequest": {
+      "type": "object",
+      "properties": {
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition",
+          "title": "Deployment definition"
+        }
+      }
+    },
     "CreateService": {
       "type": "object",
       "properties": {
@@ -13014,10 +13149,6 @@
           "format": "int64"
         },
         "offset": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "count": {
           "type": "integer",
           "format": "int64"
         }

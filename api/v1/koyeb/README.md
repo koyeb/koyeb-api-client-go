@@ -181,6 +181,7 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | 
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
+*ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Generate autocomplete definition for a service
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
@@ -221,6 +222,8 @@ Class | Method | HTTP request | Description
  - [ArchiveSource](docs/ArchiveSource.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
+ - [AutocompleteReply](docs/AutocompleteReply.md)
+ - [AutocompleteRequest](docs/AutocompleteRequest.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
  - [BuildpackBuilder](docs/BuildpackBuilder.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
@@ -280,6 +283,7 @@ Class | Method | HTTP request | Description
  - [DeploymentScalingTargetAverageMem](docs/DeploymentScalingTargetAverageMem.md)
  - [DeploymentScalingTargetRequestsPerSecond](docs/DeploymentScalingTargetRequestsPerSecond.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
+ - [DeploymentVolume](docs/DeploymentVolume.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)

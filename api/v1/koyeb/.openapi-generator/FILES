@@ -57,6 +57,8 @@ docs/ArchiveSource.md
 docs/ArchivesApi.md
 docs/AutoRelease.md
 docs/AutoReleaseGroup.md
+docs/AutocompleteReply.md
+docs/AutocompleteRequest.md
 docs/AzureContainerRegistryConfiguration.md
 docs/BillingApi.md
 docs/BuildpackBuilder.md
@@ -121,6 +123,7 @@ docs/DeploymentScalingTargetAverageCPU.md
 docs/DeploymentScalingTargetAverageMem.md
 docs/DeploymentScalingTargetRequestsPerSecond.md
 docs/DeploymentStatus.md
+docs/DeploymentVolume.md
 docs/DeploymentsApi.md
 docs/DesiredDeployment.md
 docs/DesiredDeploymentGroup.md
@@ -371,6 +374,8 @@ model_archive_deployment_metadata.go
 model_archive_source.go
 model_auto_release.go
 model_auto_release_group.go
+model_autocomplete_reply.go
+model_autocomplete_request.go
 model_azure_container_registry_configuration.go
 model_buildpack_builder.go
 model_canny_auth_reply.go
@@ -430,6 +435,7 @@ model_deployment_scaling_target_average_cpu.go
 model_deployment_scaling_target_average_mem.go
 model_deployment_scaling_target_requests_per_second.go
 model_deployment_status.go
+model_deployment_volume.go
 model_desired_deployment.go
 model_desired_deployment_group.go
 model_digital_ocean_registry_configuration.go
