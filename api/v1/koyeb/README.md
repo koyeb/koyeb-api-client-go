@@ -281,6 +281,7 @@ Class | Method | HTTP request | Description
  - [DeploymentScalingTarget](docs/DeploymentScalingTarget.md)
  - [DeploymentScalingTargetAverageCPU](docs/DeploymentScalingTargetAverageCPU.md)
  - [DeploymentScalingTargetAverageMem](docs/DeploymentScalingTargetAverageMem.md)
+ - [DeploymentScalingTargetConcurrentRequests](docs/DeploymentScalingTargetConcurrentRequests.md)
  - [DeploymentScalingTargetRequestsPerSecond](docs/DeploymentScalingTargetRequestsPerSecond.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
  - [DeploymentVolume](docs/DeploymentVolume.md)

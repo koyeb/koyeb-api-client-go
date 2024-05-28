@@ -10909,6 +10909,9 @@
         },
         "requests_per_second": {
           "$ref": "#/definitions/DeploymentScalingTargetRequestsPerSecond"
+        },
+        "concurrent_requests": {
+          "$ref": "#/definitions/DeploymentScalingTargetConcurrentRequests"
         }
       }
     },
@@ -10922,6 +10925,15 @@
       }
     },
     "DeploymentScalingTargetAverageMem": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetConcurrentRequests": {
       "type": "object",
       "properties": {
         "value": {

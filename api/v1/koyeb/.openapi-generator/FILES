@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
 README.md
 api/openapi.yaml
@@ -121,6 +120,7 @@ docs/DeploymentScaling.md
 docs/DeploymentScalingTarget.md
 docs/DeploymentScalingTargetAverageCPU.md
 docs/DeploymentScalingTargetAverageMem.md
+docs/DeploymentScalingTargetConcurrentRequests.md
 docs/DeploymentScalingTargetRequestsPerSecond.md
 docs/DeploymentStatus.md
 docs/DeploymentVolume.md
@@ -433,6 +433,7 @@ model_deployment_scaling.go
 model_deployment_scaling_target.go
 model_deployment_scaling_target_average_cpu.go
 model_deployment_scaling_target_average_mem.go
+model_deployment_scaling_target_concurrent_requests.go
 model_deployment_scaling_target_requests_per_second.go
 model_deployment_status.go
 model_deployment_volume.go
