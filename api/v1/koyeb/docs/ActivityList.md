@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Activities** | Pointer to [**[]Activity**](Activity.md) |  | [optional] 
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
-**Count** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -102,31 +101,6 @@ SetOffset sets Offset field to given value.
 `func (o *ActivityList) HasOffset() bool`
 
 HasOffset returns a boolean if a field has been set.
-
-### GetCount
-
-`func (o *ActivityList) GetCount() int64`
-
-GetCount returns the Count field if non-nil, zero value otherwise.
-
-### GetCountOk
-
-`func (o *ActivityList) GetCountOk() (*int64, bool)`
-
-GetCountOk returns a tuple with the Count field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCount
-
-`func (o *ActivityList) SetCount(v int64)`
-
-SetCount sets Count field to given value.
-
-### HasCount
-
-`func (o *ActivityList) HasCount() bool`
-
-HasCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

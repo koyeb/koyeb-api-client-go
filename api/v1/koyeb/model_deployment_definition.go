@@ -25,6 +25,7 @@ type DeploymentDefinition struct {
 	Scalings []DeploymentScaling `json:"scalings,omitempty"`
 	InstanceTypes []DeploymentInstanceType `json:"instance_types,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
+	Volumes []DeploymentVolume `json:"volumes,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -341,6 +342,38 @@ func (o *DeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck) {
 	o.HealthChecks = v
 }
 
+// GetVolumes returns the Volumes field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetVolumes() []DeploymentVolume {
+	if o == nil || isNil(o.Volumes) {
+		var ret []DeploymentVolume
+		return ret
+	}
+	return o.Volumes
+}
+
+// GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetVolumesOk() ([]DeploymentVolume, bool) {
+	if o == nil || isNil(o.Volumes) {
+    return nil, false
+	}
+	return o.Volumes, true
+}
+
+// HasVolumes returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasVolumes() bool {
+	if o != nil && !isNil(o.Volumes) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumes gets a reference to the given []DeploymentVolume and assigns it to the Volumes field.
+func (o *DeploymentDefinition) SetVolumes(v []DeploymentVolume) {
+	o.Volumes = v
+}
+
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetSkipCache() bool {
 	if o == nil || isNil(o.SkipCache) {
@@ -529,6 +562,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.HealthChecks) {
 		toSerialize["health_checks"] = o.HealthChecks
+	}
+	if !isNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache
