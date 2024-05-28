@@ -20,7 +20,8 @@ clean:
 .PHONY: api/v1/koyeb/openapi.json
 api/v1/koyeb/openapi.json:
 	mkdir -p api/v1/koyeb
-	curl -s $(KOYEB_API)/public.swagger.json > api/v1/koyeb/openapi.json
+	#curl -s $(KOYEB_API)/public.swagger.json > api/v1/koyeb/openapi.json
+	cp /Users/niluje/dev/koyeb/api.koyeb.com/misc/swagger/gen/public.swagger.json api/v1/koyeb/openapi.json
 
 test:
 	go test $(TEST_OPTS) ./...
