@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Scalings** | Pointer to [**[]DeploymentScaling**](DeploymentScaling.md) |  | [optional] 
 **InstanceTypes** | Pointer to [**[]DeploymentInstanceType**](DeploymentInstanceType.md) |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
+**Volumes** | Pointer to [**[]DeploymentVolume**](DeploymentVolume.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
@@ -262,6 +263,31 @@ SetHealthChecks sets HealthChecks field to given value.
 `func (o *DeploymentDefinition) HasHealthChecks() bool`
 
 HasHealthChecks returns a boolean if a field has been set.
+
+### GetVolumes
+
+`func (o *DeploymentDefinition) GetVolumes() []DeploymentVolume`
+
+GetVolumes returns the Volumes field if non-nil, zero value otherwise.
+
+### GetVolumesOk
+
+`func (o *DeploymentDefinition) GetVolumesOk() (*[]DeploymentVolume, bool)`
+
+GetVolumesOk returns a tuple with the Volumes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVolumes
+
+`func (o *DeploymentDefinition) SetVolumes(v []DeploymentVolume)`
+
+SetVolumes sets Volumes field to given value.
+
+### HasVolumes
+
+`func (o *DeploymentDefinition) HasVolumes() bool`
+
+HasVolumes returns a boolean if a field has been set.
 
 ### GetSkipCache
 

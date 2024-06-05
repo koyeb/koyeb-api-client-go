@@ -121,6 +121,7 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstanceEvents**](docs/InstancesApi.md#listinstanceevents) | **Get** /v1/instance_events | List Instance events
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
+*IntercomApi* | [**GetIntercomProfile**](docs/IntercomApi.md#getintercomprofile) | **Get** /v1/intercom/profile | Get intercom profile
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
@@ -151,6 +152,11 @@ Class | Method | HTTP request | Description
 *PaymentMethodsApi* | [**DeletePaymentMethod**](docs/PaymentMethodsApi.md#deletepaymentmethod) | **Delete** /v1/payment_methods/{id} | Delete payment method
 *PaymentMethodsApi* | [**GetPaymentMethod**](docs/PaymentMethodsApi.md#getpaymentmethod) | **Get** /v1/payment_methods/{id} | Get payment method
 *PaymentMethodsApi* | [**ListPaymentMethods**](docs/PaymentMethodsApi.md#listpaymentmethods) | **Get** /v1/payment_methods | List payment methods
+*PersistentVolumesApi* | [**CreatePersistentVolume**](docs/PersistentVolumesApi.md#createpersistentvolume) | **Post** /v1/volumes | Create a PersistentVolume
+*PersistentVolumesApi* | [**DeletePersistentVolume**](docs/PersistentVolumesApi.md#deletepersistentvolume) | **Delete** /v1/volumes/{id} | Delete a PersistentVolume
+*PersistentVolumesApi* | [**GetPersistentVolume**](docs/PersistentVolumesApi.md#getpersistentvolume) | **Get** /v1/volumes/{id} | Get a PersistentVolume
+*PersistentVolumesApi* | [**ListPersistentVolumes**](docs/PersistentVolumesApi.md#listpersistentvolumes) | **Get** /v1/volumes | List all PersistentVolumes
+*PersistentVolumesApi* | [**UpdatePersistentVolume**](docs/PersistentVolumesApi.md#updatepersistentvolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
 *ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
 *ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
 *ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | 
@@ -181,6 +187,7 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | 
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
+*ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Generate autocomplete definition for a service
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
@@ -221,6 +228,8 @@ Class | Method | HTTP request | Description
  - [ArchiveSource](docs/ArchiveSource.md)
  - [AutoRelease](docs/AutoRelease.md)
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
+ - [AutocompleteReply](docs/AutocompleteReply.md)
+ - [AutocompleteRequest](docs/AutocompleteRequest.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
  - [BuildpackBuilder](docs/BuildpackBuilder.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
@@ -242,6 +251,8 @@ Class | Method | HTTP request | Description
  - [CreateOrganizationReply](docs/CreateOrganizationReply.md)
  - [CreateOrganizationRequest](docs/CreateOrganizationRequest.md)
  - [CreatePaymentAuthorizationReply](docs/CreatePaymentAuthorizationReply.md)
+ - [CreatePersistentVolumeReply](docs/CreatePersistentVolumeReply.md)
+ - [CreatePersistentVolumeRequest](docs/CreatePersistentVolumeRequest.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
@@ -255,6 +266,7 @@ Class | Method | HTTP request | Description
  - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
  - [DeleteOrganizationReply](docs/DeleteOrganizationReply.md)
+ - [DeletePersistentVolumeReply](docs/DeletePersistentVolumeReply.md)
  - [DeleteUserReply](docs/DeleteUserReply.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentDatabaseInfo](docs/DeploymentDatabaseInfo.md)
@@ -278,8 +290,11 @@ Class | Method | HTTP request | Description
  - [DeploymentScalingTarget](docs/DeploymentScalingTarget.md)
  - [DeploymentScalingTargetAverageCPU](docs/DeploymentScalingTargetAverageCPU.md)
  - [DeploymentScalingTargetAverageMem](docs/DeploymentScalingTargetAverageMem.md)
+ - [DeploymentScalingTargetConcurrentRequests](docs/DeploymentScalingTargetConcurrentRequests.md)
  - [DeploymentScalingTargetRequestsPerSecond](docs/DeploymentScalingTargetRequestsPerSecond.md)
+ - [DeploymentScalingTargetRequestsResponseTime](docs/DeploymentScalingTargetRequestsResponseTime.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
+ - [DeploymentVolume](docs/DeploymentVolume.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
  - [DigitalOceanRegistryConfiguration](docs/DigitalOceanRegistryConfiguration.md)
@@ -309,6 +324,7 @@ Class | Method | HTTP request | Description
  - [GetDomainReply](docs/GetDomainReply.md)
  - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
+ - [GetIntercomProfileReply](docs/GetIntercomProfileReply.md)
  - [GetMetricsReply](docs/GetMetricsReply.md)
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
  - [GetOAuthOptionsReply](docs/GetOAuthOptionsReply.md)
@@ -318,6 +334,7 @@ Class | Method | HTTP request | Description
  - [GetOrganizationUsageDetailsReply](docs/GetOrganizationUsageDetailsReply.md)
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
+ - [GetPersistentVolumeReply](docs/GetPersistentVolumeReply.md)
  - [GetQuotasReply](docs/GetQuotasReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
@@ -374,6 +391,7 @@ Class | Method | HTTP request | Description
  - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
  - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
  - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
+ - [ListPersistentVolumesReply](docs/ListPersistentVolumesReply.md)
  - [ListRegionalDeploymentEventsReply](docs/ListRegionalDeploymentEventsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
@@ -411,6 +429,9 @@ Class | Method | HTTP request | Description
  - [PaymentMethod](docs/PaymentMethod.md)
  - [PaymentMethodStatus](docs/PaymentMethodStatus.md)
  - [PeriodUsage](docs/PeriodUsage.md)
+ - [PersistentVolume](docs/PersistentVolume.md)
+ - [PersistentVolumeBackingStore](docs/PersistentVolumeBackingStore.md)
+ - [PersistentVolumeStatus](docs/PersistentVolumeStatus.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
@@ -472,6 +493,8 @@ Class | Method | HTTP request | Description
  - [UpdateOrganizationPlanRequest](docs/UpdateOrganizationPlanRequest.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
+ - [UpdatePersistentVolumeReply](docs/UpdatePersistentVolumeReply.md)
+ - [UpdatePersistentVolumeRequest](docs/UpdatePersistentVolumeRequest.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)

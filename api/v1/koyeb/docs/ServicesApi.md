@@ -4,6 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**Autocomplete**](ServicesApi.md#Autocomplete) | **Post** /v1/services-autocomplete | Generate autocomplete definition for a service
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/services | Create Service
 [**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
@@ -15,6 +16,70 @@ Method | HTTP request | Description
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/services/{id} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/services/{id} | Update Service
 
+
+
+## Autocomplete
+
+> AutocompleteReply Autocomplete(ctx).Body(body).Execute()
+
+Generate autocomplete definition for a service
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewAutocompleteRequest() // AutocompleteRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.Autocomplete(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.Autocomplete``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `Autocomplete`: AutocompleteReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.Autocomplete`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAutocompleteRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**AutocompleteRequest**](AutocompleteRequest.md) |  | 
+
+### Return type
+
+[**AutocompleteReply**](AutocompleteReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateService
