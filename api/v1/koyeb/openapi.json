@@ -4414,6 +4414,378 @@
         ]
       }
     },
+    "/v1/volumes": {
+      "get": {
+        "summary": "List all PersistentVolumes",
+        "operationId": "ListPersistentVolumes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListPersistentVolumesReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_id",
+            "description": "(Optional) A filter for the service id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "description": "(Optional) A filter for the region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PersistentVolumes"
+        ]
+      },
+      "post": {
+        "summary": "Create a PersistentVolume",
+        "operationId": "CreatePersistentVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreatePersistentVolumeReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreatePersistentVolumeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PersistentVolumes"
+        ]
+      }
+    },
+    "/v1/volumes/{id}": {
+      "get": {
+        "summary": "Get a PersistentVolume",
+        "operationId": "GetPersistentVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPersistentVolumeReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PersistentVolumes"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a PersistentVolume",
+        "operationId": "DeletePersistentVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeletePersistentVolumeReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PersistentVolumes"
+        ]
+      },
+      "post": {
+        "summary": "Update a PersistentVolume",
+        "operationId": "UpdatePersistentVolume",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdatePersistentVolumeReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "(Optional) change the name of the volume"
+                },
+                "max_size": {
+                  "type": "integer",
+                  "format": "int64",
+                  "title": "(Optional) increase the volume size"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "PersistentVolumes"
+        ]
+      }
+    },
     "/v1/search": {
       "get": {
         "summary": "Search",
@@ -4889,6 +5261,65 @@
         ],
         "tags": [
           "Repositories"
+        ]
+      }
+    },
+    "/v1/intercom/profile": {
+      "get": {
+        "summary": "Get intercom profile",
+        "operationId": "GetIntercomProfile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetIntercomProfileReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "tags": [
+          "Intercom"
         ]
       }
     },
@@ -10912,6 +11343,9 @@
         },
         "concurrent_requests": {
           "$ref": "#/definitions/DeploymentScalingTargetConcurrentRequests"
+        },
+        "requests_response_time": {
+          "$ref": "#/definitions/DeploymentScalingTargetRequestsResponseTime"
         }
       }
     },
@@ -10948,6 +11382,20 @@
         "value": {
           "type": "integer",
           "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetRequestsResponseTime": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantile": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The quantile to use for autoscaling. For example, set to 95 to use the 95th\npercentile (p95) for autoscaling.  Valid values are between 0 and 100."
         }
       }
     },
@@ -12960,6 +13408,168 @@
         }
       }
     },
+    "CreatePersistentVolumeReply": {
+      "type": "object",
+      "properties": {
+        "volume": {
+          "$ref": "#/definitions/PersistentVolume"
+        }
+      }
+    },
+    "CreatePersistentVolumeRequest": {
+      "type": "object",
+      "properties": {
+        "volume_type": {
+          "$ref": "#/definitions/PersistentVolumeBackingStore",
+          "title": "the volume backing store type"
+        },
+        "name": {
+          "type": "string",
+          "title": "the volume name"
+        },
+        "region": {
+          "type": "string",
+          "title": "the volume region"
+        },
+        "read_only": {
+          "type": "boolean",
+          "title": "whether the volume must be set as read only"
+        },
+        "max_size": {
+          "type": "integer",
+          "format": "int64",
+          "title": "the size of the volume"
+        }
+      }
+    },
+    "DeletePersistentVolumeReply": {
+      "type": "object",
+      "properties": {
+        "volume": {
+          "$ref": "#/definitions/PersistentVolume"
+        }
+      }
+    },
+    "GetPersistentVolumeReply": {
+      "type": "object",
+      "properties": {
+        "volume": {
+          "$ref": "#/definitions/PersistentVolume"
+        }
+      }
+    },
+    "ListPersistentVolumesReply": {
+      "type": "object",
+      "properties": {
+        "volumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistentVolume"
+          },
+          "title": "The collection of persistent volumes"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        }
+      }
+    },
+    "PersistentVolume": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the identifier for the volume object"
+        },
+        "name": {
+          "type": "string",
+          "title": "the volume name"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "creation timestamp"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last change timestapm"
+        },
+        "deleted_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "deletion timestapm"
+        },
+        "organization_id": {
+          "type": "string",
+          "title": "the organization to which the volume belongs to"
+        },
+        "service_id": {
+          "type": "string",
+          "title": "the service_id to which the volume is eventually bound to"
+        },
+        "region": {
+          "type": "string",
+          "title": "the region where the volume exists"
+        },
+        "read_only": {
+          "type": "boolean",
+          "title": "whether to mount the volume in read-only mode"
+        },
+        "max_size_mb": {
+          "type": "integer",
+          "format": "int64",
+          "title": "the maximum size of the volume"
+        },
+        "cur_size_mb": {
+          "type": "integer",
+          "format": "int64",
+          "title": "the used amount of space as measured the last time"
+        },
+        "status": {
+          "$ref": "#/definitions/PersistentVolumeStatus",
+          "title": "the status of the volume"
+        },
+        "backing_store": {
+          "$ref": "#/definitions/PersistentVolumeBackingStore",
+          "title": "the backing store type"
+        }
+      },
+      "title": "The object that represent a volume to handle persistency for deployments"
+    },
+    "PersistentVolumeBackingStore": {
+      "type": "string",
+      "enum": [
+        "PERSISTENT_VOLUME_BACKING_STORE_INVALID",
+        "PERSISTENT_VOLUME_BACKING_STORE_LOCAL_BLK"
+      ],
+      "default": "PERSISTENT_VOLUME_BACKING_STORE_INVALID",
+      "title": "- PERSISTENT_VOLUME_BACKING_STORE_INVALID: zero value, invalid\n - PERSISTENT_VOLUME_BACKING_STORE_LOCAL_BLK: the backing store is a locally reachable block device"
+    },
+    "PersistentVolumeStatus": {
+      "type": "string",
+      "enum": [
+        "PERSISTENT_VOLUME_STATUS_INVALID",
+        "PERSISTENT_VOLUME_STATUS_ATTACHED",
+        "PERSISTENT_VOLUME_STATUS_DETACHED"
+      ],
+      "default": "PERSISTENT_VOLUME_STATUS_INVALID",
+      "title": "- PERSISTENT_VOLUME_STATUS_INVALID: zero value, invalid\n - PERSISTENT_VOLUME_STATUS_ATTACHED: the volume is attached to an instance\n - PERSISTENT_VOLUME_STATUS_DETACHED: the volume is free to use"
+    },
+    "UpdatePersistentVolumeReply": {
+      "type": "object",
+      "properties": {
+        "volume": {
+          "$ref": "#/definitions/PersistentVolume"
+        }
+      }
+    },
     "ksearch.App": {
       "type": "object",
       "properties": {
@@ -13381,6 +13991,14 @@
     },
     "kgitproxy.ResyncOrganizationReply": {
       "type": "object"
+    },
+    "GetIntercomProfileReply": {
+      "type": "object",
+      "properties": {
+        "hash": {
+          "type": "string"
+        }
+      }
     },
     "GetQuotasReply": {
       "type": "object",
