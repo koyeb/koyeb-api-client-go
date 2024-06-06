@@ -73,6 +73,8 @@ type APIClient struct {
 
 	InstancesApi InstancesApi
 
+	IntercomApi IntercomApi
+
 	InviteApi InviteApi
 
 	LogsApi LogsApi
@@ -90,6 +92,8 @@ type APIClient struct {
 	OrganizationQuotasApi OrganizationQuotasApi
 
 	PaymentMethodsApi PaymentMethodsApi
+
+	PersistentVolumesApi PersistentVolumesApi
 
 	ProfileApi ProfileApi
 
@@ -146,6 +150,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DockerHelperApi = (*DockerHelperApiService)(&c.common)
 	c.DomainsApi = (*DomainsApiService)(&c.common)
 	c.InstancesApi = (*InstancesApiService)(&c.common)
+	c.IntercomApi = (*IntercomApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
 	c.LogsApi = (*LogsApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
@@ -155,6 +160,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrganizationMembersApi = (*OrganizationMembersApiService)(&c.common)
 	c.OrganizationQuotasApi = (*OrganizationQuotasApiService)(&c.common)
 	c.PaymentMethodsApi = (*PaymentMethodsApiService)(&c.common)
+	c.PersistentVolumesApi = (*PersistentVolumesApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
 	c.QuotasApi = (*QuotasApiService)(&c.common)
 	c.RegionalDeploymentsApi = (*RegionalDeploymentsApiService)(&c.common)
