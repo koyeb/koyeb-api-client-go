@@ -26,6 +26,7 @@ type RegionalDeploymentDefinition struct {
 	InstanceType *string `json:"instance_type,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
+	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
@@ -374,6 +375,38 @@ func (o *RegionalDeploymentDefinition) SetHealthChecks(v []DeploymentHealthCheck
 	o.HealthChecks = v
 }
 
+// GetVolumes returns the Volumes field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetVolumes() []RegionalDeploymentVolume {
+	if o == nil || isNil(o.Volumes) {
+		var ret []RegionalDeploymentVolume
+		return ret
+	}
+	return o.Volumes
+}
+
+// GetVolumesOk returns a tuple with the Volumes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetVolumesOk() ([]RegionalDeploymentVolume, bool) {
+	if o == nil || isNil(o.Volumes) {
+    return nil, false
+	}
+	return o.Volumes, true
+}
+
+// HasVolumes returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasVolumes() bool {
+	if o != nil && !isNil(o.Volumes) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumes gets a reference to the given []RegionalDeploymentVolume and assigns it to the Volumes field.
+func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume) {
+	o.Volumes = v
+}
+
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
 func (o *RegionalDeploymentDefinition) GetSkipCache() bool {
 	if o == nil || isNil(o.SkipCache) {
@@ -565,6 +598,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.HealthChecks) {
 		toSerialize["health_checks"] = o.HealthChecks
+	}
+	if !isNil(o.Volumes) {
+		toSerialize["volumes"] = o.Volumes
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache

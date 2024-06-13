@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **InstanceType** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
+**Volumes** | Pointer to [**[]RegionalDeploymentVolume**](RegionalDeploymentVolume.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **UseKumaV2** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
@@ -288,6 +289,31 @@ SetHealthChecks sets HealthChecks field to given value.
 `func (o *RegionalDeploymentDefinition) HasHealthChecks() bool`
 
 HasHealthChecks returns a boolean if a field has been set.
+
+### GetVolumes
+
+`func (o *RegionalDeploymentDefinition) GetVolumes() []RegionalDeploymentVolume`
+
+GetVolumes returns the Volumes field if non-nil, zero value otherwise.
+
+### GetVolumesOk
+
+`func (o *RegionalDeploymentDefinition) GetVolumesOk() (*[]RegionalDeploymentVolume, bool)`
+
+GetVolumesOk returns a tuple with the Volumes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVolumes
+
+`func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume)`
+
+SetVolumes sets Volumes field to given value.
+
+### HasVolumes
+
+`func (o *RegionalDeploymentDefinition) HasVolumes() bool`
+
+HasVolumes returns a boolean if a field has been set.
 
 ### GetSkipCache
 
