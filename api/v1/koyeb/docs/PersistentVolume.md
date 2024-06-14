@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **ServiceId** | Pointer to **string** |  | [optional] 
 **Region** | Pointer to **string** |  | [optional] 
 **ReadOnly** | Pointer to **bool** |  | [optional] 
-**MaxSizeMb** | Pointer to **int64** |  | [optional] 
-**CurSizeMb** | Pointer to **int64** |  | [optional] 
+**MaxSize** | Pointer to **int64** |  | [optional] 
+**CurSize** | Pointer to **int64** |  | [optional] 
 **Status** | Pointer to [**PersistentVolumeStatus**](PersistentVolumeStatus.md) |  | [optional] [default to PERSISTENTVOLUMESTATUS_INVALID]
 **BackingStore** | Pointer to [**PersistentVolumeBackingStore**](PersistentVolumeBackingStore.md) |  | [optional] [default to PERSISTENTVOLUMEBACKINGSTORE_INVALID]
 
@@ -262,55 +262,55 @@ SetReadOnly sets ReadOnly field to given value.
 
 HasReadOnly returns a boolean if a field has been set.
 
-### GetMaxSizeMb
+### GetMaxSize
 
-`func (o *PersistentVolume) GetMaxSizeMb() int64`
+`func (o *PersistentVolume) GetMaxSize() int64`
 
-GetMaxSizeMb returns the MaxSizeMb field if non-nil, zero value otherwise.
+GetMaxSize returns the MaxSize field if non-nil, zero value otherwise.
 
-### GetMaxSizeMbOk
+### GetMaxSizeOk
 
-`func (o *PersistentVolume) GetMaxSizeMbOk() (*int64, bool)`
+`func (o *PersistentVolume) GetMaxSizeOk() (*int64, bool)`
 
-GetMaxSizeMbOk returns a tuple with the MaxSizeMb field if it's non-nil, zero value otherwise
+GetMaxSizeOk returns a tuple with the MaxSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetMaxSizeMb
+### SetMaxSize
 
-`func (o *PersistentVolume) SetMaxSizeMb(v int64)`
+`func (o *PersistentVolume) SetMaxSize(v int64)`
 
-SetMaxSizeMb sets MaxSizeMb field to given value.
+SetMaxSize sets MaxSize field to given value.
 
-### HasMaxSizeMb
+### HasMaxSize
 
-`func (o *PersistentVolume) HasMaxSizeMb() bool`
+`func (o *PersistentVolume) HasMaxSize() bool`
 
-HasMaxSizeMb returns a boolean if a field has been set.
+HasMaxSize returns a boolean if a field has been set.
 
-### GetCurSizeMb
+### GetCurSize
 
-`func (o *PersistentVolume) GetCurSizeMb() int64`
+`func (o *PersistentVolume) GetCurSize() int64`
 
-GetCurSizeMb returns the CurSizeMb field if non-nil, zero value otherwise.
+GetCurSize returns the CurSize field if non-nil, zero value otherwise.
 
-### GetCurSizeMbOk
+### GetCurSizeOk
 
-`func (o *PersistentVolume) GetCurSizeMbOk() (*int64, bool)`
+`func (o *PersistentVolume) GetCurSizeOk() (*int64, bool)`
 
-GetCurSizeMbOk returns a tuple with the CurSizeMb field if it's non-nil, zero value otherwise
+GetCurSizeOk returns a tuple with the CurSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCurSizeMb
+### SetCurSize
 
-`func (o *PersistentVolume) SetCurSizeMb(v int64)`
+`func (o *PersistentVolume) SetCurSize(v int64)`
 
-SetCurSizeMb sets CurSizeMb field to given value.
+SetCurSize sets CurSize field to given value.
 
-### HasCurSizeMb
+### HasCurSize
 
-`func (o *PersistentVolume) HasCurSizeMb() bool`
+`func (o *PersistentVolume) HasCurSize() bool`
 
-HasCurSizeMb returns a boolean if a field has been set.
+HasCurSize returns a boolean if a field has been set.
 
 ### GetStatus
 

@@ -26,8 +26,8 @@ type PersistentVolume struct {
 	ServiceId *string `json:"service_id,omitempty"`
 	Region *string `json:"region,omitempty"`
 	ReadOnly *bool `json:"read_only,omitempty"`
-	MaxSizeMb *int64 `json:"max_size_mb,omitempty"`
-	CurSizeMb *int64 `json:"cur_size_mb,omitempty"`
+	MaxSize *int64 `json:"max_size,omitempty"`
+	CurSize *int64 `json:"cur_size,omitempty"`
 	Status *PersistentVolumeStatus `json:"status,omitempty"`
 	BackingStore *PersistentVolumeBackingStore `json:"backing_store,omitempty"`
 }
@@ -345,68 +345,68 @@ func (o *PersistentVolume) SetReadOnly(v bool) {
 	o.ReadOnly = &v
 }
 
-// GetMaxSizeMb returns the MaxSizeMb field value if set, zero value otherwise.
-func (o *PersistentVolume) GetMaxSizeMb() int64 {
-	if o == nil || isNil(o.MaxSizeMb) {
+// GetMaxSize returns the MaxSize field value if set, zero value otherwise.
+func (o *PersistentVolume) GetMaxSize() int64 {
+	if o == nil || isNil(o.MaxSize) {
 		var ret int64
 		return ret
 	}
-	return *o.MaxSizeMb
+	return *o.MaxSize
 }
 
-// GetMaxSizeMbOk returns a tuple with the MaxSizeMb field value if set, nil otherwise
+// GetMaxSizeOk returns a tuple with the MaxSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PersistentVolume) GetMaxSizeMbOk() (*int64, bool) {
-	if o == nil || isNil(o.MaxSizeMb) {
+func (o *PersistentVolume) GetMaxSizeOk() (*int64, bool) {
+	if o == nil || isNil(o.MaxSize) {
     return nil, false
 	}
-	return o.MaxSizeMb, true
+	return o.MaxSize, true
 }
 
-// HasMaxSizeMb returns a boolean if a field has been set.
-func (o *PersistentVolume) HasMaxSizeMb() bool {
-	if o != nil && !isNil(o.MaxSizeMb) {
+// HasMaxSize returns a boolean if a field has been set.
+func (o *PersistentVolume) HasMaxSize() bool {
+	if o != nil && !isNil(o.MaxSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetMaxSizeMb gets a reference to the given int64 and assigns it to the MaxSizeMb field.
-func (o *PersistentVolume) SetMaxSizeMb(v int64) {
-	o.MaxSizeMb = &v
+// SetMaxSize gets a reference to the given int64 and assigns it to the MaxSize field.
+func (o *PersistentVolume) SetMaxSize(v int64) {
+	o.MaxSize = &v
 }
 
-// GetCurSizeMb returns the CurSizeMb field value if set, zero value otherwise.
-func (o *PersistentVolume) GetCurSizeMb() int64 {
-	if o == nil || isNil(o.CurSizeMb) {
+// GetCurSize returns the CurSize field value if set, zero value otherwise.
+func (o *PersistentVolume) GetCurSize() int64 {
+	if o == nil || isNil(o.CurSize) {
 		var ret int64
 		return ret
 	}
-	return *o.CurSizeMb
+	return *o.CurSize
 }
 
-// GetCurSizeMbOk returns a tuple with the CurSizeMb field value if set, nil otherwise
+// GetCurSizeOk returns a tuple with the CurSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PersistentVolume) GetCurSizeMbOk() (*int64, bool) {
-	if o == nil || isNil(o.CurSizeMb) {
+func (o *PersistentVolume) GetCurSizeOk() (*int64, bool) {
+	if o == nil || isNil(o.CurSize) {
     return nil, false
 	}
-	return o.CurSizeMb, true
+	return o.CurSize, true
 }
 
-// HasCurSizeMb returns a boolean if a field has been set.
-func (o *PersistentVolume) HasCurSizeMb() bool {
-	if o != nil && !isNil(o.CurSizeMb) {
+// HasCurSize returns a boolean if a field has been set.
+func (o *PersistentVolume) HasCurSize() bool {
+	if o != nil && !isNil(o.CurSize) {
 		return true
 	}
 
 	return false
 }
 
-// SetCurSizeMb gets a reference to the given int64 and assigns it to the CurSizeMb field.
-func (o *PersistentVolume) SetCurSizeMb(v int64) {
-	o.CurSizeMb = &v
+// SetCurSize gets a reference to the given int64 and assigns it to the CurSize field.
+func (o *PersistentVolume) SetCurSize(v int64) {
+	o.CurSize = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -502,11 +502,11 @@ func (o PersistentVolume) MarshalJSON() ([]byte, error) {
 	if !isNil(o.ReadOnly) {
 		toSerialize["read_only"] = o.ReadOnly
 	}
-	if !isNil(o.MaxSizeMb) {
-		toSerialize["max_size_mb"] = o.MaxSizeMb
+	if !isNil(o.MaxSize) {
+		toSerialize["max_size"] = o.MaxSize
 	}
-	if !isNil(o.CurSizeMb) {
-		toSerialize["cur_size_mb"] = o.CurSizeMb
+	if !isNil(o.CurSize) {
+		toSerialize["cur_size"] = o.CurSize
 	}
 	if !isNil(o.Status) {
 		toSerialize["status"] = o.Status

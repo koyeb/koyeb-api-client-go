@@ -20,6 +20,7 @@ type RegionalDeployment struct {
 	Id *string `json:"id,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	ScheduledAt *time.Time `json:"scheduled_at,omitempty"`
 	AllocatedAt *time.Time `json:"allocated_at,omitempty"`
 	StartedAt *time.Time `json:"started_at,omitempty"`
 	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
@@ -36,6 +37,7 @@ type RegionalDeployment struct {
 	Datacenters []string `json:"datacenters,omitempty"`
 	Metadata *RegionalDeploymentMetadata `json:"metadata,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
+	Role *RegionalDeploymentRole `json:"role,omitempty"`
 	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
 	UseKata *bool `json:"use_kata,omitempty"`
 	Version *string `json:"version,omitempty"`
@@ -51,6 +53,8 @@ func NewRegionalDeployment() *RegionalDeployment {
 	this := RegionalDeployment{}
 	var status RegionalDeploymentStatus = REGIONALDEPLOYMENTSTATUS_PENDING
 	this.Status = &status
+	var role RegionalDeploymentRole = REGIONALDEPLOYMENTROLE_INVALID
+	this.Role = &role
 	return &this
 }
 
@@ -61,6 +65,8 @@ func NewRegionalDeploymentWithDefaults() *RegionalDeployment {
 	this := RegionalDeployment{}
 	var status RegionalDeploymentStatus = REGIONALDEPLOYMENTSTATUS_PENDING
 	this.Status = &status
+	var role RegionalDeploymentRole = REGIONALDEPLOYMENTROLE_INVALID
+	this.Role = &role
 	return &this
 }
 
@@ -158,6 +164,38 @@ func (o *RegionalDeployment) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given time.Time and assigns it to the UpdatedAt field.
 func (o *RegionalDeployment) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
+}
+
+// GetScheduledAt returns the ScheduledAt field value if set, zero value otherwise.
+func (o *RegionalDeployment) GetScheduledAt() time.Time {
+	if o == nil || isNil(o.ScheduledAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.ScheduledAt
+}
+
+// GetScheduledAtOk returns a tuple with the ScheduledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeployment) GetScheduledAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.ScheduledAt) {
+    return nil, false
+	}
+	return o.ScheduledAt, true
+}
+
+// HasScheduledAt returns a boolean if a field has been set.
+func (o *RegionalDeployment) HasScheduledAt() bool {
+	if o != nil && !isNil(o.ScheduledAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduledAt gets a reference to the given time.Time and assigns it to the ScheduledAt field.
+func (o *RegionalDeployment) SetScheduledAt(v time.Time) {
+	o.ScheduledAt = &v
 }
 
 // GetAllocatedAt returns the AllocatedAt field value if set, zero value otherwise.
@@ -672,6 +710,38 @@ func (o *RegionalDeployment) SetProvisioningInfo(v DeploymentProvisioningInfo) {
 	o.ProvisioningInfo = &v
 }
 
+// GetRole returns the Role field value if set, zero value otherwise.
+func (o *RegionalDeployment) GetRole() RegionalDeploymentRole {
+	if o == nil || isNil(o.Role) {
+		var ret RegionalDeploymentRole
+		return ret
+	}
+	return *o.Role
+}
+
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeployment) GetRoleOk() (*RegionalDeploymentRole, bool) {
+	if o == nil || isNil(o.Role) {
+    return nil, false
+	}
+	return o.Role, true
+}
+
+// HasRole returns a boolean if a field has been set.
+func (o *RegionalDeployment) HasRole() bool {
+	if o != nil && !isNil(o.Role) {
+		return true
+	}
+
+	return false
+}
+
+// SetRole gets a reference to the given RegionalDeploymentRole and assigns it to the Role field.
+func (o *RegionalDeployment) SetRole(v RegionalDeploymentRole) {
+	o.Role = &v
+}
+
 // GetUseKumaV2 returns the UseKumaV2 field value if set, zero value otherwise.
 func (o *RegionalDeployment) GetUseKumaV2() bool {
 	if o == nil || isNil(o.UseKumaV2) {
@@ -843,6 +913,9 @@ func (o RegionalDeployment) MarshalJSON() ([]byte, error) {
 	if !isNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
+	if !isNil(o.ScheduledAt) {
+		toSerialize["scheduled_at"] = o.ScheduledAt
+	}
 	if !isNil(o.AllocatedAt) {
 		toSerialize["allocated_at"] = o.AllocatedAt
 	}
@@ -890,6 +963,9 @@ func (o RegionalDeployment) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ProvisioningInfo) {
 		toSerialize["provisioning_info"] = o.ProvisioningInfo
+	}
+	if !isNil(o.Role) {
+		toSerialize["role"] = o.Role
 	}
 	if !isNil(o.UseKumaV2) {
 		toSerialize["use_kuma_v2"] = o.UseKumaV2

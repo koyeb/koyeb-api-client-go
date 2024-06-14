@@ -303,7 +303,9 @@ docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentEvent.md
 docs/RegionalDeploymentListItem.md
 docs/RegionalDeploymentMetadata.md
+docs/RegionalDeploymentRole.md
 docs/RegionalDeploymentStatus.md
+docs/RegionalDeploymentVolume.md
 docs/RegionalDeploymentsApi.md
 docs/RemoveOrganizationMemberReply.md
 docs/RepositoriesApi.md
@@ -613,7 +615,9 @@ model_regional_deployment_definition_type.go
 model_regional_deployment_event.go
 model_regional_deployment_list_item.go
 model_regional_deployment_metadata.go
+model_regional_deployment_role.go
 model_regional_deployment_status.go
+model_regional_deployment_volume.go
 model_remove_organization_member_reply.go
 model_resend_organization_invitation_reply.go
 model_reset_password_request.go

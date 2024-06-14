@@ -14186,72 +14186,13 @@ components:
         regional_deployment:
           metadata:
             runtime_job_id: runtime_job_id
+          role: null
           use_kuma_v2: true
-          use_kata: true
           created_at: 2000-01-23T04:56:07.000+00:00
-          version: version
-          succeeded_at: 2000-01-23T04:56:07.000+00:00
-          datacenters:
-          - datacenters
-          - datacenters
+          scheduled_at: 2000-01-23T04:56:07.000+00:00
           updated_at: 2000-01-23T04:56:07.000+00:00
-          child_id: child_id
-          provisioning_info:
-            image: image
-            stages:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              build_attempts:
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 4
-                status: null
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 4
-                status: null
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              status: null
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              build_attempts:
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 4
-                status: null
-              - finished_at: 2000-01-23T04:56:07.000+00:00
-                messages:
-                - messages
-                - messages
-                started_at: 2000-01-23T04:56:07.000+00:00
-                id: 4
-                status: null
-              name: name
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              status: null
-            sha: sha
           deployment_group: deployment_group
-          parent_id: parent_id
-          organization_id: organization_id
           service_id: service_id
-          started_at: 2000-01-23T04:56:07.000+00:00
-          messages:
-          - messages
-          - messages
           definition:
             scaling:
               min: 1
@@ -14280,6 +14221,13 @@ components:
                 concurrent_requests:
                   value: 9
             use_kuma_v2: true
+            volumes:
+            - path: path
+              replica_index: 5
+              id: id
+            - path: path
+              replica_index: 5
+              id: id
             skip_cache: true
             archive:
               id: id
@@ -14388,10 +14336,71 @@ components:
             instance_type: instance_type
           id: id
           deployment_id: deployment_id
-          region: region
           app_id: app_id
           terminated_at: 2000-01-23T04:56:07.000+00:00
           allocated_at: 2000-01-23T04:56:07.000+00:00
+          use_kata: true
+          version: version
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          datacenters:
+          - datacenters
+          - datacenters
+          child_id: child_id
+          provisioning_info:
+            image: image
+            stages:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              build_attempts:
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 4
+                status: null
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 4
+                status: null
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              status: null
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              build_attempts:
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 4
+                status: null
+              - finished_at: 2000-01-23T04:56:07.000+00:00
+                messages:
+                - messages
+                - messages
+                started_at: 2000-01-23T04:56:07.000+00:00
+                id: 4
+                status: null
+              name: name
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              status: null
+            sha: sha
+          parent_id: parent_id
+          organization_id: organization_id
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          region: region
           status: null
       properties:
         regional_deployment:
@@ -14437,7 +14446,7 @@ components:
       type: object
     ListRegionalDeploymentsReply:
       example:
-        offset: 2
+        offset: 7
         regional_deployments:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           use_kuma_v2: true
@@ -14474,6 +14483,13 @@ components:
                 concurrent_requests:
                   value: 9
             use_kuma_v2: true
+            volumes:
+            - path: path
+              replica_index: 5
+              id: id
+            - path: path
+              replica_index: 5
+              id: id
             skip_cache: true
             archive:
               id: id
@@ -14618,6 +14634,13 @@ components:
                 concurrent_requests:
                   value: 9
             use_kuma_v2: true
+            volumes:
+            - path: path
+              replica_index: 5
+              id: id
+            - path: path
+              replica_index: 5
+              id: id
             skip_cache: true
             archive:
               id: id
@@ -14727,8 +14750,8 @@ components:
           id: id
           region: region
           status: null
-        limit: 5
-        count: 7
+        limit: 2
+        count: 9
       properties:
         regional_deployments:
           items:
@@ -14763,72 +14786,13 @@ components:
       example:
         metadata:
           runtime_job_id: runtime_job_id
+        role: null
         use_kuma_v2: true
-        use_kata: true
         created_at: 2000-01-23T04:56:07.000+00:00
-        version: version
-        succeeded_at: 2000-01-23T04:56:07.000+00:00
-        datacenters:
-        - datacenters
-        - datacenters
+        scheduled_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
-        child_id: child_id
-        provisioning_info:
-          image: image
-          stages:
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            build_attempts:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 4
-              status: null
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 4
-              status: null
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-            status: null
-          - finished_at: 2000-01-23T04:56:07.000+00:00
-            build_attempts:
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 4
-              status: null
-            - finished_at: 2000-01-23T04:56:07.000+00:00
-              messages:
-              - messages
-              - messages
-              started_at: 2000-01-23T04:56:07.000+00:00
-              id: 4
-              status: null
-            name: name
-            messages:
-            - messages
-            - messages
-            started_at: 2000-01-23T04:56:07.000+00:00
-            status: null
-          sha: sha
         deployment_group: deployment_group
-        parent_id: parent_id
-        organization_id: organization_id
         service_id: service_id
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
         definition:
           scaling:
             min: 1
@@ -14857,6 +14821,13 @@ components:
               concurrent_requests:
                 value: 9
           use_kuma_v2: true
+          volumes:
+          - path: path
+            replica_index: 5
+            id: id
+          - path: path
+            replica_index: 5
+            id: id
           skip_cache: true
           archive:
             id: id
@@ -14965,10 +14936,71 @@ components:
           instance_type: instance_type
         id: id
         deployment_id: deployment_id
-        region: region
         app_id: app_id
         terminated_at: 2000-01-23T04:56:07.000+00:00
         allocated_at: 2000-01-23T04:56:07.000+00:00
+        use_kata: true
+        version: version
+        succeeded_at: 2000-01-23T04:56:07.000+00:00
+        datacenters:
+        - datacenters
+        - datacenters
+        child_id: child_id
+        provisioning_info:
+          image: image
+          stages:
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            build_attempts:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 4
+              status: null
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 4
+              status: null
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          - finished_at: 2000-01-23T04:56:07.000+00:00
+            build_attempts:
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 4
+              status: null
+            - finished_at: 2000-01-23T04:56:07.000+00:00
+              messages:
+              - messages
+              - messages
+              started_at: 2000-01-23T04:56:07.000+00:00
+              id: 4
+              status: null
+            name: name
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          sha: sha
+        parent_id: parent_id
+        organization_id: organization_id
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        region: region
         status: null
       properties:
         id:
@@ -14977,6 +15009,9 @@ components:
           format: date-time
           type: string
         updated_at:
+          format: date-time
+          type: string
+        scheduled_at:
           format: date-time
           type: string
         allocated_at:
@@ -15019,6 +15054,8 @@ components:
           $ref: '#/components/schemas/RegionalDeploymentMetadata'
         provisioning_info:
           $ref: '#/components/schemas/DeploymentProvisioningInfo'
+        role:
+          $ref: '#/components/schemas/RegionalDeployment.Role'
         use_kuma_v2:
           type: boolean
         use_kata:
@@ -15032,6 +15069,14 @@ components:
         deployment_id:
           type: string
       type: object
+    RegionalDeployment.Role:
+      default: INVALID
+      enum:
+      - INVALID
+      - ACTIVE
+      - UPCOMING
+      - CURRENT
+      type: string
     RegionalDeployment.Status:
       default: PENDING
       enum:
@@ -15079,6 +15124,13 @@ components:
             concurrent_requests:
               value: 9
         use_kuma_v2: true
+        volumes:
+        - path: path
+          replica_index: 5
+          id: id
+        - path: path
+          replica_index: 5
+          id: id
         skip_cache: true
         archive:
           id: id
@@ -15214,6 +15266,10 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentHealthCheck'
           type: array
+        volumes:
+          items:
+            $ref: '#/components/schemas/RegionalDeploymentVolume'
+          type: array
         skip_cache:
           type: boolean
         use_kuma_v2:
@@ -15296,6 +15352,13 @@ components:
               concurrent_requests:
                 value: 9
           use_kuma_v2: true
+          volumes:
+          - path: path
+            replica_index: 5
+            id: id
+          - path: path
+            replica_index: 5
+            id: id
           skip_cache: true
           archive:
             id: id
@@ -15435,6 +15498,24 @@ components:
       properties:
         runtime_job_id:
           type: string
+      type: object
+    RegionalDeploymentVolume:
+      example:
+        path: path
+        replica_index: 5
+        id: id
+      properties:
+        id:
+          title: the id of the volume
+          type: string
+        path:
+          title: the path where the volume is mounted to
+          type: string
+        replica_index:
+          format: int64
+          title: "optionally, explicitly choose the replica index to mount the volume\
+            \ to"
+          type: integer
       type: object
     Route:
       example:
@@ -17515,10 +17596,11 @@ components:
     CreatePersistentVolumeReply:
       example:
         volume:
+          cur_size: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17526,7 +17608,6 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
       properties:
         volume:
@@ -17553,16 +17634,17 @@ components:
           type: boolean
         max_size:
           format: int64
-          title: the size of the volume
+          title: the size of the volume (in bytes)
           type: integer
       type: object
     DeletePersistentVolumeReply:
       example:
         volume:
+          cur_size: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17570,7 +17652,6 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
       properties:
         volume:
@@ -17579,10 +17660,11 @@ components:
     GetPersistentVolumeReply:
       example:
         volume:
+          cur_size: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17590,7 +17672,6 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
       properties:
         volume:
@@ -17600,10 +17681,11 @@ components:
       example:
         offset: 5
         volumes:
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - cur_size: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17611,12 +17693,12 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - cur_size: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17624,7 +17706,6 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
         limit: 1
       properties:
@@ -17644,10 +17725,11 @@ components:
       type: object
     PersistentVolume:
       example:
+        cur_size: 6
         created_at: 2000-01-23T04:56:07.000+00:00
         backing_store: null
         deleted_at: 2000-01-23T04:56:07.000+00:00
-        max_size_mb: 0
+        max_size: 0
         updated_at: 2000-01-23T04:56:07.000+00:00
         read_only: true
         organization_id: organization_id
@@ -17655,7 +17737,6 @@ components:
         name: name
         id: id
         region: region
-        cur_size_mb: 6
         status: null
       properties:
         id:
@@ -17688,13 +17769,13 @@ components:
         read_only:
           title: whether to mount the volume in read-only mode
           type: boolean
-        max_size_mb:
+        max_size:
           format: int64
-          title: the maximum size of the volume
+          title: the maximum size of the volume (in bytes)
           type: integer
-        cur_size_mb:
+        cur_size:
           format: int64
-          title: the used amount of space as measured the last time
+          title: the used amount of space as measured the last time (in bytes)
           type: integer
         status:
           $ref: '#/components/schemas/PersistentVolumeStatus'
@@ -17725,10 +17806,11 @@ components:
     UpdatePersistentVolumeReply:
       example:
         volume:
+          cur_size: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           backing_store: null
           deleted_at: 2000-01-23T04:56:07.000+00:00
-          max_size_mb: 0
+          max_size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           read_only: true
           organization_id: organization_id
@@ -17736,7 +17818,6 @@ components:
           name: name
           id: id
           region: region
-          cur_size_mb: 6
           status: null
       properties:
         volume:
@@ -20748,6 +20829,7 @@ x-tagGroups:
   - RegionalDeployments
   - Instances
   - Domains
+  - PersistentVolumes
   - Repositories
   - Logs
   - Metrics

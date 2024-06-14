@@ -49,6 +49,7 @@
         "RegionalDeployments",
         "Instances",
         "Domains",
+        "PersistentVolumes",
         "Repositories",
         "Logs",
         "Metrics",
@@ -12398,6 +12399,10 @@
           "type": "string",
           "format": "date-time"
         },
+        "scheduled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
         "allocated_at": {
           "type": "string",
           "format": "date-time"
@@ -12456,6 +12461,9 @@
         "provisioning_info": {
           "$ref": "#/definitions/DeploymentProvisioningInfo"
         },
+        "role": {
+          "$ref": "#/definitions/RegionalDeployment.Role"
+        },
         "use_kuma_v2": {
           "type": "boolean"
         },
@@ -12474,6 +12482,16 @@
           "type": "string"
         }
       }
+    },
+    "RegionalDeployment.Role": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "ACTIVE",
+        "UPCOMING",
+        "CURRENT"
+      ],
+      "default": "INVALID"
     },
     "RegionalDeployment.Status": {
       "type": "string",
@@ -12538,6 +12556,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/DeploymentHealthCheck"
+          }
+        },
+        "volumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegionalDeploymentVolume"
           }
         },
         "skip_cache": {
@@ -12635,6 +12659,24 @@
       "properties": {
         "runtime_job_id": {
           "type": "string"
+        }
+      }
+    },
+    "RegionalDeploymentVolume": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the id of the volume"
+        },
+        "path": {
+          "type": "string",
+          "title": "the path where the volume is mounted to"
+        },
+        "replica_index": {
+          "type": "integer",
+          "format": "int64",
+          "title": "optionally, explicitly choose the replica index to mount the volume to"
         }
       }
     },
@@ -13438,7 +13480,7 @@
         "max_size": {
           "type": "integer",
           "format": "int64",
-          "title": "the size of the volume"
+          "title": "the size of the volume (in bytes)"
         }
       }
     },
@@ -13522,15 +13564,15 @@
           "type": "boolean",
           "title": "whether to mount the volume in read-only mode"
         },
-        "max_size_mb": {
+        "max_size": {
           "type": "integer",
           "format": "int64",
-          "title": "the maximum size of the volume"
+          "title": "the maximum size of the volume (in bytes)"
         },
-        "cur_size_mb": {
+        "cur_size": {
           "type": "integer",
           "format": "int64",
-          "title": "the used amount of space as measured the last time"
+          "title": "the used amount of space as measured the last time (in bytes)"
         },
         "status": {
           "$ref": "#/definitions/PersistentVolumeStatus",
