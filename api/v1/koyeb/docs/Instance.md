@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ServiceId** | Pointer to **string** |  | [optional] 
 **RegionalDeploymentId** | Pointer to **string** |  | [optional] 
 **AllocationId** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to **string** |  | [optional] 
 **ReplicaIndex** | Pointer to **int64** |  | [optional] 
 **Region** | Pointer to **string** |  | [optional] 
 **Datacenter** | Pointer to **string** |  | [optional] 
@@ -241,6 +242,31 @@ SetAllocationId sets AllocationId field to given value.
 `func (o *Instance) HasAllocationId() bool`
 
 HasAllocationId returns a boolean if a field has been set.
+
+### GetType
+
+`func (o *Instance) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Instance) GetTypeOk() (*string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *Instance) SetType(v string)`
+
+SetType sets Type field to given value.
+
+### HasType
+
+`func (o *Instance) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetReplicaIndex
 

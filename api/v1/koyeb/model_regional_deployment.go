@@ -35,7 +35,7 @@ type RegionalDeployment struct {
 	Messages []string `json:"messages,omitempty"`
 	Definition *RegionalDeploymentDefinition `json:"definition,omitempty"`
 	Datacenters []string `json:"datacenters,omitempty"`
-	Metadata *RegionalDeploymentMetadata `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	Role *RegionalDeploymentRole `json:"role,omitempty"`
 	UseKumaV2 *bool `json:"use_kuma_v2,omitempty"`
@@ -647,19 +647,19 @@ func (o *RegionalDeployment) SetDatacenters(v []string) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *RegionalDeployment) GetMetadata() RegionalDeploymentMetadata {
+func (o *RegionalDeployment) GetMetadata() map[string]interface{} {
 	if o == nil || isNil(o.Metadata) {
-		var ret RegionalDeploymentMetadata
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegionalDeployment) GetMetadataOk() (*RegionalDeploymentMetadata, bool) {
+func (o *RegionalDeployment) GetMetadataOk() (map[string]interface{}, bool) {
 	if o == nil || isNil(o.Metadata) {
-    return nil, false
+    return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
@@ -673,9 +673,9 @@ func (o *RegionalDeployment) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given RegionalDeploymentMetadata and assigns it to the Metadata field.
-func (o *RegionalDeployment) SetMetadata(v RegionalDeploymentMetadata) {
-	o.Metadata = &v
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *RegionalDeployment) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetProvisioningInfo returns the ProvisioningInfo field value if set, zero value otherwise.

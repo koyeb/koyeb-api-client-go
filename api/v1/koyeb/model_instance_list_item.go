@@ -25,6 +25,7 @@ type InstanceListItem struct {
 	ServiceId *string `json:"service_id,omitempty"`
 	RegionalDeploymentId *string `json:"regional_deployment_id,omitempty"`
 	AllocationId *string `json:"allocation_id,omitempty"`
+	Type *string `json:"type,omitempty"`
 	ReplicaIndex *int64 `json:"replica_index,omitempty"`
 	Region *string `json:"region,omitempty"`
 	Datacenter *string `json:"datacenter,omitempty"`
@@ -311,6 +312,38 @@ func (o *InstanceListItem) SetAllocationId(v string) {
 	o.AllocationId = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *InstanceListItem) GetType() string {
+	if o == nil || isNil(o.Type) {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceListItem) GetTypeOk() (*string, bool) {
+	if o == nil || isNil(o.Type) {
+    return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *InstanceListItem) HasType() bool {
+	if o != nil && !isNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *InstanceListItem) SetType(v string) {
+	o.Type = &v
+}
+
 // GetReplicaIndex returns the ReplicaIndex field value if set, zero value otherwise.
 func (o *InstanceListItem) GetReplicaIndex() int64 {
 	if o == nil || isNil(o.ReplicaIndex) {
@@ -528,6 +561,9 @@ func (o InstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AllocationId) {
 		toSerialize["allocation_id"] = o.AllocationId
+	}
+	if !isNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	if !isNil(o.ReplicaIndex) {
 		toSerialize["replica_index"] = o.ReplicaIndex
