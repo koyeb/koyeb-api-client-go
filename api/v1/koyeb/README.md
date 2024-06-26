@@ -449,7 +449,6 @@ Class | Method | HTTP request | Description
  - [RegionalDeploymentDefinitionType](docs/RegionalDeploymentDefinitionType.md)
  - [RegionalDeploymentEvent](docs/RegionalDeploymentEvent.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
- - [RegionalDeploymentMetadata](docs/RegionalDeploymentMetadata.md)
  - [RegionalDeploymentRole](docs/RegionalDeploymentRole.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
  - [RegionalDeploymentVolume](docs/RegionalDeploymentVolume.md)

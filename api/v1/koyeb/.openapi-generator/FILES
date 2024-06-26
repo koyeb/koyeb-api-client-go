@@ -302,7 +302,6 @@ docs/RegionalDeploymentDefinition.md
 docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentEvent.md
 docs/RegionalDeploymentListItem.md
-docs/RegionalDeploymentMetadata.md
 docs/RegionalDeploymentRole.md
 docs/RegionalDeploymentStatus.md
 docs/RegionalDeploymentVolume.md
@@ -614,7 +613,6 @@ model_regional_deployment_definition.go
 model_regional_deployment_definition_type.go
 model_regional_deployment_event.go
 model_regional_deployment_list_item.go
-model_regional_deployment_metadata.go
 model_regional_deployment_role.go
 model_regional_deployment_status.go
 model_regional_deployment_volume.go
