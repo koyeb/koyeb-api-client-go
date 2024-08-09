@@ -172,6 +172,9 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
+*ProvisioningApi* | [**CreateStageAttempt**](docs/ProvisioningApi.md#createstageattempt) | **Post** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Create an attempt for a stage
+*ProvisioningApi* | [**DeclareStageProgress**](docs/ProvisioningApi.md#declarestageprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Declare stage progress
+*ProvisioningApi* | [**DeclareStepProgress**](docs/ProvisioningApi.md#declarestepprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt}/{step} | Declare step progress
 *QuotasApi* | [**ReviewOrganizationCapacity**](docs/QuotasApi.md#revieworganizationcapacity) | **Post** /v1/quotas/capacity | Review Organization Capacity
 *RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
 *RegionalDeploymentsApi* | [**ListRegionalDeploymentEvents**](docs/RegionalDeploymentsApi.md#listregionaldeploymentevents) | **Get** /v1/regional_deployment_events | List Regional Deployment events
@@ -257,6 +260,7 @@ Class | Method | HTTP request | Description
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
+ - [CreateStageAttemptRequest](docs/CreateStageAttemptRequest.md)
  - [Credential](docs/Credential.md)
  - [CredentialType](docs/CredentialType.md)
  - [DatabaseDeploymentMetadata](docs/DatabaseDeploymentMetadata.md)
@@ -264,6 +268,8 @@ Class | Method | HTTP request | Description
  - [DatabaseSource](docs/DatabaseSource.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
  - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
+ - [DeclareStageProgressRequest](docs/DeclareStageProgressRequest.md)
+ - [DeclareStepProgressRequest](docs/DeclareStepProgressRequest.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
  - [DeleteOrganizationReply](docs/DeleteOrganizationReply.md)
  - [DeletePersistentVolumeReply](docs/DeletePersistentVolumeReply.md)
@@ -284,7 +290,9 @@ Class | Method | HTTP request | Description
  - [DeploymentProvisioningInfo](docs/DeploymentProvisioningInfo.md)
  - [DeploymentProvisioningInfoStage](docs/DeploymentProvisioningInfoStage.md)
  - [DeploymentProvisioningInfoStageBuildAttempt](docs/DeploymentProvisioningInfoStageBuildAttempt.md)
+ - [DeploymentProvisioningInfoStageBuildAttemptBuildStep](docs/DeploymentProvisioningInfoStageBuildAttemptBuildStep.md)
  - [DeploymentProvisioningInfoStageStatus](docs/DeploymentProvisioningInfoStageStatus.md)
+ - [DeploymentRole](docs/DeploymentRole.md)
  - [DeploymentRoute](docs/DeploymentRoute.md)
  - [DeploymentScaling](docs/DeploymentScaling.md)
  - [DeploymentScalingTarget](docs/DeploymentScalingTarget.md)
@@ -294,6 +302,8 @@ Class | Method | HTTP request | Description
  - [DeploymentScalingTargetRequestsPerSecond](docs/DeploymentScalingTargetRequestsPerSecond.md)
  - [DeploymentScalingTargetRequestsResponseTime](docs/DeploymentScalingTargetRequestsResponseTime.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
+ - [DeploymentStrategy](docs/DeploymentStrategy.md)
+ - [DeploymentStrategyType](docs/DeploymentStrategyType.md)
  - [DeploymentVolume](docs/DeploymentVolume.md)
  - [DesiredDeployment](docs/DesiredDeployment.md)
  - [DesiredDeploymentGroup](docs/DesiredDeploymentGroup.md)
@@ -431,6 +441,7 @@ Class | Method | HTTP request | Description
  - [PeriodUsage](docs/PeriodUsage.md)
  - [PersistentVolume](docs/PersistentVolume.md)
  - [PersistentVolumeBackingStore](docs/PersistentVolumeBackingStore.md)
+ - [PersistentVolumeQuotas](docs/PersistentVolumeQuotas.md)
  - [PersistentVolumeStatus](docs/PersistentVolumeStatus.md)
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)

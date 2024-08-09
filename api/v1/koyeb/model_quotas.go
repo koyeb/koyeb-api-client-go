@@ -26,6 +26,7 @@ type Quotas struct {
 	Regions []string `json:"regions,omitempty"`
 	MaxOrganizationMembers *string `json:"max_organization_members,omitempty"`
 	MaxInstancesByType *map[string]string `json:"max_instances_by_type,omitempty"`
+	PersistentVolumesByRegion *map[string]PersistentVolumeQuotas `json:"persistent_volumes_by_region,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -365,6 +366,38 @@ func (o *Quotas) SetMaxInstancesByType(v map[string]string) {
 	o.MaxInstancesByType = &v
 }
 
+// GetPersistentVolumesByRegion returns the PersistentVolumesByRegion field value if set, zero value otherwise.
+func (o *Quotas) GetPersistentVolumesByRegion() map[string]PersistentVolumeQuotas {
+	if o == nil || isNil(o.PersistentVolumesByRegion) {
+		var ret map[string]PersistentVolumeQuotas
+		return ret
+	}
+	return *o.PersistentVolumesByRegion
+}
+
+// GetPersistentVolumesByRegionOk returns a tuple with the PersistentVolumesByRegion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetPersistentVolumesByRegionOk() (*map[string]PersistentVolumeQuotas, bool) {
+	if o == nil || isNil(o.PersistentVolumesByRegion) {
+    return nil, false
+	}
+	return o.PersistentVolumesByRegion, true
+}
+
+// HasPersistentVolumesByRegion returns a boolean if a field has been set.
+func (o *Quotas) HasPersistentVolumesByRegion() bool {
+	if o != nil && !isNil(o.PersistentVolumesByRegion) {
+		return true
+	}
+
+	return false
+}
+
+// SetPersistentVolumesByRegion gets a reference to the given map[string]PersistentVolumeQuotas and assigns it to the PersistentVolumesByRegion field.
+func (o *Quotas) SetPersistentVolumesByRegion(v map[string]PersistentVolumeQuotas) {
+	o.PersistentVolumesByRegion = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -396,6 +429,9 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.MaxInstancesByType) {
 		toSerialize["max_instances_by_type"] = o.MaxInstancesByType
+	}
+	if !isNil(o.PersistentVolumesByRegion) {
+		toSerialize["persistent_volumes_by_region"] = o.PersistentVolumesByRegion
 	}
 	return json.Marshal(toSerialize)
 }

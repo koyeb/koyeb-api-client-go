@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Regions** | Pointer to **[]string** |  | [optional] 
 **MaxOrganizationMembers** | Pointer to **string** |  | [optional] 
 **MaxInstancesByType** | Pointer to **map[string]string** |  | [optional] 
+**PersistentVolumesByRegion** | Pointer to [**map[string]PersistentVolumeQuotas**](PersistentVolumeQuotas.md) |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetMaxInstancesByType sets MaxInstancesByType field to given value.
 `func (o *Quotas) HasMaxInstancesByType() bool`
 
 HasMaxInstancesByType returns a boolean if a field has been set.
+
+### GetPersistentVolumesByRegion
+
+`func (o *Quotas) GetPersistentVolumesByRegion() map[string]PersistentVolumeQuotas`
+
+GetPersistentVolumesByRegion returns the PersistentVolumesByRegion field if non-nil, zero value otherwise.
+
+### GetPersistentVolumesByRegionOk
+
+`func (o *Quotas) GetPersistentVolumesByRegionOk() (*map[string]PersistentVolumeQuotas, bool)`
+
+GetPersistentVolumesByRegionOk returns a tuple with the PersistentVolumesByRegion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPersistentVolumesByRegion
+
+`func (o *Quotas) SetPersistentVolumesByRegion(v map[string]PersistentVolumeQuotas)`
+
+SetPersistentVolumesByRegion sets PersistentVolumesByRegion field to given value.
+
+### HasPersistentVolumesByRegion
+
+`func (o *Quotas) HasPersistentVolumesByRegion() bool`
+
+HasPersistentVolumesByRegion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

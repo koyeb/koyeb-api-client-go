@@ -5,6 +5,8 @@
 
 * `UNKNOWN` (value: `"UNKNOWN"`)
 
+* `PENDING` (value: `"PENDING"`)
+
 * `RUNNING` (value: `"RUNNING"`)
 
 * `FAILED` (value: `"FAILED"`)

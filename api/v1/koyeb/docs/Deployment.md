@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **DatabaseInfo** | Pointer to [**DeploymentDatabaseInfo**](DeploymentDatabaseInfo.md) |  | [optional] 
 **SkipBuild** | Pointer to **bool** |  | [optional] 
+**Role** | Pointer to [**DeploymentRole**](DeploymentRole.md) |  | [optional] [default to DEPLOYMENTROLE_INVALID]
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 
@@ -519,6 +520,31 @@ SetSkipBuild sets SkipBuild field to given value.
 `func (o *Deployment) HasSkipBuild() bool`
 
 HasSkipBuild returns a boolean if a field has been set.
+
+### GetRole
+
+`func (o *Deployment) GetRole() DeploymentRole`
+
+GetRole returns the Role field if non-nil, zero value otherwise.
+
+### GetRoleOk
+
+`func (o *Deployment) GetRoleOk() (*DeploymentRole, bool)`
+
+GetRoleOk returns a tuple with the Role field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRole
+
+`func (o *Deployment) SetRole(v DeploymentRole)`
+
+SetRole sets Role field to given value.
+
+### HasRole
+
+`func (o *Deployment) HasRole() bool`
+
+HasRole returns a boolean if a field has been set.
 
 ### GetVersion
 

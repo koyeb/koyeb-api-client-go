@@ -27,6 +27,7 @@ api_organization_quotas.go
 api_payment_methods.go
 api_persistent_volumes.go
 api_profile.go
+api_provisioning.go
 api_quotas.go
 api_regional_deployments.go
 api_repositories.go
@@ -92,6 +93,7 @@ docs/CreateSecret.md
 docs/CreateSecretReply.md
 docs/CreateService.md
 docs/CreateServiceReply.md
+docs/CreateStageAttemptRequest.md
 docs/Credential.md
 docs/CredentialType.md
 docs/CredentialsApi.md
@@ -100,6 +102,8 @@ docs/DatabaseRolePassword.md
 docs/DatabaseSource.md
 docs/DatacenterListItem.md
 docs/DeactivateOrganizationReply.md
+docs/DeclareStageProgressRequest.md
+docs/DeclareStepProgressRequest.md
 docs/DeclineOrganizationInvitationReply.md
 docs/DeleteOrganizationReply.md
 docs/DeletePersistentVolumeReply.md
@@ -120,7 +124,9 @@ docs/DeploymentPort.md
 docs/DeploymentProvisioningInfo.md
 docs/DeploymentProvisioningInfoStage.md
 docs/DeploymentProvisioningInfoStageBuildAttempt.md
+docs/DeploymentProvisioningInfoStageBuildAttemptBuildStep.md
 docs/DeploymentProvisioningInfoStageStatus.md
+docs/DeploymentRole.md
 docs/DeploymentRoute.md
 docs/DeploymentScaling.md
 docs/DeploymentScalingTarget.md
@@ -130,6 +136,8 @@ docs/DeploymentScalingTargetConcurrentRequests.md
 docs/DeploymentScalingTargetRequestsPerSecond.md
 docs/DeploymentScalingTargetRequestsResponseTime.md
 docs/DeploymentStatus.md
+docs/DeploymentStrategy.md
+docs/DeploymentStrategyType.md
 docs/DeploymentVolume.md
 docs/DeploymentsApi.md
 docs/DesiredDeployment.md
@@ -281,12 +289,14 @@ docs/PaymentMethodsApi.md
 docs/PeriodUsage.md
 docs/PersistentVolume.md
 docs/PersistentVolumeBackingStore.md
+docs/PersistentVolumeQuotas.md
 docs/PersistentVolumeStatus.md
 docs/PersistentVolumesApi.md
 docs/Plan.md
 docs/Port.md
 docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
+docs/ProvisioningApi.md
 docs/PublicOrganization.md
 docs/PublicUser.md
 docs/Quotas.md
@@ -421,6 +431,7 @@ model_create_secret.go
 model_create_secret_reply.go
 model_create_service.go
 model_create_service_reply.go
+model_create_stage_attempt_request.go
 model_credential.go
 model_credential_type.go
 model_database_deployment_metadata.go
@@ -428,6 +439,8 @@ model_database_role_password.go
 model_database_source.go
 model_datacenter_list_item.go
 model_deactivate_organization_reply.go
+model_declare_stage_progress_request.go
+model_declare_step_progress_request.go
 model_decline_organization_invitation_reply.go
 model_delete_organization_reply.go
 model_delete_persistent_volume_reply.go
@@ -448,7 +461,9 @@ model_deployment_port.go
 model_deployment_provisioning_info.go
 model_deployment_provisioning_info_stage.go
 model_deployment_provisioning_info_stage_build_attempt.go
+model_deployment_provisioning_info_stage_build_attempt_build_step.go
 model_deployment_provisioning_info_stage_status.go
+model_deployment_role.go
 model_deployment_route.go
 model_deployment_scaling.go
 model_deployment_scaling_target.go
@@ -458,6 +473,8 @@ model_deployment_scaling_target_concurrent_requests.go
 model_deployment_scaling_target_requests_per_second.go
 model_deployment_scaling_target_requests_response_time.go
 model_deployment_status.go
+model_deployment_strategy.go
+model_deployment_strategy_type.go
 model_deployment_volume.go
 model_desired_deployment.go
 model_desired_deployment_group.go
@@ -595,6 +612,7 @@ model_payment_method_status.go
 model_period_usage.go
 model_persistent_volume.go
 model_persistent_volume_backing_store.go
+model_persistent_volume_quotas.go
 model_persistent_volume_status.go
 model_plan.go
 model_port.go
@@ -699,6 +717,7 @@ test/api_organization_test.go
 test/api_payment_methods_test.go
 test/api_persistent_volumes_test.go
 test/api_profile_test.go
+test/api_provisioning_test.go
 test/api_quotas_test.go
 test/api_regional_deployments_test.go
 test/api_repositories_test.go

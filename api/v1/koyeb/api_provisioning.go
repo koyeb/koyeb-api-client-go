@@ -16,113 +16,126 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
+	"strings"
 )
 
 
-type ActivityApi interface {
+type ProvisioningApi interface {
 
 	/*
-	GetAccountActivities Method for GetAccountActivities
+	CreateStageAttempt Create an attempt for a stage
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiGetAccountActivitiesRequest
+	@param deploymentId
+	@param stage
+	@param attempt
+	@return ApiCreateStageAttemptRequest
 	*/
-	GetAccountActivities(ctx context.Context) ApiGetAccountActivitiesRequest
+	CreateStageAttempt(ctx context.Context, deploymentId string, stage string, attempt string) ApiCreateStageAttemptRequest
 
-	// GetAccountActivitiesExecute executes the request
-	//  @return ActivityList
-	GetAccountActivitiesExecute(r ApiGetAccountActivitiesRequest) (*ActivityList, *http.Response, error)
+	// CreateStageAttemptExecute executes the request
+	//  @return map[string]interface{}
+	CreateStageAttemptExecute(r ApiCreateStageAttemptRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	ListActivities Method for ListActivities
+	DeclareStageProgress Declare stage progress
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListActivitiesRequest
+	@param deploymentId
+	@param stage
+	@param attempt
+	@return ApiDeclareStageProgressRequest
 	*/
-	ListActivities(ctx context.Context) ApiListActivitiesRequest
+	DeclareStageProgress(ctx context.Context, deploymentId string, stage string, attempt string) ApiDeclareStageProgressRequest
 
-	// ListActivitiesExecute executes the request
-	//  @return ActivityList
-	ListActivitiesExecute(r ApiListActivitiesRequest) (*ActivityList, *http.Response, error)
+	// DeclareStageProgressExecute executes the request
+	//  @return map[string]interface{}
+	DeclareStageProgressExecute(r ApiDeclareStageProgressRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	ListNotifications Method for ListNotifications
+	DeclareStepProgress Declare step progress
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListNotificationsRequest
+	@param deploymentId
+	@param stage
+	@param attempt
+	@param step
+	@return ApiDeclareStepProgressRequest
 	*/
-	ListNotifications(ctx context.Context) ApiListNotificationsRequest
+	DeclareStepProgress(ctx context.Context, deploymentId string, stage string, attempt string, step string) ApiDeclareStepProgressRequest
 
-	// ListNotificationsExecute executes the request
-	//  @return NotificationList
-	ListNotificationsExecute(r ApiListNotificationsRequest) (*NotificationList, *http.Response, error)
+	// DeclareStepProgressExecute executes the request
+	//  @return map[string]interface{}
+	DeclareStepProgressExecute(r ApiDeclareStepProgressRequest) (map[string]interface{}, *http.Response, error)
 }
 
-// ActivityApiService ActivityApi service
-type ActivityApiService service
+// ProvisioningApiService ProvisioningApi service
+type ProvisioningApiService service
 
-type ApiGetAccountActivitiesRequest struct {
+type ApiCreateStageAttemptRequest struct {
 	ctx context.Context
-	ApiService ActivityApi
-	limit *string
-	offset *string
+	ApiService ProvisioningApi
+	deploymentId string
+	stage string
+	attempt string
+	body *CreateStageAttemptRequest
 }
 
-func (r ApiGetAccountActivitiesRequest) Limit(limit string) ApiGetAccountActivitiesRequest {
-	r.limit = &limit
+func (r ApiCreateStageAttemptRequest) Body(body CreateStageAttemptRequest) ApiCreateStageAttemptRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiGetAccountActivitiesRequest) Offset(offset string) ApiGetAccountActivitiesRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiGetAccountActivitiesRequest) Execute() (*ActivityList, *http.Response, error) {
-	return r.ApiService.GetAccountActivitiesExecute(r)
+func (r ApiCreateStageAttemptRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.CreateStageAttemptExecute(r)
 }
 
 /*
-GetAccountActivities Method for GetAccountActivities
+CreateStageAttempt Create an attempt for a stage
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiGetAccountActivitiesRequest
+ @param deploymentId
+ @param stage
+ @param attempt
+ @return ApiCreateStageAttemptRequest
 */
-func (a *ActivityApiService) GetAccountActivities(ctx context.Context) ApiGetAccountActivitiesRequest {
-	return ApiGetAccountActivitiesRequest{
+func (a *ProvisioningApiService) CreateStageAttempt(ctx context.Context, deploymentId string, stage string, attempt string) ApiCreateStageAttemptRequest {
+	return ApiCreateStageAttemptRequest{
 		ApiService: a,
 		ctx: ctx,
+		deploymentId: deploymentId,
+		stage: stage,
+		attempt: attempt,
 	}
 }
 
 // Execute executes the request
-//  @return ActivityList
-func (a *ActivityApiService) GetAccountActivitiesExecute(r ApiGetAccountActivitiesRequest) (*ActivityList, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ProvisioningApiService) CreateStageAttemptExecute(r ApiCreateStageAttemptRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ActivityList
+		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActivityApiService.GetAccountActivities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProvisioningApiService.CreateStageAttempt")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/account/activities"
+	localVarPath := localBasePath + "/v1/provisioning/{deployment_id}/status/{stage}/{attempt}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterToString(r.deploymentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"stage"+"}", url.PathEscape(parameterToString(r.stage, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"attempt"+"}", url.PathEscape(parameterToString(r.attempt, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -140,6 +153,8 @@ func (a *ActivityApiService) GetAccountActivitiesExecute(r ApiGetAccountActiviti
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -265,85 +280,70 @@ func (a *ActivityApiService) GetAccountActivitiesExecute(r ApiGetAccountActiviti
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListActivitiesRequest struct {
+type ApiDeclareStageProgressRequest struct {
 	ctx context.Context
-	ApiService ActivityApi
-	limit *string
-	offset *string
-	types *[]string
+	ApiService ProvisioningApi
+	deploymentId string
+	stage string
+	attempt string
+	body *DeclareStageProgressRequest
 }
 
-func (r ApiListActivitiesRequest) Limit(limit string) ApiListActivitiesRequest {
-	r.limit = &limit
+func (r ApiDeclareStageProgressRequest) Body(body DeclareStageProgressRequest) ApiDeclareStageProgressRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiListActivitiesRequest) Offset(offset string) ApiListActivitiesRequest {
-	r.offset = &offset
-	return r
-}
-
-// (Optional) Filter on object type
-func (r ApiListActivitiesRequest) Types(types []string) ApiListActivitiesRequest {
-	r.types = &types
-	return r
-}
-
-func (r ApiListActivitiesRequest) Execute() (*ActivityList, *http.Response, error) {
-	return r.ApiService.ListActivitiesExecute(r)
+func (r ApiDeclareStageProgressRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.DeclareStageProgressExecute(r)
 }
 
 /*
-ListActivities Method for ListActivities
+DeclareStageProgress Declare stage progress
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListActivitiesRequest
+ @param deploymentId
+ @param stage
+ @param attempt
+ @return ApiDeclareStageProgressRequest
 */
-func (a *ActivityApiService) ListActivities(ctx context.Context) ApiListActivitiesRequest {
-	return ApiListActivitiesRequest{
+func (a *ProvisioningApiService) DeclareStageProgress(ctx context.Context, deploymentId string, stage string, attempt string) ApiDeclareStageProgressRequest {
+	return ApiDeclareStageProgressRequest{
 		ApiService: a,
 		ctx: ctx,
+		deploymentId: deploymentId,
+		stage: stage,
+		attempt: attempt,
 	}
 }
 
 // Execute executes the request
-//  @return ActivityList
-func (a *ActivityApiService) ListActivitiesExecute(r ApiListActivitiesRequest) (*ActivityList, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ProvisioningApiService) DeclareStageProgressExecute(r ApiDeclareStageProgressRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ActivityList
+		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActivityApiService.ListActivities")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProvisioningApiService.DeclareStageProgress")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/activities"
+	localVarPath := localBasePath + "/v1/provisioning/{deployment_id}/status/{stage}/{attempt}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterToString(r.deploymentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"stage"+"}", url.PathEscape(parameterToString(r.stage, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"attempt"+"}", url.PathEscape(parameterToString(r.attempt, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.types != nil {
-		t := *r.types
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("types", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("types", parameterToString(t, "multi"))
-		}
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -361,6 +361,8 @@ func (a *ActivityApiService) ListActivitiesExecute(r ApiListActivitiesRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -486,103 +488,74 @@ func (a *ActivityApiService) ListActivitiesExecute(r ApiListActivitiesRequest) (
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListNotificationsRequest struct {
+type ApiDeclareStepProgressRequest struct {
 	ctx context.Context
-	ApiService ActivityApi
-	limit *string
-	offset *string
-	markRead *string
-	markSeen *string
-	unread *string
-	unseen *string
+	ApiService ProvisioningApi
+	deploymentId string
+	stage string
+	attempt string
+	step string
+	body *DeclareStepProgressRequest
 }
 
-func (r ApiListNotificationsRequest) Limit(limit string) ApiListNotificationsRequest {
-	r.limit = &limit
+func (r ApiDeclareStepProgressRequest) Body(body DeclareStepProgressRequest) ApiDeclareStepProgressRequest {
+	r.body = &body
 	return r
 }
 
-func (r ApiListNotificationsRequest) Offset(offset string) ApiListNotificationsRequest {
-	r.offset = &offset
-	return r
-}
-
-func (r ApiListNotificationsRequest) MarkRead(markRead string) ApiListNotificationsRequest {
-	r.markRead = &markRead
-	return r
-}
-
-func (r ApiListNotificationsRequest) MarkSeen(markSeen string) ApiListNotificationsRequest {
-	r.markSeen = &markSeen
-	return r
-}
-
-func (r ApiListNotificationsRequest) Unread(unread string) ApiListNotificationsRequest {
-	r.unread = &unread
-	return r
-}
-
-func (r ApiListNotificationsRequest) Unseen(unseen string) ApiListNotificationsRequest {
-	r.unseen = &unseen
-	return r
-}
-
-func (r ApiListNotificationsRequest) Execute() (*NotificationList, *http.Response, error) {
-	return r.ApiService.ListNotificationsExecute(r)
+func (r ApiDeclareStepProgressRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.DeclareStepProgressExecute(r)
 }
 
 /*
-ListNotifications Method for ListNotifications
+DeclareStepProgress Declare step progress
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListNotificationsRequest
+ @param deploymentId
+ @param stage
+ @param attempt
+ @param step
+ @return ApiDeclareStepProgressRequest
 */
-func (a *ActivityApiService) ListNotifications(ctx context.Context) ApiListNotificationsRequest {
-	return ApiListNotificationsRequest{
+func (a *ProvisioningApiService) DeclareStepProgress(ctx context.Context, deploymentId string, stage string, attempt string, step string) ApiDeclareStepProgressRequest {
+	return ApiDeclareStepProgressRequest{
 		ApiService: a,
 		ctx: ctx,
+		deploymentId: deploymentId,
+		stage: stage,
+		attempt: attempt,
+		step: step,
 	}
 }
 
 // Execute executes the request
-//  @return NotificationList
-func (a *ActivityApiService) ListNotificationsExecute(r ApiListNotificationsRequest) (*NotificationList, *http.Response, error) {
+//  @return map[string]interface{}
+func (a *ProvisioningApiService) DeclareStepProgressExecute(r ApiDeclareStepProgressRequest) (map[string]interface{}, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *NotificationList
+		localVarReturnValue  map[string]interface{}
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ActivityApiService.ListNotifications")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProvisioningApiService.DeclareStepProgress")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/notifications"
+	localVarPath := localBasePath + "/v1/provisioning/{deployment_id}/status/{stage}/{attempt}/{step}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterToString(r.deploymentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"stage"+"}", url.PathEscape(parameterToString(r.stage, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"attempt"+"}", url.PathEscape(parameterToString(r.attempt, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"step"+"}", url.PathEscape(parameterToString(r.step, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
 
-	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	}
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
-	if r.markRead != nil {
-		localVarQueryParams.Add("mark_read", parameterToString(*r.markRead, ""))
-	}
-	if r.markSeen != nil {
-		localVarQueryParams.Add("mark_seen", parameterToString(*r.markSeen, ""))
-	}
-	if r.unread != nil {
-		localVarQueryParams.Add("unread", parameterToString(*r.unread, ""))
-	}
-	if r.unseen != nil {
-		localVarQueryParams.Add("unseen", parameterToString(*r.unseen, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -600,6 +573,8 @@ func (a *ActivityApiService) ListNotificationsExecute(r ApiListNotificationsRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
