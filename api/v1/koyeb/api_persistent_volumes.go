@@ -670,6 +670,7 @@ type ApiListPersistentVolumesRequest struct {
 	offset *string
 	serviceId *string
 	region *string
+	name *string
 }
 
 // (Optional) The number of items to return
@@ -693,6 +694,12 @@ func (r ApiListPersistentVolumesRequest) ServiceId(serviceId string) ApiListPers
 // (Optional) A filter for the region
 func (r ApiListPersistentVolumesRequest) Region(region string) ApiListPersistentVolumesRequest {
 	r.region = &region
+	return r
+}
+
+// (Optional) A filter for the name
+func (r ApiListPersistentVolumesRequest) Name(name string) ApiListPersistentVolumesRequest {
+	r.name = &name
 	return r
 }
 
@@ -745,6 +752,9 @@ func (a *PersistentVolumesApiService) ListPersistentVolumesExecute(r ApiListPers
 	}
 	if r.region != nil {
 		localVarQueryParams.Add("region", parameterToString(*r.region, ""))
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

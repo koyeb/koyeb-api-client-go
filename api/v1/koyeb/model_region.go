@@ -22,6 +22,7 @@ type Region struct {
 	Status *string `json:"status,omitempty"`
 	Instances []string `json:"instances,omitempty"`
 	Datacenters []string `json:"datacenters,omitempty"`
+	VolumesEnabled *bool `json:"volumes_enabled,omitempty"`
 }
 
 // NewRegion instantiates a new Region object
@@ -233,6 +234,38 @@ func (o *Region) SetDatacenters(v []string) {
 	o.Datacenters = v
 }
 
+// GetVolumesEnabled returns the VolumesEnabled field value if set, zero value otherwise.
+func (o *Region) GetVolumesEnabled() bool {
+	if o == nil || isNil(o.VolumesEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.VolumesEnabled
+}
+
+// GetVolumesEnabledOk returns a tuple with the VolumesEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Region) GetVolumesEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.VolumesEnabled) {
+    return nil, false
+	}
+	return o.VolumesEnabled, true
+}
+
+// HasVolumesEnabled returns a boolean if a field has been set.
+func (o *Region) HasVolumesEnabled() bool {
+	if o != nil && !isNil(o.VolumesEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumesEnabled gets a reference to the given bool and assigns it to the VolumesEnabled field.
+func (o *Region) SetVolumesEnabled(v bool) {
+	o.VolumesEnabled = &v
+}
+
 func (o Region) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -252,6 +285,9 @@ func (o Region) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Datacenters) {
 		toSerialize["datacenters"] = o.Datacenters
+	}
+	if !isNil(o.VolumesEnabled) {
+		toSerialize["volumes_enabled"] = o.VolumesEnabled
 	}
 	return json.Marshal(toSerialize)
 }

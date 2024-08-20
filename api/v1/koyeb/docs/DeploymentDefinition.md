@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**DeploymentDefinitionType**](DeploymentDefinitionType.md) |  | [optional] [default to DEPLOYMENTDEFINITIONTYPE_INVALID]
+**Strategy** | Pointer to [**DeploymentStrategy**](DeploymentStrategy.md) |  | [optional] 
 **Routes** | Pointer to [**[]DeploymentRoute**](DeploymentRoute.md) |  | [optional] 
 **Ports** | Pointer to [**[]DeploymentPort**](DeploymentPort.md) |  | [optional] 
 **Env** | Pointer to [**[]DeploymentEnv**](DeploymentEnv.md) |  | [optional] 
@@ -88,6 +89,31 @@ SetType sets Type field to given value.
 `func (o *DeploymentDefinition) HasType() bool`
 
 HasType returns a boolean if a field has been set.
+
+### GetStrategy
+
+`func (o *DeploymentDefinition) GetStrategy() DeploymentStrategy`
+
+GetStrategy returns the Strategy field if non-nil, zero value otherwise.
+
+### GetStrategyOk
+
+`func (o *DeploymentDefinition) GetStrategyOk() (*DeploymentStrategy, bool)`
+
+GetStrategyOk returns a tuple with the Strategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStrategy
+
+`func (o *DeploymentDefinition) SetStrategy(v DeploymentStrategy)`
+
+SetStrategy sets Strategy field to given value.
+
+### HasStrategy
+
+`func (o *DeploymentDefinition) HasStrategy() bool`
+
+HasStrategy returns a boolean if a field has been set.
 
 ### GetRoutes
 

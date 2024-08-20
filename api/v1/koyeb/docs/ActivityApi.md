@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## ListActivities
 
-> ActivityList ListActivities(ctx).Limit(limit).Offset(offset).Execute()
+> ActivityList ListActivities(ctx).Limit(limit).Offset(offset).Types(types).Execute()
 
 
 
@@ -97,10 +97,11 @@ import (
 func main() {
     limit := "limit_example" // string |  (optional)
     offset := "offset_example" // string |  (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on object type (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ActivityApi.ListActivities(context.Background()).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.ActivityApi.ListActivities(context.Background()).Limit(limit).Offset(offset).Types(types).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ActivityApi.ListActivities``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -123,6 +124,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **string** |  | 
  **offset** | **string** |  | 
+ **types** | **[]string** | (Optional) Filter on object type | 
 
 ### Return type
 

@@ -21,6 +21,7 @@ type DeploymentProvisioningInfoStageStatus string
 // List of DeploymentProvisioningInfo.Stage.Status
 const (
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_UNKNOWN DeploymentProvisioningInfoStageStatus = "UNKNOWN"
+	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_PENDING DeploymentProvisioningInfoStageStatus = "PENDING"
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_RUNNING DeploymentProvisioningInfoStageStatus = "RUNNING"
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_FAILED DeploymentProvisioningInfoStageStatus = "FAILED"
 	DEPLOYMENTPROVISIONINGINFOSTAGESTATUS_COMPLETED DeploymentProvisioningInfoStageStatus = "COMPLETED"
@@ -30,6 +31,7 @@ const (
 // All allowed values of DeploymentProvisioningInfoStageStatus enum
 var AllowedDeploymentProvisioningInfoStageStatusEnumValues = []DeploymentProvisioningInfoStageStatus{
 	"UNKNOWN",
+	"PENDING",
 	"RUNNING",
 	"FAILED",
 	"COMPLETED",

@@ -18,6 +18,7 @@ import (
 type DeploymentDefinition struct {
 	Name *string `json:"name,omitempty"`
 	Type *DeploymentDefinitionType `json:"type,omitempty"`
+	Strategy *DeploymentStrategy `json:"strategy,omitempty"`
 	Routes []DeploymentRoute `json:"routes,omitempty"`
 	Ports []DeploymentPort `json:"ports,omitempty"`
 	Env []DeploymentEnv `json:"env,omitempty"`
@@ -116,6 +117,38 @@ func (o *DeploymentDefinition) HasType() bool {
 // SetType gets a reference to the given DeploymentDefinitionType and assigns it to the Type field.
 func (o *DeploymentDefinition) SetType(v DeploymentDefinitionType) {
 	o.Type = &v
+}
+
+// GetStrategy returns the Strategy field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetStrategy() DeploymentStrategy {
+	if o == nil || isNil(o.Strategy) {
+		var ret DeploymentStrategy
+		return ret
+	}
+	return *o.Strategy
+}
+
+// GetStrategyOk returns a tuple with the Strategy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetStrategyOk() (*DeploymentStrategy, bool) {
+	if o == nil || isNil(o.Strategy) {
+    return nil, false
+	}
+	return o.Strategy, true
+}
+
+// HasStrategy returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasStrategy() bool {
+	if o != nil && !isNil(o.Strategy) {
+		return true
+	}
+
+	return false
+}
+
+// SetStrategy gets a reference to the given DeploymentStrategy and assigns it to the Strategy field.
+func (o *DeploymentDefinition) SetStrategy(v DeploymentStrategy) {
+	o.Strategy = &v
 }
 
 // GetRoutes returns the Routes field value if set, zero value otherwise.
@@ -541,6 +574,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Type) {
 		toSerialize["type"] = o.Type
+	}
+	if !isNil(o.Strategy) {
+		toSerialize["strategy"] = o.Strategy
 	}
 	if !isNil(o.Routes) {
 		toSerialize["routes"] = o.Routes

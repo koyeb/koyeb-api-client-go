@@ -34,6 +34,7 @@ type CatalogInstance struct {
 	Type *string `json:"type,omitempty"`
 	Gpu *CatalogGPUDetails `json:"gpu,omitempty"`
 	ServiceTypes []string `json:"service_types,omitempty"`
+	VolumesEnabled *bool `json:"volumes_enabled,omitempty"`
 }
 
 // NewCatalogInstance instantiates a new CatalogInstance object
@@ -565,6 +566,38 @@ func (o *CatalogInstance) SetServiceTypes(v []string) {
 	o.ServiceTypes = v
 }
 
+// GetVolumesEnabled returns the VolumesEnabled field value if set, zero value otherwise.
+func (o *CatalogInstance) GetVolumesEnabled() bool {
+	if o == nil || isNil(o.VolumesEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.VolumesEnabled
+}
+
+// GetVolumesEnabledOk returns a tuple with the VolumesEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogInstance) GetVolumesEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.VolumesEnabled) {
+    return nil, false
+	}
+	return o.VolumesEnabled, true
+}
+
+// HasVolumesEnabled returns a boolean if a field has been set.
+func (o *CatalogInstance) HasVolumesEnabled() bool {
+	if o != nil && !isNil(o.VolumesEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetVolumesEnabled gets a reference to the given bool and assigns it to the VolumesEnabled field.
+func (o *CatalogInstance) SetVolumesEnabled(v bool) {
+	o.VolumesEnabled = &v
+}
+
 func (o CatalogInstance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -614,6 +647,9 @@ func (o CatalogInstance) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ServiceTypes) {
 		toSerialize["service_types"] = o.ServiceTypes
+	}
+	if !isNil(o.VolumesEnabled) {
+		toSerialize["volumes_enabled"] = o.VolumesEnabled
 	}
 	return json.Marshal(toSerialize)
 }

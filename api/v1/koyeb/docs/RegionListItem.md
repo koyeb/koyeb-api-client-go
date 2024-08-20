@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to **string** |  | [optional] 
 **Instances** | Pointer to **[]string** |  | [optional] 
 **Datacenters** | Pointer to **[]string** |  | [optional] 
+**VolumesEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetDatacenters sets Datacenters field to given value.
 `func (o *RegionListItem) HasDatacenters() bool`
 
 HasDatacenters returns a boolean if a field has been set.
+
+### GetVolumesEnabled
+
+`func (o *RegionListItem) GetVolumesEnabled() bool`
+
+GetVolumesEnabled returns the VolumesEnabled field if non-nil, zero value otherwise.
+
+### GetVolumesEnabledOk
+
+`func (o *RegionListItem) GetVolumesEnabledOk() (*bool, bool)`
+
+GetVolumesEnabledOk returns a tuple with the VolumesEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVolumesEnabled
+
+`func (o *RegionListItem) SetVolumesEnabled(v bool)`
+
+SetVolumesEnabled sets VolumesEnabled field to given value.
+
+### HasVolumesEnabled
+
+`func (o *RegionListItem) HasVolumesEnabled() bool`
+
+HasVolumesEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
