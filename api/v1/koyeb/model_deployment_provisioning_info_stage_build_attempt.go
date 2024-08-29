@@ -26,6 +26,8 @@ type DeploymentProvisioningInfoStageBuildAttempt struct {
 	ImagePushed *bool `json:"image_pushed,omitempty"`
 	InternalFailure *bool `json:"internal_failure,omitempty"`
 	RetryableFailure *bool `json:"retryable_failure,omitempty"`
+	// This flag is used to finalize the build, and continue the deployment in case of success, or cancel and potentially retry the build in case of failure.
+	WaitCompletion *bool `json:"wait_completion,omitempty"`
 }
 
 // NewDeploymentProvisioningInfoStageBuildAttempt instantiates a new DeploymentProvisioningInfoStageBuildAttempt object
@@ -337,6 +339,38 @@ func (o *DeploymentProvisioningInfoStageBuildAttempt) SetRetryableFailure(v bool
 	o.RetryableFailure = &v
 }
 
+// GetWaitCompletion returns the WaitCompletion field value if set, zero value otherwise.
+func (o *DeploymentProvisioningInfoStageBuildAttempt) GetWaitCompletion() bool {
+	if o == nil || isNil(o.WaitCompletion) {
+		var ret bool
+		return ret
+	}
+	return *o.WaitCompletion
+}
+
+// GetWaitCompletionOk returns a tuple with the WaitCompletion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentProvisioningInfoStageBuildAttempt) GetWaitCompletionOk() (*bool, bool) {
+	if o == nil || isNil(o.WaitCompletion) {
+    return nil, false
+	}
+	return o.WaitCompletion, true
+}
+
+// HasWaitCompletion returns a boolean if a field has been set.
+func (o *DeploymentProvisioningInfoStageBuildAttempt) HasWaitCompletion() bool {
+	if o != nil && !isNil(o.WaitCompletion) {
+		return true
+	}
+
+	return false
+}
+
+// SetWaitCompletion gets a reference to the given bool and assigns it to the WaitCompletion field.
+func (o *DeploymentProvisioningInfoStageBuildAttempt) SetWaitCompletion(v bool) {
+	o.WaitCompletion = &v
+}
+
 func (o DeploymentProvisioningInfoStageBuildAttempt) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -365,6 +399,9 @@ func (o DeploymentProvisioningInfoStageBuildAttempt) MarshalJSON() ([]byte, erro
 	}
 	if !isNil(o.RetryableFailure) {
 		toSerialize["retryable_failure"] = o.RetryableFailure
+	}
+	if !isNil(o.WaitCompletion) {
+		toSerialize["wait_completion"] = o.WaitCompletion
 	}
 	return json.Marshal(toSerialize)
 }

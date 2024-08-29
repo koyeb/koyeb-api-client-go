@@ -50,6 +50,7 @@
         "Instances",
         "Domains",
         "PersistentVolumes",
+        "Snapshots",
         "Repositories",
         "Logs",
         "Metrics",
@@ -10117,6 +10118,393 @@
           "Services"
         ]
       }
+    },
+    "/v1/snapshots": {
+      "get": {
+        "summary": "List all Snapshots",
+        "operationId": "ListSnapshots",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListSnapshotsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "organization_id",
+            "description": "(Optional) Filter by organization_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "statuses",
+            "description": "(Optional) Filter by status\n\n - SNAPSHOT_STATUS_INVALID: zero value, invalid\n - SNAPSHOT_STATUS_CREATING: the snapshot is being created\n - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available\n - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated\n - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted\n - SNAPSHOT_STATUS_DELETED: the snapshot is deleted",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "SNAPSHOT_STATUS_INVALID",
+                "SNAPSHOT_STATUS_CREATING",
+                "SNAPSHOT_STATUS_AVAILABLE",
+                "SNAPSHOT_STATUS_MIGRATING",
+                "SNAPSHOT_STATUS_DELETING",
+                "SNAPSHOT_STATUS_DELETED"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "region",
+            "description": "(Optional) A filter for the region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Snapshots"
+        ]
+      },
+      "post": {
+        "summary": "Create a Snapshot",
+        "operationId": "CreateSnapshot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateSnapshotReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSnapshotRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Snapshots"
+        ]
+      }
+    },
+    "/v1/snapshots/{id}": {
+      "get": {
+        "summary": "Get a Snapshot",
+        "operationId": "GetSnapshot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetSnapshotReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Snapshots"
+        ]
+      },
+      "delete": {
+        "summary": "Delete a Snapshot",
+        "operationId": "DeleteSnapshot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteSnapshotReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Snapshots"
+        ]
+      },
+      "post": {
+        "summary": "Update a Snapshot",
+        "operationId": "UpdateSnapshot",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateSnapshotReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the snapshot",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "title": "Change the name of the snapshot"
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "Snapshots"
+        ]
+      }
     }
   },
   "definitions": {
@@ -13291,6 +13679,10 @@
         },
         "retryable_failure": {
           "type": "boolean"
+        },
+        "wait_completion": {
+          "type": "boolean",
+          "description": "This flag is used to finalize the build, and continue the deployment in case of success, or cancel and potentially retry the build in case of failure."
         }
       }
     },
@@ -15177,12 +15569,12 @@
         "updated_at": {
           "type": "string",
           "format": "date-time",
-          "title": "last change timestapm"
+          "title": "last change timestamp"
         },
         "deleted_at": {
           "type": "string",
           "format": "date-time",
-          "title": "deletion timestapm"
+          "title": "deletion timestamp"
         },
         "organization_id": {
           "type": "string",
@@ -16152,6 +16544,145 @@
         "service": {
           "$ref": "#/definitions/Service",
           "title": "The entity updated"
+        }
+      }
+    },
+    "CreateSnapshotReply": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/definitions/Snapshot"
+        }
+      }
+    },
+    "CreateSnapshotRequest": {
+      "type": "object",
+      "properties": {
+        "parent_volume_id": {
+          "type": "string",
+          "title": "The id of the volume to snapshot"
+        },
+        "name": {
+          "type": "string",
+          "title": "The name of the snapshot"
+        }
+      }
+    },
+    "DeleteSnapshotReply": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/definitions/Snapshot"
+        }
+      }
+    },
+    "GetSnapshotReply": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/definitions/Snapshot"
+        }
+      }
+    },
+    "ListSnapshotsReply": {
+      "type": "object",
+      "properties": {
+        "snapshots": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Snapshot"
+          },
+          "title": "The collection of snapshots"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        }
+      }
+    },
+    "Snapshot": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the identifier of the snapshot object"
+        },
+        "name": {
+          "type": "string",
+          "title": "the snapshot name"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "creation timestamp"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "last change timestamp"
+        },
+        "deleted_at": {
+          "type": "string",
+          "format": "date-time",
+          "title": "deletion timestamp"
+        },
+        "organization_id": {
+          "type": "string",
+          "title": "the organization to which the snapshot belongs to"
+        },
+        "parent_volume_id": {
+          "type": "string",
+          "title": "the volume from which the snapshot has been created"
+        },
+        "region": {
+          "type": "string",
+          "title": "the region where the snapshot resides, if any"
+        },
+        "status": {
+          "$ref": "#/definitions/SnapshotStatus",
+          "title": "the status of the snapshot"
+        },
+        "type": {
+          "$ref": "#/definitions/SnapshotType",
+          "title": "the type of snapshot (can be local or remote)"
+        }
+      },
+      "description": "The object that represents a snapshot. It can either be local, on a node, or remote, in a cold storage."
+    },
+    "SnapshotStatus": {
+      "type": "string",
+      "enum": [
+        "SNAPSHOT_STATUS_INVALID",
+        "SNAPSHOT_STATUS_CREATING",
+        "SNAPSHOT_STATUS_AVAILABLE",
+        "SNAPSHOT_STATUS_MIGRATING",
+        "SNAPSHOT_STATUS_DELETING",
+        "SNAPSHOT_STATUS_DELETED"
+      ],
+      "default": "SNAPSHOT_STATUS_INVALID",
+      "title": "- SNAPSHOT_STATUS_INVALID: zero value, invalid\n - SNAPSHOT_STATUS_CREATING: the snapshot is being created\n - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available\n - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated\n - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted\n - SNAPSHOT_STATUS_DELETED: the snapshot is deleted"
+    },
+    "SnapshotType": {
+      "type": "string",
+      "enum": [
+        "SNAPSHOT_TYPE_INVALID",
+        "SNAPSHOT_TYPE_LOCAL",
+        "SNAPSHOT_TYPE_REMOTE"
+      ],
+      "default": "SNAPSHOT_TYPE_INVALID",
+      "title": "- SNAPSHOT_TYPE_INVALID: zero value, invalid\n - SNAPSHOT_TYPE_LOCAL: the snapshot is local to the machine\n - SNAPSHOT_TYPE_REMOTE: the snapshot is remote in a cold storage"
+    },
+    "UpdateSnapshotReply": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/definitions/Snapshot"
         }
       }
     }

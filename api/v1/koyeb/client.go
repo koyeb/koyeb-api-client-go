@@ -113,6 +113,8 @@ type APIClient struct {
 
 	SessionsApi SessionsApi
 
+	SnapshotsApi SnapshotsApi
+
 	SsoApi SsoApi
 
 	SubscriptionsApi SubscriptionsApi
@@ -172,6 +174,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionsApi = (*SessionsApiService)(&c.common)
+	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
 	c.SsoApi = (*SsoApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.SummaryApi = (*SummaryApiService)(&c.common)

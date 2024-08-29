@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ImagePushed** | Pointer to **bool** |  | [optional] 
 **InternalFailure** | Pointer to **bool** |  | [optional] 
 **RetryableFailure** | Pointer to **bool** |  | [optional] 
+**WaitCompletion** | Pointer to **bool** | This flag is used to finalize the build, and continue the deployment in case of success, or cancel and potentially retry the build in case of failure. | [optional] 
 
 ## Methods
 
@@ -257,6 +258,31 @@ SetRetryableFailure sets RetryableFailure field to given value.
 `func (o *DeploymentProvisioningInfoStageBuildAttempt) HasRetryableFailure() bool`
 
 HasRetryableFailure returns a boolean if a field has been set.
+
+### GetWaitCompletion
+
+`func (o *DeploymentProvisioningInfoStageBuildAttempt) GetWaitCompletion() bool`
+
+GetWaitCompletion returns the WaitCompletion field if non-nil, zero value otherwise.
+
+### GetWaitCompletionOk
+
+`func (o *DeploymentProvisioningInfoStageBuildAttempt) GetWaitCompletionOk() (*bool, bool)`
+
+GetWaitCompletionOk returns a tuple with the WaitCompletion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWaitCompletion
+
+`func (o *DeploymentProvisioningInfoStageBuildAttempt) SetWaitCompletion(v bool)`
+
+SetWaitCompletion sets WaitCompletion field to given value.
+
+### HasWaitCompletion
+
+`func (o *DeploymentProvisioningInfoStageBuildAttempt) HasWaitCompletion() bool`
+
+HasWaitCompletion returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

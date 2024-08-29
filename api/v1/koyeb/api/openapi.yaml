@@ -9206,6 +9206,361 @@ paths:
       summary: Resume Service
       tags:
       - Services
+  /v1/snapshots:
+    get:
+      operationId: ListSnapshots
+      parameters:
+      - description: (Optional) The number of items to return
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Filter by organization_id
+        in: query
+        name: organization_id
+        schema:
+          type: string
+      - description: |-
+          (Optional) Filter by status
+
+           - SNAPSHOT_STATUS_INVALID: zero value, invalid
+           - SNAPSHOT_STATUS_CREATING: the snapshot is being created
+           - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available
+           - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated
+           - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted
+           - SNAPSHOT_STATUS_DELETED: the snapshot is deleted
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - SNAPSHOT_STATUS_INVALID
+            - SNAPSHOT_STATUS_CREATING
+            - SNAPSHOT_STATUS_AVAILABLE
+            - SNAPSHOT_STATUS_MIGRATING
+            - SNAPSHOT_STATUS_DELETING
+            - SNAPSHOT_STATUS_DELETED
+            type: string
+          type: array
+        style: form
+      - description: (Optional) A filter for the region
+        in: query
+        name: region
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListSnapshotsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List all Snapshots
+      tags:
+      - Snapshots
+    post:
+      operationId: CreateSnapshot
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateSnapshotRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateSnapshotReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create a Snapshot
+      tags:
+      - Snapshots
+      x-codegen-request-body-name: body
+  /v1/snapshots/{id}:
+    delete:
+      operationId: DeleteSnapshot
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteSnapshotReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete a Snapshot
+      tags:
+      - Snapshots
+    get:
+      operationId: GetSnapshot
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetSnapshotReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get a Snapshot
+      tags:
+      - Snapshots
+    post:
+      operationId: UpdateSnapshot
+      parameters:
+      - description: The id of the snapshot
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateSnapshot_request'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateSnapshotReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update a Snapshot
+      tags:
+      - Snapshots
+      x-codegen-request-body-name: body
 components:
   schemas:
     google.protobuf.Any:
@@ -13601,6 +13956,7 @@ components:
           build_attempts:
           - internal_failure: true
             finished_at: 2000-01-23T04:56:07.000+00:00
+            wait_completion: true
             image_pushed: true
             messages:
             - messages
@@ -13626,6 +13982,7 @@ components:
             retryable_failure: true
           - internal_failure: true
             finished_at: 2000-01-23T04:56:07.000+00:00
+            wait_completion: true
             image_pushed: true
             messages:
             - messages
@@ -13659,6 +14016,7 @@ components:
           build_attempts:
           - internal_failure: true
             finished_at: 2000-01-23T04:56:07.000+00:00
+            wait_completion: true
             image_pushed: true
             messages:
             - messages
@@ -13684,6 +14042,7 @@ components:
             retryable_failure: true
           - internal_failure: true
             finished_at: 2000-01-23T04:56:07.000+00:00
+            wait_completion: true
             image_pushed: true
             messages:
             - messages
@@ -13734,6 +14093,7 @@ components:
         build_attempts:
         - internal_failure: true
           finished_at: 2000-01-23T04:56:07.000+00:00
+          wait_completion: true
           image_pushed: true
           messages:
           - messages
@@ -13759,6 +14119,7 @@ components:
           retryable_failure: true
         - internal_failure: true
           finished_at: 2000-01-23T04:56:07.000+00:00
+          wait_completion: true
           image_pushed: true
           messages:
           - messages
@@ -13812,6 +14173,7 @@ components:
       example:
         internal_failure: true
         finished_at: 2000-01-23T04:56:07.000+00:00
+        wait_completion: true
         image_pushed: true
         messages:
         - messages
@@ -13860,6 +14222,11 @@ components:
         internal_failure:
           type: boolean
         retryable_failure:
+          type: boolean
+        wait_completion:
+          description: "This flag is used to finalize the build, and continue the\
+            \ deployment in case of success, or cancel and potentially retry the build\
+            \ in case of failure."
           type: boolean
       type: object
     DeploymentProvisioningInfo.Stage.BuildAttempt.BuildStep:
@@ -14244,6 +14611,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -14269,6 +14637,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -14302,6 +14671,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -14327,6 +14697,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -15021,6 +15392,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -15046,6 +15418,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -15079,6 +15452,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -15104,6 +15478,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -16319,6 +16694,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -16344,6 +16720,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -16377,6 +16754,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -16402,6 +16780,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -17146,6 +17525,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -17171,6 +17551,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -17204,6 +17585,7 @@ components:
             build_attempts:
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -17229,6 +17611,7 @@ components:
               retryable_failure: true
             - internal_failure: true
               finished_at: 2000-01-23T04:56:07.000+00:00
+              wait_completion: true
               image_pushed: true
               messages:
               - messages
@@ -17789,6 +18172,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -17814,6 +18198,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -17847,6 +18232,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -17872,6 +18258,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18230,6 +18617,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18255,6 +18643,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18288,6 +18677,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18313,6 +18703,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18619,6 +19010,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18644,6 +19036,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18677,6 +19070,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -18702,6 +19096,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -19350,11 +19745,11 @@ components:
           type: string
         updated_at:
           format: date-time
-          title: last change timestapm
+          title: last change timestamp
           type: string
         deleted_at:
           format: date-time
-          title: deletion timestapm
+          title: deletion timestamp
           type: string
         organization_id:
           title: the organization to which the volume belongs to
@@ -20958,6 +21353,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -20983,6 +21379,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -21016,6 +21413,7 @@ components:
               build_attempts:
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -21041,6 +21439,7 @@ components:
                 retryable_failure: true
               - internal_failure: true
                 finished_at: 2000-01-23T04:56:07.000+00:00
+                wait_completion: true
                 image_pushed: true
                 messages:
                 - messages
@@ -21870,6 +22269,201 @@ components:
         service:
           $ref: '#/components/schemas/Service'
       type: object
+    CreateSnapshotReply:
+      example:
+        snapshot:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+      properties:
+        snapshot:
+          $ref: '#/components/schemas/Snapshot'
+      type: object
+    CreateSnapshotRequest:
+      example:
+        name: name
+        parent_volume_id: parent_volume_id
+      properties:
+        parent_volume_id:
+          title: The id of the volume to snapshot
+          type: string
+        name:
+          title: The name of the snapshot
+          type: string
+      type: object
+    DeleteSnapshotReply:
+      example:
+        snapshot:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+      properties:
+        snapshot:
+          $ref: '#/components/schemas/Snapshot'
+      type: object
+    GetSnapshotReply:
+      example:
+        snapshot:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+      properties:
+        snapshot:
+          $ref: '#/components/schemas/Snapshot'
+      type: object
+    ListSnapshotsReply:
+      example:
+        snapshots:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+        offset: 6
+        limit: 0
+      properties:
+        snapshots:
+          items:
+            $ref: '#/components/schemas/Snapshot'
+          title: The collection of snapshots
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+      type: object
+    Snapshot:
+      description: "The object that represents a snapshot. It can either be local,\
+        \ on a node, or remote, in a cold storage."
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        region: region
+        type: null
+        deleted_at: 2000-01-23T04:56:07.000+00:00
+        parent_volume_id: parent_volume_id
+        status: null
+      properties:
+        id:
+          title: the identifier of the snapshot object
+          type: string
+        name:
+          title: the snapshot name
+          type: string
+        created_at:
+          format: date-time
+          title: creation timestamp
+          type: string
+        updated_at:
+          format: date-time
+          title: last change timestamp
+          type: string
+        deleted_at:
+          format: date-time
+          title: deletion timestamp
+          type: string
+        organization_id:
+          title: the organization to which the snapshot belongs to
+          type: string
+        parent_volume_id:
+          title: the volume from which the snapshot has been created
+          type: string
+        region:
+          title: "the region where the snapshot resides, if any"
+          type: string
+        status:
+          $ref: '#/components/schemas/SnapshotStatus'
+        type:
+          $ref: '#/components/schemas/SnapshotType'
+      type: object
+    SnapshotStatus:
+      default: SNAPSHOT_STATUS_INVALID
+      enum:
+      - SNAPSHOT_STATUS_INVALID
+      - SNAPSHOT_STATUS_CREATING
+      - SNAPSHOT_STATUS_AVAILABLE
+      - SNAPSHOT_STATUS_MIGRATING
+      - SNAPSHOT_STATUS_DELETING
+      - SNAPSHOT_STATUS_DELETED
+      title: |-
+        - SNAPSHOT_STATUS_INVALID: zero value, invalid
+         - SNAPSHOT_STATUS_CREATING: the snapshot is being created
+         - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available
+         - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated
+         - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted
+         - SNAPSHOT_STATUS_DELETED: the snapshot is deleted
+      type: string
+    SnapshotType:
+      default: SNAPSHOT_TYPE_INVALID
+      enum:
+      - SNAPSHOT_TYPE_INVALID
+      - SNAPSHOT_TYPE_LOCAL
+      - SNAPSHOT_TYPE_REMOTE
+      title: |-
+        - SNAPSHOT_TYPE_INVALID: zero value, invalid
+         - SNAPSHOT_TYPE_LOCAL: the snapshot is local to the machine
+         - SNAPSHOT_TYPE_REMOTE: the snapshot is remote in a cold storage
+      type: string
+    UpdateSnapshotReply:
+      example:
+        snapshot:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          type: null
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          parent_volume_id: parent_volume_id
+          status: null
+      properties:
+        snapshot:
+          $ref: '#/components/schemas/Snapshot'
+      type: object
     Stream_result_of_ExecCommandReply:
       example:
         result:
@@ -21989,6 +22583,12 @@ components:
           title: (Optional) increase the volume size (in Gigabyte / GB)
           type: integer
       type: object
+    UpdateSnapshot_request:
+      properties:
+        name:
+          title: Change the name of the snapshot
+          type: string
+      type: object
   securitySchemes:
     Bearer:
       in: header
@@ -22018,6 +22618,7 @@ x-tagGroups:
   - Instances
   - Domains
   - PersistentVolumes
+  - Snapshots
   - Repositories
   - Logs
   - Metrics

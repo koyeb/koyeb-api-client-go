@@ -205,6 +205,11 @@ Class | Method | HTTP request | Description
 *SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user
 *SessionsApi* | [**NewSession**](docs/SessionsApi.md#newsession) | **Post** /v1/account/session | New session
 *SessionsApi* | [**RefreshToken**](docs/SessionsApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
+*SnapshotsApi* | [**CreateSnapshot**](docs/SnapshotsApi.md#createsnapshot) | **Post** /v1/snapshots | Create a Snapshot
+*SnapshotsApi* | [**DeleteSnapshot**](docs/SnapshotsApi.md#deletesnapshot) | **Delete** /v1/snapshots/{id} | Delete a Snapshot
+*SnapshotsApi* | [**GetSnapshot**](docs/SnapshotsApi.md#getsnapshot) | **Get** /v1/snapshots/{id} | Get a Snapshot
+*SnapshotsApi* | [**ListSnapshots**](docs/SnapshotsApi.md#listsnapshots) | **Get** /v1/snapshots | List all Snapshots
+*SnapshotsApi* | [**UpdateSnapshot**](docs/SnapshotsApi.md#updatesnapshot) | **Post** /v1/snapshots/{id} | Update a Snapshot
 *SsoApi* | [**CannyAuth**](docs/SsoApi.md#cannyauth) | **Post** /v1/sso/canny | 
 *SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
@@ -260,6 +265,8 @@ Class | Method | HTTP request | Description
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
+ - [CreateSnapshotReply](docs/CreateSnapshotReply.md)
+ - [CreateSnapshotRequest](docs/CreateSnapshotRequest.md)
  - [CreateStageAttemptRequest](docs/CreateStageAttemptRequest.md)
  - [Credential](docs/Credential.md)
  - [CredentialType](docs/CredentialType.md)
@@ -273,6 +280,7 @@ Class | Method | HTTP request | Description
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
  - [DeleteOrganizationReply](docs/DeleteOrganizationReply.md)
  - [DeletePersistentVolumeReply](docs/DeletePersistentVolumeReply.md)
+ - [DeleteSnapshotReply](docs/DeleteSnapshotReply.md)
  - [DeleteUserReply](docs/DeleteUserReply.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentDatabaseInfo](docs/DeploymentDatabaseInfo.md)
@@ -350,6 +358,7 @@ Class | Method | HTTP request | Description
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
+ - [GetSnapshotReply](docs/GetSnapshotReply.md)
  - [GetSubscriptionReply](docs/GetSubscriptionReply.md)
  - [GetUserOrganizationInvitationReply](docs/GetUserOrganizationInvitationReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
@@ -408,6 +417,7 @@ Class | Method | HTTP request | Description
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServiceEventsReply](docs/ListServiceEventsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
+ - [ListSnapshotsReply](docs/ListSnapshotsReply.md)
  - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
@@ -483,6 +493,9 @@ Class | Method | HTTP request | Description
  - [ServiceSummary](docs/ServiceSummary.md)
  - [ServiceType](docs/ServiceType.md)
  - [ServiceUsage](docs/ServiceUsage.md)
+ - [Snapshot](docs/Snapshot.md)
+ - [SnapshotStatus](docs/SnapshotStatus.md)
+ - [SnapshotType](docs/SnapshotType.md)
  - [StreamResultOfExecCommandReply](docs/StreamResultOfExecCommandReply.md)
  - [StreamResultOfLogEntry](docs/StreamResultOfLogEntry.md)
  - [Subscription](docs/Subscription.md)
@@ -510,6 +523,8 @@ Class | Method | HTTP request | Description
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
+ - [UpdateSnapshotReply](docs/UpdateSnapshotReply.md)
+ - [UpdateSnapshotRequest](docs/UpdateSnapshotRequest.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)
  - [UpsertSignupQualificationReply](docs/UpsertSignupQualificationReply.md)
  - [UpsertSignupQualificationRequest](docs/UpsertSignupQualificationRequest.md)
