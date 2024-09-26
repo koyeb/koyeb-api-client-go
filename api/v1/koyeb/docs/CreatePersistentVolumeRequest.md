@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Region** | Pointer to **string** |  | [optional] 
 **ReadOnly** | Pointer to **bool** |  | [optional] 
 **MaxSize** | Pointer to **int64** |  | [optional] 
+**SnapshotId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetMaxSize sets MaxSize field to given value.
 `func (o *CreatePersistentVolumeRequest) HasMaxSize() bool`
 
 HasMaxSize returns a boolean if a field has been set.
+
+### GetSnapshotId
+
+`func (o *CreatePersistentVolumeRequest) GetSnapshotId() string`
+
+GetSnapshotId returns the SnapshotId field if non-nil, zero value otherwise.
+
+### GetSnapshotIdOk
+
+`func (o *CreatePersistentVolumeRequest) GetSnapshotIdOk() (*string, bool)`
+
+GetSnapshotIdOk returns a tuple with the SnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnapshotId
+
+`func (o *CreatePersistentVolumeRequest) SetSnapshotId(v string)`
+
+SetSnapshotId sets SnapshotId field to given value.
+
+### HasSnapshotId
+
+`func (o *CreatePersistentVolumeRequest) HasSnapshotId() bool`
+
+HasSnapshotId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

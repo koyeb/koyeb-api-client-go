@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreatePersistentVolume**](PersistentVolumesApi.md#CreatePersistentVolume) | **Post** /v1/volumes | Create a PersistentVolume
 [**DeletePersistentVolume**](PersistentVolumesApi.md#DeletePersistentVolume) | **Delete** /v1/volumes/{id} | Delete a PersistentVolume
 [**GetPersistentVolume**](PersistentVolumesApi.md#GetPersistentVolume) | **Get** /v1/volumes/{id} | Get a PersistentVolume
+[**ListPersistentVolumeEvents**](PersistentVolumesApi.md#ListPersistentVolumeEvents) | **Get** /v1/volume_events | List Persistent Volume events
 [**ListPersistentVolumes**](PersistentVolumesApi.md#ListPersistentVolumes) | **Get** /v1/volumes | List all PersistentVolumes
 [**UpdatePersistentVolume**](PersistentVolumesApi.md#UpdatePersistentVolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
 
@@ -197,6 +198,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetPersistentVolumeReply**](GetPersistentVolumeReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListPersistentVolumeEvents
+
+> ListPersistentVolumeEventsReply ListPersistentVolumeEvents(ctx).PersistentVolumeId(persistentVolumeId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+
+List Persistent Volume events
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    persistentVolumeId := "persistentVolumeId_example" // string | (Optional) Filter on persistent volume id (optional)
+    types := []string{"Inner_example"} // []string | (Optional) Filter on persistent volume event types (optional)
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.PersistentVolumesApi.ListPersistentVolumeEvents(context.Background()).PersistentVolumeId(persistentVolumeId).Types(types).Limit(limit).Offset(offset).Order(order).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PersistentVolumesApi.ListPersistentVolumeEvents``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListPersistentVolumeEvents`: ListPersistentVolumeEventsReply
+    fmt.Fprintf(os.Stdout, "Response from `PersistentVolumesApi.ListPersistentVolumeEvents`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListPersistentVolumeEventsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **persistentVolumeId** | **string** | (Optional) Filter on persistent volume id | 
+ **types** | **[]string** | (Optional) Filter on persistent volume event types | 
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+
+### Return type
+
+[**ListPersistentVolumeEventsReply**](ListPersistentVolumeEventsReply.md)
 
 ### Authorization
 

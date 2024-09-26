@@ -21,6 +21,7 @@ type CreatePersistentVolumeRequest struct {
 	Region *string `json:"region,omitempty"`
 	ReadOnly *bool `json:"read_only,omitempty"`
 	MaxSize *int64 `json:"max_size,omitempty"`
+	SnapshotId *string `json:"snapshot_id,omitempty"`
 }
 
 // NewCreatePersistentVolumeRequest instantiates a new CreatePersistentVolumeRequest object
@@ -204,6 +205,38 @@ func (o *CreatePersistentVolumeRequest) SetMaxSize(v int64) {
 	o.MaxSize = &v
 }
 
+// GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
+func (o *CreatePersistentVolumeRequest) GetSnapshotId() string {
+	if o == nil || isNil(o.SnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.SnapshotId
+}
+
+// GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreatePersistentVolumeRequest) GetSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.SnapshotId) {
+    return nil, false
+	}
+	return o.SnapshotId, true
+}
+
+// HasSnapshotId returns a boolean if a field has been set.
+func (o *CreatePersistentVolumeRequest) HasSnapshotId() bool {
+	if o != nil && !isNil(o.SnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotId gets a reference to the given string and assigns it to the SnapshotId field.
+func (o *CreatePersistentVolumeRequest) SetSnapshotId(v string) {
+	o.SnapshotId = &v
+}
+
 func (o CreatePersistentVolumeRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.VolumeType) {
@@ -220,6 +253,9 @@ func (o CreatePersistentVolumeRequest) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.MaxSize) {
 		toSerialize["max_size"] = o.MaxSize
+	}
+	if !isNil(o.SnapshotId) {
+		toSerialize["snapshot_id"] = o.SnapshotId
 	}
 	return json.Marshal(toSerialize)
 }
