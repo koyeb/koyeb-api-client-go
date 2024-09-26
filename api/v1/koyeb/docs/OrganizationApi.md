@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GithubInstallationCallback**](OrganizationApi.md#GithubInstallationCallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 [**ReactivateOrganization**](OrganizationApi.md#ReactivateOrganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 [**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
+[**UnscopeOrganizationToken**](OrganizationApi.md#UnscopeOrganizationToken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
@@ -598,6 +599,72 @@ Other parameters are passed through a pointer to a apiSwitchOrganizationRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | **map[string]interface{}** |  | 
+ **seonFp** | **string** | Seon Fingerprint | 
+
+### Return type
+
+[**LoginReply**](LoginReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UnscopeOrganizationToken
+
+> LoginReply UnscopeOrganizationToken(ctx).Body(body).SeonFp(seonFp).Execute()
+
+UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.UnscopeOrganizationToken(context.Background()).Body(body).SeonFp(seonFp).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UnscopeOrganizationToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UnscopeOrganizationToken`: LoginReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UnscopeOrganizationToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUnscopeOrganizationTokenRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
  **body** | **map[string]interface{}** |  | 
  **seonFp** | **string** | Seon Fingerprint | 
 

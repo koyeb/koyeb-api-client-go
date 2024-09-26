@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
 **Order** | Pointer to **string** |  | [optional] 
+**HasNext** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetOrder sets Order field to given value.
 `func (o *ListServiceEventsReply) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
+
+### GetHasNext
+
+`func (o *ListServiceEventsReply) GetHasNext() bool`
+
+GetHasNext returns the HasNext field if non-nil, zero value otherwise.
+
+### GetHasNextOk
+
+`func (o *ListServiceEventsReply) GetHasNextOk() (*bool, bool)`
+
+GetHasNextOk returns a tuple with the HasNext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasNext
+
+`func (o *ListServiceEventsReply) SetHasNext(v bool)`
+
+SetHasNext sets HasNext field to given value.
+
+### HasHasNext
+
+`func (o *ListServiceEventsReply) HasHasNext() bool`
+
+HasHasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

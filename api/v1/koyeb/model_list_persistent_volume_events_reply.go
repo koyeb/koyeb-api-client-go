@@ -14,36 +14,36 @@ import (
 	"encoding/json"
 )
 
-// ListDeploymentEventsReply struct for ListDeploymentEventsReply
-type ListDeploymentEventsReply struct {
-	Events []DeploymentEvent `json:"events,omitempty"`
+// ListPersistentVolumeEventsReply struct for ListPersistentVolumeEventsReply
+type ListPersistentVolumeEventsReply struct {
+	Events []PersistentVolumeEvent `json:"events,omitempty"`
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
 	Order *string `json:"order,omitempty"`
 	HasNext *bool `json:"has_next,omitempty"`
 }
 
-// NewListDeploymentEventsReply instantiates a new ListDeploymentEventsReply object
+// NewListPersistentVolumeEventsReply instantiates a new ListPersistentVolumeEventsReply object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListDeploymentEventsReply() *ListDeploymentEventsReply {
-	this := ListDeploymentEventsReply{}
+func NewListPersistentVolumeEventsReply() *ListPersistentVolumeEventsReply {
+	this := ListPersistentVolumeEventsReply{}
 	return &this
 }
 
-// NewListDeploymentEventsReplyWithDefaults instantiates a new ListDeploymentEventsReply object
+// NewListPersistentVolumeEventsReplyWithDefaults instantiates a new ListPersistentVolumeEventsReply object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListDeploymentEventsReplyWithDefaults() *ListDeploymentEventsReply {
-	this := ListDeploymentEventsReply{}
+func NewListPersistentVolumeEventsReplyWithDefaults() *ListPersistentVolumeEventsReply {
+	this := ListPersistentVolumeEventsReply{}
 	return &this
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
-func (o *ListDeploymentEventsReply) GetEvents() []DeploymentEvent {
+func (o *ListPersistentVolumeEventsReply) GetEvents() []PersistentVolumeEvent {
 	if o == nil || isNil(o.Events) {
-		var ret []DeploymentEvent
+		var ret []PersistentVolumeEvent
 		return ret
 	}
 	return o.Events
@@ -51,7 +51,7 @@ func (o *ListDeploymentEventsReply) GetEvents() []DeploymentEvent {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeploymentEventsReply) GetEventsOk() ([]DeploymentEvent, bool) {
+func (o *ListPersistentVolumeEventsReply) GetEventsOk() ([]PersistentVolumeEvent, bool) {
 	if o == nil || isNil(o.Events) {
     return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *ListDeploymentEventsReply) GetEventsOk() ([]DeploymentEvent, bool) {
 }
 
 // HasEvents returns a boolean if a field has been set.
-func (o *ListDeploymentEventsReply) HasEvents() bool {
+func (o *ListPersistentVolumeEventsReply) HasEvents() bool {
 	if o != nil && !isNil(o.Events) {
 		return true
 	}
@@ -67,13 +67,13 @@ func (o *ListDeploymentEventsReply) HasEvents() bool {
 	return false
 }
 
-// SetEvents gets a reference to the given []DeploymentEvent and assigns it to the Events field.
-func (o *ListDeploymentEventsReply) SetEvents(v []DeploymentEvent) {
+// SetEvents gets a reference to the given []PersistentVolumeEvent and assigns it to the Events field.
+func (o *ListPersistentVolumeEventsReply) SetEvents(v []PersistentVolumeEvent) {
 	o.Events = v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *ListDeploymentEventsReply) GetLimit() int64 {
+func (o *ListPersistentVolumeEventsReply) GetLimit() int64 {
 	if o == nil || isNil(o.Limit) {
 		var ret int64
 		return ret
@@ -83,7 +83,7 @@ func (o *ListDeploymentEventsReply) GetLimit() int64 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeploymentEventsReply) GetLimitOk() (*int64, bool) {
+func (o *ListPersistentVolumeEventsReply) GetLimitOk() (*int64, bool) {
 	if o == nil || isNil(o.Limit) {
     return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *ListDeploymentEventsReply) GetLimitOk() (*int64, bool) {
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *ListDeploymentEventsReply) HasLimit() bool {
+func (o *ListPersistentVolumeEventsReply) HasLimit() bool {
 	if o != nil && !isNil(o.Limit) {
 		return true
 	}
@@ -100,12 +100,12 @@ func (o *ListDeploymentEventsReply) HasLimit() bool {
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
-func (o *ListDeploymentEventsReply) SetLimit(v int64) {
+func (o *ListPersistentVolumeEventsReply) SetLimit(v int64) {
 	o.Limit = &v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *ListDeploymentEventsReply) GetOffset() int64 {
+func (o *ListPersistentVolumeEventsReply) GetOffset() int64 {
 	if o == nil || isNil(o.Offset) {
 		var ret int64
 		return ret
@@ -115,7 +115,7 @@ func (o *ListDeploymentEventsReply) GetOffset() int64 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeploymentEventsReply) GetOffsetOk() (*int64, bool) {
+func (o *ListPersistentVolumeEventsReply) GetOffsetOk() (*int64, bool) {
 	if o == nil || isNil(o.Offset) {
     return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *ListDeploymentEventsReply) GetOffsetOk() (*int64, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *ListDeploymentEventsReply) HasOffset() bool {
+func (o *ListPersistentVolumeEventsReply) HasOffset() bool {
 	if o != nil && !isNil(o.Offset) {
 		return true
 	}
@@ -132,12 +132,12 @@ func (o *ListDeploymentEventsReply) HasOffset() bool {
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
-func (o *ListDeploymentEventsReply) SetOffset(v int64) {
+func (o *ListPersistentVolumeEventsReply) SetOffset(v int64) {
 	o.Offset = &v
 }
 
 // GetOrder returns the Order field value if set, zero value otherwise.
-func (o *ListDeploymentEventsReply) GetOrder() string {
+func (o *ListPersistentVolumeEventsReply) GetOrder() string {
 	if o == nil || isNil(o.Order) {
 		var ret string
 		return ret
@@ -147,7 +147,7 @@ func (o *ListDeploymentEventsReply) GetOrder() string {
 
 // GetOrderOk returns a tuple with the Order field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeploymentEventsReply) GetOrderOk() (*string, bool) {
+func (o *ListPersistentVolumeEventsReply) GetOrderOk() (*string, bool) {
 	if o == nil || isNil(o.Order) {
     return nil, false
 	}
@@ -155,7 +155,7 @@ func (o *ListDeploymentEventsReply) GetOrderOk() (*string, bool) {
 }
 
 // HasOrder returns a boolean if a field has been set.
-func (o *ListDeploymentEventsReply) HasOrder() bool {
+func (o *ListPersistentVolumeEventsReply) HasOrder() bool {
 	if o != nil && !isNil(o.Order) {
 		return true
 	}
@@ -164,12 +164,12 @@ func (o *ListDeploymentEventsReply) HasOrder() bool {
 }
 
 // SetOrder gets a reference to the given string and assigns it to the Order field.
-func (o *ListDeploymentEventsReply) SetOrder(v string) {
+func (o *ListPersistentVolumeEventsReply) SetOrder(v string) {
 	o.Order = &v
 }
 
 // GetHasNext returns the HasNext field value if set, zero value otherwise.
-func (o *ListDeploymentEventsReply) GetHasNext() bool {
+func (o *ListPersistentVolumeEventsReply) GetHasNext() bool {
 	if o == nil || isNil(o.HasNext) {
 		var ret bool
 		return ret
@@ -179,7 +179,7 @@ func (o *ListDeploymentEventsReply) GetHasNext() bool {
 
 // GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListDeploymentEventsReply) GetHasNextOk() (*bool, bool) {
+func (o *ListPersistentVolumeEventsReply) GetHasNextOk() (*bool, bool) {
 	if o == nil || isNil(o.HasNext) {
     return nil, false
 	}
@@ -187,7 +187,7 @@ func (o *ListDeploymentEventsReply) GetHasNextOk() (*bool, bool) {
 }
 
 // HasHasNext returns a boolean if a field has been set.
-func (o *ListDeploymentEventsReply) HasHasNext() bool {
+func (o *ListPersistentVolumeEventsReply) HasHasNext() bool {
 	if o != nil && !isNil(o.HasNext) {
 		return true
 	}
@@ -196,11 +196,11 @@ func (o *ListDeploymentEventsReply) HasHasNext() bool {
 }
 
 // SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
-func (o *ListDeploymentEventsReply) SetHasNext(v bool) {
+func (o *ListPersistentVolumeEventsReply) SetHasNext(v bool) {
 	o.HasNext = &v
 }
 
-func (o ListDeploymentEventsReply) MarshalJSON() ([]byte, error) {
+func (o ListPersistentVolumeEventsReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Events) {
 		toSerialize["events"] = o.Events
@@ -220,38 +220,38 @@ func (o ListDeploymentEventsReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-type NullableListDeploymentEventsReply struct {
-	value *ListDeploymentEventsReply
+type NullableListPersistentVolumeEventsReply struct {
+	value *ListPersistentVolumeEventsReply
 	isSet bool
 }
 
-func (v NullableListDeploymentEventsReply) Get() *ListDeploymentEventsReply {
+func (v NullableListPersistentVolumeEventsReply) Get() *ListPersistentVolumeEventsReply {
 	return v.value
 }
 
-func (v *NullableListDeploymentEventsReply) Set(val *ListDeploymentEventsReply) {
+func (v *NullableListPersistentVolumeEventsReply) Set(val *ListPersistentVolumeEventsReply) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListDeploymentEventsReply) IsSet() bool {
+func (v NullableListPersistentVolumeEventsReply) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListDeploymentEventsReply) Unset() {
+func (v *NullableListPersistentVolumeEventsReply) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListDeploymentEventsReply(val *ListDeploymentEventsReply) *NullableListDeploymentEventsReply {
-	return &NullableListDeploymentEventsReply{value: val, isSet: true}
+func NewNullableListPersistentVolumeEventsReply(val *ListPersistentVolumeEventsReply) *NullableListPersistentVolumeEventsReply {
+	return &NullableListPersistentVolumeEventsReply{value: val, isSet: true}
 }
 
-func (v NullableListDeploymentEventsReply) MarshalJSON() ([]byte, error) {
+func (v NullableListPersistentVolumeEventsReply) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListDeploymentEventsReply) UnmarshalJSON(src []byte) error {
+func (v *NullableListPersistentVolumeEventsReply) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

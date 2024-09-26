@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
 **Count** | Pointer to **int64** |  | [optional] 
+**HasNext** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetCount sets Count field to given value.
 `func (o *ListServicesReply) HasCount() bool`
 
 HasCount returns a boolean if a field has been set.
+
+### GetHasNext
+
+`func (o *ListServicesReply) GetHasNext() bool`
+
+GetHasNext returns the HasNext field if non-nil, zero value otherwise.
+
+### GetHasNextOk
+
+`func (o *ListServicesReply) GetHasNextOk() (*bool, bool)`
+
+GetHasNextOk returns a tuple with the HasNext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasNext
+
+`func (o *ListServicesReply) SetHasNext(v bool)`
+
+SetHasNext sets HasNext field to given value.
+
+### HasHasNext
+
+`func (o *ListServicesReply) HasHasNext() bool`
+
+HasHasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

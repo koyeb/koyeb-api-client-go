@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**SnapshotId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
@@ -86,6 +87,31 @@ SetName sets Name field to given value.
 `func (o *PersistentVolume) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetSnapshotId
+
+`func (o *PersistentVolume) GetSnapshotId() string`
+
+GetSnapshotId returns the SnapshotId field if non-nil, zero value otherwise.
+
+### GetSnapshotIdOk
+
+`func (o *PersistentVolume) GetSnapshotIdOk() (*string, bool)`
+
+GetSnapshotIdOk returns a tuple with the SnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSnapshotId
+
+`func (o *PersistentVolume) SetSnapshotId(v string)`
+
+SetSnapshotId sets SnapshotId field to given value.
+
+### HasSnapshotId
+
+`func (o *PersistentVolume) HasSnapshotId() bool`
+
+HasSnapshotId returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

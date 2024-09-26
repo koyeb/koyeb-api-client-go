@@ -246,6 +246,7 @@ docs/ListInstancesReply.md
 docs/ListOrganizationInvitationsReply.md
 docs/ListOrganizationMembersReply.md
 docs/ListPaymentMethodsReply.md
+docs/ListPersistentVolumeEventsReply.md
 docs/ListPersistentVolumesReply.md
 docs/ListRegionalDeploymentEventsReply.md
 docs/ListRegionalDeploymentsReply.md
@@ -269,6 +270,9 @@ docs/NeonPostgresDatabaseNeonDatabase.md
 docs/NeonPostgresDatabaseNeonRole.md
 docs/NeonPostgresSummary.md
 docs/NextInvoiceReply.md
+docs/NextInvoiceReplyLine.md
+docs/NextInvoiceReplyLinePeriod.md
+docs/NextInvoiceReplyLinePrice.md
 docs/Notification.md
 docs/NotificationList.md
 docs/OAuthCallbackReply.md
@@ -295,6 +299,7 @@ docs/PaymentMethodsApi.md
 docs/PeriodUsage.md
 docs/PersistentVolume.md
 docs/PersistentVolumeBackingStore.md
+docs/PersistentVolumeEvent.md
 docs/PersistentVolumeQuotas.md
 docs/PersistentVolumeStatus.md
 docs/PersistentVolumesApi.md
@@ -588,6 +593,7 @@ model_list_instances_reply.go
 model_list_organization_invitations_reply.go
 model_list_organization_members_reply.go
 model_list_payment_methods_reply.go
+model_list_persistent_volume_events_reply.go
 model_list_persistent_volumes_reply.go
 model_list_regional_deployment_events_reply.go
 model_list_regional_deployments_reply.go
@@ -609,6 +615,9 @@ model_neon_postgres_database_neon_database.go
 model_neon_postgres_database_neon_role.go
 model_neon_postgres_summary.go
 model_next_invoice_reply.go
+model_next_invoice_reply_line.go
+model_next_invoice_reply_line_period.go
+model_next_invoice_reply_line_price.go
 model_notification.go
 model_notification_list.go
 model_o_auth_callback_reply.go
@@ -629,6 +638,7 @@ model_payment_method_status.go
 model_period_usage.go
 model_persistent_volume.go
 model_persistent_volume_backing_store.go
+model_persistent_volume_event.go
 model_persistent_volume_quotas.go
 model_persistent_volume_status.go
 model_plan.go

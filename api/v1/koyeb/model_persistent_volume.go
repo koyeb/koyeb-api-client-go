@@ -19,6 +19,7 @@ import (
 type PersistentVolume struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	SnapshotId *string `json:"snapshot_id,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
@@ -119,6 +120,38 @@ func (o *PersistentVolume) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *PersistentVolume) SetName(v string) {
 	o.Name = &v
+}
+
+// GetSnapshotId returns the SnapshotId field value if set, zero value otherwise.
+func (o *PersistentVolume) GetSnapshotId() string {
+	if o == nil || isNil(o.SnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.SnapshotId
+}
+
+// GetSnapshotIdOk returns a tuple with the SnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PersistentVolume) GetSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.SnapshotId) {
+    return nil, false
+	}
+	return o.SnapshotId, true
+}
+
+// HasSnapshotId returns a boolean if a field has been set.
+func (o *PersistentVolume) HasSnapshotId() bool {
+	if o != nil && !isNil(o.SnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotId gets a reference to the given string and assigns it to the SnapshotId field.
+func (o *PersistentVolume) SetSnapshotId(v string) {
+	o.SnapshotId = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -480,6 +513,9 @@ func (o PersistentVolume) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.SnapshotId) {
+		toSerialize["snapshot_id"] = o.SnapshotId
 	}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt

@@ -134,6 +134,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 *OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 *OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
+*OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
@@ -155,6 +156,7 @@ Class | Method | HTTP request | Description
 *PersistentVolumesApi* | [**CreatePersistentVolume**](docs/PersistentVolumesApi.md#createpersistentvolume) | **Post** /v1/volumes | Create a PersistentVolume
 *PersistentVolumesApi* | [**DeletePersistentVolume**](docs/PersistentVolumesApi.md#deletepersistentvolume) | **Delete** /v1/volumes/{id} | Delete a PersistentVolume
 *PersistentVolumesApi* | [**GetPersistentVolume**](docs/PersistentVolumesApi.md#getpersistentvolume) | **Get** /v1/volumes/{id} | Get a PersistentVolume
+*PersistentVolumesApi* | [**ListPersistentVolumeEvents**](docs/PersistentVolumesApi.md#listpersistentvolumeevents) | **Get** /v1/volume_events | List Persistent Volume events
 *PersistentVolumesApi* | [**ListPersistentVolumes**](docs/PersistentVolumesApi.md#listpersistentvolumes) | **Get** /v1/volumes | List all PersistentVolumes
 *PersistentVolumesApi* | [**UpdatePersistentVolume**](docs/PersistentVolumesApi.md#updatepersistentvolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
 *ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
@@ -410,6 +412,7 @@ Class | Method | HTTP request | Description
  - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
  - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
  - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
+ - [ListPersistentVolumeEventsReply](docs/ListPersistentVolumeEventsReply.md)
  - [ListPersistentVolumesReply](docs/ListPersistentVolumesReply.md)
  - [ListRegionalDeploymentEventsReply](docs/ListRegionalDeploymentEventsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
@@ -431,6 +434,9 @@ Class | Method | HTTP request | Description
  - [NeonPostgresDatabaseNeonRole](docs/NeonPostgresDatabaseNeonRole.md)
  - [NeonPostgresSummary](docs/NeonPostgresSummary.md)
  - [NextInvoiceReply](docs/NextInvoiceReply.md)
+ - [NextInvoiceReplyLine](docs/NextInvoiceReplyLine.md)
+ - [NextInvoiceReplyLinePeriod](docs/NextInvoiceReplyLinePeriod.md)
+ - [NextInvoiceReplyLinePrice](docs/NextInvoiceReplyLinePrice.md)
  - [Notification](docs/Notification.md)
  - [NotificationList](docs/NotificationList.md)
  - [OAuthCallbackReply](docs/OAuthCallbackReply.md)
@@ -451,6 +457,7 @@ Class | Method | HTTP request | Description
  - [PeriodUsage](docs/PeriodUsage.md)
  - [PersistentVolume](docs/PersistentVolume.md)
  - [PersistentVolumeBackingStore](docs/PersistentVolumeBackingStore.md)
+ - [PersistentVolumeEvent](docs/PersistentVolumeEvent.md)
  - [PersistentVolumeQuotas](docs/PersistentVolumeQuotas.md)
  - [PersistentVolumeStatus](docs/PersistentVolumeStatus.md)
  - [Plan](docs/Plan.md)

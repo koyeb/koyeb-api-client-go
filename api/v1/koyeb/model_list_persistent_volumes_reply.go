@@ -19,6 +19,7 @@ type ListPersistentVolumesReply struct {
 	Volumes []PersistentVolume `json:"volumes,omitempty"`
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
+	HasNext *bool `json:"has_next,omitempty"`
 }
 
 // NewListPersistentVolumesReply instantiates a new ListPersistentVolumesReply object
@@ -134,6 +135,38 @@ func (o *ListPersistentVolumesReply) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+// GetHasNext returns the HasNext field value if set, zero value otherwise.
+func (o *ListPersistentVolumesReply) GetHasNext() bool {
+	if o == nil || isNil(o.HasNext) {
+		var ret bool
+		return ret
+	}
+	return *o.HasNext
+}
+
+// GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListPersistentVolumesReply) GetHasNextOk() (*bool, bool) {
+	if o == nil || isNil(o.HasNext) {
+    return nil, false
+	}
+	return o.HasNext, true
+}
+
+// HasHasNext returns a boolean if a field has been set.
+func (o *ListPersistentVolumesReply) HasHasNext() bool {
+	if o != nil && !isNil(o.HasNext) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
+func (o *ListPersistentVolumesReply) SetHasNext(v bool) {
+	o.HasNext = &v
+}
+
 func (o ListPersistentVolumesReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Volumes) {
@@ -144,6 +177,9 @@ func (o ListPersistentVolumesReply) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
+	}
+	if !isNil(o.HasNext) {
+		toSerialize["has_next"] = o.HasNext
 	}
 	return json.Marshal(toSerialize)
 }
