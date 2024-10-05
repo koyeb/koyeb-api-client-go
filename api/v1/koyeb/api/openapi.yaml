@@ -10058,6 +10058,7 @@ components:
     CreateSnapshotReply:
       example:
         snapshot:
+          size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
@@ -10087,6 +10088,7 @@ components:
     DeleteSnapshotReply:
       example:
         snapshot:
+          size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
@@ -10104,6 +10106,7 @@ components:
     GetSnapshotReply:
       example:
         snapshot:
+          size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
@@ -10121,7 +10124,8 @@ components:
     ListSnapshotsReply:
       example:
         snapshots:
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - size: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -10131,7 +10135,8 @@ components:
           deleted_at: 2000-01-23T04:56:07.000+00:00
           parent_volume_id: parent_volume_id
           status: null
-        - updated_at: 2000-01-23T04:56:07.000+00:00
+        - size: 0
+          updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -10141,8 +10146,8 @@ components:
           deleted_at: 2000-01-23T04:56:07.000+00:00
           parent_volume_id: parent_volume_id
           status: null
-        offset: 6
-        limit: 0
+        offset: 1
+        limit: 6
         has_next: true
       properties:
         snapshots:
@@ -10166,6 +10171,7 @@ components:
       description: "The object that represents a snapshot. It can either be local,\
         \ on a node, or remote, in a cold storage."
       example:
+        size: 0
         updated_at: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
         name: name
@@ -10183,6 +10189,10 @@ components:
         name:
           title: the snapshot name
           type: string
+        size:
+          format: int64
+          title: the original volume size
+          type: integer
         created_at:
           format: date-time
           title: creation timestamp
@@ -10240,6 +10250,7 @@ components:
     UpdateSnapshotReply:
       example:
         snapshot:
+          size: 0
           updated_at: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
           name: name
@@ -20049,6 +20060,7 @@ components:
         - service_types
         - service_types
         id: id
+        price_per_second: price_per_second
         vcpu_shares: 6.0274563
         price_hourly: price_hourly
         status: status
@@ -20068,6 +20080,9 @@ components:
           type: string
         disk:
           title: The size of the disk in bytes in a format like 5MB
+          type: string
+        price_per_second:
+          title: The price to pay per second
           type: string
         price_hourly:
           title: The price to pay per hour
@@ -20143,6 +20158,7 @@ components:
         - service_types
         - service_types
         id: id
+        price_per_second: price_per_second
         vcpu_shares: 6.0274563
         price_hourly: price_hourly
         status: status
@@ -20162,6 +20178,9 @@ components:
           type: string
         disk:
           title: The size of the disk in bytes in a format like 5MB
+          type: string
+        price_per_second:
+          title: The price to pay per second
           type: string
         price_hourly:
           title: The price to pay per hour
@@ -20238,6 +20257,7 @@ components:
           - service_types
           - service_types
           id: id
+          price_per_second: price_per_second
           vcpu_shares: 6.0274563
           price_hourly: price_hourly
           status: status
@@ -20275,6 +20295,7 @@ components:
           - service_types
           - service_types
           id: id
+          price_per_second: price_per_second
           vcpu_shares: 6.0274563
           price_hourly: price_hourly
           status: status
@@ -20304,6 +20325,7 @@ components:
           - service_types
           - service_types
           id: id
+          price_per_second: price_per_second
           vcpu_shares: 6.0274563
           price_hourly: price_hourly
           status: status
