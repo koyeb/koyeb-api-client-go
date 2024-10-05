@@ -11000,6 +11000,11 @@
           "type": "string",
           "title": "the snapshot name"
         },
+        "size": {
+          "type": "integer",
+          "format": "int64",
+          "title": "the original volume size"
+        },
         "created_at": {
           "type": "string",
           "format": "date-time",
@@ -15086,6 +15091,10 @@
           "type": "string",
           "title": "The size of the disk in bytes in a format like 5MB"
         },
+        "price_per_second": {
+          "type": "string",
+          "title": "The price to pay per second"
+        },
         "price_hourly": {
           "type": "string",
           "title": "The price to pay per hour"
@@ -15172,6 +15181,10 @@
         "disk": {
           "type": "string",
           "title": "The size of the disk in bytes in a format like 5MB"
+        },
+        "price_per_second": {
+          "type": "string",
+          "title": "The price to pay per second"
         },
         "price_hourly": {
           "type": "string",

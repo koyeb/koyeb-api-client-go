@@ -22,6 +22,7 @@ type CatalogInstanceListItem struct {
 	Vcpu *int64 `json:"vcpu,omitempty"`
 	Memory *string `json:"memory,omitempty"`
 	Disk *string `json:"disk,omitempty"`
+	PricePerSecond *string `json:"price_per_second,omitempty"`
 	PriceHourly *string `json:"price_hourly,omitempty"`
 	PriceMonthly *string `json:"price_monthly,omitempty"`
 	Regions []string `json:"regions,omitempty"`
@@ -212,6 +213,38 @@ func (o *CatalogInstanceListItem) HasDisk() bool {
 // SetDisk gets a reference to the given string and assigns it to the Disk field.
 func (o *CatalogInstanceListItem) SetDisk(v string) {
 	o.Disk = &v
+}
+
+// GetPricePerSecond returns the PricePerSecond field value if set, zero value otherwise.
+func (o *CatalogInstanceListItem) GetPricePerSecond() string {
+	if o == nil || isNil(o.PricePerSecond) {
+		var ret string
+		return ret
+	}
+	return *o.PricePerSecond
+}
+
+// GetPricePerSecondOk returns a tuple with the PricePerSecond field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogInstanceListItem) GetPricePerSecondOk() (*string, bool) {
+	if o == nil || isNil(o.PricePerSecond) {
+    return nil, false
+	}
+	return o.PricePerSecond, true
+}
+
+// HasPricePerSecond returns a boolean if a field has been set.
+func (o *CatalogInstanceListItem) HasPricePerSecond() bool {
+	if o != nil && !isNil(o.PricePerSecond) {
+		return true
+	}
+
+	return false
+}
+
+// SetPricePerSecond gets a reference to the given string and assigns it to the PricePerSecond field.
+func (o *CatalogInstanceListItem) SetPricePerSecond(v string) {
+	o.PricePerSecond = &v
 }
 
 // GetPriceHourly returns the PriceHourly field value if set, zero value otherwise.
@@ -614,6 +647,9 @@ func (o CatalogInstanceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Disk) {
 		toSerialize["disk"] = o.Disk
+	}
+	if !isNil(o.PricePerSecond) {
+		toSerialize["price_per_second"] = o.PricePerSecond
 	}
 	if !isNil(o.PriceHourly) {
 		toSerialize["price_hourly"] = o.PriceHourly
