@@ -19,6 +19,7 @@ import (
 type Snapshot struct {
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Size *int64 `json:"size,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
@@ -116,6 +117,38 @@ func (o *Snapshot) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *Snapshot) SetName(v string) {
 	o.Name = &v
+}
+
+// GetSize returns the Size field value if set, zero value otherwise.
+func (o *Snapshot) GetSize() int64 {
+	if o == nil || isNil(o.Size) {
+		var ret int64
+		return ret
+	}
+	return *o.Size
+}
+
+// GetSizeOk returns a tuple with the Size field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Snapshot) GetSizeOk() (*int64, bool) {
+	if o == nil || isNil(o.Size) {
+    return nil, false
+	}
+	return o.Size, true
+}
+
+// HasSize returns a boolean if a field has been set.
+func (o *Snapshot) HasSize() bool {
+	if o != nil && !isNil(o.Size) {
+		return true
+	}
+
+	return false
+}
+
+// SetSize gets a reference to the given int64 and assigns it to the Size field.
+func (o *Snapshot) SetSize(v int64) {
+	o.Size = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -381,6 +414,9 @@ func (o Snapshot) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.Size) {
+		toSerialize["size"] = o.Size
 	}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt

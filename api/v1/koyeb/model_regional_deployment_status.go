@@ -34,6 +34,7 @@ const (
 	REGIONALDEPLOYMENTSTATUS_STOPPED RegionalDeploymentStatus = "STOPPED"
 	REGIONALDEPLOYMENTSTATUS_ERRORING RegionalDeploymentStatus = "ERRORING"
 	REGIONALDEPLOYMENTSTATUS_ERROR RegionalDeploymentStatus = "ERROR"
+	REGIONALDEPLOYMENTSTATUS_SLEEPING RegionalDeploymentStatus = "SLEEPING"
 )
 
 // All allowed values of RegionalDeploymentStatus enum
@@ -52,6 +53,7 @@ var AllowedRegionalDeploymentStatusEnumValues = []RegionalDeploymentStatus{
 	"STOPPED",
 	"ERRORING",
 	"ERROR",
+	"SLEEPING",
 }
 
 func (v *RegionalDeploymentStatus) UnmarshalJSON(src []byte) error {

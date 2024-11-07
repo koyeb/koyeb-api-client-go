@@ -21,6 +21,7 @@ type DeploymentScalingTarget struct {
 	RequestsPerSecond *DeploymentScalingTargetRequestsPerSecond `json:"requests_per_second,omitempty"`
 	ConcurrentRequests *DeploymentScalingTargetConcurrentRequests `json:"concurrent_requests,omitempty"`
 	RequestsResponseTime *DeploymentScalingTargetRequestsResponseTime `json:"requests_response_time,omitempty"`
+	SleepIdleDelay *DeploymentScalingTargetSleepIdleDelay `json:"sleep_idle_delay,omitempty"`
 }
 
 // NewDeploymentScalingTarget instantiates a new DeploymentScalingTarget object
@@ -200,6 +201,38 @@ func (o *DeploymentScalingTarget) SetRequestsResponseTime(v DeploymentScalingTar
 	o.RequestsResponseTime = &v
 }
 
+// GetSleepIdleDelay returns the SleepIdleDelay field value if set, zero value otherwise.
+func (o *DeploymentScalingTarget) GetSleepIdleDelay() DeploymentScalingTargetSleepIdleDelay {
+	if o == nil || isNil(o.SleepIdleDelay) {
+		var ret DeploymentScalingTargetSleepIdleDelay
+		return ret
+	}
+	return *o.SleepIdleDelay
+}
+
+// GetSleepIdleDelayOk returns a tuple with the SleepIdleDelay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentScalingTarget) GetSleepIdleDelayOk() (*DeploymentScalingTargetSleepIdleDelay, bool) {
+	if o == nil || isNil(o.SleepIdleDelay) {
+    return nil, false
+	}
+	return o.SleepIdleDelay, true
+}
+
+// HasSleepIdleDelay returns a boolean if a field has been set.
+func (o *DeploymentScalingTarget) HasSleepIdleDelay() bool {
+	if o != nil && !isNil(o.SleepIdleDelay) {
+		return true
+	}
+
+	return false
+}
+
+// SetSleepIdleDelay gets a reference to the given DeploymentScalingTargetSleepIdleDelay and assigns it to the SleepIdleDelay field.
+func (o *DeploymentScalingTarget) SetSleepIdleDelay(v DeploymentScalingTargetSleepIdleDelay) {
+	o.SleepIdleDelay = &v
+}
+
 func (o DeploymentScalingTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AverageCpu) {
@@ -216,6 +249,9 @@ func (o DeploymentScalingTarget) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.RequestsResponseTime) {
 		toSerialize["requests_response_time"] = o.RequestsResponseTime
+	}
+	if !isNil(o.SleepIdleDelay) {
+		toSerialize["sleep_idle_delay"] = o.SleepIdleDelay
 	}
 	return json.Marshal(toSerialize)
 }

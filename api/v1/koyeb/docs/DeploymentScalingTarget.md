@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **RequestsPerSecond** | Pointer to [**DeploymentScalingTargetRequestsPerSecond**](DeploymentScalingTargetRequestsPerSecond.md) |  | [optional] 
 **ConcurrentRequests** | Pointer to [**DeploymentScalingTargetConcurrentRequests**](DeploymentScalingTargetConcurrentRequests.md) |  | [optional] 
 **RequestsResponseTime** | Pointer to [**DeploymentScalingTargetRequestsResponseTime**](DeploymentScalingTargetRequestsResponseTime.md) |  | [optional] 
+**SleepIdleDelay** | Pointer to [**DeploymentScalingTargetSleepIdleDelay**](DeploymentScalingTargetSleepIdleDelay.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetRequestsResponseTime sets RequestsResponseTime field to given value.
 `func (o *DeploymentScalingTarget) HasRequestsResponseTime() bool`
 
 HasRequestsResponseTime returns a boolean if a field has been set.
+
+### GetSleepIdleDelay
+
+`func (o *DeploymentScalingTarget) GetSleepIdleDelay() DeploymentScalingTargetSleepIdleDelay`
+
+GetSleepIdleDelay returns the SleepIdleDelay field if non-nil, zero value otherwise.
+
+### GetSleepIdleDelayOk
+
+`func (o *DeploymentScalingTarget) GetSleepIdleDelayOk() (*DeploymentScalingTargetSleepIdleDelay, bool)`
+
+GetSleepIdleDelayOk returns a tuple with the SleepIdleDelay field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSleepIdleDelay
+
+`func (o *DeploymentScalingTarget) SetSleepIdleDelay(v DeploymentScalingTargetSleepIdleDelay)`
+
+SetSleepIdleDelay sets SleepIdleDelay field to given value.
+
+### HasSleepIdleDelay
+
+`func (o *DeploymentScalingTarget) HasSleepIdleDelay() bool`
+
+HasSleepIdleDelay returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -139,6 +139,7 @@ docs/DeploymentScalingTargetAverageMem.md
 docs/DeploymentScalingTargetConcurrentRequests.md
 docs/DeploymentScalingTargetRequestsPerSecond.md
 docs/DeploymentScalingTargetRequestsResponseTime.md
+docs/DeploymentScalingTargetSleepIdleDelay.md
 docs/DeploymentStatus.md
 docs/DeploymentStrategy.md
 docs/DeploymentStrategyType.md
@@ -198,7 +199,6 @@ docs/GitDeploymentMetadata.md
 docs/GitHubRegistryConfiguration.md
 docs/GitLabRegistryConfiguration.md
 docs/GitSource.md
-docs/GithubInstallationCallbackRequest.md
 docs/GithubInstallationReply.md
 docs/GithubInstallationRequest.md
 docs/GoogleProtobufAny.md
@@ -492,6 +492,7 @@ model_deployment_scaling_target_average_mem.go
 model_deployment_scaling_target_concurrent_requests.go
 model_deployment_scaling_target_requests_per_second.go
 model_deployment_scaling_target_requests_response_time.go
+model_deployment_scaling_target_sleep_idle_delay.go
 model_deployment_status.go
 model_deployment_strategy.go
 model_deployment_strategy_type.go
@@ -548,7 +549,6 @@ model_git_deployment_metadata.go
 model_git_hub_registry_configuration.go
 model_git_lab_registry_configuration.go
 model_git_source.go
-model_github_installation_callback_request.go
 model_github_installation_reply.go
 model_github_installation_request.go
 model_google_protobuf_any.go

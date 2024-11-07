@@ -131,7 +131,6 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
-*OrganizationApi* | [**GithubInstallationCallback**](docs/OrganizationApi.md#githubinstallationcallback) | **Post** /v1/github/installation/callback | Github callback for app installation
 *OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 *OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
 *OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
@@ -311,6 +310,7 @@ Class | Method | HTTP request | Description
  - [DeploymentScalingTargetConcurrentRequests](docs/DeploymentScalingTargetConcurrentRequests.md)
  - [DeploymentScalingTargetRequestsPerSecond](docs/DeploymentScalingTargetRequestsPerSecond.md)
  - [DeploymentScalingTargetRequestsResponseTime](docs/DeploymentScalingTargetRequestsResponseTime.md)
+ - [DeploymentScalingTargetSleepIdleDelay](docs/DeploymentScalingTargetSleepIdleDelay.md)
  - [DeploymentStatus](docs/DeploymentStatus.md)
  - [DeploymentStrategy](docs/DeploymentStrategy.md)
  - [DeploymentStrategyType](docs/DeploymentStrategyType.md)
@@ -367,7 +367,6 @@ Class | Method | HTTP request | Description
  - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
  - [GitLabRegistryConfiguration](docs/GitLabRegistryConfiguration.md)
  - [GitSource](docs/GitSource.md)
- - [GithubInstallationCallbackRequest](docs/GithubInstallationCallbackRequest.md)
  - [GithubInstallationReply](docs/GithubInstallationReply.md)
  - [GithubInstallationRequest](docs/GithubInstallationRequest.md)
  - [GoogleProtobufAny](docs/GoogleProtobufAny.md)
