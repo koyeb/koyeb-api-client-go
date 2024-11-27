@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Vcpu** | Pointer to **int64** | The number of cpus. Deprecated. Use vcpu_shares instead. | [optional] 
 **Memory** | Pointer to **string** |  | [optional] 
 **Disk** | Pointer to **string** |  | [optional] 
+**PricePerSecond** | Pointer to **string** |  | [optional] 
 **PriceHourly** | Pointer to **string** |  | [optional] 
 **PriceMonthly** | Pointer to **string** |  | [optional] 
 **Regions** | Pointer to **[]string** |  | [optional] 
@@ -165,6 +166,31 @@ SetDisk sets Disk field to given value.
 `func (o *CatalogInstance) HasDisk() bool`
 
 HasDisk returns a boolean if a field has been set.
+
+### GetPricePerSecond
+
+`func (o *CatalogInstance) GetPricePerSecond() string`
+
+GetPricePerSecond returns the PricePerSecond field if non-nil, zero value otherwise.
+
+### GetPricePerSecondOk
+
+`func (o *CatalogInstance) GetPricePerSecondOk() (*string, bool)`
+
+GetPricePerSecondOk returns a tuple with the PricePerSecond field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPricePerSecond
+
+`func (o *CatalogInstance) SetPricePerSecond(v string)`
+
+SetPricePerSecond sets PricePerSecond field to given value.
+
+### HasPricePerSecond
+
+`func (o *CatalogInstance) HasPricePerSecond() bool`
+
+HasPricePerSecond returns a boolean if a field has been set.
 
 ### GetPriceHourly
 

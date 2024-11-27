@@ -25,8 +25,6 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Role** | Pointer to [**RegionalDeploymentRole**](RegionalDeploymentRole.md) |  | [optional] [default to REGIONALDEPLOYMENTROLE_INVALID]
-**UseKumaV2** | Pointer to **bool** |  | [optional] 
-**UseKata** | Pointer to **bool** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **string** |  | [optional] 
@@ -574,56 +572,6 @@ SetRole sets Role field to given value.
 `func (o *RegionalDeployment) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
-
-### GetUseKumaV2
-
-`func (o *RegionalDeployment) GetUseKumaV2() bool`
-
-GetUseKumaV2 returns the UseKumaV2 field if non-nil, zero value otherwise.
-
-### GetUseKumaV2Ok
-
-`func (o *RegionalDeployment) GetUseKumaV2Ok() (*bool, bool)`
-
-GetUseKumaV2Ok returns a tuple with the UseKumaV2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUseKumaV2
-
-`func (o *RegionalDeployment) SetUseKumaV2(v bool)`
-
-SetUseKumaV2 sets UseKumaV2 field to given value.
-
-### HasUseKumaV2
-
-`func (o *RegionalDeployment) HasUseKumaV2() bool`
-
-HasUseKumaV2 returns a boolean if a field has been set.
-
-### GetUseKata
-
-`func (o *RegionalDeployment) GetUseKata() bool`
-
-GetUseKata returns the UseKata field if non-nil, zero value otherwise.
-
-### GetUseKataOk
-
-`func (o *RegionalDeployment) GetUseKataOk() (*bool, bool)`
-
-GetUseKataOk returns a tuple with the UseKata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUseKata
-
-`func (o *RegionalDeployment) SetUseKata(v bool)`
-
-SetUseKata sets UseKata field to given value.
-
-### HasUseKata
-
-`func (o *RegionalDeployment) HasUseKata() bool`
-
-HasUseKata returns a boolean if a field has been set.
 
 ### GetVersion
 

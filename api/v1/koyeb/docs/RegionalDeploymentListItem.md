@@ -11,8 +11,6 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**RegionalDeploymentStatus**](RegionalDeploymentStatus.md) |  | [optional] [default to REGIONALDEPLOYMENTSTATUS_PENDING]
 **Messages** | Pointer to **[]string** |  | [optional] 
 **Definition** | Pointer to [**RegionalDeploymentDefinition**](RegionalDeploymentDefinition.md) |  | [optional] 
-**UseKumaV2** | Pointer to **bool** |  | [optional] 
-**UseKata** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -207,56 +205,6 @@ SetDefinition sets Definition field to given value.
 `func (o *RegionalDeploymentListItem) HasDefinition() bool`
 
 HasDefinition returns a boolean if a field has been set.
-
-### GetUseKumaV2
-
-`func (o *RegionalDeploymentListItem) GetUseKumaV2() bool`
-
-GetUseKumaV2 returns the UseKumaV2 field if non-nil, zero value otherwise.
-
-### GetUseKumaV2Ok
-
-`func (o *RegionalDeploymentListItem) GetUseKumaV2Ok() (*bool, bool)`
-
-GetUseKumaV2Ok returns a tuple with the UseKumaV2 field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUseKumaV2
-
-`func (o *RegionalDeploymentListItem) SetUseKumaV2(v bool)`
-
-SetUseKumaV2 sets UseKumaV2 field to given value.
-
-### HasUseKumaV2
-
-`func (o *RegionalDeploymentListItem) HasUseKumaV2() bool`
-
-HasUseKumaV2 returns a boolean if a field has been set.
-
-### GetUseKata
-
-`func (o *RegionalDeploymentListItem) GetUseKata() bool`
-
-GetUseKata returns the UseKata field if non-nil, zero value otherwise.
-
-### GetUseKataOk
-
-`func (o *RegionalDeploymentListItem) GetUseKataOk() (*bool, bool)`
-
-GetUseKataOk returns a tuple with the UseKata field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUseKata
-
-`func (o *RegionalDeploymentListItem) SetUseKata(v bool)`
-
-SetUseKata sets UseKata field to given value.
-
-### HasUseKata
-
-`func (o *RegionalDeploymentListItem) HasUseKata() bool`
-
-HasUseKata returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -18,6 +18,10 @@ import (
 type OAuthCallbackRequest struct {
 	State *string `json:"state,omitempty"`
 	Code *string `json:"code,omitempty"`
+	// setup_action is populated in the context of a GitHub app installation request. For logins and signups, it is not set.
+	SetupAction *string `json:"setup_action,omitempty"`
+	// installation_id is populated in the context of a GitHub app installation request. For logins and signups, it is not set.
+	InstallationId *string `json:"installation_id,omitempty"`
 }
 
 // NewOAuthCallbackRequest instantiates a new OAuthCallbackRequest object
@@ -101,6 +105,70 @@ func (o *OAuthCallbackRequest) SetCode(v string) {
 	o.Code = &v
 }
 
+// GetSetupAction returns the SetupAction field value if set, zero value otherwise.
+func (o *OAuthCallbackRequest) GetSetupAction() string {
+	if o == nil || isNil(o.SetupAction) {
+		var ret string
+		return ret
+	}
+	return *o.SetupAction
+}
+
+// GetSetupActionOk returns a tuple with the SetupAction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuthCallbackRequest) GetSetupActionOk() (*string, bool) {
+	if o == nil || isNil(o.SetupAction) {
+    return nil, false
+	}
+	return o.SetupAction, true
+}
+
+// HasSetupAction returns a boolean if a field has been set.
+func (o *OAuthCallbackRequest) HasSetupAction() bool {
+	if o != nil && !isNil(o.SetupAction) {
+		return true
+	}
+
+	return false
+}
+
+// SetSetupAction gets a reference to the given string and assigns it to the SetupAction field.
+func (o *OAuthCallbackRequest) SetSetupAction(v string) {
+	o.SetupAction = &v
+}
+
+// GetInstallationId returns the InstallationId field value if set, zero value otherwise.
+func (o *OAuthCallbackRequest) GetInstallationId() string {
+	if o == nil || isNil(o.InstallationId) {
+		var ret string
+		return ret
+	}
+	return *o.InstallationId
+}
+
+// GetInstallationIdOk returns a tuple with the InstallationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OAuthCallbackRequest) GetInstallationIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstallationId) {
+    return nil, false
+	}
+	return o.InstallationId, true
+}
+
+// HasInstallationId returns a boolean if a field has been set.
+func (o *OAuthCallbackRequest) HasInstallationId() bool {
+	if o != nil && !isNil(o.InstallationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstallationId gets a reference to the given string and assigns it to the InstallationId field.
+func (o *OAuthCallbackRequest) SetInstallationId(v string) {
+	o.InstallationId = &v
+}
+
 func (o OAuthCallbackRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.State) {
@@ -108,6 +176,12 @@ func (o OAuthCallbackRequest) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Code) {
 		toSerialize["code"] = o.Code
+	}
+	if !isNil(o.SetupAction) {
+		toSerialize["setup_action"] = o.SetupAction
+	}
+	if !isNil(o.InstallationId) {
+		toSerialize["installation_id"] = o.InstallationId
 	}
 	return json.Marshal(toSerialize)
 }

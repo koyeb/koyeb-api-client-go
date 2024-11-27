@@ -20,9 +20,7 @@ type DatacenterListItem struct {
 	RegionId *string `json:"region_id,omitempty"`
 	Domain *string `json:"domain,omitempty"`
 	Coordinates []string `json:"coordinates,omitempty"`
-	UseKata *bool `json:"use_kata,omitempty"`
 	UseGpu *bool `json:"use_gpu,omitempty"`
-	UseKuma *bool `json:"use_kuma,omitempty"`
 }
 
 // NewDatacenterListItem instantiates a new DatacenterListItem object
@@ -170,38 +168,6 @@ func (o *DatacenterListItem) SetCoordinates(v []string) {
 	o.Coordinates = v
 }
 
-// GetUseKata returns the UseKata field value if set, zero value otherwise.
-func (o *DatacenterListItem) GetUseKata() bool {
-	if o == nil || isNil(o.UseKata) {
-		var ret bool
-		return ret
-	}
-	return *o.UseKata
-}
-
-// GetUseKataOk returns a tuple with the UseKata field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DatacenterListItem) GetUseKataOk() (*bool, bool) {
-	if o == nil || isNil(o.UseKata) {
-    return nil, false
-	}
-	return o.UseKata, true
-}
-
-// HasUseKata returns a boolean if a field has been set.
-func (o *DatacenterListItem) HasUseKata() bool {
-	if o != nil && !isNil(o.UseKata) {
-		return true
-	}
-
-	return false
-}
-
-// SetUseKata gets a reference to the given bool and assigns it to the UseKata field.
-func (o *DatacenterListItem) SetUseKata(v bool) {
-	o.UseKata = &v
-}
-
 // GetUseGpu returns the UseGpu field value if set, zero value otherwise.
 func (o *DatacenterListItem) GetUseGpu() bool {
 	if o == nil || isNil(o.UseGpu) {
@@ -234,38 +200,6 @@ func (o *DatacenterListItem) SetUseGpu(v bool) {
 	o.UseGpu = &v
 }
 
-// GetUseKuma returns the UseKuma field value if set, zero value otherwise.
-func (o *DatacenterListItem) GetUseKuma() bool {
-	if o == nil || isNil(o.UseKuma) {
-		var ret bool
-		return ret
-	}
-	return *o.UseKuma
-}
-
-// GetUseKumaOk returns a tuple with the UseKuma field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DatacenterListItem) GetUseKumaOk() (*bool, bool) {
-	if o == nil || isNil(o.UseKuma) {
-    return nil, false
-	}
-	return o.UseKuma, true
-}
-
-// HasUseKuma returns a boolean if a field has been set.
-func (o *DatacenterListItem) HasUseKuma() bool {
-	if o != nil && !isNil(o.UseKuma) {
-		return true
-	}
-
-	return false
-}
-
-// SetUseKuma gets a reference to the given bool and assigns it to the UseKuma field.
-func (o *DatacenterListItem) SetUseKuma(v bool) {
-	o.UseKuma = &v
-}
-
 func (o DatacenterListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -280,14 +214,8 @@ func (o DatacenterListItem) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Coordinates) {
 		toSerialize["coordinates"] = o.Coordinates
 	}
-	if !isNil(o.UseKata) {
-		toSerialize["use_kata"] = o.UseKata
-	}
 	if !isNil(o.UseGpu) {
 		toSerialize["use_gpu"] = o.UseGpu
-	}
-	if !isNil(o.UseKuma) {
-		toSerialize["use_kuma"] = o.UseKuma
 	}
 	return json.Marshal(toSerialize)
 }

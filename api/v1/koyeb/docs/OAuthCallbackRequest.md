@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **State** | Pointer to **string** |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
+**SetupAction** | Pointer to **string** | setup_action is populated in the context of a GitHub app installation request. For logins and signups, it is not set. | [optional] 
+**InstallationId** | Pointer to **string** | installation_id is populated in the context of a GitHub app installation request. For logins and signups, it is not set. | [optional] 
 
 ## Methods
 
@@ -75,6 +77,56 @@ SetCode sets Code field to given value.
 `func (o *OAuthCallbackRequest) HasCode() bool`
 
 HasCode returns a boolean if a field has been set.
+
+### GetSetupAction
+
+`func (o *OAuthCallbackRequest) GetSetupAction() string`
+
+GetSetupAction returns the SetupAction field if non-nil, zero value otherwise.
+
+### GetSetupActionOk
+
+`func (o *OAuthCallbackRequest) GetSetupActionOk() (*string, bool)`
+
+GetSetupActionOk returns a tuple with the SetupAction field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSetupAction
+
+`func (o *OAuthCallbackRequest) SetSetupAction(v string)`
+
+SetSetupAction sets SetupAction field to given value.
+
+### HasSetupAction
+
+`func (o *OAuthCallbackRequest) HasSetupAction() bool`
+
+HasSetupAction returns a boolean if a field has been set.
+
+### GetInstallationId
+
+`func (o *OAuthCallbackRequest) GetInstallationId() string`
+
+GetInstallationId returns the InstallationId field if non-nil, zero value otherwise.
+
+### GetInstallationIdOk
+
+`func (o *OAuthCallbackRequest) GetInstallationIdOk() (*string, bool)`
+
+GetInstallationIdOk returns a tuple with the InstallationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstallationId
+
+`func (o *OAuthCallbackRequest) SetInstallationId(v string)`
+
+SetInstallationId sets InstallationId field to given value.
+
+### HasInstallationId
+
+`func (o *OAuthCallbackRequest) HasInstallationId() bool`
+
+HasInstallationId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
