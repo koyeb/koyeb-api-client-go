@@ -118,6 +118,7 @@ docs/DeploymentDefinition.md
 docs/DeploymentDefinitionType.md
 docs/DeploymentEnv.md
 docs/DeploymentEvent.md
+docs/DeploymentFileMount.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
@@ -312,6 +313,7 @@ docs/PublicOrganization.md
 docs/PublicUser.md
 docs/Quotas.md
 docs/QuotasApi.md
+docs/RawSource.md
 docs/ReactivateOrganizationReply.md
 docs/RedeployReply.md
 docs/RedeployRequestInfo.md
@@ -322,8 +324,11 @@ docs/RegionalDeployment.md
 docs/RegionalDeploymentDefinition.md
 docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentEvent.md
+docs/RegionalDeploymentFileMount.md
 docs/RegionalDeploymentListItem.md
+docs/RegionalDeploymentRawSource.md
 docs/RegionalDeploymentRole.md
+docs/RegionalDeploymentSecretSource.md
 docs/RegionalDeploymentStatus.md
 docs/RegionalDeploymentVolume.md
 docs/RegionalDeploymentsApi.md
@@ -339,6 +344,7 @@ docs/Sample.md
 docs/Scaling.md
 docs/SearchApi.md
 docs/Secret.md
+docs/SecretSource.md
 docs/SecretType.md
 docs/SecretsApi.md
 docs/SecretsSummary.md
@@ -471,6 +477,7 @@ model_deployment_definition.go
 model_deployment_definition_type.go
 model_deployment_env.go
 model_deployment_event.go
+model_deployment_file_mount.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go
@@ -647,6 +654,7 @@ model_private_registry_configuration.go
 model_public_organization.go
 model_public_user.go
 model_quotas.go
+model_raw_source.go
 model_reactivate_organization_reply.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
@@ -657,8 +665,11 @@ model_regional_deployment.go
 model_regional_deployment_definition.go
 model_regional_deployment_definition_type.go
 model_regional_deployment_event.go
+model_regional_deployment_file_mount.go
 model_regional_deployment_list_item.go
+model_regional_deployment_raw_source.go
 model_regional_deployment_role.go
+model_regional_deployment_secret_source.go
 model_regional_deployment_status.go
 model_regional_deployment_volume.go
 model_remove_organization_member_reply.go
@@ -671,6 +682,7 @@ model_route.go
 model_sample.go
 model_scaling.go
 model_secret.go
+model_secret_source.go
 model_secret_type.go
 model_secrets_summary.go
 model_service.go

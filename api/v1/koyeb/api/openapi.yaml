@@ -13845,6 +13845,21 @@ components:
             - scopes
             - scopes
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -14085,6 +14100,21 @@ components:
             - scopes
             - scopes
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -14552,6 +14582,21 @@ components:
             - scopes
             - scopes
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -14903,6 +14948,21 @@ components:
           - scopes
           - scopes
         skip_cache: true
+        file_mounts:
+        - path: path
+          interpolation_enabled: true
+          permissions: permissions
+          raw:
+            content: content
+          secret:
+            name: name
+        - path: path
+          interpolation_enabled: true
+          permissions: permissions
+          raw:
+            content: content
+          secret:
+            name: name
         archive:
           id: id
           buildpack:
@@ -15132,6 +15192,10 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentVolume'
           type: array
+        file_mounts:
+          items:
+            $ref: '#/components/schemas/DeploymentFileMount'
+          type: array
         skip_cache:
           type: boolean
         docker:
@@ -15170,6 +15234,31 @@ components:
           type: string
         secret:
           type: string
+      type: object
+    DeploymentFileMount:
+      example:
+        path: path
+        interpolation_enabled: true
+        permissions: permissions
+        raw:
+          content: content
+        secret:
+          name: name
+      properties:
+        path:
+          title: the path where the file is mounted to
+          type: string
+        permissions:
+          title: the content of the file
+          type: string
+        interpolation_enabled:
+          title: interpolation_enabled is a flag to enable/disable interpolation in
+            the file content
+          type: boolean
+        secret:
+          $ref: '#/components/schemas/SecretSource'
+        raw:
+          $ref: '#/components/schemas/RawSource'
       type: object
     DeploymentHealthCheck:
       example:
@@ -16303,6 +16392,14 @@ components:
       type: object
     PauseServiceReply:
       type: object
+    RawSource:
+      example:
+        content: content
+      properties:
+        content:
+          title: the content of the file
+          type: string
+      type: object
     RedeployReply:
       example:
         deployment:
@@ -16494,6 +16591,21 @@ components:
               - scopes
               - scopes
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -16728,6 +16840,14 @@ components:
           type: boolean
       type: object
     ResumeServiceReply:
+      type: object
+    SecretSource:
+      example:
+        name: name
+      properties:
+        name:
+          title: the id of the secret
+          type: string
       type: object
     Service:
       example:
@@ -17101,6 +17221,21 @@ components:
             - scopes
             - scopes
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -18574,6 +18709,21 @@ components:
             - scopes
             - scopes
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -19031,6 +19181,21 @@ components:
               - scopes
               - scopes
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -19481,6 +19646,21 @@ components:
               - scopes
               - scopes
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -19882,6 +20062,21 @@ components:
               - scopes
               - scopes
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -20321,6 +20516,21 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -20529,6 +20739,21 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -20683,6 +20908,21 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
+            file_mounts:
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
+            - path: path
+              interpolation_enabled: true
+              permissions: permissions
+              raw:
+                content: content
+              secret:
+                name: name
             archive:
               id: id
               buildpack:
@@ -21013,6 +21253,21 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -21257,6 +21512,21 @@ components:
           replica_index: 5
           id: id
         skip_cache: true
+        file_mounts:
+        - path: path
+          interpolation_enabled: true
+          permissions: permissions
+          raw:
+            content: content
+          secret:
+            name: name
+        - path: path
+          interpolation_enabled: true
+          permissions: permissions
+          raw:
+            content: content
+          secret:
+            name: name
         archive:
           id: id
           buildpack:
@@ -21399,6 +21669,10 @@ components:
           items:
             $ref: '#/components/schemas/RegionalDeploymentVolume'
           type: array
+        file_mounts:
+          items:
+            $ref: '#/components/schemas/RegionalDeploymentFileMount'
+          type: array
         skip_cache:
           type: boolean
         docker:
@@ -21441,6 +21715,29 @@ components:
         metadata:
           properties: {}
           type: object
+      type: object
+    RegionalDeploymentFileMount:
+      example:
+        path: path
+        interpolation_enabled: true
+        permissions: permissions
+        raw:
+          content: content
+        secret:
+          name: name
+      properties:
+        path:
+          title: the path where the file is mounted to
+          type: string
+        permissions:
+          title: the content of the file
+          type: string
+        interpolation_enabled:
+          type: boolean
+        secret:
+          $ref: '#/components/schemas/RegionalDeploymentSecretSource'
+        raw:
+          $ref: '#/components/schemas/RegionalDeploymentRawSource'
       type: object
     RegionalDeploymentListItem:
       example:
@@ -21488,6 +21785,21 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
+          file_mounts:
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
+          - path: path
+            interpolation_enabled: true
+            permissions: permissions
+            raw:
+              content: content
+            secret:
+              name: name
           archive:
             id: id
             buildpack:
@@ -21619,6 +21931,22 @@ components:
           $ref: '#/components/schemas/RegionalDeploymentDefinition'
       type: object
     RegionalDeploymentMetadata:
+      type: object
+    RegionalDeploymentRawSource:
+      example:
+        content: content
+      properties:
+        content:
+          title: the content of the file
+          type: string
+      type: object
+    RegionalDeploymentSecretSource:
+      example:
+        name: name
+      properties:
+        name:
+          title: the id of the secret
+          type: string
       type: object
     RegionalDeploymentVolume:
       example:
