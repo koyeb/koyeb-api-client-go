@@ -28,6 +28,7 @@ type RegionalDeploymentDefinition struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
+	FileMounts []RegionalDeploymentFileMount `json:"file_mounts,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -439,6 +440,38 @@ func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume) 
 	o.Volumes = v
 }
 
+// GetFileMounts returns the FileMounts field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetFileMounts() []RegionalDeploymentFileMount {
+	if o == nil || isNil(o.FileMounts) {
+		var ret []RegionalDeploymentFileMount
+		return ret
+	}
+	return o.FileMounts
+}
+
+// GetFileMountsOk returns a tuple with the FileMounts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetFileMountsOk() ([]RegionalDeploymentFileMount, bool) {
+	if o == nil || isNil(o.FileMounts) {
+    return nil, false
+	}
+	return o.FileMounts, true
+}
+
+// HasFileMounts returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasFileMounts() bool {
+	if o != nil && !isNil(o.FileMounts) {
+		return true
+	}
+
+	return false
+}
+
+// SetFileMounts gets a reference to the given []RegionalDeploymentFileMount and assigns it to the FileMounts field.
+func (o *RegionalDeploymentDefinition) SetFileMounts(v []RegionalDeploymentFileMount) {
+	o.FileMounts = v
+}
+
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
 func (o *RegionalDeploymentDefinition) GetSkipCache() bool {
 	if o == nil || isNil(o.SkipCache) {
@@ -604,6 +637,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
+	}
+	if !isNil(o.FileMounts) {
+		toSerialize["file_mounts"] = o.FileMounts
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache

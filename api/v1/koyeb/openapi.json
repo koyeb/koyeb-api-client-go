@@ -13664,6 +13664,12 @@
             "$ref": "#/definitions/DeploymentVolume"
           }
         },
+        "file_mounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentFileMount"
+          }
+        },
         "skip_cache": {
           "type": "boolean"
         },
@@ -13708,6 +13714,29 @@
         },
         "secret": {
           "type": "string"
+        }
+      }
+    },
+    "DeploymentFileMount": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "title": "the path where the file is mounted to"
+        },
+        "permissions": {
+          "type": "string",
+          "title": "the content of the file"
+        },
+        "interpolation_enabled": {
+          "type": "boolean",
+          "title": "interpolation_enabled is a flag to enable/disable interpolation in the file content"
+        },
+        "secret": {
+          "$ref": "#/definitions/SecretSource"
+        },
+        "raw": {
+          "$ref": "#/definitions/RawSource"
         }
       }
     },
@@ -14453,6 +14482,15 @@
     "PauseServiceReply": {
       "type": "object"
     },
+    "RawSource": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "title": "the content of the file"
+        }
+      }
+    },
     "RedeployReply": {
       "type": "object",
       "properties": {
@@ -14482,6 +14520,15 @@
     },
     "ResumeServiceReply": {
       "type": "object"
+    },
+    "SecretSource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "the id of the secret"
+        }
+      }
     },
     "Service": {
       "type": "object",
@@ -15921,6 +15968,12 @@
             "$ref": "#/definitions/RegionalDeploymentVolume"
           }
         },
+        "file_mounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegionalDeploymentFileMount"
+          }
+        },
         "skip_cache": {
           "type": "boolean"
         },
@@ -15971,6 +16024,28 @@
         }
       }
     },
+    "RegionalDeploymentFileMount": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "title": "the path where the file is mounted to"
+        },
+        "permissions": {
+          "type": "string",
+          "title": "the content of the file"
+        },
+        "interpolation_enabled": {
+          "type": "boolean"
+        },
+        "secret": {
+          "$ref": "#/definitions/RegionalDeploymentSecretSource"
+        },
+        "raw": {
+          "$ref": "#/definitions/RegionalDeploymentRawSource"
+        }
+      }
+    },
     "RegionalDeploymentListItem": {
       "type": "object",
       "properties": {
@@ -16004,6 +16079,24 @@
     },
     "RegionalDeploymentMetadata": {
       "type": "object"
+    },
+    "RegionalDeploymentRawSource": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "title": "the content of the file"
+        }
+      }
+    },
+    "RegionalDeploymentSecretSource": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "the id of the secret"
+        }
+      }
     },
     "RegionalDeploymentVolume": {
       "type": "object",
