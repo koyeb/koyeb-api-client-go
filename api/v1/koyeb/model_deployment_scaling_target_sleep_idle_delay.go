@@ -16,7 +16,7 @@ import (
 
 // DeploymentScalingTargetSleepIdleDelay struct for DeploymentScalingTargetSleepIdleDelay
 type DeploymentScalingTargetSleepIdleDelay struct {
-	// Delay in seconds after which a service which received 0 request is scaled to 0.
+	// Delay in seconds after which a service which received 0 request is scaled to 0. This is not configurable and must be set to 300 (5 minutes). Get in touch to tune it.
 	Value *int64 `json:"value,omitempty"`
 }
 

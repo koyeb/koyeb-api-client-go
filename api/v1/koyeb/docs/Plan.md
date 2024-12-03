@@ -19,6 +19,10 @@
 
 * `NO_PLAN` (value: `"no_plan"`)
 
+* `PRO` (value: `"pro"`)
+
+* `SCALE` (value: `"scale"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
