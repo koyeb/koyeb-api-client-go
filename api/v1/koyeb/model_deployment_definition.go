@@ -27,7 +27,7 @@ type DeploymentDefinition struct {
 	InstanceTypes []DeploymentInstanceType `json:"instance_types,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []DeploymentVolume `json:"volumes,omitempty"`
-	FileMounts []DeploymentFileMount `json:"file_mounts,omitempty"`
+	FileMounts []FileMount `json:"file_mounts,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -409,9 +409,9 @@ func (o *DeploymentDefinition) SetVolumes(v []DeploymentVolume) {
 }
 
 // GetFileMounts returns the FileMounts field value if set, zero value otherwise.
-func (o *DeploymentDefinition) GetFileMounts() []DeploymentFileMount {
+func (o *DeploymentDefinition) GetFileMounts() []FileMount {
 	if o == nil || isNil(o.FileMounts) {
-		var ret []DeploymentFileMount
+		var ret []FileMount
 		return ret
 	}
 	return o.FileMounts
@@ -419,7 +419,7 @@ func (o *DeploymentDefinition) GetFileMounts() []DeploymentFileMount {
 
 // GetFileMountsOk returns a tuple with the FileMounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentDefinition) GetFileMountsOk() ([]DeploymentFileMount, bool) {
+func (o *DeploymentDefinition) GetFileMountsOk() ([]FileMount, bool) {
 	if o == nil || isNil(o.FileMounts) {
     return nil, false
 	}
@@ -435,8 +435,8 @@ func (o *DeploymentDefinition) HasFileMounts() bool {
 	return false
 }
 
-// SetFileMounts gets a reference to the given []DeploymentFileMount and assigns it to the FileMounts field.
-func (o *DeploymentDefinition) SetFileMounts(v []DeploymentFileMount) {
+// SetFileMounts gets a reference to the given []FileMount and assigns it to the FileMounts field.
+func (o *DeploymentDefinition) SetFileMounts(v []FileMount) {
 	o.FileMounts = v
 }
 

@@ -28,7 +28,7 @@ type RegionalDeploymentDefinition struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
-	FileMounts []RegionalDeploymentFileMount `json:"file_mounts,omitempty"`
+	FileMounts []FileMount `json:"file_mounts,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -441,9 +441,9 @@ func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume) 
 }
 
 // GetFileMounts returns the FileMounts field value if set, zero value otherwise.
-func (o *RegionalDeploymentDefinition) GetFileMounts() []RegionalDeploymentFileMount {
+func (o *RegionalDeploymentDefinition) GetFileMounts() []FileMount {
 	if o == nil || isNil(o.FileMounts) {
-		var ret []RegionalDeploymentFileMount
+		var ret []FileMount
 		return ret
 	}
 	return o.FileMounts
@@ -451,7 +451,7 @@ func (o *RegionalDeploymentDefinition) GetFileMounts() []RegionalDeploymentFileM
 
 // GetFileMountsOk returns a tuple with the FileMounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegionalDeploymentDefinition) GetFileMountsOk() ([]RegionalDeploymentFileMount, bool) {
+func (o *RegionalDeploymentDefinition) GetFileMountsOk() ([]FileMount, bool) {
 	if o == nil || isNil(o.FileMounts) {
     return nil, false
 	}
@@ -467,8 +467,8 @@ func (o *RegionalDeploymentDefinition) HasFileMounts() bool {
 	return false
 }
 
-// SetFileMounts gets a reference to the given []RegionalDeploymentFileMount and assigns it to the FileMounts field.
-func (o *RegionalDeploymentDefinition) SetFileMounts(v []RegionalDeploymentFileMount) {
+// SetFileMounts gets a reference to the given []FileMount and assigns it to the FileMounts field.
+func (o *RegionalDeploymentDefinition) SetFileMounts(v []FileMount) {
 	o.FileMounts = v
 }
 

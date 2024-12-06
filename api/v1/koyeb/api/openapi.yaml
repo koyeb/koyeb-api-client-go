@@ -9996,6 +9996,8 @@ components:
       - internal
       - hobby23
       - no_plan
+      - pro
+      - scale
       type: string
     PublicOrganization:
       example:
@@ -13847,19 +13849,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -14102,19 +14096,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -14584,19 +14570,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -14950,19 +14928,11 @@ components:
         skip_cache: true
         file_mounts:
         - path: path
-          interpolation_enabled: true
           permissions: permissions
-          raw:
-            content: content
-          secret:
-            name: name
+          content: content
         - path: path
-          interpolation_enabled: true
           permissions: permissions
-          raw:
-            content: content
-          secret:
-            name: name
+          content: content
         archive:
           id: id
           buildpack:
@@ -15194,7 +15164,7 @@ components:
           type: array
         file_mounts:
           items:
-            $ref: '#/components/schemas/DeploymentFileMount'
+            $ref: '#/components/schemas/FileMount'
           type: array
         skip_cache:
           type: boolean
@@ -15234,31 +15204,6 @@ components:
           type: string
         secret:
           type: string
-      type: object
-    DeploymentFileMount:
-      example:
-        path: path
-        interpolation_enabled: true
-        permissions: permissions
-        raw:
-          content: content
-        secret:
-          name: name
-      properties:
-        path:
-          title: the path where the file is mounted to
-          type: string
-        permissions:
-          title: the content of the file
-          type: string
-        interpolation_enabled:
-          title: interpolation_enabled is a flag to enable/disable interpolation in
-            the file content
-          type: boolean
-        secret:
-          $ref: '#/components/schemas/SecretSource'
-        raw:
-          $ref: '#/components/schemas/RawSource'
       type: object
     DeploymentHealthCheck:
       example:
@@ -15880,11 +15825,12 @@ components:
         value: 4
       properties:
         value:
-          description: Delay in seconds after which a service which received 0 request
-            is scaled to 0.
+          description: |-
+            Delay in seconds after which a service which received 0 request is scaled to 0.
+            This is not configurable and must be set to 300 (5 minutes). Get in touch to
+            tune it.
           format: int64
           type: integer
-      title: Experimental message
       type: object
     DeploymentStrategy:
       example:
@@ -16031,6 +15977,25 @@ components:
         privileged:
           title: A flag to run the container in privileged mode
           type: boolean
+      type: object
+    FileMount:
+      example:
+        path: path
+        permissions: permissions
+        content: content
+      properties:
+        path:
+          title: the path where the file is mounted to
+          type: string
+        permissions:
+          description: |-
+            interpolation_enabled is a flag to enable/disable interpolation in the file content
+             bool interpolation_enabled = 3;
+          title: the content of the file
+          type: string
+        content:
+          title: the content of the file
+          type: string
       type: object
     GetServiceReply:
       example:
@@ -16392,14 +16357,6 @@ components:
       type: object
     PauseServiceReply:
       type: object
-    RawSource:
-      example:
-        content: content
-      properties:
-        content:
-          title: the content of the file
-          type: string
-      type: object
     RedeployReply:
       example:
         deployment:
@@ -16593,19 +16550,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -16840,14 +16789,6 @@ components:
           type: boolean
       type: object
     ResumeServiceReply:
-      type: object
-    SecretSource:
-      example:
-        name: name
-      properties:
-        name:
-          title: the id of the secret
-          type: string
       type: object
     Service:
       example:
@@ -17223,19 +17164,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -18711,19 +18644,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -19183,19 +19108,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -19648,19 +19565,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -20064,19 +19973,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -20518,19 +20419,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -20741,19 +20634,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -20910,19 +20795,11 @@ components:
             skip_cache: true
             file_mounts:
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             - path: path
-              interpolation_enabled: true
               permissions: permissions
-              raw:
-                content: content
-              secret:
-                name: name
+              content: content
             archive:
               id: id
               buildpack:
@@ -21255,19 +21132,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -21514,19 +21383,11 @@ components:
         skip_cache: true
         file_mounts:
         - path: path
-          interpolation_enabled: true
           permissions: permissions
-          raw:
-            content: content
-          secret:
-            name: name
+          content: content
         - path: path
-          interpolation_enabled: true
           permissions: permissions
-          raw:
-            content: content
-          secret:
-            name: name
+          content: content
         archive:
           id: id
           buildpack:
@@ -21671,7 +21532,7 @@ components:
           type: array
         file_mounts:
           items:
-            $ref: '#/components/schemas/RegionalDeploymentFileMount'
+            $ref: '#/components/schemas/FileMount'
           type: array
         skip_cache:
           type: boolean
@@ -21715,29 +21576,6 @@ components:
         metadata:
           properties: {}
           type: object
-      type: object
-    RegionalDeploymentFileMount:
-      example:
-        path: path
-        interpolation_enabled: true
-        permissions: permissions
-        raw:
-          content: content
-        secret:
-          name: name
-      properties:
-        path:
-          title: the path where the file is mounted to
-          type: string
-        permissions:
-          title: the content of the file
-          type: string
-        interpolation_enabled:
-          type: boolean
-        secret:
-          $ref: '#/components/schemas/RegionalDeploymentSecretSource'
-        raw:
-          $ref: '#/components/schemas/RegionalDeploymentRawSource'
       type: object
     RegionalDeploymentListItem:
       example:
@@ -21787,19 +21625,11 @@ components:
           skip_cache: true
           file_mounts:
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           - path: path
-            interpolation_enabled: true
             permissions: permissions
-            raw:
-              content: content
-            secret:
-              name: name
+            content: content
           archive:
             id: id
             buildpack:
@@ -21931,22 +21761,6 @@ components:
           $ref: '#/components/schemas/RegionalDeploymentDefinition'
       type: object
     RegionalDeploymentMetadata:
-      type: object
-    RegionalDeploymentRawSource:
-      example:
-        content: content
-      properties:
-        content:
-          title: the content of the file
-          type: string
-      type: object
-    RegionalDeploymentSecretSource:
-      example:
-        name: name
-      properties:
-        name:
-          title: the id of the secret
-          type: string
       type: object
     RegionalDeploymentVolume:
       example:
