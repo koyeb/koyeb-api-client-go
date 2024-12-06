@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **int64** | Delay in seconds after which a service which received 0 request is scaled to 0. | [optional] 
+**Value** | Pointer to **int64** | Delay in seconds after which a service which received 0 request is scaled to 0. This is not configurable and must be set to 300 (5 minutes). Get in touch to tune it. | [optional] 
 
 ## Methods
 

@@ -28,6 +28,8 @@ const (
 	PLAN_INTERNAL Plan = "internal"
 	PLAN_HOBBY23 Plan = "hobby23"
 	PLAN_NO_PLAN Plan = "no_plan"
+	PLAN_PRO Plan = "pro"
+	PLAN_SCALE Plan = "scale"
 )
 
 // All allowed values of Plan enum
@@ -40,6 +42,8 @@ var AllowedPlanEnumValues = []Plan{
 	"internal",
 	"hobby23",
 	"no_plan",
+	"pro",
+	"scale",
 }
 
 func (v *Plan) UnmarshalJSON(src []byte) error {
