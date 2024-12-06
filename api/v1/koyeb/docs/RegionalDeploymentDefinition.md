@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **Volumes** | Pointer to [**[]RegionalDeploymentVolume**](RegionalDeploymentVolume.md) |  | [optional] 
-**FileMounts** | Pointer to [**[]RegionalDeploymentFileMount**](RegionalDeploymentFileMount.md) |  | [optional] 
+**FileMounts** | Pointer to [**[]FileMount**](FileMount.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
@@ -343,20 +343,20 @@ HasVolumes returns a boolean if a field has been set.
 
 ### GetFileMounts
 
-`func (o *RegionalDeploymentDefinition) GetFileMounts() []RegionalDeploymentFileMount`
+`func (o *RegionalDeploymentDefinition) GetFileMounts() []FileMount`
 
 GetFileMounts returns the FileMounts field if non-nil, zero value otherwise.
 
 ### GetFileMountsOk
 
-`func (o *RegionalDeploymentDefinition) GetFileMountsOk() (*[]RegionalDeploymentFileMount, bool)`
+`func (o *RegionalDeploymentDefinition) GetFileMountsOk() (*[]FileMount, bool)`
 
 GetFileMountsOk returns a tuple with the FileMounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFileMounts
 
-`func (o *RegionalDeploymentDefinition) SetFileMounts(v []RegionalDeploymentFileMount)`
+`func (o *RegionalDeploymentDefinition) SetFileMounts(v []FileMount)`
 
 SetFileMounts sets FileMounts field to given value.
 

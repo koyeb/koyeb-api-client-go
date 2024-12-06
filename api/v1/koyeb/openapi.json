@@ -13669,7 +13669,7 @@
         "file_mounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/DeploymentFileMount"
+            "$ref": "#/definitions/FileMount"
           }
         },
         "skip_cache": {
@@ -13716,29 +13716,6 @@
         },
         "secret": {
           "type": "string"
-        }
-      }
-    },
-    "DeploymentFileMount": {
-      "type": "object",
-      "properties": {
-        "path": {
-          "type": "string",
-          "title": "the path where the file is mounted to"
-        },
-        "permissions": {
-          "type": "string",
-          "title": "the content of the file"
-        },
-        "interpolation_enabled": {
-          "type": "boolean",
-          "title": "interpolation_enabled is a flag to enable/disable interpolation in the file content"
-        },
-        "secret": {
-          "$ref": "#/definitions/SecretSource"
-        },
-        "raw": {
-          "$ref": "#/definitions/RawSource"
         }
       }
     },
@@ -14263,6 +14240,24 @@
         }
       }
     },
+    "FileMount": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "title": "the path where the file is mounted to"
+        },
+        "permissions": {
+          "type": "string",
+          "description": "interpolation_enabled is a flag to enable/disable interpolation in the file content\n bool interpolation_enabled = 3;",
+          "title": "the content of the file"
+        },
+        "content": {
+          "type": "string",
+          "title": "the content of the file"
+        }
+      }
+    },
     "GetServiceReply": {
       "type": "object",
       "properties": {
@@ -14482,15 +14477,6 @@
     "PauseServiceReply": {
       "type": "object"
     },
-    "RawSource": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "title": "the content of the file"
-        }
-      }
-    },
     "RedeployReply": {
       "type": "object",
       "properties": {
@@ -14520,15 +14506,6 @@
     },
     "ResumeServiceReply": {
       "type": "object"
-    },
-    "SecretSource": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "the id of the secret"
-        }
-      }
     },
     "Service": {
       "type": "object",
@@ -15971,7 +15948,7 @@
         "file_mounts": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/RegionalDeploymentFileMount"
+            "$ref": "#/definitions/FileMount"
           }
         },
         "skip_cache": {
@@ -16024,28 +16001,6 @@
         }
       }
     },
-    "RegionalDeploymentFileMount": {
-      "type": "object",
-      "properties": {
-        "path": {
-          "type": "string",
-          "title": "the path where the file is mounted to"
-        },
-        "permissions": {
-          "type": "string",
-          "title": "the content of the file"
-        },
-        "interpolation_enabled": {
-          "type": "boolean"
-        },
-        "secret": {
-          "$ref": "#/definitions/RegionalDeploymentSecretSource"
-        },
-        "raw": {
-          "$ref": "#/definitions/RegionalDeploymentRawSource"
-        }
-      }
-    },
     "RegionalDeploymentListItem": {
       "type": "object",
       "properties": {
@@ -16079,24 +16034,6 @@
     },
     "RegionalDeploymentMetadata": {
       "type": "object"
-    },
-    "RegionalDeploymentRawSource": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "title": "the content of the file"
-        }
-      }
-    },
-    "RegionalDeploymentSecretSource": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "title": "the id of the secret"
-        }
-      }
     },
     "RegionalDeploymentVolume": {
       "type": "object",
