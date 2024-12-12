@@ -42,6 +42,9 @@ type Organization struct {
 	Verified *bool `json:"verified,omitempty"`
 	QualifiesForHobby23 *bool `json:"qualifies_for_hobby23,omitempty"`
 	ReprocessAfter *time.Time `json:"reprocess_after,omitempty"`
+	Trialing *bool `json:"trialing,omitempty"`
+	TrialStartsAt *time.Time `json:"trial_starts_at,omitempty"`
+	TrialEndsAt *time.Time `json:"trial_ends_at,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -877,6 +880,102 @@ func (o *Organization) SetReprocessAfter(v time.Time) {
 	o.ReprocessAfter = &v
 }
 
+// GetTrialing returns the Trialing field value if set, zero value otherwise.
+func (o *Organization) GetTrialing() bool {
+	if o == nil || isNil(o.Trialing) {
+		var ret bool
+		return ret
+	}
+	return *o.Trialing
+}
+
+// GetTrialingOk returns a tuple with the Trialing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetTrialingOk() (*bool, bool) {
+	if o == nil || isNil(o.Trialing) {
+    return nil, false
+	}
+	return o.Trialing, true
+}
+
+// HasTrialing returns a boolean if a field has been set.
+func (o *Organization) HasTrialing() bool {
+	if o != nil && !isNil(o.Trialing) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialing gets a reference to the given bool and assigns it to the Trialing field.
+func (o *Organization) SetTrialing(v bool) {
+	o.Trialing = &v
+}
+
+// GetTrialStartsAt returns the TrialStartsAt field value if set, zero value otherwise.
+func (o *Organization) GetTrialStartsAt() time.Time {
+	if o == nil || isNil(o.TrialStartsAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.TrialStartsAt
+}
+
+// GetTrialStartsAtOk returns a tuple with the TrialStartsAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetTrialStartsAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.TrialStartsAt) {
+    return nil, false
+	}
+	return o.TrialStartsAt, true
+}
+
+// HasTrialStartsAt returns a boolean if a field has been set.
+func (o *Organization) HasTrialStartsAt() bool {
+	if o != nil && !isNil(o.TrialStartsAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialStartsAt gets a reference to the given time.Time and assigns it to the TrialStartsAt field.
+func (o *Organization) SetTrialStartsAt(v time.Time) {
+	o.TrialStartsAt = &v
+}
+
+// GetTrialEndsAt returns the TrialEndsAt field value if set, zero value otherwise.
+func (o *Organization) GetTrialEndsAt() time.Time {
+	if o == nil || isNil(o.TrialEndsAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.TrialEndsAt
+}
+
+// GetTrialEndsAtOk returns a tuple with the TrialEndsAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetTrialEndsAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.TrialEndsAt) {
+    return nil, false
+	}
+	return o.TrialEndsAt, true
+}
+
+// HasTrialEndsAt returns a boolean if a field has been set.
+func (o *Organization) HasTrialEndsAt() bool {
+	if o != nil && !isNil(o.TrialEndsAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialEndsAt gets a reference to the given time.Time and assigns it to the TrialEndsAt field.
+func (o *Organization) SetTrialEndsAt(v time.Time) {
+	o.TrialEndsAt = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -953,6 +1052,15 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ReprocessAfter) {
 		toSerialize["reprocess_after"] = o.ReprocessAfter
+	}
+	if !isNil(o.Trialing) {
+		toSerialize["trialing"] = o.Trialing
+	}
+	if !isNil(o.TrialStartsAt) {
+		toSerialize["trial_starts_at"] = o.TrialStartsAt
+	}
+	if !isNil(o.TrialEndsAt) {
+		toSerialize["trial_ends_at"] = o.TrialEndsAt
 	}
 	return json.Marshal(toSerialize)
 }

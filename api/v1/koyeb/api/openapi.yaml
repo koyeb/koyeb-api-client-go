@@ -11064,6 +11064,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11075,12 +11076,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11103,6 +11106,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11114,12 +11118,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11169,6 +11175,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11180,12 +11187,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11275,6 +11284,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11286,12 +11296,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11613,6 +11625,7 @@ components:
         vat_number: vat_number
         plan_updated_at: 2000-01-23T04:56:07.000+00:00
         has_payment_method: true
+        trialing: true
         subscription_id: subscription_id
         signup_qualification: "{}"
         reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11624,12 +11637,14 @@ components:
         current_subscription_id: current_subscription_id
         qualifies_for_hobby23: true
         address2: address2
+        trial_starts_at: 2000-01-23T04:56:07.000+00:00
         address1: address1
         verified: true
         billing_name: billing_name
         deactivation_reason: null
         name: name
         latest_subscription_id: latest_subscription_id
+        trial_ends_at: 2000-01-23T04:56:07.000+00:00
         postal_code: postal_code
         status: null
       properties:
@@ -11686,6 +11701,14 @@ components:
         reprocess_after:
           format: date-time
           type: string
+        trialing:
+          type: boolean
+        trial_starts_at:
+          format: date-time
+          type: string
+        trial_ends_at:
+          format: date-time
+          type: string
       title: Represent an Organization
       type: object
     Organization.DeactivationReason:
@@ -11720,6 +11743,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11731,12 +11755,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11784,6 +11810,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11795,12 +11822,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11816,6 +11845,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11827,12 +11857,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11873,6 +11905,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11884,12 +11917,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
