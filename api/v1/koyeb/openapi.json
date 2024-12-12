@@ -12029,6 +12029,17 @@
         "reprocess_after": {
           "type": "string",
           "format": "date-time"
+        },
+        "trialing": {
+          "type": "boolean"
+        },
+        "trial_starts_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trial_ends_at": {
+          "type": "string",
+          "format": "date-time"
         }
       },
       "title": "Represent an Organization"
