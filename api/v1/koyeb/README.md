@@ -434,6 +434,8 @@ Class | Method | HTTP request | Description
  - [NeonPostgresDatabaseNeonRole](docs/NeonPostgresDatabaseNeonRole.md)
  - [NeonPostgresSummary](docs/NeonPostgresSummary.md)
  - [NextInvoiceReply](docs/NextInvoiceReply.md)
+ - [NextInvoiceReplyDiscount](docs/NextInvoiceReplyDiscount.md)
+ - [NextInvoiceReplyDiscountType](docs/NextInvoiceReplyDiscountType.md)
  - [NextInvoiceReplyLine](docs/NextInvoiceReplyLine.md)
  - [NextInvoiceReplyLinePeriod](docs/NextInvoiceReplyLinePeriod.md)
  - [NextInvoiceReplyLinePrice](docs/NextInvoiceReplyLinePrice.md)

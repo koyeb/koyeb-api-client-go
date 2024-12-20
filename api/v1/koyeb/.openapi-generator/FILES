@@ -271,6 +271,8 @@ docs/NeonPostgresDatabaseNeonDatabase.md
 docs/NeonPostgresDatabaseNeonRole.md
 docs/NeonPostgresSummary.md
 docs/NextInvoiceReply.md
+docs/NextInvoiceReplyDiscount.md
+docs/NextInvoiceReplyDiscountType.md
 docs/NextInvoiceReplyLine.md
 docs/NextInvoiceReplyLinePeriod.md
 docs/NextInvoiceReplyLinePrice.md
@@ -617,6 +619,8 @@ model_neon_postgres_database_neon_database.go
 model_neon_postgres_database_neon_role.go
 model_neon_postgres_summary.go
 model_next_invoice_reply.go
+model_next_invoice_reply_discount.go
+model_next_invoice_reply_discount_type.go
 model_next_invoice_reply_line.go
 model_next_invoice_reply_line_period.go
 model_next_invoice_reply_line_price.go
