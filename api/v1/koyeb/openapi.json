@@ -11856,8 +11856,37 @@
           "items": {
             "$ref": "#/definitions/NextInvoiceReply.Line"
           }
+        },
+        "discounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NextInvoiceReply.Discount"
+          }
         }
       }
+    },
+    "NextInvoiceReply.Discount": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/NextInvoiceReply.Discount.Type"
+        },
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "NextInvoiceReply.Discount.Type": {
+      "type": "string",
+      "enum": [
+        "PERCENT_OFF",
+        "AMOUNT_OFF"
+      ],
+      "default": "PERCENT_OFF"
     },
     "NextInvoiceReply.Line": {
       "type": "object",
@@ -12027,6 +12056,17 @@
           "type": "boolean"
         },
         "reprocess_after": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trialing": {
+          "type": "boolean"
+        },
+        "trial_starts_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "trial_ends_at": {
           "type": "string",
           "format": "date-time"
         }
