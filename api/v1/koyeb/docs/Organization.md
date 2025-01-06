@@ -29,6 +29,9 @@ Name | Type | Description | Notes
 **Verified** | Pointer to **bool** |  | [optional] 
 **QualifiesForHobby23** | Pointer to **bool** |  | [optional] 
 **ReprocessAfter** | Pointer to **time.Time** |  | [optional] 
+**Trialing** | Pointer to **bool** |  | [optional] 
+**TrialStartsAt** | Pointer to **time.Time** |  | [optional] 
+**TrialEndsAt** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -673,6 +676,81 @@ SetReprocessAfter sets ReprocessAfter field to given value.
 `func (o *Organization) HasReprocessAfter() bool`
 
 HasReprocessAfter returns a boolean if a field has been set.
+
+### GetTrialing
+
+`func (o *Organization) GetTrialing() bool`
+
+GetTrialing returns the Trialing field if non-nil, zero value otherwise.
+
+### GetTrialingOk
+
+`func (o *Organization) GetTrialingOk() (*bool, bool)`
+
+GetTrialingOk returns a tuple with the Trialing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialing
+
+`func (o *Organization) SetTrialing(v bool)`
+
+SetTrialing sets Trialing field to given value.
+
+### HasTrialing
+
+`func (o *Organization) HasTrialing() bool`
+
+HasTrialing returns a boolean if a field has been set.
+
+### GetTrialStartsAt
+
+`func (o *Organization) GetTrialStartsAt() time.Time`
+
+GetTrialStartsAt returns the TrialStartsAt field if non-nil, zero value otherwise.
+
+### GetTrialStartsAtOk
+
+`func (o *Organization) GetTrialStartsAtOk() (*time.Time, bool)`
+
+GetTrialStartsAtOk returns a tuple with the TrialStartsAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialStartsAt
+
+`func (o *Organization) SetTrialStartsAt(v time.Time)`
+
+SetTrialStartsAt sets TrialStartsAt field to given value.
+
+### HasTrialStartsAt
+
+`func (o *Organization) HasTrialStartsAt() bool`
+
+HasTrialStartsAt returns a boolean if a field has been set.
+
+### GetTrialEndsAt
+
+`func (o *Organization) GetTrialEndsAt() time.Time`
+
+GetTrialEndsAt returns the TrialEndsAt field if non-nil, zero value otherwise.
+
+### GetTrialEndsAtOk
+
+`func (o *Organization) GetTrialEndsAtOk() (*time.Time, bool)`
+
+GetTrialEndsAtOk returns a tuple with the TrialEndsAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialEndsAt
+
+`func (o *Organization) SetTrialEndsAt(v time.Time)`
+
+SetTrialEndsAt sets TrialEndsAt field to given value.
+
+### HasTrialEndsAt
+
+`func (o *Organization) HasTrialEndsAt() bool`
+
+HasTrialEndsAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
