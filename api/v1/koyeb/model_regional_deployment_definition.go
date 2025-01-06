@@ -28,7 +28,7 @@ type RegionalDeploymentDefinition struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
-	FileMounts []FileMount `json:"file_mounts,omitempty"`
+	Files []File `json:"files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -440,36 +440,36 @@ func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume) 
 	o.Volumes = v
 }
 
-// GetFileMounts returns the FileMounts field value if set, zero value otherwise.
-func (o *RegionalDeploymentDefinition) GetFileMounts() []FileMount {
-	if o == nil || isNil(o.FileMounts) {
-		var ret []FileMount
+// GetFiles returns the Files field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetFiles() []File {
+	if o == nil || isNil(o.Files) {
+		var ret []File
 		return ret
 	}
-	return o.FileMounts
+	return o.Files
 }
 
-// GetFileMountsOk returns a tuple with the FileMounts field value if set, nil otherwise
+// GetFilesOk returns a tuple with the Files field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegionalDeploymentDefinition) GetFileMountsOk() ([]FileMount, bool) {
-	if o == nil || isNil(o.FileMounts) {
+func (o *RegionalDeploymentDefinition) GetFilesOk() ([]File, bool) {
+	if o == nil || isNil(o.Files) {
     return nil, false
 	}
-	return o.FileMounts, true
+	return o.Files, true
 }
 
-// HasFileMounts returns a boolean if a field has been set.
-func (o *RegionalDeploymentDefinition) HasFileMounts() bool {
-	if o != nil && !isNil(o.FileMounts) {
+// HasFiles returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasFiles() bool {
+	if o != nil && !isNil(o.Files) {
 		return true
 	}
 
 	return false
 }
 
-// SetFileMounts gets a reference to the given []FileMount and assigns it to the FileMounts field.
-func (o *RegionalDeploymentDefinition) SetFileMounts(v []FileMount) {
-	o.FileMounts = v
+// SetFiles gets a reference to the given []File and assigns it to the Files field.
+func (o *RegionalDeploymentDefinition) SetFiles(v []File) {
+	o.Files = v
 }
 
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
@@ -638,8 +638,8 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	if !isNil(o.FileMounts) {
-		toSerialize["file_mounts"] = o.FileMounts
+	if !isNil(o.Files) {
+		toSerialize["files"] = o.Files
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache

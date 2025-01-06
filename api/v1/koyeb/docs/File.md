@@ -1,104 +1,104 @@
-# FileMount
+# File
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Path** | Pointer to **string** |  | [optional] 
-**Permissions** | Pointer to **string** | interpolation_enabled is a flag to enable/disable interpolation in the file content  bool interpolation_enabled &#x3D; 3; | [optional] 
+**Permissions** | Pointer to **string** |  | [optional] 
 **Content** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### NewFileMount
+### NewFile
 
-`func NewFileMount() *FileMount`
+`func NewFile() *File`
 
-NewFileMount instantiates a new FileMount object
+NewFile instantiates a new File object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewFileMountWithDefaults
+### NewFileWithDefaults
 
-`func NewFileMountWithDefaults() *FileMount`
+`func NewFileWithDefaults() *File`
 
-NewFileMountWithDefaults instantiates a new FileMount object
+NewFileWithDefaults instantiates a new File object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetPath
 
-`func (o *FileMount) GetPath() string`
+`func (o *File) GetPath() string`
 
 GetPath returns the Path field if non-nil, zero value otherwise.
 
 ### GetPathOk
 
-`func (o *FileMount) GetPathOk() (*string, bool)`
+`func (o *File) GetPathOk() (*string, bool)`
 
 GetPathOk returns a tuple with the Path field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPath
 
-`func (o *FileMount) SetPath(v string)`
+`func (o *File) SetPath(v string)`
 
 SetPath sets Path field to given value.
 
 ### HasPath
 
-`func (o *FileMount) HasPath() bool`
+`func (o *File) HasPath() bool`
 
 HasPath returns a boolean if a field has been set.
 
 ### GetPermissions
 
-`func (o *FileMount) GetPermissions() string`
+`func (o *File) GetPermissions() string`
 
 GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *FileMount) GetPermissionsOk() (*string, bool)`
+`func (o *File) GetPermissionsOk() (*string, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPermissions
 
-`func (o *FileMount) SetPermissions(v string)`
+`func (o *File) SetPermissions(v string)`
 
 SetPermissions sets Permissions field to given value.
 
 ### HasPermissions
 
-`func (o *FileMount) HasPermissions() bool`
+`func (o *File) HasPermissions() bool`
 
 HasPermissions returns a boolean if a field has been set.
 
 ### GetContent
 
-`func (o *FileMount) GetContent() string`
+`func (o *File) GetContent() string`
 
 GetContent returns the Content field if non-nil, zero value otherwise.
 
 ### GetContentOk
 
-`func (o *FileMount) GetContentOk() (*string, bool)`
+`func (o *File) GetContentOk() (*string, bool)`
 
 GetContentOk returns a tuple with the Content field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetContent
 
-`func (o *FileMount) SetContent(v string)`
+`func (o *File) SetContent(v string)`
 
 SetContent sets Content field to given value.
 
 ### HasContent
 
-`func (o *FileMount) HasContent() bool`
+`func (o *File) HasContent() bool`
 
 HasContent returns a boolean if a field has been set.
 

@@ -13706,10 +13706,10 @@
             "$ref": "#/definitions/DeploymentVolume"
           }
         },
-        "file_mounts": {
+        "files": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/FileMount"
+            "$ref": "#/definitions/File"
           }
         },
         "skip_cache": {
@@ -14280,7 +14280,7 @@
         }
       }
     },
-    "FileMount": {
+    "File": {
       "type": "object",
       "properties": {
         "path": {
@@ -14289,8 +14289,7 @@
         },
         "permissions": {
           "type": "string",
-          "description": "interpolation_enabled is a flag to enable/disable interpolation in the file content\n bool interpolation_enabled = 3;",
-          "title": "the content of the file"
+          "title": "the permissions of the file in format 0644"
         },
         "content": {
           "type": "string",
@@ -15985,10 +15984,10 @@
             "$ref": "#/definitions/RegionalDeploymentVolume"
           }
         },
-        "file_mounts": {
+        "files": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/FileMount"
+            "$ref": "#/definitions/File"
           }
         },
         "skip_cache": {

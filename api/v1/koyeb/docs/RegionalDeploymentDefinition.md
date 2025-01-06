@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **Volumes** | Pointer to [**[]RegionalDeploymentVolume**](RegionalDeploymentVolume.md) |  | [optional] 
-**FileMounts** | Pointer to [**[]FileMount**](FileMount.md) |  | [optional] 
+**Files** | Pointer to [**[]File**](File.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
@@ -341,30 +341,30 @@ SetVolumes sets Volumes field to given value.
 
 HasVolumes returns a boolean if a field has been set.
 
-### GetFileMounts
+### GetFiles
 
-`func (o *RegionalDeploymentDefinition) GetFileMounts() []FileMount`
+`func (o *RegionalDeploymentDefinition) GetFiles() []File`
 
-GetFileMounts returns the FileMounts field if non-nil, zero value otherwise.
+GetFiles returns the Files field if non-nil, zero value otherwise.
 
-### GetFileMountsOk
+### GetFilesOk
 
-`func (o *RegionalDeploymentDefinition) GetFileMountsOk() (*[]FileMount, bool)`
+`func (o *RegionalDeploymentDefinition) GetFilesOk() (*[]File, bool)`
 
-GetFileMountsOk returns a tuple with the FileMounts field if it's non-nil, zero value otherwise
+GetFilesOk returns a tuple with the Files field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFileMounts
+### SetFiles
 
-`func (o *RegionalDeploymentDefinition) SetFileMounts(v []FileMount)`
+`func (o *RegionalDeploymentDefinition) SetFiles(v []File)`
 
-SetFileMounts sets FileMounts field to given value.
+SetFiles sets Files field to given value.
 
-### HasFileMounts
+### HasFiles
 
-`func (o *RegionalDeploymentDefinition) HasFileMounts() bool`
+`func (o *RegionalDeploymentDefinition) HasFiles() bool`
 
-HasFileMounts returns a boolean if a field has been set.
+HasFiles returns a boolean if a field has been set.
 
 ### GetSkipCache
 

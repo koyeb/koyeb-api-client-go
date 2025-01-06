@@ -13913,13 +13913,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14108,6 +14101,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
       properties:
@@ -14160,13 +14160,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14355,6 +14348,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         app_id: app_id
@@ -14634,13 +14634,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14829,6 +14822,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         id: id
@@ -14992,13 +14992,6 @@ components:
           - scopes
           - scopes
         skip_cache: true
-        file_mounts:
-        - path: path
-          permissions: permissions
-          content: content
-        - path: path
-          permissions: permissions
-          content: content
         archive:
           id: id
           buildpack:
@@ -15187,6 +15180,13 @@ components:
           grace_period: 7
           timeout: 1
         name: name
+        files:
+        - path: path
+          permissions: permissions
+          content: content
+        - path: path
+          permissions: permissions
+          content: content
         strategy:
           type: null
       properties:
@@ -15228,9 +15228,9 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentVolume'
           type: array
-        file_mounts:
+        files:
           items:
-            $ref: '#/components/schemas/FileMount'
+            $ref: '#/components/schemas/File'
           type: array
         skip_cache:
           type: boolean
@@ -16044,7 +16044,7 @@ components:
           title: A flag to run the container in privileged mode
           type: boolean
       type: object
-    FileMount:
+    File:
       example:
         path: path
         permissions: permissions
@@ -16054,10 +16054,7 @@ components:
           title: the path where the file is mounted to
           type: string
         permissions:
-          description: |-
-            interpolation_enabled is a flag to enable/disable interpolation in the file content
-             bool interpolation_enabled = 3;
-          title: the content of the file
+          title: the permissions of the file in format 0644
           type: string
         content:
           title: the content of the file
@@ -16614,13 +16611,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -16809,6 +16799,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -17228,13 +17225,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -17423,6 +17413,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         skip_build: true
@@ -18708,13 +18705,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -18903,6 +18893,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         id: id
@@ -19172,13 +19169,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -19367,6 +19357,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -19629,13 +19626,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -19824,6 +19814,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -20037,13 +20034,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20232,6 +20222,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -20483,13 +20480,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20593,6 +20583,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -20698,13 +20695,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20808,6 +20798,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -20859,13 +20856,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20969,6 +20959,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -21196,13 +21193,6 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -21306,6 +21296,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
           region: region
@@ -21447,13 +21444,6 @@ components:
           replica_index: 5
           id: id
         skip_cache: true
-        file_mounts:
-        - path: path
-          permissions: permissions
-          content: content
-        - path: path
-          permissions: permissions
-          content: content
         archive:
           id: id
           buildpack:
@@ -21557,6 +21547,13 @@ components:
           grace_period: 7
           timeout: 1
         name: name
+        files:
+        - path: path
+          permissions: permissions
+          content: content
+        - path: path
+          permissions: permissions
+          content: content
         strategy:
           type: null
         region: region
@@ -21596,9 +21593,9 @@ components:
           items:
             $ref: '#/components/schemas/RegionalDeploymentVolume'
           type: array
-        file_mounts:
+        files:
           items:
-            $ref: '#/components/schemas/FileMount'
+            $ref: '#/components/schemas/File'
           type: array
         skip_cache:
           type: boolean
@@ -21689,13 +21686,6 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -21799,6 +21789,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
           region: region

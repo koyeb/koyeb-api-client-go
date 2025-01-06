@@ -336,7 +336,7 @@ Class | Method | HTTP request | Description
  - [ExecCommandRequestBody](docs/ExecCommandRequestBody.md)
  - [ExecCommandRequestIdType](docs/ExecCommandRequestIdType.md)
  - [ExecCommandRequestTerminalSize](docs/ExecCommandRequestTerminalSize.md)
- - [FileMount](docs/FileMount.md)
+ - [File](docs/File.md)
  - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GetAppReply](docs/GetAppReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
