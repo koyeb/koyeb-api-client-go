@@ -168,7 +168,7 @@ docs/ExecCommandReply.md
 docs/ExecCommandRequestBody.md
 docs/ExecCommandRequestIdType.md
 docs/ExecCommandRequestTerminalSize.md
-docs/FileMount.md
+docs/File.md
 docs/GCPContainerRegistryConfiguration.md
 docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
@@ -271,6 +271,8 @@ docs/NeonPostgresDatabaseNeonDatabase.md
 docs/NeonPostgresDatabaseNeonRole.md
 docs/NeonPostgresSummary.md
 docs/NextInvoiceReply.md
+docs/NextInvoiceReplyDiscount.md
+docs/NextInvoiceReplyDiscountType.md
 docs/NextInvoiceReplyLine.md
 docs/NextInvoiceReplyLinePeriod.md
 docs/NextInvoiceReplyLinePrice.md
@@ -519,7 +521,7 @@ model_exec_command_reply.go
 model_exec_command_request_body.go
 model_exec_command_request_id_type.go
 model_exec_command_request_terminal_size.go
-model_file_mount.go
+model_file.go
 model_gcp_container_registry_configuration.go
 model_get_app_reply.go
 model_get_catalog_instance_reply.go
@@ -617,6 +619,8 @@ model_neon_postgres_database_neon_database.go
 model_neon_postgres_database_neon_role.go
 model_neon_postgres_summary.go
 model_next_invoice_reply.go
+model_next_invoice_reply_discount.go
+model_next_invoice_reply_discount_type.go
 model_next_invoice_reply_line.go
 model_next_invoice_reply_line_period.go
 model_next_invoice_reply_line_price.go

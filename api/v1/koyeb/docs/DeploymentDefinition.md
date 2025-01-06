@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **InstanceTypes** | Pointer to [**[]DeploymentInstanceType**](DeploymentInstanceType.md) |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **Volumes** | Pointer to [**[]DeploymentVolume**](DeploymentVolume.md) |  | [optional] 
-**FileMounts** | Pointer to [**[]FileMount**](FileMount.md) |  | [optional] 
+**Files** | Pointer to [**[]File**](File.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
@@ -316,30 +316,30 @@ SetVolumes sets Volumes field to given value.
 
 HasVolumes returns a boolean if a field has been set.
 
-### GetFileMounts
+### GetFiles
 
-`func (o *DeploymentDefinition) GetFileMounts() []FileMount`
+`func (o *DeploymentDefinition) GetFiles() []File`
 
-GetFileMounts returns the FileMounts field if non-nil, zero value otherwise.
+GetFiles returns the Files field if non-nil, zero value otherwise.
 
-### GetFileMountsOk
+### GetFilesOk
 
-`func (o *DeploymentDefinition) GetFileMountsOk() (*[]FileMount, bool)`
+`func (o *DeploymentDefinition) GetFilesOk() (*[]File, bool)`
 
-GetFileMountsOk returns a tuple with the FileMounts field if it's non-nil, zero value otherwise
+GetFilesOk returns a tuple with the Files field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFileMounts
+### SetFiles
 
-`func (o *DeploymentDefinition) SetFileMounts(v []FileMount)`
+`func (o *DeploymentDefinition) SetFiles(v []File)`
 
-SetFileMounts sets FileMounts field to given value.
+SetFiles sets Files field to given value.
 
-### HasFileMounts
+### HasFiles
 
-`func (o *DeploymentDefinition) HasFileMounts() bool`
+`func (o *DeploymentDefinition) HasFiles() bool`
 
-HasFileMounts returns a boolean if a field has been set.
+HasFiles returns a boolean if a field has been set.
 
 ### GetSkipCache
 

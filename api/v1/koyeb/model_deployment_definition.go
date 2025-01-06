@@ -27,7 +27,7 @@ type DeploymentDefinition struct {
 	InstanceTypes []DeploymentInstanceType `json:"instance_types,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []DeploymentVolume `json:"volumes,omitempty"`
-	FileMounts []FileMount `json:"file_mounts,omitempty"`
+	Files []File `json:"files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -408,36 +408,36 @@ func (o *DeploymentDefinition) SetVolumes(v []DeploymentVolume) {
 	o.Volumes = v
 }
 
-// GetFileMounts returns the FileMounts field value if set, zero value otherwise.
-func (o *DeploymentDefinition) GetFileMounts() []FileMount {
-	if o == nil || isNil(o.FileMounts) {
-		var ret []FileMount
+// GetFiles returns the Files field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetFiles() []File {
+	if o == nil || isNil(o.Files) {
+		var ret []File
 		return ret
 	}
-	return o.FileMounts
+	return o.Files
 }
 
-// GetFileMountsOk returns a tuple with the FileMounts field value if set, nil otherwise
+// GetFilesOk returns a tuple with the Files field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentDefinition) GetFileMountsOk() ([]FileMount, bool) {
-	if o == nil || isNil(o.FileMounts) {
+func (o *DeploymentDefinition) GetFilesOk() ([]File, bool) {
+	if o == nil || isNil(o.Files) {
     return nil, false
 	}
-	return o.FileMounts, true
+	return o.Files, true
 }
 
-// HasFileMounts returns a boolean if a field has been set.
-func (o *DeploymentDefinition) HasFileMounts() bool {
-	if o != nil && !isNil(o.FileMounts) {
+// HasFiles returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasFiles() bool {
+	if o != nil && !isNil(o.Files) {
 		return true
 	}
 
 	return false
 }
 
-// SetFileMounts gets a reference to the given []FileMount and assigns it to the FileMounts field.
-func (o *DeploymentDefinition) SetFileMounts(v []FileMount) {
-	o.FileMounts = v
+// SetFiles gets a reference to the given []File and assigns it to the Files field.
+func (o *DeploymentDefinition) SetFiles(v []File) {
+	o.Files = v
 }
 
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
@@ -635,8 +635,8 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	if !isNil(o.FileMounts) {
-		toSerialize["file_mounts"] = o.FileMounts
+	if !isNil(o.Files) {
+		toSerialize["files"] = o.Files
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache

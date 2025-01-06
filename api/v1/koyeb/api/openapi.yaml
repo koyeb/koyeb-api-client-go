@@ -11064,6 +11064,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11075,12 +11076,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11103,6 +11106,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11114,12 +11118,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11169,6 +11175,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11180,12 +11187,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11275,6 +11284,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11286,12 +11296,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11482,6 +11494,13 @@ components:
       type: object
     NextInvoiceReply:
       example:
+        discounts:
+        - amount: amount
+          name: name
+          type: null
+        - amount: amount
+          name: name
+          type: null
         stripe_invoice: "{}"
         lines:
         - period:
@@ -11508,7 +11527,31 @@ components:
           items:
             $ref: '#/components/schemas/NextInvoiceReply.Line'
           type: array
+        discounts:
+          items:
+            $ref: '#/components/schemas/NextInvoiceReply.Discount'
+          type: array
       type: object
+    NextInvoiceReply.Discount:
+      example:
+        amount: amount
+        name: name
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/NextInvoiceReply.Discount.Type'
+        name:
+          type: string
+        amount:
+          format: int64
+          type: string
+      type: object
+    NextInvoiceReply.Discount.Type:
+      default: PERCENT_OFF
+      enum:
+      - PERCENT_OFF
+      - AMOUNT_OFF
+      type: string
     NextInvoiceReply.Line:
       example:
         period:
@@ -11613,6 +11656,7 @@ components:
         vat_number: vat_number
         plan_updated_at: 2000-01-23T04:56:07.000+00:00
         has_payment_method: true
+        trialing: true
         subscription_id: subscription_id
         signup_qualification: "{}"
         reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11624,12 +11668,14 @@ components:
         current_subscription_id: current_subscription_id
         qualifies_for_hobby23: true
         address2: address2
+        trial_starts_at: 2000-01-23T04:56:07.000+00:00
         address1: address1
         verified: true
         billing_name: billing_name
         deactivation_reason: null
         name: name
         latest_subscription_id: latest_subscription_id
+        trial_ends_at: 2000-01-23T04:56:07.000+00:00
         postal_code: postal_code
         status: null
       properties:
@@ -11686,6 +11732,14 @@ components:
         reprocess_after:
           format: date-time
           type: string
+        trialing:
+          type: boolean
+        trial_starts_at:
+          format: date-time
+          type: string
+        trial_ends_at:
+          format: date-time
+          type: string
       title: Represent an Organization
       type: object
     Organization.DeactivationReason:
@@ -11720,6 +11774,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11731,12 +11786,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11784,6 +11841,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11795,12 +11853,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11816,6 +11876,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11827,12 +11888,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -11873,6 +11936,7 @@ components:
           vat_number: vat_number
           plan_updated_at: 2000-01-23T04:56:07.000+00:00
           has_payment_method: true
+          trialing: true
           subscription_id: subscription_id
           signup_qualification: "{}"
           reprocess_after: 2000-01-23T04:56:07.000+00:00
@@ -11884,12 +11948,14 @@ components:
           current_subscription_id: current_subscription_id
           qualifies_for_hobby23: true
           address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
           address1: address1
           verified: true
           billing_name: billing_name
           deactivation_reason: null
           name: name
           latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
           postal_code: postal_code
           status: null
       properties:
@@ -13847,13 +13913,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14042,6 +14101,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
       properties:
@@ -14094,13 +14160,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14289,6 +14348,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         app_id: app_id
@@ -14568,13 +14634,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -14763,6 +14822,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         id: id
@@ -14926,13 +14992,6 @@ components:
           - scopes
           - scopes
         skip_cache: true
-        file_mounts:
-        - path: path
-          permissions: permissions
-          content: content
-        - path: path
-          permissions: permissions
-          content: content
         archive:
           id: id
           buildpack:
@@ -15121,6 +15180,13 @@ components:
           grace_period: 7
           timeout: 1
         name: name
+        files:
+        - path: path
+          permissions: permissions
+          content: content
+        - path: path
+          permissions: permissions
+          content: content
         strategy:
           type: null
       properties:
@@ -15162,9 +15228,9 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentVolume'
           type: array
-        file_mounts:
+        files:
           items:
-            $ref: '#/components/schemas/FileMount'
+            $ref: '#/components/schemas/File'
           type: array
         skip_cache:
           type: boolean
@@ -15978,7 +16044,7 @@ components:
           title: A flag to run the container in privileged mode
           type: boolean
       type: object
-    FileMount:
+    File:
       example:
         path: path
         permissions: permissions
@@ -15988,10 +16054,7 @@ components:
           title: the path where the file is mounted to
           type: string
         permissions:
-          description: |-
-            interpolation_enabled is a flag to enable/disable interpolation in the file content
-             bool interpolation_enabled = 3;
-          title: the content of the file
+          title: the permissions of the file in format 0644
           type: string
         content:
           title: the content of the file
@@ -16548,13 +16611,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -16743,6 +16799,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -17162,13 +17225,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -17357,6 +17413,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         skip_build: true
@@ -18642,13 +18705,6 @@ components:
             - scopes
             - scopes
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -18837,6 +18893,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
         id: id
@@ -19106,13 +19169,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -19301,6 +19357,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -19563,13 +19626,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -19758,6 +19814,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -19971,13 +20034,6 @@ components:
               - scopes
               - scopes
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20166,6 +20222,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
           id: id
@@ -20417,13 +20480,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20527,6 +20583,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -20632,13 +20695,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20742,6 +20798,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -20793,13 +20856,6 @@ components:
               replica_index: 5
               id: id
             skip_cache: true
-            file_mounts:
-            - path: path
-              permissions: permissions
-              content: content
-            - path: path
-              permissions: permissions
-              content: content
             archive:
               id: id
               buildpack:
@@ -20903,6 +20959,13 @@ components:
               grace_period: 7
               timeout: 1
             name: name
+            files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
             strategy:
               type: null
             region: region
@@ -21130,13 +21193,6 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -21240,6 +21296,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
           region: region
@@ -21381,13 +21444,6 @@ components:
           replica_index: 5
           id: id
         skip_cache: true
-        file_mounts:
-        - path: path
-          permissions: permissions
-          content: content
-        - path: path
-          permissions: permissions
-          content: content
         archive:
           id: id
           buildpack:
@@ -21491,6 +21547,13 @@ components:
           grace_period: 7
           timeout: 1
         name: name
+        files:
+        - path: path
+          permissions: permissions
+          content: content
+        - path: path
+          permissions: permissions
+          content: content
         strategy:
           type: null
         region: region
@@ -21530,9 +21593,9 @@ components:
           items:
             $ref: '#/components/schemas/RegionalDeploymentVolume'
           type: array
-        file_mounts:
+        files:
           items:
-            $ref: '#/components/schemas/FileMount'
+            $ref: '#/components/schemas/File'
           type: array
         skip_cache:
           type: boolean
@@ -21623,13 +21686,6 @@ components:
             replica_index: 5
             id: id
           skip_cache: true
-          file_mounts:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
           archive:
             id: id
             buildpack:
@@ -21733,6 +21789,13 @@ components:
             grace_period: 7
             timeout: 1
           name: name
+          files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
           strategy:
             type: null
           region: region
