@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **HealthChecks** | Pointer to [**[]DeploymentHealthCheck**](DeploymentHealthCheck.md) |  | [optional] 
 **Volumes** | Pointer to [**[]RegionalDeploymentVolume**](RegionalDeploymentVolume.md) |  | [optional] 
-**Files** | Pointer to [**[]File**](File.md) |  | [optional] 
+**ConfigFiles** | Pointer to [**[]ConfigFile**](ConfigFile.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
@@ -341,30 +341,30 @@ SetVolumes sets Volumes field to given value.
 
 HasVolumes returns a boolean if a field has been set.
 
-### GetFiles
+### GetConfigFiles
 
-`func (o *RegionalDeploymentDefinition) GetFiles() []File`
+`func (o *RegionalDeploymentDefinition) GetConfigFiles() []ConfigFile`
 
-GetFiles returns the Files field if non-nil, zero value otherwise.
+GetConfigFiles returns the ConfigFiles field if non-nil, zero value otherwise.
 
-### GetFilesOk
+### GetConfigFilesOk
 
-`func (o *RegionalDeploymentDefinition) GetFilesOk() (*[]File, bool)`
+`func (o *RegionalDeploymentDefinition) GetConfigFilesOk() (*[]ConfigFile, bool)`
 
-GetFilesOk returns a tuple with the Files field if it's non-nil, zero value otherwise
+GetConfigFilesOk returns a tuple with the ConfigFiles field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetFiles
+### SetConfigFiles
 
-`func (o *RegionalDeploymentDefinition) SetFiles(v []File)`
+`func (o *RegionalDeploymentDefinition) SetConfigFiles(v []ConfigFile)`
 
-SetFiles sets Files field to given value.
+SetConfigFiles sets ConfigFiles field to given value.
 
-### HasFiles
+### HasConfigFiles
 
-`func (o *RegionalDeploymentDefinition) HasFiles() bool`
+`func (o *RegionalDeploymentDefinition) HasConfigFiles() bool`
 
-HasFiles returns a boolean if a field has been set.
+HasConfigFiles returns a boolean if a field has been set.
 
 ### GetSkipCache
 

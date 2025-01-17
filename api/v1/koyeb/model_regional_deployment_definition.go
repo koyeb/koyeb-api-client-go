@@ -28,7 +28,7 @@ type RegionalDeploymentDefinition struct {
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 	HealthChecks []DeploymentHealthCheck `json:"health_checks,omitempty"`
 	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
-	Files []File `json:"files,omitempty"`
+	ConfigFiles []ConfigFile `json:"config_files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
@@ -440,36 +440,36 @@ func (o *RegionalDeploymentDefinition) SetVolumes(v []RegionalDeploymentVolume) 
 	o.Volumes = v
 }
 
-// GetFiles returns the Files field value if set, zero value otherwise.
-func (o *RegionalDeploymentDefinition) GetFiles() []File {
-	if o == nil || isNil(o.Files) {
-		var ret []File
+// GetConfigFiles returns the ConfigFiles field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetConfigFiles() []ConfigFile {
+	if o == nil || isNil(o.ConfigFiles) {
+		var ret []ConfigFile
 		return ret
 	}
-	return o.Files
+	return o.ConfigFiles
 }
 
-// GetFilesOk returns a tuple with the Files field value if set, nil otherwise
+// GetConfigFilesOk returns a tuple with the ConfigFiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RegionalDeploymentDefinition) GetFilesOk() ([]File, bool) {
-	if o == nil || isNil(o.Files) {
+func (o *RegionalDeploymentDefinition) GetConfigFilesOk() ([]ConfigFile, bool) {
+	if o == nil || isNil(o.ConfigFiles) {
     return nil, false
 	}
-	return o.Files, true
+	return o.ConfigFiles, true
 }
 
-// HasFiles returns a boolean if a field has been set.
-func (o *RegionalDeploymentDefinition) HasFiles() bool {
-	if o != nil && !isNil(o.Files) {
+// HasConfigFiles returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasConfigFiles() bool {
+	if o != nil && !isNil(o.ConfigFiles) {
 		return true
 	}
 
 	return false
 }
 
-// SetFiles gets a reference to the given []File and assigns it to the Files field.
-func (o *RegionalDeploymentDefinition) SetFiles(v []File) {
-	o.Files = v
+// SetConfigFiles gets a reference to the given []ConfigFile and assigns it to the ConfigFiles field.
+func (o *RegionalDeploymentDefinition) SetConfigFiles(v []ConfigFile) {
+	o.ConfigFiles = v
 }
 
 // GetSkipCache returns the SkipCache field value if set, zero value otherwise.
@@ -638,8 +638,8 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	if !isNil(o.Volumes) {
 		toSerialize["volumes"] = o.Volumes
 	}
-	if !isNil(o.Files) {
-		toSerialize["files"] = o.Files
+	if !isNil(o.ConfigFiles) {
+		toSerialize["config_files"] = o.ConfigFiles
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache

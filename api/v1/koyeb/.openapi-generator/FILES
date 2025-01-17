@@ -73,6 +73,7 @@ docs/CatalogInstance.md
 docs/CatalogInstanceListItem.md
 docs/CatalogInstancesApi.md
 docs/CatalogRegionsApi.md
+docs/ConfigFile.md
 docs/ConfirmPaymentAuthorizationReply.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
@@ -168,7 +169,6 @@ docs/ExecCommandReply.md
 docs/ExecCommandRequestBody.md
 docs/ExecCommandRequestIdType.md
 docs/ExecCommandRequestTerminalSize.md
-docs/File.md
 docs/GCPContainerRegistryConfiguration.md
 docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
@@ -430,6 +430,7 @@ model_canny_auth_reply.go
 model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
+model_config_file.go
 model_confirm_payment_authorization_reply.go
 model_create_account_request.go
 model_create_app.go
@@ -521,7 +522,6 @@ model_exec_command_reply.go
 model_exec_command_request_body.go
 model_exec_command_request_id_type.go
 model_exec_command_request_terminal_size.go
-model_file.go
 model_gcp_container_registry_configuration.go
 model_get_app_reply.go
 model_get_catalog_instance_reply.go
