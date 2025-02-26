@@ -13,6 +13,8 @@
 
 * `VERIFICATION_FAILED` (value: `"VERIFICATION_FAILED"`)
 
+* `TRIAL_DID_NOT_CONVERT` (value: `"TRIAL_DID_NOT_CONVERT"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

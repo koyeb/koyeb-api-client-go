@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**DomainType**](DomainType.md) |  | [optional] [default to DOMAINTYPE_AUTOASSIGNED]
 **AppId** | Pointer to **string** |  | [optional] 
+**Cloudflare** | Pointer to **map[string]interface{}** |  | [optional] 
+**Koyeb** | Pointer to [**DomainLoadBalancerKoyeb**](DomainLoadBalancerKoyeb.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +103,56 @@ SetAppId sets AppId field to given value.
 `func (o *CreateDomain) HasAppId() bool`
 
 HasAppId returns a boolean if a field has been set.
+
+### GetCloudflare
+
+`func (o *CreateDomain) GetCloudflare() map[string]interface{}`
+
+GetCloudflare returns the Cloudflare field if non-nil, zero value otherwise.
+
+### GetCloudflareOk
+
+`func (o *CreateDomain) GetCloudflareOk() (*map[string]interface{}, bool)`
+
+GetCloudflareOk returns a tuple with the Cloudflare field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCloudflare
+
+`func (o *CreateDomain) SetCloudflare(v map[string]interface{})`
+
+SetCloudflare sets Cloudflare field to given value.
+
+### HasCloudflare
+
+`func (o *CreateDomain) HasCloudflare() bool`
+
+HasCloudflare returns a boolean if a field has been set.
+
+### GetKoyeb
+
+`func (o *CreateDomain) GetKoyeb() DomainLoadBalancerKoyeb`
+
+GetKoyeb returns the Koyeb field if non-nil, zero value otherwise.
+
+### GetKoyebOk
+
+`func (o *CreateDomain) GetKoyebOk() (*DomainLoadBalancerKoyeb, bool)`
+
+GetKoyebOk returns a tuple with the Koyeb field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKoyeb
+
+`func (o *CreateDomain) SetKoyeb(v DomainLoadBalancerKoyeb)`
+
+SetKoyeb sets Koyeb field to given value.
+
+### HasKoyeb
+
+`func (o *CreateDomain) HasKoyeb() bool`
+
+HasKoyeb returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -23,6 +23,8 @@ type Region struct {
 	Instances []string `json:"instances,omitempty"`
 	Datacenters []string `json:"datacenters,omitempty"`
 	VolumesEnabled *bool `json:"volumes_enabled,omitempty"`
+	// The scope of the region, continent, metropolitan area, etc.
+	Scope *string `json:"scope,omitempty"`
 }
 
 // NewRegion instantiates a new Region object
@@ -266,6 +268,38 @@ func (o *Region) SetVolumesEnabled(v bool) {
 	o.VolumesEnabled = &v
 }
 
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *Region) GetScope() string {
+	if o == nil || isNil(o.Scope) {
+		var ret string
+		return ret
+	}
+	return *o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Region) GetScopeOk() (*string, bool) {
+	if o == nil || isNil(o.Scope) {
+    return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *Region) HasScope() bool {
+	if o != nil && !isNil(o.Scope) {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *Region) SetScope(v string) {
+	o.Scope = &v
+}
+
 func (o Region) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -288,6 +322,9 @@ func (o Region) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.VolumesEnabled) {
 		toSerialize["volumes_enabled"] = o.VolumesEnabled
+	}
+	if !isNil(o.Scope) {
+		toSerialize["scope"] = o.Scope
 	}
 	return json.Marshal(toSerialize)
 }

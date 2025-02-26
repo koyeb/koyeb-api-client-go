@@ -325,6 +325,7 @@ Class | Method | HTTP request | Description
  - [DockerHubRegistryConfiguration](docs/DockerHubRegistryConfiguration.md)
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
+ - [DomainLoadBalancerKoyeb](docs/DomainLoadBalancerKoyeb.md)
  - [DomainStatus](docs/DomainStatus.md)
  - [DomainType](docs/DomainType.md)
  - [DomainsSummary](docs/DomainsSummary.md)

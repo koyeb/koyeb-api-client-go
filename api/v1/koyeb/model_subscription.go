@@ -37,6 +37,10 @@ type Subscription struct {
 	AmountPaid *string `json:"amount_paid,omitempty"`
 	AmountRemaining *string `json:"amount_remaining,omitempty"`
 	PaymentFailure *SubscriptionPaymentFailure `json:"payment_failure,omitempty"`
+	Trialing *bool `json:"trialing,omitempty"`
+	TrialEndsAt *time.Time `json:"trial_ends_at,omitempty"`
+	TrialMaxSpend *string `json:"trial_max_spend,omitempty"`
+	CurrentSpend *string `json:"current_spend,omitempty"`
 }
 
 // NewSubscription instantiates a new Subscription object
@@ -700,6 +704,134 @@ func (o *Subscription) SetPaymentFailure(v SubscriptionPaymentFailure) {
 	o.PaymentFailure = &v
 }
 
+// GetTrialing returns the Trialing field value if set, zero value otherwise.
+func (o *Subscription) GetTrialing() bool {
+	if o == nil || isNil(o.Trialing) {
+		var ret bool
+		return ret
+	}
+	return *o.Trialing
+}
+
+// GetTrialingOk returns a tuple with the Trialing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetTrialingOk() (*bool, bool) {
+	if o == nil || isNil(o.Trialing) {
+    return nil, false
+	}
+	return o.Trialing, true
+}
+
+// HasTrialing returns a boolean if a field has been set.
+func (o *Subscription) HasTrialing() bool {
+	if o != nil && !isNil(o.Trialing) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialing gets a reference to the given bool and assigns it to the Trialing field.
+func (o *Subscription) SetTrialing(v bool) {
+	o.Trialing = &v
+}
+
+// GetTrialEndsAt returns the TrialEndsAt field value if set, zero value otherwise.
+func (o *Subscription) GetTrialEndsAt() time.Time {
+	if o == nil || isNil(o.TrialEndsAt) {
+		var ret time.Time
+		return ret
+	}
+	return *o.TrialEndsAt
+}
+
+// GetTrialEndsAtOk returns a tuple with the TrialEndsAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetTrialEndsAtOk() (*time.Time, bool) {
+	if o == nil || isNil(o.TrialEndsAt) {
+    return nil, false
+	}
+	return o.TrialEndsAt, true
+}
+
+// HasTrialEndsAt returns a boolean if a field has been set.
+func (o *Subscription) HasTrialEndsAt() bool {
+	if o != nil && !isNil(o.TrialEndsAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialEndsAt gets a reference to the given time.Time and assigns it to the TrialEndsAt field.
+func (o *Subscription) SetTrialEndsAt(v time.Time) {
+	o.TrialEndsAt = &v
+}
+
+// GetTrialMaxSpend returns the TrialMaxSpend field value if set, zero value otherwise.
+func (o *Subscription) GetTrialMaxSpend() string {
+	if o == nil || isNil(o.TrialMaxSpend) {
+		var ret string
+		return ret
+	}
+	return *o.TrialMaxSpend
+}
+
+// GetTrialMaxSpendOk returns a tuple with the TrialMaxSpend field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetTrialMaxSpendOk() (*string, bool) {
+	if o == nil || isNil(o.TrialMaxSpend) {
+    return nil, false
+	}
+	return o.TrialMaxSpend, true
+}
+
+// HasTrialMaxSpend returns a boolean if a field has been set.
+func (o *Subscription) HasTrialMaxSpend() bool {
+	if o != nil && !isNil(o.TrialMaxSpend) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialMaxSpend gets a reference to the given string and assigns it to the TrialMaxSpend field.
+func (o *Subscription) SetTrialMaxSpend(v string) {
+	o.TrialMaxSpend = &v
+}
+
+// GetCurrentSpend returns the CurrentSpend field value if set, zero value otherwise.
+func (o *Subscription) GetCurrentSpend() string {
+	if o == nil || isNil(o.CurrentSpend) {
+		var ret string
+		return ret
+	}
+	return *o.CurrentSpend
+}
+
+// GetCurrentSpendOk returns a tuple with the CurrentSpend field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Subscription) GetCurrentSpendOk() (*string, bool) {
+	if o == nil || isNil(o.CurrentSpend) {
+    return nil, false
+	}
+	return o.CurrentSpend, true
+}
+
+// HasCurrentSpend returns a boolean if a field has been set.
+func (o *Subscription) HasCurrentSpend() bool {
+	if o != nil && !isNil(o.CurrentSpend) {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentSpend gets a reference to the given string and assigns it to the CurrentSpend field.
+func (o *Subscription) SetCurrentSpend(v string) {
+	o.CurrentSpend = &v
+}
+
 func (o Subscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -761,6 +893,18 @@ func (o Subscription) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.PaymentFailure) {
 		toSerialize["payment_failure"] = o.PaymentFailure
+	}
+	if !isNil(o.Trialing) {
+		toSerialize["trialing"] = o.Trialing
+	}
+	if !isNil(o.TrialEndsAt) {
+		toSerialize["trial_ends_at"] = o.TrialEndsAt
+	}
+	if !isNil(o.TrialMaxSpend) {
+		toSerialize["trial_max_spend"] = o.TrialMaxSpend
+	}
+	if !isNil(o.CurrentSpend) {
+		toSerialize["current_spend"] = o.CurrentSpend
 	}
 	return json.Marshal(toSerialize)
 }

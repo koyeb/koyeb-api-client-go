@@ -156,6 +156,7 @@ docs/DockerHelperApi.md
 docs/DockerHubRegistryConfiguration.md
 docs/DockerSource.md
 docs/Domain.md
+docs/DomainLoadBalancerKoyeb.md
 docs/DomainStatus.md
 docs/DomainType.md
 docs/DomainsApi.md
@@ -510,6 +511,7 @@ model_docker_builder.go
 model_docker_hub_registry_configuration.go
 model_docker_source.go
 model_domain.go
+model_domain_load_balancer_koyeb.go
 model_domain_status.go
 model_domain_type.go
 model_domains_summary.go
