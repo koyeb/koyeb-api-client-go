@@ -21,6 +21,7 @@ type DatacenterListItem struct {
 	Domain *string `json:"domain,omitempty"`
 	Coordinates []string `json:"coordinates,omitempty"`
 	UseGpu *bool `json:"use_gpu,omitempty"`
+	Regions []string `json:"regions,omitempty"`
 }
 
 // NewDatacenterListItem instantiates a new DatacenterListItem object
@@ -200,6 +201,38 @@ func (o *DatacenterListItem) SetUseGpu(v bool) {
 	o.UseGpu = &v
 }
 
+// GetRegions returns the Regions field value if set, zero value otherwise.
+func (o *DatacenterListItem) GetRegions() []string {
+	if o == nil || isNil(o.Regions) {
+		var ret []string
+		return ret
+	}
+	return o.Regions
+}
+
+// GetRegionsOk returns a tuple with the Regions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DatacenterListItem) GetRegionsOk() ([]string, bool) {
+	if o == nil || isNil(o.Regions) {
+    return nil, false
+	}
+	return o.Regions, true
+}
+
+// HasRegions returns a boolean if a field has been set.
+func (o *DatacenterListItem) HasRegions() bool {
+	if o != nil && !isNil(o.Regions) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegions gets a reference to the given []string and assigns it to the Regions field.
+func (o *DatacenterListItem) SetRegions(v []string) {
+	o.Regions = v
+}
+
 func (o DatacenterListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -216,6 +249,9 @@ func (o DatacenterListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.UseGpu) {
 		toSerialize["use_gpu"] = o.UseGpu
+	}
+	if !isNil(o.Regions) {
+		toSerialize["regions"] = o.Regions
 	}
 	return json.Marshal(toSerialize)
 }

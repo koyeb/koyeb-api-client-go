@@ -24,6 +24,10 @@ Name | Type | Description | Notes
 **AmountPaid** | Pointer to **string** |  | [optional] 
 **AmountRemaining** | Pointer to **string** |  | [optional] 
 **PaymentFailure** | Pointer to [**SubscriptionPaymentFailure**](SubscriptionPaymentFailure.md) |  | [optional] 
+**Trialing** | Pointer to **bool** |  | [optional] 
+**TrialEndsAt** | Pointer to **time.Time** |  | [optional] 
+**TrialMaxSpend** | Pointer to **string** |  | [optional] 
+**CurrentSpend** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -543,6 +547,106 @@ SetPaymentFailure sets PaymentFailure field to given value.
 `func (o *Subscription) HasPaymentFailure() bool`
 
 HasPaymentFailure returns a boolean if a field has been set.
+
+### GetTrialing
+
+`func (o *Subscription) GetTrialing() bool`
+
+GetTrialing returns the Trialing field if non-nil, zero value otherwise.
+
+### GetTrialingOk
+
+`func (o *Subscription) GetTrialingOk() (*bool, bool)`
+
+GetTrialingOk returns a tuple with the Trialing field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialing
+
+`func (o *Subscription) SetTrialing(v bool)`
+
+SetTrialing sets Trialing field to given value.
+
+### HasTrialing
+
+`func (o *Subscription) HasTrialing() bool`
+
+HasTrialing returns a boolean if a field has been set.
+
+### GetTrialEndsAt
+
+`func (o *Subscription) GetTrialEndsAt() time.Time`
+
+GetTrialEndsAt returns the TrialEndsAt field if non-nil, zero value otherwise.
+
+### GetTrialEndsAtOk
+
+`func (o *Subscription) GetTrialEndsAtOk() (*time.Time, bool)`
+
+GetTrialEndsAtOk returns a tuple with the TrialEndsAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialEndsAt
+
+`func (o *Subscription) SetTrialEndsAt(v time.Time)`
+
+SetTrialEndsAt sets TrialEndsAt field to given value.
+
+### HasTrialEndsAt
+
+`func (o *Subscription) HasTrialEndsAt() bool`
+
+HasTrialEndsAt returns a boolean if a field has been set.
+
+### GetTrialMaxSpend
+
+`func (o *Subscription) GetTrialMaxSpend() string`
+
+GetTrialMaxSpend returns the TrialMaxSpend field if non-nil, zero value otherwise.
+
+### GetTrialMaxSpendOk
+
+`func (o *Subscription) GetTrialMaxSpendOk() (*string, bool)`
+
+GetTrialMaxSpendOk returns a tuple with the TrialMaxSpend field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTrialMaxSpend
+
+`func (o *Subscription) SetTrialMaxSpend(v string)`
+
+SetTrialMaxSpend sets TrialMaxSpend field to given value.
+
+### HasTrialMaxSpend
+
+`func (o *Subscription) HasTrialMaxSpend() bool`
+
+HasTrialMaxSpend returns a boolean if a field has been set.
+
+### GetCurrentSpend
+
+`func (o *Subscription) GetCurrentSpend() string`
+
+GetCurrentSpend returns the CurrentSpend field if non-nil, zero value otherwise.
+
+### GetCurrentSpendOk
+
+`func (o *Subscription) GetCurrentSpendOk() (*string, bool)`
+
+GetCurrentSpendOk returns a tuple with the CurrentSpend field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrentSpend
+
+`func (o *Subscription) SetCurrentSpend(v string)`
+
+SetCurrentSpend sets CurrentSpend field to given value.
+
+### HasCurrentSpend
+
+`func (o *Subscription) HasCurrentSpend() bool`
+
+HasCurrentSpend returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

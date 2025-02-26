@@ -25,6 +25,7 @@ const (
 	ORGANIZATIONDEACTIVATIONREASON_SUBSCRIPTION_TERMINATION OrganizationDeactivationReason = "SUBSCRIPTION_TERMINATION"
 	ORGANIZATIONDEACTIVATIONREASON_LOCKED_BY_ADMIN OrganizationDeactivationReason = "LOCKED_BY_ADMIN"
 	ORGANIZATIONDEACTIVATIONREASON_VERIFICATION_FAILED OrganizationDeactivationReason = "VERIFICATION_FAILED"
+	ORGANIZATIONDEACTIVATIONREASON_TRIAL_DID_NOT_CONVERT OrganizationDeactivationReason = "TRIAL_DID_NOT_CONVERT"
 )
 
 // All allowed values of OrganizationDeactivationReason enum
@@ -34,6 +35,7 @@ var AllowedOrganizationDeactivationReasonEnumValues = []OrganizationDeactivation
 	"SUBSCRIPTION_TERMINATION",
 	"LOCKED_BY_ADMIN",
 	"VERIFICATION_FAILED",
+	"TRIAL_DID_NOT_CONVERT",
 }
 
 func (v *OrganizationDeactivationReason) UnmarshalJSON(src []byte) error {

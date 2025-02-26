@@ -19,6 +19,8 @@ type CreateDomain struct {
 	Name *string `json:"name,omitempty"`
 	Type *DomainType `json:"type,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
+	Cloudflare map[string]interface{} `json:"cloudflare,omitempty"`
+	Koyeb *DomainLoadBalancerKoyeb `json:"koyeb,omitempty"`
 }
 
 // NewCreateDomain instantiates a new CreateDomain object
@@ -138,6 +140,70 @@ func (o *CreateDomain) SetAppId(v string) {
 	o.AppId = &v
 }
 
+// GetCloudflare returns the Cloudflare field value if set, zero value otherwise.
+func (o *CreateDomain) GetCloudflare() map[string]interface{} {
+	if o == nil || isNil(o.Cloudflare) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Cloudflare
+}
+
+// GetCloudflareOk returns a tuple with the Cloudflare field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDomain) GetCloudflareOk() (map[string]interface{}, bool) {
+	if o == nil || isNil(o.Cloudflare) {
+    return map[string]interface{}{}, false
+	}
+	return o.Cloudflare, true
+}
+
+// HasCloudflare returns a boolean if a field has been set.
+func (o *CreateDomain) HasCloudflare() bool {
+	if o != nil && !isNil(o.Cloudflare) {
+		return true
+	}
+
+	return false
+}
+
+// SetCloudflare gets a reference to the given map[string]interface{} and assigns it to the Cloudflare field.
+func (o *CreateDomain) SetCloudflare(v map[string]interface{}) {
+	o.Cloudflare = v
+}
+
+// GetKoyeb returns the Koyeb field value if set, zero value otherwise.
+func (o *CreateDomain) GetKoyeb() DomainLoadBalancerKoyeb {
+	if o == nil || isNil(o.Koyeb) {
+		var ret DomainLoadBalancerKoyeb
+		return ret
+	}
+	return *o.Koyeb
+}
+
+// GetKoyebOk returns a tuple with the Koyeb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDomain) GetKoyebOk() (*DomainLoadBalancerKoyeb, bool) {
+	if o == nil || isNil(o.Koyeb) {
+    return nil, false
+	}
+	return o.Koyeb, true
+}
+
+// HasKoyeb returns a boolean if a field has been set.
+func (o *CreateDomain) HasKoyeb() bool {
+	if o != nil && !isNil(o.Koyeb) {
+		return true
+	}
+
+	return false
+}
+
+// SetKoyeb gets a reference to the given DomainLoadBalancerKoyeb and assigns it to the Koyeb field.
+func (o *CreateDomain) SetKoyeb(v DomainLoadBalancerKoyeb) {
+	o.Koyeb = &v
+}
+
 func (o CreateDomain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -148,6 +214,12 @@ func (o CreateDomain) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId
+	}
+	if !isNil(o.Cloudflare) {
+		toSerialize["cloudflare"] = o.Cloudflare
+	}
+	if !isNil(o.Koyeb) {
+		toSerialize["koyeb"] = o.Koyeb
 	}
 	return json.Marshal(toSerialize)
 }

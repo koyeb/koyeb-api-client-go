@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Domain** | Pointer to **string** |  | [optional] 
 **Coordinates** | Pointer to **[]string** |  | [optional] 
 **UseGpu** | Pointer to **bool** |  | [optional] 
+**Regions** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetUseGpu sets UseGpu field to given value.
 `func (o *DatacenterListItem) HasUseGpu() bool`
 
 HasUseGpu returns a boolean if a field has been set.
+
+### GetRegions
+
+`func (o *DatacenterListItem) GetRegions() []string`
+
+GetRegions returns the Regions field if non-nil, zero value otherwise.
+
+### GetRegionsOk
+
+`func (o *DatacenterListItem) GetRegionsOk() (*[]string, bool)`
+
+GetRegionsOk returns a tuple with the Regions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRegions
+
+`func (o *DatacenterListItem) SetRegions(v []string)`
+
+SetRegions sets Regions field to given value.
+
+### HasRegions
+
+`func (o *DatacenterListItem) HasRegions() bool`
+
+HasRegions returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
