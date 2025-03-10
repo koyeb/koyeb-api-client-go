@@ -123,6 +123,7 @@ Class | Method | HTTP request | Description
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *IntercomApi* | [**GetIntercomProfile**](docs/IntercomApi.md#getintercomprofile) | **Get** /v1/intercom/profile | Get intercom profile
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
+*LogsApi* | [**QueryLogs**](docs/LogsApi.md#querylogs) | **Get** /v1/streams/logs/query | Query logs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
 *OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
@@ -326,6 +327,7 @@ Class | Method | HTTP request | Description
  - [DockerSource](docs/DockerSource.md)
  - [Domain](docs/Domain.md)
  - [DomainLoadBalancerKoyeb](docs/DomainLoadBalancerKoyeb.md)
+ - [DomainLoadBalancerQuotas](docs/DomainLoadBalancerQuotas.md)
  - [DomainStatus](docs/DomainStatus.md)
  - [DomainType](docs/DomainType.md)
  - [DomainsSummary](docs/DomainsSummary.md)
@@ -468,6 +470,8 @@ Class | Method | HTTP request | Description
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
+ - [QueryLogsReply](docs/QueryLogsReply.md)
+ - [QueryLogsReplyPagination](docs/QueryLogsReplyPagination.md)
  - [Quotas](docs/Quotas.md)
  - [ReactivateOrganizationReply](docs/ReactivateOrganizationReply.md)
  - [RedeployReply](docs/RedeployReply.md)

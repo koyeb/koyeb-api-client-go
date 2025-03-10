@@ -27,6 +27,8 @@ type Quotas struct {
 	MaxOrganizationMembers *string `json:"max_organization_members,omitempty"`
 	MaxInstancesByType *map[string]string `json:"max_instances_by_type,omitempty"`
 	PersistentVolumesByRegion *map[string]PersistentVolumeQuotas `json:"persistent_volumes_by_region,omitempty"`
+	CustomDomains *string `json:"custom_domains,omitempty"`
+	DomainsLoadBalancer *DomainLoadBalancerQuotas `json:"domains_load_balancer,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -398,6 +400,70 @@ func (o *Quotas) SetPersistentVolumesByRegion(v map[string]PersistentVolumeQuota
 	o.PersistentVolumesByRegion = &v
 }
 
+// GetCustomDomains returns the CustomDomains field value if set, zero value otherwise.
+func (o *Quotas) GetCustomDomains() string {
+	if o == nil || isNil(o.CustomDomains) {
+		var ret string
+		return ret
+	}
+	return *o.CustomDomains
+}
+
+// GetCustomDomainsOk returns a tuple with the CustomDomains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetCustomDomainsOk() (*string, bool) {
+	if o == nil || isNil(o.CustomDomains) {
+    return nil, false
+	}
+	return o.CustomDomains, true
+}
+
+// HasCustomDomains returns a boolean if a field has been set.
+func (o *Quotas) HasCustomDomains() bool {
+	if o != nil && !isNil(o.CustomDomains) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomDomains gets a reference to the given string and assigns it to the CustomDomains field.
+func (o *Quotas) SetCustomDomains(v string) {
+	o.CustomDomains = &v
+}
+
+// GetDomainsLoadBalancer returns the DomainsLoadBalancer field value if set, zero value otherwise.
+func (o *Quotas) GetDomainsLoadBalancer() DomainLoadBalancerQuotas {
+	if o == nil || isNil(o.DomainsLoadBalancer) {
+		var ret DomainLoadBalancerQuotas
+		return ret
+	}
+	return *o.DomainsLoadBalancer
+}
+
+// GetDomainsLoadBalancerOk returns a tuple with the DomainsLoadBalancer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetDomainsLoadBalancerOk() (*DomainLoadBalancerQuotas, bool) {
+	if o == nil || isNil(o.DomainsLoadBalancer) {
+    return nil, false
+	}
+	return o.DomainsLoadBalancer, true
+}
+
+// HasDomainsLoadBalancer returns a boolean if a field has been set.
+func (o *Quotas) HasDomainsLoadBalancer() bool {
+	if o != nil && !isNil(o.DomainsLoadBalancer) {
+		return true
+	}
+
+	return false
+}
+
+// SetDomainsLoadBalancer gets a reference to the given DomainLoadBalancerQuotas and assigns it to the DomainsLoadBalancer field.
+func (o *Quotas) SetDomainsLoadBalancer(v DomainLoadBalancerQuotas) {
+	o.DomainsLoadBalancer = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -432,6 +498,12 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.PersistentVolumesByRegion) {
 		toSerialize["persistent_volumes_by_region"] = o.PersistentVolumesByRegion
+	}
+	if !isNil(o.CustomDomains) {
+		toSerialize["custom_domains"] = o.CustomDomains
+	}
+	if !isNil(o.DomainsLoadBalancer) {
+		toSerialize["domains_load_balancer"] = o.DomainsLoadBalancer
 	}
 	return json.Marshal(toSerialize)
 }
