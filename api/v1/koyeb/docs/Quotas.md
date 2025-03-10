@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **MaxOrganizationMembers** | Pointer to **string** |  | [optional] 
 **MaxInstancesByType** | Pointer to **map[string]string** |  | [optional] 
 **PersistentVolumesByRegion** | Pointer to [**map[string]PersistentVolumeQuotas**](PersistentVolumeQuotas.md) |  | [optional] 
+**CustomDomains** | Pointer to **string** |  | [optional] 
+**DomainsLoadBalancer** | Pointer to [**DomainLoadBalancerQuotas**](DomainLoadBalancerQuotas.md) |  | [optional] 
 
 ## Methods
 
@@ -309,6 +311,56 @@ SetPersistentVolumesByRegion sets PersistentVolumesByRegion field to given value
 `func (o *Quotas) HasPersistentVolumesByRegion() bool`
 
 HasPersistentVolumesByRegion returns a boolean if a field has been set.
+
+### GetCustomDomains
+
+`func (o *Quotas) GetCustomDomains() string`
+
+GetCustomDomains returns the CustomDomains field if non-nil, zero value otherwise.
+
+### GetCustomDomainsOk
+
+`func (o *Quotas) GetCustomDomainsOk() (*string, bool)`
+
+GetCustomDomainsOk returns a tuple with the CustomDomains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomDomains
+
+`func (o *Quotas) SetCustomDomains(v string)`
+
+SetCustomDomains sets CustomDomains field to given value.
+
+### HasCustomDomains
+
+`func (o *Quotas) HasCustomDomains() bool`
+
+HasCustomDomains returns a boolean if a field has been set.
+
+### GetDomainsLoadBalancer
+
+`func (o *Quotas) GetDomainsLoadBalancer() DomainLoadBalancerQuotas`
+
+GetDomainsLoadBalancer returns the DomainsLoadBalancer field if non-nil, zero value otherwise.
+
+### GetDomainsLoadBalancerOk
+
+`func (o *Quotas) GetDomainsLoadBalancerOk() (*DomainLoadBalancerQuotas, bool)`
+
+GetDomainsLoadBalancerOk returns a tuple with the DomainsLoadBalancer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDomainsLoadBalancer
+
+`func (o *Quotas) SetDomainsLoadBalancer(v DomainLoadBalancerQuotas)`
+
+SetDomainsLoadBalancer sets DomainsLoadBalancer field to given value.
+
+### HasDomainsLoadBalancer
+
+`func (o *Quotas) HasDomainsLoadBalancer() bool`
+
+HasDomainsLoadBalancer returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

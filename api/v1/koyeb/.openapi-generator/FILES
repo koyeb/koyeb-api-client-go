@@ -157,6 +157,7 @@ docs/DockerHubRegistryConfiguration.md
 docs/DockerSource.md
 docs/Domain.md
 docs/DomainLoadBalancerKoyeb.md
+docs/DomainLoadBalancerQuotas.md
 docs/DomainStatus.md
 docs/DomainType.md
 docs/DomainsApi.md
@@ -314,6 +315,8 @@ docs/ProfileApi.md
 docs/ProvisioningApi.md
 docs/PublicOrganization.md
 docs/PublicUser.md
+docs/QueryLogsReply.md
+docs/QueryLogsReplyPagination.md
 docs/Quotas.md
 docs/QuotasApi.md
 docs/ReactivateOrganizationReply.md
@@ -512,6 +515,7 @@ model_docker_hub_registry_configuration.go
 model_docker_source.go
 model_domain.go
 model_domain_load_balancer_koyeb.go
+model_domain_load_balancer_quotas.go
 model_domain_status.go
 model_domain_type.go
 model_domains_summary.go
@@ -654,6 +658,8 @@ model_port.go
 model_private_registry_configuration.go
 model_public_organization.go
 model_public_user.go
+model_query_logs_reply.go
+model_query_logs_reply_pagination.go
 model_quotas.go
 model_reactivate_organization_reply.go
 model_redeploy_reply.go
