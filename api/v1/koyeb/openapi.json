@@ -16019,6 +16019,16 @@
         },
         "domains_load_balancer": {
           "$ref": "#/definitions/DomainLoadBalancerQuotas"
+        },
+        "metrics_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
+        },
+        "logs_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
         }
       }
     },
