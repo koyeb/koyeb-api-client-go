@@ -452,11 +452,23 @@ paths:
       - in: query
         name: start
         schema:
+          format: date-time
           type: string
       - in: query
         name: limit
         schema:
           format: int64
+          type: string
+      - description: (Optional) Apply a regex to filter logs. Can't be used with `text`.
+        in: query
+        name: regex
+        schema:
+          type: string
+      - description: (Optional) Looks for this string in logs. Can't be used with
+          `regex`.
+        in: query
+        name: text
+        schema:
           type: string
       responses:
         "200":
@@ -21441,6 +21453,7 @@ components:
           services: services
           services_by_app: services_by_app
           service_provisioning_concurrency: service_provisioning_concurrency
+          logs_retention: 2
           max_instances_by_type:
             key: max_instances_by_type
           persistent_volumes_by_region:
@@ -21451,6 +21464,7 @@ components:
           memory_mb: memory_mb
           domains_load_balancer:
             max_koyeb: 5
+          metrics_retention: 5
           apps: apps
       properties:
         quotas:
@@ -21490,6 +21504,7 @@ components:
         services: services
         services_by_app: services_by_app
         service_provisioning_concurrency: service_provisioning_concurrency
+        logs_retention: 2
         max_instances_by_type:
           key: max_instances_by_type
         persistent_volumes_by_region:
@@ -21500,6 +21515,7 @@ components:
         memory_mb: memory_mb
         domains_load_balancer:
           max_koyeb: 5
+        metrics_retention: 5
         apps: apps
       properties:
         apps:
@@ -21546,6 +21562,14 @@ components:
           type: string
         domains_load_balancer:
           $ref: '#/components/schemas/DomainLoadBalancerQuotas'
+        metrics_retention:
+          format: int32
+          title: Time in days
+          type: integer
+        logs_retention:
+          format: int32
+          title: Time in days
+          type: integer
       type: object
     GetIntercomProfileReply:
       example:
