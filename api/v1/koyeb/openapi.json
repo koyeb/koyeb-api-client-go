@@ -439,7 +439,8 @@
             "name": "start",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           {
             "name": "limit",
@@ -447,6 +448,20 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "regex",
+            "description": "(Optional) Apply a regex to filter logs. Can't be used with `text`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "description": "(Optional) Looks for this string in logs. Can't be used with `regex`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -16019,6 +16034,16 @@
         },
         "domains_load_balancer": {
           "$ref": "#/definitions/DomainLoadBalancerQuotas"
+        },
+        "metrics_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
+        },
+        "logs_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
         }
       }
     },
