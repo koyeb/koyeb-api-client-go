@@ -63,6 +63,8 @@ type APIClient struct {
 
 	CatalogRegionsApi CatalogRegionsApi
 
+	ComposeApi ComposeApi
+
 	CredentialsApi CredentialsApi
 
 	DeploymentsApi DeploymentsApi
@@ -149,6 +151,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CatalogDatacentersApi = (*CatalogDatacentersApiService)(&c.common)
 	c.CatalogInstancesApi = (*CatalogInstancesApiService)(&c.common)
 	c.CatalogRegionsApi = (*CatalogRegionsApiService)(&c.common)
+	c.ComposeApi = (*ComposeApiService)(&c.common)
 	c.CredentialsApi = (*CredentialsApiService)(&c.common)
 	c.DeploymentsApi = (*DeploymentsApiService)(&c.common)
 	c.DockerHelperApi = (*DockerHelperApiService)(&c.common)

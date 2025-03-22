@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
+*ComposeApi* | [**Compose**](docs/ComposeApi.md#compose) | **Post** /v1/compose | Create resources from compose.
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | Get credential
@@ -246,6 +247,7 @@ Class | Method | HTTP request | Description
  - [CatalogGPUDetails](docs/CatalogGPUDetails.md)
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
+ - [ComposeReply](docs/ComposeReply.md)
  - [ConfigFile](docs/ConfigFile.md)
  - [ConfirmPaymentAuthorizationReply](docs/ConfirmPaymentAuthorizationReply.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
@@ -253,6 +255,7 @@ Class | Method | HTTP request | Description
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateArchive](docs/CreateArchive.md)
  - [CreateArchiveReply](docs/CreateArchiveReply.md)
+ - [CreateCompose](docs/CreateCompose.md)
  - [CreateCredential](docs/CreateCredential.md)
  - [CreateCredentialReply](docs/CreateCredentialReply.md)
  - [CreateDomain](docs/CreateDomain.md)

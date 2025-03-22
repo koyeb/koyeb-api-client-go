@@ -10,6 +10,7 @@ api_billing.go
 api_catalog_datacenters.go
 api_catalog_instances.go
 api_catalog_regions.go
+api_compose.go
 api_credentials.go
 api_deployments.go
 api_docker_helper.go
@@ -73,6 +74,8 @@ docs/CatalogInstance.md
 docs/CatalogInstanceListItem.md
 docs/CatalogInstancesApi.md
 docs/CatalogRegionsApi.md
+docs/ComposeApi.md
+docs/ComposeReply.md
 docs/ConfigFile.md
 docs/ConfirmPaymentAuthorizationReply.md
 docs/CreateAccountRequest.md
@@ -80,6 +83,7 @@ docs/CreateApp.md
 docs/CreateAppReply.md
 docs/CreateArchive.md
 docs/CreateArchiveReply.md
+docs/CreateCompose.md
 docs/CreateCredential.md
 docs/CreateCredentialReply.md
 docs/CreateDomain.md
@@ -434,6 +438,7 @@ model_canny_auth_reply.go
 model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
+model_compose_reply.go
 model_config_file.go
 model_confirm_payment_authorization_reply.go
 model_create_account_request.go
@@ -441,6 +446,7 @@ model_create_app.go
 model_create_app_reply.go
 model_create_archive.go
 model_create_archive_reply.go
+model_create_compose.go
 model_create_credential.go
 model_create_credential_reply.go
 model_create_domain.go
@@ -746,6 +752,7 @@ test/api_billing_test.go
 test/api_catalog_datacenters_test.go
 test/api_catalog_instances_test.go
 test/api_catalog_regions_test.go
+test/api_compose_test.go
 test/api_credentials_test.go
 test/api_deployments_test.go
 test/api_docker_helper_test.go
