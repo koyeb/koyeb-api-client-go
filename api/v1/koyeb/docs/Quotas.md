@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **PersistentVolumesByRegion** | Pointer to [**map[string]PersistentVolumeQuotas**](PersistentVolumeQuotas.md) |  | [optional] 
 **CustomDomains** | Pointer to **string** |  | [optional] 
 **DomainsLoadBalancer** | Pointer to [**DomainLoadBalancerQuotas**](DomainLoadBalancerQuotas.md) |  | [optional] 
+**MetricsRetention** | Pointer to **int32** |  | [optional] 
+**LogsRetention** | Pointer to **int32** |  | [optional] 
+**AccessReservedSubdomains** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -361,6 +364,81 @@ SetDomainsLoadBalancer sets DomainsLoadBalancer field to given value.
 `func (o *Quotas) HasDomainsLoadBalancer() bool`
 
 HasDomainsLoadBalancer returns a boolean if a field has been set.
+
+### GetMetricsRetention
+
+`func (o *Quotas) GetMetricsRetention() int32`
+
+GetMetricsRetention returns the MetricsRetention field if non-nil, zero value otherwise.
+
+### GetMetricsRetentionOk
+
+`func (o *Quotas) GetMetricsRetentionOk() (*int32, bool)`
+
+GetMetricsRetentionOk returns a tuple with the MetricsRetention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetricsRetention
+
+`func (o *Quotas) SetMetricsRetention(v int32)`
+
+SetMetricsRetention sets MetricsRetention field to given value.
+
+### HasMetricsRetention
+
+`func (o *Quotas) HasMetricsRetention() bool`
+
+HasMetricsRetention returns a boolean if a field has been set.
+
+### GetLogsRetention
+
+`func (o *Quotas) GetLogsRetention() int32`
+
+GetLogsRetention returns the LogsRetention field if non-nil, zero value otherwise.
+
+### GetLogsRetentionOk
+
+`func (o *Quotas) GetLogsRetentionOk() (*int32, bool)`
+
+GetLogsRetentionOk returns a tuple with the LogsRetention field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLogsRetention
+
+`func (o *Quotas) SetLogsRetention(v int32)`
+
+SetLogsRetention sets LogsRetention field to given value.
+
+### HasLogsRetention
+
+`func (o *Quotas) HasLogsRetention() bool`
+
+HasLogsRetention returns a boolean if a field has been set.
+
+### GetAccessReservedSubdomains
+
+`func (o *Quotas) GetAccessReservedSubdomains() []string`
+
+GetAccessReservedSubdomains returns the AccessReservedSubdomains field if non-nil, zero value otherwise.
+
+### GetAccessReservedSubdomainsOk
+
+`func (o *Quotas) GetAccessReservedSubdomainsOk() (*[]string, bool)`
+
+GetAccessReservedSubdomainsOk returns a tuple with the AccessReservedSubdomains field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccessReservedSubdomains
+
+`func (o *Quotas) SetAccessReservedSubdomains(v []string)`
+
+SetAccessReservedSubdomains sets AccessReservedSubdomains field to given value.
+
+### HasAccessReservedSubdomains
+
+`func (o *Quotas) HasAccessReservedSubdomains() bool`
+
+HasAccessReservedSubdomains returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
