@@ -391,10 +391,10 @@ type ApiDeactivateOrganizationRequest struct {
 	ctx context.Context
 	ApiService OrganizationApi
 	id string
-	body *map[string]interface{}
+	body *DeactivateOrganizationRequest
 }
 
-func (r ApiDeactivateOrganizationRequest) Body(body map[string]interface{}) ApiDeactivateOrganizationRequest {
+func (r ApiDeactivateOrganizationRequest) Body(body DeactivateOrganizationRequest) ApiDeactivateOrganizationRequest {
 	r.body = &body
 	return r
 }

@@ -452,11 +452,23 @@ paths:
       - in: query
         name: start
         schema:
+          format: date-time
           type: string
       - in: query
         name: limit
         schema:
           format: int64
+          type: string
+      - description: (Optional) Apply a regex to filter logs. Can't be used with `text`.
+        in: query
+        name: regex
+        schema:
+          type: string
+      - description: (Optional) Looks for this string in logs. Can't be used with
+          `regex`.
+        in: query
+        name: text
+        schema:
           type: string
       responses:
         "200":
@@ -622,6 +634,69 @@ paths:
       summary: Exec Command
       tags:
       - Instances
+  /v1/compose:
+    post:
+      operationId: Compose
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateCompose'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ComposeReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create resources from compose.
+      tags:
+      - Compose
+      x-codegen-request-body-name: compose
   /v1/archives:
     post:
       operationId: CreateArchive
@@ -1329,6 +1404,79 @@ paths:
       tags:
       - Snapshots
       x-codegen-request-body-name: body
+  /v1/deployment/{id}/scaling:
+    get:
+      operationId: GetDeploymentScaling
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: (Optional) Filter on region
+        in: query
+        name: region
+        schema:
+          type: string
+      - description: (Optional) Filter on replica_index
+        in: query
+        name: replica_index
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetDeploymentScalingReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Deployment Scaling
+      tags:
+      - Deployments
   /v1/deployment_events:
     get:
       operationId: ListDeploymentEvents
@@ -5503,6 +5651,29 @@ paths:
       summary: Search
       tags:
       - Search
+  /v1/catalog/usage:
+    get:
+      operationId: ListUsage
+      parameters:
+      - in: query
+        name: region
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListUsageReply'
+          description: A successful response.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - CatalogInstanceUsage
   /v1/catalog/regions:
     get:
       operationId: ListRegions
@@ -9183,7 +9354,7 @@ paths:
         content:
           '*/*':
             schema:
-              type: object
+              $ref: '#/components/schemas/DeactivateOrganization_request'
         required: true
       responses:
         "200":
@@ -10035,6 +10206,2141 @@ components:
           format: int32
           type: integer
       type: object
+    App:
+      example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        resumed_at: 2000-01-23T04:56:07.000+00:00
+        domains:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          koyeb:
+            request_timeout_seconds: 0
+          type: null
+          cloudflare: "{}"
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+          status: null
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          intended_cname: intended_cname
+          koyeb:
+            request_timeout_seconds: 0
+          type: null
+          cloudflare: "{}"
+          version: version
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          deployment_group: deployment_group
+          verified_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+          status: null
+        version: version
+        succeeded_at: 2000-01-23T04:56:07.000+00:00
+        paused_at: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        id: id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
+        status: null
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        organization_id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        succeeded_at:
+          format: date-time
+          type: string
+        paused_at:
+          format: date-time
+          type: string
+        resumed_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/App.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        version:
+          format: uint64
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          type: array
+      type: object
+    App.Status:
+      default: STARTING
+      enum:
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - DELETING
+      - DELETED
+      - PAUSING
+      - PAUSED
+      - RESUMING
+      type: string
+    ArchiveSource:
+      example:
+        id: id
+        buildpack:
+          privileged: true
+          run_command: run_command
+          build_command: build_command
+        docker:
+          args:
+          - args
+          - args
+          privileged: true
+          entrypoint:
+          - entrypoint
+          - entrypoint
+          dockerfile: dockerfile
+          command: command
+          target: target
+      properties:
+        id:
+          title: The ID of the archive to deploy
+          type: string
+        buildpack:
+          $ref: '#/components/schemas/BuildpackBuilder'
+        docker:
+          $ref: '#/components/schemas/DockerBuilder'
+      type: object
+    AutoRelease:
+      example:
+        groups:
+        - latest_sha: latest_sha
+          name: name
+          git_ref: git_ref
+          repository: repository
+        - latest_sha: latest_sha
+          name: name
+          git_ref: git_ref
+          repository: repository
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/AutoRelease.Group'
+          type: array
+      type: object
+    AutoRelease.Group:
+      example:
+        latest_sha: latest_sha
+        name: name
+        git_ref: git_ref
+        repository: repository
+      properties:
+        name:
+          type: string
+        repository:
+          type: string
+        git_ref:
+          title: "A git ref to track (.e.g: refs/tags/<tag> or refs/heads/<branch>"
+          type: string
+        latest_sha:
+          title: The last hash that was resolved (used to avoid triggering releases
+            when things haven't changed)
+          type: string
+      title: Configuration extracted from the latest deployment in this deployment_group
+      type: object
+    BuildpackBuilder:
+      example:
+        privileged: true
+        run_command: run_command
+        build_command: build_command
+      properties:
+        build_command:
+          title: "A command used to override the build command, run after all build\
+            \ steps"
+          type: string
+        run_command:
+          title: A command used to override the default run command
+          type: string
+        privileged:
+          title: A flag to run the container in privileged mode
+          type: boolean
+      type: object
+    ComposeReply:
+      example:
+        app:
+          created_at: 2000-01-23T04:56:07.000+00:00
+          resumed_at: 2000-01-23T04:56:07.000+00:00
+          domains:
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            koyeb:
+              request_timeout_seconds: 0
+            type: null
+            cloudflare: "{}"
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+            status: null
+          - created_at: 2000-01-23T04:56:07.000+00:00
+            intended_cname: intended_cname
+            koyeb:
+              request_timeout_seconds: 0
+            type: null
+            cloudflare: "{}"
+            version: version
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            deployment_group: deployment_group
+            verified_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            name: name
+            messages:
+            - messages
+            - messages
+            id: id
+            app_id: app_id
+            status: null
+          version: version
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          paused_at: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          id: id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+        services:
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          resumed_at: 2000-01-23T04:56:07.000+00:00
+          type: null
+          version: version
+          last_provisioned_deployment_id: last_provisioned_deployment_id
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          paused_at: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          active_deployment_id: active_deployment_id
+          id: id
+          state:
+            desired_deployment:
+              groups:
+              - name: name
+                deployment_ids:
+                - deployment_ids
+                - deployment_ids
+              - name: name
+                deployment_ids:
+                - deployment_ids
+                - deployment_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          latest_deployment_id: latest_deployment_id
+          status: null
+        - created_at: 2000-01-23T04:56:07.000+00:00
+          resumed_at: 2000-01-23T04:56:07.000+00:00
+          type: null
+          version: version
+          last_provisioned_deployment_id: last_provisioned_deployment_id
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          paused_at: 2000-01-23T04:56:07.000+00:00
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          started_at: 2000-01-23T04:56:07.000+00:00
+          messages:
+          - messages
+          - messages
+          active_deployment_id: active_deployment_id
+          id: id
+          state:
+            desired_deployment:
+              groups:
+              - name: name
+                deployment_ids:
+                - deployment_ids
+                - deployment_ids
+              - name: name
+                deployment_ids:
+                - deployment_ids
+                - deployment_ids
+            auto_release:
+              groups:
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+              - latest_sha: latest_sha
+                name: name
+                git_ref: git_ref
+                repository: repository
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          latest_deployment_id: latest_deployment_id
+          status: null
+      properties:
+        app:
+          $ref: '#/components/schemas/App'
+        services:
+          items:
+            $ref: '#/components/schemas/Service'
+          type: array
+      type: object
+    ConfigFile:
+      example:
+        path: path
+        permissions: permissions
+        content: content
+      properties:
+        path:
+          title: the path where the file is copied
+          type: string
+        permissions:
+          title: the permissions of the file in format 0644
+          type: string
+        content:
+          title: the content of the file
+          type: string
+      type: object
+    CreateApp:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      type: object
+    CreateCompose:
+      example:
+        app:
+          name: name
+        services:
+        - definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 4
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+            health_checks:
+            - tcp:
+                port: 6
+              restart_limit: 1
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 7
+              interval: 1
+              grace_period: 7
+              timeout: 1
+            - tcp:
+                port: 6
+              restart_limit: 1
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 7
+              interval: 1
+              grace_period: 7
+              timeout: 1
+            name: name
+            strategy:
+              type: null
+          app_id: app_id
+        - definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 1
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              port: 0
+            - path: path
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 4
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+            - min: 1
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+              - average_mem:
+                  value: 2
+                requests_per_second:
+                  value: 7
+                average_cpu:
+                  value: 5
+                requests_response_time:
+                  quantile: 2
+                  value: 3
+                concurrent_requests:
+                  value: 9
+                sleep_idle_delay:
+                  value: 4
+            health_checks:
+            - tcp:
+                port: 6
+              restart_limit: 1
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 7
+              interval: 1
+              grace_period: 7
+              timeout: 1
+            - tcp:
+                port: 6
+              restart_limit: 1
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 7
+              interval: 1
+              grace_period: 7
+              timeout: 1
+            name: name
+            strategy:
+              type: null
+          app_id: app_id
+      properties:
+        app:
+          $ref: '#/components/schemas/CreateApp'
+        services:
+          items:
+            $ref: '#/components/schemas/CreateService'
+          type: array
+      type: object
+    CreateService:
+      example:
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          regions:
+          - regions
+          - regions
+          volumes:
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 1
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          skip_cache: true
+          archive:
+            id: id
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          config_files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            image: image
+            image_registry_secret: image_registry_secret
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            command: command
+          routes:
+          - path: path
+            port: 0
+          - path: path
+            port: 0
+          database:
+            neon_postgres:
+              databases:
+              - owner: owner
+                name: name
+              - owner: owner
+                name: name
+              roles:
+              - name: name
+                secret: secret
+              - name: name
+                secret: secret
+              region: region
+              instance_type: instance_type
+              pg_version: 4
+          git:
+            run_command: run_command
+            workdir: workdir
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            branch: branch
+            sha: sha
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          scalings:
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+              requests_response_time:
+                quantile: 2
+                value: 3
+              concurrent_requests:
+                value: 9
+              sleep_idle_delay:
+                value: 4
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+              requests_response_time:
+                quantile: 2
+                value: 3
+              concurrent_requests:
+                value: 9
+              sleep_idle_delay:
+                value: 4
+          - min: 1
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+              requests_response_time:
+                quantile: 2
+                value: 3
+              concurrent_requests:
+                value: 9
+              sleep_idle_delay:
+                value: 4
+            - average_mem:
+                value: 2
+              requests_per_second:
+                value: 7
+              average_cpu:
+                value: 5
+              requests_response_time:
+                quantile: 2
+                value: 3
+              concurrent_requests:
+                value: 9
+              sleep_idle_delay:
+                value: 4
+          health_checks:
+          - tcp:
+              port: 6
+            restart_limit: 1
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 7
+            interval: 1
+            grace_period: 7
+            timeout: 1
+          - tcp:
+              port: 6
+            restart_limit: 1
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 7
+            interval: 1
+            grace_period: 7
+            timeout: 1
+          name: name
+          strategy:
+            type: null
+        app_id: app_id
+      properties:
+        app_id:
+          type: string
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+      type: object
+    DatabaseSource:
+      example:
+        neon_postgres:
+          databases:
+          - owner: owner
+            name: name
+          - owner: owner
+            name: name
+          roles:
+          - name: name
+            secret: secret
+          - name: name
+            secret: secret
+          region: region
+          instance_type: instance_type
+          pg_version: 4
+      properties:
+        neon_postgres:
+          $ref: '#/components/schemas/NeonPostgresDatabase'
+      type: object
+    DeploymentDefinition:
+      example:
+        instance_types:
+        - scopes:
+          - scopes
+          - scopes
+          type: type
+        - scopes:
+          - scopes
+          - scopes
+          type: type
+        regions:
+        - regions
+        - regions
+        volumes:
+        - path: path
+          replica_index: 1
+          id: id
+          scopes:
+          - scopes
+          - scopes
+        - path: path
+          replica_index: 1
+          id: id
+          scopes:
+          - scopes
+          - scopes
+        skip_cache: true
+        archive:
+          id: id
+          buildpack:
+            privileged: true
+            run_command: run_command
+            build_command: build_command
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            dockerfile: dockerfile
+            command: command
+            target: target
+        type: null
+        ports:
+        - protocol: protocol
+          port: 6
+        - protocol: protocol
+          port: 6
+        env:
+        - scopes:
+          - scopes
+          - scopes
+          secret: secret
+          value: value
+          key: key
+        - scopes:
+          - scopes
+          - scopes
+          secret: secret
+          value: value
+          key: key
+        config_files:
+        - path: path
+          permissions: permissions
+          content: content
+        - path: path
+          permissions: permissions
+          content: content
+        docker:
+          args:
+          - args
+          - args
+          privileged: true
+          image: image
+          image_registry_secret: image_registry_secret
+          entrypoint:
+          - entrypoint
+          - entrypoint
+          command: command
+        routes:
+        - path: path
+          port: 0
+        - path: path
+          port: 0
+        database:
+          neon_postgres:
+            databases:
+            - owner: owner
+              name: name
+            - owner: owner
+              name: name
+            roles:
+            - name: name
+              secret: secret
+            - name: name
+              secret: secret
+            region: region
+            instance_type: instance_type
+            pg_version: 4
+        git:
+          run_command: run_command
+          workdir: workdir
+          build_command: build_command
+          no_deploy_on_push: true
+          tag: tag
+          repository: repository
+          buildpack:
+            privileged: true
+            run_command: run_command
+            build_command: build_command
+          branch: branch
+          sha: sha
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            dockerfile: dockerfile
+            command: command
+            target: target
+        scalings:
+        - min: 1
+          max: 5
+          scopes:
+          - scopes
+          - scopes
+          targets:
+          - average_mem:
+              value: 2
+            requests_per_second:
+              value: 7
+            average_cpu:
+              value: 5
+            requests_response_time:
+              quantile: 2
+              value: 3
+            concurrent_requests:
+              value: 9
+            sleep_idle_delay:
+              value: 4
+          - average_mem:
+              value: 2
+            requests_per_second:
+              value: 7
+            average_cpu:
+              value: 5
+            requests_response_time:
+              quantile: 2
+              value: 3
+            concurrent_requests:
+              value: 9
+            sleep_idle_delay:
+              value: 4
+        - min: 1
+          max: 5
+          scopes:
+          - scopes
+          - scopes
+          targets:
+          - average_mem:
+              value: 2
+            requests_per_second:
+              value: 7
+            average_cpu:
+              value: 5
+            requests_response_time:
+              quantile: 2
+              value: 3
+            concurrent_requests:
+              value: 9
+            sleep_idle_delay:
+              value: 4
+          - average_mem:
+              value: 2
+            requests_per_second:
+              value: 7
+            average_cpu:
+              value: 5
+            requests_response_time:
+              quantile: 2
+              value: 3
+            concurrent_requests:
+              value: 9
+            sleep_idle_delay:
+              value: 4
+        health_checks:
+        - tcp:
+            port: 6
+          restart_limit: 1
+          http:
+            path: path
+            headers:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            method: method
+            port: 7
+          interval: 1
+          grace_period: 7
+          timeout: 1
+        - tcp:
+            port: 6
+          restart_limit: 1
+          http:
+            path: path
+            headers:
+            - value: value
+              key: key
+            - value: value
+              key: key
+            method: method
+            port: 7
+          interval: 1
+          grace_period: 7
+          timeout: 1
+        name: name
+        strategy:
+          type: null
+      properties:
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/DeploymentDefinition.Type'
+        strategy:
+          $ref: '#/components/schemas/DeploymentStrategy'
+        routes:
+          items:
+            $ref: '#/components/schemas/DeploymentRoute'
+          type: array
+        ports:
+          items:
+            $ref: '#/components/schemas/DeploymentPort'
+          type: array
+        env:
+          items:
+            $ref: '#/components/schemas/DeploymentEnv'
+          type: array
+        regions:
+          items:
+            type: string
+          type: array
+        scalings:
+          items:
+            $ref: '#/components/schemas/DeploymentScaling'
+          type: array
+        instance_types:
+          items:
+            $ref: '#/components/schemas/DeploymentInstanceType'
+          type: array
+        health_checks:
+          items:
+            $ref: '#/components/schemas/DeploymentHealthCheck'
+          type: array
+        volumes:
+          items:
+            $ref: '#/components/schemas/DeploymentVolume'
+          type: array
+        config_files:
+          items:
+            $ref: '#/components/schemas/ConfigFile'
+          type: array
+        skip_cache:
+          type: boolean
+        docker:
+          $ref: '#/components/schemas/DockerSource'
+        git:
+          $ref: '#/components/schemas/GitSource'
+        database:
+          $ref: '#/components/schemas/DatabaseSource'
+        archive:
+          $ref: '#/components/schemas/ArchiveSource'
+      type: object
+    DeploymentDefinition.Type:
+      default: INVALID
+      enum:
+      - INVALID
+      - WEB
+      - WORKER
+      - DATABASE
+      type: string
+    DeploymentEnv:
+      example:
+        scopes:
+        - scopes
+        - scopes
+        secret: secret
+        value: value
+        key: key
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        key:
+          type: string
+        value:
+          type: string
+        secret:
+          type: string
+      type: object
+    DeploymentHealthCheck:
+      example:
+        tcp:
+          port: 6
+        restart_limit: 1
+        http:
+          path: path
+          headers:
+          - value: value
+            key: key
+          - value: value
+            key: key
+          method: method
+          port: 7
+        interval: 1
+        grace_period: 7
+        timeout: 1
+      properties:
+        grace_period:
+          format: int64
+          title: "An optional initial period in seconds to wait for the instance to\
+            \ become healthy, default is 5s"
+          type: integer
+        interval:
+          format: int64
+          title: "An optional period in seconds between two health checks, default\
+            \ is 60s"
+          type: integer
+        restart_limit:
+          format: int64
+          title: "An optional number of consecutive failures before attempting to\
+            \ restart the service, default is 3"
+          type: integer
+        timeout:
+          format: int64
+          title: "An optional maximum time to wait in seconds before considering the\
+            \ check as a failure, default is 5s"
+          type: integer
+        tcp:
+          $ref: '#/components/schemas/TCPHealthCheck'
+        http:
+          $ref: '#/components/schemas/HTTPHealthCheck'
+      type: object
+    DeploymentInstanceType:
+      example:
+        scopes:
+        - scopes
+        - scopes
+        type: type
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        type:
+          type: string
+      type: object
+    DeploymentPort:
+      example:
+        protocol: protocol
+        port: 6
+      properties:
+        port:
+          format: int64
+          type: integer
+        protocol:
+          title: "One of http, http2, tcp"
+          type: string
+      type: object
+    DeploymentRoute:
+      example:
+        path: path
+        port: 0
+      properties:
+        port:
+          format: int64
+          type: integer
+        path:
+          type: string
+      type: object
+    DeploymentScaling:
+      example:
+        min: 1
+        max: 5
+        scopes:
+        - scopes
+        - scopes
+        targets:
+        - average_mem:
+            value: 2
+          requests_per_second:
+            value: 7
+          average_cpu:
+            value: 5
+          requests_response_time:
+            quantile: 2
+            value: 3
+          concurrent_requests:
+            value: 9
+          sleep_idle_delay:
+            value: 4
+        - average_mem:
+            value: 2
+          requests_per_second:
+            value: 7
+          average_cpu:
+            value: 5
+          requests_response_time:
+            quantile: 2
+            value: 3
+          concurrent_requests:
+            value: 9
+          sleep_idle_delay:
+            value: 4
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        min:
+          format: int64
+          type: integer
+        max:
+          format: int64
+          type: integer
+        targets:
+          items:
+            $ref: '#/components/schemas/DeploymentScalingTarget'
+          type: array
+      type: object
+    DeploymentScalingTarget:
+      example:
+        average_mem:
+          value: 2
+        requests_per_second:
+          value: 7
+        average_cpu:
+          value: 5
+        requests_response_time:
+          quantile: 2
+          value: 3
+        concurrent_requests:
+          value: 9
+        sleep_idle_delay:
+          value: 4
+      properties:
+        average_cpu:
+          $ref: '#/components/schemas/DeploymentScalingTargetAverageCPU'
+        average_mem:
+          $ref: '#/components/schemas/DeploymentScalingTargetAverageMem'
+        requests_per_second:
+          $ref: '#/components/schemas/DeploymentScalingTargetRequestsPerSecond'
+        concurrent_requests:
+          $ref: '#/components/schemas/DeploymentScalingTargetConcurrentRequests'
+        requests_response_time:
+          $ref: '#/components/schemas/DeploymentScalingTargetRequestsResponseTime'
+        sleep_idle_delay:
+          $ref: '#/components/schemas/DeploymentScalingTargetSleepIdleDelay'
+      type: object
+    DeploymentScalingTargetAverageCPU:
+      example:
+        value: 5
+      properties:
+        value:
+          format: int64
+          type: integer
+      type: object
+    DeploymentScalingTargetAverageMem:
+      example:
+        value: 2
+      properties:
+        value:
+          format: int64
+          type: integer
+      type: object
+    DeploymentScalingTargetConcurrentRequests:
+      example:
+        value: 9
+      properties:
+        value:
+          format: int64
+          type: integer
+      type: object
+    DeploymentScalingTargetRequestsPerSecond:
+      example:
+        value: 7
+      properties:
+        value:
+          format: int64
+          type: integer
+      type: object
+    DeploymentScalingTargetRequestsResponseTime:
+      example:
+        quantile: 2
+        value: 3
+      properties:
+        value:
+          format: int64
+          type: integer
+        quantile:
+          description: |-
+            The quantile to use for autoscaling. For example, set to 95 to use the 95th
+            percentile (p95) for autoscaling.  Valid values are between 0 and 100.
+          format: int64
+          type: integer
+      type: object
+    DeploymentScalingTargetSleepIdleDelay:
+      example:
+        value: 4
+      properties:
+        value:
+          description: |-
+            Delay in seconds after which a service which received 0 request is scaled to 0.
+            This is not configurable and must be set to 300 (5 minutes). Get in touch to
+            tune it.
+          format: int64
+          type: integer
+      type: object
+    DeploymentStrategy:
+      example:
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/DeploymentStrategyType'
+      type: object
+    DeploymentStrategyType:
+      default: DEPLOYMENT_STRATEGY_TYPE_INVALID
+      description: |2-
+         - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.
+         - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.
+         - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.
+         - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.
+         - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy.
+      enum:
+      - DEPLOYMENT_STRATEGY_TYPE_INVALID
+      - DEPLOYMENT_STRATEGY_TYPE_CANARY
+      - DEPLOYMENT_STRATEGY_TYPE_ROLLING
+      - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN
+      - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE
+      type: string
+    DeploymentVolume:
+      example:
+        path: path
+        replica_index: 1
+        id: id
+        scopes:
+        - scopes
+        - scopes
+      properties:
+        id:
+          title: the id of the volume
+          type: string
+        path:
+          title: the path where the volume is mounted to
+          type: string
+        replica_index:
+          format: int64
+          title: "optionally, explicitly choose the replica index to mount the volume\
+            \ to"
+          type: integer
+        scopes:
+          items:
+            type: string
+          title: scope of the associated
+          type: array
+      type: object
+    DesiredDeployment:
+      example:
+        groups:
+        - name: name
+          deployment_ids:
+          - deployment_ids
+          - deployment_ids
+        - name: name
+          deployment_ids:
+          - deployment_ids
+          - deployment_ids
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/DesiredDeployment.Group'
+          type: array
+      type: object
+    DesiredDeployment.Group:
+      example:
+        name: name
+        deployment_ids:
+        - deployment_ids
+        - deployment_ids
+      properties:
+        name:
+          type: string
+        deployment_ids:
+          items:
+            type: string
+          type: array
+      type: object
+    DockerBuilder:
+      example:
+        args:
+        - args
+        - args
+        privileged: true
+        entrypoint:
+        - entrypoint
+        - entrypoint
+        dockerfile: dockerfile
+        command: command
+        target: target
+      properties:
+        dockerfile:
+          title: A path to the Dockerfile
+          type: string
+        entrypoint:
+          items:
+            type: string
+          title: The docker ENTRYPOINT
+          type: array
+        command:
+          title: The docker CMD
+          type: string
+        args:
+          items:
+            type: string
+          title: The docker CMD args
+          type: array
+        target:
+          title: The target for multi-stage builds
+          type: string
+        privileged:
+          title: A flag to run the container in privileged mode
+          type: boolean
+      type: object
+    DockerSource:
+      example:
+        args:
+        - args
+        - args
+        privileged: true
+        image: image
+        image_registry_secret: image_registry_secret
+        entrypoint:
+        - entrypoint
+        - entrypoint
+        command: command
+      properties:
+        image:
+          type: string
+        command:
+          type: string
+        args:
+          items:
+            type: string
+          type: array
+        image_registry_secret:
+          type: string
+        entrypoint:
+          items:
+            type: string
+          type: array
+        privileged:
+          title: A flag to run the container in privileged mode
+          type: boolean
+      type: object
+    Domain:
+      example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        intended_cname: intended_cname
+        koyeb:
+          request_timeout_seconds: 0
+        type: null
+        cloudflare: "{}"
+        version: version
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        deployment_group: deployment_group
+        verified_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        messages:
+        - messages
+        - messages
+        id: id
+        app_id: app_id
+        status: null
+      properties:
+        id:
+          type: string
+        organization_id:
+          type: string
+        name:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/Domain.Status'
+        type:
+          $ref: '#/components/schemas/Domain.Type'
+        app_id:
+          type: string
+        deployment_group:
+          type: string
+        verified_at:
+          format: date-time
+          type: string
+        intended_cname:
+          type: string
+        messages:
+          items:
+            type: string
+          type: array
+        version:
+          format: uint64
+          type: string
+        cloudflare:
+          type: object
+        koyeb:
+          $ref: '#/components/schemas/Domain.LoadBalancerKoyeb'
+      type: object
+    Domain.LoadBalancerCloudflare:
+      type: object
+    Domain.LoadBalancerKoyeb:
+      example:
+        request_timeout_seconds: 0
+      properties:
+        request_timeout_seconds:
+          format: int64
+          title: Between 100 and 900
+          type: integer
+      type: object
+    Domain.Status:
+      default: PENDING
+      enum:
+      - PENDING
+      - ACTIVE
+      - ERROR
+      - DELETING
+      - DELETED
+      type: string
+    Domain.Type:
+      default: AUTOASSIGNED
+      enum:
+      - AUTOASSIGNED
+      - CUSTOM
+      title: "- AUTOASSIGNED: Domain like <appName>-<orgName>.koyeb.app"
+      type: string
+    GitSource:
+      example:
+        run_command: run_command
+        workdir: workdir
+        build_command: build_command
+        no_deploy_on_push: true
+        tag: tag
+        repository: repository
+        buildpack:
+          privileged: true
+          run_command: run_command
+          build_command: build_command
+        branch: branch
+        sha: sha
+        docker:
+          args:
+          - args
+          - args
+          privileged: true
+          entrypoint:
+          - entrypoint
+          - entrypoint
+          dockerfile: dockerfile
+          command: command
+          target: target
+      properties:
+        repository:
+          description: "A url to a git repository (contains the provider as well)\
+            \ .e.g: github.com/koyeb/test."
+          type: string
+        branch:
+          title: A git branch that will be tracked for new commits and deployments
+            will be created
+          type: string
+        tag:
+          title: A git tag that should be built
+          type: string
+        sha:
+          title: "A git commit that should be built (useful for pinning to a commit,\
+            \ this will always be set when a deployment is created by a code push)"
+          type: string
+        build_command:
+          title: "A command used to override the build command, run after all build\
+            \ steps — deprecated, use buildpack.build_command instead"
+          type: string
+        run_command:
+          title: "A command used to override the default run command - deprecated,\
+            \ use buildpack.run_command instead"
+          type: string
+        no_deploy_on_push:
+          title: A flag to disable a new deployment when a push event is detected
+          type: boolean
+        workdir:
+          title: A subdirectory to use as the build directory
+          type: string
+        buildpack:
+          $ref: '#/components/schemas/BuildpackBuilder'
+        docker:
+          $ref: '#/components/schemas/DockerBuilder'
+      type: object
+    HTTPHeader:
+      example:
+        value: value
+        key: key
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      type: object
+    HTTPHealthCheck:
+      example:
+        path: path
+        headers:
+        - value: value
+          key: key
+        - value: value
+          key: key
+        method: method
+        port: 7
+      properties:
+        port:
+          format: int64
+          title: "The port to use to perform the health check, must be declared in\
+            \ the ports section"
+          type: integer
+        path:
+          title: The path to use to perform the HTTP health check
+          type: string
+        method:
+          title: "An optional HTTP method to use to perform the health check, default\
+            \ is GET"
+          type: string
+        headers:
+          items:
+            $ref: '#/components/schemas/HTTPHeader'
+          title: "An optional list of HTTP headers to provide when performing the\
+            \ request, default is empty"
+          type: array
+      type: object
+    NeonPostgresDatabase:
+      example:
+        databases:
+        - owner: owner
+          name: name
+        - owner: owner
+          name: name
+        roles:
+        - name: name
+          secret: secret
+        - name: name
+          secret: secret
+        region: region
+        instance_type: instance_type
+        pg_version: 4
+      properties:
+        pg_version:
+          format: int64
+          type: integer
+        region:
+          type: string
+        instance_type:
+          type: string
+        roles:
+          items:
+            $ref: '#/components/schemas/NeonPostgresDatabase.NeonRole'
+          type: array
+        databases:
+          items:
+            $ref: '#/components/schemas/NeonPostgresDatabase.NeonDatabase'
+          type: array
+      type: object
+    NeonPostgresDatabase.NeonDatabase:
+      example:
+        owner: owner
+        name: name
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+      type: object
+    NeonPostgresDatabase.NeonRole:
+      example:
+        name: name
+        secret: secret
+      properties:
+        name:
+          type: string
+        secret:
+          type: string
+      type: object
+    Service:
+      example:
+        created_at: 2000-01-23T04:56:07.000+00:00
+        resumed_at: 2000-01-23T04:56:07.000+00:00
+        type: null
+        version: version
+        last_provisioned_deployment_id: last_provisioned_deployment_id
+        succeeded_at: 2000-01-23T04:56:07.000+00:00
+        paused_at: 2000-01-23T04:56:07.000+00:00
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        started_at: 2000-01-23T04:56:07.000+00:00
+        messages:
+        - messages
+        - messages
+        active_deployment_id: active_deployment_id
+        id: id
+        state:
+          desired_deployment:
+            groups:
+            - name: name
+              deployment_ids:
+              - deployment_ids
+              - deployment_ids
+            - name: name
+              deployment_ids:
+              - deployment_ids
+              - deployment_ids
+          auto_release:
+            groups:
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
+            - latest_sha: latest_sha
+              name: name
+              git_ref: git_ref
+              repository: repository
+        app_id: app_id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
+        latest_deployment_id: latest_deployment_id
+        status: null
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        started_at:
+          format: date-time
+          type: string
+        succeeded_at:
+          format: date-time
+          type: string
+        paused_at:
+          format: date-time
+          type: string
+        resumed_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/Service.Type'
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/Service.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        version:
+          format: uint64
+          type: string
+        active_deployment_id:
+          type: string
+        latest_deployment_id:
+          type: string
+        last_provisioned_deployment_id:
+          type: string
+        state:
+          $ref: '#/components/schemas/ServiceState'
+      type: object
+    Service.Status:
+      default: STARTING
+      enum:
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - DELETING
+      - DELETED
+      - PAUSING
+      - PAUSED
+      - RESUMING
+      type: string
+    Service.Type:
+      default: INVALID_TYPE
+      enum:
+      - INVALID_TYPE
+      - WEB
+      - WORKER
+      - DATABASE
+      type: string
+    ServiceState:
+      example:
+        desired_deployment:
+          groups:
+          - name: name
+            deployment_ids:
+            - deployment_ids
+            - deployment_ids
+          - name: name
+            deployment_ids:
+            - deployment_ids
+            - deployment_ids
+        auto_release:
+          groups:
+          - latest_sha: latest_sha
+            name: name
+            git_ref: git_ref
+            repository: repository
+          - latest_sha: latest_sha
+            name: name
+            git_ref: git_ref
+            repository: repository
+      properties:
+        desired_deployment:
+          $ref: '#/components/schemas/DesiredDeployment'
+        auto_release:
+          $ref: '#/components/schemas/AutoRelease'
+      type: object
+    TCPHealthCheck:
+      example:
+        port: 6
+      properties:
+        port:
+          format: int64
+          title: "The port to use to perform the health check, must be declared in\
+            \ the ports section"
+          type: integer
+      type: object
     Archive:
       example:
         size: size
@@ -10092,109 +12398,6 @@ components:
       properties:
         archive:
           $ref: '#/components/schemas/Archive'
-      type: object
-    ArchiveSource:
-      example:
-        id: id
-        buildpack:
-          privileged: true
-          run_command: run_command
-          build_command: build_command
-        docker:
-          args:
-          - args
-          - args
-          privileged: true
-          entrypoint:
-          - entrypoint
-          - entrypoint
-          dockerfile: dockerfile
-          command: command
-          target: target
-      properties:
-        id:
-          title: The ID of the archive to deploy
-          type: string
-        buildpack:
-          $ref: '#/components/schemas/BuildpackBuilder'
-        docker:
-          $ref: '#/components/schemas/DockerBuilder'
-      type: object
-    BuildpackBuilder:
-      example:
-        privileged: true
-        run_command: run_command
-        build_command: build_command
-      properties:
-        build_command:
-          title: "A command used to override the build command, run after all build\
-            \ steps"
-          type: string
-        run_command:
-          title: A command used to override the default run command
-          type: string
-        privileged:
-          title: A flag to run the container in privileged mode
-          type: boolean
-      type: object
-    ConfigFile:
-      example:
-        path: path
-        permissions: permissions
-        content: content
-      properties:
-        path:
-          title: the path where the file is copied
-          type: string
-        permissions:
-          title: the permissions of the file in format 0644
-          type: string
-        content:
-          title: the content of the file
-          type: string
-      type: object
-    DeploymentHealthCheck:
-      example:
-        tcp:
-          port: 6
-        restart_limit: 1
-        http:
-          path: path
-          headers:
-          - value: value
-            key: key
-          - value: value
-            key: key
-          method: method
-          port: 7
-        interval: 1
-        grace_period: 7
-        timeout: 1
-      properties:
-        grace_period:
-          format: int64
-          title: "An optional initial period in seconds to wait for the instance to\
-            \ become healthy, default is 5s"
-          type: integer
-        interval:
-          format: int64
-          title: "An optional period in seconds between two health checks, default\
-            \ is 60s"
-          type: integer
-        restart_limit:
-          format: int64
-          title: "An optional number of consecutive failures before attempting to\
-            \ restart the service, default is 3"
-          type: integer
-        timeout:
-          format: int64
-          title: "An optional maximum time to wait in seconds before considering the\
-            \ check as a failure, default is 5s"
-          type: integer
-        tcp:
-          $ref: '#/components/schemas/TCPHealthCheck'
-        http:
-          $ref: '#/components/schemas/HTTPHealthCheck'
       type: object
     DeploymentProvisioningInfo:
       example:
@@ -10512,183 +12715,6 @@ components:
       - COMPLETED
       - ABORTED
       type: string
-    DeploymentScalingTarget:
-      example:
-        average_mem:
-          value: 2
-        requests_per_second:
-          value: 7
-        average_cpu:
-          value: 5
-        requests_response_time:
-          quantile: 2
-          value: 3
-        concurrent_requests:
-          value: 9
-        sleep_idle_delay:
-          value: 4
-      properties:
-        average_cpu:
-          $ref: '#/components/schemas/DeploymentScalingTargetAverageCPU'
-        average_mem:
-          $ref: '#/components/schemas/DeploymentScalingTargetAverageMem'
-        requests_per_second:
-          $ref: '#/components/schemas/DeploymentScalingTargetRequestsPerSecond'
-        concurrent_requests:
-          $ref: '#/components/schemas/DeploymentScalingTargetConcurrentRequests'
-        requests_response_time:
-          $ref: '#/components/schemas/DeploymentScalingTargetRequestsResponseTime'
-        sleep_idle_delay:
-          $ref: '#/components/schemas/DeploymentScalingTargetSleepIdleDelay'
-      type: object
-    DeploymentScalingTargetAverageCPU:
-      example:
-        value: 5
-      properties:
-        value:
-          format: int64
-          type: integer
-      type: object
-    DeploymentScalingTargetAverageMem:
-      example:
-        value: 2
-      properties:
-        value:
-          format: int64
-          type: integer
-      type: object
-    DeploymentScalingTargetConcurrentRequests:
-      example:
-        value: 9
-      properties:
-        value:
-          format: int64
-          type: integer
-      type: object
-    DeploymentScalingTargetRequestsPerSecond:
-      example:
-        value: 7
-      properties:
-        value:
-          format: int64
-          type: integer
-      type: object
-    DeploymentScalingTargetRequestsResponseTime:
-      example:
-        quantile: 2
-        value: 3
-      properties:
-        value:
-          format: int64
-          type: integer
-        quantile:
-          description: |-
-            The quantile to use for autoscaling. For example, set to 95 to use the 95th
-            percentile (p95) for autoscaling.  Valid values are between 0 and 100.
-          format: int64
-          type: integer
-      type: object
-    DeploymentScalingTargetSleepIdleDelay:
-      example:
-        value: 4
-      properties:
-        value:
-          description: |-
-            Delay in seconds after which a service which received 0 request is scaled to 0.
-            This is not configurable and must be set to 300 (5 minutes). Get in touch to
-            tune it.
-          format: int64
-          type: integer
-      type: object
-    DeploymentStrategy:
-      example:
-        type: null
-      properties:
-        type:
-          $ref: '#/components/schemas/DeploymentStrategyType'
-      type: object
-    DeploymentStrategyType:
-      default: DEPLOYMENT_STRATEGY_TYPE_INVALID
-      description: |2-
-         - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.
-         - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.
-         - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.
-         - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.
-         - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy.
-      enum:
-      - DEPLOYMENT_STRATEGY_TYPE_INVALID
-      - DEPLOYMENT_STRATEGY_TYPE_CANARY
-      - DEPLOYMENT_STRATEGY_TYPE_ROLLING
-      - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN
-      - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE
-      type: string
-    DockerBuilder:
-      example:
-        args:
-        - args
-        - args
-        privileged: true
-        entrypoint:
-        - entrypoint
-        - entrypoint
-        dockerfile: dockerfile
-        command: command
-        target: target
-      properties:
-        dockerfile:
-          title: A path to the Dockerfile
-          type: string
-        entrypoint:
-          items:
-            type: string
-          title: The docker ENTRYPOINT
-          type: array
-        command:
-          title: The docker CMD
-          type: string
-        args:
-          items:
-            type: string
-          title: The docker CMD args
-          type: array
-        target:
-          title: The target for multi-stage builds
-          type: string
-        privileged:
-          title: A flag to run the container in privileged mode
-          type: boolean
-      type: object
-    DockerSource:
-      example:
-        args:
-        - args
-        - args
-        privileged: true
-        image: image
-        image_registry_secret: image_registry_secret
-        entrypoint:
-        - entrypoint
-        - entrypoint
-        command: command
-      properties:
-        image:
-          type: string
-        command:
-          type: string
-        args:
-          items:
-            type: string
-          type: array
-        image_registry_secret:
-          type: string
-        entrypoint:
-          items:
-            type: string
-          type: array
-        privileged:
-          title: A flag to run the container in privileged mode
-          type: boolean
-      type: object
     Env:
       example:
         secret: secret
@@ -10881,10 +12907,10 @@ components:
                   value: 4
             volumes:
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             skip_cache: true
             archive:
@@ -11012,106 +13038,6 @@ components:
         regional_deployment:
           $ref: '#/components/schemas/RegionalDeployment'
       type: object
-    GitSource:
-      example:
-        run_command: run_command
-        workdir: workdir
-        build_command: build_command
-        no_deploy_on_push: true
-        tag: tag
-        repository: repository
-        buildpack:
-          privileged: true
-          run_command: run_command
-          build_command: build_command
-        branch: branch
-        sha: sha
-        docker:
-          args:
-          - args
-          - args
-          privileged: true
-          entrypoint:
-          - entrypoint
-          - entrypoint
-          dockerfile: dockerfile
-          command: command
-          target: target
-      properties:
-        repository:
-          description: "A url to a git repository (contains the provider as well)\
-            \ .e.g: github.com/koyeb/test."
-          type: string
-        branch:
-          title: A git branch that will be tracked for new commits and deployments
-            will be created
-          type: string
-        tag:
-          title: A git tag that should be built
-          type: string
-        sha:
-          title: "A git commit that should be built (useful for pinning to a commit,\
-            \ this will always be set when a deployment is created by a code push)"
-          type: string
-        build_command:
-          title: "A command used to override the build command, run after all build\
-            \ steps — deprecated, use buildpack.build_command instead"
-          type: string
-        run_command:
-          title: "A command used to override the default run command - deprecated,\
-            \ use buildpack.run_command instead"
-          type: string
-        no_deploy_on_push:
-          title: A flag to disable a new deployment when a push event is detected
-          type: boolean
-        workdir:
-          title: A subdirectory to use as the build directory
-          type: string
-        buildpack:
-          $ref: '#/components/schemas/BuildpackBuilder'
-        docker:
-          $ref: '#/components/schemas/DockerBuilder'
-      type: object
-    HTTPHeader:
-      example:
-        value: value
-        key: key
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-      type: object
-    HTTPHealthCheck:
-      example:
-        path: path
-        headers:
-        - value: value
-          key: key
-        - value: value
-          key: key
-        method: method
-        port: 7
-      properties:
-        port:
-          format: int64
-          title: "The port to use to perform the health check, must be declared in\
-            \ the ports section"
-          type: integer
-        path:
-          title: The path to use to perform the HTTP health check
-          type: string
-        method:
-          title: "An optional HTTP method to use to perform the health check, default\
-            \ is GET"
-          type: string
-        headers:
-          items:
-            $ref: '#/components/schemas/HTTPHeader'
-          title: "An optional list of HTTP headers to provide when performing the\
-            \ request, default is empty"
-          type: array
-      type: object
     ListRegionalDeploymentEventsReply:
       example:
         offset: 6
@@ -11156,7 +13082,7 @@ components:
       type: object
     ListRegionalDeploymentsReply:
       example:
-        offset: 5
+        offset: 7
         regional_deployments:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           created_at: 2000-01-23T04:56:07.000+00:00
@@ -11196,10 +13122,10 @@ components:
                   value: 4
             volumes:
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             skip_cache: true
             archive:
@@ -11357,10 +13283,10 @@ components:
                   value: 4
             volumes:
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             - path: path
-              replica_index: 1
+              replica_index: 5
               id: id
             skip_cache: true
             archive:
@@ -11480,7 +13406,7 @@ components:
           id: id
           region: region
           status: null
-        limit: 4
+        limit: 2
         count: 9
         has_next: true
       properties:
@@ -11694,10 +13620,10 @@ components:
                 value: 4
           volumes:
           - path: path
-            replica_index: 1
+            replica_index: 5
             id: id
           - path: path
-            replica_index: 1
+            replica_index: 5
             id: id
           skip_cache: true
           archive:
@@ -11945,10 +13871,10 @@ components:
               value: 4
         volumes:
         - path: path
-          replica_index: 1
+          replica_index: 5
           id: id
         - path: path
-          replica_index: 1
+          replica_index: 5
           id: id
         skip_cache: true
         archive:
@@ -12187,10 +14113,10 @@ components:
                 value: 4
           volumes:
           - path: path
-            replica_index: 1
+            replica_index: 5
             id: id
           - path: path
-            replica_index: 1
+            replica_index: 5
             id: id
           skip_cache: true
           archive:
@@ -12335,7 +14261,7 @@ components:
     RegionalDeploymentVolume:
       example:
         path: path
-        replica_index: 1
+        replica_index: 5
         id: id
       properties:
         id:
@@ -12402,16 +14328,6 @@ components:
           items:
             $ref: '#/components/schemas/DeploymentScalingTarget'
           type: array
-      type: object
-    TCPHealthCheck:
-      example:
-        port: 6
-      properties:
-        port:
-          format: int64
-          title: "The port to use to perform the health check, must be declared in\
-            \ the ports section"
-          type: integer
       type: object
     ReviewOrganizationCapacityReply:
       example:
@@ -12656,26 +14572,6 @@ components:
         neon_postgres:
           $ref: '#/components/schemas/NeonPostgresDatabaseDeploymentMetadata'
       type: object
-    DatabaseSource:
-      example:
-        neon_postgres:
-          databases:
-          - owner: owner
-            name: name
-          - owner: owner
-            name: name
-          roles:
-          - name: name
-            secret: secret
-          - name: name
-            secret: secret
-          region: region
-          instance_type: instance_type
-          pg_version: 2
-      properties:
-        neon_postgres:
-          $ref: '#/components/schemas/NeonPostgresDatabase'
-      type: object
     Deployment:
       example:
         metadata:
@@ -12854,13 +14750,13 @@ components:
           - regions
           volumes:
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
             - scopes
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
@@ -12939,7 +14835,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 2
+              pg_version: 4
           git:
             run_command: run_command
             workdir: workdir
@@ -13080,7 +14976,7 @@ components:
             active_time_seconds: active_time_seconds
             default_branch_logical_size: default_branch_logical_size
             default_branch_name: default_branch_name
-            server_port: 7
+            server_port: 0
             default_branch_id: default_branch_id
             compute_time_seconds: compute_time_seconds
             data_storage_bytes_hour: data_storage_bytes_hour
@@ -13188,320 +15084,13 @@ components:
           active_time_seconds: active_time_seconds
           default_branch_logical_size: default_branch_logical_size
           default_branch_name: default_branch_name
-          server_port: 7
+          server_port: 0
           default_branch_id: default_branch_id
           compute_time_seconds: compute_time_seconds
           data_storage_bytes_hour: data_storage_bytes_hour
       properties:
         neon_postgres:
           $ref: '#/components/schemas/DeploymentNeonPostgresDatabaseInfo'
-      type: object
-    DeploymentDefinition:
-      example:
-        instance_types:
-        - scopes:
-          - scopes
-          - scopes
-          type: type
-        - scopes:
-          - scopes
-          - scopes
-          type: type
-        regions:
-        - regions
-        - regions
-        volumes:
-        - path: path
-          replica_index: 5
-          id: id
-          scopes:
-          - scopes
-          - scopes
-        - path: path
-          replica_index: 5
-          id: id
-          scopes:
-          - scopes
-          - scopes
-        skip_cache: true
-        archive:
-          id: id
-          buildpack:
-            privileged: true
-            run_command: run_command
-            build_command: build_command
-          docker:
-            args:
-            - args
-            - args
-            privileged: true
-            entrypoint:
-            - entrypoint
-            - entrypoint
-            dockerfile: dockerfile
-            command: command
-            target: target
-        type: null
-        ports:
-        - protocol: protocol
-          port: 6
-        - protocol: protocol
-          port: 6
-        env:
-        - scopes:
-          - scopes
-          - scopes
-          secret: secret
-          value: value
-          key: key
-        - scopes:
-          - scopes
-          - scopes
-          secret: secret
-          value: value
-          key: key
-        config_files:
-        - path: path
-          permissions: permissions
-          content: content
-        - path: path
-          permissions: permissions
-          content: content
-        docker:
-          args:
-          - args
-          - args
-          privileged: true
-          image: image
-          image_registry_secret: image_registry_secret
-          entrypoint:
-          - entrypoint
-          - entrypoint
-          command: command
-        routes:
-        - path: path
-          port: 0
-        - path: path
-          port: 0
-        database:
-          neon_postgres:
-            databases:
-            - owner: owner
-              name: name
-            - owner: owner
-              name: name
-            roles:
-            - name: name
-              secret: secret
-            - name: name
-              secret: secret
-            region: region
-            instance_type: instance_type
-            pg_version: 2
-        git:
-          run_command: run_command
-          workdir: workdir
-          build_command: build_command
-          no_deploy_on_push: true
-          tag: tag
-          repository: repository
-          buildpack:
-            privileged: true
-            run_command: run_command
-            build_command: build_command
-          branch: branch
-          sha: sha
-          docker:
-            args:
-            - args
-            - args
-            privileged: true
-            entrypoint:
-            - entrypoint
-            - entrypoint
-            dockerfile: dockerfile
-            command: command
-            target: target
-        scalings:
-        - min: 1
-          max: 5
-          scopes:
-          - scopes
-          - scopes
-          targets:
-          - average_mem:
-              value: 2
-            requests_per_second:
-              value: 7
-            average_cpu:
-              value: 5
-            requests_response_time:
-              quantile: 2
-              value: 3
-            concurrent_requests:
-              value: 9
-            sleep_idle_delay:
-              value: 4
-          - average_mem:
-              value: 2
-            requests_per_second:
-              value: 7
-            average_cpu:
-              value: 5
-            requests_response_time:
-              quantile: 2
-              value: 3
-            concurrent_requests:
-              value: 9
-            sleep_idle_delay:
-              value: 4
-        - min: 1
-          max: 5
-          scopes:
-          - scopes
-          - scopes
-          targets:
-          - average_mem:
-              value: 2
-            requests_per_second:
-              value: 7
-            average_cpu:
-              value: 5
-            requests_response_time:
-              quantile: 2
-              value: 3
-            concurrent_requests:
-              value: 9
-            sleep_idle_delay:
-              value: 4
-          - average_mem:
-              value: 2
-            requests_per_second:
-              value: 7
-            average_cpu:
-              value: 5
-            requests_response_time:
-              quantile: 2
-              value: 3
-            concurrent_requests:
-              value: 9
-            sleep_idle_delay:
-              value: 4
-        health_checks:
-        - tcp:
-            port: 6
-          restart_limit: 1
-          http:
-            path: path
-            headers:
-            - value: value
-              key: key
-            - value: value
-              key: key
-            method: method
-            port: 7
-          interval: 1
-          grace_period: 7
-          timeout: 1
-        - tcp:
-            port: 6
-          restart_limit: 1
-          http:
-            path: path
-            headers:
-            - value: value
-              key: key
-            - value: value
-              key: key
-            method: method
-            port: 7
-          interval: 1
-          grace_period: 7
-          timeout: 1
-        name: name
-        strategy:
-          type: null
-      properties:
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/DeploymentDefinition.Type'
-        strategy:
-          $ref: '#/components/schemas/DeploymentStrategy'
-        routes:
-          items:
-            $ref: '#/components/schemas/DeploymentRoute'
-          type: array
-        ports:
-          items:
-            $ref: '#/components/schemas/DeploymentPort'
-          type: array
-        env:
-          items:
-            $ref: '#/components/schemas/DeploymentEnv'
-          type: array
-        regions:
-          items:
-            type: string
-          type: array
-        scalings:
-          items:
-            $ref: '#/components/schemas/DeploymentScaling'
-          type: array
-        instance_types:
-          items:
-            $ref: '#/components/schemas/DeploymentInstanceType'
-          type: array
-        health_checks:
-          items:
-            $ref: '#/components/schemas/DeploymentHealthCheck'
-          type: array
-        volumes:
-          items:
-            $ref: '#/components/schemas/DeploymentVolume'
-          type: array
-        config_files:
-          items:
-            $ref: '#/components/schemas/ConfigFile'
-          type: array
-        skip_cache:
-          type: boolean
-        docker:
-          $ref: '#/components/schemas/DockerSource'
-        git:
-          $ref: '#/components/schemas/GitSource'
-        database:
-          $ref: '#/components/schemas/DatabaseSource'
-        archive:
-          $ref: '#/components/schemas/ArchiveSource'
-      type: object
-    DeploymentDefinition.Type:
-      default: INVALID
-      enum:
-      - INVALID
-      - WEB
-      - WORKER
-      - DATABASE
-      type: string
-    DeploymentEnv:
-      example:
-        scopes:
-        - scopes
-        - scopes
-        secret: secret
-        value: value
-        key: key
-      properties:
-        scopes:
-          items:
-            type: string
-          type: array
-        key:
-          type: string
-        value:
-          type: string
-        secret:
-          type: string
       type: object
     DeploymentEvent:
       example:
@@ -13529,20 +15118,6 @@ components:
         metadata:
           properties: {}
           type: object
-      type: object
-    DeploymentInstanceType:
-      example:
-        scopes:
-        - scopes
-        - scopes
-        type: type
-      properties:
-        scopes:
-          items:
-            type: string
-          type: array
-        type:
-          type: string
       type: object
     DeploymentListItem:
       example:
@@ -13720,13 +15295,13 @@ components:
           - regions
           volumes:
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
             - scopes
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
@@ -13805,7 +15380,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 2
+              pg_version: 4
           git:
             run_command: run_command
             workdir: workdir
@@ -13946,7 +15521,7 @@ components:
             active_time_seconds: active_time_seconds
             default_branch_logical_size: default_branch_logical_size
             default_branch_name: default_branch_name
-            server_port: 7
+            server_port: 0
             default_branch_id: default_branch_id
             compute_time_seconds: compute_time_seconds
             data_storage_bytes_hour: data_storage_bytes_hour
@@ -14054,7 +15629,7 @@ components:
         active_time_seconds: active_time_seconds
         default_branch_logical_size: default_branch_logical_size
         default_branch_name: default_branch_name
-        server_port: 7
+        server_port: 0
         default_branch_id: default_branch_id
         compute_time_seconds: compute_time_seconds
         data_storage_bytes_hour: data_storage_bytes_hour
@@ -14107,105 +15682,6 @@ components:
           type: string
         secret_id:
           type: string
-      type: object
-    DeploymentPort:
-      example:
-        protocol: protocol
-        port: 6
-      properties:
-        port:
-          format: int64
-          type: integer
-        protocol:
-          title: "One of http, http2, tcp"
-          type: string
-      type: object
-    DeploymentRoute:
-      example:
-        path: path
-        port: 0
-      properties:
-        port:
-          format: int64
-          type: integer
-        path:
-          type: string
-      type: object
-    DeploymentScaling:
-      example:
-        min: 1
-        max: 5
-        scopes:
-        - scopes
-        - scopes
-        targets:
-        - average_mem:
-            value: 2
-          requests_per_second:
-            value: 7
-          average_cpu:
-            value: 5
-          requests_response_time:
-            quantile: 2
-            value: 3
-          concurrent_requests:
-            value: 9
-          sleep_idle_delay:
-            value: 4
-        - average_mem:
-            value: 2
-          requests_per_second:
-            value: 7
-          average_cpu:
-            value: 5
-          requests_response_time:
-            quantile: 2
-            value: 3
-          concurrent_requests:
-            value: 9
-          sleep_idle_delay:
-            value: 4
-      properties:
-        scopes:
-          items:
-            type: string
-          type: array
-        min:
-          format: int64
-          type: integer
-        max:
-          format: int64
-          type: integer
-        targets:
-          items:
-            $ref: '#/components/schemas/DeploymentScalingTarget'
-          type: array
-      type: object
-    DeploymentVolume:
-      example:
-        path: path
-        replica_index: 5
-        id: id
-        scopes:
-        - scopes
-        - scopes
-      properties:
-        id:
-          title: the id of the volume
-          type: string
-        path:
-          title: the path where the volume is mounted to
-          type: string
-        replica_index:
-          format: int64
-          title: "optionally, explicitly choose the replica index to mount the volume\
-            \ to"
-          type: integer
-        scopes:
-          items:
-            type: string
-          title: scope of the associated
-          type: array
       type: object
     GetDeploymentReply:
       example:
@@ -14386,13 +15862,13 @@ components:
             - regions
             volumes:
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
               - scopes
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
@@ -14471,7 +15947,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 2
+                pg_version: 4
             git:
               run_command: run_command
               workdir: workdir
@@ -14612,7 +16088,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 7
+              server_port: 0
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -14624,6 +16100,172 @@ components:
         deployment:
           $ref: '#/components/schemas/Deployment'
       type: object
+    GetDeploymentScalingReply:
+      example:
+        replicas:
+        - instances:
+          - regional_deployment_id: regional_deployment_id
+            created_at: 2000-01-23T04:56:07.000+00:00
+            datacenter: datacenter
+            type: type
+            succeeded_at: 2000-01-23T04:56:07.000+00:00
+            xyz_deployment_id: xyz_deployment_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            service_id: service_id
+            hypervisor: hypervisor
+            allocation_id: allocation_id
+            replica_index: 6
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            region: region
+            app_id: app_id
+            terminated_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          - regional_deployment_id: regional_deployment_id
+            created_at: 2000-01-23T04:56:07.000+00:00
+            datacenter: datacenter
+            type: type
+            succeeded_at: 2000-01-23T04:56:07.000+00:00
+            xyz_deployment_id: xyz_deployment_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            service_id: service_id
+            hypervisor: hypervisor
+            allocation_id: allocation_id
+            replica_index: 6
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            region: region
+            app_id: app_id
+            terminated_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          replica_index: 0
+          region: region
+        - instances:
+          - regional_deployment_id: regional_deployment_id
+            created_at: 2000-01-23T04:56:07.000+00:00
+            datacenter: datacenter
+            type: type
+            succeeded_at: 2000-01-23T04:56:07.000+00:00
+            xyz_deployment_id: xyz_deployment_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            service_id: service_id
+            hypervisor: hypervisor
+            allocation_id: allocation_id
+            replica_index: 6
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            region: region
+            app_id: app_id
+            terminated_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          - regional_deployment_id: regional_deployment_id
+            created_at: 2000-01-23T04:56:07.000+00:00
+            datacenter: datacenter
+            type: type
+            succeeded_at: 2000-01-23T04:56:07.000+00:00
+            xyz_deployment_id: xyz_deployment_id
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            organization_id: organization_id
+            service_id: service_id
+            hypervisor: hypervisor
+            allocation_id: allocation_id
+            replica_index: 6
+            messages:
+            - messages
+            - messages
+            started_at: 2000-01-23T04:56:07.000+00:00
+            id: id
+            region: region
+            app_id: app_id
+            terminated_at: 2000-01-23T04:56:07.000+00:00
+            status: null
+          replica_index: 0
+          region: region
+      properties:
+        replicas:
+          items:
+            $ref: '#/components/schemas/GetDeploymentScalingReplyItem'
+          title: The replicas
+          type: array
+      type: object
+    GetDeploymentScalingReplyItem:
+      example:
+        instances:
+        - regional_deployment_id: regional_deployment_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          datacenter: datacenter
+          type: type
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          xyz_deployment_id: xyz_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          hypervisor: hypervisor
+          allocation_id: allocation_id
+          replica_index: 6
+          messages:
+          - messages
+          - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+        - regional_deployment_id: regional_deployment_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          datacenter: datacenter
+          type: type
+          succeeded_at: 2000-01-23T04:56:07.000+00:00
+          xyz_deployment_id: xyz_deployment_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          service_id: service_id
+          hypervisor: hypervisor
+          allocation_id: allocation_id
+          replica_index: 6
+          messages:
+          - messages
+          - messages
+          started_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          region: region
+          app_id: app_id
+          terminated_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+        replica_index: 0
+        region: region
+      properties:
+        region:
+          title: The replica region
+          type: string
+        replica_index:
+          format: int64
+          type: integer
+        instances:
+          description: |-
+            An array of `active` and `starting` instances.
+
+            Status of the active instance (and if none the most recent instance)
+             string status = 4;
+             Status message of the active instance (and if none the most recent instance)
+             string message = 5;
+          items:
+            $ref: '#/components/schemas/Instance'
+          type: array
+      type: object
     GitDeploymentMetadata:
       example:
         last_provisioned_deployment_id: last_provisioned_deployment_id
@@ -14631,6 +16273,93 @@ components:
         last_provisioned_deployment_id:
           type: string
       type: object
+    Instance:
+      example:
+        regional_deployment_id: regional_deployment_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        datacenter: datacenter
+        type: type
+        succeeded_at: 2000-01-23T04:56:07.000+00:00
+        xyz_deployment_id: xyz_deployment_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        service_id: service_id
+        hypervisor: hypervisor
+        allocation_id: allocation_id
+        replica_index: 6
+        messages:
+        - messages
+        - messages
+        started_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        region: region
+        app_id: app_id
+        terminated_at: 2000-01-23T04:56:07.000+00:00
+        status: null
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        app_id:
+          type: string
+        service_id:
+          type: string
+        regional_deployment_id:
+          type: string
+        allocation_id:
+          type: string
+        type:
+          type: string
+        replica_index:
+          format: int64
+          type: integer
+        region:
+          type: string
+        datacenter:
+          type: string
+        hypervisor:
+          type: string
+        status:
+          $ref: '#/components/schemas/Instance.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        started_at:
+          format: date-time
+          type: string
+        succeeded_at:
+          format: date-time
+          type: string
+        terminated_at:
+          format: date-time
+          type: string
+        xyz_deployment_id:
+          description: |-
+            WARNING: Please don't use the following attribute.
+            Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
+            USE AT YOUR OWN RISK.
+          type: string
+      type: object
+    Instance.Status:
+      default: ALLOCATING
+      enum:
+      - ALLOCATING
+      - STARTING
+      - HEALTHY
+      - UNHEALTHY
+      - STOPPING
+      - STOPPED
+      - ERROR
+      - SLEEPING
+      type: string
     ListDeploymentEventsReply:
       example:
         offset: 6
@@ -14850,13 +16579,13 @@ components:
             - regions
             volumes:
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
               - scopes
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
@@ -14935,7 +16664,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 2
+                pg_version: 4
             git:
               run_command: run_command
               workdir: workdir
@@ -15076,7 +16805,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 7
+              server_port: 0
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -15258,13 +16987,13 @@ components:
             - regions
             volumes:
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
               - scopes
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
@@ -15343,7 +17072,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 2
+                pg_version: 4
             git:
               run_command: run_command
               workdir: workdir
@@ -15484,7 +17213,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 7
+              server_port: 0
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -15492,9 +17221,9 @@ components:
           terminated_at: 2000-01-23T04:56:07.000+00:00
           allocated_at: 2000-01-23T04:56:07.000+00:00
           status: null
-        offset: 3
-        limit: 9
-        count: 2
+        offset: 1
+        limit: 6
+        count: 5
         has_next: true
       properties:
         deployments:
@@ -15517,58 +17246,6 @@ components:
         has_next:
           title: If there is more items after in the collection
           type: boolean
-      type: object
-    NeonPostgresDatabase:
-      example:
-        databases:
-        - owner: owner
-          name: name
-        - owner: owner
-          name: name
-        roles:
-        - name: name
-          secret: secret
-        - name: name
-          secret: secret
-        region: region
-        instance_type: instance_type
-        pg_version: 2
-      properties:
-        pg_version:
-          format: int64
-          type: integer
-        region:
-          type: string
-        instance_type:
-          type: string
-        roles:
-          items:
-            $ref: '#/components/schemas/NeonPostgresDatabase.NeonRole'
-          type: array
-        databases:
-          items:
-            $ref: '#/components/schemas/NeonPostgresDatabase.NeonDatabase'
-          type: array
-      type: object
-    NeonPostgresDatabase.NeonDatabase:
-      example:
-        owner: owner
-        name: name
-      properties:
-        name:
-          type: string
-        owner:
-          type: string
-      type: object
-    NeonPostgresDatabase.NeonRole:
-      example:
-        name: name
-        secret: secret
-      properties:
-        name:
-          type: string
-        secret:
-          type: string
       type: object
     NeonPostgresDatabaseDeploymentMetadata:
       example:
@@ -16401,115 +18078,6 @@ components:
         volume:
           $ref: '#/components/schemas/PersistentVolume'
       type: object
-    App:
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        resumed_at: 2000-01-23T04:56:07.000+00:00
-        domains:
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          koyeb:
-            request_timeout_seconds: 0
-          type: null
-          cloudflare: "{}"
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-          status: null
-        - created_at: 2000-01-23T04:56:07.000+00:00
-          intended_cname: intended_cname
-          koyeb:
-            request_timeout_seconds: 0
-          type: null
-          cloudflare: "{}"
-          version: version
-          updated_at: 2000-01-23T04:56:07.000+00:00
-          deployment_group: deployment_group
-          verified_at: 2000-01-23T04:56:07.000+00:00
-          organization_id: organization_id
-          name: name
-          messages:
-          - messages
-          - messages
-          id: id
-          app_id: app_id
-          status: null
-        version: version
-        succeeded_at: 2000-01-23T04:56:07.000+00:00
-        paused_at: 2000-01-23T04:56:07.000+00:00
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        id: id
-        terminated_at: 2000-01-23T04:56:07.000+00:00
-        status: null
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        organization_id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        started_at:
-          format: date-time
-          type: string
-        succeeded_at:
-          format: date-time
-          type: string
-        paused_at:
-          format: date-time
-          type: string
-        resumed_at:
-          format: date-time
-          type: string
-        terminated_at:
-          format: date-time
-          type: string
-        status:
-          $ref: '#/components/schemas/App.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        version:
-          format: uint64
-          type: string
-        domains:
-          items:
-            $ref: '#/components/schemas/Domain'
-          type: array
-      type: object
-    App.Status:
-      default: STARTING
-      enum:
-      - STARTING
-      - HEALTHY
-      - DEGRADED
-      - UNHEALTHY
-      - DELETING
-      - DELETED
-      - PAUSING
-      - PAUSED
-      - RESUMING
-      type: string
     AppEvent:
       example:
         metadata: "{}"
@@ -16609,13 +18177,6 @@ components:
             type: string
           type: array
       type: object
-    CreateApp:
-      example:
-        name: name
-      properties:
-        name:
-          type: string
-      type: object
     CreateAppReply:
       example:
         app:
@@ -16677,91 +18238,6 @@ components:
       type: object
     DeleteAppReply:
       type: object
-    Domain:
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        intended_cname: intended_cname
-        koyeb:
-          request_timeout_seconds: 0
-        type: null
-        cloudflare: "{}"
-        version: version
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        deployment_group: deployment_group
-        verified_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        messages:
-        - messages
-        - messages
-        id: id
-        app_id: app_id
-        status: null
-      properties:
-        id:
-          type: string
-        organization_id:
-          type: string
-        name:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        status:
-          $ref: '#/components/schemas/Domain.Status'
-        type:
-          $ref: '#/components/schemas/Domain.Type'
-        app_id:
-          type: string
-        deployment_group:
-          type: string
-        verified_at:
-          format: date-time
-          type: string
-        intended_cname:
-          type: string
-        messages:
-          items:
-            type: string
-          type: array
-        version:
-          format: uint64
-          type: string
-        cloudflare:
-          type: object
-        koyeb:
-          $ref: '#/components/schemas/Domain.LoadBalancerKoyeb'
-      type: object
-    Domain.LoadBalancerCloudflare:
-      type: object
-    Domain.LoadBalancerKoyeb:
-      example:
-        request_timeout_seconds: 0
-      properties:
-        request_timeout_seconds:
-          format: int64
-          title: Between 100 and 900
-          type: integer
-      type: object
-    Domain.Status:
-      default: PENDING
-      enum:
-      - PENDING
-      - ACTIVE
-      - ERROR
-      - DELETING
-      - DELETED
-      type: string
-    Domain.Type:
-      default: AUTOASSIGNED
-      enum:
-      - AUTOASSIGNED
-      - CUSTOM
-      title: "- AUTOASSIGNED: Domain like <appName>-<orgName>.koyeb.app"
-      type: string
     GetAppReply:
       example:
         app:
@@ -16865,9 +18341,9 @@ components:
       type: object
     ListAppsReply:
       example:
-        offset: 1
-        limit: 6
-        count: 5
+        offset: 6
+        limit: 0
+        count: 1
         has_next: true
         apps:
         - updated_at: 2000-01-23T04:56:07.000+00:00
@@ -17073,7 +18549,7 @@ components:
           service_id: service_id
           hypervisor: hypervisor
           allocation_id: allocation_id
-          replica_index: 0
+          replica_index: 6
           messages:
           - messages
           - messages
@@ -17087,93 +18563,6 @@ components:
         instance:
           $ref: '#/components/schemas/Instance'
       type: object
-    Instance:
-      example:
-        regional_deployment_id: regional_deployment_id
-        created_at: 2000-01-23T04:56:07.000+00:00
-        datacenter: datacenter
-        type: type
-        succeeded_at: 2000-01-23T04:56:07.000+00:00
-        xyz_deployment_id: xyz_deployment_id
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        service_id: service_id
-        hypervisor: hypervisor
-        allocation_id: allocation_id
-        replica_index: 0
-        messages:
-        - messages
-        - messages
-        started_at: 2000-01-23T04:56:07.000+00:00
-        id: id
-        region: region
-        app_id: app_id
-        terminated_at: 2000-01-23T04:56:07.000+00:00
-        status: null
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        service_id:
-          type: string
-        regional_deployment_id:
-          type: string
-        allocation_id:
-          type: string
-        type:
-          type: string
-        replica_index:
-          format: int64
-          type: integer
-        region:
-          type: string
-        datacenter:
-          type: string
-        hypervisor:
-          type: string
-        status:
-          $ref: '#/components/schemas/Instance.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        started_at:
-          format: date-time
-          type: string
-        succeeded_at:
-          format: date-time
-          type: string
-        terminated_at:
-          format: date-time
-          type: string
-        xyz_deployment_id:
-          description: |-
-            WARNING: Please don't use the following attribute.
-            Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-            USE AT YOUR OWN RISK.
-          type: string
-      type: object
-    Instance.Status:
-      default: ALLOCATING
-      enum:
-      - ALLOCATING
-      - STARTING
-      - HEALTHY
-      - UNHEALTHY
-      - STOPPING
-      - STOPPED
-      - ERROR
-      - SLEEPING
-      type: string
     InstanceEvent:
       example:
         metadata: "{}"
@@ -17409,43 +18798,6 @@ components:
       - INVALID_ARCH
       title: The error code associated to each specific failure mode
       type: string
-    AutoRelease:
-      example:
-        groups:
-        - latest_sha: latest_sha
-          name: name
-          git_ref: git_ref
-          repository: repository
-        - latest_sha: latest_sha
-          name: name
-          git_ref: git_ref
-          repository: repository
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/AutoRelease.Group'
-          type: array
-      type: object
-    AutoRelease.Group:
-      example:
-        latest_sha: latest_sha
-        name: name
-        git_ref: git_ref
-        repository: repository
-      properties:
-        name:
-          type: string
-        repository:
-          type: string
-        git_ref:
-          title: "A git ref to track (.e.g: refs/tags/<tag> or refs/heads/<branch>"
-          type: string
-        latest_sha:
-          title: The last hash that was resolved (used to avoid triggering releases
-            when things haven't changed)
-          type: string
-      title: Configuration extracted from the latest deployment in this deployment_group
-      type: object
     AutocompleteReply:
       example:
         user_env:
@@ -17491,13 +18843,13 @@ components:
           - regions
           volumes:
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
             - scopes
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
@@ -17576,7 +18928,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 2
+              pg_version: 4
           git:
             run_command: run_command
             workdir: workdir
@@ -17701,239 +19053,6 @@ components:
           strategy:
             type: null
       properties:
-        definition:
-          $ref: '#/components/schemas/DeploymentDefinition'
-      type: object
-    CreateService:
-      example:
-        definition:
-          instance_types:
-          - scopes:
-            - scopes
-            - scopes
-            type: type
-          - scopes:
-            - scopes
-            - scopes
-            type: type
-          regions:
-          - regions
-          - regions
-          volumes:
-          - path: path
-            replica_index: 5
-            id: id
-            scopes:
-            - scopes
-            - scopes
-          - path: path
-            replica_index: 5
-            id: id
-            scopes:
-            - scopes
-            - scopes
-          skip_cache: true
-          archive:
-            id: id
-            buildpack:
-              privileged: true
-              run_command: run_command
-              build_command: build_command
-            docker:
-              args:
-              - args
-              - args
-              privileged: true
-              entrypoint:
-              - entrypoint
-              - entrypoint
-              dockerfile: dockerfile
-              command: command
-              target: target
-          type: null
-          ports:
-          - protocol: protocol
-            port: 6
-          - protocol: protocol
-            port: 6
-          env:
-          - scopes:
-            - scopes
-            - scopes
-            secret: secret
-            value: value
-            key: key
-          - scopes:
-            - scopes
-            - scopes
-            secret: secret
-            value: value
-            key: key
-          config_files:
-          - path: path
-            permissions: permissions
-            content: content
-          - path: path
-            permissions: permissions
-            content: content
-          docker:
-            args:
-            - args
-            - args
-            privileged: true
-            image: image
-            image_registry_secret: image_registry_secret
-            entrypoint:
-            - entrypoint
-            - entrypoint
-            command: command
-          routes:
-          - path: path
-            port: 0
-          - path: path
-            port: 0
-          database:
-            neon_postgres:
-              databases:
-              - owner: owner
-                name: name
-              - owner: owner
-                name: name
-              roles:
-              - name: name
-                secret: secret
-              - name: name
-                secret: secret
-              region: region
-              instance_type: instance_type
-              pg_version: 2
-          git:
-            run_command: run_command
-            workdir: workdir
-            build_command: build_command
-            no_deploy_on_push: true
-            tag: tag
-            repository: repository
-            buildpack:
-              privileged: true
-              run_command: run_command
-              build_command: build_command
-            branch: branch
-            sha: sha
-            docker:
-              args:
-              - args
-              - args
-              privileged: true
-              entrypoint:
-              - entrypoint
-              - entrypoint
-              dockerfile: dockerfile
-              command: command
-              target: target
-          scalings:
-          - min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
-            targets:
-            - average_mem:
-                value: 2
-              requests_per_second:
-                value: 7
-              average_cpu:
-                value: 5
-              requests_response_time:
-                quantile: 2
-                value: 3
-              concurrent_requests:
-                value: 9
-              sleep_idle_delay:
-                value: 4
-            - average_mem:
-                value: 2
-              requests_per_second:
-                value: 7
-              average_cpu:
-                value: 5
-              requests_response_time:
-                quantile: 2
-                value: 3
-              concurrent_requests:
-                value: 9
-              sleep_idle_delay:
-                value: 4
-          - min: 1
-            max: 5
-            scopes:
-            - scopes
-            - scopes
-            targets:
-            - average_mem:
-                value: 2
-              requests_per_second:
-                value: 7
-              average_cpu:
-                value: 5
-              requests_response_time:
-                quantile: 2
-                value: 3
-              concurrent_requests:
-                value: 9
-              sleep_idle_delay:
-                value: 4
-            - average_mem:
-                value: 2
-              requests_per_second:
-                value: 7
-              average_cpu:
-                value: 5
-              requests_response_time:
-                quantile: 2
-                value: 3
-              concurrent_requests:
-                value: 9
-              sleep_idle_delay:
-                value: 4
-          health_checks:
-          - tcp:
-              port: 6
-            restart_limit: 1
-            http:
-              path: path
-              headers:
-              - value: value
-                key: key
-              - value: value
-                key: key
-              method: method
-              port: 7
-            interval: 1
-            grace_period: 7
-            timeout: 1
-          - tcp:
-              port: 6
-            restart_limit: 1
-            http:
-              path: path
-              headers:
-              - value: value
-                key: key
-              - value: value
-                key: key
-              method: method
-              port: 7
-            interval: 1
-            grace_period: 7
-            timeout: 1
-          name: name
-          strategy:
-            type: null
-        app_id: app_id
-      properties:
-        app_id:
-          type: string
         definition:
           $ref: '#/components/schemas/DeploymentDefinition'
       type: object
@@ -17986,37 +19105,6 @@ components:
           $ref: '#/components/schemas/Service'
       type: object
     DeleteServiceReply:
-      type: object
-    DesiredDeployment:
-      example:
-        groups:
-        - name: name
-          deployment_ids:
-          - deployment_ids
-          - deployment_ids
-        - name: name
-          deployment_ids:
-          - deployment_ids
-          - deployment_ids
-      properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/DesiredDeployment.Group'
-          type: array
-      type: object
-    DesiredDeployment.Group:
-      example:
-        name: name
-        deployment_ids:
-        - deployment_ids
-        - deployment_ids
-      properties:
-        name:
-          type: string
-        deployment_ids:
-          items:
-            type: string
-          type: array
       type: object
     GetServiceReply:
       example:
@@ -18387,13 +19475,13 @@ components:
             - regions
             volumes:
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
               - scopes
             - path: path
-              replica_index: 5
+              replica_index: 1
               id: id
               scopes:
               - scopes
@@ -18472,7 +19560,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 2
+                pg_version: 4
             git:
               run_command: run_command
               workdir: workdir
@@ -18613,7 +19701,7 @@ components:
               active_time_seconds: active_time_seconds
               default_branch_logical_size: default_branch_logical_size
               default_branch_name: default_branch_name
-              server_port: 7
+              server_port: 0
               default_branch_id: default_branch_id
               compute_time_seconds: compute_time_seconds
               data_storage_bytes_hour: data_storage_bytes_hour
@@ -18641,120 +19729,6 @@ components:
       type: object
     ResumeServiceReply:
       type: object
-    Service:
-      example:
-        created_at: 2000-01-23T04:56:07.000+00:00
-        resumed_at: 2000-01-23T04:56:07.000+00:00
-        type: null
-        version: version
-        last_provisioned_deployment_id: last_provisioned_deployment_id
-        succeeded_at: 2000-01-23T04:56:07.000+00:00
-        paused_at: 2000-01-23T04:56:07.000+00:00
-        updated_at: 2000-01-23T04:56:07.000+00:00
-        organization_id: organization_id
-        name: name
-        started_at: 2000-01-23T04:56:07.000+00:00
-        messages:
-        - messages
-        - messages
-        active_deployment_id: active_deployment_id
-        id: id
-        state:
-          desired_deployment:
-            groups:
-            - name: name
-              deployment_ids:
-              - deployment_ids
-              - deployment_ids
-            - name: name
-              deployment_ids:
-              - deployment_ids
-              - deployment_ids
-          auto_release:
-            groups:
-            - latest_sha: latest_sha
-              name: name
-              git_ref: git_ref
-              repository: repository
-            - latest_sha: latest_sha
-              name: name
-              git_ref: git_ref
-              repository: repository
-        app_id: app_id
-        terminated_at: 2000-01-23T04:56:07.000+00:00
-        latest_deployment_id: latest_deployment_id
-        status: null
-      properties:
-        id:
-          type: string
-        created_at:
-          format: date-time
-          type: string
-        updated_at:
-          format: date-time
-          type: string
-        started_at:
-          format: date-time
-          type: string
-        succeeded_at:
-          format: date-time
-          type: string
-        paused_at:
-          format: date-time
-          type: string
-        resumed_at:
-          format: date-time
-          type: string
-        terminated_at:
-          format: date-time
-          type: string
-        name:
-          type: string
-        type:
-          $ref: '#/components/schemas/Service.Type'
-        organization_id:
-          type: string
-        app_id:
-          type: string
-        status:
-          $ref: '#/components/schemas/Service.Status'
-        messages:
-          items:
-            type: string
-          type: array
-        version:
-          format: uint64
-          type: string
-        active_deployment_id:
-          type: string
-        latest_deployment_id:
-          type: string
-        last_provisioned_deployment_id:
-          type: string
-        state:
-          $ref: '#/components/schemas/ServiceState'
-      type: object
-    Service.Status:
-      default: STARTING
-      enum:
-      - STARTING
-      - HEALTHY
-      - DEGRADED
-      - UNHEALTHY
-      - DELETING
-      - DELETED
-      - PAUSING
-      - PAUSED
-      - RESUMING
-      type: string
-    Service.Type:
-      default: INVALID_TYPE
-      enum:
-      - INVALID_TYPE
-      - WEB
-      - WORKER
-      - DATABASE
-      type: string
     ServiceEvent:
       example:
         metadata: "{}"
@@ -18853,34 +19827,6 @@ components:
         latest_deployment_id:
           type: string
       type: object
-    ServiceState:
-      example:
-        desired_deployment:
-          groups:
-          - name: name
-            deployment_ids:
-            - deployment_ids
-            - deployment_ids
-          - name: name
-            deployment_ids:
-            - deployment_ids
-            - deployment_ids
-        auto_release:
-          groups:
-          - latest_sha: latest_sha
-            name: name
-            git_ref: git_ref
-            repository: repository
-          - latest_sha: latest_sha
-            name: name
-            git_ref: git_ref
-            repository: repository
-      properties:
-        desired_deployment:
-          $ref: '#/components/schemas/DesiredDeployment'
-        auto_release:
-          $ref: '#/components/schemas/AutoRelease'
-      type: object
     UpdateService:
       example:
         metadata:
@@ -18921,13 +19867,13 @@ components:
           - regions
           volumes:
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
             - scopes
           - path: path
-            replica_index: 5
+            replica_index: 1
             id: id
             scopes:
             - scopes
@@ -19006,7 +19952,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 2
+              pg_version: 4
           git:
             run_command: run_command
             workdir: workdir
@@ -20269,6 +21215,57 @@ components:
         github_user:
           type: string
       type: object
+    AvailabilityLevel:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - LOW
+      - MEDIUM
+      - HIGH
+      type: string
+    CatalogUsage:
+      example:
+        instances:
+          key:
+            regions:
+              key:
+                availability: null
+      properties:
+        instances:
+          additionalProperties:
+            $ref: '#/components/schemas/InstanceAvailability'
+          type: object
+      type: object
+    InstanceAvailability:
+      example:
+        regions:
+          key:
+            availability: null
+      properties:
+        regions:
+          additionalProperties:
+            $ref: '#/components/schemas/RegionAvailability'
+          type: object
+      type: object
+    ListUsageReply:
+      example:
+        usage:
+          instances:
+            key:
+              regions:
+                key:
+                  availability: null
+      properties:
+        usage:
+          $ref: '#/components/schemas/CatalogUsage'
+      type: object
+    RegionAvailability:
+      example:
+        availability: null
+      properties:
+        availability:
+          $ref: '#/components/schemas/AvailabilityLevel'
+      type: object
     GetRegionReply:
       example:
         region:
@@ -21085,6 +22082,8 @@ components:
       - no_plan
       - pro
       - scale
+      - partner_csp
+      - partner_csp_unit
       type: string
     PublicOrganization:
       example:
@@ -21441,6 +22440,7 @@ components:
           services: services
           services_by_app: services_by_app
           service_provisioning_concurrency: service_provisioning_concurrency
+          logs_retention: 2
           max_instances_by_type:
             key: max_instances_by_type
           persistent_volumes_by_region:
@@ -21451,6 +22451,10 @@ components:
           memory_mb: memory_mb
           domains_load_balancer:
             max_koyeb: 5
+          metrics_retention: 5
+          access_reserved_subdomains:
+          - access_reserved_subdomains
+          - access_reserved_subdomains
           apps: apps
       properties:
         quotas:
@@ -21490,6 +22494,7 @@ components:
         services: services
         services_by_app: services_by_app
         service_provisioning_concurrency: service_provisioning_concurrency
+        logs_retention: 2
         max_instances_by_type:
           key: max_instances_by_type
         persistent_volumes_by_region:
@@ -21500,6 +22505,10 @@ components:
         memory_mb: memory_mb
         domains_load_balancer:
           max_koyeb: 5
+        metrics_retention: 5
+        access_reserved_subdomains:
+        - access_reserved_subdomains
+        - access_reserved_subdomains
         apps: apps
       properties:
         apps:
@@ -21546,6 +22555,20 @@ components:
           type: string
         domains_load_balancer:
           $ref: '#/components/schemas/DomainLoadBalancerQuotas'
+        metrics_retention:
+          format: int32
+          title: Time in days
+          type: integer
+        logs_retention:
+          format: int32
+          title: Time in days
+          type: integer
+        access_reserved_subdomains:
+          items:
+            type: string
+          title: The mapping between reserved_subdomain names and their value is in
+            the code
+          type: array
       type: object
     GetIntercomProfileReply:
       example:
@@ -22382,12 +23405,23 @@ components:
       - RESTRICTED
       - ACTIVE
       - BETA
+      - MAX_ORGANIZATIONS_25
+      - MAX_ORGANIZATIONS_100
+      - MAX_ORGANIZATIONS_1000
+      - MAX_ORGANIZATIONS_10000
+      - MAX_ORGANIZATIONS_100000
+      - MAX_ORGANIZATIONS_1000000
+      - PARTNER_CSP
+      - IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX
       title: |-
         - ADMIN: A user is an admin user
          - TEST: A user is a test user
          - RESTRICTED: Whether this account as restricted access
          - ACTIVE: Whether this account is active
          - BETA: Account in beta program
+         - MAX_ORGANIZATIONS_25: User can create this much organizations, overriding the default amount
+         - PARTNER_CSP: User can create sub-organizations
+         - IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX: User can bypass organization name reservations rules
       type: string
     AcceptOrganizationInvitationReply:
       example:
@@ -23492,6 +24526,14 @@ components:
             type: string
           type: array
       type: object
+    DeactivateOrganization_request:
+      properties:
+        skip_confirmation:
+          description: |-
+            if set to true, skip_confirmation will directly start the deactivation process,
+            without sending a confirmation email beforehand.
+          type: boolean
+      type: object
     UpdateOrganizationPlan_request:
       properties:
         plan:
@@ -23528,11 +24570,13 @@ x-tagGroups:
   - Apps
   - Services
   - Deployments
+  - Archives
   - RegionalDeployments
   - Instances
   - Domains
   - PersistentVolumes
   - Snapshots
+  - Compose
   - Repositories
   - Logs
   - Metrics

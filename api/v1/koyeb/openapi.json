@@ -46,11 +46,13 @@
         "Apps",
         "Services",
         "Deployments",
+        "Archives",
         "RegionalDeployments",
         "Instances",
         "Domains",
         "PersistentVolumes",
         "Snapshots",
+        "Compose",
         "Repositories",
         "Logs",
         "Metrics",
@@ -439,7 +441,8 @@
             "name": "start",
             "in": "query",
             "required": false,
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           {
             "name": "limit",
@@ -447,6 +450,20 @@
             "required": false,
             "type": "string",
             "format": "int64"
+          },
+          {
+            "name": "regex",
+            "description": "(Optional) Apply a regex to filter logs. Can't be used with `text`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "text",
+            "description": "(Optional) Looks for this string in logs. Can't be used with `regex`.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [
@@ -589,6 +606,75 @@
         ],
         "tags": [
           "Instances"
+        ]
+      }
+    },
+    "/v1/compose": {
+      "post": {
+        "summary": "Create resources from compose.",
+        "operationId": "Compose",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ComposeReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "compose",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCompose"
+            }
+          }
+        ],
+        "tags": [
+          "Compose"
         ]
       }
     },
@@ -1364,6 +1450,88 @@
         ],
         "tags": [
           "Snapshots"
+        ]
+      }
+    },
+    "/v1/deployment/{id}/scaling": {
+      "get": {
+        "summary": "Get Deployment Scaling",
+        "operationId": "GetDeploymentScaling",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDeploymentScalingReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "description": "(Optional) Filter on region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "replica_index",
+            "description": "(Optional) Filter on replica_index",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "Deployments"
         ]
       }
     },
@@ -6079,6 +6247,36 @@
         ]
       }
     },
+    "/v1/catalog/usage": {
+      "get": {
+        "operationId": "ListUsage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListUsageReply"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CatalogInstanceUsage"
+        ]
+      }
+    },
     "/v1/catalog/regions": {
       "get": {
         "summary": "List Region",
@@ -10157,7 +10355,13 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object"
+              "type": "object",
+              "properties": {
+                "skip_confirmation": {
+                  "type": "boolean",
+                  "description": "if set to true, skip_confirmation will directly start the deactivation process,\nwithout sending a confirmation email beforehand."
+                }
+              }
             }
           }
         ],
@@ -11023,6 +11227,982 @@
         }
       }
     },
+    "App": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "succeeded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "paused_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resumed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "$ref": "#/definitions/App.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Domain"
+          }
+        }
+      }
+    },
+    "App.Status": {
+      "type": "string",
+      "enum": [
+        "STARTING",
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY",
+        "DELETING",
+        "DELETED",
+        "PAUSING",
+        "PAUSED",
+        "RESUMING"
+      ],
+      "default": "STARTING"
+    },
+    "ArchiveSource": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The ID of the archive to deploy"
+        },
+        "buildpack": {
+          "$ref": "#/definitions/BuildpackBuilder"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerBuilder"
+        }
+      }
+    },
+    "AutoRelease": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AutoRelease.Group"
+          }
+        }
+      }
+    },
+    "AutoRelease.Group": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string"
+        },
+        "git_ref": {
+          "type": "string",
+          "title": "A git ref to track (.e.g: refs/tags/<tag> or refs/heads/<branch>"
+        },
+        "latest_sha": {
+          "type": "string",
+          "title": "The last hash that was resolved (used to avoid triggering releases when things haven't changed)"
+        }
+      },
+      "title": "Configuration extracted from the latest deployment in this deployment_group"
+    },
+    "BuildpackBuilder": {
+      "type": "object",
+      "properties": {
+        "build_command": {
+          "type": "string",
+          "title": "A command used to override the build command, run after all build steps"
+        },
+        "run_command": {
+          "type": "string",
+          "title": "A command used to override the default run command"
+        },
+        "privileged": {
+          "type": "boolean",
+          "title": "A flag to run the container in privileged mode"
+        }
+      }
+    },
+    "ComposeReply": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/App"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service"
+          }
+        }
+      }
+    },
+    "ConfigFile": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "title": "the path where the file is copied"
+        },
+        "permissions": {
+          "type": "string",
+          "title": "the permissions of the file in format 0644"
+        },
+        "content": {
+          "type": "string",
+          "title": "the content of the file"
+        }
+      }
+    },
+    "CreateApp": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CreateCompose": {
+      "type": "object",
+      "properties": {
+        "app": {
+          "$ref": "#/definitions/CreateApp"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreateService"
+          }
+        }
+      }
+    },
+    "CreateService": {
+      "type": "object",
+      "properties": {
+        "app_id": {
+          "type": "string"
+        },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        }
+      }
+    },
+    "DatabaseSource": {
+      "type": "object",
+      "properties": {
+        "neon_postgres": {
+          "$ref": "#/definitions/NeonPostgresDatabase"
+        }
+      }
+    },
+    "DeploymentDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/DeploymentDefinition.Type"
+        },
+        "strategy": {
+          "$ref": "#/definitions/DeploymentStrategy"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentRoute"
+          }
+        },
+        "ports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentPort"
+          }
+        },
+        "env": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentEnv"
+          }
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scalings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentScaling"
+          }
+        },
+        "instance_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentInstanceType"
+          }
+        },
+        "health_checks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentHealthCheck"
+          }
+        },
+        "volumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentVolume"
+          }
+        },
+        "config_files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ConfigFile"
+          }
+        },
+        "skip_cache": {
+          "type": "boolean"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerSource"
+        },
+        "git": {
+          "$ref": "#/definitions/GitSource"
+        },
+        "database": {
+          "$ref": "#/definitions/DatabaseSource"
+        },
+        "archive": {
+          "$ref": "#/definitions/ArchiveSource"
+        }
+      }
+    },
+    "DeploymentDefinition.Type": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "WEB",
+        "WORKER",
+        "DATABASE"
+      ],
+      "default": "INVALID"
+    },
+    "DeploymentEnv": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        }
+      }
+    },
+    "DeploymentHealthCheck": {
+      "type": "object",
+      "properties": {
+        "grace_period": {
+          "type": "integer",
+          "format": "int64",
+          "title": "An optional initial period in seconds to wait for the instance to become healthy, default is 5s"
+        },
+        "interval": {
+          "type": "integer",
+          "format": "int64",
+          "title": "An optional period in seconds between two health checks, default is 60s"
+        },
+        "restart_limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "An optional number of consecutive failures before attempting to restart the service, default is 3"
+        },
+        "timeout": {
+          "type": "integer",
+          "format": "int64",
+          "title": "An optional maximum time to wait in seconds before considering the check as a failure, default is 5s"
+        },
+        "tcp": {
+          "$ref": "#/definitions/TCPHealthCheck"
+        },
+        "http": {
+          "$ref": "#/definitions/HTTPHealthCheck"
+        }
+      }
+    },
+    "DeploymentInstanceType": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "DeploymentPort": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "protocol": {
+          "type": "string",
+          "title": "One of http, http2, tcp"
+        }
+      }
+    },
+    "DeploymentRoute": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "DeploymentScaling": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "max": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeploymentScalingTarget"
+          }
+        }
+      }
+    },
+    "DeploymentScalingTarget": {
+      "type": "object",
+      "properties": {
+        "average_cpu": {
+          "$ref": "#/definitions/DeploymentScalingTargetAverageCPU"
+        },
+        "average_mem": {
+          "$ref": "#/definitions/DeploymentScalingTargetAverageMem"
+        },
+        "requests_per_second": {
+          "$ref": "#/definitions/DeploymentScalingTargetRequestsPerSecond"
+        },
+        "concurrent_requests": {
+          "$ref": "#/definitions/DeploymentScalingTargetConcurrentRequests"
+        },
+        "requests_response_time": {
+          "$ref": "#/definitions/DeploymentScalingTargetRequestsResponseTime"
+        },
+        "sleep_idle_delay": {
+          "$ref": "#/definitions/DeploymentScalingTargetSleepIdleDelay"
+        }
+      }
+    },
+    "DeploymentScalingTargetAverageCPU": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetAverageMem": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetConcurrentRequests": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetRequestsPerSecond": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "DeploymentScalingTargetRequestsResponseTime": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "quantile": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The quantile to use for autoscaling. For example, set to 95 to use the 95th\npercentile (p95) for autoscaling.  Valid values are between 0 and 100."
+        }
+      }
+    },
+    "DeploymentScalingTargetSleepIdleDelay": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Delay in seconds after which a service which received 0 request is scaled to 0.\nThis is not configurable and must be set to 300 (5 minutes). Get in touch to\ntune it."
+        }
+      }
+    },
+    "DeploymentStrategy": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/DeploymentStrategyType",
+          "title": "Strategy type"
+        }
+      }
+    },
+    "DeploymentStrategyType": {
+      "type": "string",
+      "enum": [
+        "DEPLOYMENT_STRATEGY_TYPE_INVALID",
+        "DEPLOYMENT_STRATEGY_TYPE_CANARY",
+        "DEPLOYMENT_STRATEGY_TYPE_ROLLING",
+        "DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN",
+        "DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE"
+      ],
+      "default": "DEPLOYMENT_STRATEGY_TYPE_INVALID",
+      "description": " - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.\n - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.\n - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.\n - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.\n - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy."
+    },
+    "DeploymentVolume": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "the id of the volume"
+        },
+        "path": {
+          "type": "string",
+          "title": "the path where the volume is mounted to"
+        },
+        "replica_index": {
+          "type": "integer",
+          "format": "int64",
+          "title": "optionally, explicitly choose the replica index to mount the volume to"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "scope of the associated"
+        }
+      }
+    },
+    "DesiredDeployment": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DesiredDeployment.Group"
+          }
+        }
+      }
+    },
+    "DesiredDeployment.Group": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "deployment_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "DockerBuilder": {
+      "type": "object",
+      "properties": {
+        "dockerfile": {
+          "type": "string",
+          "title": "A path to the Dockerfile"
+        },
+        "entrypoint": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The docker ENTRYPOINT"
+        },
+        "command": {
+          "type": "string",
+          "title": "The docker CMD"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The docker CMD args"
+        },
+        "target": {
+          "type": "string",
+          "title": "The target for multi-stage builds"
+        },
+        "privileged": {
+          "type": "boolean",
+          "title": "A flag to run the container in privileged mode"
+        }
+      }
+    },
+    "DockerSource": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "type": "string"
+        },
+        "command": {
+          "type": "string"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "image_registry_secret": {
+          "type": "string"
+        },
+        "entrypoint": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "privileged": {
+          "type": "boolean",
+          "title": "A flag to run the container in privileged mode"
+        }
+      }
+    },
+    "Domain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "$ref": "#/definitions/Domain.Status"
+        },
+        "type": {
+          "$ref": "#/definitions/Domain.Type"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "deployment_group": {
+          "type": "string"
+        },
+        "verified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "intended_cname": {
+          "type": "string"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "cloudflare": {
+          "$ref": "#/definitions/Domain.LoadBalancerCloudflare"
+        },
+        "koyeb": {
+          "$ref": "#/definitions/Domain.LoadBalancerKoyeb"
+        }
+      }
+    },
+    "Domain.LoadBalancerCloudflare": {
+      "type": "object"
+    },
+    "Domain.LoadBalancerKoyeb": {
+      "type": "object",
+      "properties": {
+        "request_timeout_seconds": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Between 100 and 900"
+        }
+      }
+    },
+    "Domain.Status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "ACTIVE",
+        "ERROR",
+        "DELETING",
+        "DELETED"
+      ],
+      "default": "PENDING"
+    },
+    "Domain.Type": {
+      "type": "string",
+      "enum": [
+        "AUTOASSIGNED",
+        "CUSTOM"
+      ],
+      "default": "AUTOASSIGNED",
+      "title": "- AUTOASSIGNED: Domain like <appName>-<orgName>.koyeb.app"
+    },
+    "GitSource": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "description": "A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test."
+        },
+        "branch": {
+          "type": "string",
+          "title": "A git branch that will be tracked for new commits and deployments will be created"
+        },
+        "tag": {
+          "type": "string",
+          "title": "A git tag that should be built"
+        },
+        "sha": {
+          "type": "string",
+          "title": "A git commit that should be built (useful for pinning to a commit, this will always be set when a deployment is created by a code push)"
+        },
+        "build_command": {
+          "type": "string",
+          "title": "A command used to override the build command, run after all build steps \u2014 deprecated, use buildpack.build_command instead"
+        },
+        "run_command": {
+          "type": "string",
+          "title": "A command used to override the default run command - deprecated, use buildpack.run_command instead"
+        },
+        "no_deploy_on_push": {
+          "type": "boolean",
+          "title": "A flag to disable a new deployment when a push event is detected"
+        },
+        "workdir": {
+          "type": "string",
+          "title": "A subdirectory to use as the build directory"
+        },
+        "buildpack": {
+          "$ref": "#/definitions/BuildpackBuilder"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerBuilder"
+        }
+      }
+    },
+    "HTTPHeader": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "HTTPHealthCheck": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The port to use to perform the health check, must be declared in the ports section"
+        },
+        "path": {
+          "type": "string",
+          "title": "The path to use to perform the HTTP health check"
+        },
+        "method": {
+          "type": "string",
+          "title": "An optional HTTP method to use to perform the health check, default is GET"
+        },
+        "headers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HTTPHeader"
+          },
+          "title": "An optional list of HTTP headers to provide when performing the request, default is empty"
+        }
+      }
+    },
+    "NeonPostgresDatabase": {
+      "type": "object",
+      "properties": {
+        "pg_version": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "region": {
+          "type": "string"
+        },
+        "instance_type": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NeonPostgresDatabase.NeonRole"
+          }
+        },
+        "databases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NeonPostgresDatabase.NeonDatabase"
+          }
+        }
+      }
+    },
+    "NeonPostgresDatabase.NeonDatabase": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        }
+      }
+    },
+    "NeonPostgresDatabase.NeonRole": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "secret": {
+          "type": "string"
+        }
+      }
+    },
+    "Service": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "succeeded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "paused_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resumed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Service.Type"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/Service.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "active_deployment_id": {
+          "type": "string"
+        },
+        "latest_deployment_id": {
+          "type": "string"
+        },
+        "last_provisioned_deployment_id": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/ServiceState",
+          "title": "Legacy stuff"
+        }
+      }
+    },
+    "Service.Status": {
+      "type": "string",
+      "enum": [
+        "STARTING",
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY",
+        "DELETING",
+        "DELETED",
+        "PAUSING",
+        "PAUSED",
+        "RESUMING"
+      ],
+      "default": "STARTING"
+    },
+    "Service.Type": {
+      "type": "string",
+      "enum": [
+        "INVALID_TYPE",
+        "WEB",
+        "WORKER",
+        "DATABASE"
+      ],
+      "default": "INVALID_TYPE"
+    },
+    "ServiceState": {
+      "type": "object",
+      "properties": {
+        "desired_deployment": {
+          "$ref": "#/definitions/DesiredDeployment"
+        },
+        "auto_release": {
+          "$ref": "#/definitions/AutoRelease"
+        }
+      }
+    },
+    "TCPHealthCheck": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The port to use to perform the health check, must be declared in the ports section"
+        }
+      }
+    },
     "Archive": {
       "type": "object",
       "properties": {
@@ -11070,86 +12250,6 @@
       "properties": {
         "archive": {
           "$ref": "#/definitions/Archive"
-        }
-      }
-    },
-    "ArchiveSource": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "The ID of the archive to deploy"
-        },
-        "buildpack": {
-          "$ref": "#/definitions/BuildpackBuilder"
-        },
-        "docker": {
-          "$ref": "#/definitions/DockerBuilder"
-        }
-      }
-    },
-    "BuildpackBuilder": {
-      "type": "object",
-      "properties": {
-        "build_command": {
-          "type": "string",
-          "title": "A command used to override the build command, run after all build steps"
-        },
-        "run_command": {
-          "type": "string",
-          "title": "A command used to override the default run command"
-        },
-        "privileged": {
-          "type": "boolean",
-          "title": "A flag to run the container in privileged mode"
-        }
-      }
-    },
-    "ConfigFile": {
-      "type": "object",
-      "properties": {
-        "path": {
-          "type": "string",
-          "title": "the path where the file is copied"
-        },
-        "permissions": {
-          "type": "string",
-          "title": "the permissions of the file in format 0644"
-        },
-        "content": {
-          "type": "string",
-          "title": "the content of the file"
-        }
-      }
-    },
-    "DeploymentHealthCheck": {
-      "type": "object",
-      "properties": {
-        "grace_period": {
-          "type": "integer",
-          "format": "int64",
-          "title": "An optional initial period in seconds to wait for the instance to become healthy, default is 5s"
-        },
-        "interval": {
-          "type": "integer",
-          "format": "int64",
-          "title": "An optional period in seconds between two health checks, default is 60s"
-        },
-        "restart_limit": {
-          "type": "integer",
-          "format": "int64",
-          "title": "An optional number of consecutive failures before attempting to restart the service, default is 3"
-        },
-        "timeout": {
-          "type": "integer",
-          "format": "int64",
-          "title": "An optional maximum time to wait in seconds before considering the check as a failure, default is 5s"
-        },
-        "tcp": {
-          "$ref": "#/definitions/TCPHealthCheck"
-        },
-        "http": {
-          "$ref": "#/definitions/HTTPHealthCheck"
         }
       }
     },
@@ -11286,175 +12386,6 @@
       ],
       "default": "UNKNOWN"
     },
-    "DeploymentScalingTarget": {
-      "type": "object",
-      "properties": {
-        "average_cpu": {
-          "$ref": "#/definitions/DeploymentScalingTargetAverageCPU"
-        },
-        "average_mem": {
-          "$ref": "#/definitions/DeploymentScalingTargetAverageMem"
-        },
-        "requests_per_second": {
-          "$ref": "#/definitions/DeploymentScalingTargetRequestsPerSecond"
-        },
-        "concurrent_requests": {
-          "$ref": "#/definitions/DeploymentScalingTargetConcurrentRequests"
-        },
-        "requests_response_time": {
-          "$ref": "#/definitions/DeploymentScalingTargetRequestsResponseTime"
-        },
-        "sleep_idle_delay": {
-          "$ref": "#/definitions/DeploymentScalingTargetSleepIdleDelay"
-        }
-      }
-    },
-    "DeploymentScalingTargetAverageCPU": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "DeploymentScalingTargetAverageMem": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "DeploymentScalingTargetConcurrentRequests": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "DeploymentScalingTargetRequestsPerSecond": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
-    "DeploymentScalingTargetRequestsResponseTime": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "quantile": {
-          "type": "integer",
-          "format": "int64",
-          "description": "The quantile to use for autoscaling. For example, set to 95 to use the 95th\npercentile (p95) for autoscaling.  Valid values are between 0 and 100."
-        }
-      }
-    },
-    "DeploymentScalingTargetSleepIdleDelay": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Delay in seconds after which a service which received 0 request is scaled to 0.\nThis is not configurable and must be set to 300 (5 minutes). Get in touch to\ntune it."
-        }
-      }
-    },
-    "DeploymentStrategy": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "$ref": "#/definitions/DeploymentStrategyType",
-          "title": "Strategy type"
-        }
-      }
-    },
-    "DeploymentStrategyType": {
-      "type": "string",
-      "enum": [
-        "DEPLOYMENT_STRATEGY_TYPE_INVALID",
-        "DEPLOYMENT_STRATEGY_TYPE_CANARY",
-        "DEPLOYMENT_STRATEGY_TYPE_ROLLING",
-        "DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN",
-        "DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE"
-      ],
-      "default": "DEPLOYMENT_STRATEGY_TYPE_INVALID",
-      "description": " - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.\n - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.\n - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.\n - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.\n - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy."
-    },
-    "DockerBuilder": {
-      "type": "object",
-      "properties": {
-        "dockerfile": {
-          "type": "string",
-          "title": "A path to the Dockerfile"
-        },
-        "entrypoint": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The docker ENTRYPOINT"
-        },
-        "command": {
-          "type": "string",
-          "title": "The docker CMD"
-        },
-        "args": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "The docker CMD args"
-        },
-        "target": {
-          "type": "string",
-          "title": "The target for multi-stage builds"
-        },
-        "privileged": {
-          "type": "boolean",
-          "title": "A flag to run the container in privileged mode"
-        }
-      }
-    },
-    "DockerSource": {
-      "type": "object",
-      "properties": {
-        "image": {
-          "type": "string"
-        },
-        "command": {
-          "type": "string"
-        },
-        "args": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "image_registry_secret": {
-          "type": "string"
-        },
-        "entrypoint": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "privileged": {
-          "type": "boolean",
-          "title": "A flag to run the container in privileged mode"
-        }
-      }
-    },
     "Env": {
       "type": "object",
       "properties": {
@@ -11474,85 +12405,6 @@
       "properties": {
         "regional_deployment": {
           "$ref": "#/definitions/RegionalDeployment"
-        }
-      }
-    },
-    "GitSource": {
-      "type": "object",
-      "properties": {
-        "repository": {
-          "type": "string",
-          "description": "A url to a git repository (contains the provider as well) .e.g: github.com/koyeb/test."
-        },
-        "branch": {
-          "type": "string",
-          "title": "A git branch that will be tracked for new commits and deployments will be created"
-        },
-        "tag": {
-          "type": "string",
-          "title": "A git tag that should be built"
-        },
-        "sha": {
-          "type": "string",
-          "title": "A git commit that should be built (useful for pinning to a commit, this will always be set when a deployment is created by a code push)"
-        },
-        "build_command": {
-          "type": "string",
-          "title": "A command used to override the build command, run after all build steps \u2014 deprecated, use buildpack.build_command instead"
-        },
-        "run_command": {
-          "type": "string",
-          "title": "A command used to override the default run command - deprecated, use buildpack.run_command instead"
-        },
-        "no_deploy_on_push": {
-          "type": "boolean",
-          "title": "A flag to disable a new deployment when a push event is detected"
-        },
-        "workdir": {
-          "type": "string",
-          "title": "A subdirectory to use as the build directory"
-        },
-        "buildpack": {
-          "$ref": "#/definitions/BuildpackBuilder"
-        },
-        "docker": {
-          "$ref": "#/definitions/DockerBuilder"
-        }
-      }
-    },
-    "HTTPHeader": {
-      "type": "object",
-      "properties": {
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
-    "HTTPHealthCheck": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The port to use to perform the health check, must be declared in the ports section"
-        },
-        "path": {
-          "type": "string",
-          "title": "The path to use to perform the HTTP health check"
-        },
-        "method": {
-          "type": "string",
-          "title": "An optional HTTP method to use to perform the health check, default is GET"
-        },
-        "headers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/HTTPHeader"
-          },
-          "title": "An optional list of HTTP headers to provide when performing the request, default is empty"
         }
       }
     },
@@ -11945,16 +12797,6 @@
         }
       }
     },
-    "TCPHealthCheck": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64",
-          "title": "The port to use to perform the health check, must be declared in the ports section"
-        }
-      }
-    },
     "ReviewOrganizationCapacityReply": {
       "type": "object",
       "properties": {
@@ -12138,14 +12980,6 @@
         }
       }
     },
-    "DatabaseSource": {
-      "type": "object",
-      "properties": {
-        "neon_postgres": {
-          "$ref": "#/definitions/NeonPostgresDatabase"
-        }
-      }
-    },
     "Deployment": {
       "type": "object",
       "properties": {
@@ -12267,119 +13101,6 @@
         }
       }
     },
-    "DeploymentDefinition": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "$ref": "#/definitions/DeploymentDefinition.Type"
-        },
-        "strategy": {
-          "$ref": "#/definitions/DeploymentStrategy"
-        },
-        "routes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentRoute"
-          }
-        },
-        "ports": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentPort"
-          }
-        },
-        "env": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentEnv"
-          }
-        },
-        "regions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "scalings": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentScaling"
-          }
-        },
-        "instance_types": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentInstanceType"
-          }
-        },
-        "health_checks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentHealthCheck"
-          }
-        },
-        "volumes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentVolume"
-          }
-        },
-        "config_files": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ConfigFile"
-          }
-        },
-        "skip_cache": {
-          "type": "boolean"
-        },
-        "docker": {
-          "$ref": "#/definitions/DockerSource"
-        },
-        "git": {
-          "$ref": "#/definitions/GitSource"
-        },
-        "database": {
-          "$ref": "#/definitions/DatabaseSource"
-        },
-        "archive": {
-          "$ref": "#/definitions/ArchiveSource"
-        }
-      }
-    },
-    "DeploymentDefinition.Type": {
-      "type": "string",
-      "enum": [
-        "INVALID",
-        "WEB",
-        "WORKER",
-        "DATABASE"
-      ],
-      "default": "INVALID"
-    },
-    "DeploymentEnv": {
-      "type": "object",
-      "properties": {
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "key": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        },
-        "secret": {
-          "type": "string"
-        }
-      }
-    },
     "DeploymentEvent": {
       "type": "object",
       "properties": {
@@ -12404,20 +13125,6 @@
         },
         "metadata": {
           "type": "object"
-        }
-      }
-    },
-    "DeploymentInstanceType": {
-      "type": "object",
-      "properties": {
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "type": {
-          "type": "string"
         }
       }
     },
@@ -12582,86 +13289,43 @@
         }
       }
     },
-    "DeploymentPort": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "protocol": {
-          "type": "string",
-          "title": "One of http, http2, tcp"
-        }
-      }
-    },
-    "DeploymentRoute": {
-      "type": "object",
-      "properties": {
-        "port": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "path": {
-          "type": "string"
-        }
-      }
-    },
-    "DeploymentScaling": {
-      "type": "object",
-      "properties": {
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "min": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "max": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "targets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DeploymentScalingTarget"
-          }
-        }
-      }
-    },
-    "DeploymentVolume": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "the id of the volume"
-        },
-        "path": {
-          "type": "string",
-          "title": "the path where the volume is mounted to"
-        },
-        "replica_index": {
-          "type": "integer",
-          "format": "int64",
-          "title": "optionally, explicitly choose the replica index to mount the volume to"
-        },
-        "scopes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "scope of the associated"
-        }
-      }
-    },
     "GetDeploymentReply": {
       "type": "object",
       "properties": {
         "deployment": {
           "$ref": "#/definitions/Deployment"
+        }
+      }
+    },
+    "GetDeploymentScalingReply": {
+      "type": "object",
+      "properties": {
+        "replicas": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetDeploymentScalingReplyItem"
+          },
+          "title": "The replicas"
+        }
+      }
+    },
+    "GetDeploymentScalingReplyItem": {
+      "type": "object",
+      "properties": {
+        "region": {
+          "type": "string",
+          "title": "The replica region"
+        },
+        "replica_index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "instances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Instance"
+          },
+          "description": "An array of `active` and `starting` instances.\n\nStatus of the active instance (and if none the most recent instance)\n string status = 4;\n Status message of the active instance (and if none the most recent instance)\n string message = 5;"
         }
       }
     },
@@ -12672,6 +13336,92 @@
           "type": "string"
         }
       }
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
+        "regional_deployment_id": {
+          "type": "string"
+        },
+        "allocation_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "replica_index": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "region": {
+          "type": "string"
+        },
+        "datacenter": {
+          "type": "string"
+        },
+        "hypervisor": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/Instance.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "succeeded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "terminated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "xyz_deployment_id": {
+          "type": "string",
+          "description": "WARNING: Please don't use the following attribute.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.\nUSE AT YOUR OWN RISK."
+        }
+      }
+    },
+    "Instance.Status": {
+      "type": "string",
+      "enum": [
+        "ALLOCATING",
+        "STARTING",
+        "HEALTHY",
+        "UNHEALTHY",
+        "STOPPING",
+        "STOPPED",
+        "ERROR",
+        "SLEEPING"
+      ],
+      "default": "ALLOCATING"
     },
     "ListDeploymentEventsReply": {
       "type": "object",
@@ -12731,55 +13481,6 @@
         "has_next": {
           "type": "boolean",
           "title": "If there is more items after in the collection"
-        }
-      }
-    },
-    "NeonPostgresDatabase": {
-      "type": "object",
-      "properties": {
-        "pg_version": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "region": {
-          "type": "string"
-        },
-        "instance_type": {
-          "type": "string"
-        },
-        "roles": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/NeonPostgresDatabase.NeonRole"
-          }
-        },
-        "databases": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/NeonPostgresDatabase.NeonDatabase"
-          }
-        }
-      }
-    },
-    "NeonPostgresDatabase.NeonDatabase": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "owner": {
-          "type": "string"
-        }
-      }
-    },
-    "NeonPostgresDatabase.NeonRole": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "secret": {
-          "type": "string"
         }
       }
     },
@@ -13343,82 +14044,6 @@
         }
       }
     },
-    "App": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "started_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "succeeded_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "paused_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "resumed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "terminated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "status": {
-          "$ref": "#/definitions/App.Status"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "version": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "domains": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Domain"
-          }
-        }
-      }
-    },
-    "App.Status": {
-      "type": "string",
-      "enum": [
-        "STARTING",
-        "HEALTHY",
-        "DEGRADED",
-        "UNHEALTHY",
-        "DELETING",
-        "DELETED",
-        "PAUSING",
-        "PAUSED",
-        "RESUMING"
-      ],
-      "default": "STARTING"
-    },
     "AppEvent": {
       "type": "object",
       "properties": {
@@ -13483,14 +14108,6 @@
         }
       }
     },
-    "CreateApp": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
     "CreateAppReply": {
       "type": "object",
       "properties": {
@@ -13502,96 +14119,6 @@
     },
     "DeleteAppReply": {
       "type": "object"
-    },
-    "Domain": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "status": {
-          "$ref": "#/definitions/Domain.Status"
-        },
-        "type": {
-          "$ref": "#/definitions/Domain.Type"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "deployment_group": {
-          "type": "string"
-        },
-        "verified_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "intended_cname": {
-          "type": "string"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "version": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "cloudflare": {
-          "$ref": "#/definitions/Domain.LoadBalancerCloudflare"
-        },
-        "koyeb": {
-          "$ref": "#/definitions/Domain.LoadBalancerKoyeb"
-        }
-      }
-    },
-    "Domain.LoadBalancerCloudflare": {
-      "type": "object"
-    },
-    "Domain.LoadBalancerKoyeb": {
-      "type": "object",
-      "properties": {
-        "request_timeout_seconds": {
-          "type": "integer",
-          "format": "int64",
-          "title": "Between 100 and 900"
-        }
-      }
-    },
-    "Domain.Status": {
-      "type": "string",
-      "enum": [
-        "PENDING",
-        "ACTIVE",
-        "ERROR",
-        "DELETING",
-        "DELETED"
-      ],
-      "default": "PENDING"
-    },
-    "Domain.Type": {
-      "type": "string",
-      "enum": [
-        "AUTOASSIGNED",
-        "CUSTOM"
-      ],
-      "default": "AUTOASSIGNED",
-      "title": "- AUTOASSIGNED: Domain like <appName>-<orgName>.koyeb.app"
     },
     "GetAppReply": {
       "type": "object",
@@ -13701,92 +14228,6 @@
           "$ref": "#/definitions/Instance"
         }
       }
-    },
-    "Instance": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "service_id": {
-          "type": "string"
-        },
-        "regional_deployment_id": {
-          "type": "string"
-        },
-        "allocation_id": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "replica_index": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "region": {
-          "type": "string"
-        },
-        "datacenter": {
-          "type": "string"
-        },
-        "hypervisor": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/Instance.Status"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "started_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "succeeded_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "terminated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "xyz_deployment_id": {
-          "type": "string",
-          "description": "WARNING: Please don't use the following attribute.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.\nUSE AT YOUR OWN RISK."
-        }
-      }
-    },
-    "Instance.Status": {
-      "type": "string",
-      "enum": [
-        "ALLOCATING",
-        "STARTING",
-        "HEALTHY",
-        "UNHEALTHY",
-        "STOPPING",
-        "STOPPED",
-        "ERROR",
-        "SLEEPING"
-      ],
-      "default": "ALLOCATING"
     },
     "InstanceEvent": {
       "type": "object",
@@ -13969,37 +14410,6 @@
       "description": "- UNKNOWN: Default value\n - AUTH_ACCESS_DENIED: The registry denied access to an authenticated request\n - ANON_ACCESS_DENIED: The registry denied access to an anonymous request\n - AUTH_NOT_FOUND: The image has not been found after an authenticated request\n - ANON_NOT_FOUND: The image has not been found after an anonymous request\n - REGISTRY_ERROR: The registry returned an error\n - TIMEOUT: The request to the registry timed out\n - DNS: There was an error trying to resolve the name of the registry\n - MALFORMED: The provided image name is malformed\n - INVALID_OS: The operating system is not supported\n - INVALID_ARCH: The architecture is not supported",
       "title": "The error code associated to each specific failure mode"
     },
-    "AutoRelease": {
-      "type": "object",
-      "properties": {
-        "groups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AutoRelease.Group"
-          }
-        }
-      }
-    },
-    "AutoRelease.Group": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "repository": {
-          "type": "string"
-        },
-        "git_ref": {
-          "type": "string",
-          "title": "A git ref to track (.e.g: refs/tags/<tag> or refs/heads/<branch>"
-        },
-        "latest_sha": {
-          "type": "string",
-          "title": "The last hash that was resolved (used to avoid triggering releases when things haven't changed)"
-        }
-      },
-      "title": "Configuration extracted from the latest deployment in this deployment_group"
-    },
     "AutocompleteReply": {
       "type": "object",
       "properties": {
@@ -14035,17 +14445,6 @@
         }
       }
     },
-    "CreateService": {
-      "type": "object",
-      "properties": {
-        "app_id": {
-          "type": "string"
-        },
-        "definition": {
-          "$ref": "#/definitions/DeploymentDefinition"
-        }
-      }
-    },
     "CreateServiceReply": {
       "type": "object",
       "properties": {
@@ -14057,31 +14456,6 @@
     },
     "DeleteServiceReply": {
       "type": "object"
-    },
-    "DesiredDeployment": {
-      "type": "object",
-      "properties": {
-        "groups": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DesiredDeployment.Group"
-          }
-        }
-      }
-    },
-    "DesiredDeployment.Group": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "deployment_ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
     },
     "GetServiceReply": {
       "type": "object",
@@ -14185,105 +14559,6 @@
     "ResumeServiceReply": {
       "type": "object"
     },
-    "Service": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "created_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "started_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "succeeded_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "paused_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "resumed_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "terminated_at": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "name": {
-          "type": "string"
-        },
-        "type": {
-          "$ref": "#/definitions/Service.Type"
-        },
-        "organization_id": {
-          "type": "string"
-        },
-        "app_id": {
-          "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/Service.Status"
-        },
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "version": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "active_deployment_id": {
-          "type": "string"
-        },
-        "latest_deployment_id": {
-          "type": "string"
-        },
-        "last_provisioned_deployment_id": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/ServiceState",
-          "title": "Legacy stuff"
-        }
-      }
-    },
-    "Service.Status": {
-      "type": "string",
-      "enum": [
-        "STARTING",
-        "HEALTHY",
-        "DEGRADED",
-        "UNHEALTHY",
-        "DELETING",
-        "DELETED",
-        "PAUSING",
-        "PAUSED",
-        "RESUMING"
-      ],
-      "default": "STARTING"
-    },
-    "Service.Type": {
-      "type": "string",
-      "enum": [
-        "INVALID_TYPE",
-        "WEB",
-        "WORKER",
-        "DATABASE"
-      ],
-      "default": "INVALID_TYPE"
-    },
     "ServiceEvent": {
       "type": "object",
       "properties": {
@@ -14359,17 +14634,6 @@
         },
         "latest_deployment_id": {
           "type": "string"
-        }
-      }
-    },
-    "ServiceState": {
-      "type": "object",
-      "properties": {
-        "desired_deployment": {
-          "$ref": "#/definitions/DesiredDeployment"
-        },
-        "auto_release": {
-          "$ref": "#/definitions/AutoRelease"
         }
       }
     },
@@ -15091,6 +15355,55 @@
         }
       }
     },
+    "AvailabilityLevel": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "LOW",
+        "MEDIUM",
+        "HIGH"
+      ],
+      "default": "UNKNOWN"
+    },
+    "CatalogUsage": {
+      "type": "object",
+      "properties": {
+        "instances": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/InstanceAvailability"
+          }
+        }
+      }
+    },
+    "InstanceAvailability": {
+      "type": "object",
+      "properties": {
+        "regions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/RegionAvailability"
+          }
+        }
+      }
+    },
+    "ListUsageReply": {
+      "type": "object",
+      "properties": {
+        "usage": {
+          "$ref": "#/definitions/CatalogUsage",
+          "title": "The Usage retrieved"
+        }
+      }
+    },
+    "RegionAvailability": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "$ref": "#/definitions/AvailabilityLevel"
+        }
+      }
+    },
     "GetRegionReply": {
       "type": "object",
       "properties": {
@@ -15634,7 +15947,9 @@
         "hobby23",
         "no_plan",
         "pro",
-        "scale"
+        "scale",
+        "partner_csp",
+        "partner_csp_unit"
       ],
       "default": "hobby"
     },
@@ -16019,6 +16334,23 @@
         },
         "domains_load_balancer": {
           "$ref": "#/definitions/DomainLoadBalancerQuotas"
+        },
+        "metrics_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
+        },
+        "logs_retention": {
+          "type": "integer",
+          "format": "int32",
+          "title": "Time in days"
+        },
+        "access_reserved_subdomains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "The mapping between reserved_subdomain names and their value is in the code"
         }
       }
     },
@@ -16619,10 +16951,18 @@
         "TEST",
         "RESTRICTED",
         "ACTIVE",
-        "BETA"
+        "BETA",
+        "MAX_ORGANIZATIONS_25",
+        "MAX_ORGANIZATIONS_100",
+        "MAX_ORGANIZATIONS_1000",
+        "MAX_ORGANIZATIONS_10000",
+        "MAX_ORGANIZATIONS_100000",
+        "MAX_ORGANIZATIONS_1000000",
+        "PARTNER_CSP",
+        "IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX"
       ],
       "default": "ADMIN",
-      "title": "- ADMIN: A user is an admin user\n - TEST: A user is a test user\n - RESTRICTED: Whether this account as restricted access\n - ACTIVE: Whether this account is active\n - BETA: Account in beta program"
+      "title": "- ADMIN: A user is an admin user\n - TEST: A user is a test user\n - RESTRICTED: Whether this account as restricted access\n - ACTIVE: Whether this account is active\n - BETA: Account in beta program\n - MAX_ORGANIZATIONS_25: User can create this much organizations, overriding the default amount\n - PARTNER_CSP: User can create sub-organizations\n - IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX: User can bypass organization name reservations rules"
     },
     "AcceptOrganizationInvitationReply": {
       "type": "object",

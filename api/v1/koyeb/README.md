@@ -96,10 +96,12 @@ Class | Method | HTTP request | Description
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
+*CatalogInstanceUsageApi* | [**ListUsage**](docs/CatalogInstanceUsageApi.md#listusage) | **Get** /v1/catalog/usage | 
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
 *CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
+*ComposeApi* | [**Compose**](docs/ComposeApi.md#compose) | **Post** /v1/compose | Create resources from compose.
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | Get credential
@@ -108,6 +110,7 @@ Class | Method | HTTP request | Description
 *CredentialsApi* | [**UpdateCredential2**](docs/CredentialsApi.md#updatecredential2) | **Patch** /v1/credentials/{id} | Update credential
 *DeploymentsApi* | [**CancelDeployment**](docs/DeploymentsApi.md#canceldeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment
 *DeploymentsApi* | [**GetDeployment**](docs/DeploymentsApi.md#getdeployment) | **Get** /v1/deployments/{id} | Get Deployment
+*DeploymentsApi* | [**GetDeploymentScaling**](docs/DeploymentsApi.md#getdeploymentscaling) | **Get** /v1/deployment/{id}/scaling | Get Deployment Scaling
 *DeploymentsApi* | [**ListDeploymentEvents**](docs/DeploymentsApi.md#listdeploymentevents) | **Get** /v1/deployment_events | List Deployment events
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
 *DockerHelperApi* | [**VerifyDockerImage**](docs/DockerHelperApi.md#verifydockerimage) | **Get** /v1/docker-helper/verify | Verify if a docker image is reachable
@@ -240,12 +243,15 @@ Class | Method | HTTP request | Description
  - [AutoReleaseGroup](docs/AutoReleaseGroup.md)
  - [AutocompleteReply](docs/AutocompleteReply.md)
  - [AutocompleteRequest](docs/AutocompleteRequest.md)
+ - [AvailabilityLevel](docs/AvailabilityLevel.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
  - [BuildpackBuilder](docs/BuildpackBuilder.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CatalogGPUDetails](docs/CatalogGPUDetails.md)
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
+ - [CatalogUsage](docs/CatalogUsage.md)
+ - [ComposeReply](docs/ComposeReply.md)
  - [ConfigFile](docs/ConfigFile.md)
  - [ConfirmPaymentAuthorizationReply](docs/ConfirmPaymentAuthorizationReply.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
@@ -253,6 +259,7 @@ Class | Method | HTTP request | Description
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateArchive](docs/CreateArchive.md)
  - [CreateArchiveReply](docs/CreateArchiveReply.md)
+ - [CreateCompose](docs/CreateCompose.md)
  - [CreateCredential](docs/CreateCredential.md)
  - [CreateCredentialReply](docs/CreateCredentialReply.md)
  - [CreateDomain](docs/CreateDomain.md)
@@ -278,6 +285,7 @@ Class | Method | HTTP request | Description
  - [DatabaseSource](docs/DatabaseSource.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
  - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
+ - [DeactivateOrganizationRequest](docs/DeactivateOrganizationRequest.md)
  - [DeclareStageProgressRequest](docs/DeclareStageProgressRequest.md)
  - [DeclareStepProgressRequest](docs/DeclareStepProgressRequest.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
@@ -345,6 +353,8 @@ Class | Method | HTTP request | Description
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
  - [GetCredentialReply](docs/GetCredentialReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
+ - [GetDeploymentScalingReply](docs/GetDeploymentScalingReply.md)
+ - [GetDeploymentScalingReplyItem](docs/GetDeploymentScalingReplyItem.md)
  - [GetDomainReply](docs/GetDomainReply.md)
  - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
@@ -380,6 +390,7 @@ Class | Method | HTTP request | Description
  - [HTTPHealthCheck](docs/HTTPHealthCheck.md)
  - [HasUnpaidInvoicesReply](docs/HasUnpaidInvoicesReply.md)
  - [Instance](docs/Instance.md)
+ - [InstanceAvailability](docs/InstanceAvailability.md)
  - [InstanceEvent](docs/InstanceEvent.md)
  - [InstanceListItem](docs/InstanceListItem.md)
  - [InstanceStatus](docs/InstanceStatus.md)
@@ -424,6 +435,7 @@ Class | Method | HTTP request | Description
  - [ListServiceEventsReply](docs/ListServiceEventsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [ListSnapshotsReply](docs/ListSnapshotsReply.md)
+ - [ListUsageReply](docs/ListUsageReply.md)
  - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
@@ -477,6 +489,7 @@ Class | Method | HTTP request | Description
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
+ - [RegionAvailability](docs/RegionAvailability.md)
  - [RegionListItem](docs/RegionListItem.md)
  - [RegionUsage](docs/RegionUsage.md)
  - [RegionalDeployment](docs/RegionalDeployment.md)

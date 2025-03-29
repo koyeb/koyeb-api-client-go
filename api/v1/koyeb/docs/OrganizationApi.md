@@ -104,7 +104,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    body := map[string]interface{}{ ... } // map[string]interface{} | 
+    body := *openapiclient.NewDeactivateOrganizationRequest() // DeactivateOrganizationRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -134,7 +134,7 @@ Other parameters are passed through a pointer to a apiDeactivateOrganizationRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
+ **body** | [**DeactivateOrganizationRequest**](DeactivateOrganizationRequest.md) |  | 
 
 ### Return type
 
