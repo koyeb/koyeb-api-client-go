@@ -8,8 +8,10 @@ api_apps.go
 api_archives.go
 api_billing.go
 api_catalog_datacenters.go
+api_catalog_instance_usage.go
 api_catalog_instances.go
 api_catalog_regions.go
+api_compose.go
 api_credentials.go
 api_deployments.go
 api_docker_helper.go
@@ -63,6 +65,7 @@ docs/AutoRelease.md
 docs/AutoReleaseGroup.md
 docs/AutocompleteReply.md
 docs/AutocompleteRequest.md
+docs/AvailabilityLevel.md
 docs/AzureContainerRegistryConfiguration.md
 docs/BillingApi.md
 docs/BuildpackBuilder.md
@@ -71,8 +74,12 @@ docs/CatalogDatacentersApi.md
 docs/CatalogGPUDetails.md
 docs/CatalogInstance.md
 docs/CatalogInstanceListItem.md
+docs/CatalogInstanceUsageApi.md
 docs/CatalogInstancesApi.md
 docs/CatalogRegionsApi.md
+docs/CatalogUsage.md
+docs/ComposeApi.md
+docs/ComposeReply.md
 docs/ConfigFile.md
 docs/ConfirmPaymentAuthorizationReply.md
 docs/CreateAccountRequest.md
@@ -80,6 +87,7 @@ docs/CreateApp.md
 docs/CreateAppReply.md
 docs/CreateArchive.md
 docs/CreateArchiveReply.md
+docs/CreateCompose.md
 docs/CreateCredential.md
 docs/CreateCredentialReply.md
 docs/CreateDomain.md
@@ -106,6 +114,7 @@ docs/DatabaseRolePassword.md
 docs/DatabaseSource.md
 docs/DatacenterListItem.md
 docs/DeactivateOrganizationReply.md
+docs/DeactivateOrganizationRequest.md
 docs/DeclareStageProgressRequest.md
 docs/DeclareStepProgressRequest.md
 docs/DeclineOrganizationInvitationReply.md
@@ -176,6 +185,8 @@ docs/GetAppReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetCredentialReply.md
 docs/GetDeploymentReply.md
+docs/GetDeploymentScalingReply.md
+docs/GetDeploymentScalingReplyItem.md
 docs/GetDomainReply.md
 docs/GetGithubInstallationReply.md
 docs/GetInstanceReply.md
@@ -211,6 +222,7 @@ docs/HTTPHeader.md
 docs/HTTPHealthCheck.md
 docs/HasUnpaidInvoicesReply.md
 docs/Instance.md
+docs/InstanceAvailability.md
 docs/InstanceEvent.md
 docs/InstanceListItem.md
 docs/InstanceStatus.md
@@ -258,6 +270,7 @@ docs/ListSecretsReply.md
 docs/ListServiceEventsReply.md
 docs/ListServicesReply.md
 docs/ListSnapshotsReply.md
+docs/ListUsageReply.md
 docs/ListUserOrganizationInvitationsReply.md
 docs/LogEntry.md
 docs/LoginReply.md
@@ -323,6 +336,7 @@ docs/ReactivateOrganizationReply.md
 docs/RedeployReply.md
 docs/RedeployRequestInfo.md
 docs/Region.md
+docs/RegionAvailability.md
 docs/RegionListItem.md
 docs/RegionUsage.md
 docs/RegionalDeployment.md
@@ -428,12 +442,15 @@ model_auto_release.go
 model_auto_release_group.go
 model_autocomplete_reply.go
 model_autocomplete_request.go
+model_availability_level.go
 model_azure_container_registry_configuration.go
 model_buildpack_builder.go
 model_canny_auth_reply.go
 model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
+model_catalog_usage.go
+model_compose_reply.go
 model_config_file.go
 model_confirm_payment_authorization_reply.go
 model_create_account_request.go
@@ -441,6 +458,7 @@ model_create_app.go
 model_create_app_reply.go
 model_create_archive.go
 model_create_archive_reply.go
+model_create_compose.go
 model_create_credential.go
 model_create_credential_reply.go
 model_create_domain.go
@@ -466,6 +484,7 @@ model_database_role_password.go
 model_database_source.go
 model_datacenter_list_item.go
 model_deactivate_organization_reply.go
+model_deactivate_organization_request.go
 model_declare_stage_progress_request.go
 model_declare_step_progress_request.go
 model_decline_organization_invitation_reply.go
@@ -533,6 +552,8 @@ model_get_app_reply.go
 model_get_catalog_instance_reply.go
 model_get_credential_reply.go
 model_get_deployment_reply.go
+model_get_deployment_scaling_reply.go
+model_get_deployment_scaling_reply_item.go
 model_get_domain_reply.go
 model_get_github_installation_reply.go
 model_get_instance_reply.go
@@ -568,6 +589,7 @@ model_has_unpaid_invoices_reply.go
 model_http_header.go
 model_http_health_check.go
 model_instance.go
+model_instance_availability.go
 model_instance_event.go
 model_instance_list_item.go
 model_instance_status.go
@@ -612,6 +634,7 @@ model_list_secrets_reply.go
 model_list_service_events_reply.go
 model_list_services_reply.go
 model_list_snapshots_reply.go
+model_list_usage_reply.go
 model_list_user_organization_invitations_reply.go
 model_log_entry.go
 model_login_reply.go
@@ -665,6 +688,7 @@ model_reactivate_organization_reply.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
 model_region.go
+model_region_availability.go
 model_region_list_item.go
 model_region_usage.go
 model_regional_deployment.go
@@ -744,8 +768,10 @@ test/api_apps_test.go
 test/api_archives_test.go
 test/api_billing_test.go
 test/api_catalog_datacenters_test.go
+test/api_catalog_instance_usage_test.go
 test/api_catalog_instances_test.go
 test/api_catalog_regions_test.go
+test/api_compose_test.go
 test/api_credentials_test.go
 test/api_deployments_test.go
 test/api_docker_helper_test.go

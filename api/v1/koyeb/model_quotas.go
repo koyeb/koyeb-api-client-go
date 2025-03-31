@@ -29,6 +29,9 @@ type Quotas struct {
 	PersistentVolumesByRegion *map[string]PersistentVolumeQuotas `json:"persistent_volumes_by_region,omitempty"`
 	CustomDomains *string `json:"custom_domains,omitempty"`
 	DomainsLoadBalancer *DomainLoadBalancerQuotas `json:"domains_load_balancer,omitempty"`
+	MetricsRetention *int32 `json:"metrics_retention,omitempty"`
+	LogsRetention *int32 `json:"logs_retention,omitempty"`
+	AccessReservedSubdomains []string `json:"access_reserved_subdomains,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -464,6 +467,102 @@ func (o *Quotas) SetDomainsLoadBalancer(v DomainLoadBalancerQuotas) {
 	o.DomainsLoadBalancer = &v
 }
 
+// GetMetricsRetention returns the MetricsRetention field value if set, zero value otherwise.
+func (o *Quotas) GetMetricsRetention() int32 {
+	if o == nil || isNil(o.MetricsRetention) {
+		var ret int32
+		return ret
+	}
+	return *o.MetricsRetention
+}
+
+// GetMetricsRetentionOk returns a tuple with the MetricsRetention field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetMetricsRetentionOk() (*int32, bool) {
+	if o == nil || isNil(o.MetricsRetention) {
+    return nil, false
+	}
+	return o.MetricsRetention, true
+}
+
+// HasMetricsRetention returns a boolean if a field has been set.
+func (o *Quotas) HasMetricsRetention() bool {
+	if o != nil && !isNil(o.MetricsRetention) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetricsRetention gets a reference to the given int32 and assigns it to the MetricsRetention field.
+func (o *Quotas) SetMetricsRetention(v int32) {
+	o.MetricsRetention = &v
+}
+
+// GetLogsRetention returns the LogsRetention field value if set, zero value otherwise.
+func (o *Quotas) GetLogsRetention() int32 {
+	if o == nil || isNil(o.LogsRetention) {
+		var ret int32
+		return ret
+	}
+	return *o.LogsRetention
+}
+
+// GetLogsRetentionOk returns a tuple with the LogsRetention field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetLogsRetentionOk() (*int32, bool) {
+	if o == nil || isNil(o.LogsRetention) {
+    return nil, false
+	}
+	return o.LogsRetention, true
+}
+
+// HasLogsRetention returns a boolean if a field has been set.
+func (o *Quotas) HasLogsRetention() bool {
+	if o != nil && !isNil(o.LogsRetention) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogsRetention gets a reference to the given int32 and assigns it to the LogsRetention field.
+func (o *Quotas) SetLogsRetention(v int32) {
+	o.LogsRetention = &v
+}
+
+// GetAccessReservedSubdomains returns the AccessReservedSubdomains field value if set, zero value otherwise.
+func (o *Quotas) GetAccessReservedSubdomains() []string {
+	if o == nil || isNil(o.AccessReservedSubdomains) {
+		var ret []string
+		return ret
+	}
+	return o.AccessReservedSubdomains
+}
+
+// GetAccessReservedSubdomainsOk returns a tuple with the AccessReservedSubdomains field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetAccessReservedSubdomainsOk() ([]string, bool) {
+	if o == nil || isNil(o.AccessReservedSubdomains) {
+    return nil, false
+	}
+	return o.AccessReservedSubdomains, true
+}
+
+// HasAccessReservedSubdomains returns a boolean if a field has been set.
+func (o *Quotas) HasAccessReservedSubdomains() bool {
+	if o != nil && !isNil(o.AccessReservedSubdomains) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccessReservedSubdomains gets a reference to the given []string and assigns it to the AccessReservedSubdomains field.
+func (o *Quotas) SetAccessReservedSubdomains(v []string) {
+	o.AccessReservedSubdomains = v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -504,6 +603,15 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.DomainsLoadBalancer) {
 		toSerialize["domains_load_balancer"] = o.DomainsLoadBalancer
+	}
+	if !isNil(o.MetricsRetention) {
+		toSerialize["metrics_retention"] = o.MetricsRetention
+	}
+	if !isNil(o.LogsRetention) {
+		toSerialize["logs_retention"] = o.LogsRetention
+	}
+	if !isNil(o.AccessReservedSubdomains) {
+		toSerialize["access_reserved_subdomains"] = o.AccessReservedSubdomains
 	}
 	return json.Marshal(toSerialize)
 }

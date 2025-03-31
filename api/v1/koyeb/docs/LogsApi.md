@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## TailLogs
 
-> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
+> StreamResultOfLogEntry TailLogs(ctx).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Regex(regex).Text(text).Execute()
 
 Tails logs
 
@@ -113,6 +113,7 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
@@ -124,12 +125,14 @@ func main() {
     regionalDeploymentId := "regionalDeploymentId_example" // string |  (optional)
     instanceId := "instanceId_example" // string |  (optional)
     stream := "stream_example" // string |  (optional)
-    start := "start_example" // string |  (optional)
+    start := time.Now() // time.Time |  (optional)
     limit := "limit_example" // string |  (optional)
+    regex := "regex_example" // string | (Optional) Apply a regex to filter logs. Can't be used with `text`. (optional)
+    text := "text_example" // string | (Optional) Looks for this string in logs. Can't be used with `regex`. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Execute()
+    resp, r, err := apiClient.LogsApi.TailLogs(context.Background()).Type_(type_).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).InstanceId(instanceId).Stream(stream).Start(start).Limit(limit).Regex(regex).Text(text).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.TailLogs``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -157,8 +160,10 @@ Name | Type | Description  | Notes
  **regionalDeploymentId** | **string** |  | 
  **instanceId** | **string** |  | 
  **stream** | **string** |  | 
- **start** | **string** |  | 
+ **start** | **time.Time** |  | 
  **limit** | **string** |  | 
+ **regex** | **string** | (Optional) Apply a regex to filter logs. Can&#39;t be used with &#x60;text&#x60;. | 
+ **text** | **string** | (Optional) Looks for this string in logs. Can&#39;t be used with &#x60;regex&#x60;. | 
 
 ### Return type
 

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelDeployment**](DeploymentsApi.md#CancelDeployment) | **Post** /v1/deployments/{id}/cancel | Cancel Deployment
 [**GetDeployment**](DeploymentsApi.md#GetDeployment) | **Get** /v1/deployments/{id} | Get Deployment
+[**GetDeploymentScaling**](DeploymentsApi.md#GetDeploymentScaling) | **Get** /v1/deployment/{id}/scaling | Get Deployment Scaling
 [**ListDeploymentEvents**](DeploymentsApi.md#ListDeploymentEvents) | **Get** /v1/deployment_events | List Deployment events
 [**ListDeployments**](DeploymentsApi.md#ListDeployments) | **Get** /v1/deployments | List Deployments
 
@@ -134,6 +135,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetDeploymentReply**](GetDeploymentReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeploymentScaling
+
+> GetDeploymentScalingReply GetDeploymentScaling(ctx, id).Region(region).ReplicaIndex(replicaIndex).Execute()
+
+Get Deployment Scaling
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    region := "region_example" // string | (Optional) Filter on region (optional)
+    replicaIndex := int64(789) // int64 | (Optional) Filter on replica_index (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DeploymentsApi.GetDeploymentScaling(context.Background(), id).Region(region).ReplicaIndex(replicaIndex).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.GetDeploymentScaling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDeploymentScaling`: GetDeploymentScalingReply
+    fmt.Fprintf(os.Stdout, "Response from `DeploymentsApi.GetDeploymentScaling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDeploymentScalingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **region** | **string** | (Optional) Filter on region | 
+ **replicaIndex** | **int64** | (Optional) Filter on replica_index | 
+
+### Return type
+
+[**GetDeploymentScalingReply**](GetDeploymentScalingReply.md)
 
 ### Authorization
 

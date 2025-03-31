@@ -368,8 +368,10 @@ type ApiTailLogsRequest struct {
 	regionalDeploymentId *string
 	instanceId *string
 	stream *string
-	start *string
+	start *time.Time
 	limit *string
+	regex *string
+	text *string
 }
 
 func (r ApiTailLogsRequest) Type_(type_ string) ApiTailLogsRequest {
@@ -407,13 +409,25 @@ func (r ApiTailLogsRequest) Stream(stream string) ApiTailLogsRequest {
 	return r
 }
 
-func (r ApiTailLogsRequest) Start(start string) ApiTailLogsRequest {
+func (r ApiTailLogsRequest) Start(start time.Time) ApiTailLogsRequest {
 	r.start = &start
 	return r
 }
 
 func (r ApiTailLogsRequest) Limit(limit string) ApiTailLogsRequest {
 	r.limit = &limit
+	return r
+}
+
+// (Optional) Apply a regex to filter logs. Can&#39;t be used with &#x60;text&#x60;.
+func (r ApiTailLogsRequest) Regex(regex string) ApiTailLogsRequest {
+	r.regex = &regex
+	return r
+}
+
+// (Optional) Looks for this string in logs. Can&#39;t be used with &#x60;regex&#x60;.
+func (r ApiTailLogsRequest) Text(text string) ApiTailLogsRequest {
+	r.text = &text
 	return r
 }
 
@@ -481,6 +495,12 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 	}
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.regex != nil {
+		localVarQueryParams.Add("regex", parameterToString(*r.regex, ""))
+	}
+	if r.text != nil {
+		localVarQueryParams.Add("text", parameterToString(*r.text, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
