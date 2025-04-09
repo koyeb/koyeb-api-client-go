@@ -12,6 +12,7 @@ api_catalog_instance_usage.go
 api_catalog_instances.go
 api_catalog_regions.go
 api_compose.go
+api_coupons.go
 api_credentials.go
 api_deployments.go
 api_docker_helper.go
@@ -68,6 +69,7 @@ docs/AutocompleteRequest.md
 docs/AvailabilityLevel.md
 docs/AzureContainerRegistryConfiguration.md
 docs/BillingApi.md
+docs/Budget.md
 docs/BuildpackBuilder.md
 docs/CannyAuthReply.md
 docs/CatalogDatacentersApi.md
@@ -82,11 +84,13 @@ docs/ComposeApi.md
 docs/ComposeReply.md
 docs/ConfigFile.md
 docs/ConfirmPaymentAuthorizationReply.md
+docs/CouponsApi.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
 docs/CreateAppReply.md
 docs/CreateArchive.md
 docs/CreateArchiveReply.md
+docs/CreateBudgetReply.md
 docs/CreateCompose.md
 docs/CreateCredential.md
 docs/CreateCredentialReply.md
@@ -182,6 +186,7 @@ docs/ExecCommandRequestIdType.md
 docs/ExecCommandRequestTerminalSize.md
 docs/GCPContainerRegistryConfiguration.md
 docs/GetAppReply.md
+docs/GetBudgetReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetCredentialReply.md
 docs/GetDeploymentReply.md
@@ -333,6 +338,7 @@ docs/QueryLogsReplyPagination.md
 docs/Quotas.md
 docs/QuotasApi.md
 docs/ReactivateOrganizationReply.md
+docs/RedeemCouponRequest.md
 docs/RedeployReply.md
 docs/RedeployRequestInfo.md
 docs/Region.md
@@ -395,6 +401,8 @@ docs/TriggerGitDeploymentMetadata.md
 docs/TriggerGitDeploymentMetadataProvider.md
 docs/UpdateApp.md
 docs/UpdateAppReply.md
+docs/UpdateBudgetReply.md
+docs/UpdateBudgetRequest.md
 docs/UpdateCredentialReply.md
 docs/UpdateDomain.md
 docs/UpdateDomainReply.md
@@ -444,6 +452,7 @@ model_autocomplete_reply.go
 model_autocomplete_request.go
 model_availability_level.go
 model_azure_container_registry_configuration.go
+model_budget.go
 model_buildpack_builder.go
 model_canny_auth_reply.go
 model_catalog_gpu_details.go
@@ -458,6 +467,7 @@ model_create_app.go
 model_create_app_reply.go
 model_create_archive.go
 model_create_archive_reply.go
+model_create_budget_reply.go
 model_create_compose.go
 model_create_credential.go
 model_create_credential_reply.go
@@ -549,6 +559,7 @@ model_exec_command_request_id_type.go
 model_exec_command_request_terminal_size.go
 model_gcp_container_registry_configuration.go
 model_get_app_reply.go
+model_get_budget_reply.go
 model_get_catalog_instance_reply.go
 model_get_credential_reply.go
 model_get_deployment_reply.go
@@ -685,6 +696,7 @@ model_query_logs_reply.go
 model_query_logs_reply_pagination.go
 model_quotas.go
 model_reactivate_organization_reply.go
+model_redeem_coupon_request.go
 model_redeploy_reply.go
 model_redeploy_request_info.go
 model_region.go
@@ -737,6 +749,8 @@ model_trigger_git_deployment_metadata.go
 model_trigger_git_deployment_metadata_provider.go
 model_update_app.go
 model_update_app_reply.go
+model_update_budget_reply.go
+model_update_budget_request.go
 model_update_credential_reply.go
 model_update_domain.go
 model_update_domain_reply.go
@@ -772,6 +786,7 @@ test/api_catalog_instance_usage_test.go
 test/api_catalog_instances_test.go
 test/api_catalog_regions_test.go
 test/api_compose_test.go
+test/api_coupons_test.go
 test/api_credentials_test.go
 test/api_deployments_test.go
 test/api_docker_helper_test.go

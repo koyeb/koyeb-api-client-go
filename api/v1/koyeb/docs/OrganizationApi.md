@@ -4,20 +4,94 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateBudget**](OrganizationApi.md#CreateBudget) | **Post** /v1/organizations/{organization_id}/budget | 
 [**CreateOrganization**](OrganizationApi.md#CreateOrganization) | **Post** /v1/organizations | Create organization
 [**DeactivateOrganization**](OrganizationApi.md#DeactivateOrganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an organization
+[**DeleteBudget**](OrganizationApi.md#DeleteBudget) | **Delete** /v1/organizations/{organization_id}/budget | 
 [**DeleteOrganization**](OrganizationApi.md#DeleteOrganization) | **Delete** /v1/organizations/{id} | Delete an organization
+[**GetBudget**](OrganizationApi.md#GetBudget) | **Get** /v1/organizations/{organization_id}/budget | 
 [**GetGithubInstallation**](OrganizationApi.md#GetGithubInstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
 [**ReactivateOrganization**](OrganizationApi.md#ReactivateOrganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 [**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
 [**UnscopeOrganizationToken**](OrganizationApi.md#UnscopeOrganizationToken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+[**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | 
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
 [**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
 
+
+
+## CreateBudget
+
+> CreateBudgetReply CreateBudget(ctx, organizationId).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | 
+    body := *openapiclient.NewUpdateBudgetRequest() // UpdateBudgetRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.CreateBudget(context.Background(), organizationId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.CreateBudget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateBudget`: CreateBudgetReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.CreateBudget`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBudgetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateBudgetRequest**](UpdateBudgetRequest.md) |  | 
+
+### Return type
+
+[**CreateBudgetReply**](CreateBudgetReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateOrganization
@@ -154,6 +228,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteBudget
+
+> map[string]interface{} DeleteBudget(ctx, organizationId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.DeleteBudget(context.Background(), organizationId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.DeleteBudget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteBudget`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.DeleteBudget`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBudgetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteOrganization
 
 > DeleteOrganizationReply DeleteOrganization(ctx, id).Execute()
@@ -207,6 +349,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeleteOrganizationReply**](DeleteOrganizationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBudget
+
+> GetBudgetReply GetBudget(ctx, organizationId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.GetBudget(context.Background(), organizationId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.GetBudget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetBudget`: GetBudgetReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.GetBudget`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBudgetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetBudgetReply**](GetBudgetReply.md)
 
 ### Authorization
 
@@ -606,6 +816,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LoginReply**](LoginReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateBudget
+
+> UpdateBudgetReply UpdateBudget(ctx, organizationId).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    organizationId := "organizationId_example" // string | 
+    body := *openapiclient.NewUpdateBudgetRequest() // UpdateBudgetRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.UpdateBudget(context.Background(), organizationId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateBudget``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateBudget`: UpdateBudgetReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateBudget`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**organizationId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBudgetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateBudgetRequest**](UpdateBudgetRequest.md) |  | 
+
+### Return type
+
+[**UpdateBudgetReply**](UpdateBudgetReply.md)
 
 ### Authorization
 
