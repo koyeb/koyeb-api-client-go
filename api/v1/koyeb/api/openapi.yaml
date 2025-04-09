@@ -6998,6 +6998,70 @@ paths:
       tags:
       - Credentials
       x-codegen-request-body-name: credential
+  /v1/coupons:
+    post:
+      operationId: RedeemCoupon
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/RedeemCouponRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RedeemCouponReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: This API allows to redeem a coupon. Pass the code you received in the
+        body.
+      tags:
+      - Coupons
+      x-codegen-request-body-name: body
   /v1/organization_members:
     get:
       operationId: ListOrganizationMembers
@@ -9688,6 +9752,261 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       summary: Switch organization context
+      tags:
+      - organization
+      x-codegen-request-body-name: body
+  /v1/organizations/{organization_id}/budget:
+    delete:
+      operationId: DeleteBudget
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteBudgetReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - organization
+    get:
+      operationId: GetBudget
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetBudgetReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - organization
+    post:
+      operationId: CreateBudget
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateBudget_request'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateBudgetReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      tags:
+      - organization
+      x-codegen-request-body-name: body
+    put:
+      operationId: UpdateBudget
+      parameters:
+      - in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateBudget_request'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateBudgetReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
       tags:
       - organization
       x-codegen-request-body-name: body
@@ -21230,6 +21549,7 @@ components:
             regions:
               key:
                 availability: null
+            availability: null
       properties:
         instances:
           additionalProperties:
@@ -21241,11 +21561,14 @@ components:
         regions:
           key:
             availability: null
+        availability: null
       properties:
         regions:
           additionalProperties:
             $ref: '#/components/schemas/RegionAvailability'
           type: object
+        availability:
+          $ref: '#/components/schemas/AvailabilityLevel'
       type: object
     ListUsageReply:
       example:
@@ -21255,6 +21578,7 @@ components:
               regions:
                 key:
                   availability: null
+              availability: null
       properties:
         usage:
           $ref: '#/components/schemas/CatalogUsage'
@@ -22725,6 +23049,15 @@ components:
         credential:
           $ref: '#/components/schemas/Credential'
       type: object
+    RedeemCouponReply:
+      type: object
+    RedeemCouponRequest:
+      example:
+        code: code
+      properties:
+        code:
+          type: string
+      type: object
     ListOrganizationMembersReply:
       example:
         offset: 6
@@ -23464,6 +23797,22 @@ components:
       - signup
       - register
       type: string
+    Budget:
+      example:
+        amount: amount
+        thresholds:
+        - thresholds
+        - thresholds
+      properties:
+        amount:
+          format: int64
+          type: string
+        thresholds:
+          items:
+            format: int64
+            type: string
+          type: array
+      type: object
     CannyAuthReply:
       example:
         token: token
@@ -23491,6 +23840,17 @@ components:
       - email
       - password
       title: Create new account
+      type: object
+    CreateBudgetReply:
+      example:
+        budget:
+          amount: amount
+          thresholds:
+          - thresholds
+          - thresholds
+      properties:
+        budget:
+          $ref: '#/components/schemas/Budget'
       type: object
     CreateOrganizationReply:
       example:
@@ -23603,6 +23963,8 @@ components:
         invitation:
           $ref: '#/components/schemas/OrganizationInvitation'
       type: object
+    DeleteBudgetReply:
+      type: object
     DeleteOrganizationReply:
       example:
         organization:
@@ -23657,6 +24019,17 @@ components:
           type: string
         sig:
           type: string
+      type: object
+    GetBudgetReply:
+      example:
+        budget:
+          amount: amount
+          thresholds:
+          - thresholds
+          - thresholds
+      properties:
+        budget:
+          $ref: '#/components/schemas/Budget'
       type: object
     GetGithubInstallationReply:
       example:
@@ -24242,6 +24615,17 @@ components:
       type: object
     UnscopeOrganizationTokenRequest:
       type: object
+    UpdateBudgetReply:
+      example:
+        budget:
+          amount: amount
+          thresholds:
+          - thresholds
+          - thresholds
+      properties:
+        budget:
+          $ref: '#/components/schemas/Budget'
+      type: object
     UpdateOrganizationPlanReply:
       example:
         organization:
@@ -24545,6 +24929,13 @@ components:
           properties: {}
           type: object
       type: object
+    UpdateBudget_request:
+      properties:
+        amount:
+          description: In cents.
+          format: int64
+          type: string
+      type: object
   securitySchemes:
     Bearer:
       in: header
@@ -24564,6 +24955,7 @@ x-tagGroups:
   - OrganizationInvitations
   - OrganizationConfirmations
   - Subscriptions
+  - Coupons
   - Credentials
   - Secrets
   - activity

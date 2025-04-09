@@ -17,6 +17,7 @@ import (
 // InstanceAvailability struct for InstanceAvailability
 type InstanceAvailability struct {
 	Regions *map[string]RegionAvailability `json:"regions,omitempty"`
+	Availability *AvailabilityLevel `json:"availability,omitempty"`
 }
 
 // NewInstanceAvailability instantiates a new InstanceAvailability object
@@ -25,6 +26,8 @@ type InstanceAvailability struct {
 // will change when the set of required properties is changed
 func NewInstanceAvailability() *InstanceAvailability {
 	this := InstanceAvailability{}
+	var availability AvailabilityLevel = AVAILABILITYLEVEL_UNKNOWN
+	this.Availability = &availability
 	return &this
 }
 
@@ -33,6 +36,8 @@ func NewInstanceAvailability() *InstanceAvailability {
 // but it doesn't guarantee that properties required by API are set
 func NewInstanceAvailabilityWithDefaults() *InstanceAvailability {
 	this := InstanceAvailability{}
+	var availability AvailabilityLevel = AVAILABILITYLEVEL_UNKNOWN
+	this.Availability = &availability
 	return &this
 }
 
@@ -68,10 +73,45 @@ func (o *InstanceAvailability) SetRegions(v map[string]RegionAvailability) {
 	o.Regions = &v
 }
 
+// GetAvailability returns the Availability field value if set, zero value otherwise.
+func (o *InstanceAvailability) GetAvailability() AvailabilityLevel {
+	if o == nil || isNil(o.Availability) {
+		var ret AvailabilityLevel
+		return ret
+	}
+	return *o.Availability
+}
+
+// GetAvailabilityOk returns a tuple with the Availability field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InstanceAvailability) GetAvailabilityOk() (*AvailabilityLevel, bool) {
+	if o == nil || isNil(o.Availability) {
+    return nil, false
+	}
+	return o.Availability, true
+}
+
+// HasAvailability returns a boolean if a field has been set.
+func (o *InstanceAvailability) HasAvailability() bool {
+	if o != nil && !isNil(o.Availability) {
+		return true
+	}
+
+	return false
+}
+
+// SetAvailability gets a reference to the given AvailabilityLevel and assigns it to the Availability field.
+func (o *InstanceAvailability) SetAvailability(v AvailabilityLevel) {
+	o.Availability = &v
+}
+
 func (o InstanceAvailability) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Regions) {
 		toSerialize["regions"] = o.Regions
+	}
+	if !isNil(o.Availability) {
+		toSerialize["availability"] = o.Availability
 	}
 	return json.Marshal(toSerialize)
 }
