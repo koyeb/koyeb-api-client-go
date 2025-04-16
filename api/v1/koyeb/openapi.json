@@ -40,6 +40,7 @@
         "OrganizationInvitations",
         "OrganizationConfirmations",
         "Subscriptions",
+        "Coupons",
         "Credentials",
         "Secrets",
         "activity",
@@ -7741,6 +7742,75 @@
         ]
       }
     },
+    "/v1/coupons": {
+      "post": {
+        "summary": "This API allows to redeem a coupon. Pass the code you received in the body.",
+        "operationId": "RedeemCoupon",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RedeemCouponReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RedeemCouponRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Coupons"
+        ]
+      }
+    },
     "/v1/organization_members": {
       "get": {
         "summary": "List organization members",
@@ -10680,6 +10750,294 @@
             "in": "header",
             "required": false,
             "type": "string"
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      }
+    },
+    "/v1/organizations/{organization_id}/budget": {
+      "get": {
+        "operationId": "GetBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetBudgetReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      },
+      "delete": {
+        "operationId": "DeleteBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteBudgetReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      },
+      "post": {
+        "operationId": "CreateBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateBudgetReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "format": "int64",
+                  "description": "In cents."
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      },
+      "put": {
+        "operationId": "UpdateBudget",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateBudgetReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "organization_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "amount": {
+                  "type": "string",
+                  "format": "int64",
+                  "description": "In cents."
+                }
+              }
+            }
           }
         ],
         "tags": [
@@ -15384,6 +15742,9 @@
           "additionalProperties": {
             "$ref": "#/definitions/RegionAvailability"
           }
+        },
+        "availability": {
+          "$ref": "#/definitions/AvailabilityLevel"
         }
       }
     },
@@ -16476,6 +16837,17 @@
         }
       }
     },
+    "RedeemCouponReply": {
+      "type": "object"
+    },
+    "RedeemCouponRequest": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        }
+      }
+    },
     "ListOrganizationMembersReply": {
       "type": "object",
       "properties": {
@@ -16982,6 +17354,22 @@
       ],
       "default": "signin"
     },
+    "Budget": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "string",
+          "format": "int64"
+        },
+        "thresholds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
     "CannyAuthReply": {
       "type": "object",
       "properties": {
@@ -17020,6 +17408,14 @@
         "password"
       ]
     },
+    "CreateBudgetReply": {
+      "type": "object",
+      "properties": {
+        "budget": {
+          "$ref": "#/definitions/Budget"
+        }
+      }
+    },
     "CreateOrganizationReply": {
       "type": "object",
       "properties": {
@@ -17053,6 +17449,9 @@
         }
       }
     },
+    "DeleteBudgetReply": {
+      "type": "object"
+    },
     "DeleteOrganizationReply": {
       "type": "object",
       "properties": {
@@ -17080,6 +17479,14 @@
         },
         "sig": {
           "type": "string"
+        }
+      }
+    },
+    "GetBudgetReply": {
+      "type": "object",
+      "properties": {
+        "budget": {
+          "$ref": "#/definitions/Budget"
         }
       }
     },
@@ -17524,6 +17931,14 @@
     },
     "UnscopeOrganizationTokenRequest": {
       "type": "object"
+    },
+    "UpdateBudgetReply": {
+      "type": "object",
+      "properties": {
+        "budget": {
+          "$ref": "#/definitions/Budget"
+        }
+      }
     },
     "UpdateOrganizationPlanReply": {
       "type": "object",

@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
 *ComposeApi* | [**Compose**](docs/ComposeApi.md#compose) | **Post** /v1/compose | Create resources from compose.
+*CouponsApi* | [**RedeemCoupon**](docs/CouponsApi.md#redeemcoupon) | **Post** /v1/coupons | This API allows to redeem a coupon. Pass the code you received in the body.
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | Get credential
@@ -129,15 +130,19 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**QueryLogs**](docs/LogsApi.md#querylogs) | **Get** /v1/streams/logs/query | Query logs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
+*OrganizationApi* | [**CreateBudget**](docs/OrganizationApi.md#createbudget) | **Post** /v1/organizations/{organization_id}/budget | 
 *OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
 *OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an organization
+*OrganizationApi* | [**DeleteBudget**](docs/OrganizationApi.md#deletebudget) | **Delete** /v1/organizations/{organization_id}/budget | 
 *OrganizationApi* | [**DeleteOrganization**](docs/OrganizationApi.md#deleteorganization) | **Delete** /v1/organizations/{id} | Delete an organization
+*OrganizationApi* | [**GetBudget**](docs/OrganizationApi.md#getbudget) | **Get** /v1/organizations/{organization_id}/budget | 
 *OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
 *OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
 *OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
 *OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+*OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | 
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
@@ -245,6 +250,7 @@ Class | Method | HTTP request | Description
  - [AutocompleteRequest](docs/AutocompleteRequest.md)
  - [AvailabilityLevel](docs/AvailabilityLevel.md)
  - [AzureContainerRegistryConfiguration](docs/AzureContainerRegistryConfiguration.md)
+ - [Budget](docs/Budget.md)
  - [BuildpackBuilder](docs/BuildpackBuilder.md)
  - [CannyAuthReply](docs/CannyAuthReply.md)
  - [CatalogGPUDetails](docs/CatalogGPUDetails.md)
@@ -259,6 +265,7 @@ Class | Method | HTTP request | Description
  - [CreateAppReply](docs/CreateAppReply.md)
  - [CreateArchive](docs/CreateArchive.md)
  - [CreateArchiveReply](docs/CreateArchiveReply.md)
+ - [CreateBudgetReply](docs/CreateBudgetReply.md)
  - [CreateCompose](docs/CreateCompose.md)
  - [CreateCredential](docs/CreateCredential.md)
  - [CreateCredentialReply](docs/CreateCredentialReply.md)
@@ -350,6 +357,7 @@ Class | Method | HTTP request | Description
  - [ExecCommandRequestTerminalSize](docs/ExecCommandRequestTerminalSize.md)
  - [GCPContainerRegistryConfiguration](docs/GCPContainerRegistryConfiguration.md)
  - [GetAppReply](docs/GetAppReply.md)
+ - [GetBudgetReply](docs/GetBudgetReply.md)
  - [GetCatalogInstanceReply](docs/GetCatalogInstanceReply.md)
  - [GetCredentialReply](docs/GetCredentialReply.md)
  - [GetDeploymentReply](docs/GetDeploymentReply.md)
@@ -486,6 +494,7 @@ Class | Method | HTTP request | Description
  - [QueryLogsReplyPagination](docs/QueryLogsReplyPagination.md)
  - [Quotas](docs/Quotas.md)
  - [ReactivateOrganizationReply](docs/ReactivateOrganizationReply.md)
+ - [RedeemCouponRequest](docs/RedeemCouponRequest.md)
  - [RedeployReply](docs/RedeployReply.md)
  - [RedeployRequestInfo](docs/RedeployRequestInfo.md)
  - [Region](docs/Region.md)
@@ -538,6 +547,8 @@ Class | Method | HTTP request | Description
  - [TriggerGitDeploymentMetadataProvider](docs/TriggerGitDeploymentMetadataProvider.md)
  - [UpdateApp](docs/UpdateApp.md)
  - [UpdateAppReply](docs/UpdateAppReply.md)
+ - [UpdateBudgetReply](docs/UpdateBudgetReply.md)
+ - [UpdateBudgetRequest](docs/UpdateBudgetRequest.md)
  - [UpdateCredentialReply](docs/UpdateCredentialReply.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainReply](docs/UpdateDomainReply.md)
