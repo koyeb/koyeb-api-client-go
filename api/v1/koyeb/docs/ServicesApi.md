@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Autocomplete**](ServicesApi.md#Autocomplete) | **Post** /v1/services-autocomplete | Generate autocomplete definition for a service
+[**Autocomplete**](ServicesApi.md#Autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/services | Create Service
 [**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
@@ -22,7 +22,9 @@ Method | HTTP request | Description
 
 > AutocompleteReply Autocomplete(ctx).Body(body).Execute()
 
-Generate autocomplete definition for a service
+Autocomplete definition
+
+
 
 ### Example
 
