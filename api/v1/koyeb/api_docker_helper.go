@@ -22,7 +22,9 @@ import (
 type DockerHelperApi interface {
 
 	/*
-	VerifyDockerImage Verify if a docker image is reachable
+	VerifyDockerImage Verify Docker Image
+
+	Verify if a docker image is reachable
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiVerifyDockerImageRequest
@@ -61,7 +63,9 @@ func (r ApiVerifyDockerImageRequest) Execute() (*VerifyDockerImageReply, *http.R
 }
 
 /*
-VerifyDockerImage Verify if a docker image is reachable
+VerifyDockerImage Verify Docker Image
+
+Verify if a docker image is reachable
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiVerifyDockerImageRequest

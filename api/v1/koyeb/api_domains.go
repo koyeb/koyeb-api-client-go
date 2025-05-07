@@ -24,7 +24,7 @@ import (
 type DomainsApi interface {
 
 	/*
-	CreateDomain Method for CreateDomain
+	CreateDomain Create Domain
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateDomainRequest
@@ -36,7 +36,7 @@ type DomainsApi interface {
 	CreateDomainExecute(r ApiCreateDomainRequest) (*CreateDomainReply, *http.Response, error)
 
 	/*
-	DeleteDomain Method for DeleteDomain
+	DeleteDomain Delete Domain
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -49,7 +49,7 @@ type DomainsApi interface {
 	DeleteDomainExecute(r ApiDeleteDomainRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	GetDomain Method for GetDomain
+	GetDomain Get Domain
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -62,7 +62,7 @@ type DomainsApi interface {
 	GetDomainExecute(r ApiGetDomainRequest) (*GetDomainReply, *http.Response, error)
 
 	/*
-	ListDomains Method for ListDomains
+	ListDomains List Domains
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListDomainsRequest
@@ -74,7 +74,7 @@ type DomainsApi interface {
 	ListDomainsExecute(r ApiListDomainsRequest) (*ListDomainsReply, *http.Response, error)
 
 	/*
-	RefreshDomainStatus Method for RefreshDomainStatus
+	RefreshDomainStatus Refresh Domain Status
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -87,7 +87,7 @@ type DomainsApi interface {
 	RefreshDomainStatusExecute(r ApiRefreshDomainStatusRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	UpdateDomain Method for UpdateDomain
+	UpdateDomain Update Domain
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -119,7 +119,7 @@ func (r ApiCreateDomainRequest) Execute() (*CreateDomainReply, *http.Response, e
 }
 
 /*
-CreateDomain Method for CreateDomain
+CreateDomain Create Domain
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateDomainRequest
@@ -310,7 +310,7 @@ func (r ApiDeleteDomainRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-DeleteDomain Method for DeleteDomain
+DeleteDomain Delete Domain
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -499,7 +499,7 @@ func (r ApiGetDomainRequest) Execute() (*GetDomainReply, *http.Response, error) 
 }
 
 /*
-GetDomain Method for GetDomain
+GetDomain Get Domain
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -729,7 +729,7 @@ func (r ApiListDomainsRequest) Execute() (*ListDomainsReply, *http.Response, err
 }
 
 /*
-ListDomains Method for ListDomains
+ListDomains List Domains
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListDomainsRequest
@@ -957,7 +957,7 @@ func (r ApiRefreshDomainStatusRequest) Execute() (map[string]interface{}, *http.
 }
 
 /*
-RefreshDomainStatus Method for RefreshDomainStatus
+RefreshDomainStatus Refresh Domain Status
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -1165,7 +1165,7 @@ func (r ApiUpdateDomainRequest) Execute() (*UpdateDomainReply, *http.Response, e
 }
 
 /*
-UpdateDomain Method for UpdateDomain
+UpdateDomain Update Domain
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
