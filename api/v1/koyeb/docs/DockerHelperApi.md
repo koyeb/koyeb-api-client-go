@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**VerifyDockerImage**](DockerHelperApi.md#VerifyDockerImage) | **Get** /v1/docker-helper/verify | Verify if a docker image is reachable
+[**VerifyDockerImage**](DockerHelperApi.md#VerifyDockerImage) | **Get** /v1/docker-helper/verify | Verify Docker Image
 
 
 
@@ -12,7 +12,9 @@ Method | HTTP request | Description
 
 > VerifyDockerImageReply VerifyDockerImage(ctx).Image(image).SecretId(secretId).Execute()
 
-Verify if a docker image is reachable
+Verify Docker Image
+
+
 
 ### Example
 

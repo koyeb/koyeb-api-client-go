@@ -36,7 +36,7 @@ type CatalogInstancesApi interface {
 	GetCatalogInstanceExecute(r ApiGetCatalogInstanceRequest) (*GetCatalogInstanceReply, *http.Response, error)
 
 	/*
-	ListCatalogInstances List Instance
+	ListCatalogInstances List Instances
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListCatalogInstancesRequest
@@ -205,7 +205,7 @@ func (r ApiListCatalogInstancesRequest) Execute() (*ListCatalogInstancesReply, *
 }
 
 /*
-ListCatalogInstances List Instance
+ListCatalogInstances List Instances
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListCatalogInstancesRequest

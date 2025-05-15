@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetMetrics**](MetricsApi.md#GetMetrics) | **Get** /v1/streams/metrics | 
+[**GetMetrics**](MetricsApi.md#GetMetrics) | **Get** /v1/streams/metrics | Get Metrics
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > GetMetricsReply GetMetrics(ctx).ServiceId(serviceId).InstanceId(instanceId).Name(name).Start(start).End(end).Step(step).Execute()
 
-
+Get Metrics
 
 ### Example
 
