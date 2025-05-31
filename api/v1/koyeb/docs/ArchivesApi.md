@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateArchive**](ArchivesApi.md#CreateArchive) | **Post** /v1/archives | Create a signed URL to upload an archive.
+[**CreateArchive**](ArchivesApi.md#CreateArchive) | **Post** /v1/archives | Create Archive
 
 
 
@@ -12,7 +12,9 @@ Method | HTTP request | Description
 
 > CreateArchiveReply CreateArchive(ctx).Archive(archive).Execute()
 
-Create a signed URL to upload an archive.
+Create Archive
+
+
 
 ### Example
 
