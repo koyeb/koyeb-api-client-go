@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**RedeemCoupon**](CouponsApi.md#RedeemCoupon) | **Post** /v1/coupons | This API allows to redeem a coupon. Pass the code you received in the body.
+[**RedeemCoupon**](CouponsApi.md#RedeemCoupon) | **Post** /v1/coupons | Redeem Coupon
 
 
 
@@ -12,7 +12,9 @@ Method | HTTP request | Description
 
 > map[string]interface{} RedeemCoupon(ctx).Body(body).Execute()
 
-This API allows to redeem a coupon. Pass the code you received in the body.
+Redeem Coupon
+
+
 
 ### Example
 
