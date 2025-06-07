@@ -116,6 +116,8 @@ docs/CredentialsApi.md
 docs/DatabaseDeploymentMetadata.md
 docs/DatabaseRolePassword.md
 docs/DatabaseSource.md
+docs/DatabaseUsage.md
+docs/DatabaseUsageDetails.md
 docs/DatacenterListItem.md
 docs/DeactivateOrganizationReply.md
 docs/DeactivateOrganizationRequest.md
@@ -277,6 +279,7 @@ docs/ListServicesReply.md
 docs/ListSnapshotsReply.md
 docs/ListUsageReply.md
 docs/ListUserOrganizationInvitationsReply.md
+docs/ListUserOrganizationsReply.md
 docs/LogEntry.md
 docs/LoginReply.md
 docs/LoginRequest.md
@@ -492,6 +495,8 @@ model_credential_type.go
 model_database_deployment_metadata.go
 model_database_role_password.go
 model_database_source.go
+model_database_usage.go
+model_database_usage_details.go
 model_datacenter_list_item.go
 model_deactivate_organization_reply.go
 model_deactivate_organization_request.go
@@ -647,6 +652,7 @@ model_list_services_reply.go
 model_list_snapshots_reply.go
 model_list_usage_reply.go
 model_list_user_organization_invitations_reply.go
+model_list_user_organizations_reply.go
 model_log_entry.go
 model_login_reply.go
 model_login_request.go

@@ -5,8 +5,8 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAccountActivities**](ActivityApi.md#GetAccountActivities) | **Get** /v1/account/activities | 
-[**ListActivities**](ActivityApi.md#ListActivities) | **Get** /v1/activities | 
-[**ListNotifications**](ActivityApi.md#ListNotifications) | **Get** /v1/notifications | 
+[**ListActivities**](ActivityApi.md#ListActivities) | **Get** /v1/activities | List Activities
+[**ListNotifications**](ActivityApi.md#ListNotifications) | **Get** /v1/notifications | List Notifications
 
 
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 > ActivityList ListActivities(ctx).Limit(limit).Offset(offset).Types(types).Execute()
 
-
+List Activities
 
 ### Example
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 > NotificationList ListNotifications(ctx).Limit(limit).Offset(offset).MarkRead(markRead).MarkSeen(markSeen).Unread(unread).Unseen(unseen).Execute()
 
-
+List Notifications
 
 ### Example
 

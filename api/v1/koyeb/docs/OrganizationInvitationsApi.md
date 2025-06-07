@@ -4,11 +4,11 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateOrganizationInvitation**](OrganizationInvitationsApi.md#CreateOrganizationInvitation) | **Post** /v1/organization_invitations | 
-[**DeleteOrganizationInvitation**](OrganizationInvitationsApi.md#DeleteOrganizationInvitation) | **Delete** /v1/organization_invitations/{id} | 
-[**GetOrganizationInvitation**](OrganizationInvitationsApi.md#GetOrganizationInvitation) | **Get** /v1/organization_invitations/{id} | 
-[**ListOrganizationInvitations**](OrganizationInvitationsApi.md#ListOrganizationInvitations) | **Get** /v1/organization_invitations | 
-[**ResendOrganizationInvitation**](OrganizationInvitationsApi.md#ResendOrganizationInvitation) | **Post** /v1/organization_invitations/{id}/resend | 
+[**CreateOrganizationInvitation**](OrganizationInvitationsApi.md#CreateOrganizationInvitation) | **Post** /v1/organization_invitations | Create Organization Invitation
+[**DeleteOrganizationInvitation**](OrganizationInvitationsApi.md#DeleteOrganizationInvitation) | **Delete** /v1/organization_invitations/{id} | Delete Organization Invitation
+[**GetOrganizationInvitation**](OrganizationInvitationsApi.md#GetOrganizationInvitation) | **Get** /v1/organization_invitations/{id} | Get Organization Invitation
+[**ListOrganizationInvitations**](OrganizationInvitationsApi.md#ListOrganizationInvitations) | **Get** /v1/organization_invitations | List Organization Invitations
+[**ResendOrganizationInvitation**](OrganizationInvitationsApi.md#ResendOrganizationInvitation) | **Post** /v1/organization_invitations/{id}/resend | Resend Organization Invitation
 
 
 
@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 > CreateOrganizationInvitationReply CreateOrganizationInvitation(ctx).Body(body).Execute()
 
-
+Create Organization Invitation
 
 ### Example
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteOrganizationInvitation(ctx, id).Execute()
 
-
+Delete Organization Invitation
 
 ### Example
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 > GetOrganizationInvitationReply GetOrganizationInvitation(ctx, id).Execute()
 
-
+Get Organization Invitation
 
 ### Example
 
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 > ListOrganizationInvitationsReply ListOrganizationInvitations(ctx).Limit(limit).Offset(offset).Statuses(statuses).UserId(userId).Execute()
 
-
+List Organization Invitations
 
 ### Example
 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 > ResendOrganizationInvitationReply ResendOrganizationInvitation(ctx, id).Body(body).Execute()
 
-
+Resend Organization Invitation
 
 ### Example
 

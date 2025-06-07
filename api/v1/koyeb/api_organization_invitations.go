@@ -24,7 +24,7 @@ import (
 type OrganizationInvitationsApi interface {
 
 	/*
-	CreateOrganizationInvitation Method for CreateOrganizationInvitation
+	CreateOrganizationInvitation Create Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateOrganizationInvitationRequest
@@ -36,7 +36,7 @@ type OrganizationInvitationsApi interface {
 	CreateOrganizationInvitationExecute(r ApiCreateOrganizationInvitationRequest) (*CreateOrganizationInvitationReply, *http.Response, error)
 
 	/*
-	DeleteOrganizationInvitation Method for DeleteOrganizationInvitation
+	DeleteOrganizationInvitation Delete Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to delete
@@ -49,7 +49,7 @@ type OrganizationInvitationsApi interface {
 	DeleteOrganizationInvitationExecute(r ApiDeleteOrganizationInvitationRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	GetOrganizationInvitation Method for GetOrganizationInvitation
+	GetOrganizationInvitation Get Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the invitation to get
@@ -62,7 +62,7 @@ type OrganizationInvitationsApi interface {
 	GetOrganizationInvitationExecute(r ApiGetOrganizationInvitationRequest) (*GetOrganizationInvitationReply, *http.Response, error)
 
 	/*
-	ListOrganizationInvitations Method for ListOrganizationInvitations
+	ListOrganizationInvitations List Organization Invitations
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListOrganizationInvitationsRequest
@@ -74,7 +74,7 @@ type OrganizationInvitationsApi interface {
 	ListOrganizationInvitationsExecute(r ApiListOrganizationInvitationsRequest) (*ListOrganizationInvitationsReply, *http.Response, error)
 
 	/*
-	ResendOrganizationInvitation Method for ResendOrganizationInvitation
+	ResendOrganizationInvitation Resend Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to resend
@@ -106,7 +106,7 @@ func (r ApiCreateOrganizationInvitationRequest) Execute() (*CreateOrganizationIn
 }
 
 /*
-CreateOrganizationInvitation Method for CreateOrganizationInvitation
+CreateOrganizationInvitation Create Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateOrganizationInvitationRequest
@@ -297,7 +297,7 @@ func (r ApiDeleteOrganizationInvitationRequest) Execute() (map[string]interface{
 }
 
 /*
-DeleteOrganizationInvitation Method for DeleteOrganizationInvitation
+DeleteOrganizationInvitation Delete Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to delete
@@ -486,7 +486,7 @@ func (r ApiGetOrganizationInvitationRequest) Execute() (*GetOrganizationInvitati
 }
 
 /*
-GetOrganizationInvitation Method for GetOrganizationInvitation
+GetOrganizationInvitation Get Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the invitation to get
@@ -702,7 +702,7 @@ func (r ApiListOrganizationInvitationsRequest) Execute() (*ListOrganizationInvit
 }
 
 /*
-ListOrganizationInvitations Method for ListOrganizationInvitations
+ListOrganizationInvitations List Organization Invitations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListOrganizationInvitationsRequest
@@ -914,7 +914,7 @@ func (r ApiResendOrganizationInvitationRequest) Execute() (*ResendOrganizationIn
 }
 
 /*
-ResendOrganizationInvitation Method for ResendOrganizationInvitation
+ResendOrganizationInvitation Resend Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to resend
