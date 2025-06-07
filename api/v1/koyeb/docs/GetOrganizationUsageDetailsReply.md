@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsageDetails** | Pointer to [**[]UsageDetails**](UsageDetails.md) |  | [optional] 
+**DatabaseDetails** | Pointer to [**[]DatabaseUsageDetails**](DatabaseUsageDetails.md) |  | [optional] 
 **Limit** | Pointer to **int64** |  | [optional] 
 **Offset** | Pointer to **int64** |  | [optional] 
 **Count** | Pointer to **int64** |  | [optional] 
@@ -53,6 +54,31 @@ SetUsageDetails sets UsageDetails field to given value.
 `func (o *GetOrganizationUsageDetailsReply) HasUsageDetails() bool`
 
 HasUsageDetails returns a boolean if a field has been set.
+
+### GetDatabaseDetails
+
+`func (o *GetOrganizationUsageDetailsReply) GetDatabaseDetails() []DatabaseUsageDetails`
+
+GetDatabaseDetails returns the DatabaseDetails field if non-nil, zero value otherwise.
+
+### GetDatabaseDetailsOk
+
+`func (o *GetOrganizationUsageDetailsReply) GetDatabaseDetailsOk() (*[]DatabaseUsageDetails, bool)`
+
+GetDatabaseDetailsOk returns a tuple with the DatabaseDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatabaseDetails
+
+`func (o *GetOrganizationUsageDetailsReply) SetDatabaseDetails(v []DatabaseUsageDetails)`
+
+SetDatabaseDetails sets DatabaseDetails field to given value.
+
+### HasDatabaseDetails
+
+`func (o *GetOrganizationUsageDetailsReply) HasDatabaseDetails() bool`
+
+HasDatabaseDetails returns a boolean if a field has been set.
 
 ### GetLimit
 

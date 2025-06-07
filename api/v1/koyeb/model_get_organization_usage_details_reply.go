@@ -17,6 +17,7 @@ import (
 // GetOrganizationUsageDetailsReply struct for GetOrganizationUsageDetailsReply
 type GetOrganizationUsageDetailsReply struct {
 	UsageDetails []UsageDetails `json:"usage_details,omitempty"`
+	DatabaseDetails []DatabaseUsageDetails `json:"database_details,omitempty"`
 	Limit *int64 `json:"limit,omitempty"`
 	Offset *int64 `json:"offset,omitempty"`
 	Count *int64 `json:"count,omitempty"`
@@ -70,6 +71,38 @@ func (o *GetOrganizationUsageDetailsReply) HasUsageDetails() bool {
 // SetUsageDetails gets a reference to the given []UsageDetails and assigns it to the UsageDetails field.
 func (o *GetOrganizationUsageDetailsReply) SetUsageDetails(v []UsageDetails) {
 	o.UsageDetails = v
+}
+
+// GetDatabaseDetails returns the DatabaseDetails field value if set, zero value otherwise.
+func (o *GetOrganizationUsageDetailsReply) GetDatabaseDetails() []DatabaseUsageDetails {
+	if o == nil || isNil(o.DatabaseDetails) {
+		var ret []DatabaseUsageDetails
+		return ret
+	}
+	return o.DatabaseDetails
+}
+
+// GetDatabaseDetailsOk returns a tuple with the DatabaseDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetOrganizationUsageDetailsReply) GetDatabaseDetailsOk() ([]DatabaseUsageDetails, bool) {
+	if o == nil || isNil(o.DatabaseDetails) {
+    return nil, false
+	}
+	return o.DatabaseDetails, true
+}
+
+// HasDatabaseDetails returns a boolean if a field has been set.
+func (o *GetOrganizationUsageDetailsReply) HasDatabaseDetails() bool {
+	if o != nil && !isNil(o.DatabaseDetails) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabaseDetails gets a reference to the given []DatabaseUsageDetails and assigns it to the DatabaseDetails field.
+func (o *GetOrganizationUsageDetailsReply) SetDatabaseDetails(v []DatabaseUsageDetails) {
+	o.DatabaseDetails = v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
@@ -204,6 +237,9 @@ func (o GetOrganizationUsageDetailsReply) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.UsageDetails) {
 		toSerialize["usage_details"] = o.UsageDetails
+	}
+	if !isNil(o.DatabaseDetails) {
+		toSerialize["database_details"] = o.DatabaseDetails
 	}
 	if !isNil(o.Limit) {
 		toSerialize["limit"] = o.Limit

@@ -4,21 +4,22 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
-[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
-[**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | 
-[**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | 
+[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation
+[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
+[**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | Get Current Organization
+[**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | Get Current User
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
-[**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | 
-[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | 
+[**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
+[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
+[**ListUserOrganizations**](ProfileApi.md#ListUserOrganizations) | **Get** /v1/account/organizations | List User Organizations
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
-[**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | 
-[**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | 
-[**Signup**](ProfileApi.md#Signup) | **Post** /v1/account/signup | 
-[**UpdatePassword**](ProfileApi.md#UpdatePassword) | **Post** /v1/account/update_password | 
-[**UpdateUser**](ProfileApi.md#UpdateUser) | **Put** /v1/account/profile | 
-[**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | 
-[**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | 
+[**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | Resend Email Verification
+[**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | Reset Password
+[**Signup**](ProfileApi.md#Signup) | **Post** /v1/account/signup | Signup
+[**UpdatePassword**](ProfileApi.md#UpdatePassword) | **Post** /v1/account/update_password | Update Password
+[**UpdateUser**](ProfileApi.md#UpdateUser) | **Put** /v1/account/profile | Update User
+[**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | Update User
+[**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | Validate
 
 
 
@@ -26,7 +27,7 @@ Method | HTTP request | Description
 
 > AcceptOrganizationInvitationReply AcceptOrganizationInvitation(ctx, id).Body(body).Execute()
 
-
+Accept Organization Invitation
 
 ### Example
 
@@ -96,7 +97,7 @@ Name | Type | Description  | Notes
 
 > DeclineOrganizationInvitationReply DeclineOrganizationInvitation(ctx, id).Body(body).Execute()
 
-
+Decline Organization Invitation
 
 ### Example
 
@@ -166,7 +167,7 @@ Name | Type | Description  | Notes
 
 > GetOrganizationReply GetCurrentOrganization(ctx).Execute()
 
-
+Get Current Organization
 
 ### Example
 
@@ -225,7 +226,7 @@ Other parameters are passed through a pointer to a apiGetCurrentOrganizationRequ
 
 > UserReply GetCurrentUser(ctx).Execute()
 
-
+Get Current User
 
 ### Example
 
@@ -350,7 +351,7 @@ Name | Type | Description  | Notes
 
 > GetUserOrganizationInvitationReply GetUserOrganizationInvitation(ctx, id).Execute()
 
-
+Get User Organization Invitation
 
 ### Example
 
@@ -418,7 +419,7 @@ Name | Type | Description  | Notes
 
 > ListUserOrganizationInvitationsReply ListUserOrganizationInvitations(ctx).Limit(limit).Offset(offset).Statuses(statuses).Execute()
 
-
+List User Organization Invitations
 
 ### Example
 
@@ -467,6 +468,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListUserOrganizationInvitationsReply**](ListUserOrganizationInvitationsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListUserOrganizations
+
+> ListUserOrganizationsReply ListUserOrganizations(ctx).Limit(limit).Offset(offset).Order(order).Search(search).Execute()
+
+List User Organizations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    limit := "limit_example" // string | (Optional) Define pagination limit (optional)
+    offset := "offset_example" // string | (Optional) Define pagination offset (optional)
+    order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
+    search := "search_example" // string | (Optional) Fuzzy case-insensitive search based on organization name or organization id (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.ListUserOrganizations(context.Background()).Limit(limit).Offset(offset).Order(order).Search(search).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ListUserOrganizations``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListUserOrganizations`: ListUserOrganizationsReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ListUserOrganizations`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListUserOrganizationsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **string** | (Optional) Define pagination limit | 
+ **offset** | **string** | (Optional) Define pagination offset | 
+ **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
+ **search** | **string** | (Optional) Fuzzy case-insensitive search based on organization name or organization id | 
+
+### Return type
+
+[**ListUserOrganizationsReply**](ListUserOrganizationsReply.md)
 
 ### Authorization
 
@@ -552,7 +625,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResendEmailValidation(ctx).Body(body).Execute()
 
-
+Resend Email Verification
 
 ### Example
 
@@ -616,7 +689,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResetPassword(ctx).Body(body).Execute()
 
-
+Reset Password
 
 ### Example
 
@@ -680,7 +753,7 @@ Name | Type | Description  | Notes
 
 > LoginReply Signup(ctx).Body(body).SeonFp(seonFp).Execute()
 
-
+Signup
 
 ### Example
 
@@ -746,7 +819,7 @@ Name | Type | Description  | Notes
 
 > LoginReply UpdatePassword(ctx).Body(body).SeonFp(seonFp).Execute()
 
-
+Update Password
 
 ### Example
 
@@ -812,7 +885,7 @@ Name | Type | Description  | Notes
 
 > UserReply UpdateUser(ctx).User(user).UpdateMask(updateMask).Execute()
 
-
+Update User
 
 ### Example
 
@@ -878,7 +951,7 @@ Name | Type | Description  | Notes
 
 > UserReply UpdateUser2(ctx).User(user).UpdateMask(updateMask).Execute()
 
-
+Update User
 
 ### Example
 
@@ -944,7 +1017,7 @@ Name | Type | Description  | Notes
 
 > LoginReply Validate(ctx, id).SeonFp(seonFp).Execute()
 
-
+Validate
 
 ### Example
 
