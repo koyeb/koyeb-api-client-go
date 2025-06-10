@@ -80,8 +80,8 @@ All URIs are relative to *https://app.koyeb.com*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ActivityApi* | [**GetAccountActivities**](docs/ActivityApi.md#getaccountactivities) | **Get** /v1/account/activities | 
-*ActivityApi* | [**ListActivities**](docs/ActivityApi.md#listactivities) | **Get** /v1/activities | 
-*ActivityApi* | [**ListNotifications**](docs/ActivityApi.md#listnotifications) | **Get** /v1/notifications | 
+*ActivityApi* | [**ListActivities**](docs/ActivityApi.md#listactivities) | **Get** /v1/activities | List Activities
+*ActivityApi* | [**ListNotifications**](docs/ActivityApi.md#listnotifications) | **Get** /v1/notifications | List Notifications
 *AppsApi* | [**CreateApp**](docs/AppsApi.md#createapp) | **Post** /v1/apps | Create App
 *AppsApi* | [**DeleteApp**](docs/AppsApi.md#deleteapp) | **Delete** /v1/apps/{id} | Delete App
 *AppsApi* | [**GetApp**](docs/AppsApi.md#getapp) | **Get** /v1/apps/{id} | Get App
@@ -91,18 +91,18 @@ Class | Method | HTTP request | Description
 *AppsApi* | [**ResumeApp**](docs/AppsApi.md#resumeapp) | **Post** /v1/apps/{id}/resume | Resume App
 *AppsApi* | [**UpdateApp**](docs/AppsApi.md#updateapp) | **Put** /v1/apps/{id} | Update App
 *AppsApi* | [**UpdateApp2**](docs/AppsApi.md#updateapp2) | **Patch** /v1/apps/{id} | Update App
-*ArchivesApi* | [**CreateArchive**](docs/ArchivesApi.md#createarchive) | **Post** /v1/archives | Create a signed URL to upload an archive.
+*ArchivesApi* | [**CreateArchive**](docs/ArchivesApi.md#createarchive) | **Post** /v1/archives | Create Archive
 *BillingApi* | [**HasUnpaidInvoices**](docs/BillingApi.md#hasunpaidinvoices) | **Get** /v1/billing/has_unpaid_invoices | Experimental: Has unpaid invoices
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
 *CatalogDatacentersApi* | [**ListDatacenters**](docs/CatalogDatacentersApi.md#listdatacenters) | **Get** /v1/catalog/datacenters | List datacenters
 *CatalogInstanceUsageApi* | [**ListUsage**](docs/CatalogInstanceUsageApi.md#listusage) | **Get** /v1/catalog/usage | 
 *CatalogInstancesApi* | [**GetCatalogInstance**](docs/CatalogInstancesApi.md#getcataloginstance) | **Get** /v1/catalog/instances/{id} | Get Instance
-*CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instance
+*CatalogInstancesApi* | [**ListCatalogInstances**](docs/CatalogInstancesApi.md#listcataloginstances) | **Get** /v1/catalog/instances | List Instances
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
 *ComposeApi* | [**Compose**](docs/ComposeApi.md#compose) | **Post** /v1/compose | Create resources from compose.
-*CouponsApi* | [**RedeemCoupon**](docs/CouponsApi.md#redeemcoupon) | **Post** /v1/coupons | This API allows to redeem a coupon. Pass the code you received in the body.
+*CouponsApi* | [**RedeemCoupon**](docs/CouponsApi.md#redeemcoupon) | **Post** /v1/coupons | Redeem Coupon
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
 *CredentialsApi* | [**GetCredential**](docs/CredentialsApi.md#getcredential) | **Get** /v1/credentials/{id} | Get credential
@@ -114,13 +114,13 @@ Class | Method | HTTP request | Description
 *DeploymentsApi* | [**GetDeploymentScaling**](docs/DeploymentsApi.md#getdeploymentscaling) | **Get** /v1/deployment/{id}/scaling | Get Deployment Scaling
 *DeploymentsApi* | [**ListDeploymentEvents**](docs/DeploymentsApi.md#listdeploymentevents) | **Get** /v1/deployment_events | List Deployment events
 *DeploymentsApi* | [**ListDeployments**](docs/DeploymentsApi.md#listdeployments) | **Get** /v1/deployments | List Deployments
-*DockerHelperApi* | [**VerifyDockerImage**](docs/DockerHelperApi.md#verifydockerimage) | **Get** /v1/docker-helper/verify | Verify if a docker image is reachable
-*DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | 
-*DomainsApi* | [**DeleteDomain**](docs/DomainsApi.md#deletedomain) | **Delete** /v1/domains/{id} | 
-*DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /v1/domains/{id} | 
-*DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | 
-*DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | 
-*DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | 
+*DockerHelperApi* | [**VerifyDockerImage**](docs/DockerHelperApi.md#verifydockerimage) | **Get** /v1/docker-helper/verify | Verify Docker Image
+*DomainsApi* | [**CreateDomain**](docs/DomainsApi.md#createdomain) | **Post** /v1/domains | Create Domain
+*DomainsApi* | [**DeleteDomain**](docs/DomainsApi.md#deletedomain) | **Delete** /v1/domains/{id} | Delete Domain
+*DomainsApi* | [**GetDomain**](docs/DomainsApi.md#getdomain) | **Get** /v1/domains/{id} | Get Domain
+*DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | List Domains
+*DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | Refresh Domain Status
+*DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | Update Domain
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstanceEvents**](docs/InstancesApi.md#listinstanceevents) | **Get** /v1/instance_events | List Instance events
@@ -129,30 +129,30 @@ Class | Method | HTTP request | Description
 *InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
 *LogsApi* | [**QueryLogs**](docs/LogsApi.md#querylogs) | **Get** /v1/streams/logs/query | Query logs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
-*MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | 
-*OrganizationApi* | [**CreateBudget**](docs/OrganizationApi.md#createbudget) | **Post** /v1/organizations/{organization_id}/budget | 
-*OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create organization
-*OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an organization
-*OrganizationApi* | [**DeleteBudget**](docs/OrganizationApi.md#deletebudget) | **Delete** /v1/organizations/{organization_id}/budget | 
-*OrganizationApi* | [**DeleteOrganization**](docs/OrganizationApi.md#deleteorganization) | **Delete** /v1/organizations/{id} | Delete an organization
-*OrganizationApi* | [**GetBudget**](docs/OrganizationApi.md#getbudget) | **Get** /v1/organizations/{organization_id}/budget | 
-*OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch github installation configuration
-*OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get organization
-*OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start github installation
-*OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
-*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
-*OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
-*OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | 
-*OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update organization
-*OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update organization
-*OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update organization plan
-*OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
+*MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | Get Metrics
+*OrganizationApi* | [**CreateBudget**](docs/OrganizationApi.md#createbudget) | **Post** /v1/organizations/{organization_id}/budget | Create Budget
+*OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create Organization
+*OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an Organization
+*OrganizationApi* | [**DeleteBudget**](docs/OrganizationApi.md#deletebudget) | **Delete** /v1/organizations/{organization_id}/budget | Delete Budget
+*OrganizationApi* | [**DeleteOrganization**](docs/OrganizationApi.md#deleteorganization) | **Delete** /v1/organizations/{id} | Delete an Organization
+*OrganizationApi* | [**GetBudget**](docs/OrganizationApi.md#getbudget) | **Get** /v1/organizations/{organization_id}/budget | Get Budget
+*OrganizationApi* | [**GetGithubInstallation**](docs/OrganizationApi.md#getgithubinstallation) | **Get** /v1/github/installation | Fetch Github Installation configuration
+*OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get Organization
+*OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start Github Installation
+*OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an Organization
+*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context
+*OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | Unscope Organization Token
+*OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
+*OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update Organization
+*OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update Organization
+*OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
+*OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 *OrganizationConfirmationsApi* | [**ConfirmOrganizationAction**](docs/OrganizationConfirmationsApi.md#confirmorganizationaction) | **Post** /v1/organization_confirmations/{id} | Confirm organization action
-*OrganizationInvitationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationInvitationsApi.md#createorganizationinvitation) | **Post** /v1/organization_invitations | 
-*OrganizationInvitationsApi* | [**DeleteOrganizationInvitation**](docs/OrganizationInvitationsApi.md#deleteorganizationinvitation) | **Delete** /v1/organization_invitations/{id} | 
-*OrganizationInvitationsApi* | [**GetOrganizationInvitation**](docs/OrganizationInvitationsApi.md#getorganizationinvitation) | **Get** /v1/organization_invitations/{id} | 
-*OrganizationInvitationsApi* | [**ListOrganizationInvitations**](docs/OrganizationInvitationsApi.md#listorganizationinvitations) | **Get** /v1/organization_invitations | 
-*OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | 
+*OrganizationInvitationsApi* | [**CreateOrganizationInvitation**](docs/OrganizationInvitationsApi.md#createorganizationinvitation) | **Post** /v1/organization_invitations | Create Organization Invitation
+*OrganizationInvitationsApi* | [**DeleteOrganizationInvitation**](docs/OrganizationInvitationsApi.md#deleteorganizationinvitation) | **Delete** /v1/organization_invitations/{id} | Delete Organization Invitation
+*OrganizationInvitationsApi* | [**GetOrganizationInvitation**](docs/OrganizationInvitationsApi.md#getorganizationinvitation) | **Get** /v1/organization_invitations/{id} | Get Organization Invitation
+*OrganizationInvitationsApi* | [**ListOrganizationInvitations**](docs/OrganizationInvitationsApi.md#listorganizationinvitations) | **Get** /v1/organization_invitations | List Organization Invitations
+*OrganizationInvitationsApi* | [**ResendOrganizationInvitation**](docs/OrganizationInvitationsApi.md#resendorganizationinvitation) | **Post** /v1/organization_invitations/{id}/resend | Resend Organization Invitation
 *OrganizationMembersApi* | [**ListOrganizationMembers**](docs/OrganizationMembersApi.md#listorganizationmembers) | **Get** /v1/organization_members | List organization members
 *OrganizationMembersApi* | [**RemoveOrganizationMember**](docs/OrganizationMembersApi.md#removeorganizationmember) | **Delete** /v1/organization_members/{id} | Remove an organization member
 *OrganizationQuotasApi* | [**GetQuotas**](docs/OrganizationQuotasApi.md#getquotas) | **Get** /v1/organizations/{organization_id}/quotas | 
@@ -167,40 +167,41 @@ Class | Method | HTTP request | Description
 *PersistentVolumesApi* | [**ListPersistentVolumeEvents**](docs/PersistentVolumesApi.md#listpersistentvolumeevents) | **Get** /v1/volume_events | List Persistent Volume events
 *PersistentVolumesApi* | [**ListPersistentVolumes**](docs/PersistentVolumesApi.md#listpersistentvolumes) | **Get** /v1/volumes | List all PersistentVolumes
 *PersistentVolumesApi* | [**UpdatePersistentVolume**](docs/PersistentVolumesApi.md#updatepersistentvolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
-*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | 
-*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | 
-*ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | 
-*ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | 
+*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation
+*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
+*ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | Get Current Organization
+*ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | Get Current User
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
-*ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | 
-*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | 
+*ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
+*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
+*ProfileApi* | [**ListUserOrganizations**](docs/ProfileApi.md#listuserorganizations) | **Get** /v1/account/organizations | List User Organizations
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
-*ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | 
-*ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | 
-*ProfileApi* | [**Signup**](docs/ProfileApi.md#signup) | **Post** /v1/account/signup | 
-*ProfileApi* | [**UpdatePassword**](docs/ProfileApi.md#updatepassword) | **Post** /v1/account/update_password | 
-*ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | 
-*ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | 
-*ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | 
+*ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | Resend Email Verification
+*ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | Reset Password
+*ProfileApi* | [**Signup**](docs/ProfileApi.md#signup) | **Post** /v1/account/signup | Signup
+*ProfileApi* | [**UpdatePassword**](docs/ProfileApi.md#updatepassword) | **Post** /v1/account/update_password | Update Password
+*ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | Update User
+*ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | Update User
+*ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | Validate
 *ProvisioningApi* | [**CreateStageAttempt**](docs/ProvisioningApi.md#createstageattempt) | **Post** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Create an attempt for a stage
 *ProvisioningApi* | [**DeclareStageProgress**](docs/ProvisioningApi.md#declarestageprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Declare stage progress
 *ProvisioningApi* | [**DeclareStepProgress**](docs/ProvisioningApi.md#declarestepprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt}/{step} | Declare step progress
 *QuotasApi* | [**ReviewOrganizationCapacity**](docs/QuotasApi.md#revieworganizationcapacity) | **Post** /v1/quotas/capacity | Review Organization Capacity
-*RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
+*RegionalDeploymentsApi* | [**GetRegionalDeployment**](docs/RegionalDeploymentsApi.md#getregionaldeployment) | **Get** /v1/regional_deployments/{id} | Get Regional Deployment
 *RegionalDeploymentsApi* | [**ListRegionalDeploymentEvents**](docs/RegionalDeploymentsApi.md#listregionaldeploymentevents) | **Get** /v1/regional_deployment_events | List Regional Deployment events
-*RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
-*RepositoriesApi* | [**ListBranches**](docs/RepositoriesApi.md#listbranches) | **Get** /v1/git/branches | 
-*RepositoriesApi* | [**ListRepositories**](docs/RepositoriesApi.md#listrepositories) | **Get** /v1/git/repositories | 
-*RepositoriesApi* | [**ResyncOrganization**](docs/RepositoriesApi.md#resyncorganization) | **Post** /v1/git/sync/organization/{organization_id} | 
+*RegionalDeploymentsApi* | [**ListRegionalDeployments**](docs/RegionalDeploymentsApi.md#listregionaldeployments) | **Get** /v1/regional_deployments | List Regional Deployments
+*RepositoriesApi* | [**ListBranches**](docs/RepositoriesApi.md#listbranches) | **Get** /v1/git/branches | List Branches
+*RepositoriesApi* | [**ListRepositories**](docs/RepositoriesApi.md#listrepositories) | **Get** /v1/git/repositories | List Repositories
+*RepositoriesApi* | [**ResyncOrganization**](docs/RepositoriesApi.md#resyncorganization) | **Post** /v1/git/sync/organization/{organization_id} | Resync Organization
 *SearchApi* | [**Search**](docs/SearchApi.md#search) | **Get** /v1/search | Search
-*SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | 
-*SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | 
-*SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | 
-*SecretsApi* | [**ListSecrets**](docs/SecretsApi.md#listsecrets) | **Get** /v1/secrets | 
-*SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | 
-*SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | 
-*SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | 
-*ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Generate autocomplete definition for a service
+*SecretsApi* | [**CreateSecret**](docs/SecretsApi.md#createsecret) | **Post** /v1/secrets | Create Secret
+*SecretsApi* | [**DeleteSecret**](docs/SecretsApi.md#deletesecret) | **Delete** /v1/secrets/{id} | Delete Secret
+*SecretsApi* | [**GetSecret**](docs/SecretsApi.md#getsecret) | **Get** /v1/secrets/{id} | Get Secret
+*SecretsApi* | [**ListSecrets**](docs/SecretsApi.md#listsecrets) | **Get** /v1/secrets | List Secrets
+*SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | Reveal Secret
+*SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | Update Secret
+*SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | Update Secret
+*ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
@@ -290,6 +291,8 @@ Class | Method | HTTP request | Description
  - [DatabaseDeploymentMetadata](docs/DatabaseDeploymentMetadata.md)
  - [DatabaseRolePassword](docs/DatabaseRolePassword.md)
  - [DatabaseSource](docs/DatabaseSource.md)
+ - [DatabaseUsage](docs/DatabaseUsage.md)
+ - [DatabaseUsageDetails](docs/DatabaseUsageDetails.md)
  - [DatacenterListItem](docs/DatacenterListItem.md)
  - [DeactivateOrganizationReply](docs/DeactivateOrganizationReply.md)
  - [DeactivateOrganizationRequest](docs/DeactivateOrganizationRequest.md)
@@ -318,6 +321,8 @@ Class | Method | HTTP request | Description
  - [DeploymentProvisioningInfoStageBuildAttempt](docs/DeploymentProvisioningInfoStageBuildAttempt.md)
  - [DeploymentProvisioningInfoStageBuildAttemptBuildStep](docs/DeploymentProvisioningInfoStageBuildAttemptBuildStep.md)
  - [DeploymentProvisioningInfoStageStatus](docs/DeploymentProvisioningInfoStageStatus.md)
+ - [DeploymentProxyPort](docs/DeploymentProxyPort.md)
+ - [DeploymentProxyPortMetadata](docs/DeploymentProxyPortMetadata.md)
  - [DeploymentRole](docs/DeploymentRole.md)
  - [DeploymentRoute](docs/DeploymentRoute.md)
  - [DeploymentScaling](docs/DeploymentScaling.md)
@@ -445,6 +450,7 @@ Class | Method | HTTP request | Description
  - [ListSnapshotsReply](docs/ListSnapshotsReply.md)
  - [ListUsageReply](docs/ListUsageReply.md)
  - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
+ - [ListUserOrganizationsReply](docs/ListUserOrganizationsReply.md)
  - [LogEntry](docs/LogEntry.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
@@ -488,6 +494,7 @@ Class | Method | HTTP request | Description
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
+ - [ProxyPortProtocol](docs/ProxyPortProtocol.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
  - [QueryLogsReply](docs/QueryLogsReply.md)

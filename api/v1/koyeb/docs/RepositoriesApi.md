@@ -4,9 +4,9 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListBranches**](RepositoriesApi.md#ListBranches) | **Get** /v1/git/branches | 
-[**ListRepositories**](RepositoriesApi.md#ListRepositories) | **Get** /v1/git/repositories | 
-[**ResyncOrganization**](RepositoriesApi.md#ResyncOrganization) | **Post** /v1/git/sync/organization/{organization_id} | 
+[**ListBranches**](RepositoriesApi.md#ListBranches) | **Get** /v1/git/branches | List Branches
+[**ListRepositories**](RepositoriesApi.md#ListRepositories) | **Get** /v1/git/repositories | List Repositories
+[**ResyncOrganization**](RepositoriesApi.md#ResyncOrganization) | **Post** /v1/git/sync/organization/{organization_id} | Resync Organization
 
 
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > KgitproxyListBranchesReply ListBranches(ctx).RepositoryId(repositoryId).Name(name).Limit(limit).Offset(offset).Execute()
 
-
+List Branches
 
 ### Example
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 > KgitproxyListRepositoriesReply ListRepositories(ctx).Name(name).NameSearchOp(nameSearchOp).Limit(limit).Offset(offset).Execute()
 
-
+List Repositories
 
 ### Example
 
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResyncOrganization(ctx, organizationId).Execute()
 
-
+Resync Organization
 
 ### Example
 

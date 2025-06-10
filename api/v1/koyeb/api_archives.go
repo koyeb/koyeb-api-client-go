@@ -22,7 +22,9 @@ import (
 type ArchivesApi interface {
 
 	/*
-	CreateArchive Create a signed URL to upload an archive.
+	CreateArchive Create Archive
+
+	Create a signed URL to upload an archive.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateArchiveRequest
@@ -53,7 +55,9 @@ func (r ApiCreateArchiveRequest) Execute() (*CreateArchiveReply, *http.Response,
 }
 
 /*
-CreateArchive Create a signed URL to upload an archive.
+CreateArchive Create Archive
+
+Create a signed URL to upload an archive.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateArchiveRequest

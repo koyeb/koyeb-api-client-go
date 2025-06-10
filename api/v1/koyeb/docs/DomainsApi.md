@@ -4,12 +4,12 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateDomain**](DomainsApi.md#CreateDomain) | **Post** /v1/domains | 
-[**DeleteDomain**](DomainsApi.md#DeleteDomain) | **Delete** /v1/domains/{id} | 
-[**GetDomain**](DomainsApi.md#GetDomain) | **Get** /v1/domains/{id} | 
-[**ListDomains**](DomainsApi.md#ListDomains) | **Get** /v1/domains | 
-[**RefreshDomainStatus**](DomainsApi.md#RefreshDomainStatus) | **Post** /v1/domains/{id}/refresh | 
-[**UpdateDomain**](DomainsApi.md#UpdateDomain) | **Patch** /v1/domains/{id} | 
+[**CreateDomain**](DomainsApi.md#CreateDomain) | **Post** /v1/domains | Create Domain
+[**DeleteDomain**](DomainsApi.md#DeleteDomain) | **Delete** /v1/domains/{id} | Delete Domain
+[**GetDomain**](DomainsApi.md#GetDomain) | **Get** /v1/domains/{id} | Get Domain
+[**ListDomains**](DomainsApi.md#ListDomains) | **Get** /v1/domains | List Domains
+[**RefreshDomainStatus**](DomainsApi.md#RefreshDomainStatus) | **Post** /v1/domains/{id}/refresh | Refresh Domain Status
+[**UpdateDomain**](DomainsApi.md#UpdateDomain) | **Patch** /v1/domains/{id} | Update Domain
 
 
 
@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 > CreateDomainReply CreateDomain(ctx).Domain(domain).Execute()
 
-
+Create Domain
 
 ### Example
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteDomain(ctx, id).Execute()
 
-
+Delete Domain
 
 ### Example
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 > GetDomainReply GetDomain(ctx, id).Execute()
 
-
+Get Domain
 
 ### Example
 
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 > ListDomainsReply ListDomains(ctx).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).Execute()
 
-
+List Domains
 
 ### Example
 
@@ -291,7 +291,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} RefreshDomainStatus(ctx, id).Execute()
 
-
+Refresh Domain Status
 
 ### Example
 
@@ -359,7 +359,7 @@ Name | Type | Description  | Notes
 
 > UpdateDomainReply UpdateDomain(ctx, id).Domain(domain).UpdateMask(updateMask).DryRun(dryRun).Execute()
 
-
+Update Domain
 
 ### Example
 

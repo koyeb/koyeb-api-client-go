@@ -4,9 +4,9 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetRegionalDeployment**](RegionalDeploymentsApi.md#GetRegionalDeployment) | **Get** /v1/regional_deployments/{id} | Experimental: Get regional deployment Use at your own risk
+[**GetRegionalDeployment**](RegionalDeploymentsApi.md#GetRegionalDeployment) | **Get** /v1/regional_deployments/{id} | Get Regional Deployment
 [**ListRegionalDeploymentEvents**](RegionalDeploymentsApi.md#ListRegionalDeploymentEvents) | **Get** /v1/regional_deployment_events | List Regional Deployment events
-[**ListRegionalDeployments**](RegionalDeploymentsApi.md#ListRegionalDeployments) | **Get** /v1/regional_deployments | Experimental: List regional deployments Use at your own risk
+[**ListRegionalDeployments**](RegionalDeploymentsApi.md#ListRegionalDeployments) | **Get** /v1/regional_deployments | List Regional Deployments
 
 
 
@@ -14,7 +14,9 @@ Method | HTTP request | Description
 
 > GetRegionalDeploymentReply GetRegionalDeployment(ctx, id).Execute()
 
-Experimental: Get regional deployment Use at your own risk
+Get Regional Deployment
+
+
 
 ### Example
 
@@ -154,7 +156,9 @@ Name | Type | Description  | Notes
 
 > ListRegionalDeploymentsReply ListRegionalDeployments(ctx).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
 
-Experimental: List regional deployments Use at your own risk
+List Regional Deployments
+
+
 
 ### Example
 

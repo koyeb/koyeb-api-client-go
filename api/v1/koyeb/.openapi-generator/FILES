@@ -116,6 +116,8 @@ docs/CredentialsApi.md
 docs/DatabaseDeploymentMetadata.md
 docs/DatabaseRolePassword.md
 docs/DatabaseSource.md
+docs/DatabaseUsage.md
+docs/DatabaseUsageDetails.md
 docs/DatacenterListItem.md
 docs/DeactivateOrganizationReply.md
 docs/DeactivateOrganizationRequest.md
@@ -144,6 +146,8 @@ docs/DeploymentProvisioningInfoStage.md
 docs/DeploymentProvisioningInfoStageBuildAttempt.md
 docs/DeploymentProvisioningInfoStageBuildAttemptBuildStep.md
 docs/DeploymentProvisioningInfoStageStatus.md
+docs/DeploymentProxyPort.md
+docs/DeploymentProxyPortMetadata.md
 docs/DeploymentRole.md
 docs/DeploymentRoute.md
 docs/DeploymentScaling.md
@@ -277,6 +281,7 @@ docs/ListServicesReply.md
 docs/ListSnapshotsReply.md
 docs/ListUsageReply.md
 docs/ListUserOrganizationInvitationsReply.md
+docs/ListUserOrganizationsReply.md
 docs/LogEntry.md
 docs/LoginReply.md
 docs/LoginRequest.md
@@ -331,6 +336,7 @@ docs/Port.md
 docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
 docs/ProvisioningApi.md
+docs/ProxyPortProtocol.md
 docs/PublicOrganization.md
 docs/PublicUser.md
 docs/QueryLogsReply.md
@@ -492,6 +498,8 @@ model_credential_type.go
 model_database_deployment_metadata.go
 model_database_role_password.go
 model_database_source.go
+model_database_usage.go
+model_database_usage_details.go
 model_datacenter_list_item.go
 model_deactivate_organization_reply.go
 model_deactivate_organization_request.go
@@ -520,6 +528,8 @@ model_deployment_provisioning_info_stage.go
 model_deployment_provisioning_info_stage_build_attempt.go
 model_deployment_provisioning_info_stage_build_attempt_build_step.go
 model_deployment_provisioning_info_stage_status.go
+model_deployment_proxy_port.go
+model_deployment_proxy_port_metadata.go
 model_deployment_role.go
 model_deployment_route.go
 model_deployment_scaling.go
@@ -647,6 +657,7 @@ model_list_services_reply.go
 model_list_snapshots_reply.go
 model_list_usage_reply.go
 model_list_user_organization_invitations_reply.go
+model_list_user_organizations_reply.go
 model_log_entry.go
 model_login_reply.go
 model_login_request.go
@@ -690,6 +701,7 @@ model_persistent_volume_status.go
 model_plan.go
 model_port.go
 model_private_registry_configuration.go
+model_proxy_port_protocol.go
 model_public_organization.go
 model_public_user.go
 model_query_logs_reply.go

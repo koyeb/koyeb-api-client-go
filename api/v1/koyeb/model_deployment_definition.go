@@ -21,6 +21,7 @@ type DeploymentDefinition struct {
 	Strategy *DeploymentStrategy `json:"strategy,omitempty"`
 	Routes []DeploymentRoute `json:"routes,omitempty"`
 	Ports []DeploymentPort `json:"ports,omitempty"`
+	ProxyPorts []DeploymentProxyPort `json:"proxy_ports,omitempty"`
 	Env []DeploymentEnv `json:"env,omitempty"`
 	Regions []string `json:"regions,omitempty"`
 	Scalings []DeploymentScaling `json:"scalings,omitempty"`
@@ -214,6 +215,38 @@ func (o *DeploymentDefinition) HasPorts() bool {
 // SetPorts gets a reference to the given []DeploymentPort and assigns it to the Ports field.
 func (o *DeploymentDefinition) SetPorts(v []DeploymentPort) {
 	o.Ports = v
+}
+
+// GetProxyPorts returns the ProxyPorts field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetProxyPorts() []DeploymentProxyPort {
+	if o == nil || isNil(o.ProxyPorts) {
+		var ret []DeploymentProxyPort
+		return ret
+	}
+	return o.ProxyPorts
+}
+
+// GetProxyPortsOk returns a tuple with the ProxyPorts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetProxyPortsOk() ([]DeploymentProxyPort, bool) {
+	if o == nil || isNil(o.ProxyPorts) {
+    return nil, false
+	}
+	return o.ProxyPorts, true
+}
+
+// HasProxyPorts returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasProxyPorts() bool {
+	if o != nil && !isNil(o.ProxyPorts) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyPorts gets a reference to the given []DeploymentProxyPort and assigns it to the ProxyPorts field.
+func (o *DeploymentDefinition) SetProxyPorts(v []DeploymentProxyPort) {
+	o.ProxyPorts = v
 }
 
 // GetEnv returns the Env field value if set, zero value otherwise.
@@ -616,6 +649,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Ports) {
 		toSerialize["ports"] = o.Ports
+	}
+	if !isNil(o.ProxyPorts) {
+		toSerialize["proxy_ports"] = o.ProxyPorts
 	}
 	if !isNil(o.Env) {
 		toSerialize["env"] = o.Env

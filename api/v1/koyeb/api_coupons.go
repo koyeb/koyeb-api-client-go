@@ -22,7 +22,9 @@ import (
 type CouponsApi interface {
 
 	/*
-	RedeemCoupon This API allows to redeem a coupon. Pass the code you received in the body.
+	RedeemCoupon Redeem Coupon
+
+	This API allows to redeem a coupon. Pass the code you received in the body.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiRedeemCouponRequest
@@ -53,7 +55,9 @@ func (r ApiRedeemCouponRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-RedeemCoupon This API allows to redeem a coupon. Pass the code you received in the body.
+RedeemCoupon Redeem Coupon
+
+This API allows to redeem a coupon. Pass the code you received in the body.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRedeemCouponRequest

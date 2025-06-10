@@ -23,7 +23,7 @@ import (
 type MetricsApi interface {
 
 	/*
-	GetMetrics Method for GetMetrics
+	GetMetrics Get Metrics
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetMetricsRequest
@@ -90,7 +90,7 @@ func (r ApiGetMetricsRequest) Execute() (*GetMetricsReply, *http.Response, error
 }
 
 /*
-GetMetrics Method for GetMetrics
+GetMetrics Get Metrics
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetMetricsRequest

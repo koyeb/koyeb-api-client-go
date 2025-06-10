@@ -19,6 +19,7 @@ type AppUsage struct {
 	AppId *string `json:"app_id,omitempty"`
 	AppName *string `json:"app_name,omitempty"`
 	Services []ServiceUsage `json:"services,omitempty"`
+	Databases []DatabaseUsage `json:"databases,omitempty"`
 }
 
 // NewAppUsage instantiates a new AppUsage object
@@ -134,6 +135,38 @@ func (o *AppUsage) SetServices(v []ServiceUsage) {
 	o.Services = v
 }
 
+// GetDatabases returns the Databases field value if set, zero value otherwise.
+func (o *AppUsage) GetDatabases() []DatabaseUsage {
+	if o == nil || isNil(o.Databases) {
+		var ret []DatabaseUsage
+		return ret
+	}
+	return o.Databases
+}
+
+// GetDatabasesOk returns a tuple with the Databases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AppUsage) GetDatabasesOk() ([]DatabaseUsage, bool) {
+	if o == nil || isNil(o.Databases) {
+    return nil, false
+	}
+	return o.Databases, true
+}
+
+// HasDatabases returns a boolean if a field has been set.
+func (o *AppUsage) HasDatabases() bool {
+	if o != nil && !isNil(o.Databases) {
+		return true
+	}
+
+	return false
+}
+
+// SetDatabases gets a reference to the given []DatabaseUsage and assigns it to the Databases field.
+func (o *AppUsage) SetDatabases(v []DatabaseUsage) {
+	o.Databases = v
+}
+
 func (o AppUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AppId) {
@@ -144,6 +177,9 @@ func (o AppUsage) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Services) {
 		toSerialize["services"] = o.Services
+	}
+	if !isNil(o.Databases) {
+		toSerialize["databases"] = o.Databases
 	}
 	return json.Marshal(toSerialize)
 }

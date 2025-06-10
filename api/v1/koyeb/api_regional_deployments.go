@@ -24,7 +24,9 @@ import (
 type RegionalDeploymentsApi interface {
 
 	/*
-	GetRegionalDeployment Experimental: Get regional deployment Use at your own risk
+	GetRegionalDeployment Get Regional Deployment
+
+	Experimental: use at your own risk
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the regional deployment
@@ -49,7 +51,9 @@ type RegionalDeploymentsApi interface {
 	ListRegionalDeploymentEventsExecute(r ApiListRegionalDeploymentEventsRequest) (*ListRegionalDeploymentEventsReply, *http.Response, error)
 
 	/*
-	ListRegionalDeployments Experimental: List regional deployments Use at your own risk
+	ListRegionalDeployments List Regional Deployments
+
+	Experimental: use at your own risk
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListRegionalDeploymentsRequest
@@ -75,7 +79,9 @@ func (r ApiGetRegionalDeploymentRequest) Execute() (*GetRegionalDeploymentReply,
 }
 
 /*
-GetRegionalDeployment Experimental: Get regional deployment Use at your own risk
+GetRegionalDeployment Get Regional Deployment
+
+Experimental: use at your own risk
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the regional deployment
@@ -527,7 +533,9 @@ func (r ApiListRegionalDeploymentsRequest) Execute() (*ListRegionalDeploymentsRe
 }
 
 /*
-ListRegionalDeployments Experimental: List regional deployments Use at your own risk
+ListRegionalDeployments List Regional Deployments
+
+Experimental: use at your own risk
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListRegionalDeploymentsRequest

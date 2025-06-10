@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AppId** | Pointer to **string** |  | [optional] 
 **AppName** | Pointer to **string** |  | [optional] 
 **Services** | Pointer to [**[]ServiceUsage**](ServiceUsage.md) |  | [optional] 
+**Databases** | Pointer to [**[]DatabaseUsage**](DatabaseUsage.md) |  | [optional] 
 
 ## Methods
 
@@ -101,6 +102,31 @@ SetServices sets Services field to given value.
 `func (o *AppUsage) HasServices() bool`
 
 HasServices returns a boolean if a field has been set.
+
+### GetDatabases
+
+`func (o *AppUsage) GetDatabases() []DatabaseUsage`
+
+GetDatabases returns the Databases field if non-nil, zero value otherwise.
+
+### GetDatabasesOk
+
+`func (o *AppUsage) GetDatabasesOk() (*[]DatabaseUsage, bool)`
+
+GetDatabasesOk returns a tuple with the Databases field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDatabases
+
+`func (o *AppUsage) SetDatabases(v []DatabaseUsage)`
+
+SetDatabases sets Databases field to given value.
+
+### HasDatabases
+
+`func (o *AppUsage) HasDatabases() bool`
+
+HasDatabases returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

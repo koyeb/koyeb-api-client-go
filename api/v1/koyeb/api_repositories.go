@@ -23,7 +23,7 @@ import (
 type RepositoriesApi interface {
 
 	/*
-	ListBranches Method for ListBranches
+	ListBranches List Branches
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListBranchesRequest
@@ -35,7 +35,7 @@ type RepositoriesApi interface {
 	ListBranchesExecute(r ApiListBranchesRequest) (*KgitproxyListBranchesReply, *http.Response, error)
 
 	/*
-	ListRepositories Method for ListRepositories
+	ListRepositories List Repositories
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListRepositoriesRequest
@@ -47,7 +47,7 @@ type RepositoriesApi interface {
 	ListRepositoriesExecute(r ApiListRepositoriesRequest) (*KgitproxyListRepositoriesReply, *http.Response, error)
 
 	/*
-	ResyncOrganization Method for ResyncOrganization
+	ResyncOrganization Resync Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId
@@ -101,7 +101,7 @@ func (r ApiListBranchesRequest) Execute() (*KgitproxyListBranchesReply, *http.Re
 }
 
 /*
-ListBranches Method for ListBranches
+ListBranches List Branches
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListBranchesRequest
@@ -326,7 +326,7 @@ func (r ApiListRepositoriesRequest) Execute() (*KgitproxyListRepositoriesReply, 
 }
 
 /*
-ListRepositories Method for ListRepositories
+ListRepositories List Repositories
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListRepositoriesRequest
@@ -524,7 +524,7 @@ func (r ApiResyncOrganizationRequest) Execute() (map[string]interface{}, *http.R
 }
 
 /*
-ResyncOrganization Method for ResyncOrganization
+ResyncOrganization Resync Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param organizationId

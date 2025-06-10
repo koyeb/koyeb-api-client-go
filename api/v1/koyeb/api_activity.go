@@ -35,7 +35,7 @@ type ActivityApi interface {
 	GetAccountActivitiesExecute(r ApiGetAccountActivitiesRequest) (*ActivityList, *http.Response, error)
 
 	/*
-	ListActivities Method for ListActivities
+	ListActivities List Activities
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListActivitiesRequest
@@ -47,7 +47,7 @@ type ActivityApi interface {
 	ListActivitiesExecute(r ApiListActivitiesRequest) (*ActivityList, *http.Response, error)
 
 	/*
-	ListNotifications Method for ListNotifications
+	ListNotifications List Notifications
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListNotificationsRequest
@@ -294,7 +294,7 @@ func (r ApiListActivitiesRequest) Execute() (*ActivityList, *http.Response, erro
 }
 
 /*
-ListActivities Method for ListActivities
+ListActivities List Activities
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListActivitiesRequest
@@ -532,7 +532,7 @@ func (r ApiListNotificationsRequest) Execute() (*NotificationList, *http.Respons
 }
 
 /*
-ListNotifications Method for ListNotifications
+ListNotifications List Notifications
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListNotificationsRequest
