@@ -24,7 +24,7 @@ import (
 type SecretsApi interface {
 
 	/*
-	CreateSecret Method for CreateSecret
+	CreateSecret Create Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateSecretRequest
@@ -36,7 +36,7 @@ type SecretsApi interface {
 	CreateSecretExecute(r ApiCreateSecretRequest) (*CreateSecretReply, *http.Response, error)
 
 	/*
-	DeleteSecret Method for DeleteSecret
+	DeleteSecret Delete Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -49,7 +49,7 @@ type SecretsApi interface {
 	DeleteSecretExecute(r ApiDeleteSecretRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	GetSecret Method for GetSecret
+	GetSecret Get Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -62,7 +62,7 @@ type SecretsApi interface {
 	GetSecretExecute(r ApiGetSecretRequest) (*GetSecretReply, *http.Response, error)
 
 	/*
-	ListSecrets Method for ListSecrets
+	ListSecrets List Secrets
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListSecretsRequest
@@ -74,7 +74,7 @@ type SecretsApi interface {
 	ListSecretsExecute(r ApiListSecretsRequest) (*ListSecretsReply, *http.Response, error)
 
 	/*
-	RevealSecret Method for RevealSecret
+	RevealSecret Reveal Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -87,7 +87,7 @@ type SecretsApi interface {
 	RevealSecretExecute(r ApiRevealSecretRequest) (*RevealSecretReply, *http.Response, error)
 
 	/*
-	UpdateSecret Method for UpdateSecret
+	UpdateSecret Update Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -100,7 +100,7 @@ type SecretsApi interface {
 	UpdateSecretExecute(r ApiUpdateSecretRequest) (*UpdateSecretReply, *http.Response, error)
 
 	/*
-	UpdateSecret2 Method for UpdateSecret2
+	UpdateSecret2 Update Secret
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -132,7 +132,7 @@ func (r ApiCreateSecretRequest) Execute() (*CreateSecretReply, *http.Response, e
 }
 
 /*
-CreateSecret Method for CreateSecret
+CreateSecret Create Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateSecretRequest
@@ -323,7 +323,7 @@ func (r ApiDeleteSecretRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-DeleteSecret Method for DeleteSecret
+DeleteSecret Delete Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -512,7 +512,7 @@ func (r ApiGetSecretRequest) Execute() (*GetSecretReply, *http.Response, error) 
 }
 
 /*
-GetSecret Method for GetSecret
+GetSecret Get Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -725,7 +725,7 @@ func (r ApiListSecretsRequest) Execute() (*ListSecretsReply, *http.Response, err
 }
 
 /*
-ListSecrets Method for ListSecrets
+ListSecrets List Secrets
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListSecretsRequest
@@ -937,7 +937,7 @@ func (r ApiRevealSecretRequest) Execute() (*RevealSecretReply, *http.Response, e
 }
 
 /*
-RevealSecret Method for RevealSecret
+RevealSecret Reveal Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -1143,7 +1143,7 @@ func (r ApiUpdateSecretRequest) Execute() (*UpdateSecretReply, *http.Response, e
 }
 
 /*
-UpdateSecret Method for UpdateSecret
+UpdateSecret Update Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -1352,7 +1352,7 @@ func (r ApiUpdateSecret2Request) Execute() (*UpdateSecretReply, *http.Response, 
 }
 
 /*
-UpdateSecret2 Method for UpdateSecret2
+UpdateSecret2 Update Secret
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

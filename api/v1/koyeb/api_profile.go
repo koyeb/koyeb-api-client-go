@@ -24,7 +24,7 @@ import (
 type ProfileApi interface {
 
 	/*
-	AcceptOrganizationInvitation Method for AcceptOrganizationInvitation
+	AcceptOrganizationInvitation Accept Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to accept
@@ -37,7 +37,7 @@ type ProfileApi interface {
 	AcceptOrganizationInvitationExecute(r ApiAcceptOrganizationInvitationRequest) (*AcceptOrganizationInvitationReply, *http.Response, error)
 
 	/*
-	DeclineOrganizationInvitation Method for DeclineOrganizationInvitation
+	DeclineOrganizationInvitation Decline Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to decline
@@ -50,7 +50,7 @@ type ProfileApi interface {
 	DeclineOrganizationInvitationExecute(r ApiDeclineOrganizationInvitationRequest) (*DeclineOrganizationInvitationReply, *http.Response, error)
 
 	/*
-	GetCurrentOrganization Method for GetCurrentOrganization
+	GetCurrentOrganization Get Current Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetCurrentOrganizationRequest
@@ -62,7 +62,7 @@ type ProfileApi interface {
 	GetCurrentOrganizationExecute(r ApiGetCurrentOrganizationRequest) (*GetOrganizationReply, *http.Response, error)
 
 	/*
-	GetCurrentUser Method for GetCurrentUser
+	GetCurrentUser Get Current User
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetCurrentUserRequest
@@ -86,7 +86,7 @@ type ProfileApi interface {
 	GetOAuthOptionsExecute(r ApiGetOAuthOptionsRequest) (*GetOAuthOptionsReply, *http.Response, error)
 
 	/*
-	GetUserOrganizationInvitation Method for GetUserOrganizationInvitation
+	GetUserOrganizationInvitation Get User Organization Invitation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to get
@@ -99,7 +99,7 @@ type ProfileApi interface {
 	GetUserOrganizationInvitationExecute(r ApiGetUserOrganizationInvitationRequest) (*GetUserOrganizationInvitationReply, *http.Response, error)
 
 	/*
-	ListUserOrganizationInvitations Method for ListUserOrganizationInvitations
+	ListUserOrganizationInvitations List User Organization Invitations
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListUserOrganizationInvitationsRequest
@@ -109,6 +109,20 @@ type ProfileApi interface {
 	// ListUserOrganizationInvitationsExecute executes the request
 	//  @return ListUserOrganizationInvitationsReply
 	ListUserOrganizationInvitationsExecute(r ApiListUserOrganizationInvitationsRequest) (*ListUserOrganizationInvitationsReply, *http.Response, error)
+
+	/*
+	ListUserOrganizations List User Organizations
+
+	List all organizations that the current user is a member of.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListUserOrganizationsRequest
+	*/
+	ListUserOrganizations(ctx context.Context) ApiListUserOrganizationsRequest
+
+	// ListUserOrganizationsExecute executes the request
+	//  @return ListUserOrganizationsReply
+	ListUserOrganizationsExecute(r ApiListUserOrganizationsRequest) (*ListUserOrganizationsReply, *http.Response, error)
 
 	/*
 	OAuthCallback Authenticate using OAuth
@@ -123,7 +137,7 @@ type ProfileApi interface {
 	OAuthCallbackExecute(r ApiOAuthCallbackRequest) (*OAuthCallbackReply, *http.Response, error)
 
 	/*
-	ResendEmailValidation Method for ResendEmailValidation
+	ResendEmailValidation Resend Email Verification
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiResendEmailValidationRequest
@@ -135,7 +149,7 @@ type ProfileApi interface {
 	ResendEmailValidationExecute(r ApiResendEmailValidationRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	ResetPassword Method for ResetPassword
+	ResetPassword Reset Password
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiResetPasswordRequest
@@ -147,7 +161,7 @@ type ProfileApi interface {
 	ResetPasswordExecute(r ApiResetPasswordRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	Signup Method for Signup
+	Signup Signup
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSignupRequest
@@ -159,7 +173,7 @@ type ProfileApi interface {
 	SignupExecute(r ApiSignupRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	UpdatePassword Method for UpdatePassword
+	UpdatePassword Update Password
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUpdatePasswordRequest
@@ -171,7 +185,7 @@ type ProfileApi interface {
 	UpdatePasswordExecute(r ApiUpdatePasswordRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	UpdateUser Method for UpdateUser
+	UpdateUser Update User
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUpdateUserRequest
@@ -183,7 +197,7 @@ type ProfileApi interface {
 	UpdateUserExecute(r ApiUpdateUserRequest) (*UserReply, *http.Response, error)
 
 	/*
-	UpdateUser2 Method for UpdateUser2
+	UpdateUser2 Update User
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUpdateUser2Request
@@ -195,7 +209,7 @@ type ProfileApi interface {
 	UpdateUser2Execute(r ApiUpdateUser2Request) (*UserReply, *http.Response, error)
 
 	/*
-	Validate Method for Validate
+	Validate Validate
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -228,7 +242,7 @@ func (r ApiAcceptOrganizationInvitationRequest) Execute() (*AcceptOrganizationIn
 }
 
 /*
-AcceptOrganizationInvitation Method for AcceptOrganizationInvitation
+AcceptOrganizationInvitation Accept Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to accept
@@ -428,7 +442,7 @@ func (r ApiDeclineOrganizationInvitationRequest) Execute() (*DeclineOrganization
 }
 
 /*
-DeclineOrganizationInvitation Method for DeclineOrganizationInvitation
+DeclineOrganizationInvitation Decline Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to decline
@@ -621,7 +635,7 @@ func (r ApiGetCurrentOrganizationRequest) Execute() (*GetOrganizationReply, *htt
 }
 
 /*
-GetCurrentOrganization Method for GetCurrentOrganization
+GetCurrentOrganization Get Current Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCurrentOrganizationRequest
@@ -806,7 +820,7 @@ func (r ApiGetCurrentUserRequest) Execute() (*UserReply, *http.Response, error) 
 }
 
 /*
-GetCurrentUser Method for GetCurrentUser
+GetCurrentUser Get Current User
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetCurrentUserRequest
@@ -1197,7 +1211,7 @@ func (r ApiGetUserOrganizationInvitationRequest) Execute() (*GetUserOrganization
 }
 
 /*
-GetUserOrganizationInvitation Method for GetUserOrganizationInvitation
+GetUserOrganizationInvitation Get User Organization Invitation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to get
@@ -1406,7 +1420,7 @@ func (r ApiListUserOrganizationInvitationsRequest) Execute() (*ListUserOrganizat
 }
 
 /*
-ListUserOrganizationInvitations Method for ListUserOrganizationInvitations
+ListUserOrganizationInvitations List User Organization Invitations
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListUserOrganizationInvitationsRequest
@@ -1455,6 +1469,233 @@ func (a *ProfileApiService) ListUserOrganizationInvitationsExecute(r ApiListUser
 		} else {
 			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
 		}
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiListUserOrganizationsRequest struct {
+	ctx context.Context
+	ApiService ProfileApi
+	limit *string
+	offset *string
+	order *string
+	search *string
+}
+
+// (Optional) Define pagination limit
+func (r ApiListUserOrganizationsRequest) Limit(limit string) ApiListUserOrganizationsRequest {
+	r.limit = &limit
+	return r
+}
+
+// (Optional) Define pagination offset
+func (r ApiListUserOrganizationsRequest) Offset(offset string) ApiListUserOrganizationsRequest {
+	r.offset = &offset
+	return r
+}
+
+// (Optional) Sorts the list in the ascending or the descending order
+func (r ApiListUserOrganizationsRequest) Order(order string) ApiListUserOrganizationsRequest {
+	r.order = &order
+	return r
+}
+
+// (Optional) Fuzzy case-insensitive search based on organization name or organization id
+func (r ApiListUserOrganizationsRequest) Search(search string) ApiListUserOrganizationsRequest {
+	r.search = &search
+	return r
+}
+
+func (r ApiListUserOrganizationsRequest) Execute() (*ListUserOrganizationsReply, *http.Response, error) {
+	return r.ApiService.ListUserOrganizationsExecute(r)
+}
+
+/*
+ListUserOrganizations List User Organizations
+
+List all organizations that the current user is a member of.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListUserOrganizationsRequest
+*/
+func (a *ProfileApiService) ListUserOrganizations(ctx context.Context) ApiListUserOrganizationsRequest {
+	return ApiListUserOrganizationsRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ListUserOrganizationsReply
+func (a *ProfileApiService) ListUserOrganizationsExecute(r ApiListUserOrganizationsRequest) (*ListUserOrganizationsReply, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListUserOrganizationsReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProfileApiService.ListUserOrganizations")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/account/organizations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.order != nil {
+		localVarQueryParams.Add("order", parameterToString(*r.order, ""))
+	}
+	if r.search != nil {
+		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1820,7 +2061,7 @@ func (r ApiResendEmailValidationRequest) Execute() (map[string]interface{}, *htt
 }
 
 /*
-ResendEmailValidation Method for ResendEmailValidation
+ResendEmailValidation Resend Email Verification
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiResendEmailValidationRequest
@@ -2016,7 +2257,7 @@ func (r ApiResetPasswordRequest) Execute() (map[string]interface{}, *http.Respon
 }
 
 /*
-ResetPassword Method for ResetPassword
+ResetPassword Reset Password
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiResetPasswordRequest
@@ -2220,7 +2461,7 @@ func (r ApiSignupRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-Signup Method for Signup
+Signup Signup
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSignupRequest
@@ -2426,7 +2667,7 @@ func (r ApiUpdatePasswordRequest) Execute() (*LoginReply, *http.Response, error)
 }
 
 /*
-UpdatePassword Method for UpdatePassword
+UpdatePassword Update Password
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUpdatePasswordRequest
@@ -2631,7 +2872,7 @@ func (r ApiUpdateUserRequest) Execute() (*UserReply, *http.Response, error) {
 }
 
 /*
-UpdateUser Method for UpdateUser
+UpdateUser Update User
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUpdateUserRequest
@@ -2836,7 +3077,7 @@ func (r ApiUpdateUser2Request) Execute() (*UserReply, *http.Response, error) {
 }
 
 /*
-UpdateUser2 Method for UpdateUser2
+UpdateUser2 Update User
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUpdateUser2Request
@@ -3037,7 +3278,7 @@ func (r ApiValidateRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-Validate Method for Validate
+Validate Validate
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

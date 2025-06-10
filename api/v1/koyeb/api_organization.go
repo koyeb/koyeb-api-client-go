@@ -23,7 +23,7 @@ import (
 type OrganizationApi interface {
 
 	/*
-	CreateBudget Method for CreateBudget
+	CreateBudget Create Budget
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId
@@ -36,7 +36,7 @@ type OrganizationApi interface {
 	CreateBudgetExecute(r ApiCreateBudgetRequest) (*CreateBudgetReply, *http.Response, error)
 
 	/*
-	CreateOrganization Create organization
+	CreateOrganization Create Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateOrganizationRequest
@@ -48,7 +48,7 @@ type OrganizationApi interface {
 	CreateOrganizationExecute(r ApiCreateOrganizationRequest) (*CreateOrganizationReply, *http.Response, error)
 
 	/*
-	DeactivateOrganization Deactivate an organization
+	DeactivateOrganization Deactivate an Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -61,7 +61,7 @@ type OrganizationApi interface {
 	DeactivateOrganizationExecute(r ApiDeactivateOrganizationRequest) (*DeactivateOrganizationReply, *http.Response, error)
 
 	/*
-	DeleteBudget Method for DeleteBudget
+	DeleteBudget Delete Budget
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId
@@ -74,7 +74,7 @@ type OrganizationApi interface {
 	DeleteBudgetExecute(r ApiDeleteBudgetRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	DeleteOrganization Delete an organization
+	DeleteOrganization Delete an Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -87,7 +87,7 @@ type OrganizationApi interface {
 	DeleteOrganizationExecute(r ApiDeleteOrganizationRequest) (*DeleteOrganizationReply, *http.Response, error)
 
 	/*
-	GetBudget Method for GetBudget
+	GetBudget Get Budget
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId
@@ -100,7 +100,7 @@ type OrganizationApi interface {
 	GetBudgetExecute(r ApiGetBudgetRequest) (*GetBudgetReply, *http.Response, error)
 
 	/*
-	GetGithubInstallation Fetch github installation configuration
+	GetGithubInstallation Fetch Github Installation configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetGithubInstallationRequest
@@ -112,7 +112,7 @@ type OrganizationApi interface {
 	GetGithubInstallationExecute(r ApiGetGithubInstallationRequest) (*GetGithubInstallationReply, *http.Response, error)
 
 	/*
-	GetOrganization Get organization
+	GetOrganization Get Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -125,7 +125,7 @@ type OrganizationApi interface {
 	GetOrganizationExecute(r ApiGetOrganizationRequest) (*GetOrganizationReply, *http.Response, error)
 
 	/*
-	GithubInstallation Start github installation
+	GithubInstallation Start Github Installation
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGithubInstallationRequest
@@ -137,7 +137,7 @@ type OrganizationApi interface {
 	GithubInstallationExecute(r ApiGithubInstallationRequest) (*GithubInstallationReply, *http.Response, error)
 
 	/*
-	ReactivateOrganization Reactivate an organization
+	ReactivateOrganization Reactivate an Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -150,7 +150,7 @@ type OrganizationApi interface {
 	ReactivateOrganizationExecute(r ApiReactivateOrganizationRequest) (*ReactivateOrganizationReply, *http.Response, error)
 
 	/*
-	SwitchOrganization Switch organization context
+	SwitchOrganization Switch Organization context
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -163,7 +163,12 @@ type OrganizationApi interface {
 	SwitchOrganizationExecute(r ApiSwitchOrganizationRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	UnscopeOrganizationToken UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+	UnscopeOrganizationToken Unscope Organization Token
+
+	UnscopeOrganizationToken removes the organization scope from a token. This
+endpoint is useful when a user wants to remove an organization: by
+unscoping the token first, the user can then delete the organization
+without invalidating his token.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUnscopeOrganizationTokenRequest
@@ -175,7 +180,7 @@ type OrganizationApi interface {
 	UnscopeOrganizationTokenExecute(r ApiUnscopeOrganizationTokenRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	UpdateBudget Method for UpdateBudget
+	UpdateBudget Update Budget
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param organizationId
@@ -188,7 +193,7 @@ type OrganizationApi interface {
 	UpdateBudgetExecute(r ApiUpdateBudgetRequest) (*UpdateBudgetReply, *http.Response, error)
 
 	/*
-	UpdateOrganization Update organization
+	UpdateOrganization Update Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -201,7 +206,7 @@ type OrganizationApi interface {
 	UpdateOrganizationExecute(r ApiUpdateOrganizationRequest) (*UpdateOrganizationReply, *http.Response, error)
 
 	/*
-	UpdateOrganization2 Update organization
+	UpdateOrganization2 Update Organization
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -214,7 +219,7 @@ type OrganizationApi interface {
 	UpdateOrganization2Execute(r ApiUpdateOrganization2Request) (*UpdateOrganizationReply, *http.Response, error)
 
 	/*
-	UpdateOrganizationPlan Update organization plan
+	UpdateOrganizationPlan Update Organization plan
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -227,7 +232,7 @@ type OrganizationApi interface {
 	UpdateOrganizationPlanExecute(r ApiUpdateOrganizationPlanRequest) (*UpdateOrganizationPlanReply, *http.Response, error)
 
 	/*
-	UpsertSignupQualification Upsert organization's signup qualification
+	UpsertSignupQualification Upsert Organization's signup qualification
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -260,7 +265,7 @@ func (r ApiCreateBudgetRequest) Execute() (*CreateBudgetReply, *http.Response, e
 }
 
 /*
-CreateBudget Method for CreateBudget
+CreateBudget Create Budget
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param organizationId
@@ -459,7 +464,7 @@ func (r ApiCreateOrganizationRequest) Execute() (*CreateOrganizationReply, *http
 }
 
 /*
-CreateOrganization Create organization
+CreateOrganization Create Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateOrganizationRequest
@@ -656,7 +661,7 @@ func (r ApiDeactivateOrganizationRequest) Execute() (*DeactivateOrganizationRepl
 }
 
 /*
-DeactivateOrganization Deactivate an organization
+DeactivateOrganization Deactivate an Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -850,7 +855,7 @@ func (r ApiDeleteBudgetRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-DeleteBudget Method for DeleteBudget
+DeleteBudget Delete Budget
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param organizationId
@@ -1039,7 +1044,7 @@ func (r ApiDeleteOrganizationRequest) Execute() (*DeleteOrganizationReply, *http
 }
 
 /*
-DeleteOrganization Delete an organization
+DeleteOrganization Delete an Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -1228,7 +1233,7 @@ func (r ApiGetBudgetRequest) Execute() (*GetBudgetReply, *http.Response, error) 
 }
 
 /*
-GetBudget Method for GetBudget
+GetBudget Get Budget
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param organizationId
@@ -1416,7 +1421,7 @@ func (r ApiGetGithubInstallationRequest) Execute() (*GetGithubInstallationReply,
 }
 
 /*
-GetGithubInstallation Fetch github installation configuration
+GetGithubInstallation Fetch Github Installation configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetGithubInstallationRequest
@@ -1602,7 +1607,7 @@ func (r ApiGetOrganizationRequest) Execute() (*GetOrganizationReply, *http.Respo
 }
 
 /*
-GetOrganization Get organization
+GetOrganization Get Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -1796,7 +1801,7 @@ func (r ApiGithubInstallationRequest) Execute() (*GithubInstallationReply, *http
 }
 
 /*
-GithubInstallation Start github installation
+GithubInstallation Start Github Installation
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGithubInstallationRequest
@@ -1993,7 +1998,7 @@ func (r ApiReactivateOrganizationRequest) Execute() (*ReactivateOrganizationRepl
 }
 
 /*
-ReactivateOrganization Reactivate an organization
+ReactivateOrganization Reactivate an Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -2200,7 +2205,7 @@ func (r ApiSwitchOrganizationRequest) Execute() (*LoginReply, *http.Response, er
 }
 
 /*
-SwitchOrganization Switch organization context
+SwitchOrganization Switch Organization context
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -2409,7 +2414,12 @@ func (r ApiUnscopeOrganizationTokenRequest) Execute() (*LoginReply, *http.Respon
 }
 
 /*
-UnscopeOrganizationToken UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+UnscopeOrganizationToken Unscope Organization Token
+
+UnscopeOrganizationToken removes the organization scope from a token. This
+endpoint is useful when a user wants to remove an organization: by
+unscoping the token first, the user can then delete the organization
+without invalidating his token.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUnscopeOrganizationTokenRequest
@@ -2609,7 +2619,7 @@ func (r ApiUpdateBudgetRequest) Execute() (*UpdateBudgetReply, *http.Response, e
 }
 
 /*
-UpdateBudget Method for UpdateBudget
+UpdateBudget Update Budget
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param organizationId
@@ -2815,7 +2825,7 @@ func (r ApiUpdateOrganizationRequest) Execute() (*UpdateOrganizationReply, *http
 }
 
 /*
-UpdateOrganization Update organization
+UpdateOrganization Update Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -3024,7 +3034,7 @@ func (r ApiUpdateOrganization2Request) Execute() (*UpdateOrganizationReply, *htt
 }
 
 /*
-UpdateOrganization2 Update organization
+UpdateOrganization2 Update Organization
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -3227,7 +3237,7 @@ func (r ApiUpdateOrganizationPlanRequest) Execute() (*UpdateOrganizationPlanRepl
 }
 
 /*
-UpdateOrganizationPlan Update organization plan
+UpdateOrganizationPlan Update Organization plan
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
@@ -3427,7 +3437,7 @@ func (r ApiUpsertSignupQualificationRequest) Execute() (*UpsertSignupQualificati
 }
 
 /*
-UpsertSignupQualification Upsert organization's signup qualification
+UpsertSignupQualification Upsert Organization's signup qualification
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

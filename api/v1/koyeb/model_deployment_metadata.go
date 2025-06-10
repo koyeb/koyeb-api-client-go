@@ -20,6 +20,7 @@ type DeploymentMetadata struct {
 	Database *DatabaseDeploymentMetadata `json:"database,omitempty"`
 	Git *GitDeploymentMetadata `json:"git,omitempty"`
 	Archive *ArchiveDeploymentMetadata `json:"archive,omitempty"`
+	ProxyPorts []DeploymentProxyPortMetadata `json:"proxy_ports,omitempty"`
 }
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object
@@ -167,6 +168,38 @@ func (o *DeploymentMetadata) SetArchive(v ArchiveDeploymentMetadata) {
 	o.Archive = &v
 }
 
+// GetProxyPorts returns the ProxyPorts field value if set, zero value otherwise.
+func (o *DeploymentMetadata) GetProxyPorts() []DeploymentProxyPortMetadata {
+	if o == nil || isNil(o.ProxyPorts) {
+		var ret []DeploymentProxyPortMetadata
+		return ret
+	}
+	return o.ProxyPorts
+}
+
+// GetProxyPortsOk returns a tuple with the ProxyPorts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentMetadata) GetProxyPortsOk() ([]DeploymentProxyPortMetadata, bool) {
+	if o == nil || isNil(o.ProxyPorts) {
+    return nil, false
+	}
+	return o.ProxyPorts, true
+}
+
+// HasProxyPorts returns a boolean if a field has been set.
+func (o *DeploymentMetadata) HasProxyPorts() bool {
+	if o != nil && !isNil(o.ProxyPorts) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyPorts gets a reference to the given []DeploymentProxyPortMetadata and assigns it to the ProxyPorts field.
+func (o *DeploymentMetadata) SetProxyPorts(v []DeploymentProxyPortMetadata) {
+	o.ProxyPorts = v
+}
+
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Trigger) {
@@ -180,6 +213,9 @@ func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Archive) {
 		toSerialize["archive"] = o.Archive
+	}
+	if !isNil(o.ProxyPorts) {
+		toSerialize["proxy_ports"] = o.ProxyPorts
 	}
 	return json.Marshal(toSerialize)
 }

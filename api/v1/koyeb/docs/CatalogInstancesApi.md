@@ -5,7 +5,7 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetCatalogInstance**](CatalogInstancesApi.md#GetCatalogInstance) | **Get** /v1/catalog/instances/{id} | Get Instance
-[**ListCatalogInstances**](CatalogInstancesApi.md#ListCatalogInstances) | **Get** /v1/catalog/instances | List Instance
+[**ListCatalogInstances**](CatalogInstancesApi.md#ListCatalogInstances) | **Get** /v1/catalog/instances | List Instances
 
 
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 > ListCatalogInstancesReply ListCatalogInstances(ctx).Limit(limit).Offset(offset).Id(id).Execute()
 
-List Instance
+List Instances
 
 ### Example
 

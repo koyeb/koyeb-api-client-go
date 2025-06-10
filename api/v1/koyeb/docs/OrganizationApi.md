@@ -4,23 +4,23 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateBudget**](OrganizationApi.md#CreateBudget) | **Post** /v1/organizations/{organization_id}/budget | 
-[**CreateOrganization**](OrganizationApi.md#CreateOrganization) | **Post** /v1/organizations | Create organization
-[**DeactivateOrganization**](OrganizationApi.md#DeactivateOrganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an organization
-[**DeleteBudget**](OrganizationApi.md#DeleteBudget) | **Delete** /v1/organizations/{organization_id}/budget | 
-[**DeleteOrganization**](OrganizationApi.md#DeleteOrganization) | **Delete** /v1/organizations/{id} | Delete an organization
-[**GetBudget**](OrganizationApi.md#GetBudget) | **Get** /v1/organizations/{organization_id}/budget | 
-[**GetGithubInstallation**](OrganizationApi.md#GetGithubInstallation) | **Get** /v1/github/installation | Fetch github installation configuration
-[**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get organization
-[**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start github installation
-[**ReactivateOrganization**](OrganizationApi.md#ReactivateOrganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an organization
-[**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch organization context
-[**UnscopeOrganizationToken**](OrganizationApi.md#UnscopeOrganizationToken) | **Post** /v1/unscope_organization_token | UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
-[**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | 
-[**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update organization
-[**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update organization
-[**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update organization plan
-[**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert organization&#39;s signup qualification
+[**CreateBudget**](OrganizationApi.md#CreateBudget) | **Post** /v1/organizations/{organization_id}/budget | Create Budget
+[**CreateOrganization**](OrganizationApi.md#CreateOrganization) | **Post** /v1/organizations | Create Organization
+[**DeactivateOrganization**](OrganizationApi.md#DeactivateOrganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an Organization
+[**DeleteBudget**](OrganizationApi.md#DeleteBudget) | **Delete** /v1/organizations/{organization_id}/budget | Delete Budget
+[**DeleteOrganization**](OrganizationApi.md#DeleteOrganization) | **Delete** /v1/organizations/{id} | Delete an Organization
+[**GetBudget**](OrganizationApi.md#GetBudget) | **Get** /v1/organizations/{organization_id}/budget | Get Budget
+[**GetGithubInstallation**](OrganizationApi.md#GetGithubInstallation) | **Get** /v1/github/installation | Fetch Github Installation configuration
+[**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get Organization
+[**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start Github Installation
+[**ReactivateOrganization**](OrganizationApi.md#ReactivateOrganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an Organization
+[**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context
+[**UnscopeOrganizationToken**](OrganizationApi.md#UnscopeOrganizationToken) | **Post** /v1/unscope_organization_token | Unscope Organization Token
+[**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
+[**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update Organization
+[**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update Organization
+[**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
+[**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 
 
 
@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 > CreateBudgetReply CreateBudget(ctx, organizationId).Body(body).Execute()
 
-
+Create Budget
 
 ### Example
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 > CreateOrganizationReply CreateOrganization(ctx).Body(body).Execute()
 
-Create organization
+Create Organization
 
 ### Example
 
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 
 > DeactivateOrganizationReply DeactivateOrganization(ctx, id).Body(body).Execute()
 
-Deactivate an organization
+Deactivate an Organization
 
 ### Example
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteBudget(ctx, organizationId).Execute()
 
-
+Delete Budget
 
 ### Example
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Notes
 
 > DeleteOrganizationReply DeleteOrganization(ctx, id).Execute()
 
-Delete an organization
+Delete an Organization
 
 ### Example
 
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 
 > GetBudgetReply GetBudget(ctx, organizationId).Execute()
 
-
+Get Budget
 
 ### Example
 
@@ -436,7 +436,7 @@ Name | Type | Description  | Notes
 
 > GetGithubInstallationReply GetGithubInstallation(ctx).Execute()
 
-Fetch github installation configuration
+Fetch Github Installation configuration
 
 ### Example
 
@@ -495,7 +495,7 @@ Other parameters are passed through a pointer to a apiGetGithubInstallationReque
 
 > GetOrganizationReply GetOrganization(ctx, id).Execute()
 
-Get organization
+Get Organization
 
 ### Example
 
@@ -563,7 +563,7 @@ Name | Type | Description  | Notes
 
 > GithubInstallationReply GithubInstallation(ctx).Body(body).Execute()
 
-Start github installation
+Start Github Installation
 
 ### Example
 
@@ -627,7 +627,7 @@ Name | Type | Description  | Notes
 
 > ReactivateOrganizationReply ReactivateOrganization(ctx, id).Body(body).Execute()
 
-Reactivate an organization
+Reactivate an Organization
 
 ### Example
 
@@ -697,7 +697,7 @@ Name | Type | Description  | Notes
 
 > LoginReply SwitchOrganization(ctx, id).Body(body).SeonFp(seonFp).Execute()
 
-Switch organization context
+Switch Organization context
 
 ### Example
 
@@ -769,7 +769,9 @@ Name | Type | Description  | Notes
 
 > LoginReply UnscopeOrganizationToken(ctx).Body(body).SeonFp(seonFp).Execute()
 
-UnscopeOrganizationToken removes the organization scope from a token. This endpoint is useful when a user wants to remove an organization: by unscoping the token first, the user can then delete the organization without invalidating his token.
+Unscope Organization Token
+
+
 
 ### Example
 
@@ -835,7 +837,7 @@ Name | Type | Description  | Notes
 
 > UpdateBudgetReply UpdateBudget(ctx, organizationId).Body(body).Execute()
 
-
+Update Budget
 
 ### Example
 
@@ -905,7 +907,7 @@ Name | Type | Description  | Notes
 
 > UpdateOrganizationReply UpdateOrganization(ctx, id).Organization(organization).UpdateMask(updateMask).Execute()
 
-Update organization
+Update Organization
 
 ### Example
 
@@ -977,7 +979,7 @@ Name | Type | Description  | Notes
 
 > UpdateOrganizationReply UpdateOrganization2(ctx, id).Organization(organization).UpdateMask(updateMask).Execute()
 
-Update organization
+Update Organization
 
 ### Example
 
@@ -1049,7 +1051,7 @@ Name | Type | Description  | Notes
 
 > UpdateOrganizationPlanReply UpdateOrganizationPlan(ctx, id).Body(body).Execute()
 
-Update organization plan
+Update Organization plan
 
 ### Example
 
@@ -1119,7 +1121,7 @@ Name | Type | Description  | Notes
 
 > UpsertSignupQualificationReply UpsertSignupQualification(ctx, id).Body(body).Execute()
 
-Upsert organization's signup qualification
+Upsert Organization's signup qualification
 
 ### Example
 

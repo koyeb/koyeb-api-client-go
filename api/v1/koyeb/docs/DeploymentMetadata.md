@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Database** | Pointer to [**DatabaseDeploymentMetadata**](DatabaseDeploymentMetadata.md) |  | [optional] 
 **Git** | Pointer to [**GitDeploymentMetadata**](GitDeploymentMetadata.md) |  | [optional] 
 **Archive** | Pointer to [**ArchiveDeploymentMetadata**](ArchiveDeploymentMetadata.md) |  | [optional] 
+**ProxyPorts** | Pointer to [**[]DeploymentProxyPortMetadata**](DeploymentProxyPortMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetArchive sets Archive field to given value.
 `func (o *DeploymentMetadata) HasArchive() bool`
 
 HasArchive returns a boolean if a field has been set.
+
+### GetProxyPorts
+
+`func (o *DeploymentMetadata) GetProxyPorts() []DeploymentProxyPortMetadata`
+
+GetProxyPorts returns the ProxyPorts field if non-nil, zero value otherwise.
+
+### GetProxyPortsOk
+
+`func (o *DeploymentMetadata) GetProxyPortsOk() (*[]DeploymentProxyPortMetadata, bool)`
+
+GetProxyPortsOk returns a tuple with the ProxyPorts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyPorts
+
+`func (o *DeploymentMetadata) SetProxyPorts(v []DeploymentProxyPortMetadata)`
+
+SetProxyPorts sets ProxyPorts field to given value.
+
+### HasProxyPorts
+
+`func (o *DeploymentMetadata) HasProxyPorts() bool`
+
+HasProxyPorts returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

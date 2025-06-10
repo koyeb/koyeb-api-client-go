@@ -24,7 +24,9 @@ import (
 type ServicesApi interface {
 
 	/*
-	Autocomplete Generate autocomplete definition for a service
+	Autocomplete Autocomplete definition
+
+	Generate autocomplete definition for a service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiAutocompleteRequest
@@ -194,7 +196,9 @@ func (r ApiAutocompleteRequest) Execute() (*AutocompleteReply, *http.Response, e
 }
 
 /*
-Autocomplete Generate autocomplete definition for a service
+Autocomplete Autocomplete definition
+
+Generate autocomplete definition for a service
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAutocompleteRequest

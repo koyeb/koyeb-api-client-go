@@ -4,13 +4,13 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateSecret**](SecretsApi.md#CreateSecret) | **Post** /v1/secrets | 
-[**DeleteSecret**](SecretsApi.md#DeleteSecret) | **Delete** /v1/secrets/{id} | 
-[**GetSecret**](SecretsApi.md#GetSecret) | **Get** /v1/secrets/{id} | 
-[**ListSecrets**](SecretsApi.md#ListSecrets) | **Get** /v1/secrets | 
-[**RevealSecret**](SecretsApi.md#RevealSecret) | **Post** /v1/secrets/{id}/reveal | 
-[**UpdateSecret**](SecretsApi.md#UpdateSecret) | **Put** /v1/secrets/{id} | 
-[**UpdateSecret2**](SecretsApi.md#UpdateSecret2) | **Patch** /v1/secrets/{id} | 
+[**CreateSecret**](SecretsApi.md#CreateSecret) | **Post** /v1/secrets | Create Secret
+[**DeleteSecret**](SecretsApi.md#DeleteSecret) | **Delete** /v1/secrets/{id} | Delete Secret
+[**GetSecret**](SecretsApi.md#GetSecret) | **Get** /v1/secrets/{id} | Get Secret
+[**ListSecrets**](SecretsApi.md#ListSecrets) | **Get** /v1/secrets | List Secrets
+[**RevealSecret**](SecretsApi.md#RevealSecret) | **Post** /v1/secrets/{id}/reveal | Reveal Secret
+[**UpdateSecret**](SecretsApi.md#UpdateSecret) | **Put** /v1/secrets/{id} | Update Secret
+[**UpdateSecret2**](SecretsApi.md#UpdateSecret2) | **Patch** /v1/secrets/{id} | Update Secret
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 > CreateSecretReply CreateSecret(ctx).Secret(secret).Execute()
 
-
+Create Secret
 
 ### Example
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} DeleteSecret(ctx, id).Execute()
 
-
+Delete Secret
 
 ### Example
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 > GetSecretReply GetSecret(ctx, id).Execute()
 
-
+Get Secret
 
 ### Example
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 > ListSecretsReply ListSecrets(ctx).Name(name).Limit(limit).Offset(offset).Types(types).Execute()
 
-
+List Secrets
 
 ### Example
 
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 > RevealSecretReply RevealSecret(ctx, id).Body(body).Execute()
 
-
+Reveal Secret
 
 ### Example
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Notes
 
 > UpdateSecretReply UpdateSecret(ctx, id).Secret(secret).UpdateMask(updateMask).Execute()
 
-
+Update Secret
 
 ### Example
 
@@ -430,7 +430,7 @@ Name | Type | Description  | Notes
 
 > UpdateSecretReply UpdateSecret2(ctx, id).Secret(secret).UpdateMask(updateMask).Execute()
 
-
+Update Secret
 
 ### Example
 
