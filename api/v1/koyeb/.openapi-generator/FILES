@@ -198,6 +198,7 @@ docs/GetDeploymentScalingReply.md
 docs/GetDeploymentScalingReplyItem.md
 docs/GetDomainReply.md
 docs/GetGithubInstallationReply.md
+docs/GetIdenfyTokenReply.md
 docs/GetInstanceReply.md
 docs/GetIntercomProfileReply.md
 docs/GetMetricsReply.md
@@ -577,6 +578,7 @@ model_get_deployment_scaling_reply.go
 model_get_deployment_scaling_reply_item.go
 model_get_domain_reply.go
 model_get_github_installation_reply.go
+model_get_idenfy_token_reply.go
 model_get_instance_reply.go
 model_get_intercom_profile_reply.go
 model_get_metrics_reply.go
