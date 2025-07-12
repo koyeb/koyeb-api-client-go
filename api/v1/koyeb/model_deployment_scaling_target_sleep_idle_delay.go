@@ -16,8 +16,12 @@ import (
 
 // DeploymentScalingTargetSleepIdleDelay struct for DeploymentScalingTargetSleepIdleDelay
 type DeploymentScalingTargetSleepIdleDelay struct {
-	// Delay in seconds after which a service which received 0 request is scaled to 0. This is not configurable and must be set to 300 (5 minutes). Get in touch to tune it.
+	// DEPRECATED: use deep_sleep_value instead. Delay in seconds after which a service which received 0 request is put to deep sleep.
 	Value *int64 `json:"value,omitempty"`
+	// Delay in seconds after which a service which received 0 request is put to deep sleep.
+	DeepSleepValue *int64 `json:"deep_sleep_value,omitempty"`
+	// Delay in seconds after which a service which received 0 request is put to light sleep.
+	LightSleepValue *int64 `json:"light_sleep_value,omitempty"`
 }
 
 // NewDeploymentScalingTargetSleepIdleDelay instantiates a new DeploymentScalingTargetSleepIdleDelay object
@@ -69,10 +73,80 @@ func (o *DeploymentScalingTargetSleepIdleDelay) SetValue(v int64) {
 	o.Value = &v
 }
 
+// GetDeepSleepValue returns the DeepSleepValue field value if set, zero value otherwise.
+func (o *DeploymentScalingTargetSleepIdleDelay) GetDeepSleepValue() int64 {
+	if o == nil || isNil(o.DeepSleepValue) {
+		var ret int64
+		return ret
+	}
+	return *o.DeepSleepValue
+}
+
+// GetDeepSleepValueOk returns a tuple with the DeepSleepValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentScalingTargetSleepIdleDelay) GetDeepSleepValueOk() (*int64, bool) {
+	if o == nil || isNil(o.DeepSleepValue) {
+    return nil, false
+	}
+	return o.DeepSleepValue, true
+}
+
+// HasDeepSleepValue returns a boolean if a field has been set.
+func (o *DeploymentScalingTargetSleepIdleDelay) HasDeepSleepValue() bool {
+	if o != nil && !isNil(o.DeepSleepValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeepSleepValue gets a reference to the given int64 and assigns it to the DeepSleepValue field.
+func (o *DeploymentScalingTargetSleepIdleDelay) SetDeepSleepValue(v int64) {
+	o.DeepSleepValue = &v
+}
+
+// GetLightSleepValue returns the LightSleepValue field value if set, zero value otherwise.
+func (o *DeploymentScalingTargetSleepIdleDelay) GetLightSleepValue() int64 {
+	if o == nil || isNil(o.LightSleepValue) {
+		var ret int64
+		return ret
+	}
+	return *o.LightSleepValue
+}
+
+// GetLightSleepValueOk returns a tuple with the LightSleepValue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentScalingTargetSleepIdleDelay) GetLightSleepValueOk() (*int64, bool) {
+	if o == nil || isNil(o.LightSleepValue) {
+    return nil, false
+	}
+	return o.LightSleepValue, true
+}
+
+// HasLightSleepValue returns a boolean if a field has been set.
+func (o *DeploymentScalingTargetSleepIdleDelay) HasLightSleepValue() bool {
+	if o != nil && !isNil(o.LightSleepValue) {
+		return true
+	}
+
+	return false
+}
+
+// SetLightSleepValue gets a reference to the given int64 and assigns it to the LightSleepValue field.
+func (o *DeploymentScalingTargetSleepIdleDelay) SetLightSleepValue(v int64) {
+	o.LightSleepValue = &v
+}
+
 func (o DeploymentScalingTargetSleepIdleDelay) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Value) {
 		toSerialize["value"] = o.Value
+	}
+	if !isNil(o.DeepSleepValue) {
+		toSerialize["deep_sleep_value"] = o.DeepSleepValue
+	}
+	if !isNil(o.LightSleepValue) {
+		toSerialize["light_sleep_value"] = o.LightSleepValue
 	}
 	return json.Marshal(toSerialize)
 }

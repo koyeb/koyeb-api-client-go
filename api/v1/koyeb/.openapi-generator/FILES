@@ -198,6 +198,7 @@ docs/GetDeploymentScalingReply.md
 docs/GetDeploymentScalingReplyItem.md
 docs/GetDomainReply.md
 docs/GetGithubInstallationReply.md
+docs/GetIdenfyTokenReply.md
 docs/GetInstanceReply.md
 docs/GetIntercomProfileReply.md
 docs/GetMetricsReply.md
@@ -219,6 +220,7 @@ docs/GetSnapshotReply.md
 docs/GetSubscriptionReply.md
 docs/GetUserOrganizationInvitationReply.md
 docs/GitDeploymentMetadata.md
+docs/GitEnvDeploymentMetadata.md
 docs/GitHubRegistryConfiguration.md
 docs/GitLabRegistryConfiguration.md
 docs/GitSource.md
@@ -369,6 +371,7 @@ docs/ReviewOrganizationCapacityReply.md
 docs/ReviewOrganizationCapacityRequest.md
 docs/Route.md
 docs/Sample.md
+docs/ScaleToZeroQuotas.md
 docs/Scaling.md
 docs/SearchApi.md
 docs/Secret.md
@@ -577,6 +580,7 @@ model_get_deployment_scaling_reply.go
 model_get_deployment_scaling_reply_item.go
 model_get_domain_reply.go
 model_get_github_installation_reply.go
+model_get_idenfy_token_reply.go
 model_get_instance_reply.go
 model_get_intercom_profile_reply.go
 model_get_metrics_reply.go
@@ -598,6 +602,7 @@ model_get_snapshot_reply.go
 model_get_subscription_reply.go
 model_get_user_organization_invitation_reply.go
 model_git_deployment_metadata.go
+model_git_env_deployment_metadata.go
 model_git_hub_registry_configuration.go
 model_git_lab_registry_configuration.go
 model_git_source.go
@@ -731,6 +736,7 @@ model_review_organization_capacity_reply.go
 model_review_organization_capacity_request.go
 model_route.go
 model_sample.go
+model_scale_to_zero_quotas.go
 model_scaling.go
 model_secret.go
 model_secret_type.go

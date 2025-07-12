@@ -171,6 +171,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
 *ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | Get Current Organization
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | Get Current User
+*ProfileApi* | [**GetIdenfyToken**](docs/ProfileApi.md#getidenfytoken) | **Get** /v1/account/idenfy | Begin a session with iDenfy, emit an authToken
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
 *ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
 *ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
@@ -370,6 +371,7 @@ Class | Method | HTTP request | Description
  - [GetDeploymentScalingReplyItem](docs/GetDeploymentScalingReplyItem.md)
  - [GetDomainReply](docs/GetDomainReply.md)
  - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
+ - [GetIdenfyTokenReply](docs/GetIdenfyTokenReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
  - [GetIntercomProfileReply](docs/GetIntercomProfileReply.md)
  - [GetMetricsReply](docs/GetMetricsReply.md)
@@ -391,6 +393,7 @@ Class | Method | HTTP request | Description
  - [GetSubscriptionReply](docs/GetSubscriptionReply.md)
  - [GetUserOrganizationInvitationReply](docs/GetUserOrganizationInvitationReply.md)
  - [GitDeploymentMetadata](docs/GitDeploymentMetadata.md)
+ - [GitEnvDeploymentMetadata](docs/GitEnvDeploymentMetadata.md)
  - [GitHubRegistryConfiguration](docs/GitHubRegistryConfiguration.md)
  - [GitLabRegistryConfiguration](docs/GitLabRegistryConfiguration.md)
  - [GitSource](docs/GitSource.md)
@@ -524,6 +527,7 @@ Class | Method | HTTP request | Description
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
  - [Route](docs/Route.md)
  - [Sample](docs/Sample.md)
+ - [ScaleToZeroQuotas](docs/ScaleToZeroQuotas.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
  - [SecretType](docs/SecretType.md)

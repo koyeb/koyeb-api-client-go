@@ -32,6 +32,8 @@ type Quotas struct {
 	MetricsRetention *int32 `json:"metrics_retention,omitempty"`
 	LogsRetention *int32 `json:"logs_retention,omitempty"`
 	AccessReservedSubdomains []string `json:"access_reserved_subdomains,omitempty"`
+	ProxyPorts *int64 `json:"proxy_ports,omitempty"`
+	ScaleToZero *ScaleToZeroQuotas `json:"scale_to_zero,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -563,6 +565,70 @@ func (o *Quotas) SetAccessReservedSubdomains(v []string) {
 	o.AccessReservedSubdomains = v
 }
 
+// GetProxyPorts returns the ProxyPorts field value if set, zero value otherwise.
+func (o *Quotas) GetProxyPorts() int64 {
+	if o == nil || isNil(o.ProxyPorts) {
+		var ret int64
+		return ret
+	}
+	return *o.ProxyPorts
+}
+
+// GetProxyPortsOk returns a tuple with the ProxyPorts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetProxyPortsOk() (*int64, bool) {
+	if o == nil || isNil(o.ProxyPorts) {
+    return nil, false
+	}
+	return o.ProxyPorts, true
+}
+
+// HasProxyPorts returns a boolean if a field has been set.
+func (o *Quotas) HasProxyPorts() bool {
+	if o != nil && !isNil(o.ProxyPorts) {
+		return true
+	}
+
+	return false
+}
+
+// SetProxyPorts gets a reference to the given int64 and assigns it to the ProxyPorts field.
+func (o *Quotas) SetProxyPorts(v int64) {
+	o.ProxyPorts = &v
+}
+
+// GetScaleToZero returns the ScaleToZero field value if set, zero value otherwise.
+func (o *Quotas) GetScaleToZero() ScaleToZeroQuotas {
+	if o == nil || isNil(o.ScaleToZero) {
+		var ret ScaleToZeroQuotas
+		return ret
+	}
+	return *o.ScaleToZero
+}
+
+// GetScaleToZeroOk returns a tuple with the ScaleToZero field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetScaleToZeroOk() (*ScaleToZeroQuotas, bool) {
+	if o == nil || isNil(o.ScaleToZero) {
+    return nil, false
+	}
+	return o.ScaleToZero, true
+}
+
+// HasScaleToZero returns a boolean if a field has been set.
+func (o *Quotas) HasScaleToZero() bool {
+	if o != nil && !isNil(o.ScaleToZero) {
+		return true
+	}
+
+	return false
+}
+
+// SetScaleToZero gets a reference to the given ScaleToZeroQuotas and assigns it to the ScaleToZero field.
+func (o *Quotas) SetScaleToZero(v ScaleToZeroQuotas) {
+	o.ScaleToZero = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -612,6 +678,12 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AccessReservedSubdomains) {
 		toSerialize["access_reserved_subdomains"] = o.AccessReservedSubdomains
+	}
+	if !isNil(o.ProxyPorts) {
+		toSerialize["proxy_ports"] = o.ProxyPorts
+	}
+	if !isNil(o.ScaleToZero) {
+		toSerialize["scale_to_zero"] = o.ScaleToZero
 	}
 	return json.Marshal(toSerialize)
 }
