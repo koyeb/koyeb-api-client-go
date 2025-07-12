@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
 [**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | Get Current Organization
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | Get Current User
+[**GetIdenfyToken**](ProfileApi.md#GetIdenfyToken) | **Get** /v1/account/idenfy | Begin a session with iDenfy, emit an authToken
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
 [**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
 [**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
@@ -266,6 +267,65 @@ Other parameters are passed through a pointer to a apiGetCurrentUserRequest stru
 ### Return type
 
 [**UserReply**](UserReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetIdenfyToken
+
+> GetIdenfyTokenReply GetIdenfyToken(ctx).Execute()
+
+Begin a session with iDenfy, emit an authToken
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetIdenfyToken(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetIdenfyToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetIdenfyToken`: GetIdenfyTokenReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.GetIdenfyToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetIdenfyTokenRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetIdenfyTokenReply**](GetIdenfyTokenReply.md)
 
 ### Authorization
 

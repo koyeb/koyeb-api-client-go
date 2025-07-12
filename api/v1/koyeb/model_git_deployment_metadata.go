@@ -17,6 +17,7 @@ import (
 // GitDeploymentMetadata struct for GitDeploymentMetadata
 type GitDeploymentMetadata struct {
 	LastProvisionedDeploymentId *string `json:"last_provisioned_deployment_id,omitempty"`
+	GitEnv *GitEnvDeploymentMetadata `json:"git_env,omitempty"`
 }
 
 // NewGitDeploymentMetadata instantiates a new GitDeploymentMetadata object
@@ -68,10 +69,45 @@ func (o *GitDeploymentMetadata) SetLastProvisionedDeploymentId(v string) {
 	o.LastProvisionedDeploymentId = &v
 }
 
+// GetGitEnv returns the GitEnv field value if set, zero value otherwise.
+func (o *GitDeploymentMetadata) GetGitEnv() GitEnvDeploymentMetadata {
+	if o == nil || isNil(o.GitEnv) {
+		var ret GitEnvDeploymentMetadata
+		return ret
+	}
+	return *o.GitEnv
+}
+
+// GetGitEnvOk returns a tuple with the GitEnv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitDeploymentMetadata) GetGitEnvOk() (*GitEnvDeploymentMetadata, bool) {
+	if o == nil || isNil(o.GitEnv) {
+    return nil, false
+	}
+	return o.GitEnv, true
+}
+
+// HasGitEnv returns a boolean if a field has been set.
+func (o *GitDeploymentMetadata) HasGitEnv() bool {
+	if o != nil && !isNil(o.GitEnv) {
+		return true
+	}
+
+	return false
+}
+
+// SetGitEnv gets a reference to the given GitEnvDeploymentMetadata and assigns it to the GitEnv field.
+func (o *GitDeploymentMetadata) SetGitEnv(v GitEnvDeploymentMetadata) {
+	o.GitEnv = &v
+}
+
 func (o GitDeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.LastProvisionedDeploymentId) {
 		toSerialize["last_provisioned_deployment_id"] = o.LastProvisionedDeploymentId
+	}
+	if !isNil(o.GitEnv) {
+		toSerialize["git_env"] = o.GitEnv
 	}
 	return json.Marshal(toSerialize)
 }
