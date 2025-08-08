@@ -15287,7 +15287,17 @@
         "value": {
           "type": "integer",
           "format": "int64",
-          "description": "Delay in seconds after which a service which received 0 request is scaled to 0.\nThis is not configurable and must be set to 300 (5 minutes). Get in touch to\ntune it."
+          "description": "Delay in seconds after which a service which received 0 request is scaled to 0.\nThis is not configurable and must be set to 300 (5 minutes). Get in touch to\ntune it. (DEPRECATED)"
+        },
+        "deep_sleep_value": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Delay in seconds after which a service which received 0 request is scaled to 0 (deep sleep)"
+        },
+        "light_sleep_value": {
+          "type": "integer",
+          "format": "int64",
+          "description": "Delay in seconds after which a service which received 0 request is scaled down to minimal resources (light sleep)"
         }
       }
     },

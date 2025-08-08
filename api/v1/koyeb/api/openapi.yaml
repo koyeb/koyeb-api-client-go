@@ -16587,12 +16587,24 @@ components:
     DeploymentScalingTargetSleepIdleDelay:
       example:
         value: 1
+        deep_sleep_value: 600
+        light_sleep_value: 180
       properties:
         value:
           description: |-
             Delay in seconds after which a service which received 0 request is scaled to 0.
             This is not configurable and must be set to 300 (5 minutes). Get in touch to
-            tune it.
+            tune it. (DEPRECATED)
+          format: int64
+          type: integer
+        deep_sleep_value:
+          description: |-
+            Delay in seconds after which a service which received 0 request is scaled to 0 (deep sleep)
+          format: int64
+          type: integer
+        light_sleep_value:
+          description: |-
+            Delay in seconds after which a service which received 0 request is scaled down to minimal resources (light sleep)
           format: int64
           type: integer
       type: object
