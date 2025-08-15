@@ -17,6 +17,7 @@ import (
 // ReviewOrganizationCapacityRequest struct for ReviewOrganizationCapacityRequest
 type ReviewOrganizationCapacityRequest struct {
 	Plan *string `json:"plan,omitempty"`
+	Trialing *bool `json:"trialing,omitempty"`
 }
 
 // NewReviewOrganizationCapacityRequest instantiates a new ReviewOrganizationCapacityRequest object
@@ -68,10 +69,45 @@ func (o *ReviewOrganizationCapacityRequest) SetPlan(v string) {
 	o.Plan = &v
 }
 
+// GetTrialing returns the Trialing field value if set, zero value otherwise.
+func (o *ReviewOrganizationCapacityRequest) GetTrialing() bool {
+	if o == nil || isNil(o.Trialing) {
+		var ret bool
+		return ret
+	}
+	return *o.Trialing
+}
+
+// GetTrialingOk returns a tuple with the Trialing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReviewOrganizationCapacityRequest) GetTrialingOk() (*bool, bool) {
+	if o == nil || isNil(o.Trialing) {
+    return nil, false
+	}
+	return o.Trialing, true
+}
+
+// HasTrialing returns a boolean if a field has been set.
+func (o *ReviewOrganizationCapacityRequest) HasTrialing() bool {
+	if o != nil && !isNil(o.Trialing) {
+		return true
+	}
+
+	return false
+}
+
+// SetTrialing gets a reference to the given bool and assigns it to the Trialing field.
+func (o *ReviewOrganizationCapacityRequest) SetTrialing(v bool) {
+	o.Trialing = &v
+}
+
 func (o ReviewOrganizationCapacityRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
+	}
+	if !isNil(o.Trialing) {
+		toSerialize["trialing"] = o.Trialing
 	}
 	return json.Marshal(toSerialize)
 }

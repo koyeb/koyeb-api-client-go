@@ -36,6 +36,7 @@ type CatalogInstance struct {
 	Gpu *CatalogGPUDetails `json:"gpu,omitempty"`
 	ServiceTypes []string `json:"service_types,omitempty"`
 	VolumesEnabled *bool `json:"volumes_enabled,omitempty"`
+	LightSleepEnabled *bool `json:"light_sleep_enabled,omitempty"`
 }
 
 // NewCatalogInstance instantiates a new CatalogInstance object
@@ -631,6 +632,38 @@ func (o *CatalogInstance) SetVolumesEnabled(v bool) {
 	o.VolumesEnabled = &v
 }
 
+// GetLightSleepEnabled returns the LightSleepEnabled field value if set, zero value otherwise.
+func (o *CatalogInstance) GetLightSleepEnabled() bool {
+	if o == nil || isNil(o.LightSleepEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.LightSleepEnabled
+}
+
+// GetLightSleepEnabledOk returns a tuple with the LightSleepEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogInstance) GetLightSleepEnabledOk() (*bool, bool) {
+	if o == nil || isNil(o.LightSleepEnabled) {
+    return nil, false
+	}
+	return o.LightSleepEnabled, true
+}
+
+// HasLightSleepEnabled returns a boolean if a field has been set.
+func (o *CatalogInstance) HasLightSleepEnabled() bool {
+	if o != nil && !isNil(o.LightSleepEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetLightSleepEnabled gets a reference to the given bool and assigns it to the LightSleepEnabled field.
+func (o *CatalogInstance) SetLightSleepEnabled(v bool) {
+	o.LightSleepEnabled = &v
+}
+
 func (o CatalogInstance) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -686,6 +719,9 @@ func (o CatalogInstance) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.VolumesEnabled) {
 		toSerialize["volumes_enabled"] = o.VolumesEnabled
+	}
+	if !isNil(o.LightSleepEnabled) {
+		toSerialize["light_sleep_enabled"] = o.LightSleepEnabled
 	}
 	return json.Marshal(toSerialize)
 }

@@ -1850,6 +1850,19 @@ type ApiResumeServiceRequest struct {
 	ctx context.Context
 	ApiService ServicesApi
 	id string
+	skipBuild *bool
+	useCache *bool
+}
+
+// If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened.
+func (r ApiResumeServiceRequest) SkipBuild(skipBuild bool) ApiResumeServiceRequest {
+	r.skipBuild = &skipBuild
+	return r
+}
+
+func (r ApiResumeServiceRequest) UseCache(useCache bool) ApiResumeServiceRequest {
+	r.useCache = &useCache
+	return r
 }
 
 func (r ApiResumeServiceRequest) Execute() (map[string]interface{}, *http.Response, error) {
@@ -1896,6 +1909,12 @@ func (a *ServicesApiService) ResumeServiceExecute(r ApiResumeServiceRequest) (ma
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.skipBuild != nil {
+		localVarQueryParams.Add("skip_build", parameterToString(*r.skipBuild, ""))
+	}
+	if r.useCache != nil {
+		localVarQueryParams.Add("use_cache", parameterToString(*r.useCache, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

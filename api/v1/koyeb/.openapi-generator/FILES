@@ -80,6 +80,7 @@ docs/CatalogInstanceUsageApi.md
 docs/CatalogInstancesApi.md
 docs/CatalogRegionsApi.md
 docs/CatalogUsage.md
+docs/ClearIdenfyVerificationResultRequest.md
 docs/ComposeApi.md
 docs/ComposeReply.md
 docs/ConfigFile.md
@@ -198,6 +199,7 @@ docs/GetDeploymentScalingReply.md
 docs/GetDeploymentScalingReplyItem.md
 docs/GetDomainReply.md
 docs/GetGithubInstallationReply.md
+docs/GetIdenfyTokenReply.md
 docs/GetInstanceReply.md
 docs/GetIntercomProfileReply.md
 docs/GetMetricsReply.md
@@ -218,7 +220,9 @@ docs/GetServiceReply.md
 docs/GetSnapshotReply.md
 docs/GetSubscriptionReply.md
 docs/GetUserOrganizationInvitationReply.md
+docs/GetUserSettingsReply.md
 docs/GitDeploymentMetadata.md
+docs/GitEnvDeploymentMetadata.md
 docs/GitHubRegistryConfiguration.md
 docs/GitLabRegistryConfiguration.md
 docs/GitSource.md
@@ -369,6 +373,7 @@ docs/ReviewOrganizationCapacityReply.md
 docs/ReviewOrganizationCapacityRequest.md
 docs/Route.md
 docs/Sample.md
+docs/ScaleToZeroQuotas.md
 docs/Scaling.md
 docs/SearchApi.md
 docs/Secret.md
@@ -424,6 +429,8 @@ docs/UpdateServiceReply.md
 docs/UpdateSnapshotReply.md
 docs/UpdateSnapshotRequest.md
 docs/UpdateUserRequestUserUpdateBody.md
+docs/UpdateUserSettingsReply.md
+docs/UpdateUserSettingsRequest.md
 docs/UpsertSignupQualificationReply.md
 docs/UpsertSignupQualificationRequest.md
 docs/Usage.md
@@ -433,6 +440,7 @@ docs/User.md
 docs/UserFlags.md
 docs/UserReply.md
 docs/UserRoleRole.md
+docs/UserSettings.md
 docs/UsersApi.md
 docs/VerifyDockerImageReply.md
 docs/VerifyDockerImageReplyErrCode.md
@@ -465,6 +473,7 @@ model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
 model_catalog_usage.go
+model_clear_idenfy_verification_result_request.go
 model_compose_reply.go
 model_config_file.go
 model_confirm_payment_authorization_reply.go
@@ -577,6 +586,7 @@ model_get_deployment_scaling_reply.go
 model_get_deployment_scaling_reply_item.go
 model_get_domain_reply.go
 model_get_github_installation_reply.go
+model_get_idenfy_token_reply.go
 model_get_instance_reply.go
 model_get_intercom_profile_reply.go
 model_get_metrics_reply.go
@@ -597,7 +607,9 @@ model_get_service_reply.go
 model_get_snapshot_reply.go
 model_get_subscription_reply.go
 model_get_user_organization_invitation_reply.go
+model_get_user_settings_reply.go
 model_git_deployment_metadata.go
+model_git_env_deployment_metadata.go
 model_git_hub_registry_configuration.go
 model_git_lab_registry_configuration.go
 model_git_source.go
@@ -731,6 +743,7 @@ model_review_organization_capacity_reply.go
 model_review_organization_capacity_request.go
 model_route.go
 model_sample.go
+model_scale_to_zero_quotas.go
 model_scaling.go
 model_secret.go
 model_secret_type.go
@@ -778,6 +791,8 @@ model_update_service_reply.go
 model_update_snapshot_reply.go
 model_update_snapshot_request.go
 model_update_user_request_user_update_body.go
+model_update_user_settings_reply.go
+model_update_user_settings_request.go
 model_upsert_signup_qualification_reply.go
 model_upsert_signup_qualification_request.go
 model_usage.go
@@ -786,6 +801,7 @@ model_user.go
 model_user_flags.go
 model_user_reply.go
 model_user_role_role.go
+model_user_settings.go
 model_verify_docker_image_reply.go
 model_verify_docker_image_reply_err_code.go
 response.go

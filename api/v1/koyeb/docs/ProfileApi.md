@@ -5,11 +5,14 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation
+[**ClearIdenfyVerificationResult**](ProfileApi.md#ClearIdenfyVerificationResult) | **Post** /v1/account/idenfy | ClearIdenfyVerificationResult marks the current result for idenfy as superseded
 [**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
 [**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | Get Current Organization
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | Get Current User
+[**GetIdenfyToken**](ProfileApi.md#GetIdenfyToken) | **Get** /v1/account/idenfy | Begin a session with iDenfy, emit an authToken
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
 [**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
+[**GetUserSettings**](ProfileApi.md#GetUserSettings) | **Get** /v1/account/settings | 
 [**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
 [**ListUserOrganizations**](ProfileApi.md#ListUserOrganizations) | **Get** /v1/account/organizations | List User Organizations
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
@@ -19,6 +22,7 @@ Method | HTTP request | Description
 [**UpdatePassword**](ProfileApi.md#UpdatePassword) | **Post** /v1/account/update_password | Update Password
 [**UpdateUser**](ProfileApi.md#UpdateUser) | **Put** /v1/account/profile | Update User
 [**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | Update User
+[**UpdateUserSettings**](ProfileApi.md#UpdateUserSettings) | **Patch** /v1/account/settings | 
 [**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | Validate
 
 
@@ -78,6 +82,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AcceptOrganizationInvitationReply**](AcceptOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ClearIdenfyVerificationResult
+
+> map[string]interface{} ClearIdenfyVerificationResult(ctx).Body(body).Execute()
+
+ClearIdenfyVerificationResult marks the current result for idenfy as superseded
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewClearIdenfyVerificationResultRequest() // ClearIdenfyVerificationResultRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.ClearIdenfyVerificationResult(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ClearIdenfyVerificationResult``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ClearIdenfyVerificationResult`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.ClearIdenfyVerificationResult`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiClearIdenfyVerificationResultRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ClearIdenfyVerificationResultRequest**](ClearIdenfyVerificationResultRequest.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 
@@ -281,6 +349,65 @@ Other parameters are passed through a pointer to a apiGetCurrentUserRequest stru
 [[Back to README]](../README.md)
 
 
+## GetIdenfyToken
+
+> GetIdenfyTokenReply GetIdenfyToken(ctx).Execute()
+
+Begin a session with iDenfy, emit an authToken
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetIdenfyToken(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetIdenfyToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetIdenfyToken`: GetIdenfyTokenReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.GetIdenfyToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetIdenfyTokenRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetIdenfyTokenReply**](GetIdenfyTokenReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetOAuthOptions
 
 > GetOAuthOptionsReply GetOAuthOptions(ctx).Action(action).Metadata(metadata).Execute()
@@ -400,6 +527,65 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetUserOrganizationInvitationReply**](GetUserOrganizationInvitationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUserSettings
+
+> GetUserSettingsReply GetUserSettings(ctx).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.GetUserSettings(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetUserSettings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUserSettings`: GetUserSettingsReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.GetUserSettings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUserSettingsRequest struct via the builder pattern
+
+
+### Return type
+
+[**GetUserSettingsReply**](GetUserSettingsReply.md)
 
 ### Authorization
 
@@ -998,6 +1184,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UserReply**](UserReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUserSettings
+
+> UpdateUserSettingsReply UpdateUserSettings(ctx).Body(body).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    body := *openapiclient.NewUpdateUserSettingsRequest() // UpdateUserSettingsRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdateUserSettings(context.Background()).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdateUserSettings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUserSettings`: UpdateUserSettingsReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.UpdateUserSettings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserSettingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**UpdateUserSettingsRequest**](UpdateUserSettingsRequest.md) |  | 
+
+### Return type
+
+[**UpdateUserSettingsReply**](UpdateUserSettingsReply.md)
 
 ### Authorization
 

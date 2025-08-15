@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ReviewOrganizationCapacity**](QuotasApi.md#ReviewOrganizationCapacity) | **Post** /v1/quotas/capacity | Review Organization Capacity
+[**ReviewOrganizationCapacity**](QuotasApi.md#ReviewOrganizationCapacity) | **Post** /v1/quotas/capacity | DEPRECATED: Review Organization Capacity
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > ReviewOrganizationCapacityReply ReviewOrganizationCapacity(ctx).Body(body).Execute()
 
-Review Organization Capacity
+DEPRECATED: Review Organization Capacity
 
 ### Example
 
