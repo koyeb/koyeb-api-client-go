@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LastProvisionedDeploymentId** | Pointer to **string** |  | [optional] 
+**GitEnv** | Pointer to [**GitEnvDeploymentMetadata**](GitEnvDeploymentMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetLastProvisionedDeploymentId sets LastProvisionedDeploymentId field to given v
 `func (o *GitDeploymentMetadata) HasLastProvisionedDeploymentId() bool`
 
 HasLastProvisionedDeploymentId returns a boolean if a field has been set.
+
+### GetGitEnv
+
+`func (o *GitDeploymentMetadata) GetGitEnv() GitEnvDeploymentMetadata`
+
+GetGitEnv returns the GitEnv field if non-nil, zero value otherwise.
+
+### GetGitEnvOk
+
+`func (o *GitDeploymentMetadata) GetGitEnvOk() (*GitEnvDeploymentMetadata, bool)`
+
+GetGitEnvOk returns a tuple with the GitEnv field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGitEnv
+
+`func (o *GitDeploymentMetadata) SetGitEnv(v GitEnvDeploymentMetadata)`
+
+SetGitEnv sets GitEnv field to given value.
+
+### HasGitEnv
+
+`func (o *GitDeploymentMetadata) HasGitEnv() bool`
+
+HasGitEnv returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

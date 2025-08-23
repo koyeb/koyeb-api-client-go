@@ -574,7 +574,7 @@ Name | Type | Description  | Notes
 
 ## ResumeService
 
-> map[string]interface{} ResumeService(ctx, id).Execute()
+> map[string]interface{} ResumeService(ctx, id).SkipBuild(skipBuild).UseCache(useCache).Execute()
 
 Resume Service
 
@@ -594,10 +594,12 @@ import (
 
 func main() {
     id := "id_example" // string | The id of the service to pause.
+    skipBuild := true // bool | If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened. (optional)
+    useCache := true // bool |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.ResumeService(context.Background(), id).Execute()
+    resp, r, err := apiClient.ServicesApi.ResumeService(context.Background(), id).SkipBuild(skipBuild).UseCache(useCache).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ResumeService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -623,6 +625,8 @@ Other parameters are passed through a pointer to a apiResumeServiceRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **skipBuild** | **bool** | If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened. | 
+ **useCache** | **bool** |  | 
 
 ### Return type
 

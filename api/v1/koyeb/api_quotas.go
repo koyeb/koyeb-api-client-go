@@ -22,7 +22,7 @@ import (
 type QuotasApi interface {
 
 	/*
-	ReviewOrganizationCapacity Review Organization Capacity
+	ReviewOrganizationCapacity DEPRECATED: Review Organization Capacity
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiReviewOrganizationCapacityRequest
@@ -53,7 +53,7 @@ func (r ApiReviewOrganizationCapacityRequest) Execute() (*ReviewOrganizationCapa
 }
 
 /*
-ReviewOrganizationCapacity Review Organization Capacity
+ReviewOrganizationCapacity DEPRECATED: Review Organization Capacity
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiReviewOrganizationCapacityRequest

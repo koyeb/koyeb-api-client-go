@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **MetricsRetention** | Pointer to **int32** |  | [optional] 
 **LogsRetention** | Pointer to **int32** |  | [optional] 
 **AccessReservedSubdomains** | Pointer to **[]string** |  | [optional] 
+**ProxyPorts** | Pointer to **int64** |  | [optional] 
+**ScaleToZero** | Pointer to [**ScaleToZeroQuotas**](ScaleToZeroQuotas.md) |  | [optional] 
+**Archives** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -439,6 +442,81 @@ SetAccessReservedSubdomains sets AccessReservedSubdomains field to given value.
 `func (o *Quotas) HasAccessReservedSubdomains() bool`
 
 HasAccessReservedSubdomains returns a boolean if a field has been set.
+
+### GetProxyPorts
+
+`func (o *Quotas) GetProxyPorts() int64`
+
+GetProxyPorts returns the ProxyPorts field if non-nil, zero value otherwise.
+
+### GetProxyPortsOk
+
+`func (o *Quotas) GetProxyPortsOk() (*int64, bool)`
+
+GetProxyPortsOk returns a tuple with the ProxyPorts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxyPorts
+
+`func (o *Quotas) SetProxyPorts(v int64)`
+
+SetProxyPorts sets ProxyPorts field to given value.
+
+### HasProxyPorts
+
+`func (o *Quotas) HasProxyPorts() bool`
+
+HasProxyPorts returns a boolean if a field has been set.
+
+### GetScaleToZero
+
+`func (o *Quotas) GetScaleToZero() ScaleToZeroQuotas`
+
+GetScaleToZero returns the ScaleToZero field if non-nil, zero value otherwise.
+
+### GetScaleToZeroOk
+
+`func (o *Quotas) GetScaleToZeroOk() (*ScaleToZeroQuotas, bool)`
+
+GetScaleToZeroOk returns a tuple with the ScaleToZero field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScaleToZero
+
+`func (o *Quotas) SetScaleToZero(v ScaleToZeroQuotas)`
+
+SetScaleToZero sets ScaleToZero field to given value.
+
+### HasScaleToZero
+
+`func (o *Quotas) HasScaleToZero() bool`
+
+HasScaleToZero returns a boolean if a field has been set.
+
+### GetArchives
+
+`func (o *Quotas) GetArchives() string`
+
+GetArchives returns the Archives field if non-nil, zero value otherwise.
+
+### GetArchivesOk
+
+`func (o *Quotas) GetArchivesOk() (*string, bool)`
+
+GetArchivesOk returns a tuple with the Archives field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetArchives
+
+`func (o *Quotas) SetArchives(v string)`
+
+SetArchives sets Archives field to given value.
+
+### HasArchives
+
+`func (o *Quotas) HasArchives() bool`
+
+HasArchives returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **Gpu** | Pointer to [**CatalogGPUDetails**](CatalogGPUDetails.md) |  | [optional] 
 **ServiceTypes** | Pointer to **[]string** |  | [optional] 
 **VolumesEnabled** | Pointer to **bool** |  | [optional] 
+**LightSleepEnabled** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -491,6 +492,31 @@ SetVolumesEnabled sets VolumesEnabled field to given value.
 `func (o *CatalogInstanceListItem) HasVolumesEnabled() bool`
 
 HasVolumesEnabled returns a boolean if a field has been set.
+
+### GetLightSleepEnabled
+
+`func (o *CatalogInstanceListItem) GetLightSleepEnabled() bool`
+
+GetLightSleepEnabled returns the LightSleepEnabled field if non-nil, zero value otherwise.
+
+### GetLightSleepEnabledOk
+
+`func (o *CatalogInstanceListItem) GetLightSleepEnabledOk() (*bool, bool)`
+
+GetLightSleepEnabledOk returns a tuple with the LightSleepEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLightSleepEnabled
+
+`func (o *CatalogInstanceListItem) SetLightSleepEnabled(v bool)`
+
+SetLightSleepEnabled sets LightSleepEnabled field to given value.
+
+### HasLightSleepEnabled
+
+`func (o *CatalogInstanceListItem) HasLightSleepEnabled() bool`
+
+HasLightSleepEnabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
