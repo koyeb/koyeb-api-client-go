@@ -45,6 +45,7 @@ type Organization struct {
 	Trialing *bool `json:"trialing,omitempty"`
 	TrialStartsAt *time.Time `json:"trial_starts_at,omitempty"`
 	TrialEndsAt *time.Time `json:"trial_ends_at,omitempty"`
+	EmailDomainAllowlist []string `json:"email_domain_allowlist,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -976,6 +977,38 @@ func (o *Organization) SetTrialEndsAt(v time.Time) {
 	o.TrialEndsAt = &v
 }
 
+// GetEmailDomainAllowlist returns the EmailDomainAllowlist field value if set, zero value otherwise.
+func (o *Organization) GetEmailDomainAllowlist() []string {
+	if o == nil || isNil(o.EmailDomainAllowlist) {
+		var ret []string
+		return ret
+	}
+	return o.EmailDomainAllowlist
+}
+
+// GetEmailDomainAllowlistOk returns a tuple with the EmailDomainAllowlist field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetEmailDomainAllowlistOk() ([]string, bool) {
+	if o == nil || isNil(o.EmailDomainAllowlist) {
+    return nil, false
+	}
+	return o.EmailDomainAllowlist, true
+}
+
+// HasEmailDomainAllowlist returns a boolean if a field has been set.
+func (o *Organization) HasEmailDomainAllowlist() bool {
+	if o != nil && !isNil(o.EmailDomainAllowlist) {
+		return true
+	}
+
+	return false
+}
+
+// SetEmailDomainAllowlist gets a reference to the given []string and assigns it to the EmailDomainAllowlist field.
+func (o *Organization) SetEmailDomainAllowlist(v []string) {
+	o.EmailDomainAllowlist = v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -1061,6 +1094,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.TrialEndsAt) {
 		toSerialize["trial_ends_at"] = o.TrialEndsAt
+	}
+	if !isNil(o.EmailDomainAllowlist) {
+		toSerialize["email_domain_allowlist"] = o.EmailDomainAllowlist
 	}
 	return json.Marshal(toSerialize)
 }
