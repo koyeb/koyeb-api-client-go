@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **Trialing** | Pointer to **bool** |  | [optional] 
 **TrialStartsAt** | Pointer to **time.Time** |  | [optional] 
 **TrialEndsAt** | Pointer to **time.Time** |  | [optional] 
+**EmailDomainAllowlist** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
@@ -751,6 +752,31 @@ SetTrialEndsAt sets TrialEndsAt field to given value.
 `func (o *Organization) HasTrialEndsAt() bool`
 
 HasTrialEndsAt returns a boolean if a field has been set.
+
+### GetEmailDomainAllowlist
+
+`func (o *Organization) GetEmailDomainAllowlist() []string`
+
+GetEmailDomainAllowlist returns the EmailDomainAllowlist field if non-nil, zero value otherwise.
+
+### GetEmailDomainAllowlistOk
+
+`func (o *Organization) GetEmailDomainAllowlistOk() (*[]string, bool)`
+
+GetEmailDomainAllowlistOk returns a tuple with the EmailDomainAllowlist field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEmailDomainAllowlist
+
+`func (o *Organization) SetEmailDomainAllowlist(v []string)`
+
+SetEmailDomainAllowlist sets EmailDomainAllowlist field to given value.
+
+### HasEmailDomainAllowlist
+
+`func (o *Organization) HasEmailDomainAllowlist() bool`
+
+HasEmailDomainAllowlist returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
