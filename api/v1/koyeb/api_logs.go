@@ -16,6 +16,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"reflect"
 	"time"
 )
 
@@ -57,49 +58,71 @@ type ApiQueryLogsRequest struct {
 	appId *string
 	serviceId *string
 	deploymentId *string
-	instanceId *string
-	stream *string
 	regionalDeploymentId *string
+	instanceId *string
+	instanceIds *[]string
+	stream *string
+	streams *[]string
 	start *time.Time
 	end *time.Time
 	order *string
 	limit *string
 	regex *string
 	text *string
+	regions *[]string
 }
 
+// Type of logs to retrieve, either \&quot;build\&quot; or \&quot;runtime\&quot;. Defaults to \&quot;runtime\&quot;.
 func (r ApiQueryLogsRequest) Type_(type_ string) ApiQueryLogsRequest {
 	r.type_ = &type_
 	return r
 }
 
+// (Optional) Filter on the provided app_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiQueryLogsRequest) AppId(appId string) ApiQueryLogsRequest {
 	r.appId = &appId
 	return r
 }
 
+// (Optional) Filter on the provided service_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiQueryLogsRequest) ServiceId(serviceId string) ApiQueryLogsRequest {
 	r.serviceId = &serviceId
 	return r
 }
 
+// (Optional) Filter on the provided deployment_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiQueryLogsRequest) DeploymentId(deploymentId string) ApiQueryLogsRequest {
 	r.deploymentId = &deploymentId
 	return r
 }
 
+// (Optional) Filter on the provided regional_deployment_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
+func (r ApiQueryLogsRequest) RegionalDeploymentId(regionalDeploymentId string) ApiQueryLogsRequest {
+	r.regionalDeploymentId = &regionalDeploymentId
+	return r
+}
+
+// Deprecated, prefer using instance_ids instead.
 func (r ApiQueryLogsRequest) InstanceId(instanceId string) ApiQueryLogsRequest {
 	r.instanceId = &instanceId
 	return r
 }
 
+// (Optional) Filter on the provided instance_ids. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
+func (r ApiQueryLogsRequest) InstanceIds(instanceIds []string) ApiQueryLogsRequest {
+	r.instanceIds = &instanceIds
+	return r
+}
+
+// Deprecated, prefer using streams instead.
 func (r ApiQueryLogsRequest) Stream(stream string) ApiQueryLogsRequest {
 	r.stream = &stream
 	return r
 }
 
-func (r ApiQueryLogsRequest) RegionalDeploymentId(regionalDeploymentId string) ApiQueryLogsRequest {
-	r.regionalDeploymentId = &regionalDeploymentId
+// (Optional) Filter on stream: either \&quot;stdout\&quot;, \&quot;stderr\&quot; or \&quot;koyeb\&quot; (for system logs).
+func (r ApiQueryLogsRequest) Streams(streams []string) ApiQueryLogsRequest {
+	r.streams = &streams
 	return r
 }
 
@@ -136,6 +159,12 @@ func (r ApiQueryLogsRequest) Regex(regex string) ApiQueryLogsRequest {
 // (Optional) Looks for this string in logs. Can&#39;t be used with &#x60;regex&#x60;.
 func (r ApiQueryLogsRequest) Text(text string) ApiQueryLogsRequest {
 	r.text = &text
+	return r
+}
+
+// (Optional) Filter on the provided regions (e.g. [\&quot;fra\&quot;, \&quot;was\&quot;]).
+func (r ApiQueryLogsRequest) Regions(regions []string) ApiQueryLogsRequest {
+	r.regions = &regions
 	return r
 }
 
@@ -189,14 +218,36 @@ func (a *LogsApiService) QueryLogsExecute(r ApiQueryLogsRequest) (*QueryLogsRepl
 	if r.deploymentId != nil {
 		localVarQueryParams.Add("deployment_id", parameterToString(*r.deploymentId, ""))
 	}
+	if r.regionalDeploymentId != nil {
+		localVarQueryParams.Add("regional_deployment_id", parameterToString(*r.regionalDeploymentId, ""))
+	}
 	if r.instanceId != nil {
 		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
+	}
+	if r.instanceIds != nil {
+		t := *r.instanceIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("instance_ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("instance_ids", parameterToString(t, "multi"))
+		}
 	}
 	if r.stream != nil {
 		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
 	}
-	if r.regionalDeploymentId != nil {
-		localVarQueryParams.Add("regional_deployment_id", parameterToString(*r.regionalDeploymentId, ""))
+	if r.streams != nil {
+		t := *r.streams
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("streams", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("streams", parameterToString(t, "multi"))
+		}
 	}
 	if r.start != nil {
 		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
@@ -215,6 +266,17 @@ func (a *LogsApiService) QueryLogsExecute(r ApiQueryLogsRequest) (*QueryLogsRepl
 	}
 	if r.text != nil {
 		localVarQueryParams.Add("text", parameterToString(*r.text, ""))
+	}
+	if r.regions != nil {
+		t := *r.regions
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("regions", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("regions", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -367,53 +429,77 @@ type ApiTailLogsRequest struct {
 	deploymentId *string
 	regionalDeploymentId *string
 	instanceId *string
+	instanceIds *[]string
 	stream *string
+	streams *[]string
 	start *time.Time
 	limit *string
 	regex *string
 	text *string
+	regions *[]string
 }
 
+// Type of logs to retrieve, either \&quot;build\&quot; or \&quot;runtime\&quot;. Defaults to \&quot;runtime\&quot;.
 func (r ApiTailLogsRequest) Type_(type_ string) ApiTailLogsRequest {
 	r.type_ = &type_
 	return r
 }
 
+// (Optional) Filter on the provided app_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiTailLogsRequest) AppId(appId string) ApiTailLogsRequest {
 	r.appId = &appId
 	return r
 }
 
+// (Optional) Filter on the provided service_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiTailLogsRequest) ServiceId(serviceId string) ApiTailLogsRequest {
 	r.serviceId = &serviceId
 	return r
 }
 
+// (Optional) Filter on the provided deployment_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiTailLogsRequest) DeploymentId(deploymentId string) ApiTailLogsRequest {
 	r.deploymentId = &deploymentId
 	return r
 }
 
+// (Optional) Filter on the provided regional_deployment_id. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
 func (r ApiTailLogsRequest) RegionalDeploymentId(regionalDeploymentId string) ApiTailLogsRequest {
 	r.regionalDeploymentId = &regionalDeploymentId
 	return r
 }
 
+// Deprecated, prefer using instance_ids instead.
 func (r ApiTailLogsRequest) InstanceId(instanceId string) ApiTailLogsRequest {
 	r.instanceId = &instanceId
 	return r
 }
 
+// (Optional) Filter on the provided instance_ids. At least one of app_id, service_id, deployment_id, regional_deployment_id or instance_ids must be set.
+func (r ApiTailLogsRequest) InstanceIds(instanceIds []string) ApiTailLogsRequest {
+	r.instanceIds = &instanceIds
+	return r
+}
+
+// Deprecated, prefer using streams instead.
 func (r ApiTailLogsRequest) Stream(stream string) ApiTailLogsRequest {
 	r.stream = &stream
 	return r
 }
 
+// (Optional) Filter on stream: either \&quot;stdout\&quot;, \&quot;stderr\&quot; or \&quot;koyeb\&quot; (for system logs).
+func (r ApiTailLogsRequest) Streams(streams []string) ApiTailLogsRequest {
+	r.streams = &streams
+	return r
+}
+
+// (Optional) Defaults to 24 hours ago.
 func (r ApiTailLogsRequest) Start(start time.Time) ApiTailLogsRequest {
 	r.start = &start
 	return r
 }
 
+// (Optional) Defaults to 1000. Maximum of 1000.
 func (r ApiTailLogsRequest) Limit(limit string) ApiTailLogsRequest {
 	r.limit = &limit
 	return r
@@ -428,6 +514,12 @@ func (r ApiTailLogsRequest) Regex(regex string) ApiTailLogsRequest {
 // (Optional) Looks for this string in logs. Can&#39;t be used with &#x60;regex&#x60;.
 func (r ApiTailLogsRequest) Text(text string) ApiTailLogsRequest {
 	r.text = &text
+	return r
+}
+
+// (Optional) Filter on the provided regions (e.g. [\&quot;fra\&quot;, \&quot;was\&quot;]).
+func (r ApiTailLogsRequest) Regions(regions []string) ApiTailLogsRequest {
+	r.regions = &regions
 	return r
 }
 
@@ -487,8 +579,30 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 	if r.instanceId != nil {
 		localVarQueryParams.Add("instance_id", parameterToString(*r.instanceId, ""))
 	}
+	if r.instanceIds != nil {
+		t := *r.instanceIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("instance_ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("instance_ids", parameterToString(t, "multi"))
+		}
+	}
 	if r.stream != nil {
 		localVarQueryParams.Add("stream", parameterToString(*r.stream, ""))
+	}
+	if r.streams != nil {
+		t := *r.streams
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("streams", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("streams", parameterToString(t, "multi"))
+		}
 	}
 	if r.start != nil {
 		localVarQueryParams.Add("start", parameterToString(*r.start, ""))
@@ -501,6 +615,17 @@ func (a *LogsApiService) TailLogsExecute(r ApiTailLogsRequest) (*StreamResultOfL
 	}
 	if r.text != nil {
 		localVarQueryParams.Add("text", parameterToString(*r.text, ""))
+	}
+	if r.regions != nil {
+		t := *r.regions
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("regions", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("regions", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

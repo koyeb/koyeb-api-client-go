@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// VerifyDockerImageReplyErrCode - UNKNOWN: Default value  - AUTH_ACCESS_DENIED: The registry denied access to an authenticated request  - ANON_ACCESS_DENIED: The registry denied access to an anonymous request  - AUTH_NOT_FOUND: The image has not been found after an authenticated request  - ANON_NOT_FOUND: The image has not been found after an anonymous request  - REGISTRY_ERROR: The registry returned an error  - TIMEOUT: The request to the registry timed out  - DNS: There was an error trying to resolve the name of the registry  - MALFORMED: The provided image name is malformed  - INVALID_OS: The operating system is not supported  - INVALID_ARCH: The architecture is not supported
+// VerifyDockerImageReplyErrCode - UNKNOWN: Default value  - AUTH_ACCESS_DENIED: The registry denied access to an authenticated request  - ANON_ACCESS_DENIED: The registry denied access to an anonymous request  - AUTH_NOT_FOUND: The image has not been found after an authenticated request  - ANON_NOT_FOUND: The image has not been found after an anonymous request  - REGISTRY_ERROR: The registry returned an error  - TIMEOUT: The request to the registry timed out  - DNS: There was an error trying to resolve the name of the registry  - MALFORMED: The provided image name is malformed  - INVALID_OS: The operating system is not supported  - INVALID_ARCH: The architecture is not supported  - INVALID_SCHEME: The scheme is not https  - GENERIC: Generic catch-all error code
 type VerifyDockerImageReplyErrCode string
 
 // List of VerifyDockerImageReply.ErrCode
@@ -31,6 +31,8 @@ const (
 	VERIFYDOCKERIMAGEREPLYERRCODE_MALFORMED VerifyDockerImageReplyErrCode = "MALFORMED"
 	VERIFYDOCKERIMAGEREPLYERRCODE_INVALID_OS VerifyDockerImageReplyErrCode = "INVALID_OS"
 	VERIFYDOCKERIMAGEREPLYERRCODE_INVALID_ARCH VerifyDockerImageReplyErrCode = "INVALID_ARCH"
+	VERIFYDOCKERIMAGEREPLYERRCODE_INVALID_SCHEME VerifyDockerImageReplyErrCode = "INVALID_SCHEME"
+	VERIFYDOCKERIMAGEREPLYERRCODE_GENERIC VerifyDockerImageReplyErrCode = "GENERIC"
 )
 
 // All allowed values of VerifyDockerImageReplyErrCode enum
@@ -46,6 +48,8 @@ var AllowedVerifyDockerImageReplyErrCodeEnumValues = []VerifyDockerImageReplyErr
 	"MALFORMED",
 	"INVALID_OS",
 	"INVALID_ARCH",
+	"INVALID_SCHEME",
+	"GENERIC",
 }
 
 func (v *VerifyDockerImageReplyErrCode) UnmarshalJSON(src []byte) error {

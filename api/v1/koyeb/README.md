@@ -130,6 +130,7 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**QueryLogs**](docs/LogsApi.md#querylogs) | **Get** /v1/streams/logs/query | Query logs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | Get Metrics
+*OrganizationApi* | [**CreateAccessToken**](docs/OrganizationApi.md#createaccesstoken) | **Post** /v1/organizations/{id}/access_token | CreateAccessToken
 *OrganizationApi* | [**CreateBudget**](docs/OrganizationApi.md#createbudget) | **Post** /v1/organizations/{organization_id}/budget | Create Budget
 *OrganizationApi* | [**CreateOrganization**](docs/OrganizationApi.md#createorganization) | **Post** /v1/organizations | Create Organization
 *OrganizationApi* | [**DeactivateOrganization**](docs/OrganizationApi.md#deactivateorganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an Organization
@@ -178,6 +179,7 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**GetUserSettings**](docs/ProfileApi.md#getusersettings) | **Get** /v1/account/settings | 
 *ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
 *ProfileApi* | [**ListUserOrganizations**](docs/ProfileApi.md#listuserorganizations) | **Get** /v1/account/organizations | List User Organizations
+*ProfileApi* | [**LoginMethod**](docs/ProfileApi.md#loginmethod) | **Get** /v1/account/login_method | Get the login method for an email address
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 *ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | Resend Email Verification
 *ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | Reset Password
@@ -186,6 +188,8 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | Update User
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | Update User
 *ProfileApi* | [**UpdateUserSettings**](docs/ProfileApi.md#updateusersettings) | **Patch** /v1/account/settings | 
+*ProfileApi* | [**UpdateUserV2**](docs/ProfileApi.md#updateuserv2) | **Put** /v2/account/profile | Update User V2
+*ProfileApi* | [**UpdateUserV22**](docs/ProfileApi.md#updateuserv22) | **Patch** /v2/account/profile | Update User V2
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | Validate
 *ProvisioningApi* | [**CreateStageAttempt**](docs/ProvisioningApi.md#createstageattempt) | **Post** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Create an attempt for a stage
 *ProvisioningApi* | [**DeclareStageProgress**](docs/ProvisioningApi.md#declarestageprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Declare stage progress
@@ -232,6 +236,7 @@ Class | Method | HTTP request | Description
 *UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
 *UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
 *UsersApi* | [**DeleteUser**](docs/UsersApi.md#deleteuser) | **Delete** /v1/users/{id} | Delete user
+*UsersApi* | [**DeleteUserV2**](docs/UsersApi.md#deleteuserv2) | **Delete** /v2/users/{id} | V2 Delete user
 
 
 ## Documentation For Models
@@ -266,6 +271,8 @@ Class | Method | HTTP request | Description
  - [ComposeReply](docs/ComposeReply.md)
  - [ConfigFile](docs/ConfigFile.md)
  - [ConfirmPaymentAuthorizationReply](docs/ConfirmPaymentAuthorizationReply.md)
+ - [CreateAccessTokenReply](docs/CreateAccessTokenReply.md)
+ - [CreateAccessTokenRequest](docs/CreateAccessTokenRequest.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateApp](docs/CreateApp.md)
  - [CreateAppReply](docs/CreateAppReply.md)
@@ -460,6 +467,8 @@ Class | Method | HTTP request | Description
  - [ListUserOrganizationInvitationsReply](docs/ListUserOrganizationInvitationsReply.md)
  - [ListUserOrganizationsReply](docs/ListUserOrganizationsReply.md)
  - [LogEntry](docs/LogEntry.md)
+ - [LoginMethodReply](docs/LoginMethodReply.md)
+ - [LoginMethodReplyMethod](docs/LoginMethodReplyMethod.md)
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)

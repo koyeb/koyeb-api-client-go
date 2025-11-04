@@ -4,6 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateAccessToken**](OrganizationApi.md#CreateAccessToken) | **Post** /v1/organizations/{id}/access_token | CreateAccessToken
 [**CreateBudget**](OrganizationApi.md#CreateBudget) | **Post** /v1/organizations/{organization_id}/budget | Create Budget
 [**CreateOrganization**](OrganizationApi.md#CreateOrganization) | **Post** /v1/organizations | Create Organization
 [**DeactivateOrganization**](OrganizationApi.md#DeactivateOrganization) | **Post** /v1/organizations/{id}/deactivate | Deactivate an Organization
@@ -22,6 +23,78 @@ Method | HTTP request | Description
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 [**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 
+
+
+## CreateAccessToken
+
+> CreateAccessTokenReply CreateAccessToken(ctx, id).Body(body).Execute()
+
+CreateAccessToken
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | Organization id for ephemeral credential
+    body := *openapiclient.NewCreateAccessTokenRequest() // CreateAccessTokenRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.CreateAccessToken(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.CreateAccessToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateAccessToken`: CreateAccessTokenReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.CreateAccessToken`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Organization id for ephemeral credential | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAccessTokenRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**CreateAccessTokenRequest**](CreateAccessTokenRequest.md) |  | 
+
+### Return type
+
+[**CreateAccessTokenReply**](CreateAccessTokenReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateBudget

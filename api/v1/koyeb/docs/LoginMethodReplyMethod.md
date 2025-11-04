@@ -1,15 +1,11 @@
-# RegionalDeploymentDefinitionType
+# LoginMethodReplyMethod
 
 ## Enum
 
 
-* `INVALID` (value: `"INVALID"`)
+* `KOYEB` (value: `"KOYEB"`)
 
-* `WEB` (value: `"WEB"`)
-
-* `WORKER` (value: `"WORKER"`)
-
-* `SANDBOX` (value: `"SANDBOX"`)
+* `WORKOS` (value: `"WORKOS"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
