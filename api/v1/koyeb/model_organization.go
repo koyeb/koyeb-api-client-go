@@ -18,6 +18,7 @@ import (
 // Organization struct for Organization
 type Organization struct {
 	Id *string `json:"id,omitempty"`
+	ExternalId *string `json:"external_id,omitempty"`
 	Address1 *string `json:"address1,omitempty"`
 	Address2 *string `json:"address2,omitempty"`
 	City *string `json:"city,omitempty"`
@@ -111,6 +112,38 @@ func (o *Organization) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Organization) SetId(v string) {
 	o.Id = &v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *Organization) GetExternalId() string {
+	if o == nil || isNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetExternalIdOk() (*string, bool) {
+	if o == nil || isNil(o.ExternalId) {
+    return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *Organization) HasExternalId() bool {
+	if o != nil && !isNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *Organization) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetAddress1 returns the Address1 field value if set, zero value otherwise.
@@ -1013,6 +1046,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !isNil(o.ExternalId) {
+		toSerialize["external_id"] = o.ExternalId
 	}
 	if !isNil(o.Address1) {
 		toSerialize["address1"] = o.Address1

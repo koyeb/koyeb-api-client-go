@@ -23,6 +23,7 @@ const (
 	REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID RegionalDeploymentDefinitionType = "INVALID"
 	REGIONALDEPLOYMENTDEFINITIONTYPE_WEB RegionalDeploymentDefinitionType = "WEB"
 	REGIONALDEPLOYMENTDEFINITIONTYPE_WORKER RegionalDeploymentDefinitionType = "WORKER"
+	REGIONALDEPLOYMENTDEFINITIONTYPE_SANDBOX RegionalDeploymentDefinitionType = "SANDBOX"
 )
 
 // All allowed values of RegionalDeploymentDefinitionType enum
@@ -30,6 +31,7 @@ var AllowedRegionalDeploymentDefinitionTypeEnumValues = []RegionalDeploymentDefi
 	"INVALID",
 	"WEB",
 	"WORKER",
+	"SANDBOX",
 }
 
 func (v *RegionalDeploymentDefinitionType) UnmarshalJSON(src []byte) error {

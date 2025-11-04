@@ -1215,6 +1215,7 @@ type ApiListServicesRequest struct {
 	offset *string
 	name *string
 	types *[]string
+	statuses *[]string
 }
 
 // (Optional) The id of the app
@@ -1244,6 +1245,12 @@ func (r ApiListServicesRequest) Name(name string) ApiListServicesRequest {
 // (Optional) Filter on service types
 func (r ApiListServicesRequest) Types(types []string) ApiListServicesRequest {
 	r.types = &types
+	return r
+}
+
+// (Optional) Filter on service statuses
+func (r ApiListServicesRequest) Statuses(statuses []string) ApiListServicesRequest {
+	r.statuses = &statuses
 	return r
 }
 
@@ -1306,6 +1313,17 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (*Lis
 			}
 		} else {
 			localVarQueryParams.Add("types", parameterToString(t, "multi"))
+		}
+	}
+	if r.statuses != nil {
+		t := *r.statuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
 		}
 	}
 	// to determine the Content-Type header

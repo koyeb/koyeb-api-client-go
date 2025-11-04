@@ -25,6 +25,10 @@
 
 * `INVALID_ARCH` (value: `"INVALID_ARCH"`)
 
+* `INVALID_SCHEME` (value: `"INVALID_SCHEME"`)
+
+* `GENERIC` (value: `"GENERIC"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

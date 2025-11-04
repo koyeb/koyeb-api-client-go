@@ -24,6 +24,7 @@ const (
 	DEPLOYMENTDEFINITIONTYPE_WEB DeploymentDefinitionType = "WEB"
 	DEPLOYMENTDEFINITIONTYPE_WORKER DeploymentDefinitionType = "WORKER"
 	DEPLOYMENTDEFINITIONTYPE_DATABASE DeploymentDefinitionType = "DATABASE"
+	DEPLOYMENTDEFINITIONTYPE_SANDBOX DeploymentDefinitionType = "SANDBOX"
 )
 
 // All allowed values of DeploymentDefinitionType enum
@@ -32,6 +33,7 @@ var AllowedDeploymentDefinitionTypeEnumValues = []DeploymentDefinitionType{
 	"WEB",
 	"WORKER",
 	"DATABASE",
+	"SANDBOX",
 }
 
 func (v *DeploymentDefinitionType) UnmarshalJSON(src []byte) error {

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## ListOrganizationMembers
 
-> ListOrganizationMembersReply ListOrganizationMembers(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).UserId(userId).Execute()
+> ListOrganizationMembersReply ListOrganizationMembers(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).UserId(userId).OrganizationStatuses(organizationStatuses).Execute()
 
 List organization members
 
@@ -32,10 +32,11 @@ func main() {
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
     organizationId := "organizationId_example" // string | (Optional) Filter for an organization (optional)
     userId := "userId_example" // string | (Optional) Filter for an user (optional)
+    organizationStatuses := []string{"OrganizationStatuses_example"} // []string | (Optional) Filter for organization statuses (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.OrganizationMembersApi.ListOrganizationMembers(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).UserId(userId).Execute()
+    resp, r, err := apiClient.OrganizationMembersApi.ListOrganizationMembers(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).UserId(userId).OrganizationStatuses(organizationStatuses).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrganizationMembersApi.ListOrganizationMembers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,6 +61,7 @@ Name | Type | Description  | Notes
  **offset** | **string** | (Optional) The offset in the list of item to return | 
  **organizationId** | **string** | (Optional) Filter for an organization | 
  **userId** | **string** | (Optional) Filter for an user | 
+ **organizationStatuses** | **[]string** | (Optional) Filter for organization statuses | 
 
 ### Return type
 

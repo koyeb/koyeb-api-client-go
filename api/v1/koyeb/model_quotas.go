@@ -35,6 +35,7 @@ type Quotas struct {
 	ProxyPorts *int64 `json:"proxy_ports,omitempty"`
 	ScaleToZero *ScaleToZeroQuotas `json:"scale_to_zero,omitempty"`
 	Archives *string `json:"archives,omitempty"`
+	ArchiveMaxSizeMb *string `json:"archive_max_size_mb,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -662,6 +663,38 @@ func (o *Quotas) SetArchives(v string) {
 	o.Archives = &v
 }
 
+// GetArchiveMaxSizeMb returns the ArchiveMaxSizeMb field value if set, zero value otherwise.
+func (o *Quotas) GetArchiveMaxSizeMb() string {
+	if o == nil || isNil(o.ArchiveMaxSizeMb) {
+		var ret string
+		return ret
+	}
+	return *o.ArchiveMaxSizeMb
+}
+
+// GetArchiveMaxSizeMbOk returns a tuple with the ArchiveMaxSizeMb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetArchiveMaxSizeMbOk() (*string, bool) {
+	if o == nil || isNil(o.ArchiveMaxSizeMb) {
+    return nil, false
+	}
+	return o.ArchiveMaxSizeMb, true
+}
+
+// HasArchiveMaxSizeMb returns a boolean if a field has been set.
+func (o *Quotas) HasArchiveMaxSizeMb() bool {
+	if o != nil && !isNil(o.ArchiveMaxSizeMb) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchiveMaxSizeMb gets a reference to the given string and assigns it to the ArchiveMaxSizeMb field.
+func (o *Quotas) SetArchiveMaxSizeMb(v string) {
+	o.ArchiveMaxSizeMb = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -720,6 +753,9 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Archives) {
 		toSerialize["archives"] = o.Archives
+	}
+	if !isNil(o.ArchiveMaxSizeMb) {
+		toSerialize["archive_max_size_mb"] = o.ArchiveMaxSizeMb
 	}
 	return json.Marshal(toSerialize)
 }

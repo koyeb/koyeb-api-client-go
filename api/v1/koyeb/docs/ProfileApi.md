@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**GetUserSettings**](ProfileApi.md#GetUserSettings) | **Get** /v1/account/settings | 
 [**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
 [**ListUserOrganizations**](ProfileApi.md#ListUserOrganizations) | **Get** /v1/account/organizations | List User Organizations
+[**LoginMethod**](ProfileApi.md#LoginMethod) | **Get** /v1/account/login_method | Get the login method for an email address
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
 [**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | Resend Email Verification
 [**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | Reset Password
@@ -23,6 +24,8 @@ Method | HTTP request | Description
 [**UpdateUser**](ProfileApi.md#UpdateUser) | **Put** /v1/account/profile | Update User
 [**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | Update User
 [**UpdateUserSettings**](ProfileApi.md#UpdateUserSettings) | **Patch** /v1/account/settings | 
+[**UpdateUserV2**](ProfileApi.md#UpdateUserV2) | **Put** /v2/account/profile | Update User V2
+[**UpdateUserV22**](ProfileApi.md#UpdateUserV22) | **Patch** /v2/account/profile | Update User V2
 [**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | Validate
 
 
@@ -671,7 +674,7 @@ Name | Type | Description  | Notes
 
 ## ListUserOrganizations
 
-> ListUserOrganizationsReply ListUserOrganizations(ctx).Limit(limit).Offset(offset).Order(order).Search(search).Execute()
+> ListUserOrganizationsReply ListUserOrganizations(ctx).Limit(limit).Offset(offset).Order(order).Search(search).Statuses(statuses).Execute()
 
 List User Organizations
 
@@ -694,10 +697,11 @@ func main() {
     offset := "offset_example" // string | (Optional) Define pagination offset (optional)
     order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
     search := "search_example" // string | (Optional) Fuzzy case-insensitive search based on organization name or organization id (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Only return organizations which status match one in the list (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProfileApi.ListUserOrganizations(context.Background()).Limit(limit).Offset(offset).Order(order).Search(search).Execute()
+    resp, r, err := apiClient.ProfileApi.ListUserOrganizations(context.Background()).Limit(limit).Offset(offset).Order(order).Search(search).Statuses(statuses).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.ListUserOrganizations``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -722,10 +726,75 @@ Name | Type | Description  | Notes
  **offset** | **string** | (Optional) Define pagination offset | 
  **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
  **search** | **string** | (Optional) Fuzzy case-insensitive search based on organization name or organization id | 
+ **statuses** | **[]string** | (Optional) Only return organizations which status match one in the list | 
 
 ### Return type
 
 [**ListUserOrganizationsReply**](ListUserOrganizationsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## LoginMethod
+
+> LoginMethodReply LoginMethod(ctx).Email(email).Execute()
+
+Get the login method for an email address
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    email := "email_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.LoginMethod(context.Background()).Email(email).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.LoginMethod``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `LoginMethod`: LoginMethodReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.LoginMethod`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiLoginMethodRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **string** |  | 
+
+### Return type
+
+[**LoginMethodReply**](LoginMethodReply.md)
 
 ### Authorization
 
@@ -1248,6 +1317,138 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateUserSettingsReply**](UpdateUserSettingsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUserV2
+
+> UserReply UpdateUserV2(ctx).User(user).UpdateMask(updateMask).Execute()
+
+Update User V2
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    user := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
+    updateMask := "updateMask_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdateUserV2(context.Background()).User(user).UpdateMask(updateMask).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdateUserV2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUserV2`: UserReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.UpdateUserV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
+ **updateMask** | **string** |  | 
+
+### Return type
+
+[**UserReply**](UserReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUserV22
+
+> UserReply UpdateUserV22(ctx).User(user).UpdateMask(updateMask).Execute()
+
+Update User V2
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    user := *openapiclient.NewUpdateUserRequestUserUpdateBody() // UpdateUserRequestUserUpdateBody | 
+    updateMask := "updateMask_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProfileApi.UpdateUserV22(context.Background()).User(user).UpdateMask(updateMask).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.UpdateUserV22``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUserV22`: UserReply
+    fmt.Fprintf(os.Stdout, "Response from `ProfileApi.UpdateUserV22`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserV22Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | [**UpdateUserRequestUserUpdateBody**](UpdateUserRequestUserUpdateBody.md) |  | 
+ **updateMask** | **string** |  | 
+
+### Return type
+
+[**UserReply**](UserReply.md)
 
 ### Authorization
 

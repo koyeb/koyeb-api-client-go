@@ -86,6 +86,8 @@ docs/ComposeReply.md
 docs/ConfigFile.md
 docs/ConfirmPaymentAuthorizationReply.md
 docs/CouponsApi.md
+docs/CreateAccessTokenReply.md
+docs/CreateAccessTokenRequest.md
 docs/CreateAccountRequest.md
 docs/CreateApp.md
 docs/CreateAppReply.md
@@ -287,6 +289,8 @@ docs/ListUsageReply.md
 docs/ListUserOrganizationInvitationsReply.md
 docs/ListUserOrganizationsReply.md
 docs/LogEntry.md
+docs/LoginMethodReply.md
+docs/LoginMethodReplyMethod.md
 docs/LoginReply.md
 docs/LoginRequest.md
 docs/LogsApi.md
@@ -477,6 +481,8 @@ model_clear_idenfy_verification_result_request.go
 model_compose_reply.go
 model_config_file.go
 model_confirm_payment_authorization_reply.go
+model_create_access_token_reply.go
+model_create_access_token_request.go
 model_create_account_request.go
 model_create_app.go
 model_create_app_reply.go
@@ -671,6 +677,8 @@ model_list_usage_reply.go
 model_list_user_organization_invitations_reply.go
 model_list_user_organizations_reply.go
 model_log_entry.go
+model_login_method_reply.go
+model_login_method_reply_method.go
 model_login_reply.go
 model_login_request.go
 model_manage_reply.go

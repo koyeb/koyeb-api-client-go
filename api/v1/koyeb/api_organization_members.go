@@ -17,6 +17,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"reflect"
 )
 
 
@@ -58,6 +59,7 @@ type ApiListOrganizationMembersRequest struct {
 	offset *string
 	organizationId *string
 	userId *string
+	organizationStatuses *[]string
 }
 
 // (Optional) The number of items to return
@@ -81,6 +83,12 @@ func (r ApiListOrganizationMembersRequest) OrganizationId(organizationId string)
 // (Optional) Filter for an user
 func (r ApiListOrganizationMembersRequest) UserId(userId string) ApiListOrganizationMembersRequest {
 	r.userId = &userId
+	return r
+}
+
+// (Optional) Filter for organization statuses
+func (r ApiListOrganizationMembersRequest) OrganizationStatuses(organizationStatuses []string) ApiListOrganizationMembersRequest {
+	r.organizationStatuses = &organizationStatuses
 	return r
 }
 
@@ -133,6 +141,17 @@ func (a *OrganizationMembersApiService) ListOrganizationMembersExecute(r ApiList
 	}
 	if r.userId != nil {
 		localVarQueryParams.Add("user_id", parameterToString(*r.userId, ""))
+	}
+	if r.organizationStatuses != nil {
+		t := *r.organizationStatuses
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("organization_statuses", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("organization_statuses", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
