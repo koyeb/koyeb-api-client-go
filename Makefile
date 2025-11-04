@@ -1,4 +1,4 @@
-KOYEB_API ?= $(shell echo $${KOYEB_API:-https://developer.koyeb.com})
+KOYEB_API ?= $(shell echo $${KOYEB_API:-https://api.prod.koyeb.com})
 TEST_OPTS=-v -test.timeout 300s
 GIT_USER_ID?=koyeb
 GIT_REPO_ID?=koyeb-api-client-go
