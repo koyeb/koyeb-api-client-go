@@ -9,6 +9,8 @@
 
 * `WORKER` (value: `"WORKER"`)
 
+* `UNDERSCORE` (value: `"_"`)
+
 * `SANDBOX` (value: `"SANDBOX"`)
 
 

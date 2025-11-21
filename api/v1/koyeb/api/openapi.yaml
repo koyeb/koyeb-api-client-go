@@ -13886,7 +13886,10 @@ components:
       - INVALID
       - WEB
       - WORKER
+      - _
       - SANDBOX
+      title: "- _: We match with DeploymentDefinition.Type, so we skip 3 which is\
+        \ DATABASE"
       type: string
     RegionalDeploymentEvent:
       example:
@@ -25097,6 +25100,7 @@ components:
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25115,6 +25119,7 @@ components:
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25156,6 +25161,7 @@ components:
           id: id
           plan: null
           status: null
+        external_id: external_id
         id: id
         user:
           github_user: github_user
@@ -25171,6 +25177,8 @@ components:
         organization_id:
           type: string
         user_id:
+          type: string
+        external_id:
           type: string
         joined_at:
           format: date-time
@@ -25203,6 +25211,7 @@ components:
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25349,6 +25358,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25395,6 +25405,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25470,6 +25481,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25601,6 +25613,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25815,6 +25828,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25847,6 +25861,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26077,6 +26092,7 @@ components:
         email_domain_allowlist:
         - email_domain_allowlist
         - email_domain_allowlist
+        provisioning: true
         company: true
         id: id
         state: state
@@ -26099,6 +26115,8 @@ components:
           type: string
         external_id:
           type: string
+        provisioning:
+          type: boolean
         address1:
           type: string
         address2:
@@ -26206,6 +26224,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26271,6 +26290,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26310,6 +26330,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26392,6 +26413,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state

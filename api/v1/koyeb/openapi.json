@@ -13469,9 +13469,11 @@
         "INVALID",
         "WEB",
         "WORKER",
+        "_",
         "SANDBOX"
       ],
-      "default": "INVALID"
+      "default": "INVALID",
+      "title": "- _: We match with DeploymentDefinition.Type, so we skip 3 which is DATABASE"
     },
     "RegionalDeploymentEvent": {
       "type": "object",
@@ -18425,6 +18427,9 @@
         "user_id": {
           "type": "string"
         },
+        "external_id": {
+          "type": "string"
+        },
         "joined_at": {
           "type": "string",
           "format": "date-time"
@@ -18991,6 +18996,9 @@
         },
         "external_id": {
           "type": "string"
+        },
+        "provisioning": {
+          "type": "boolean"
         },
         "address1": {
           "type": "string"
