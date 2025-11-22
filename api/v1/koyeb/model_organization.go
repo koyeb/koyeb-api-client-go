@@ -19,6 +19,7 @@ import (
 type Organization struct {
 	Id *string `json:"id,omitempty"`
 	ExternalId *string `json:"external_id,omitempty"`
+	Provisioning *bool `json:"provisioning,omitempty"`
 	Address1 *string `json:"address1,omitempty"`
 	Address2 *string `json:"address2,omitempty"`
 	City *string `json:"city,omitempty"`
@@ -144,6 +145,38 @@ func (o *Organization) HasExternalId() bool {
 // SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
 func (o *Organization) SetExternalId(v string) {
 	o.ExternalId = &v
+}
+
+// GetProvisioning returns the Provisioning field value if set, zero value otherwise.
+func (o *Organization) GetProvisioning() bool {
+	if o == nil || isNil(o.Provisioning) {
+		var ret bool
+		return ret
+	}
+	return *o.Provisioning
+}
+
+// GetProvisioningOk returns a tuple with the Provisioning field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetProvisioningOk() (*bool, bool) {
+	if o == nil || isNil(o.Provisioning) {
+    return nil, false
+	}
+	return o.Provisioning, true
+}
+
+// HasProvisioning returns a boolean if a field has been set.
+func (o *Organization) HasProvisioning() bool {
+	if o != nil && !isNil(o.Provisioning) {
+		return true
+	}
+
+	return false
+}
+
+// SetProvisioning gets a reference to the given bool and assigns it to the Provisioning field.
+func (o *Organization) SetProvisioning(v bool) {
+	o.Provisioning = &v
 }
 
 // GetAddress1 returns the Address1 field value if set, zero value otherwise.
@@ -1049,6 +1082,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
+	}
+	if !isNil(o.Provisioning) {
+		toSerialize["provisioning"] = o.Provisioning
 	}
 	if !isNil(o.Address1) {
 		toSerialize["address1"] = o.Address1
