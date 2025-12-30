@@ -2081,6 +2081,8 @@ type ApiUpdateServiceRequest struct {
 	id string
 	service *UpdateService
 	dryRun *bool
+	lifeCycleDeleteAfterSleep *int64
+	lifeCycleDeleteAfterCreate *int64
 }
 
 func (r ApiUpdateServiceRequest) Service(service UpdateService) ApiUpdateServiceRequest {
@@ -2091,6 +2093,16 @@ func (r ApiUpdateServiceRequest) Service(service UpdateService) ApiUpdateService
 // If set, run validation and check that the service exists
 func (r ApiUpdateServiceRequest) DryRun(dryRun bool) ApiUpdateServiceRequest {
 	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiUpdateServiceRequest) LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep int64) ApiUpdateServiceRequest {
+	r.lifeCycleDeleteAfterSleep = &lifeCycleDeleteAfterSleep
+	return r
+}
+
+func (r ApiUpdateServiceRequest) LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate int64) ApiUpdateServiceRequest {
+	r.lifeCycleDeleteAfterCreate = &lifeCycleDeleteAfterCreate
 	return r
 }
 
@@ -2140,6 +2152,12 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (*U
 
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
+	}
+	if r.lifeCycleDeleteAfterSleep != nil {
+		localVarQueryParams.Add("life_cycle.delete_after_sleep", parameterToString(*r.lifeCycleDeleteAfterSleep, ""))
+	}
+	if r.lifeCycleDeleteAfterCreate != nil {
+		localVarQueryParams.Add("life_cycle.delete_after_create", parameterToString(*r.lifeCycleDeleteAfterCreate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2291,6 +2309,8 @@ type ApiUpdateService2Request struct {
 	id string
 	service *UpdateService
 	dryRun *bool
+	lifeCycleDeleteAfterSleep *int64
+	lifeCycleDeleteAfterCreate *int64
 }
 
 func (r ApiUpdateService2Request) Service(service UpdateService) ApiUpdateService2Request {
@@ -2301,6 +2321,16 @@ func (r ApiUpdateService2Request) Service(service UpdateService) ApiUpdateServic
 // If set, run validation and check that the service exists
 func (r ApiUpdateService2Request) DryRun(dryRun bool) ApiUpdateService2Request {
 	r.dryRun = &dryRun
+	return r
+}
+
+func (r ApiUpdateService2Request) LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep int64) ApiUpdateService2Request {
+	r.lifeCycleDeleteAfterSleep = &lifeCycleDeleteAfterSleep
+	return r
+}
+
+func (r ApiUpdateService2Request) LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate int64) ApiUpdateService2Request {
+	r.lifeCycleDeleteAfterCreate = &lifeCycleDeleteAfterCreate
 	return r
 }
 
@@ -2350,6 +2380,12 @@ func (a *ServicesApiService) UpdateService2Execute(r ApiUpdateService2Request) (
 
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
+	}
+	if r.lifeCycleDeleteAfterSleep != nil {
+		localVarQueryParams.Add("life_cycle.delete_after_sleep", parameterToString(*r.lifeCycleDeleteAfterSleep, ""))
+	}
+	if r.lifeCycleDeleteAfterCreate != nil {
+		localVarQueryParams.Add("life_cycle.delete_after_create", parameterToString(*r.lifeCycleDeleteAfterCreate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

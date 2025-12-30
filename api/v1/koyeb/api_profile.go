@@ -1093,6 +1093,13 @@ func (a *ProfileApiService) GetCurrentOrganizationExecute(r ApiGetCurrentOrganiz
 type ApiGetCurrentUserRequest struct {
 	ctx context.Context
 	ApiService ProfileApi
+	seonFp *string
+}
+
+// Seon Fingerprint
+func (r ApiGetCurrentUserRequest) SeonFp(seonFp string) ApiGetCurrentUserRequest {
+	r.seonFp = &seonFp
+	return r
 }
 
 func (r ApiGetCurrentUserRequest) Execute() (*UserReply, *http.Response, error) {
@@ -1149,6 +1156,9 @@ func (a *ProfileApiService) GetCurrentUserExecute(r ApiGetCurrentUserRequest) (*
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.seonFp != nil {
+		localVarHeaderParams["seon-fp"] = parameterToString(*r.seonFp, "")
 	}
 	if r.ctx != nil {
 		// API Key Authentication

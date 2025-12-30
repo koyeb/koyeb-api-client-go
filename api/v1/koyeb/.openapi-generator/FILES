@@ -53,6 +53,7 @@ docs/ActivityApi.md
 docs/ActivityList.md
 docs/App.md
 docs/AppEvent.md
+docs/AppLifeCycle.md
 docs/AppListItem.md
 docs/AppStatus.md
 docs/AppUsage.md
@@ -386,6 +387,7 @@ docs/SecretsApi.md
 docs/SecretsSummary.md
 docs/Service.md
 docs/ServiceEvent.md
+docs/ServiceLifeCycle.md
 docs/ServiceListItem.md
 docs/ServiceState.md
 docs/ServiceStatus.md
@@ -421,6 +423,8 @@ docs/UpdateBudgetRequest.md
 docs/UpdateCredentialReply.md
 docs/UpdateDomain.md
 docs/UpdateDomainReply.md
+docs/UpdateOrganizationNameReply.md
+docs/UpdateOrganizationNameRequest.md
 docs/UpdateOrganizationPlanReply.md
 docs/UpdateOrganizationPlanRequest.md
 docs/UpdateOrganizationReply.md
@@ -457,6 +461,7 @@ model_activity.go
 model_activity_list.go
 model_app.go
 model_app_event.go
+model_app_life_cycle.go
 model_app_list_item.go
 model_app_status.go
 model_app_usage.go
@@ -758,6 +763,7 @@ model_secret_type.go
 model_secrets_summary.go
 model_service.go
 model_service_event.go
+model_service_life_cycle.go
 model_service_list_item.go
 model_service_state.go
 model_service_status.go
@@ -787,6 +793,8 @@ model_update_budget_request.go
 model_update_credential_reply.go
 model_update_domain.go
 model_update_domain_reply.go
+model_update_organization_name_reply.go
+model_update_organization_name_request.go
 model_update_organization_plan_reply.go
 model_update_organization_plan_request.go
 model_update_organization_reply.go

@@ -650,7 +650,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService
 
-> UpdateServiceReply UpdateService(ctx, id).Service(service).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService(ctx, id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
 
 Update Service
 
@@ -670,10 +670,12 @@ func main() {
     id := "id_example" // string | The id of the entity to update
     service := *openapiclient.NewUpdateService() // UpdateService | 
     dryRun := true // bool | If set, run validation and check that the service exists (optional)
+    lifeCycleDeleteAfterSleep := int64(789) // int64 |  (optional)
+    lifeCycleDeleteAfterCreate := int64(789) // int64 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.UpdateService(context.Background(), id).Service(service).DryRun(dryRun).Execute()
+    resp, r, err := apiClient.ServicesApi.UpdateService(context.Background(), id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -701,6 +703,8 @@ Name | Type | Description  | Notes
 
  **service** | [**UpdateService**](UpdateService.md) |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists | 
+ **lifeCycleDeleteAfterSleep** | **int64** |  | 
+ **lifeCycleDeleteAfterCreate** | **int64** |  | 
 
 ### Return type
 
@@ -722,7 +726,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService2
 
-> UpdateServiceReply UpdateService2(ctx, id).Service(service).DryRun(dryRun).Execute()
+> UpdateServiceReply UpdateService2(ctx, id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
 
 Update Service
 
@@ -742,10 +746,12 @@ func main() {
     id := "id_example" // string | The id of the entity to update
     service := *openapiclient.NewUpdateService() // UpdateService | 
     dryRun := true // bool | If set, run validation and check that the service exists (optional)
+    lifeCycleDeleteAfterSleep := int64(789) // int64 |  (optional)
+    lifeCycleDeleteAfterCreate := int64(789) // int64 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.UpdateService2(context.Background(), id).Service(service).DryRun(dryRun).Execute()
+    resp, r, err := apiClient.ServicesApi.UpdateService2(context.Background(), id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -773,6 +779,8 @@ Name | Type | Description  | Notes
 
  **service** | [**UpdateService**](UpdateService.md) |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists | 
+ **lifeCycleDeleteAfterSleep** | **int64** |  | 
+ **lifeCycleDeleteAfterCreate** | **int64** |  | 
 
 ### Return type
 

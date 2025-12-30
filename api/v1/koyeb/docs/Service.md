@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **LatestDeploymentId** | Pointer to **string** |  | [optional] 
 **LastProvisionedDeploymentId** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**ServiceState**](ServiceState.md) |  | [optional] 
+**LifeCycle** | Pointer to [**ServiceLifeCycle**](ServiceLifeCycle.md) |  | [optional] 
 
 ## Methods
 
@@ -517,6 +518,31 @@ SetState sets State field to given value.
 `func (o *Service) HasState() bool`
 
 HasState returns a boolean if a field has been set.
+
+### GetLifeCycle
+
+`func (o *Service) GetLifeCycle() ServiceLifeCycle`
+
+GetLifeCycle returns the LifeCycle field if non-nil, zero value otherwise.
+
+### GetLifeCycleOk
+
+`func (o *Service) GetLifeCycleOk() (*ServiceLifeCycle, bool)`
+
+GetLifeCycleOk returns a tuple with the LifeCycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLifeCycle
+
+`func (o *Service) SetLifeCycle(v ServiceLifeCycle)`
+
+SetLifeCycle sets LifeCycle field to given value.
+
+### HasLifeCycle
+
+`func (o *Service) HasLifeCycle() bool`
+
+HasLifeCycle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

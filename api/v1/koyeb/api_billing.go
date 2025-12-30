@@ -25,8 +25,8 @@ type BillingApi interface {
 	HasUnpaidInvoices Experimental: Has unpaid invoices
 
 	WARNING: Please don't use the following method.
-Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-USE AT YOUR OWN RISK.
+Koyeb doesn't guarantee backwards compatible breaking change and reserve
+the right to completely drop it without notice. USE AT YOUR OWN RISK.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiHasUnpaidInvoicesRequest
@@ -53,8 +53,8 @@ USE AT YOUR OWN RISK.
 	NextInvoice Experimental: Fetch next invoice
 
 	WARNING: Please don't use the following method.
-Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-USE AT YOUR OWN RISK.
+Koyeb doesn't guarantee backwards compatible breaking change and reserve
+the right to completely drop it without notice. USE AT YOUR OWN RISK.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiNextInvoiceRequest
@@ -82,8 +82,8 @@ func (r ApiHasUnpaidInvoicesRequest) Execute() (*HasUnpaidInvoicesReply, *http.R
 HasUnpaidInvoices Experimental: Has unpaid invoices
 
 WARNING: Please don't use the following method.
-Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-USE AT YOUR OWN RISK.
+Koyeb doesn't guarantee backwards compatible breaking change and reserve
+the right to completely drop it without notice. USE AT YOUR OWN RISK.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiHasUnpaidInvoicesRequest
@@ -456,8 +456,8 @@ func (r ApiNextInvoiceRequest) Execute() (*NextInvoiceReply, *http.Response, err
 NextInvoice Experimental: Fetch next invoice
 
 WARNING: Please don't use the following method.
-Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-USE AT YOUR OWN RISK.
+Koyeb doesn't guarantee backwards compatible breaking change and reserve
+the right to completely drop it without notice. USE AT YOUR OWN RISK.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiNextInvoiceRequest

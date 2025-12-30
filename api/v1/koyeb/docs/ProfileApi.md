@@ -295,7 +295,7 @@ Other parameters are passed through a pointer to a apiGetCurrentOrganizationRequ
 
 ## GetCurrentUser
 
-> UserReply GetCurrentUser(ctx).Execute()
+> UserReply GetCurrentUser(ctx).SeonFp(seonFp).Execute()
 
 Get Current User
 
@@ -312,10 +312,11 @@ import (
 )
 
 func main() {
+    seonFp := "seonFp_example" // string | Seon Fingerprint (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProfileApi.GetCurrentUser(context.Background()).Execute()
+    resp, r, err := apiClient.ProfileApi.GetCurrentUser(context.Background()).SeonFp(seonFp).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProfileApi.GetCurrentUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -327,12 +328,16 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+
 
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetCurrentUserRequest struct via the builder pattern
 
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **seonFp** | **string** | Seon Fingerprint | 
 
 ### Return type
 

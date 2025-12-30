@@ -3860,6 +3860,16 @@ paths:
         name: dry_run
         schema:
           type: boolean
+      - in: query
+        name: life_cycle.delete_after_sleep
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: life_cycle.delete_after_create
+        schema:
+          format: int64
+          type: integer
       requestBody:
         content:
           '*/*':
@@ -3934,6 +3944,16 @@ paths:
         name: dry_run
         schema:
           type: boolean
+      - in: query
+        name: life_cycle.delete_after_sleep
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: life_cycle.delete_after_create
+        schema:
+          format: int64
+          type: integer
       requestBody:
         content:
           '*/*':
@@ -8138,7 +8158,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: ClearIdenfyVerificationResult marks the current result for idenfy as
+      summary: |-
+        ClearIdenfyVerificationResult marks the current result for idenfy as
         superseded
       tags:
       - Profile
@@ -8280,8 +8301,9 @@ paths:
           - signup
           - register
           type: string
-      - description: A small (limited to 400 characters) string of arbitrary metadata
-          which will be encoded in the state
+      - description: |-
+          A small (limited to 400 characters) string of arbitrary metadata which will
+          be encoded in the state
         in: query
         name: metadata
         schema:
@@ -8769,8 +8791,9 @@ paths:
         name: order
         schema:
           type: string
-      - description: (Optional) Fuzzy case-insensitive search based on organization
-          name or organization id
+      - description: |-
+          (Optional) Fuzzy case-insensitive search based on organization name or
+          organization id
         in: query
         name: search
         schema:
@@ -8849,6 +8872,12 @@ paths:
   /v1/account/profile:
     get:
       operationId: GetCurrentUser
+      parameters:
+      - description: Seon Fingerprint
+        in: header
+        name: seon-fp
+        schema:
+          type: string
       responses:
         "200":
           content:
@@ -9488,8 +9517,8 @@ paths:
     get:
       description: |-
         WARNING: Please don't use the following method.
-        Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-        USE AT YOUR OWN RISK.
+        Koyeb doesn't guarantee backwards compatible breaking change and reserve
+        the right to completely drop it without notice. USE AT YOUR OWN RISK.
       operationId: HasUnpaidInvoices
       responses:
         "200":
@@ -9603,8 +9632,8 @@ paths:
     get:
       description: |-
         WARNING: Please don't use the following method.
-        Koyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.
-        USE AT YOUR OWN RISK.
+        Koyeb doesn't guarantee backwards compatible breaking change and reserve
+        the right to completely drop it without notice. USE AT YOUR OWN RISK.
       operationId: NextInvoice
       responses:
         "200":
@@ -10117,7 +10146,8 @@ paths:
         It's possible to specify a validity for the token, which defaults to 1h
         and must be no more than 24h. The format is `<number>s`, where `<number>`
         is a floating point in seconds (so `123.456789012s` means 123 seconds and
-        456789012 nanoseconds). See: https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html.
+        456789012 nanoseconds). See:
+        https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html.
       operationId: CreateAccessToken
       parameters:
       - description: Organization id for ephemeral credential
@@ -10252,6 +10282,75 @@ paths:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
       summary: Deactivate an Organization
+      tags:
+      - organization
+      x-codegen-request-body-name: body
+  /v1/organizations/{id}/name:
+    put:
+      operationId: UpdateOrganizationName
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateOrganizationName_request'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateOrganizationNameReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update Organization
       tags:
       - organization
       x-codegen-request-body-name: body
@@ -13886,7 +13985,10 @@ components:
       - INVALID
       - WEB
       - WORKER
+      - _
       - SANDBOX
+      title: "- _: We match with DeploymentDefinition.Type, so we skip 3 which is\
+        \ DATABASE"
       type: string
     RegionalDeploymentEvent:
       example:
@@ -14191,6 +14293,8 @@ components:
       type: object
     App:
       example:
+        life_cycle:
+          delete_when_empty: true
         created_at: 2000-01-23T04:56:07.000+00:00
         resumed_at: 2000-01-23T04:56:07.000+00:00
         domains:
@@ -14284,6 +14388,8 @@ components:
           items:
             $ref: '#/components/schemas/Domain'
           type: array
+        life_cycle:
+          $ref: '#/components/schemas/AppLifeCycle'
       type: object
     App.Status:
       default: STARTING
@@ -14298,6 +14404,13 @@ components:
       - PAUSED
       - RESUMING
       type: string
+    AppLifeCycle:
+      example:
+        delete_when_empty: true
+      properties:
+        delete_when_empty:
+          type: boolean
+      type: object
     AutoRelease:
       example:
         groups:
@@ -14338,6 +14451,8 @@ components:
     ComposeReply:
       example:
         app:
+          life_cycle:
+            delete_when_empty: true
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -14391,7 +14506,10 @@ components:
           terminated_at: 2000-01-23T04:56:07.000+00:00
           status: null
         services:
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           type: null
           version: version
@@ -14432,7 +14550,10 @@ components:
           terminated_at: 2000-01-23T04:56:07.000+00:00
           latest_deployment_id: latest_deployment_id
           status: null
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           type: null
           version: version
@@ -14483,17 +14604,26 @@ components:
       type: object
     CreateApp:
       example:
+        life_cycle:
+          delete_when_empty: true
         name: name
       properties:
         name:
           type: string
+        life_cycle:
+          $ref: '#/components/schemas/AppLifeCycle'
       type: object
     CreateCompose:
       example:
         app:
+          life_cycle:
+            delete_when_empty: true
           name: name
         services:
-        - definition:
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          definition:
             instance_types:
             - scopes:
               - scopes
@@ -14731,7 +14861,10 @@ components:
             strategy:
               type: null
           app_id: app_id
-        - definition:
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          definition:
             instance_types:
             - scopes:
               - scopes
@@ -14979,6 +15112,9 @@ components:
       type: object
     CreateService:
       example:
+        life_cycle:
+          delete_after_create: 1
+          delete_after_sleep: 6
         definition:
           instance_types:
           - scopes:
@@ -15222,6 +15358,8 @@ components:
           type: string
         definition:
           $ref: '#/components/schemas/DeploymentDefinition'
+        life_cycle:
+          $ref: '#/components/schemas/ServiceLifeCycle'
       type: object
     DatabaseSource:
       example:
@@ -15871,6 +16009,9 @@ components:
       type: string
     Service:
       example:
+        life_cycle:
+          delete_after_create: 1
+          delete_after_sleep: 6
         created_at: 2000-01-23T04:56:07.000+00:00
         resumed_at: 2000-01-23T04:56:07.000+00:00
         type: null
@@ -15961,6 +16102,8 @@ components:
           type: string
         state:
           $ref: '#/components/schemas/ServiceState'
+        life_cycle:
+          $ref: '#/components/schemas/ServiceLifeCycle'
       type: object
     Service.Status:
       default: STARTING
@@ -15984,6 +16127,18 @@ components:
       - DATABASE
       - SANDBOX
       type: string
+    ServiceLifeCycle:
+      example:
+        delete_after_create: 1
+        delete_after_sleep: 6
+      properties:
+        delete_after_sleep:
+          format: int64
+          type: integer
+        delete_after_create:
+          format: int64
+          type: integer
+      type: object
     ServiceState:
       example:
         desired_deployment:
@@ -19898,6 +20053,8 @@ components:
     CreateAppReply:
       example:
         app:
+          life_cycle:
+            delete_when_empty: true
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -19959,6 +20116,8 @@ components:
     GetAppReply:
       example:
         app:
+          life_cycle:
+            delete_when_empty: true
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -20183,14 +20342,20 @@ components:
       type: object
     UpdateApp:
       example:
+        life_cycle:
+          delete_when_empty: true
         name: name
       properties:
         name:
           type: string
+        life_cycle:
+          $ref: '#/components/schemas/AppLifeCycle'
       type: object
     UpdateAppReply:
       example:
         app:
+          life_cycle:
+            delete_when_empty: true
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           domains:
@@ -20538,6 +20703,9 @@ components:
     CreateServiceReply:
       example:
         service:
+          life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           type: null
@@ -20588,6 +20756,9 @@ components:
     GetServiceReply:
       example:
         service:
+          life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           type: null
@@ -21334,6 +21505,9 @@ components:
       type: object
     UpdateService:
       example:
+        life_cycle:
+          delete_after_create: 1
+          delete_after_sleep: 6
         metadata:
           database:
             neon_postgres:
@@ -21621,10 +21795,15 @@ components:
         save_only:
           title: "If set, do not trigger a deployment, only store the new settings"
           type: boolean
+        life_cycle:
+          $ref: '#/components/schemas/ServiceLifeCycle'
       type: object
     UpdateServiceReply:
       example:
         service:
+          life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
           created_at: 2000-01-23T04:56:07.000+00:00
           resumed_at: 2000-01-23T04:56:07.000+00:00
           type: null
@@ -24344,6 +24523,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -24388,6 +24568,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -24423,6 +24604,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -24450,6 +24632,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -24511,6 +24694,7 @@ components:
         organization_id: organization_id
         organization:
           name: name
+          external_id: external_id
           id: id
           plan: null
           status: null
@@ -24586,6 +24770,7 @@ components:
     PublicOrganization:
       example:
         name: name
+        external_id: external_id
         id: id
         plan: null
         status: null
@@ -24598,6 +24783,8 @@ components:
           $ref: '#/components/schemas/Plan'
         status:
           $ref: '#/components/schemas/Organization.Status'
+        external_id:
+          type: string
       type: object
     PublicUser:
       example:
@@ -24629,6 +24816,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25094,9 +25282,11 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25112,9 +25302,11 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25153,9 +25345,11 @@ components:
         organization_id: organization_id
         organization:
           name: name
+          external_id: external_id
           id: id
           plan: null
           status: null
+        external_id: external_id
         id: id
         user:
           github_user: github_user
@@ -25171,6 +25365,8 @@ components:
         organization_id:
           type: string
         user_id:
+          type: string
+        external_id:
           type: string
         joined_at:
           format: date-time
@@ -25200,9 +25396,11 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
+          external_id: external_id
           id: id
           user:
             github_user: github_user
@@ -25224,6 +25422,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25349,6 +25548,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25395,6 +25595,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25424,6 +25625,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25470,6 +25672,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25601,6 +25804,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25630,6 +25834,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25684,8 +25889,9 @@ components:
           title: The url to start the installation flow
           type: string
         state:
-          title: "The state required by the protocol, it is only valid 10 minutes\
-            \ and encodes information about the type of flow"
+          title: |-
+            The state required by the protocol, it is only valid 10 minutes and encodes
+            information about the type of flow
           type: string
       type: object
     GithubInstallationRequest:
@@ -25693,8 +25899,9 @@ components:
         metadata: metadata
       properties:
         metadata:
-          title: A small (limited to 400 characters) string of arbitrary metadata
-            which will be encoded in the state
+          title: |-
+            A small (limited to 400 characters) string of arbitrary metadata which will
+            be encoded in the state
           type: string
       type: object
     HasUnpaidInvoicesReply:
@@ -25726,6 +25933,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25753,6 +25961,7 @@ components:
           organization_id: organization_id
           organization:
             name: name
+            external_id: external_id
             id: id
             plan: null
             status: null
@@ -25815,6 +26024,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -25847,6 +26057,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26034,13 +26245,13 @@ components:
           type: string
         setup_action:
           description: |-
-            setup_action is populated in the context of a GitHub app installation request. For logins and
-            signups, it is not set.
+            setup_action is populated in the context of a GitHub app installation
+            request. For logins and signups, it is not set.
           type: string
         installation_id:
           description: |-
-            installation_id is populated in the context of a GitHub app installation request. For logins and
-            signups, it is not set.
+            installation_id is populated in the context of a GitHub app installation
+            request. For logins and signups, it is not set.
           type: string
       type: object
     OAuthProvider:
@@ -26056,8 +26267,9 @@ components:
           title: The URL to call to initiate the OAuth flow
           type: string
         state:
-          title: "The OAuth state required by the protocol, it is only valid 10 minutes\
-            \ and encodes information about the type of flow"
+          title: |-
+            The OAuth state required by the protocol, it is only valid 10 minutes and
+            encodes information about the type of flow
           type: string
       type: object
     Organization:
@@ -26077,6 +26289,7 @@ components:
         email_domain_allowlist:
         - email_domain_allowlist
         - email_domain_allowlist
+        provisioning: true
         company: true
         id: id
         state: state
@@ -26099,6 +26312,8 @@ components:
           type: string
         external_id:
           type: string
+        provisioning:
+          type: boolean
         address1:
           type: string
         address2:
@@ -26206,6 +26421,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26253,6 +26469,46 @@ components:
         budget:
           $ref: '#/components/schemas/Budget'
       type: object
+    UpdateOrganizationNameReply:
+      example:
+        organization:
+          status_message: null
+          country: country
+          city: city
+          vat_number: vat_number
+          plan_updated_at: 2000-01-23T04:56:07.000+00:00
+          has_payment_method: true
+          trialing: true
+          external_id: external_id
+          subscription_id: subscription_id
+          signup_qualification: "{}"
+          reprocess_after: 2000-01-23T04:56:07.000+00:00
+          billing_email: billing_email
+          email_domain_allowlist:
+          - email_domain_allowlist
+          - email_domain_allowlist
+          provisioning: true
+          company: true
+          id: id
+          state: state
+          plan: null
+          current_subscription_id: current_subscription_id
+          qualifies_for_hobby23: true
+          address2: address2
+          trial_starts_at: 2000-01-23T04:56:07.000+00:00
+          address1: address1
+          verified: true
+          billing_name: billing_name
+          deactivation_reason: null
+          name: name
+          latest_subscription_id: latest_subscription_id
+          trial_ends_at: 2000-01-23T04:56:07.000+00:00
+          postal_code: postal_code
+          status: null
+      properties:
+        organization:
+          $ref: '#/components/schemas/Organization'
+      type: object
     UpdateOrganizationPlanReply:
       example:
         organization:
@@ -26271,6 +26527,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26310,6 +26567,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26392,6 +26650,7 @@ components:
           email_domain_allowlist:
           - email_domain_allowlist
           - email_domain_allowlist
+          provisioning: true
           company: true
           id: id
           state: state
@@ -26588,9 +26847,14 @@ components:
       properties:
         skip_confirmation:
           description: |-
-            if set to true, skip_confirmation will directly start the deactivation process,
-            without sending a confirmation email beforehand.
+            if set to true, skip_confirmation will directly start the deactivation
+            process, without sending a confirmation email beforehand.
           type: boolean
+      type: object
+    UpdateOrganizationName_request:
+      properties:
+        name:
+          type: string
       type: object
     UpdateOrganizationPlan_request:
       properties:
