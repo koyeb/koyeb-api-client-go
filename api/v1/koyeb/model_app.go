@@ -31,6 +31,7 @@ type App struct {
 	Messages []string `json:"messages,omitempty"`
 	Version *string `json:"version,omitempty"`
 	Domains []Domain `json:"domains,omitempty"`
+	LifeCycle *AppLifeCycle `json:"life_cycle,omitempty"`
 }
 
 // NewApp instantiates a new App object
@@ -502,6 +503,38 @@ func (o *App) SetDomains(v []Domain) {
 	o.Domains = v
 }
 
+// GetLifeCycle returns the LifeCycle field value if set, zero value otherwise.
+func (o *App) GetLifeCycle() AppLifeCycle {
+	if o == nil || isNil(o.LifeCycle) {
+		var ret AppLifeCycle
+		return ret
+	}
+	return *o.LifeCycle
+}
+
+// GetLifeCycleOk returns a tuple with the LifeCycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *App) GetLifeCycleOk() (*AppLifeCycle, bool) {
+	if o == nil || isNil(o.LifeCycle) {
+    return nil, false
+	}
+	return o.LifeCycle, true
+}
+
+// HasLifeCycle returns a boolean if a field has been set.
+func (o *App) HasLifeCycle() bool {
+	if o != nil && !isNil(o.LifeCycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifeCycle gets a reference to the given AppLifeCycle and assigns it to the LifeCycle field.
+func (o *App) SetLifeCycle(v AppLifeCycle) {
+	o.LifeCycle = &v
+}
+
 func (o App) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -545,6 +578,9 @@ func (o App) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
+	}
+	if !isNil(o.LifeCycle) {
+		toSerialize["life_cycle"] = o.LifeCycle
 	}
 	return json.Marshal(toSerialize)
 }

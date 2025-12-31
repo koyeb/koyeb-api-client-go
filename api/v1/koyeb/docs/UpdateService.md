@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to [**DeploymentMetadata**](DeploymentMetadata.md) |  | [optional] 
 **SkipBuild** | Pointer to **bool** | If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened. | [optional] 
 **SaveOnly** | Pointer to **bool** |  | [optional] 
+**LifeCycle** | Pointer to [**ServiceLifeCycle**](ServiceLifeCycle.md) |  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetSaveOnly sets SaveOnly field to given value.
 `func (o *UpdateService) HasSaveOnly() bool`
 
 HasSaveOnly returns a boolean if a field has been set.
+
+### GetLifeCycle
+
+`func (o *UpdateService) GetLifeCycle() ServiceLifeCycle`
+
+GetLifeCycle returns the LifeCycle field if non-nil, zero value otherwise.
+
+### GetLifeCycleOk
+
+`func (o *UpdateService) GetLifeCycleOk() (*ServiceLifeCycle, bool)`
+
+GetLifeCycleOk returns a tuple with the LifeCycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLifeCycle
+
+`func (o *UpdateService) SetLifeCycle(v ServiceLifeCycle)`
+
+SetLifeCycle sets LifeCycle field to given value.
+
+### HasLifeCycle
+
+`func (o *UpdateService) HasLifeCycle() bool`
+
+HasLifeCycle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
 **ExternalId** | Pointer to **string** |  | [optional] 
+**Provisioning** | Pointer to **bool** |  | [optional] 
 **Address1** | Pointer to **string** |  | [optional] 
 **Address2** | Pointer to **string** |  | [optional] 
 **City** | Pointer to **string** |  | [optional] 
@@ -103,6 +104,31 @@ SetExternalId sets ExternalId field to given value.
 `func (o *Organization) HasExternalId() bool`
 
 HasExternalId returns a boolean if a field has been set.
+
+### GetProvisioning
+
+`func (o *Organization) GetProvisioning() bool`
+
+GetProvisioning returns the Provisioning field if non-nil, zero value otherwise.
+
+### GetProvisioningOk
+
+`func (o *Organization) GetProvisioningOk() (*bool, bool)`
+
+GetProvisioningOk returns a tuple with the Provisioning field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProvisioning
+
+`func (o *Organization) SetProvisioning(v bool)`
+
+SetProvisioning sets Provisioning field to given value.
+
+### HasProvisioning
+
+`func (o *Organization) HasProvisioning() bool`
+
+HasProvisioning returns a boolean if a field has been set.
 
 ### GetAddress1
 

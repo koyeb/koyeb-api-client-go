@@ -4287,6 +4287,20 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "life_cycle.delete_after_sleep",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "life_cycle.delete_after_create",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -4368,6 +4382,20 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "name": "life_cycle.delete_after_sleep",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "life_cycle.delete_after_create",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -8906,7 +8934,7 @@
         ]
       },
       "post": {
-        "summary": "ClearIdenfyVerificationResult marks the current result for idenfy as superseded",
+        "summary": "ClearIdenfyVerificationResult marks the current result for idenfy as\nsuperseded",
         "operationId": "ClearIdenfyVerificationResult",
         "responses": {
           "200": {
@@ -9178,7 +9206,7 @@
           },
           {
             "name": "metadata",
-            "description": "A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state",
+            "description": "A small (limited to 400 characters) string of arbitrary metadata which will\nbe encoded in the state",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9714,7 +9742,7 @@
           },
           {
             "name": "search",
-            "description": "(Optional) Fuzzy case-insensitive search based on organization name or organization id",
+            "description": "(Optional) Fuzzy case-insensitive search based on organization name or\norganization id",
             "in": "query",
             "required": false,
             "type": "string"
@@ -9799,6 +9827,15 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "seon-fp",
+            "description": "Seon Fingerprint",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "Profile"
         ]
@@ -10442,7 +10479,7 @@
     "/v1/billing/has_unpaid_invoices": {
       "get": {
         "summary": "Experimental: Has unpaid invoices",
-        "description": "WARNING: Please don't use the following method.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.\nUSE AT YOUR OWN RISK.",
+        "description": "WARNING: Please don't use the following method.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve\nthe right to completely drop it without notice. USE AT YOUR OWN RISK.",
         "operationId": "HasUnpaidInvoices",
         "responses": {
           "200": {
@@ -10560,7 +10597,7 @@
     "/v1/billing/next_invoice": {
       "get": {
         "summary": "Experimental: Fetch next invoice",
-        "description": "WARNING: Please don't use the following method.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve the right to completely drop it without notice.\nUSE AT YOUR OWN RISK.",
+        "description": "WARNING: Please don't use the following method.\nKoyeb doesn't guarantee backwards compatible breaking change and reserve\nthe right to completely drop it without notice. USE AT YOUR OWN RISK.",
         "operationId": "NextInvoice",
         "responses": {
           "200": {
@@ -11105,7 +11142,7 @@
     "/v1/organizations/{id}/access_token": {
       "post": {
         "summary": "CreateAccessToken",
-        "description": "CreateAccessToken creates a short-lived access token in the scope of the\nspecified organization, provided the user making the request is part of\nsaid organization.\n\nIt's possible to specify a validity for the token, which defaults to 1h\nand must be no more than 24h. The format is `<number>s`, where `<number>`\nis a floating point in seconds (so `123.456789012s` means 123 seconds and\n456789012 nanoseconds). See: https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html.",
+        "description": "CreateAccessToken creates a short-lived access token in the scope of the\nspecified organization, provided the user making the request is part of\nsaid organization.\n\nIt's possible to specify a validity for the token, which defaults to 1h\nand must be no more than 24h. The format is `<number>s`, where `<number>`\nis a floating point in seconds (so `123.456789012s` means 123 seconds and\n456789012 nanoseconds). See:\nhttps://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html.",
         "operationId": "CreateAccessToken",
         "responses": {
           "200": {
@@ -11255,7 +11292,87 @@
               "properties": {
                 "skip_confirmation": {
                   "type": "boolean",
-                  "description": "if set to true, skip_confirmation will directly start the deactivation process,\nwithout sending a confirmation email beforehand."
+                  "description": "if set to true, skip_confirmation will directly start the deactivation\nprocess, without sending a confirmation email beforehand."
+                }
+              }
+            }
+          }
+        ],
+        "tags": [
+          "organization"
+        ]
+      }
+    },
+    "/v1/organizations/{id}/name": {
+      "put": {
+        "summary": "Update Organization",
+        "operationId": "UpdateOrganizationName",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateOrganizationNameReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
                 }
               }
             }
@@ -13469,9 +13586,11 @@
         "INVALID",
         "WEB",
         "WORKER",
+        "_",
         "SANDBOX"
       ],
-      "default": "INVALID"
+      "default": "INVALID",
+      "title": "- _: We match with DeploymentDefinition.Type, so we skip 3 which is DATABASE"
     },
     "RegionalDeploymentEvent": {
       "type": "object",
@@ -13651,6 +13770,9 @@
           "items": {
             "$ref": "#/definitions/Domain"
           }
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/AppLifeCycle"
         }
       }
     },
@@ -13668,6 +13790,14 @@
         "RESUMING"
       ],
       "default": "STARTING"
+    },
+    "AppLifeCycle": {
+      "type": "object",
+      "properties": {
+        "delete_when_empty": {
+          "type": "boolean"
+        }
+      }
     },
     "AutoRelease": {
       "type": "object",
@@ -13719,6 +13849,9 @@
       "properties": {
         "name": {
           "type": "string"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/AppLifeCycle"
         }
       }
     },
@@ -13744,6 +13877,9 @@
         },
         "definition": {
           "$ref": "#/definitions/DeploymentDefinition"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/ServiceLifeCycle"
         }
       }
     },
@@ -14218,6 +14354,9 @@
         "state": {
           "$ref": "#/definitions/ServiceState",
           "title": "Legacy stuff"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/ServiceLifeCycle"
         }
       }
     },
@@ -14246,6 +14385,19 @@
         "SANDBOX"
       ],
       "default": "INVALID_TYPE"
+    },
+    "ServiceLifeCycle": {
+      "type": "object",
+      "properties": {
+        "delete_after_sleep": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delete_after_create": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
     },
     "ServiceState": {
       "type": "object",
@@ -15634,6 +15786,9 @@
       "properties": {
         "name": {
           "type": "string"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/AppLifeCycle"
         }
       }
     },
@@ -15908,6 +16063,9 @@
         "save_only": {
           "type": "boolean",
           "title": "If set, do not trigger a deployment, only store the new settings"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/ServiceLifeCycle"
         }
       }
     },
@@ -18008,6 +18166,9 @@
         },
         "status": {
           "$ref": "#/definitions/Organization.Status"
+        },
+        "external_id": {
+          "type": "string"
         }
       }
     },
@@ -18425,6 +18586,9 @@
         "user_id": {
           "type": "string"
         },
+        "external_id": {
+          "type": "string"
+        },
         "joined_at": {
           "type": "string",
           "format": "date-time"
@@ -18737,7 +18901,7 @@
         },
         "state": {
           "type": "string",
-          "title": "The state required by the protocol, it is only valid 10 minutes and encodes information about the type of flow"
+          "title": "The state required by the protocol, it is only valid 10 minutes and encodes\ninformation about the type of flow"
         }
       }
     },
@@ -18746,7 +18910,7 @@
       "properties": {
         "metadata": {
           "type": "string",
-          "title": "A small (limited to 400 characters) string of arbitrary metadata which will be encoded in the state"
+          "title": "A small (limited to 400 characters) string of arbitrary metadata which will\nbe encoded in the state"
         }
       }
     },
@@ -18958,11 +19122,11 @@
         },
         "setup_action": {
           "type": "string",
-          "description": "setup_action is populated in the context of a GitHub app installation request. For logins and\nsignups, it is not set."
+          "description": "setup_action is populated in the context of a GitHub app installation\nrequest. For logins and signups, it is not set."
         },
         "installation_id": {
           "type": "string",
-          "description": "installation_id is populated in the context of a GitHub app installation request. For logins and\nsignups, it is not set."
+          "description": "installation_id is populated in the context of a GitHub app installation\nrequest. For logins and signups, it is not set."
         }
       }
     },
@@ -18979,7 +19143,7 @@
         },
         "state": {
           "type": "string",
-          "title": "The OAuth state required by the protocol, it is only valid 10 minutes and encodes information about the type of flow"
+          "title": "The OAuth state required by the protocol, it is only valid 10 minutes and\nencodes information about the type of flow"
         }
       }
     },
@@ -18991,6 +19155,9 @@
         },
         "external_id": {
           "type": "string"
+        },
+        "provisioning": {
+          "type": "boolean"
         },
         "address1": {
           "type": "string"
@@ -19150,6 +19317,14 @@
       "properties": {
         "budget": {
           "$ref": "#/definitions/Budget"
+        }
+      }
+    },
+    "UpdateOrganizationNameReply": {
+      "type": "object",
+      "properties": {
+        "organization": {
+          "$ref": "#/definitions/Organization"
         }
       }
     },

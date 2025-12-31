@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **UserId** | Pointer to **string** |  | [optional] 
+**ExternalId** | Pointer to **string** |  | [optional] 
 **JoinedAt** | Pointer to **time.Time** |  | [optional] 
 **Role** | Pointer to [**UserRoleRole**](UserRoleRole.md) |  | [optional] [default to USERROLEROLE_INVALID]
 **Status** | Pointer to [**OrganizationMemberStatus**](OrganizationMemberStatus.md) |  | [optional] [default to ORGANIZATIONMEMBERSTATUS_INVALID]
@@ -106,6 +107,31 @@ SetUserId sets UserId field to given value.
 `func (o *OrganizationMember) HasUserId() bool`
 
 HasUserId returns a boolean if a field has been set.
+
+### GetExternalId
+
+`func (o *OrganizationMember) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### GetExternalIdOk
+
+`func (o *OrganizationMember) GetExternalIdOk() (*string, bool)`
+
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalId
+
+`func (o *OrganizationMember) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
+
+### HasExternalId
+
+`func (o *OrganizationMember) HasExternalId() bool`
+
+HasExternalId returns a boolean if a field has been set.
 
 ### GetJoinedAt
 

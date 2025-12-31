@@ -18,6 +18,7 @@ import (
 type CreateService struct {
 	AppId *string `json:"app_id,omitempty"`
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
+	LifeCycle *ServiceLifeCycle `json:"life_cycle,omitempty"`
 }
 
 // NewCreateService instantiates a new CreateService object
@@ -101,6 +102,38 @@ func (o *CreateService) SetDefinition(v DeploymentDefinition) {
 	o.Definition = &v
 }
 
+// GetLifeCycle returns the LifeCycle field value if set, zero value otherwise.
+func (o *CreateService) GetLifeCycle() ServiceLifeCycle {
+	if o == nil || isNil(o.LifeCycle) {
+		var ret ServiceLifeCycle
+		return ret
+	}
+	return *o.LifeCycle
+}
+
+// GetLifeCycleOk returns a tuple with the LifeCycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetLifeCycleOk() (*ServiceLifeCycle, bool) {
+	if o == nil || isNil(o.LifeCycle) {
+    return nil, false
+	}
+	return o.LifeCycle, true
+}
+
+// HasLifeCycle returns a boolean if a field has been set.
+func (o *CreateService) HasLifeCycle() bool {
+	if o != nil && !isNil(o.LifeCycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifeCycle gets a reference to the given ServiceLifeCycle and assigns it to the LifeCycle field.
+func (o *CreateService) SetLifeCycle(v ServiceLifeCycle) {
+	o.LifeCycle = &v
+}
+
 func (o CreateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AppId) {
@@ -108,6 +141,9 @@ func (o CreateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Definition) {
 		toSerialize["definition"] = o.Definition
+	}
+	if !isNil(o.LifeCycle) {
+		toSerialize["life_cycle"] = o.LifeCycle
 	}
 	return json.Marshal(toSerialize)
 }

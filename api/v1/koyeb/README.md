@@ -146,6 +146,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update Organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update Organization
+*OrganizationApi* | [**UpdateOrganizationName**](docs/OrganizationApi.md#updateorganizationname) | **Put** /v1/organizations/{id}/name | Update Organization
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 *OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 *OrganizationConfirmationsApi* | [**ConfirmOrganizationAction**](docs/OrganizationConfirmationsApi.md#confirmorganizationaction) | **Post** /v1/organization_confirmations/{id} | Confirm organization action
@@ -247,6 +248,7 @@ Class | Method | HTTP request | Description
  - [ActivityList](docs/ActivityList.md)
  - [App](docs/App.md)
  - [AppEvent](docs/AppEvent.md)
+ - [AppLifeCycle](docs/AppLifeCycle.md)
  - [AppListItem](docs/AppListItem.md)
  - [AppStatus](docs/AppStatus.md)
  - [AppUsage](docs/AppUsage.md)
@@ -548,6 +550,7 @@ Class | Method | HTTP request | Description
  - [SecretsSummary](docs/SecretsSummary.md)
  - [Service](docs/Service.md)
  - [ServiceEvent](docs/ServiceEvent.md)
+ - [ServiceLifeCycle](docs/ServiceLifeCycle.md)
  - [ServiceListItem](docs/ServiceListItem.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
@@ -577,6 +580,8 @@ Class | Method | HTTP request | Description
  - [UpdateCredentialReply](docs/UpdateCredentialReply.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainReply](docs/UpdateDomainReply.md)
+ - [UpdateOrganizationNameReply](docs/UpdateOrganizationNameReply.md)
+ - [UpdateOrganizationNameRequest](docs/UpdateOrganizationNameRequest.md)
  - [UpdateOrganizationPlanReply](docs/UpdateOrganizationPlanReply.md)
  - [UpdateOrganizationPlanRequest](docs/UpdateOrganizationPlanRequest.md)
  - [UpdateOrganizationReply](docs/UpdateOrganizationReply.md)

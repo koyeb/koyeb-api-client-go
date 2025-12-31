@@ -21,6 +21,7 @@ type UpdateService struct {
 	// If set to true, the build stage will be skipped and the image coming from the last successful build step will be used instead. The call fails if no previous successful builds happened.
 	SkipBuild *bool `json:"skip_build,omitempty"`
 	SaveOnly *bool `json:"save_only,omitempty"`
+	LifeCycle *ServiceLifeCycle `json:"life_cycle,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -168,6 +169,38 @@ func (o *UpdateService) SetSaveOnly(v bool) {
 	o.SaveOnly = &v
 }
 
+// GetLifeCycle returns the LifeCycle field value if set, zero value otherwise.
+func (o *UpdateService) GetLifeCycle() ServiceLifeCycle {
+	if o == nil || isNil(o.LifeCycle) {
+		var ret ServiceLifeCycle
+		return ret
+	}
+	return *o.LifeCycle
+}
+
+// GetLifeCycleOk returns a tuple with the LifeCycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetLifeCycleOk() (*ServiceLifeCycle, bool) {
+	if o == nil || isNil(o.LifeCycle) {
+    return nil, false
+	}
+	return o.LifeCycle, true
+}
+
+// HasLifeCycle returns a boolean if a field has been set.
+func (o *UpdateService) HasLifeCycle() bool {
+	if o != nil && !isNil(o.LifeCycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifeCycle gets a reference to the given ServiceLifeCycle and assigns it to the LifeCycle field.
+func (o *UpdateService) SetLifeCycle(v ServiceLifeCycle) {
+	o.LifeCycle = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Definition) {
@@ -181,6 +214,9 @@ func (o UpdateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SaveOnly) {
 		toSerialize["save_only"] = o.SaveOnly
+	}
+	if !isNil(o.LifeCycle) {
+		toSerialize["life_cycle"] = o.LifeCycle
 	}
 	return json.Marshal(toSerialize)
 }

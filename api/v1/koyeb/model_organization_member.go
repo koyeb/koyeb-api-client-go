@@ -20,6 +20,7 @@ type OrganizationMember struct {
 	Id *string `json:"id,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
 	UserId *string `json:"user_id,omitempty"`
+	ExternalId *string `json:"external_id,omitempty"`
 	JoinedAt *time.Time `json:"joined_at,omitempty"`
 	Role *UserRoleRole `json:"role,omitempty"`
 	Status *OrganizationMemberStatus `json:"status,omitempty"`
@@ -146,6 +147,38 @@ func (o *OrganizationMember) HasUserId() bool {
 // SetUserId gets a reference to the given string and assigns it to the UserId field.
 func (o *OrganizationMember) SetUserId(v string) {
 	o.UserId = &v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise.
+func (o *OrganizationMember) GetExternalId() string {
+	if o == nil || isNil(o.ExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OrganizationMember) GetExternalIdOk() (*string, bool) {
+	if o == nil || isNil(o.ExternalId) {
+    return nil, false
+	}
+	return o.ExternalId, true
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *OrganizationMember) HasExternalId() bool {
+	if o != nil && !isNil(o.ExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
+func (o *OrganizationMember) SetExternalId(v string) {
+	o.ExternalId = &v
 }
 
 // GetJoinedAt returns the JoinedAt field value if set, zero value otherwise.
@@ -318,6 +351,9 @@ func (o OrganizationMember) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.UserId) {
 		toSerialize["user_id"] = o.UserId
+	}
+	if !isNil(o.ExternalId) {
+		toSerialize["external_id"] = o.ExternalId
 	}
 	if !isNil(o.JoinedAt) {
 		toSerialize["joined_at"] = o.JoinedAt

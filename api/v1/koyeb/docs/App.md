@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **Domains** | Pointer to [**[]Domain**](Domain.md) |  | [optional] 
+**LifeCycle** | Pointer to [**AppLifeCycle**](AppLifeCycle.md) |  | [optional] 
 
 ## Methods
 
@@ -387,6 +388,31 @@ SetDomains sets Domains field to given value.
 `func (o *App) HasDomains() bool`
 
 HasDomains returns a boolean if a field has been set.
+
+### GetLifeCycle
+
+`func (o *App) GetLifeCycle() AppLifeCycle`
+
+GetLifeCycle returns the LifeCycle field if non-nil, zero value otherwise.
+
+### GetLifeCycleOk
+
+`func (o *App) GetLifeCycleOk() (*AppLifeCycle, bool)`
+
+GetLifeCycleOk returns a tuple with the LifeCycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLifeCycle
+
+`func (o *App) SetLifeCycle(v AppLifeCycle)`
+
+SetLifeCycle sets LifeCycle field to given value.
+
+### HasLifeCycle
+
+`func (o *App) HasLifeCycle() bool`
+
+HasLifeCycle returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

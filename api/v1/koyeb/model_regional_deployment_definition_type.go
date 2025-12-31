@@ -23,6 +23,7 @@ const (
 	REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID RegionalDeploymentDefinitionType = "INVALID"
 	REGIONALDEPLOYMENTDEFINITIONTYPE_WEB RegionalDeploymentDefinitionType = "WEB"
 	REGIONALDEPLOYMENTDEFINITIONTYPE_WORKER RegionalDeploymentDefinitionType = "WORKER"
+	REGIONALDEPLOYMENTDEFINITIONTYPE_UNDERSCORE RegionalDeploymentDefinitionType = "_"
 	REGIONALDEPLOYMENTDEFINITIONTYPE_SANDBOX RegionalDeploymentDefinitionType = "SANDBOX"
 )
 
@@ -31,6 +32,7 @@ var AllowedRegionalDeploymentDefinitionTypeEnumValues = []RegionalDeploymentDefi
 	"INVALID",
 	"WEB",
 	"WORKER",
+	"_",
 	"SANDBOX",
 }
 
