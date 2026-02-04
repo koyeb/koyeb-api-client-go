@@ -30,6 +30,7 @@ api_organization_quotas.go
 api_payment_methods.go
 api_persistent_volumes.go
 api_profile.go
+api_projects.go
 api_provisioning.go
 api_quotas.go
 api_regional_deployments.go
@@ -107,6 +108,8 @@ docs/CreateOrganizationRequest.md
 docs/CreatePaymentAuthorizationReply.md
 docs/CreatePersistentVolumeReply.md
 docs/CreatePersistentVolumeRequest.md
+docs/CreateProject.md
+docs/CreateProjectReply.md
 docs/CreateSecret.md
 docs/CreateSecretReply.md
 docs/CreateService.md
@@ -215,11 +218,13 @@ docs/GetOrganizationUsageDetailsReply.md
 docs/GetOrganizationUsageReply.md
 docs/GetPaymentMethodReply.md
 docs/GetPersistentVolumeReply.md
+docs/GetProjectReply.md
 docs/GetQuotasReply.md
 docs/GetRegionReply.md
 docs/GetRegionalDeploymentReply.md
 docs/GetSecretReply.md
 docs/GetServiceReply.md
+docs/GetServiceScalingReply.md
 docs/GetSnapshotReply.md
 docs/GetSubscriptionReply.md
 docs/GetUserOrganizationInvitationReply.md
@@ -264,6 +269,7 @@ docs/KsearchRegionalDeployment.md
 docs/KsearchSearchReply.md
 docs/KsearchService.md
 docs/KsearchUser.md
+docs/LifecycleQuotas.md
 docs/ListAppEventsReply.md
 docs/ListAppsReply.md
 docs/ListCatalogInstancesReply.md
@@ -279,6 +285,7 @@ docs/ListOrganizationMembersReply.md
 docs/ListPaymentMethodsReply.md
 docs/ListPersistentVolumeEventsReply.md
 docs/ListPersistentVolumesReply.md
+docs/ListProjectsReply.md
 docs/ListRegionalDeploymentEventsReply.md
 docs/ListRegionalDeploymentsReply.md
 docs/ListRegionsReply.md
@@ -296,6 +303,7 @@ docs/LoginReply.md
 docs/LoginRequest.md
 docs/LogsApi.md
 docs/ManageReply.md
+docs/ManualServiceScaling.md
 docs/MembersSummary.md
 docs/MetricName.md
 docs/MetricsApi.md
@@ -344,6 +352,8 @@ docs/Plan.md
 docs/Port.md
 docs/PrivateRegistryConfiguration.md
 docs/ProfileApi.md
+docs/Project.md
+docs/ProjectsApi.md
 docs/ProvisioningApi.md
 docs/ProxyPortProtocol.md
 docs/PublicOrganization.md
@@ -431,9 +441,11 @@ docs/UpdateOrganizationReply.md
 docs/UpdatePasswordRequest.md
 docs/UpdatePersistentVolumeReply.md
 docs/UpdatePersistentVolumeRequest.md
+docs/UpdateProjectReply.md
 docs/UpdateSecretReply.md
 docs/UpdateService.md
 docs/UpdateServiceReply.md
+docs/UpdateServiceScalingRequest.md
 docs/UpdateSnapshotReply.md
 docs/UpdateSnapshotRequest.md
 docs/UpdateUserRequestUserUpdateBody.md
@@ -506,6 +518,8 @@ model_create_organization_request.go
 model_create_payment_authorization_reply.go
 model_create_persistent_volume_reply.go
 model_create_persistent_volume_request.go
+model_create_project.go
+model_create_project_reply.go
 model_create_secret.go
 model_create_secret_reply.go
 model_create_service.go
@@ -610,11 +624,13 @@ model_get_organization_usage_details_reply.go
 model_get_organization_usage_reply.go
 model_get_payment_method_reply.go
 model_get_persistent_volume_reply.go
+model_get_project_reply.go
 model_get_quotas_reply.go
 model_get_region_reply.go
 model_get_regional_deployment_reply.go
 model_get_secret_reply.go
 model_get_service_reply.go
+model_get_service_scaling_reply.go
 model_get_snapshot_reply.go
 model_get_subscription_reply.go
 model_get_user_organization_invitation_reply.go
@@ -656,6 +672,7 @@ model_ksearch_regional_deployment.go
 model_ksearch_search_reply.go
 model_ksearch_service.go
 model_ksearch_user.go
+model_lifecycle_quotas.go
 model_list_app_events_reply.go
 model_list_apps_reply.go
 model_list_catalog_instances_reply.go
@@ -671,6 +688,7 @@ model_list_organization_members_reply.go
 model_list_payment_methods_reply.go
 model_list_persistent_volume_events_reply.go
 model_list_persistent_volumes_reply.go
+model_list_projects_reply.go
 model_list_regional_deployment_events_reply.go
 model_list_regional_deployments_reply.go
 model_list_regions_reply.go
@@ -687,6 +705,7 @@ model_login_method_reply_method.go
 model_login_reply.go
 model_login_request.go
 model_manage_reply.go
+model_manual_service_scaling.go
 model_members_summary.go
 model_metric_name.go
 model_neon_postgres_database.go
@@ -726,6 +745,7 @@ model_persistent_volume_status.go
 model_plan.go
 model_port.go
 model_private_registry_configuration.go
+model_project.go
 model_proxy_port_protocol.go
 model_public_organization.go
 model_public_user.go
@@ -801,9 +821,11 @@ model_update_organization_reply.go
 model_update_password_request.go
 model_update_persistent_volume_reply.go
 model_update_persistent_volume_request.go
+model_update_project_reply.go
 model_update_secret_reply.go
 model_update_service.go
 model_update_service_reply.go
+model_update_service_scaling_request.go
 model_update_snapshot_reply.go
 model_update_snapshot_request.go
 model_update_user_request_user_update_body.go
@@ -848,6 +870,7 @@ test/api_organization_test.go
 test/api_payment_methods_test.go
 test/api_persistent_volumes_test.go
 test/api_profile_test.go
+test/api_projects_test.go
 test/api_provisioning_test.go
 test/api_quotas_test.go
 test/api_regional_deployments_test.go

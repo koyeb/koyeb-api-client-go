@@ -3535,6 +3535,15 @@ paths:
             type: string
           type: array
         style: form
+      - description: (Optional) Filter on regions
+        explode: true
+        in: query
+        name: regions
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -3855,21 +3864,15 @@ paths:
         required: true
         schema:
           type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
       - description: "If set, run validation and check that the service exists"
         in: query
         name: dry_run
         schema:
           type: boolean
-      - in: query
-        name: life_cycle.delete_after_sleep
-        schema:
-          format: int64
-          type: integer
-      - in: query
-        name: life_cycle.delete_after_create
-        schema:
-          format: int64
-          type: integer
       requestBody:
         content:
           '*/*':
@@ -3939,21 +3942,15 @@ paths:
         required: true
         schema:
           type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
       - description: "If set, run validation and check that the service exists"
         in: query
         name: dry_run
         schema:
           type: boolean
-      - in: query
-        name: life_cycle.delete_after_sleep
-        schema:
-          format: int64
-          type: integer
-      - in: query
-        name: life_cycle.delete_after_create
-        schema:
-          format: int64
-          type: integer
       requestBody:
         content:
           '*/*':
@@ -4230,6 +4227,205 @@ paths:
       summary: Resume Service
       tags:
       - Services
+  /v1/services/{id}/scale:
+    delete:
+      description: "Deletes the manual scaling configuration for a service, reverting\
+        \ to \nthe scaling defined in the deployment definition."
+      operationId: DeleteServiceScaling
+      parameters:
+      - description: The id of the service
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteServiceScalingReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete Service Scaling
+      tags:
+      - Services
+    get:
+      description: Returns the current scaling configuration for a service
+      operationId: GetServiceScaling
+      parameters:
+      - description: The id of the service
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetServiceScalingReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Service Scaling
+      tags:
+      - Services
+    put:
+      description: Stores or updates the scaling configuration for a service to use
+        manual scaling
+      operationId: UpdateServiceScaling
+      parameters:
+      - description: The id of the service to scale
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/UpdateServiceScaling_request'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateServiceScalingReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update Service Scaling
+      tags:
+      - Services
+      x-codegen-request-body-name: body
   /v1/secrets:
     get:
       operationId: ListSecrets
@@ -6404,6 +6600,402 @@ paths:
       summary: V2 Delete user
       tags:
       - Users
+  /v1/projects:
+    get:
+      operationId: ListProjects
+      parameters:
+      - description: (Optional) The number of items to return
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return
+        in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListProjectsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List projects
+      tags:
+      - Projects
+    post:
+      operationId: CreateProject
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateProject'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateProjectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create project
+      tags:
+      - Projects
+      x-codegen-request-body-name: project
+  /v1/projects/{id}:
+    delete:
+      operationId: DeleteProject
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteProjectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete project
+      tags:
+      - Projects
+    get:
+      operationId: GetProject
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetProjectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get project
+      tags:
+      - Projects
+    patch:
+      operationId: UpdateProject2
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateProjectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update project
+      tags:
+      - Projects
+      x-codegen-request-body-name: project
+    put:
+      operationId: UpdateProject
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: update_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Project'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateProjectReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Update project
+      tags:
+      - Projects
+      x-codegen-request-body-name: project
   /v1/payment_methods:
     get:
       operationId: ListPaymentMethods
@@ -10350,7 +10942,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/google.rpc.Status'
           description: An unexpected error response.
-      summary: Update Organization
+      summary: Update Organization Name
       tags:
       - organization
       x-codegen-request-body-name: body
@@ -12456,13 +13048,15 @@ components:
     DeploymentStrategyType:
       default: DEPLOYMENT_STRATEGY_TYPE_INVALID
       description: |2-
-         - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.
+         - DEPLOYMENT_STRATEGY_TYPE_INVALID: DEPRECATED: Use DEPLOYMENT_STRATEGY_TYPE_DEFAULT instead.
+         - DEPLOYMENT_STRATEGY_TYPE_DEFAULT: Default/unspecified strategy (resolves to platform default, currently ROLLING).
          - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.
          - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.
          - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.
          - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy.
       enum:
       - DEPLOYMENT_STRATEGY_TYPE_INVALID
+      - DEPLOYMENT_STRATEGY_TYPE_DEFAULT
       - DEPLOYMENT_STRATEGY_TYPE_CANARY
       - DEPLOYMENT_STRATEGY_TYPE_ROLLING
       - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN
@@ -19473,12 +20067,14 @@ components:
       - PERSISTENT_VOLUME_STATUS_DETACHED
       - PERSISTENT_VOLUME_STATUS_DELETING
       - PERSISTENT_VOLUME_STATUS_DELETED
+      - PERSISTENT_VOLUME_STATUS_ARCHIVING
       title: |-
         - PERSISTENT_VOLUME_STATUS_INVALID: zero value, invalid
          - PERSISTENT_VOLUME_STATUS_ATTACHED: the volume is attached to an instance
          - PERSISTENT_VOLUME_STATUS_DETACHED: the volume is free to use
          - PERSISTENT_VOLUME_STATUS_DELETING: the volume will be deleted
          - PERSISTENT_VOLUME_STATUS_DELETED: the volume was deleted
+         - PERSISTENT_VOLUME_STATUS_ARCHIVING: the volume is being archived (snapshot being created and migrated to remote storage)
       type: string
     UpdatePersistentVolumeReply:
       example:
@@ -20753,6 +21349,9 @@ components:
       type: object
     DeleteServiceReply:
       type: object
+    DeleteServiceScalingReply:
+      title: Empty reply - success is indicated by no error
+      type: object
     GetServiceReply:
       example:
         service:
@@ -20804,6 +21403,24 @@ components:
         service:
           $ref: '#/components/schemas/Service'
       type: object
+    GetServiceScalingReply:
+      example:
+        scalings:
+        - instances: 0
+          scopes:
+          - scopes
+          - scopes
+        - instances: 0
+          scopes:
+          - scopes
+          - scopes
+      properties:
+        scalings:
+          items:
+            $ref: '#/components/schemas/ManualServiceScaling'
+          title: The current manual scaling configuration
+          type: array
+      type: object
     ListServiceEventsReply:
       example:
         offset: 6
@@ -20853,7 +21470,10 @@ components:
         count: 1
         has_next: true
         services:
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           type: null
           version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -20888,7 +21508,10 @@ components:
           app_id: app_id
           latest_deployment_id: latest_deployment_id
           status: null
-        - created_at: 2000-01-23T04:56:07.000+00:00
+        - life_cycle:
+            delete_after_create: 1
+            delete_after_sleep: 6
+          created_at: 2000-01-23T04:56:07.000+00:00
           type: null
           version: version
           updated_at: 2000-01-23T04:56:07.000+00:00
@@ -20943,6 +21566,21 @@ components:
         has_next:
           title: If there is more items after in the collection
           type: boolean
+      type: object
+    ManualServiceScaling:
+      example:
+        instances: 0
+        scopes:
+        - scopes
+        - scopes
+      properties:
+        scopes:
+          items:
+            type: string
+          type: array
+        instances:
+          format: int64
+          type: integer
       type: object
     PauseServiceReply:
       type: object
@@ -21434,6 +22072,9 @@ components:
       type: object
     ServiceListItem:
       example:
+        life_cycle:
+          delete_after_create: 1
+          delete_after_sleep: 6
         created_at: 2000-01-23T04:56:07.000+00:00
         type: null
         version: version
@@ -21502,6 +22143,8 @@ components:
           type: string
         latest_deployment_id:
           type: string
+        life_cycle:
+          $ref: '#/components/schemas/ServiceLifeCycle'
       type: object
     UpdateService:
       example:
@@ -21848,6 +22491,9 @@ components:
       properties:
         service:
           $ref: '#/components/schemas/Service'
+      type: object
+    UpdateServiceScalingReply:
+      title: Empty reply - success is indicated by no error
       type: object
     AzureContainerRegistryConfiguration:
       example:
@@ -23882,6 +24528,112 @@ components:
          - PARTNER_CSP: User can create sub-organizations
          - IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX: User can bypass organization name reservations rules
       type: string
+    CreateProject:
+      example:
+        name: name
+        description: description
+      properties:
+        name:
+          title: Project name
+          type: string
+        description:
+          title: Project description
+          type: string
+      type: object
+    CreateProjectReply:
+      example:
+        project:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+      type: object
+    DeleteProjectReply:
+      type: object
+    GetProjectReply:
+      example:
+        project:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+      type: object
+    ListProjectsReply:
+      example:
+        projects:
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+        - updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+        offset: 6
+        limit: 0
+      properties:
+        projects:
+          items:
+            $ref: '#/components/schemas/Project'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+      type: object
+    Project:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        organization_id: organization_id
+        name: name
+        description: description
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        organization_id:
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          type: string
+      type: object
+    UpdateProjectReply:
+      example:
+        project:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          name: name
+          description: description
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+      properties:
+        project:
+          $ref: '#/components/schemas/Project'
+      type: object
     ConfirmPaymentAuthorizationReply:
       example:
         payment_method:
@@ -24869,6 +25621,7 @@ components:
           regions:
           - regions
           - regions
+          max_projects: max_projects
           scale_to_zero:
             is_light_sleep_enabled: true
             deep_sleep_idle_delay_max: 3
@@ -24881,6 +25634,11 @@ components:
           domains: domains
           proxy_ports: 7
           services: services
+          lifecycle:
+            delete_after_sleep_max: 1
+            delete_after_sleep_min: 7
+            delete_after_create_max: 1
+            delete_after_create_min: 1
           services_by_app: services_by_app
           service_provisioning_concurrency: service_provisioning_concurrency
           logs_retention: 2
@@ -24903,6 +25661,28 @@ components:
       properties:
         quotas:
           $ref: '#/components/schemas/Quotas'
+      type: object
+    LifecycleQuotas:
+      example:
+        delete_after_sleep_max: 1
+        delete_after_sleep_min: 7
+        delete_after_create_max: 1
+        delete_after_create_min: 1
+      properties:
+        delete_after_sleep_min:
+          format: int64
+          title: delete after sleep limits
+          type: integer
+        delete_after_sleep_max:
+          format: int64
+          type: integer
+        delete_after_create_min:
+          format: int64
+          title: delete after create limits
+          type: integer
+        delete_after_create_max:
+          format: int64
+          type: integer
       type: object
     PersistentVolumeQuotas:
       example:
@@ -24933,6 +25713,7 @@ components:
         regions:
         - regions
         - regions
+        max_projects: max_projects
         scale_to_zero:
           is_light_sleep_enabled: true
           deep_sleep_idle_delay_max: 3
@@ -24945,6 +25726,11 @@ components:
         domains: domains
         proxy_ports: 7
         services: services
+        lifecycle:
+          delete_after_sleep_max: 1
+          delete_after_sleep_min: 7
+          delete_after_create_max: 1
+          delete_after_create_min: 1
         services_by_app: services_by_app
         service_provisioning_concurrency: service_provisioning_concurrency
         logs_retention: 2
@@ -25032,6 +25818,11 @@ components:
           format: int64
           type: string
         archive_max_size_mb:
+          format: int64
+          type: string
+        lifecycle:
+          $ref: '#/components/schemas/LifecycleQuotas'
+        max_projects:
           format: int64
           type: string
       type: object
@@ -26787,6 +27578,14 @@ components:
           format: int64
           title: (Optional) increase the volume size (in Gigabyte / GB)
           type: integer
+      type: object
+    UpdateServiceScaling_request:
+      properties:
+        scalings:
+          items:
+            $ref: '#/components/schemas/ManualServiceScaling'
+          title: The new scaling configuration
+          type: array
       type: object
     UpdateSnapshot_request:
       properties:

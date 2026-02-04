@@ -242,7 +242,7 @@ without invalidating his token.
 	UpdateOrganization2Execute(r ApiUpdateOrganization2Request) (*UpdateOrganizationReply, *http.Response, error)
 
 	/*
-	UpdateOrganizationName Update Organization
+	UpdateOrganizationName Update Organization Name
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -3483,7 +3483,7 @@ func (r ApiUpdateOrganizationNameRequest) Execute() (*UpdateOrganizationNameRepl
 }
 
 /*
-UpdateOrganizationName Update Organization
+UpdateOrganizationName Update Organization Name
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

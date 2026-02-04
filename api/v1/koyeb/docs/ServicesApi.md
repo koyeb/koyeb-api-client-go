@@ -7,7 +7,9 @@ Method | HTTP request | Description
 [**Autocomplete**](ServicesApi.md#Autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 [**CreateService**](ServicesApi.md#CreateService) | **Post** /v1/services | Create Service
 [**DeleteService**](ServicesApi.md#DeleteService) | **Delete** /v1/services/{id} | Delete Service
+[**DeleteServiceScaling**](ServicesApi.md#DeleteServiceScaling) | **Delete** /v1/services/{id}/scale | Delete Service Scaling
 [**GetService**](ServicesApi.md#GetService) | **Get** /v1/services/{id} | Get Service
+[**GetServiceScaling**](ServicesApi.md#GetServiceScaling) | **Get** /v1/services/{id}/scale | Get Service Scaling
 [**ListServiceEvents**](ServicesApi.md#ListServiceEvents) | **Get** /v1/service_events | List Service events
 [**ListServices**](ServicesApi.md#ListServices) | **Get** /v1/services | List Services
 [**PauseService**](ServicesApi.md#PauseService) | **Post** /v1/services/{id}/pause | Pause Service
@@ -15,6 +17,7 @@ Method | HTTP request | Description
 [**ResumeService**](ServicesApi.md#ResumeService) | **Post** /v1/services/{id}/resume | Resume Service
 [**UpdateService**](ServicesApi.md#UpdateService) | **Put** /v1/services/{id} | Update Service
 [**UpdateService2**](ServicesApi.md#UpdateService2) | **Patch** /v1/services/{id} | Update Service
+[**UpdateServiceScaling**](ServicesApi.md#UpdateServiceScaling) | **Put** /v1/services/{id}/scale | Update Service Scaling
 
 
 
@@ -220,6 +223,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteServiceScaling
+
+> map[string]interface{} DeleteServiceScaling(ctx, id).Execute()
+
+Delete Service Scaling
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the service
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.DeleteServiceScaling(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.DeleteServiceScaling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteServiceScaling`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.DeleteServiceScaling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the service | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteServiceScalingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetService
 
 > GetServiceReply GetService(ctx, id).Execute()
@@ -273,6 +346,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetServiceReply**](GetServiceReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServiceScaling
+
+> GetServiceScalingReply GetServiceScaling(ctx, id).Execute()
+
+Get Service Scaling
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the service
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.GetServiceScaling(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.GetServiceScaling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetServiceScaling`: GetServiceScalingReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.GetServiceScaling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the service | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServiceScalingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GetServiceScalingReply**](GetServiceScalingReply.md)
 
 ### Authorization
 
@@ -362,7 +505,7 @@ Name | Type | Description  | Notes
 
 ## ListServices
 
-> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Execute()
+> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).Execute()
 
 List Services
 
@@ -385,10 +528,11 @@ func main() {
     name := "name_example" // string | (Optional) A filter for name (optional)
     types := []string{"Types_example"} // []string | (Optional) Filter on service types (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter on service statuses (optional)
+    regions := []string{"Inner_example"} // []string | (Optional) Filter on regions (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Execute()
+    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -415,6 +559,7 @@ Name | Type | Description  | Notes
  **name** | **string** | (Optional) A filter for name | 
  **types** | **[]string** | (Optional) Filter on service types | 
  **statuses** | **[]string** | (Optional) Filter on service statuses | 
+ **regions** | **[]string** | (Optional) Filter on regions | 
 
 ### Return type
 
@@ -650,7 +795,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService
 
-> UpdateServiceReply UpdateService(ctx, id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
+> UpdateServiceReply UpdateService(ctx, id).Service(service).UpdateMask(updateMask).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -669,13 +814,12 @@ import (
 func main() {
     id := "id_example" // string | The id of the entity to update
     service := *openapiclient.NewUpdateService() // UpdateService | 
+    updateMask := "updateMask_example" // string |  (optional)
     dryRun := true // bool | If set, run validation and check that the service exists (optional)
-    lifeCycleDeleteAfterSleep := int64(789) // int64 |  (optional)
-    lifeCycleDeleteAfterCreate := int64(789) // int64 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.UpdateService(context.Background(), id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
+    resp, r, err := apiClient.ServicesApi.UpdateService(context.Background(), id).Service(service).UpdateMask(updateMask).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -702,9 +846,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **service** | [**UpdateService**](UpdateService.md) |  | 
+ **updateMask** | **string** |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists | 
- **lifeCycleDeleteAfterSleep** | **int64** |  | 
- **lifeCycleDeleteAfterCreate** | **int64** |  | 
 
 ### Return type
 
@@ -726,7 +869,7 @@ Name | Type | Description  | Notes
 
 ## UpdateService2
 
-> UpdateServiceReply UpdateService2(ctx, id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
+> UpdateServiceReply UpdateService2(ctx, id).Service(service).UpdateMask(updateMask).DryRun(dryRun).Execute()
 
 Update Service
 
@@ -745,13 +888,12 @@ import (
 func main() {
     id := "id_example" // string | The id of the entity to update
     service := *openapiclient.NewUpdateService() // UpdateService | 
+    updateMask := "updateMask_example" // string |  (optional)
     dryRun := true // bool | If set, run validation and check that the service exists (optional)
-    lifeCycleDeleteAfterSleep := int64(789) // int64 |  (optional)
-    lifeCycleDeleteAfterCreate := int64(789) // int64 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.UpdateService2(context.Background(), id).Service(service).DryRun(dryRun).LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep).LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate).Execute()
+    resp, r, err := apiClient.ServicesApi.UpdateService2(context.Background(), id).Service(service).UpdateMask(updateMask).DryRun(dryRun).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateService2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -778,13 +920,84 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **service** | [**UpdateService**](UpdateService.md) |  | 
+ **updateMask** | **string** |  | 
  **dryRun** | **bool** | If set, run validation and check that the service exists | 
- **lifeCycleDeleteAfterSleep** | **int64** |  | 
- **lifeCycleDeleteAfterCreate** | **int64** |  | 
 
 ### Return type
 
 [**UpdateServiceReply**](UpdateServiceReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServiceScaling
+
+> map[string]interface{} UpdateServiceScaling(ctx, id).Body(body).Execute()
+
+Update Service Scaling
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | The id of the service to scale
+    body := *openapiclient.NewUpdateServiceScalingRequest() // UpdateServiceScalingRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicesApi.UpdateServiceScaling(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.UpdateServiceScaling``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateServiceScaling`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `ServicesApi.UpdateServiceScaling`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The id of the service to scale | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServiceScalingRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateServiceScalingRequest**](UpdateServiceScalingRequest.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 

@@ -36,6 +36,8 @@ type Quotas struct {
 	ScaleToZero *ScaleToZeroQuotas `json:"scale_to_zero,omitempty"`
 	Archives *string `json:"archives,omitempty"`
 	ArchiveMaxSizeMb *string `json:"archive_max_size_mb,omitempty"`
+	Lifecycle *LifecycleQuotas `json:"lifecycle,omitempty"`
+	MaxProjects *string `json:"max_projects,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -695,6 +697,70 @@ func (o *Quotas) SetArchiveMaxSizeMb(v string) {
 	o.ArchiveMaxSizeMb = &v
 }
 
+// GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
+func (o *Quotas) GetLifecycle() LifecycleQuotas {
+	if o == nil || isNil(o.Lifecycle) {
+		var ret LifecycleQuotas
+		return ret
+	}
+	return *o.Lifecycle
+}
+
+// GetLifecycleOk returns a tuple with the Lifecycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetLifecycleOk() (*LifecycleQuotas, bool) {
+	if o == nil || isNil(o.Lifecycle) {
+    return nil, false
+	}
+	return o.Lifecycle, true
+}
+
+// HasLifecycle returns a boolean if a field has been set.
+func (o *Quotas) HasLifecycle() bool {
+	if o != nil && !isNil(o.Lifecycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetLifecycle gets a reference to the given LifecycleQuotas and assigns it to the Lifecycle field.
+func (o *Quotas) SetLifecycle(v LifecycleQuotas) {
+	o.Lifecycle = &v
+}
+
+// GetMaxProjects returns the MaxProjects field value if set, zero value otherwise.
+func (o *Quotas) GetMaxProjects() string {
+	if o == nil || isNil(o.MaxProjects) {
+		var ret string
+		return ret
+	}
+	return *o.MaxProjects
+}
+
+// GetMaxProjectsOk returns a tuple with the MaxProjects field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetMaxProjectsOk() (*string, bool) {
+	if o == nil || isNil(o.MaxProjects) {
+    return nil, false
+	}
+	return o.MaxProjects, true
+}
+
+// HasMaxProjects returns a boolean if a field has been set.
+func (o *Quotas) HasMaxProjects() bool {
+	if o != nil && !isNil(o.MaxProjects) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxProjects gets a reference to the given string and assigns it to the MaxProjects field.
+func (o *Quotas) SetMaxProjects(v string) {
+	o.MaxProjects = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -756,6 +822,12 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ArchiveMaxSizeMb) {
 		toSerialize["archive_max_size_mb"] = o.ArchiveMaxSizeMb
+	}
+	if !isNil(o.Lifecycle) {
+		toSerialize["lifecycle"] = o.Lifecycle
+	}
+	if !isNil(o.MaxProjects) {
+		toSerialize["max_projects"] = o.MaxProjects
 	}
 	return json.Marshal(toSerialize)
 }

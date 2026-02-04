@@ -146,7 +146,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update Organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update Organization
-*OrganizationApi* | [**UpdateOrganizationName**](docs/OrganizationApi.md#updateorganizationname) | **Put** /v1/organizations/{id}/name | Update Organization
+*OrganizationApi* | [**UpdateOrganizationName**](docs/OrganizationApi.md#updateorganizationname) | **Put** /v1/organizations/{id}/name | Update Organization Name
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 *OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 *OrganizationConfirmationsApi* | [**ConfirmOrganizationAction**](docs/OrganizationConfirmationsApi.md#confirmorganizationaction) | **Post** /v1/organization_confirmations/{id} | Confirm organization action
@@ -192,6 +192,12 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**UpdateUserV2**](docs/ProfileApi.md#updateuserv2) | **Put** /v2/account/profile | Update User V2
 *ProfileApi* | [**UpdateUserV22**](docs/ProfileApi.md#updateuserv22) | **Patch** /v2/account/profile | Update User V2
 *ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | Validate
+*ProjectsApi* | [**CreateProject**](docs/ProjectsApi.md#createproject) | **Post** /v1/projects | Create project
+*ProjectsApi* | [**DeleteProject**](docs/ProjectsApi.md#deleteproject) | **Delete** /v1/projects/{id} | Delete project
+*ProjectsApi* | [**GetProject**](docs/ProjectsApi.md#getproject) | **Get** /v1/projects/{id} | Get project
+*ProjectsApi* | [**ListProjects**](docs/ProjectsApi.md#listprojects) | **Get** /v1/projects | List projects
+*ProjectsApi* | [**UpdateProject**](docs/ProjectsApi.md#updateproject) | **Put** /v1/projects/{id} | Update project
+*ProjectsApi* | [**UpdateProject2**](docs/ProjectsApi.md#updateproject2) | **Patch** /v1/projects/{id} | Update project
 *ProvisioningApi* | [**CreateStageAttempt**](docs/ProvisioningApi.md#createstageattempt) | **Post** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Create an attempt for a stage
 *ProvisioningApi* | [**DeclareStageProgress**](docs/ProvisioningApi.md#declarestageprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt} | Declare stage progress
 *ProvisioningApi* | [**DeclareStepProgress**](docs/ProvisioningApi.md#declarestepprogress) | **Patch** /v1/provisioning/{deployment_id}/status/{stage}/{attempt}/{step} | Declare step progress
@@ -213,7 +219,9 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
+*ServicesApi* | [**DeleteServiceScaling**](docs/ServicesApi.md#deleteservicescaling) | **Delete** /v1/services/{id}/scale | Delete Service Scaling
 *ServicesApi* | [**GetService**](docs/ServicesApi.md#getservice) | **Get** /v1/services/{id} | Get Service
+*ServicesApi* | [**GetServiceScaling**](docs/ServicesApi.md#getservicescaling) | **Get** /v1/services/{id}/scale | Get Service Scaling
 *ServicesApi* | [**ListServiceEvents**](docs/ServicesApi.md#listserviceevents) | **Get** /v1/service_events | List Service events
 *ServicesApi* | [**ListServices**](docs/ServicesApi.md#listservices) | **Get** /v1/services | List Services
 *ServicesApi* | [**PauseService**](docs/ServicesApi.md#pauseservice) | **Post** /v1/services/{id}/pause | Pause Service
@@ -221,6 +229,7 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**ResumeService**](docs/ServicesApi.md#resumeservice) | **Post** /v1/services/{id}/resume | Resume Service
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
+*ServicesApi* | [**UpdateServiceScaling**](docs/ServicesApi.md#updateservicescaling) | **Put** /v1/services/{id}/scale | Update Service Scaling
 *SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user
 *SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user
 *SessionsApi* | [**NewSession**](docs/SessionsApi.md#newsession) | **Post** /v1/account/session | New session
@@ -293,6 +302,8 @@ Class | Method | HTTP request | Description
  - [CreatePaymentAuthorizationReply](docs/CreatePaymentAuthorizationReply.md)
  - [CreatePersistentVolumeReply](docs/CreatePersistentVolumeReply.md)
  - [CreatePersistentVolumeRequest](docs/CreatePersistentVolumeRequest.md)
+ - [CreateProject](docs/CreateProject.md)
+ - [CreateProjectReply](docs/CreateProjectReply.md)
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
@@ -397,11 +408,13 @@ Class | Method | HTTP request | Description
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
  - [GetPersistentVolumeReply](docs/GetPersistentVolumeReply.md)
+ - [GetProjectReply](docs/GetProjectReply.md)
  - [GetQuotasReply](docs/GetQuotasReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
+ - [GetServiceScalingReply](docs/GetServiceScalingReply.md)
  - [GetSnapshotReply](docs/GetSnapshotReply.md)
  - [GetSubscriptionReply](docs/GetSubscriptionReply.md)
  - [GetUserOrganizationInvitationReply](docs/GetUserOrganizationInvitationReply.md)
@@ -443,6 +456,7 @@ Class | Method | HTTP request | Description
  - [KsearchSearchReply](docs/KsearchSearchReply.md)
  - [KsearchService](docs/KsearchService.md)
  - [KsearchUser](docs/KsearchUser.md)
+ - [LifecycleQuotas](docs/LifecycleQuotas.md)
  - [ListAppEventsReply](docs/ListAppEventsReply.md)
  - [ListAppsReply](docs/ListAppsReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
@@ -458,6 +472,7 @@ Class | Method | HTTP request | Description
  - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
  - [ListPersistentVolumeEventsReply](docs/ListPersistentVolumeEventsReply.md)
  - [ListPersistentVolumesReply](docs/ListPersistentVolumesReply.md)
+ - [ListProjectsReply](docs/ListProjectsReply.md)
  - [ListRegionalDeploymentEventsReply](docs/ListRegionalDeploymentEventsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
@@ -474,6 +489,7 @@ Class | Method | HTTP request | Description
  - [LoginReply](docs/LoginReply.md)
  - [LoginRequest](docs/LoginRequest.md)
  - [ManageReply](docs/ManageReply.md)
+ - [ManualServiceScaling](docs/ManualServiceScaling.md)
  - [MembersSummary](docs/MembersSummary.md)
  - [MetricName](docs/MetricName.md)
  - [NeonPostgresDatabase](docs/NeonPostgresDatabase.md)
@@ -513,6 +529,7 @@ Class | Method | HTTP request | Description
  - [Plan](docs/Plan.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
+ - [Project](docs/Project.md)
  - [ProxyPortProtocol](docs/ProxyPortProtocol.md)
  - [PublicOrganization](docs/PublicOrganization.md)
  - [PublicUser](docs/PublicUser.md)
@@ -588,9 +605,11 @@ Class | Method | HTTP request | Description
  - [UpdatePasswordRequest](docs/UpdatePasswordRequest.md)
  - [UpdatePersistentVolumeReply](docs/UpdatePersistentVolumeReply.md)
  - [UpdatePersistentVolumeRequest](docs/UpdatePersistentVolumeRequest.md)
+ - [UpdateProjectReply](docs/UpdateProjectReply.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
+ - [UpdateServiceScalingRequest](docs/UpdateServiceScalingRequest.md)
  - [UpdateSnapshotReply](docs/UpdateSnapshotReply.md)
  - [UpdateSnapshotRequest](docs/UpdateSnapshotRequest.md)
  - [UpdateUserRequestUserUpdateBody](docs/UpdateUserRequestUserUpdateBody.md)

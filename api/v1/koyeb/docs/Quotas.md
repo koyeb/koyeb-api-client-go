@@ -24,6 +24,8 @@ Name | Type | Description | Notes
 **ScaleToZero** | Pointer to [**ScaleToZeroQuotas**](ScaleToZeroQuotas.md) |  | [optional] 
 **Archives** | Pointer to **string** |  | [optional] 
 **ArchiveMaxSizeMb** | Pointer to **string** |  | [optional] 
+**Lifecycle** | Pointer to [**LifecycleQuotas**](LifecycleQuotas.md) |  | [optional] 
+**MaxProjects** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -543,6 +545,56 @@ SetArchiveMaxSizeMb sets ArchiveMaxSizeMb field to given value.
 `func (o *Quotas) HasArchiveMaxSizeMb() bool`
 
 HasArchiveMaxSizeMb returns a boolean if a field has been set.
+
+### GetLifecycle
+
+`func (o *Quotas) GetLifecycle() LifecycleQuotas`
+
+GetLifecycle returns the Lifecycle field if non-nil, zero value otherwise.
+
+### GetLifecycleOk
+
+`func (o *Quotas) GetLifecycleOk() (*LifecycleQuotas, bool)`
+
+GetLifecycleOk returns a tuple with the Lifecycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLifecycle
+
+`func (o *Quotas) SetLifecycle(v LifecycleQuotas)`
+
+SetLifecycle sets Lifecycle field to given value.
+
+### HasLifecycle
+
+`func (o *Quotas) HasLifecycle() bool`
+
+HasLifecycle returns a boolean if a field has been set.
+
+### GetMaxProjects
+
+`func (o *Quotas) GetMaxProjects() string`
+
+GetMaxProjects returns the MaxProjects field if non-nil, zero value otherwise.
+
+### GetMaxProjectsOk
+
+`func (o *Quotas) GetMaxProjectsOk() (*string, bool)`
+
+GetMaxProjectsOk returns a tuple with the MaxProjects field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMaxProjects
+
+`func (o *Quotas) SetMaxProjects(v string)`
+
+SetMaxProjects sets MaxProjects field to given value.
+
+### HasMaxProjects
+
+`func (o *Quotas) HasMaxProjects() bool`
+
+HasMaxProjects returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
