@@ -20,7 +20,7 @@ Method | HTTP request | Description
 [**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update Organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update Organization
-[**UpdateOrganizationName**](OrganizationApi.md#UpdateOrganizationName) | **Put** /v1/organizations/{id}/name | Update Organization
+[**UpdateOrganizationName**](OrganizationApi.md#UpdateOrganizationName) | **Put** /v1/organizations/{id}/name | Update Organization Name
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 [**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
 
@@ -1125,7 +1125,7 @@ Name | Type | Description  | Notes
 
 > UpdateOrganizationNameReply UpdateOrganizationName(ctx, id).Body(body).Execute()
 
-Update Organization
+Update Organization Name
 
 ### Example
 

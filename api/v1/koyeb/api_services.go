@@ -65,6 +65,22 @@ type ServicesApi interface {
 	DeleteServiceExecute(r ApiDeleteServiceRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
+	DeleteServiceScaling Delete Service Scaling
+
+	Deletes the manual scaling configuration for a service, reverting to 
+the scaling defined in the deployment definition.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id The id of the service
+	@return ApiDeleteServiceScalingRequest
+	*/
+	DeleteServiceScaling(ctx context.Context, id string) ApiDeleteServiceScalingRequest
+
+	// DeleteServiceScalingExecute executes the request
+	//  @return map[string]interface{}
+	DeleteServiceScalingExecute(r ApiDeleteServiceScalingRequest) (map[string]interface{}, *http.Response, error)
+
+	/*
 	GetService Get Service
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -76,6 +92,21 @@ type ServicesApi interface {
 	// GetServiceExecute executes the request
 	//  @return GetServiceReply
 	GetServiceExecute(r ApiGetServiceRequest) (*GetServiceReply, *http.Response, error)
+
+	/*
+	GetServiceScaling Get Service Scaling
+
+	Returns the current scaling configuration for a service
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id The id of the service
+	@return ApiGetServiceScalingRequest
+	*/
+	GetServiceScaling(ctx context.Context, id string) ApiGetServiceScalingRequest
+
+	// GetServiceScalingExecute executes the request
+	//  @return GetServiceScalingReply
+	GetServiceScalingExecute(r ApiGetServiceScalingRequest) (*GetServiceScalingReply, *http.Response, error)
 
 	/*
 	ListServiceEvents List Service events
@@ -175,6 +206,21 @@ type ServicesApi interface {
 	// UpdateService2Execute executes the request
 	//  @return UpdateServiceReply
 	UpdateService2Execute(r ApiUpdateService2Request) (*UpdateServiceReply, *http.Response, error)
+
+	/*
+	UpdateServiceScaling Update Service Scaling
+
+	Stores or updates the scaling configuration for a service to use manual scaling
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param id The id of the service to scale
+	@return ApiUpdateServiceScalingRequest
+	*/
+	UpdateServiceScaling(ctx context.Context, id string) ApiUpdateServiceScalingRequest
+
+	// UpdateServiceScalingExecute executes the request
+	//  @return map[string]interface{}
+	UpdateServiceScalingExecute(r ApiUpdateServiceScalingRequest) (map[string]interface{}, *http.Response, error)
 }
 
 // ServicesApiService ServicesApi service
@@ -775,6 +821,198 @@ func (a *ServicesApiService) DeleteServiceExecute(r ApiDeleteServiceRequest) (ma
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiDeleteServiceScalingRequest struct {
+	ctx context.Context
+	ApiService ServicesApi
+	id string
+}
+
+func (r ApiDeleteServiceScalingRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.DeleteServiceScalingExecute(r)
+}
+
+/*
+DeleteServiceScaling Delete Service Scaling
+
+Deletes the manual scaling configuration for a service, reverting to 
+the scaling defined in the deployment definition.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the service
+ @return ApiDeleteServiceScalingRequest
+*/
+func (a *ServicesApiService) DeleteServiceScaling(ctx context.Context, id string) ApiDeleteServiceScalingRequest {
+	return ApiDeleteServiceScalingRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *ServicesApiService) DeleteServiceScalingExecute(r ApiDeleteServiceScalingRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.DeleteServiceScaling")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/services/{id}/scale"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetServiceRequest struct {
 	ctx context.Context
 	ApiService ServicesApi
@@ -816,6 +1054,197 @@ func (a *ServicesApiService) GetServiceExecute(r ApiGetServiceRequest) (*GetServ
 	}
 
 	localVarPath := localBasePath + "/v1/services/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetServiceScalingRequest struct {
+	ctx context.Context
+	ApiService ServicesApi
+	id string
+}
+
+func (r ApiGetServiceScalingRequest) Execute() (*GetServiceScalingReply, *http.Response, error) {
+	return r.ApiService.GetServiceScalingExecute(r)
+}
+
+/*
+GetServiceScaling Get Service Scaling
+
+Returns the current scaling configuration for a service
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the service
+ @return ApiGetServiceScalingRequest
+*/
+func (a *ServicesApiService) GetServiceScaling(ctx context.Context, id string) ApiGetServiceScalingRequest {
+	return ApiGetServiceScalingRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return GetServiceScalingReply
+func (a *ServicesApiService) GetServiceScalingExecute(r ApiGetServiceScalingRequest) (*GetServiceScalingReply, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetServiceScalingReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.GetServiceScaling")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/services/{id}/scale"
 	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1216,6 +1645,7 @@ type ApiListServicesRequest struct {
 	name *string
 	types *[]string
 	statuses *[]string
+	regions *[]string
 }
 
 // (Optional) The id of the app
@@ -1251,6 +1681,12 @@ func (r ApiListServicesRequest) Types(types []string) ApiListServicesRequest {
 // (Optional) Filter on service statuses
 func (r ApiListServicesRequest) Statuses(statuses []string) ApiListServicesRequest {
 	r.statuses = &statuses
+	return r
+}
+
+// (Optional) Filter on regions
+func (r ApiListServicesRequest) Regions(regions []string) ApiListServicesRequest {
+	r.regions = &regions
 	return r
 }
 
@@ -1324,6 +1760,17 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (*Lis
 			}
 		} else {
 			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
+	}
+	if r.regions != nil {
+		t := *r.regions
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("regions", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("regions", parameterToString(t, "multi"))
 		}
 	}
 	// to determine the Content-Type header
@@ -2080,9 +2527,8 @@ type ApiUpdateServiceRequest struct {
 	ApiService ServicesApi
 	id string
 	service *UpdateService
+	updateMask *string
 	dryRun *bool
-	lifeCycleDeleteAfterSleep *int64
-	lifeCycleDeleteAfterCreate *int64
 }
 
 func (r ApiUpdateServiceRequest) Service(service UpdateService) ApiUpdateServiceRequest {
@@ -2090,19 +2536,14 @@ func (r ApiUpdateServiceRequest) Service(service UpdateService) ApiUpdateService
 	return r
 }
 
+func (r ApiUpdateServiceRequest) UpdateMask(updateMask string) ApiUpdateServiceRequest {
+	r.updateMask = &updateMask
+	return r
+}
+
 // If set, run validation and check that the service exists
 func (r ApiUpdateServiceRequest) DryRun(dryRun bool) ApiUpdateServiceRequest {
 	r.dryRun = &dryRun
-	return r
-}
-
-func (r ApiUpdateServiceRequest) LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep int64) ApiUpdateServiceRequest {
-	r.lifeCycleDeleteAfterSleep = &lifeCycleDeleteAfterSleep
-	return r
-}
-
-func (r ApiUpdateServiceRequest) LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate int64) ApiUpdateServiceRequest {
-	r.lifeCycleDeleteAfterCreate = &lifeCycleDeleteAfterCreate
 	return r
 }
 
@@ -2150,14 +2591,11 @@ func (a *ServicesApiService) UpdateServiceExecute(r ApiUpdateServiceRequest) (*U
 		return localVarReturnValue, nil, reportError("service is required and must be specified")
 	}
 
+	if r.updateMask != nil {
+		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
+	}
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
-	}
-	if r.lifeCycleDeleteAfterSleep != nil {
-		localVarQueryParams.Add("life_cycle.delete_after_sleep", parameterToString(*r.lifeCycleDeleteAfterSleep, ""))
-	}
-	if r.lifeCycleDeleteAfterCreate != nil {
-		localVarQueryParams.Add("life_cycle.delete_after_create", parameterToString(*r.lifeCycleDeleteAfterCreate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2308,9 +2746,8 @@ type ApiUpdateService2Request struct {
 	ApiService ServicesApi
 	id string
 	service *UpdateService
+	updateMask *string
 	dryRun *bool
-	lifeCycleDeleteAfterSleep *int64
-	lifeCycleDeleteAfterCreate *int64
 }
 
 func (r ApiUpdateService2Request) Service(service UpdateService) ApiUpdateService2Request {
@@ -2318,19 +2755,14 @@ func (r ApiUpdateService2Request) Service(service UpdateService) ApiUpdateServic
 	return r
 }
 
+func (r ApiUpdateService2Request) UpdateMask(updateMask string) ApiUpdateService2Request {
+	r.updateMask = &updateMask
+	return r
+}
+
 // If set, run validation and check that the service exists
 func (r ApiUpdateService2Request) DryRun(dryRun bool) ApiUpdateService2Request {
 	r.dryRun = &dryRun
-	return r
-}
-
-func (r ApiUpdateService2Request) LifeCycleDeleteAfterSleep(lifeCycleDeleteAfterSleep int64) ApiUpdateService2Request {
-	r.lifeCycleDeleteAfterSleep = &lifeCycleDeleteAfterSleep
-	return r
-}
-
-func (r ApiUpdateService2Request) LifeCycleDeleteAfterCreate(lifeCycleDeleteAfterCreate int64) ApiUpdateService2Request {
-	r.lifeCycleDeleteAfterCreate = &lifeCycleDeleteAfterCreate
 	return r
 }
 
@@ -2378,14 +2810,11 @@ func (a *ServicesApiService) UpdateService2Execute(r ApiUpdateService2Request) (
 		return localVarReturnValue, nil, reportError("service is required and must be specified")
 	}
 
+	if r.updateMask != nil {
+		localVarQueryParams.Add("update_mask", parameterToString(*r.updateMask, ""))
+	}
 	if r.dryRun != nil {
 		localVarQueryParams.Add("dry_run", parameterToString(*r.dryRun, ""))
-	}
-	if r.lifeCycleDeleteAfterSleep != nil {
-		localVarQueryParams.Add("life_cycle.delete_after_sleep", parameterToString(*r.lifeCycleDeleteAfterSleep, ""))
-	}
-	if r.lifeCycleDeleteAfterCreate != nil {
-		localVarQueryParams.Add("life_cycle.delete_after_create", parameterToString(*r.lifeCycleDeleteAfterCreate, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2406,6 +2835,208 @@ func (a *ServicesApiService) UpdateService2Execute(r ApiUpdateService2Request) (
 	}
 	// body params
 	localVarPostBody = r.service
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateServiceScalingRequest struct {
+	ctx context.Context
+	ApiService ServicesApi
+	id string
+	body *UpdateServiceScalingRequest
+}
+
+func (r ApiUpdateServiceScalingRequest) Body(body UpdateServiceScalingRequest) ApiUpdateServiceScalingRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiUpdateServiceScalingRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.UpdateServiceScalingExecute(r)
+}
+
+/*
+UpdateServiceScaling Update Service Scaling
+
+Stores or updates the scaling configuration for a service to use manual scaling
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id The id of the service to scale
+ @return ApiUpdateServiceScalingRequest
+*/
+func (a *ServicesApiService) UpdateServiceScaling(ctx context.Context, id string) ApiUpdateServiceScalingRequest {
+	return ApiUpdateServiceScalingRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *ServicesApiService) UpdateServiceScalingExecute(r ApiUpdateServiceScalingRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServicesApiService.UpdateServiceScaling")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/services/{id}/scale"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterToString(r.id, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

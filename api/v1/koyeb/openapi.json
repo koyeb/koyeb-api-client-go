@@ -3927,6 +3927,17 @@
               ]
             },
             "collectionFormat": "multi"
+          },
+          {
+            "name": "regions",
+            "description": "(Optional) Filter on regions",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -4282,25 +4293,17 @@
             }
           },
           {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "dry_run",
             "description": "If set, run validation and check that the service exists",
             "in": "query",
             "required": false,
             "type": "boolean"
-          },
-          {
-            "name": "life_cycle.delete_after_sleep",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "life_cycle.delete_after_create",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -4377,25 +4380,17 @@
             }
           },
           {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "name": "dry_run",
             "description": "If set, run validation and check that the service exists",
             "in": "query",
             "required": false,
             "type": "boolean"
-          },
-          {
-            "name": "life_cycle.delete_after_sleep",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
-          },
-          {
-            "name": "life_cycle.delete_after_create",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int64"
           }
         ],
         "tags": [
@@ -4622,6 +4617,226 @@
             "in": "query",
             "required": false,
             "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Services"
+        ]
+      }
+    },
+    "/v1/services/{id}/scale": {
+      "get": {
+        "summary": "Get Service Scaling",
+        "description": "Returns the current scaling configuration for a service",
+        "operationId": "GetServiceScaling",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetServiceScalingReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the service",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Services"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Service Scaling",
+        "description": "Deletes the manual scaling configuration for a service, reverting to \nthe scaling defined in the deployment definition.",
+        "operationId": "DeleteServiceScaling",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteServiceScalingReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the service",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Services"
+        ]
+      },
+      "put": {
+        "summary": "Update Service Scaling",
+        "description": "Stores or updates the scaling configuration for a service to use manual scaling",
+        "operationId": "UpdateServiceScaling",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateServiceScalingReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id of the service to scale",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scalings": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ManualServiceScaling"
+                  },
+                  "title": "The new scaling configuration"
+                }
+              }
+            }
           }
         ],
         "tags": [
@@ -7073,6 +7288,438 @@
         ],
         "tags": [
           "Users"
+        ]
+      }
+    },
+    "/v1/projects": {
+      "get": {
+        "summary": "List projects",
+        "operationId": "ListProjects",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListProjectsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Projects"
+        ]
+      },
+      "post": {
+        "summary": "Create project",
+        "operationId": "CreateProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateProjectReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "project",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateProject"
+            }
+          }
+        ],
+        "tags": [
+          "Projects"
+        ]
+      }
+    },
+    "/v1/projects/{id}": {
+      "get": {
+        "summary": "Get project",
+        "operationId": "GetProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetProjectReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Projects"
+        ]
+      },
+      "delete": {
+        "summary": "Delete project",
+        "operationId": "DeleteProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DeleteProjectReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Projects"
+        ]
+      },
+      "put": {
+        "summary": "Update project",
+        "operationId": "UpdateProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateProjectReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          },
+          {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Projects"
+        ]
+      },
+      "patch": {
+        "summary": "Update project",
+        "operationId": "UpdateProject2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/UpdateProjectReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "project",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Project"
+            }
+          },
+          {
+            "name": "update_mask",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Projects"
         ]
       }
     },
@@ -11305,7 +11952,7 @@
     },
     "/v1/organizations/{id}/name": {
       "put": {
-        "summary": "Update Organization",
+        "summary": "Update Organization Name",
         "operationId": "UpdateOrganizationName",
         "responses": {
           "200": {
@@ -13136,13 +13783,14 @@
       "type": "string",
       "enum": [
         "DEPLOYMENT_STRATEGY_TYPE_INVALID",
+        "DEPLOYMENT_STRATEGY_TYPE_DEFAULT",
         "DEPLOYMENT_STRATEGY_TYPE_CANARY",
         "DEPLOYMENT_STRATEGY_TYPE_ROLLING",
         "DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN",
         "DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE"
       ],
       "default": "DEPLOYMENT_STRATEGY_TYPE_INVALID",
-      "description": " - DEPLOYMENT_STRATEGY_TYPE_INVALID: Invalid / Zero value.\n - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.\n - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.\n - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.\n - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy."
+      "description": " - DEPLOYMENT_STRATEGY_TYPE_INVALID: DEPRECATED: Use DEPLOYMENT_STRATEGY_TYPE_DEFAULT instead.\n - DEPLOYMENT_STRATEGY_TYPE_DEFAULT: Default/unspecified strategy (resolves to platform default, currently ROLLING).\n - DEPLOYMENT_STRATEGY_TYPE_CANARY: Use canary strategy.\n - DEPLOYMENT_STRATEGY_TYPE_ROLLING: Use rolling strategy.\n - DEPLOYMENT_STRATEGY_TYPE_BLUE_GREEN: Use blue green strategy.\n - DEPLOYMENT_STRATEGY_TYPE_IMMEDIATE: Use immediate strategy."
     },
     "DockerBuilder": {
       "type": "object",
@@ -15323,10 +15971,11 @@
         "PERSISTENT_VOLUME_STATUS_ATTACHED",
         "PERSISTENT_VOLUME_STATUS_DETACHED",
         "PERSISTENT_VOLUME_STATUS_DELETING",
-        "PERSISTENT_VOLUME_STATUS_DELETED"
+        "PERSISTENT_VOLUME_STATUS_DELETED",
+        "PERSISTENT_VOLUME_STATUS_ARCHIVING"
       ],
       "default": "PERSISTENT_VOLUME_STATUS_INVALID",
-      "title": "- PERSISTENT_VOLUME_STATUS_INVALID: zero value, invalid\n - PERSISTENT_VOLUME_STATUS_ATTACHED: the volume is attached to an instance\n - PERSISTENT_VOLUME_STATUS_DETACHED: the volume is free to use\n - PERSISTENT_VOLUME_STATUS_DELETING: the volume will be deleted\n - PERSISTENT_VOLUME_STATUS_DELETED: the volume was deleted"
+      "title": "- PERSISTENT_VOLUME_STATUS_INVALID: zero value, invalid\n - PERSISTENT_VOLUME_STATUS_ATTACHED: the volume is attached to an instance\n - PERSISTENT_VOLUME_STATUS_DETACHED: the volume is free to use\n - PERSISTENT_VOLUME_STATUS_DELETING: the volume will be deleted\n - PERSISTENT_VOLUME_STATUS_DELETED: the volume was deleted\n - PERSISTENT_VOLUME_STATUS_ARCHIVING: the volume is being archived (snapshot being created and migrated to remote storage)"
     },
     "UpdatePersistentVolumeReply": {
       "type": "object",
@@ -15867,12 +16516,28 @@
     "DeleteServiceReply": {
       "type": "object"
     },
+    "DeleteServiceScalingReply": {
+      "type": "object",
+      "title": "Empty reply - success is indicated by no error"
+    },
     "GetServiceReply": {
       "type": "object",
       "properties": {
         "service": {
           "$ref": "#/definitions/Service",
           "title": "The Service retrieved"
+        }
+      }
+    },
+    "GetServiceScalingReply": {
+      "type": "object",
+      "properties": {
+        "scalings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ManualServiceScaling"
+          },
+          "title": "The current manual scaling configuration"
         }
       }
     },
@@ -15933,6 +16598,21 @@
         "has_next": {
           "type": "boolean",
           "title": "If there is more items after in the collection"
+        }
+      }
+    },
+    "ManualServiceScaling": {
+      "type": "object",
+      "properties": {
+        "scopes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "instances": {
+          "type": "integer",
+          "format": "int64"
         }
       }
     },
@@ -16044,6 +16724,9 @@
         },
         "latest_deployment_id": {
           "type": "string"
+        },
+        "life_cycle": {
+          "$ref": "#/definitions/ServiceLifeCycle"
         }
       }
     },
@@ -16077,6 +16760,10 @@
           "title": "The entity updated"
         }
       }
+    },
+    "UpdateServiceScalingReply": {
+      "type": "object",
+      "title": "Empty reply - success is indicated by no error"
     },
     "AzureContainerRegistryConfiguration": {
       "type": "object",
@@ -17572,6 +18259,90 @@
       "default": "ADMIN",
       "title": "- ADMIN: A user is an admin user\n - TEST: A user is a test user\n - RESTRICTED: Whether this account as restricted access\n - ACTIVE: Whether this account is active\n - BETA: Account in beta program\n - MAX_ORGANIZATIONS_25: User can create this much organizations, overriding the default amount\n - PARTNER_CSP: User can create sub-organizations\n - IGNORE_ORGANIZATION_NAME_RESERVATION_RULE_NEON_PREFIX: User can bypass organization name reservations rules"
     },
+    "CreateProject": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Project name"
+        },
+        "description": {
+          "type": "string",
+          "title": "Project description"
+        }
+      }
+    },
+    "CreateProjectReply": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/Project"
+        }
+      }
+    },
+    "DeleteProjectReply": {
+      "type": "object"
+    },
+    "GetProjectReply": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/Project"
+        }
+      }
+    },
+    "ListProjectsReply": {
+      "type": "object",
+      "properties": {
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "UpdateProjectReply": {
+      "type": "object",
+      "properties": {
+        "project": {
+          "$ref": "#/definitions/Project"
+        }
+      }
+    },
     "ConfirmPaymentAuthorizationReply": {
       "type": "object",
       "properties": {
@@ -18232,6 +19003,29 @@
         }
       }
     },
+    "LifecycleQuotas": {
+      "type": "object",
+      "properties": {
+        "delete_after_sleep_min": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delete after sleep limits"
+        },
+        "delete_after_sleep_max": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delete_after_create_min": {
+          "type": "integer",
+          "format": "int64",
+          "title": "delete after create limits"
+        },
+        "delete_after_create_max": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "PersistentVolumeQuotas": {
       "type": "object",
       "properties": {
@@ -18345,6 +19139,13 @@
           "format": "int64"
         },
         "archive_max_size_mb": {
+          "type": "string",
+          "format": "int64"
+        },
+        "lifecycle": {
+          "$ref": "#/definitions/LifecycleQuotas"
+        },
+        "max_projects": {
           "type": "string",
           "format": "int64"
         }
