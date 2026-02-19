@@ -686,6 +686,7 @@ type ApiListDomainsRequest struct {
 	statuses *[]string
 	appIds *[]string
 	name *string
+	projectId *string
 }
 
 // (Optional) The number of items to return
@@ -721,6 +722,12 @@ func (r ApiListDomainsRequest) AppIds(appIds []string) ApiListDomainsRequest {
 // (Optional) A filter for name
 func (r ApiListDomainsRequest) Name(name string) ApiListDomainsRequest {
 	r.name = &name
+	return r
+}
+
+// (Optional) A filter for the project ID
+func (r ApiListDomainsRequest) ProjectId(projectId string) ApiListDomainsRequest {
+	r.projectId = &projectId
 	return r
 }
 
@@ -803,6 +810,9 @@ func (a *DomainsApiService) ListDomainsExecute(r ApiListDomainsRequest) (*ListDo
 	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.projectId != nil {
+		localVarQueryParams.Add("project_id", parameterToString(*r.projectId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

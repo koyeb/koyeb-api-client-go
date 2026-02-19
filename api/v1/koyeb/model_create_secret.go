@@ -26,6 +26,7 @@ type CreateSecret struct {
 	GitlabRegistry *GitLabRegistryConfiguration `json:"gitlab_registry,omitempty"`
 	GcpContainerRegistry *GCPContainerRegistryConfiguration `json:"gcp_container_registry,omitempty"`
 	AzureContainerRegistry *AzureContainerRegistryConfiguration `json:"azure_container_registry,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
 }
 
 // NewCreateSecret instantiates a new CreateSecret object
@@ -369,6 +370,38 @@ func (o *CreateSecret) SetAzureContainerRegistry(v AzureContainerRegistryConfigu
 	o.AzureContainerRegistry = &v
 }
 
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *CreateSecret) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSecret) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *CreateSecret) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *CreateSecret) SetProjectId(v string) {
+	o.ProjectId = &v
+}
+
 func (o CreateSecret) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -400,6 +433,9 @@ func (o CreateSecret) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.AzureContainerRegistry) {
 		toSerialize["azure_container_registry"] = o.AzureContainerRegistry
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	return json.Marshal(toSerialize)
 }

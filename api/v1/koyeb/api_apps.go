@@ -978,6 +978,7 @@ type ApiListAppsRequest struct {
 	limit *string
 	offset *string
 	name *string
+	projectId *string
 }
 
 // (Optional) The number of items to return
@@ -995,6 +996,12 @@ func (r ApiListAppsRequest) Offset(offset string) ApiListAppsRequest {
 // (Optional) A filter for name
 func (r ApiListAppsRequest) Name(name string) ApiListAppsRequest {
 	r.name = &name
+	return r
+}
+
+// (Optional) A filter for the project ID
+func (r ApiListAppsRequest) ProjectId(projectId string) ApiListAppsRequest {
+	r.projectId = &projectId
 	return r
 }
 
@@ -1044,6 +1051,9 @@ func (a *AppsApiService) ListAppsExecute(r ApiListAppsRequest) (*ListAppsReply, 
 	}
 	if r.name != nil {
 		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
+	}
+	if r.projectId != nil {
+		localVarQueryParams.Add("project_id", parameterToString(*r.projectId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

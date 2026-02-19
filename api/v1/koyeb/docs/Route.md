@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Port** | Pointer to **int64** |  | [optional] 
 **Path** | Pointer to **string** |  | [optional] 
+**SecurityPolicies** | Pointer to [**SecurityPolicies**](SecurityPolicies.md) |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetPath sets Path field to given value.
 `func (o *Route) HasPath() bool`
 
 HasPath returns a boolean if a field has been set.
+
+### GetSecurityPolicies
+
+`func (o *Route) GetSecurityPolicies() SecurityPolicies`
+
+GetSecurityPolicies returns the SecurityPolicies field if non-nil, zero value otherwise.
+
+### GetSecurityPoliciesOk
+
+`func (o *Route) GetSecurityPoliciesOk() (*SecurityPolicies, bool)`
+
+GetSecurityPoliciesOk returns a tuple with the SecurityPolicies field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSecurityPolicies
+
+`func (o *Route) SetSecurityPolicies(v SecurityPolicies)`
+
+SetSecurityPolicies sets SecurityPolicies field to given value.
+
+### HasSecurityPolicies
+
+`func (o *Route) HasSecurityPolicies() bool`
+
+HasSecurityPolicies returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

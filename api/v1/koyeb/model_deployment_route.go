@@ -18,6 +18,7 @@ import (
 type DeploymentRoute struct {
 	Port *int64 `json:"port,omitempty"`
 	Path *string `json:"path,omitempty"`
+	SecurityPolicies *SecurityPolicies `json:"security_policies,omitempty"`
 }
 
 // NewDeploymentRoute instantiates a new DeploymentRoute object
@@ -101,6 +102,38 @@ func (o *DeploymentRoute) SetPath(v string) {
 	o.Path = &v
 }
 
+// GetSecurityPolicies returns the SecurityPolicies field value if set, zero value otherwise.
+func (o *DeploymentRoute) GetSecurityPolicies() SecurityPolicies {
+	if o == nil || isNil(o.SecurityPolicies) {
+		var ret SecurityPolicies
+		return ret
+	}
+	return *o.SecurityPolicies
+}
+
+// GetSecurityPoliciesOk returns a tuple with the SecurityPolicies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentRoute) GetSecurityPoliciesOk() (*SecurityPolicies, bool) {
+	if o == nil || isNil(o.SecurityPolicies) {
+    return nil, false
+	}
+	return o.SecurityPolicies, true
+}
+
+// HasSecurityPolicies returns a boolean if a field has been set.
+func (o *DeploymentRoute) HasSecurityPolicies() bool {
+	if o != nil && !isNil(o.SecurityPolicies) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecurityPolicies gets a reference to the given SecurityPolicies and assigns it to the SecurityPolicies field.
+func (o *DeploymentRoute) SetSecurityPolicies(v SecurityPolicies) {
+	o.SecurityPolicies = &v
+}
+
 func (o DeploymentRoute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Port) {
@@ -108,6 +141,9 @@ func (o DeploymentRoute) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Path) {
 		toSerialize["path"] = o.Path
+	}
+	if !isNil(o.SecurityPolicies) {
+		toSerialize["security_policies"] = o.SecurityPolicies
 	}
 	return json.Marshal(toSerialize)
 }
