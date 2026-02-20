@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **GitlabRegistry** | Pointer to [**GitLabRegistryConfiguration**](GitLabRegistryConfiguration.md) |  | [optional] 
 **GcpContainerRegistry** | Pointer to [**GCPContainerRegistryConfiguration**](GCPContainerRegistryConfiguration.md) |  | [optional] 
 **AzureContainerRegistry** | Pointer to [**AzureContainerRegistryConfiguration**](AzureContainerRegistryConfiguration.md) |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetAzureContainerRegistry sets AzureContainerRegistry field to given value.
 `func (o *CreateSecret) HasAzureContainerRegistry() bool`
 
 HasAzureContainerRegistry returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *CreateSecret) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *CreateSecret) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *CreateSecret) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *CreateSecret) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

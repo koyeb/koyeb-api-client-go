@@ -18,6 +18,7 @@ import (
 type CreateApp struct {
 	Name *string `json:"name,omitempty"`
 	LifeCycle *AppLifeCycle `json:"life_cycle,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
 }
 
 // NewCreateApp instantiates a new CreateApp object
@@ -101,6 +102,38 @@ func (o *CreateApp) SetLifeCycle(v AppLifeCycle) {
 	o.LifeCycle = &v
 }
 
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *CreateApp) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateApp) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *CreateApp) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *CreateApp) SetProjectId(v string) {
+	o.ProjectId = &v
+}
+
 func (o CreateApp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Name) {
@@ -108,6 +141,9 @@ func (o CreateApp) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.LifeCycle) {
 		toSerialize["life_cycle"] = o.LifeCycle
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	return json.Marshal(toSerialize)
 }

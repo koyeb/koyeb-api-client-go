@@ -70,6 +70,7 @@ docs/AutocompleteReply.md
 docs/AutocompleteRequest.md
 docs/AvailabilityLevel.md
 docs/AzureContainerRegistryConfiguration.md
+docs/BasicAuthPolicy.md
 docs/BillingApi.md
 docs/Budget.md
 docs/BuildpackBuilder.md
@@ -395,6 +396,7 @@ docs/Secret.md
 docs/SecretType.md
 docs/SecretsApi.md
 docs/SecretsSummary.md
+docs/SecurityPolicies.md
 docs/Service.md
 docs/ServiceEvent.md
 docs/ServiceLifeCycle.md
@@ -487,6 +489,7 @@ model_autocomplete_reply.go
 model_autocomplete_request.go
 model_availability_level.go
 model_azure_container_registry_configuration.go
+model_basic_auth_policy.go
 model_budget.go
 model_buildpack_builder.go
 model_canny_auth_reply.go
@@ -781,6 +784,7 @@ model_scaling.go
 model_secret.go
 model_secret_type.go
 model_secrets_summary.go
+model_security_policies.go
 model_service.go
 model_service_event.go
 model_service_life_cycle.go

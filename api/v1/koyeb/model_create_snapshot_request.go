@@ -18,6 +18,7 @@ import (
 type CreateSnapshotRequest struct {
 	ParentVolumeId *string `json:"parent_volume_id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
 }
 
 // NewCreateSnapshotRequest instantiates a new CreateSnapshotRequest object
@@ -101,6 +102,38 @@ func (o *CreateSnapshotRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *CreateSnapshotRequest) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateSnapshotRequest) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *CreateSnapshotRequest) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *CreateSnapshotRequest) SetProjectId(v string) {
+	o.ProjectId = &v
+}
+
 func (o CreateSnapshotRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.ParentVolumeId) {
@@ -108,6 +141,9 @@ func (o CreateSnapshotRequest) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	return json.Marshal(toSerialize)
 }
