@@ -681,6 +681,7 @@ type ApiListProjectsRequest struct {
 	ApiService ProjectsApi
 	limit *string
 	offset *string
+	name *string
 }
 
 // (Optional) The number of items to return
@@ -692,6 +693,12 @@ func (r ApiListProjectsRequest) Limit(limit string) ApiListProjectsRequest {
 // (Optional) The offset in the list of item to return
 func (r ApiListProjectsRequest) Offset(offset string) ApiListProjectsRequest {
 	r.offset = &offset
+	return r
+}
+
+// (Optional) Filter by project name
+func (r ApiListProjectsRequest) Name(name string) ApiListProjectsRequest {
+	r.name = &name
 	return r
 }
 
@@ -738,6 +745,9 @@ func (a *ProjectsApiService) ListProjectsExecute(r ApiListProjectsRequest) (*Lis
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.name != nil {
+		localVarQueryParams.Add("name", parameterToString(*r.name, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

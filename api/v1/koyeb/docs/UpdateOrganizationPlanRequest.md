@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Plan** | Pointer to [**Plan**](Plan.md) |  | [optional] [default to PLAN_HOBBY]
+**CouponCode** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetPlan sets Plan field to given value.
 `func (o *UpdateOrganizationPlanRequest) HasPlan() bool`
 
 HasPlan returns a boolean if a field has been set.
+
+### GetCouponCode
+
+`func (o *UpdateOrganizationPlanRequest) GetCouponCode() string`
+
+GetCouponCode returns the CouponCode field if non-nil, zero value otherwise.
+
+### GetCouponCodeOk
+
+`func (o *UpdateOrganizationPlanRequest) GetCouponCodeOk() (*string, bool)`
+
+GetCouponCodeOk returns a tuple with the CouponCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCouponCode
+
+`func (o *UpdateOrganizationPlanRequest) SetCouponCode(v string)`
+
+SetCouponCode sets CouponCode field to given value.
+
+### HasCouponCode
+
+`func (o *UpdateOrganizationPlanRequest) HasCouponCode() bool`
+
+HasCouponCode returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update Organization
 [**UpdateOrganization2**](OrganizationApi.md#UpdateOrganization2) | **Patch** /v1/organizations/{id} | Update Organization
+[**UpdateOrganizationDefaultProject**](OrganizationApi.md#UpdateOrganizationDefaultProject) | **Put** /v1/organizations/{id}/default_project | Update Organization&#39;s default project
 [**UpdateOrganizationName**](OrganizationApi.md#UpdateOrganizationName) | **Put** /v1/organizations/{id}/name | Update Organization Name
 [**UpdateOrganizationPlan**](OrganizationApi.md#UpdateOrganizationPlan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 [**UpsertSignupQualification**](OrganizationApi.md#UpsertSignupQualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
@@ -1106,6 +1107,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**UpdateOrganizationReply**](UpdateOrganizationReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateOrganizationDefaultProject
+
+> UpdateOrganizationDefaultProjectReply UpdateOrganizationDefaultProject(ctx, id).Body(body).Execute()
+
+Update Organization's default project
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    body := *openapiclient.NewUpdateOrganizationDefaultProjectRequest() // UpdateOrganizationDefaultProjectRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrganizationApi.UpdateOrganizationDefaultProject(context.Background(), id).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrganizationApi.UpdateOrganizationDefaultProject``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateOrganizationDefaultProject`: UpdateOrganizationDefaultProjectReply
+    fmt.Fprintf(os.Stdout, "Response from `OrganizationApi.UpdateOrganizationDefaultProject`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateOrganizationDefaultProjectRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateOrganizationDefaultProjectRequest**](UpdateOrganizationDefaultProjectRequest.md) |  | 
+
+### Return type
+
+[**UpdateOrganizationDefaultProjectReply**](UpdateOrganizationDefaultProjectReply.md)
 
 ### Authorization
 

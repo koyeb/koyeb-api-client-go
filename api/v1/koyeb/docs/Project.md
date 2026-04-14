@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**ServiceCount** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *Project) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetServiceCount
+
+`func (o *Project) GetServiceCount() string`
+
+GetServiceCount returns the ServiceCount field if non-nil, zero value otherwise.
+
+### GetServiceCountOk
+
+`func (o *Project) GetServiceCountOk() (*string, bool)`
+
+GetServiceCountOk returns a tuple with the ServiceCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceCount
+
+`func (o *Project) SetServiceCount(v string)`
+
+SetServiceCount sets ServiceCount field to given value.
+
+### HasServiceCount
+
+`func (o *Project) HasServiceCount() bool`
+
+HasServiceCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -30,6 +30,7 @@ type RegionalDeploymentDefinition struct {
 	Volumes []RegionalDeploymentVolume `json:"volumes,omitempty"`
 	ConfigFiles []ConfigFile `json:"config_files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
+	Mesh *RegionalDeploymentMesh `json:"mesh,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 	Archive *ArchiveSource `json:"archive,omitempty"`
@@ -43,6 +44,8 @@ func NewRegionalDeploymentDefinition() *RegionalDeploymentDefinition {
 	this := RegionalDeploymentDefinition{}
 	var type_ RegionalDeploymentDefinitionType = REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID
 	this.Type = &type_
+	var mesh RegionalDeploymentMesh = REGIONALDEPLOYMENTMESH_AUTO
+	this.Mesh = &mesh
 	return &this
 }
 
@@ -53,6 +56,8 @@ func NewRegionalDeploymentDefinitionWithDefaults() *RegionalDeploymentDefinition
 	this := RegionalDeploymentDefinition{}
 	var type_ RegionalDeploymentDefinitionType = REGIONALDEPLOYMENTDEFINITIONTYPE_INVALID
 	this.Type = &type_
+	var mesh RegionalDeploymentMesh = REGIONALDEPLOYMENTMESH_AUTO
+	this.Mesh = &mesh
 	return &this
 }
 
@@ -504,6 +509,38 @@ func (o *RegionalDeploymentDefinition) SetSkipCache(v bool) {
 	o.SkipCache = &v
 }
 
+// GetMesh returns the Mesh field value if set, zero value otherwise.
+func (o *RegionalDeploymentDefinition) GetMesh() RegionalDeploymentMesh {
+	if o == nil || isNil(o.Mesh) {
+		var ret RegionalDeploymentMesh
+		return ret
+	}
+	return *o.Mesh
+}
+
+// GetMeshOk returns a tuple with the Mesh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentDefinition) GetMeshOk() (*RegionalDeploymentMesh, bool) {
+	if o == nil || isNil(o.Mesh) {
+    return nil, false
+	}
+	return o.Mesh, true
+}
+
+// HasMesh returns a boolean if a field has been set.
+func (o *RegionalDeploymentDefinition) HasMesh() bool {
+	if o != nil && !isNil(o.Mesh) {
+		return true
+	}
+
+	return false
+}
+
+// SetMesh gets a reference to the given RegionalDeploymentMesh and assigns it to the Mesh field.
+func (o *RegionalDeploymentDefinition) SetMesh(v RegionalDeploymentMesh) {
+	o.Mesh = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *RegionalDeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || isNil(o.Docker) {
@@ -643,6 +680,9 @@ func (o RegionalDeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache
+	}
+	if !isNil(o.Mesh) {
+		toSerialize["mesh"] = o.Mesh
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker

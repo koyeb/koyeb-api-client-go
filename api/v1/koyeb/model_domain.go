@@ -32,6 +32,8 @@ type Domain struct {
 	Version *string `json:"version,omitempty"`
 	Cloudflare map[string]interface{} `json:"cloudflare,omitempty"`
 	Koyeb *DomainLoadBalancerKoyeb `json:"koyeb,omitempty"`
+	// The project ID this domain belongs to. Empty if the domain is organization-level.
+	ProjectId *string `json:"project_id,omitempty"`
 }
 
 // NewDomain instantiates a new Domain object
@@ -539,6 +541,38 @@ func (o *Domain) SetKoyeb(v DomainLoadBalancerKoyeb) {
 	o.Koyeb = &v
 }
 
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *Domain) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Domain) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *Domain) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *Domain) SetProjectId(v string) {
+	o.ProjectId = &v
+}
+
 func (o Domain) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -585,6 +619,9 @@ func (o Domain) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Koyeb) {
 		toSerialize["koyeb"] = o.Koyeb
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	return json.Marshal(toSerialize)
 }

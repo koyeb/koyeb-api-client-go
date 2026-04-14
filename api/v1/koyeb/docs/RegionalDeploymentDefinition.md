@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Volumes** | Pointer to [**[]RegionalDeploymentVolume**](RegionalDeploymentVolume.md) |  | [optional] 
 **ConfigFiles** | Pointer to [**[]ConfigFile**](ConfigFile.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
+**Mesh** | Pointer to [**RegionalDeploymentMesh**](RegionalDeploymentMesh.md) |  | [optional] [default to REGIONALDEPLOYMENTMESH_AUTO]
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Archive** | Pointer to [**ArchiveSource**](ArchiveSource.md) |  | [optional] 
@@ -390,6 +391,31 @@ SetSkipCache sets SkipCache field to given value.
 `func (o *RegionalDeploymentDefinition) HasSkipCache() bool`
 
 HasSkipCache returns a boolean if a field has been set.
+
+### GetMesh
+
+`func (o *RegionalDeploymentDefinition) GetMesh() RegionalDeploymentMesh`
+
+GetMesh returns the Mesh field if non-nil, zero value otherwise.
+
+### GetMeshOk
+
+`func (o *RegionalDeploymentDefinition) GetMeshOk() (*RegionalDeploymentMesh, bool)`
+
+GetMeshOk returns a tuple with the Mesh field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMesh
+
+`func (o *RegionalDeploymentDefinition) SetMesh(v RegionalDeploymentMesh)`
+
+SetMesh sets Mesh field to given value.
+
+### HasMesh
+
+`func (o *RegionalDeploymentDefinition) HasMesh() bool`
+
+HasMesh returns a boolean if a field has been set.
 
 ### GetDocker
 

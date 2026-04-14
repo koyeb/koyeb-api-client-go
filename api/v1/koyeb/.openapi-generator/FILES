@@ -83,6 +83,7 @@ docs/CatalogInstanceUsageApi.md
 docs/CatalogInstancesApi.md
 docs/CatalogRegionsApi.md
 docs/CatalogUsage.md
+docs/CheckCouponReply.md
 docs/ClearIdenfyVerificationResultRequest.md
 docs/ComposeApi.md
 docs/ComposeReply.md
@@ -145,6 +146,7 @@ docs/DeploymentEvent.md
 docs/DeploymentHealthCheck.md
 docs/DeploymentInstanceType.md
 docs/DeploymentListItem.md
+docs/DeploymentMesh.md
 docs/DeploymentMetadata.md
 docs/DeploymentNeonPostgresDatabaseInfo.md
 docs/DeploymentNeonPostgresDatabaseInfoRole.md
@@ -376,6 +378,7 @@ docs/RegionalDeploymentDefinition.md
 docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentEvent.md
 docs/RegionalDeploymentListItem.md
+docs/RegionalDeploymentMesh.md
 docs/RegionalDeploymentRole.md
 docs/RegionalDeploymentStatus.md
 docs/RegionalDeploymentVolume.md
@@ -389,6 +392,7 @@ docs/ReviewOrganizationCapacityReply.md
 docs/ReviewOrganizationCapacityRequest.md
 docs/Route.md
 docs/Sample.md
+docs/SandboxMetadata.md
 docs/ScaleToZeroQuotas.md
 docs/Scaling.md
 docs/SearchApi.md
@@ -435,6 +439,8 @@ docs/UpdateBudgetRequest.md
 docs/UpdateCredentialReply.md
 docs/UpdateDomain.md
 docs/UpdateDomainReply.md
+docs/UpdateOrganizationDefaultProjectReply.md
+docs/UpdateOrganizationDefaultProjectRequest.md
 docs/UpdateOrganizationNameReply.md
 docs/UpdateOrganizationNameRequest.md
 docs/UpdateOrganizationPlanReply.md
@@ -497,6 +503,7 @@ model_catalog_gpu_details.go
 model_catalog_instance.go
 model_catalog_instance_list_item.go
 model_catalog_usage.go
+model_check_coupon_reply.go
 model_clear_idenfy_verification_result_request.go
 model_compose_reply.go
 model_config_file.go
@@ -556,6 +563,7 @@ model_deployment_event.go
 model_deployment_health_check.go
 model_deployment_instance_type.go
 model_deployment_list_item.go
+model_deployment_mesh.go
 model_deployment_metadata.go
 model_deployment_neon_postgres_database_info.go
 model_deployment_neon_postgres_database_info_role.go
@@ -768,6 +776,7 @@ model_regional_deployment_definition.go
 model_regional_deployment_definition_type.go
 model_regional_deployment_event.go
 model_regional_deployment_list_item.go
+model_regional_deployment_mesh.go
 model_regional_deployment_role.go
 model_regional_deployment_status.go
 model_regional_deployment_volume.go
@@ -779,6 +788,7 @@ model_review_organization_capacity_reply.go
 model_review_organization_capacity_request.go
 model_route.go
 model_sample.go
+model_sandbox_metadata.go
 model_scale_to_zero_quotas.go
 model_scaling.go
 model_secret.go
@@ -817,6 +827,8 @@ model_update_budget_request.go
 model_update_credential_reply.go
 model_update_domain.go
 model_update_domain_reply.go
+model_update_organization_default_project_reply.go
+model_update_organization_default_project_request.go
 model_update_organization_name_reply.go
 model_update_organization_name_request.go
 model_update_organization_plan_reply.go

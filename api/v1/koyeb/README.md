@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *CatalogRegionsApi* | [**GetRegion**](docs/CatalogRegionsApi.md#getregion) | **Get** /v1/catalog/regions/{id} | Get Region
 *CatalogRegionsApi* | [**ListRegions**](docs/CatalogRegionsApi.md#listregions) | **Get** /v1/catalog/regions | List Region
 *ComposeApi* | [**Compose**](docs/ComposeApi.md#compose) | **Post** /v1/compose | Create resources from compose.
+*CouponsApi* | [**CheckCoupon**](docs/CouponsApi.md#checkcoupon) | **Get** /v1/coupons/{code} | Check Coupon
 *CouponsApi* | [**RedeemCoupon**](docs/CouponsApi.md#redeemcoupon) | **Post** /v1/coupons | Redeem Coupon
 *CredentialsApi* | [**CreateCredential**](docs/CredentialsApi.md#createcredential) | **Post** /v1/credentials | Create credential
 *CredentialsApi* | [**DeleteCredential**](docs/CredentialsApi.md#deletecredential) | **Delete** /v1/credentials/{id} | Delete credential
@@ -146,6 +147,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update Organization
 *OrganizationApi* | [**UpdateOrganization2**](docs/OrganizationApi.md#updateorganization2) | **Patch** /v1/organizations/{id} | Update Organization
+*OrganizationApi* | [**UpdateOrganizationDefaultProject**](docs/OrganizationApi.md#updateorganizationdefaultproject) | **Put** /v1/organizations/{id}/default_project | Update Organization&#39;s default project
 *OrganizationApi* | [**UpdateOrganizationName**](docs/OrganizationApi.md#updateorganizationname) | **Put** /v1/organizations/{id}/name | Update Organization Name
 *OrganizationApi* | [**UpdateOrganizationPlan**](docs/OrganizationApi.md#updateorganizationplan) | **Post** /v1/organizations/{id}/plan | Update Organization plan
 *OrganizationApi* | [**UpsertSignupQualification**](docs/OrganizationApi.md#upsertsignupqualification) | **Post** /v1/organizations/{id}/signup_qualification | Upsert Organization&#39;s signup qualification
@@ -279,6 +281,7 @@ Class | Method | HTTP request | Description
  - [CatalogInstance](docs/CatalogInstance.md)
  - [CatalogInstanceListItem](docs/CatalogInstanceListItem.md)
  - [CatalogUsage](docs/CatalogUsage.md)
+ - [CheckCouponReply](docs/CheckCouponReply.md)
  - [ClearIdenfyVerificationResultRequest](docs/ClearIdenfyVerificationResultRequest.md)
  - [ComposeReply](docs/ComposeReply.md)
  - [ConfigFile](docs/ConfigFile.md)
@@ -338,6 +341,7 @@ Class | Method | HTTP request | Description
  - [DeploymentHealthCheck](docs/DeploymentHealthCheck.md)
  - [DeploymentInstanceType](docs/DeploymentInstanceType.md)
  - [DeploymentListItem](docs/DeploymentListItem.md)
+ - [DeploymentMesh](docs/DeploymentMesh.md)
  - [DeploymentMetadata](docs/DeploymentMetadata.md)
  - [DeploymentNeonPostgresDatabaseInfo](docs/DeploymentNeonPostgresDatabaseInfo.md)
  - [DeploymentNeonPostgresDatabaseInfoRole](docs/DeploymentNeonPostgresDatabaseInfoRole.md)
@@ -550,6 +554,7 @@ Class | Method | HTTP request | Description
  - [RegionalDeploymentDefinitionType](docs/RegionalDeploymentDefinitionType.md)
  - [RegionalDeploymentEvent](docs/RegionalDeploymentEvent.md)
  - [RegionalDeploymentListItem](docs/RegionalDeploymentListItem.md)
+ - [RegionalDeploymentMesh](docs/RegionalDeploymentMesh.md)
  - [RegionalDeploymentRole](docs/RegionalDeploymentRole.md)
  - [RegionalDeploymentStatus](docs/RegionalDeploymentStatus.md)
  - [RegionalDeploymentVolume](docs/RegionalDeploymentVolume.md)
@@ -561,6 +566,7 @@ Class | Method | HTTP request | Description
  - [ReviewOrganizationCapacityRequest](docs/ReviewOrganizationCapacityRequest.md)
  - [Route](docs/Route.md)
  - [Sample](docs/Sample.md)
+ - [SandboxMetadata](docs/SandboxMetadata.md)
  - [ScaleToZeroQuotas](docs/ScaleToZeroQuotas.md)
  - [Scaling](docs/Scaling.md)
  - [Secret](docs/Secret.md)
@@ -599,6 +605,8 @@ Class | Method | HTTP request | Description
  - [UpdateCredentialReply](docs/UpdateCredentialReply.md)
  - [UpdateDomain](docs/UpdateDomain.md)
  - [UpdateDomainReply](docs/UpdateDomainReply.md)
+ - [UpdateOrganizationDefaultProjectReply](docs/UpdateOrganizationDefaultProjectReply.md)
+ - [UpdateOrganizationDefaultProjectRequest](docs/UpdateOrganizationDefaultProjectRequest.md)
  - [UpdateOrganizationNameReply](docs/UpdateOrganizationNameReply.md)
  - [UpdateOrganizationNameRequest](docs/UpdateOrganizationNameRequest.md)
  - [UpdateOrganizationPlanReply](docs/UpdateOrganizationPlanReply.md)

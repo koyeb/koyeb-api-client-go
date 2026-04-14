@@ -23,6 +23,8 @@ type Secret struct {
 	Type *SecretType `json:"type,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The project ID this secret belongs to. Empty if the secret is organization-level.
+	ProjectId *string `json:"project_id,omitempty"`
 	Value *string `json:"value,omitempty"`
 	DockerHubRegistry *DockerHubRegistryConfiguration `json:"docker_hub_registry,omitempty"`
 	PrivateRegistry *PrivateRegistryConfiguration `json:"private_registry,omitempty"`
@@ -245,6 +247,38 @@ func (o *Secret) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Secret) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *Secret) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Secret) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *Secret) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *Secret) SetProjectId(v string) {
+	o.ProjectId = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
@@ -554,6 +588,9 @@ func (o Secret) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	if !isNil(o.Value) {
 		toSerialize["value"] = o.Value
