@@ -21,6 +21,7 @@ type DeploymentMetadata struct {
 	Git *GitDeploymentMetadata `json:"git,omitempty"`
 	Archive *ArchiveDeploymentMetadata `json:"archive,omitempty"`
 	ProxyPorts []DeploymentProxyPortMetadata `json:"proxy_ports,omitempty"`
+	Sandbox *SandboxMetadata `json:"sandbox,omitempty"`
 }
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object
@@ -200,6 +201,38 @@ func (o *DeploymentMetadata) SetProxyPorts(v []DeploymentProxyPortMetadata) {
 	o.ProxyPorts = v
 }
 
+// GetSandbox returns the Sandbox field value if set, zero value otherwise.
+func (o *DeploymentMetadata) GetSandbox() SandboxMetadata {
+	if o == nil || isNil(o.Sandbox) {
+		var ret SandboxMetadata
+		return ret
+	}
+	return *o.Sandbox
+}
+
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentMetadata) GetSandboxOk() (*SandboxMetadata, bool) {
+	if o == nil || isNil(o.Sandbox) {
+    return nil, false
+	}
+	return o.Sandbox, true
+}
+
+// HasSandbox returns a boolean if a field has been set.
+func (o *DeploymentMetadata) HasSandbox() bool {
+	if o != nil && !isNil(o.Sandbox) {
+		return true
+	}
+
+	return false
+}
+
+// SetSandbox gets a reference to the given SandboxMetadata and assigns it to the Sandbox field.
+func (o *DeploymentMetadata) SetSandbox(v SandboxMetadata) {
+	o.Sandbox = &v
+}
+
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Trigger) {
@@ -216,6 +249,9 @@ func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ProxyPorts) {
 		toSerialize["proxy_ports"] = o.ProxyPorts
+	}
+	if !isNil(o.Sandbox) {
+		toSerialize["sandbox"] = o.Sandbox
 	}
 	return json.Marshal(toSerialize)
 }

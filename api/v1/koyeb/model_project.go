@@ -23,6 +23,7 @@ type Project struct {
 	OrganizationId *string `json:"organization_id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	ServiceCount *string `json:"service_count,omitempty"`
 }
 
 // NewProject instantiates a new Project object
@@ -234,6 +235,38 @@ func (o *Project) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetServiceCount returns the ServiceCount field value if set, zero value otherwise.
+func (o *Project) GetServiceCount() string {
+	if o == nil || isNil(o.ServiceCount) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceCount
+}
+
+// GetServiceCountOk returns a tuple with the ServiceCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Project) GetServiceCountOk() (*string, bool) {
+	if o == nil || isNil(o.ServiceCount) {
+    return nil, false
+	}
+	return o.ServiceCount, true
+}
+
+// HasServiceCount returns a boolean if a field has been set.
+func (o *Project) HasServiceCount() bool {
+	if o != nil && !isNil(o.ServiceCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceCount gets a reference to the given string and assigns it to the ServiceCount field.
+func (o *Project) SetServiceCount(v string) {
+	o.ServiceCount = &v
+}
+
 func (o Project) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -253,6 +286,9 @@ func (o Project) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !isNil(o.ServiceCount) {
+		toSerialize["service_count"] = o.ServiceCount
 	}
 	return json.Marshal(toSerialize)
 }

@@ -30,6 +30,7 @@ type DeploymentDefinition struct {
 	Volumes []DeploymentVolume `json:"volumes,omitempty"`
 	ConfigFiles []ConfigFile `json:"config_files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
+	Mesh *DeploymentMesh `json:"mesh,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 	Database *DatabaseSource `json:"database,omitempty"`
@@ -44,6 +45,8 @@ func NewDeploymentDefinition() *DeploymentDefinition {
 	this := DeploymentDefinition{}
 	var type_ DeploymentDefinitionType = DEPLOYMENTDEFINITIONTYPE_INVALID
 	this.Type = &type_
+	var mesh DeploymentMesh = DEPLOYMENTMESH_AUTO
+	this.Mesh = &mesh
 	return &this
 }
 
@@ -54,6 +57,8 @@ func NewDeploymentDefinitionWithDefaults() *DeploymentDefinition {
 	this := DeploymentDefinition{}
 	var type_ DeploymentDefinitionType = DEPLOYMENTDEFINITIONTYPE_INVALID
 	this.Type = &type_
+	var mesh DeploymentMesh = DEPLOYMENTMESH_AUTO
+	this.Mesh = &mesh
 	return &this
 }
 
@@ -505,6 +510,38 @@ func (o *DeploymentDefinition) SetSkipCache(v bool) {
 	o.SkipCache = &v
 }
 
+// GetMesh returns the Mesh field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetMesh() DeploymentMesh {
+	if o == nil || isNil(o.Mesh) {
+		var ret DeploymentMesh
+		return ret
+	}
+	return *o.Mesh
+}
+
+// GetMeshOk returns a tuple with the Mesh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetMeshOk() (*DeploymentMesh, bool) {
+	if o == nil || isNil(o.Mesh) {
+    return nil, false
+	}
+	return o.Mesh, true
+}
+
+// HasMesh returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasMesh() bool {
+	if o != nil && !isNil(o.Mesh) {
+		return true
+	}
+
+	return false
+}
+
+// SetMesh gets a reference to the given DeploymentMesh and assigns it to the Mesh field.
+func (o *DeploymentDefinition) SetMesh(v DeploymentMesh) {
+	o.Mesh = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || isNil(o.Docker) {
@@ -676,6 +713,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.SkipCache) {
 		toSerialize["skip_cache"] = o.SkipCache
+	}
+	if !isNil(o.Mesh) {
+		toSerialize["mesh"] = o.Mesh
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker

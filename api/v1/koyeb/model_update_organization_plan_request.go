@@ -17,6 +17,7 @@ import (
 // UpdateOrganizationPlanRequest struct for UpdateOrganizationPlanRequest
 type UpdateOrganizationPlanRequest struct {
 	Plan *Plan `json:"plan,omitempty"`
+	CouponCode *string `json:"coupon_code,omitempty"`
 }
 
 // NewUpdateOrganizationPlanRequest instantiates a new UpdateOrganizationPlanRequest object
@@ -72,10 +73,45 @@ func (o *UpdateOrganizationPlanRequest) SetPlan(v Plan) {
 	o.Plan = &v
 }
 
+// GetCouponCode returns the CouponCode field value if set, zero value otherwise.
+func (o *UpdateOrganizationPlanRequest) GetCouponCode() string {
+	if o == nil || isNil(o.CouponCode) {
+		var ret string
+		return ret
+	}
+	return *o.CouponCode
+}
+
+// GetCouponCodeOk returns a tuple with the CouponCode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateOrganizationPlanRequest) GetCouponCodeOk() (*string, bool) {
+	if o == nil || isNil(o.CouponCode) {
+    return nil, false
+	}
+	return o.CouponCode, true
+}
+
+// HasCouponCode returns a boolean if a field has been set.
+func (o *UpdateOrganizationPlanRequest) HasCouponCode() bool {
+	if o != nil && !isNil(o.CouponCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponCode gets a reference to the given string and assigns it to the CouponCode field.
+func (o *UpdateOrganizationPlanRequest) SetCouponCode(v string) {
+	o.CouponCode = &v
+}
+
 func (o UpdateOrganizationPlanRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
+	}
+	if !isNil(o.CouponCode) {
+		toSerialize["coupon_code"] = o.CouponCode
 	}
 	return json.Marshal(toSerialize)
 }

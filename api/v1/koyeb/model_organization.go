@@ -48,6 +48,7 @@ type Organization struct {
 	TrialStartsAt *time.Time `json:"trial_starts_at,omitempty"`
 	TrialEndsAt *time.Time `json:"trial_ends_at,omitempty"`
 	EmailDomainAllowlist []string `json:"email_domain_allowlist,omitempty"`
+	DefaultProjectId *string `json:"default_project_id,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -1075,6 +1076,38 @@ func (o *Organization) SetEmailDomainAllowlist(v []string) {
 	o.EmailDomainAllowlist = v
 }
 
+// GetDefaultProjectId returns the DefaultProjectId field value if set, zero value otherwise.
+func (o *Organization) GetDefaultProjectId() string {
+	if o == nil || isNil(o.DefaultProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.DefaultProjectId
+}
+
+// GetDefaultProjectIdOk returns a tuple with the DefaultProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Organization) GetDefaultProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.DefaultProjectId) {
+    return nil, false
+	}
+	return o.DefaultProjectId, true
+}
+
+// HasDefaultProjectId returns a boolean if a field has been set.
+func (o *Organization) HasDefaultProjectId() bool {
+	if o != nil && !isNil(o.DefaultProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultProjectId gets a reference to the given string and assigns it to the DefaultProjectId field.
+func (o *Organization) SetDefaultProjectId(v string) {
+	o.DefaultProjectId = &v
+}
+
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -1169,6 +1202,9 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.EmailDomainAllowlist) {
 		toSerialize["email_domain_allowlist"] = o.EmailDomainAllowlist
+	}
+	if !isNil(o.DefaultProjectId) {
+		toSerialize["default_project_id"] = o.DefaultProjectId
 	}
 	return json.Marshal(toSerialize)
 }

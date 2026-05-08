@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Git** | Pointer to [**GitDeploymentMetadata**](GitDeploymentMetadata.md) |  | [optional] 
 **Archive** | Pointer to [**ArchiveDeploymentMetadata**](ArchiveDeploymentMetadata.md) |  | [optional] 
 **ProxyPorts** | Pointer to [**[]DeploymentProxyPortMetadata**](DeploymentProxyPortMetadata.md) |  | [optional] 
+**Sandbox** | Pointer to [**SandboxMetadata**](SandboxMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetProxyPorts sets ProxyPorts field to given value.
 `func (o *DeploymentMetadata) HasProxyPorts() bool`
 
 HasProxyPorts returns a boolean if a field has been set.
+
+### GetSandbox
+
+`func (o *DeploymentMetadata) GetSandbox() SandboxMetadata`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *DeploymentMetadata) GetSandboxOk() (*SandboxMetadata, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSandbox
+
+`func (o *DeploymentMetadata) SetSandbox(v SandboxMetadata)`
+
+SetSandbox sets Sandbox field to given value.
+
+### HasSandbox
+
+`func (o *DeploymentMetadata) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

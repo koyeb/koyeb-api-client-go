@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **Volumes** | Pointer to [**[]DeploymentVolume**](DeploymentVolume.md) |  | [optional] 
 **ConfigFiles** | Pointer to [**[]ConfigFile**](ConfigFile.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
+**Mesh** | Pointer to [**DeploymentMesh**](DeploymentMesh.md) |  | [optional] [default to DEPLOYMENTMESH_AUTO]
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Database** | Pointer to [**DatabaseSource**](DatabaseSource.md) |  | [optional] 
@@ -391,6 +392,31 @@ SetSkipCache sets SkipCache field to given value.
 `func (o *DeploymentDefinition) HasSkipCache() bool`
 
 HasSkipCache returns a boolean if a field has been set.
+
+### GetMesh
+
+`func (o *DeploymentDefinition) GetMesh() DeploymentMesh`
+
+GetMesh returns the Mesh field if non-nil, zero value otherwise.
+
+### GetMeshOk
+
+`func (o *DeploymentDefinition) GetMeshOk() (*DeploymentMesh, bool)`
+
+GetMeshOk returns a tuple with the Mesh field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMesh
+
+`func (o *DeploymentDefinition) SetMesh(v DeploymentMesh)`
+
+SetMesh sets Mesh field to given value.
+
+### HasMesh
+
+`func (o *DeploymentDefinition) HasMesh() bool`
+
+HasMesh returns a boolean if a field has been set.
 
 ### GetDocker
 

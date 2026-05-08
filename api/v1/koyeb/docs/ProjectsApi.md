@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ## ListProjects
 
-> ListProjectsReply ListProjects(ctx).Limit(limit).Offset(offset).Execute()
+> ListProjectsReply ListProjects(ctx).Limit(limit).Offset(offset).Name(name).Execute()
 
 List projects
 
@@ -234,10 +234,11 @@ import (
 func main() {
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    name := "name_example" // string | (Optional) Filter by project name (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProjectsApi.ListProjects(context.Background()).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.ProjectsApi.ListProjects(context.Background()).Limit(limit).Offset(offset).Name(name).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ProjectsApi.ListProjects``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -260,6 +261,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **name** | **string** | (Optional) Filter by project name | 
 
 ### Return type
 

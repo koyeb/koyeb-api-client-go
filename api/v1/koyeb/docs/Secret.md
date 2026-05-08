@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to [**SecretType**](SecretType.md) |  | [optional] [default to SECRETTYPE_SIMPLE]
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**ProjectId** | Pointer to **string** | The project ID this secret belongs to. Empty if the secret is organization-level. | [optional] 
 **Value** | Pointer to **string** |  | [optional] 
 **DockerHubRegistry** | Pointer to [**DockerHubRegistryConfiguration**](DockerHubRegistryConfiguration.md) |  | [optional] 
 **PrivateRegistry** | Pointer to [**PrivateRegistryConfiguration**](PrivateRegistryConfiguration.md) |  | [optional] 
@@ -188,6 +189,31 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *Secret) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *Secret) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *Secret) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *Secret) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *Secret) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
 
 ### GetValue
 
