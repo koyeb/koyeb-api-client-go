@@ -17,6 +17,7 @@ api_credentials.go
 api_deployments.go
 api_docker_helper.go
 api_domains.go
+api_instance_snapshots.go
 api_instances.go
 api_intercom.go
 api_invite.go
@@ -43,6 +44,7 @@ api_snapshots.go
 api_sso.go
 api_subscriptions.go
 api_summary.go
+api_test_.go
 api_usages.go
 api_users.go
 client.go
@@ -103,6 +105,8 @@ docs/CreateCredential.md
 docs/CreateCredentialReply.md
 docs/CreateDomain.md
 docs/CreateDomainReply.md
+docs/CreateInstanceSnapshotReply.md
+docs/CreateInstanceSnapshotRequest.md
 docs/CreateOrganizationInvitationReply.md
 docs/CreateOrganizationInvitationRequest.md
 docs/CreateOrganizationReply.md
@@ -133,6 +137,7 @@ docs/DeactivateOrganizationRequest.md
 docs/DeclareStageProgressRequest.md
 docs/DeclareStepProgressRequest.md
 docs/DeclineOrganizationInvitationReply.md
+docs/DeleteInstanceSnapshotReply.md
 docs/DeleteOrganizationReply.md
 docs/DeletePersistentVolumeReply.md
 docs/DeleteSnapshotReply.md
@@ -189,6 +194,8 @@ docs/DomainStatus.md
 docs/DomainType.md
 docs/DomainsApi.md
 docs/DomainsSummary.md
+docs/EgressPolicy.md
+docs/EgressPolicyMode.md
 docs/Env.md
 docs/Error.md
 docs/ErrorField.md
@@ -210,6 +217,7 @@ docs/GetDomainReply.md
 docs/GetGithubInstallationReply.md
 docs/GetIdenfyTokenReply.md
 docs/GetInstanceReply.md
+docs/GetInstanceSnapshotReply.md
 docs/GetIntercomProfileReply.md
 docs/GetMetricsReply.md
 docs/GetMetricsReplyMetric.md
@@ -249,6 +257,12 @@ docs/Instance.md
 docs/InstanceAvailability.md
 docs/InstanceEvent.md
 docs/InstanceListItem.md
+docs/InstanceSnapshot.md
+docs/InstanceSnapshotEvent.md
+docs/InstanceSnapshotQuotas.md
+docs/InstanceSnapshotStatus.md
+docs/InstanceSnapshotType.md
+docs/InstanceSnapshotsApi.md
 docs/InstanceStatus.md
 docs/InstanceUsage.md
 docs/InstancesApi.md
@@ -272,6 +286,8 @@ docs/KsearchRegionalDeployment.md
 docs/KsearchSearchReply.md
 docs/KsearchService.md
 docs/KsearchUser.md
+docs/KtestTestAuthReply.md
+docs/KtestTestAuthRequest.md
 docs/LifecycleQuotas.md
 docs/ListAppEventsReply.md
 docs/ListAppsReply.md
@@ -282,6 +298,8 @@ docs/ListDeploymentEventsReply.md
 docs/ListDeploymentsReply.md
 docs/ListDomainsReply.md
 docs/ListInstanceEventsReply.md
+docs/ListInstanceSnapshotEventsReply.md
+docs/ListInstanceSnapshotsReply.md
 docs/ListInstancesReply.md
 docs/ListOrganizationInvitationsReply.md
 docs/ListOrganizationMembersReply.md
@@ -315,6 +333,8 @@ docs/NeonPostgresDatabaseDeploymentMetadata.md
 docs/NeonPostgresDatabaseNeonDatabase.md
 docs/NeonPostgresDatabaseNeonRole.md
 docs/NeonPostgresSummary.md
+docs/NetworkPolicy.md
+docs/NetworkPolicyDestination.md
 docs/NextInvoiceReply.md
 docs/NextInvoiceReplyDiscount.md
 docs/NextInvoiceReplyDiscountType.md
@@ -426,6 +446,7 @@ docs/SubscriptionStatus.md
 docs/SubscriptionsApi.md
 docs/SummaryApi.md
 docs/TCPHealthCheck.md
+docs/TestApi.md
 docs/Token.md
 docs/TriggerDeploymentMetadata.md
 docs/TriggerDeploymentMetadataActorType.md
@@ -521,6 +542,8 @@ model_create_credential.go
 model_create_credential_reply.go
 model_create_domain.go
 model_create_domain_reply.go
+model_create_instance_snapshot_reply.go
+model_create_instance_snapshot_request.go
 model_create_organization_invitation_reply.go
 model_create_organization_invitation_request.go
 model_create_organization_reply.go
@@ -550,6 +573,7 @@ model_deactivate_organization_request.go
 model_declare_stage_progress_request.go
 model_declare_step_progress_request.go
 model_decline_organization_invitation_reply.go
+model_delete_instance_snapshot_reply.go
 model_delete_organization_reply.go
 model_delete_persistent_volume_reply.go
 model_delete_snapshot_reply.go
@@ -603,6 +627,8 @@ model_domain_load_balancer_quotas.go
 model_domain_status.go
 model_domain_type.go
 model_domains_summary.go
+model_egress_policy.go
+model_egress_policy_mode.go
 model_env.go
 model_error.go
 model_error_field.go
@@ -624,6 +650,7 @@ model_get_domain_reply.go
 model_get_github_installation_reply.go
 model_get_idenfy_token_reply.go
 model_get_instance_reply.go
+model_get_instance_snapshot_reply.go
 model_get_intercom_profile_reply.go
 model_get_metrics_reply.go
 model_get_metrics_reply_metric.go
@@ -663,6 +690,11 @@ model_instance.go
 model_instance_availability.go
 model_instance_event.go
 model_instance_list_item.go
+model_instance_snapshot.go
+model_instance_snapshot_event.go
+model_instance_snapshot_quotas.go
+model_instance_snapshot_status.go
+model_instance_snapshot_type.go
 model_instance_status.go
 model_instance_usage.go
 model_instances_summary.go
@@ -683,6 +715,8 @@ model_ksearch_regional_deployment.go
 model_ksearch_search_reply.go
 model_ksearch_service.go
 model_ksearch_user.go
+model_ktest_test_auth_reply.go
+model_ktest_test_auth_request.go
 model_lifecycle_quotas.go
 model_list_app_events_reply.go
 model_list_apps_reply.go
@@ -693,6 +727,8 @@ model_list_deployment_events_reply.go
 model_list_deployments_reply.go
 model_list_domains_reply.go
 model_list_instance_events_reply.go
+model_list_instance_snapshot_events_reply.go
+model_list_instance_snapshots_reply.go
 model_list_instances_reply.go
 model_list_organization_invitations_reply.go
 model_list_organization_members_reply.go
@@ -724,6 +760,8 @@ model_neon_postgres_database_deployment_metadata.go
 model_neon_postgres_database_neon_database.go
 model_neon_postgres_database_neon_role.go
 model_neon_postgres_summary.go
+model_network_policy.go
+model_network_policy_destination.go
 model_next_invoice_reply.go
 model_next_invoice_reply_discount.go
 model_next_invoice_reply_discount_type.go
@@ -873,6 +911,7 @@ test/api_credentials_test.go
 test/api_deployments_test.go
 test/api_docker_helper_test.go
 test/api_domains_test.go
+test/api_instance_snapshots_test.go
 test/api_instances_test.go
 test/api_intercom_test.go
 test/api_invite_test.go
@@ -899,6 +938,7 @@ test/api_snapshots_test.go
 test/api_sso_test.go
 test/api_subscriptions_test.go
 test/api_summary_test.go
+test/api_test__test.go
 test/api_usages_test.go
 test/api_users_test.go
 utils.go

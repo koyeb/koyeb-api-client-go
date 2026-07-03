@@ -35,6 +35,7 @@ type DeploymentListItem struct {
 	Messages []string `json:"messages,omitempty"`
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	DatabaseInfo *DeploymentDatabaseInfo `json:"database_info,omitempty"`
+	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 }
@@ -636,6 +637,38 @@ func (o *DeploymentListItem) SetDatabaseInfo(v DeploymentDatabaseInfo) {
 	o.DatabaseInfo = &v
 }
 
+// GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetInstanceSnapshotId() string {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceSnapshotId
+}
+
+// GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetInstanceSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+    return nil, false
+	}
+	return o.InstanceSnapshotId, true
+}
+
+// HasInstanceSnapshotId returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasInstanceSnapshotId() bool {
+	if o != nil && !isNil(o.InstanceSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshotId gets a reference to the given string and assigns it to the InstanceSnapshotId field.
+func (o *DeploymentListItem) SetInstanceSnapshotId(v string) {
+	o.InstanceSnapshotId = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeploymentListItem) GetVersion() string {
 	if o == nil || isNil(o.Version) {
@@ -755,6 +788,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.DatabaseInfo) {
 		toSerialize["database_info"] = o.DatabaseInfo
+	}
+	if !isNil(o.InstanceSnapshotId) {
+		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
 	}
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version

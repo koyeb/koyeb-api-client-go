@@ -39,6 +39,7 @@ type Deployment struct {
 	Role *DeploymentRole `json:"role,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
+	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
 }
 
 // NewDeployment instantiates a new Deployment object
@@ -770,6 +771,38 @@ func (o *Deployment) SetDeploymentGroup(v string) {
 	o.DeploymentGroup = &v
 }
 
+// GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
+func (o *Deployment) GetInstanceSnapshotId() string {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceSnapshotId
+}
+
+// GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Deployment) GetInstanceSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+    return nil, false
+	}
+	return o.InstanceSnapshotId, true
+}
+
+// HasInstanceSnapshotId returns a boolean if a field has been set.
+func (o *Deployment) HasInstanceSnapshotId() bool {
+	if o != nil && !isNil(o.InstanceSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshotId gets a reference to the given string and assigns it to the InstanceSnapshotId field.
+func (o *Deployment) SetInstanceSnapshotId(v string) {
+	o.InstanceSnapshotId = &v
+}
+
 func (o Deployment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -837,6 +870,9 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.DeploymentGroup) {
 		toSerialize["deployment_group"] = o.DeploymentGroup
+	}
+	if !isNil(o.InstanceSnapshotId) {
+		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
 	}
 	return json.Marshal(toSerialize)
 }

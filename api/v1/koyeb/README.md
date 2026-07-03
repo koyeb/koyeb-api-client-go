@@ -122,12 +122,17 @@ Class | Method | HTTP request | Description
 *DomainsApi* | [**ListDomains**](docs/DomainsApi.md#listdomains) | **Get** /v1/domains | List Domains
 *DomainsApi* | [**RefreshDomainStatus**](docs/DomainsApi.md#refreshdomainstatus) | **Post** /v1/domains/{id}/refresh | Refresh Domain Status
 *DomainsApi* | [**UpdateDomain**](docs/DomainsApi.md#updatedomain) | **Patch** /v1/domains/{id} | Update Domain
+*InstanceSnapshotsApi* | [**CreateInstanceSnapshot**](docs/InstanceSnapshotsApi.md#createinstancesnapshot) | **Post** /v1/instance_snapshots | 
+*InstanceSnapshotsApi* | [**DeleteInstanceSnapshot**](docs/InstanceSnapshotsApi.md#deleteinstancesnapshot) | **Delete** /v1/instance_snapshots/{id} | 
+*InstanceSnapshotsApi* | [**GetInstanceSnapshot**](docs/InstanceSnapshotsApi.md#getinstancesnapshot) | **Get** /v1/instance_snapshots/{id} | 
+*InstanceSnapshotsApi* | [**ListInstanceSnapshotEvents**](docs/InstanceSnapshotsApi.md#listinstancesnapshotevents) | **Get** /v1/instance_snapshot_events | 
+*InstanceSnapshotsApi* | [**ListInstanceSnapshots**](docs/InstanceSnapshotsApi.md#listinstancesnapshots) | **Get** /v1/instance_snapshots | 
 *InstancesApi* | [**ExecCommand**](docs/InstancesApi.md#execcommand) | **Get** /v1/streams/instances/exec | Exec Command
 *InstancesApi* | [**GetInstance**](docs/InstancesApi.md#getinstance) | **Get** /v1/instances/{id} | Get Instance
 *InstancesApi* | [**ListInstanceEvents**](docs/InstancesApi.md#listinstanceevents) | **Get** /v1/instance_events | List Instance events
 *InstancesApi* | [**ListInstances**](docs/InstancesApi.md#listinstances) | **Get** /v1/instances | List Instances
 *IntercomApi* | [**GetIntercomProfile**](docs/IntercomApi.md#getintercomprofile) | **Get** /v1/intercom/profile | Get intercom profile
-*InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | 
+*InviteApi* | [**CreateInvite**](docs/InviteApi.md#createinvite) | **Post** /v1/account/invite | DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *LogsApi* | [**QueryLogs**](docs/LogsApi.md#querylogs) | **Get** /v1/streams/logs/query | Query logs
 *LogsApi* | [**TailLogs**](docs/LogsApi.md#taillogs) | **Get** /v1/streams/logs/tail | Tails logs
 *MetricsApi* | [**GetMetrics**](docs/MetricsApi.md#getmetrics) | **Get** /v1/streams/metrics | Get Metrics
@@ -142,7 +147,7 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**GetOrganization**](docs/OrganizationApi.md#getorganization) | **Get** /v1/organizations/{id} | Get Organization
 *OrganizationApi* | [**GithubInstallation**](docs/OrganizationApi.md#githubinstallation) | **Post** /v1/github/installation | Start Github Installation
 *OrganizationApi* | [**ReactivateOrganization**](docs/OrganizationApi.md#reactivateorganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an Organization
-*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context
+*OrganizationApi* | [**SwitchOrganization**](docs/OrganizationApi.md#switchorganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *OrganizationApi* | [**UnscopeOrganizationToken**](docs/OrganizationApi.md#unscopeorganizationtoken) | **Post** /v1/unscope_organization_token | Unscope Organization Token
 *OrganizationApi* | [**UpdateBudget**](docs/OrganizationApi.md#updatebudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 *OrganizationApi* | [**UpdateOrganization**](docs/OrganizationApi.md#updateorganization) | **Put** /v1/organizations/{id} | Update Organization
@@ -171,29 +176,29 @@ Class | Method | HTTP request | Description
 *PersistentVolumesApi* | [**ListPersistentVolumeEvents**](docs/PersistentVolumesApi.md#listpersistentvolumeevents) | **Get** /v1/volume_events | List Persistent Volume events
 *PersistentVolumesApi* | [**ListPersistentVolumes**](docs/PersistentVolumesApi.md#listpersistentvolumes) | **Get** /v1/volumes | List all PersistentVolumes
 *PersistentVolumesApi* | [**UpdatePersistentVolume**](docs/PersistentVolumesApi.md#updatepersistentvolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
-*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation
+*ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**ClearIdenfyVerificationResult**](docs/ProfileApi.md#clearidenfyverificationresult) | **Post** /v1/account/idenfy | ClearIdenfyVerificationResult marks the current result for idenfy as superseded
-*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
+*ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**GetCurrentOrganization**](docs/ProfileApi.md#getcurrentorganization) | **Get** /v1/account/organization | Get Current Organization
 *ProfileApi* | [**GetCurrentUser**](docs/ProfileApi.md#getcurrentuser) | **Get** /v1/account/profile | Get Current User
 *ProfileApi* | [**GetIdenfyToken**](docs/ProfileApi.md#getidenfytoken) | **Get** /v1/account/idenfy | Begin a session with iDenfy, emit an authToken
 *ProfileApi* | [**GetOAuthOptions**](docs/ProfileApi.md#getoauthoptions) | **Get** /v1/account/oauth | Get OAuth Providers
-*ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
+*ProfileApi* | [**GetUserOrganizationInvitation**](docs/ProfileApi.md#getuserorganizationinvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**GetUserSettings**](docs/ProfileApi.md#getusersettings) | **Get** /v1/account/settings | 
-*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
+*ProfileApi* | [**ListUserOrganizationInvitations**](docs/ProfileApi.md#listuserorganizationinvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**ListUserOrganizations**](docs/ProfileApi.md#listuserorganizations) | **Get** /v1/account/organizations | List User Organizations
-*ProfileApi* | [**LoginMethod**](docs/ProfileApi.md#loginmethod) | **Get** /v1/account/login_method | Get the login method for an email address
+*ProfileApi* | [**LoginMethod**](docs/ProfileApi.md#loginmethod) | **Get** /v1/account/login_method | Get the login method for an email address DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**OAuthCallback**](docs/ProfileApi.md#oauthcallback) | **Post** /v1/account/oauth | Authenticate using OAuth
-*ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | Resend Email Verification
-*ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | Reset Password
-*ProfileApi* | [**Signup**](docs/ProfileApi.md#signup) | **Post** /v1/account/signup | Signup
-*ProfileApi* | [**UpdatePassword**](docs/ProfileApi.md#updatepassword) | **Post** /v1/account/update_password | Update Password
+*ProfileApi* | [**ResendEmailValidation**](docs/ProfileApi.md#resendemailvalidation) | **Post** /v1/account/resend_validation | Resend Email Verification DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+*ProfileApi* | [**ResetPassword**](docs/ProfileApi.md#resetpassword) | **Post** /v1/account/reset_password | Reset Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+*ProfileApi* | [**Signup**](docs/ProfileApi.md#signup) | **Post** /v1/account/signup | Signup DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+*ProfileApi* | [**UpdatePassword**](docs/ProfileApi.md#updatepassword) | **Post** /v1/account/update_password | Update Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**UpdateUser**](docs/ProfileApi.md#updateuser) | **Put** /v1/account/profile | Update User
 *ProfileApi* | [**UpdateUser2**](docs/ProfileApi.md#updateuser2) | **Patch** /v1/account/profile | Update User
 *ProfileApi* | [**UpdateUserSettings**](docs/ProfileApi.md#updateusersettings) | **Patch** /v1/account/settings | 
 *ProfileApi* | [**UpdateUserV2**](docs/ProfileApi.md#updateuserv2) | **Put** /v2/account/profile | Update User V2
 *ProfileApi* | [**UpdateUserV22**](docs/ProfileApi.md#updateuserv22) | **Patch** /v2/account/profile | Update User V2
-*ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | Validate
+*ProfileApi* | [**Validate**](docs/ProfileApi.md#validate) | **Post** /v1/account/validate/{id} | Validate DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProjectsApi* | [**CreateProject**](docs/ProjectsApi.md#createproject) | **Post** /v1/projects | Create project
 *ProjectsApi* | [**DeleteProject**](docs/ProjectsApi.md#deleteproject) | **Delete** /v1/projects/{id} | Delete project
 *ProjectsApi* | [**GetProject**](docs/ProjectsApi.md#getproject) | **Get** /v1/projects/{id} | Get project
@@ -232,10 +237,10 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**UpdateService**](docs/ServicesApi.md#updateservice) | **Put** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateService2**](docs/ServicesApi.md#updateservice2) | **Patch** /v1/services/{id} | Update Service
 *ServicesApi* | [**UpdateServiceScaling**](docs/ServicesApi.md#updateservicescaling) | **Put** /v1/services/{id}/scale | Update Service Scaling
-*SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user
-*SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user
+*SessionsApi* | [**Login**](docs/SessionsApi.md#login) | **Post** /v1/account/login | Login user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+*SessionsApi* | [**Logout**](docs/SessionsApi.md#logout) | **Delete** /v1/account/logout | Logout user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *SessionsApi* | [**NewSession**](docs/SessionsApi.md#newsession) | **Post** /v1/account/session | New session
-*SessionsApi* | [**RefreshToken**](docs/SessionsApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token
+*SessionsApi* | [**RefreshToken**](docs/SessionsApi.md#refreshtoken) | **Put** /v1/account/refresh | Refresh token DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *SnapshotsApi* | [**CreateSnapshot**](docs/SnapshotsApi.md#createsnapshot) | **Post** /v1/snapshots | Create a Snapshot
 *SnapshotsApi* | [**DeleteSnapshot**](docs/SnapshotsApi.md#deletesnapshot) | **Delete** /v1/snapshots/{id} | Delete a Snapshot
 *SnapshotsApi* | [**GetSnapshot**](docs/SnapshotsApi.md#getsnapshot) | **Get** /v1/snapshots/{id} | Get a Snapshot
@@ -245,6 +250,8 @@ Class | Method | HTTP request | Description
 *SsoApi* | [**DiscourseAuth**](docs/SsoApi.md#discourseauth) | **Post** /v1/sso/discourse | 
 *SubscriptionsApi* | [**GetSubscription**](docs/SubscriptionsApi.md#getsubscription) | **Get** /v1/subscriptions/{id} | Get Subscription
 *SummaryApi* | [**GetOrganizationSummary**](docs/SummaryApi.md#getorganizationsummary) | **Get** /v1/organizations/{organization_id}/summary | Get organization usage summary
+*TestApi* | [**TestAnon**](docs/TestApi.md#testanon) | **Get** /v1/test/anon | Test anonymous call
+*TestApi* | [**TestAuth**](docs/TestApi.md#testauth) | **Post** /v1/test/auth | Test authenticated call
 *UsagesApi* | [**GetOrganizationUsage**](docs/UsagesApi.md#getorganizationusage) | **Get** /v1/usages | Get organization usage
 *UsagesApi* | [**GetOrganizationUsageDetails**](docs/UsagesApi.md#getorganizationusagedetails) | **Get** /v1/usages/details | Get organization usage details
 *UsersApi* | [**DeleteUser**](docs/UsersApi.md#deleteuser) | **Delete** /v1/users/{id} | Delete user
@@ -299,6 +306,8 @@ Class | Method | HTTP request | Description
  - [CreateCredentialReply](docs/CreateCredentialReply.md)
  - [CreateDomain](docs/CreateDomain.md)
  - [CreateDomainReply](docs/CreateDomainReply.md)
+ - [CreateInstanceSnapshotReply](docs/CreateInstanceSnapshotReply.md)
+ - [CreateInstanceSnapshotRequest](docs/CreateInstanceSnapshotRequest.md)
  - [CreateOrganizationInvitationReply](docs/CreateOrganizationInvitationReply.md)
  - [CreateOrganizationInvitationRequest](docs/CreateOrganizationInvitationRequest.md)
  - [CreateOrganizationReply](docs/CreateOrganizationReply.md)
@@ -328,6 +337,7 @@ Class | Method | HTTP request | Description
  - [DeclareStageProgressRequest](docs/DeclareStageProgressRequest.md)
  - [DeclareStepProgressRequest](docs/DeclareStepProgressRequest.md)
  - [DeclineOrganizationInvitationReply](docs/DeclineOrganizationInvitationReply.md)
+ - [DeleteInstanceSnapshotReply](docs/DeleteInstanceSnapshotReply.md)
  - [DeleteOrganizationReply](docs/DeleteOrganizationReply.md)
  - [DeletePersistentVolumeReply](docs/DeletePersistentVolumeReply.md)
  - [DeleteSnapshotReply](docs/DeleteSnapshotReply.md)
@@ -381,6 +391,8 @@ Class | Method | HTTP request | Description
  - [DomainStatus](docs/DomainStatus.md)
  - [DomainType](docs/DomainType.md)
  - [DomainsSummary](docs/DomainsSummary.md)
+ - [EgressPolicy](docs/EgressPolicy.md)
+ - [EgressPolicyMode](docs/EgressPolicyMode.md)
  - [Env](docs/Env.md)
  - [Error](docs/Error.md)
  - [ErrorField](docs/ErrorField.md)
@@ -402,6 +414,7 @@ Class | Method | HTTP request | Description
  - [GetGithubInstallationReply](docs/GetGithubInstallationReply.md)
  - [GetIdenfyTokenReply](docs/GetIdenfyTokenReply.md)
  - [GetInstanceReply](docs/GetInstanceReply.md)
+ - [GetInstanceSnapshotReply](docs/GetInstanceSnapshotReply.md)
  - [GetIntercomProfileReply](docs/GetIntercomProfileReply.md)
  - [GetMetricsReply](docs/GetMetricsReply.md)
  - [GetMetricsReplyMetric](docs/GetMetricsReplyMetric.md)
@@ -441,6 +454,11 @@ Class | Method | HTTP request | Description
  - [InstanceAvailability](docs/InstanceAvailability.md)
  - [InstanceEvent](docs/InstanceEvent.md)
  - [InstanceListItem](docs/InstanceListItem.md)
+ - [InstanceSnapshot](docs/InstanceSnapshot.md)
+ - [InstanceSnapshotEvent](docs/InstanceSnapshotEvent.md)
+ - [InstanceSnapshotQuotas](docs/InstanceSnapshotQuotas.md)
+ - [InstanceSnapshotStatus](docs/InstanceSnapshotStatus.md)
+ - [InstanceSnapshotType](docs/InstanceSnapshotType.md)
  - [InstanceStatus](docs/InstanceStatus.md)
  - [InstanceUsage](docs/InstanceUsage.md)
  - [InstancesSummary](docs/InstancesSummary.md)
@@ -461,6 +479,8 @@ Class | Method | HTTP request | Description
  - [KsearchSearchReply](docs/KsearchSearchReply.md)
  - [KsearchService](docs/KsearchService.md)
  - [KsearchUser](docs/KsearchUser.md)
+ - [KtestTestAuthReply](docs/KtestTestAuthReply.md)
+ - [KtestTestAuthRequest](docs/KtestTestAuthRequest.md)
  - [LifecycleQuotas](docs/LifecycleQuotas.md)
  - [ListAppEventsReply](docs/ListAppEventsReply.md)
  - [ListAppsReply](docs/ListAppsReply.md)
@@ -471,6 +491,8 @@ Class | Method | HTTP request | Description
  - [ListDeploymentsReply](docs/ListDeploymentsReply.md)
  - [ListDomainsReply](docs/ListDomainsReply.md)
  - [ListInstanceEventsReply](docs/ListInstanceEventsReply.md)
+ - [ListInstanceSnapshotEventsReply](docs/ListInstanceSnapshotEventsReply.md)
+ - [ListInstanceSnapshotsReply](docs/ListInstanceSnapshotsReply.md)
  - [ListInstancesReply](docs/ListInstancesReply.md)
  - [ListOrganizationInvitationsReply](docs/ListOrganizationInvitationsReply.md)
  - [ListOrganizationMembersReply](docs/ListOrganizationMembersReply.md)
@@ -502,6 +524,8 @@ Class | Method | HTTP request | Description
  - [NeonPostgresDatabaseNeonDatabase](docs/NeonPostgresDatabaseNeonDatabase.md)
  - [NeonPostgresDatabaseNeonRole](docs/NeonPostgresDatabaseNeonRole.md)
  - [NeonPostgresSummary](docs/NeonPostgresSummary.md)
+ - [NetworkPolicy](docs/NetworkPolicy.md)
+ - [NetworkPolicyDestination](docs/NetworkPolicyDestination.md)
  - [NextInvoiceReply](docs/NextInvoiceReply.md)
  - [NextInvoiceReplyDiscount](docs/NextInvoiceReplyDiscount.md)
  - [NextInvoiceReplyDiscountType](docs/NextInvoiceReplyDiscountType.md)

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**RegionalDeploymentStatus**](RegionalDeploymentStatus.md) |  | [optional] [default to REGIONALDEPLOYMENTSTATUS_PENDING]
 **Messages** | Pointer to **[]string** |  | [optional] 
 **Definition** | Pointer to [**RegionalDeploymentDefinition**](RegionalDeploymentDefinition.md) |  | [optional] 
+**InstanceSnapshotId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -205,6 +206,31 @@ SetDefinition sets Definition field to given value.
 `func (o *RegionalDeploymentListItem) HasDefinition() bool`
 
 HasDefinition returns a boolean if a field has been set.
+
+### GetInstanceSnapshotId
+
+`func (o *RegionalDeploymentListItem) GetInstanceSnapshotId() string`
+
+GetInstanceSnapshotId returns the InstanceSnapshotId field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotIdOk
+
+`func (o *RegionalDeploymentListItem) GetInstanceSnapshotIdOk() (*string, bool)`
+
+GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshotId
+
+`func (o *RegionalDeploymentListItem) SetInstanceSnapshotId(v string)`
+
+SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
+
+### HasInstanceSnapshotId
+
+`func (o *RegionalDeploymentListItem) HasInstanceSnapshotId() bool`
+
+HasInstanceSnapshotId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -22,7 +22,7 @@ import (
 type InviteApi interface {
 
 	/*
-	CreateInvite Method for CreateInvite
+	CreateInvite DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateInviteRequest
@@ -53,7 +53,7 @@ func (r ApiCreateInviteRequest) Execute() (map[string]interface{}, *http.Respons
 }
 
 /*
-CreateInvite Method for CreateInvite
+CreateInvite DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateInviteRequest

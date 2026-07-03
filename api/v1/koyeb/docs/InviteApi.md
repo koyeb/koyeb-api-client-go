@@ -4,7 +4,7 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateInvite**](InviteApi.md#CreateInvite) | **Post** /v1/account/invite | 
+[**CreateInvite**](InviteApi.md#CreateInvite) | **Post** /v1/account/invite | DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > map[string]interface{} CreateInvite(ctx).Body(body).Execute()
 
-
+DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 

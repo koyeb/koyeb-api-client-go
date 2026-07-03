@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **Role** | Pointer to [**DeploymentRole**](DeploymentRole.md) |  | [optional] [default to DEPLOYMENTROLE_INVALID]
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
+**InstanceSnapshotId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -595,6 +596,31 @@ SetDeploymentGroup sets DeploymentGroup field to given value.
 `func (o *Deployment) HasDeploymentGroup() bool`
 
 HasDeploymentGroup returns a boolean if a field has been set.
+
+### GetInstanceSnapshotId
+
+`func (o *Deployment) GetInstanceSnapshotId() string`
+
+GetInstanceSnapshotId returns the InstanceSnapshotId field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotIdOk
+
+`func (o *Deployment) GetInstanceSnapshotIdOk() (*string, bool)`
+
+GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshotId
+
+`func (o *Deployment) SetInstanceSnapshotId(v string)`
+
+SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
+
+### HasInstanceSnapshotId
+
+`func (o *Deployment) HasInstanceSnapshotId() bool`
+
+HasInstanceSnapshotId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,10 +4,10 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**Login**](SessionsApi.md#Login) | **Post** /v1/account/login | Login user
-[**Logout**](SessionsApi.md#Logout) | **Delete** /v1/account/logout | Logout user
+[**Login**](SessionsApi.md#Login) | **Post** /v1/account/login | Login user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+[**Logout**](SessionsApi.md#Logout) | **Delete** /v1/account/logout | Logout user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**NewSession**](SessionsApi.md#NewSession) | **Post** /v1/account/session | New session
-[**RefreshToken**](SessionsApi.md#RefreshToken) | **Put** /v1/account/refresh | Refresh token
+[**RefreshToken**](SessionsApi.md#RefreshToken) | **Put** /v1/account/refresh | Refresh token DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 
 
@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 > LoginReply Login(ctx).Body(body).SeonFp(seonFp).Execute()
 
-Login user
+Login user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} Logout(ctx).Execute()
 
-Logout user
+Logout user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -201,7 +201,7 @@ Other parameters are passed through a pointer to a apiNewSessionRequest struct v
 
 > LoginReply RefreshToken(ctx).Execute()
 
-Refresh token
+Refresh token DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 

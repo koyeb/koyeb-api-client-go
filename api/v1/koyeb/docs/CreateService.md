@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Definition** | Pointer to [**DeploymentDefinition**](DeploymentDefinition.md) |  | [optional] 
 **LifeCycle** | Pointer to [**ServiceLifeCycle**](ServiceLifeCycle.md) |  | [optional] 
 **ProjectId** | Pointer to **string** |  | [optional] 
+**InstanceSnapshotId** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +129,56 @@ SetProjectId sets ProjectId field to given value.
 `func (o *CreateService) HasProjectId() bool`
 
 HasProjectId returns a boolean if a field has been set.
+
+### GetInstanceSnapshotId
+
+`func (o *CreateService) GetInstanceSnapshotId() string`
+
+GetInstanceSnapshotId returns the InstanceSnapshotId field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotIdOk
+
+`func (o *CreateService) GetInstanceSnapshotIdOk() (*string, bool)`
+
+GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshotId
+
+`func (o *CreateService) SetInstanceSnapshotId(v string)`
+
+SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
+
+### HasInstanceSnapshotId
+
+`func (o *CreateService) HasInstanceSnapshotId() bool`
+
+HasInstanceSnapshotId returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *CreateService) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CreateService) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CreateService) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *CreateService) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

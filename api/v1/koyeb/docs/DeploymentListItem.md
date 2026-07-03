@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **DatabaseInfo** | Pointer to [**DeploymentDatabaseInfo**](DeploymentDatabaseInfo.md) |  | [optional] 
+**InstanceSnapshotId** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 
@@ -493,6 +494,31 @@ SetDatabaseInfo sets DatabaseInfo field to given value.
 `func (o *DeploymentListItem) HasDatabaseInfo() bool`
 
 HasDatabaseInfo returns a boolean if a field has been set.
+
+### GetInstanceSnapshotId
+
+`func (o *DeploymentListItem) GetInstanceSnapshotId() string`
+
+GetInstanceSnapshotId returns the InstanceSnapshotId field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotIdOk
+
+`func (o *DeploymentListItem) GetInstanceSnapshotIdOk() (*string, bool)`
+
+GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshotId
+
+`func (o *DeploymentListItem) SetInstanceSnapshotId(v string)`
+
+SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
+
+### HasInstanceSnapshotId
+
+`func (o *DeploymentListItem) HasInstanceSnapshotId() bool`
+
+HasInstanceSnapshotId returns a boolean if a field has been set.
 
 ### GetVersion
 

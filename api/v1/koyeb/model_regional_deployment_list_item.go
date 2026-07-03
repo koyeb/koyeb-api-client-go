@@ -24,6 +24,7 @@ type RegionalDeploymentListItem struct {
 	Status *RegionalDeploymentStatus `json:"status,omitempty"`
 	Messages []string `json:"messages,omitempty"`
 	Definition *RegionalDeploymentDefinition `json:"definition,omitempty"`
+	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
 }
 
 // NewRegionalDeploymentListItem instantiates a new RegionalDeploymentListItem object
@@ -271,6 +272,38 @@ func (o *RegionalDeploymentListItem) SetDefinition(v RegionalDeploymentDefinitio
 	o.Definition = &v
 }
 
+// GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
+func (o *RegionalDeploymentListItem) GetInstanceSnapshotId() string {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceSnapshotId
+}
+
+// GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RegionalDeploymentListItem) GetInstanceSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+    return nil, false
+	}
+	return o.InstanceSnapshotId, true
+}
+
+// HasInstanceSnapshotId returns a boolean if a field has been set.
+func (o *RegionalDeploymentListItem) HasInstanceSnapshotId() bool {
+	if o != nil && !isNil(o.InstanceSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshotId gets a reference to the given string and assigns it to the InstanceSnapshotId field.
+func (o *RegionalDeploymentListItem) SetInstanceSnapshotId(v string) {
+	o.InstanceSnapshotId = &v
+}
+
 func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Id) {
@@ -293,6 +326,9 @@ func (o RegionalDeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Definition) {
 		toSerialize["definition"] = o.Definition
+	}
+	if !isNil(o.InstanceSnapshotId) {
+		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
 	}
 	return json.Marshal(toSerialize)
 }

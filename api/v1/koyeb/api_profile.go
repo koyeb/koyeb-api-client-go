@@ -24,7 +24,7 @@ import (
 type ProfileApi interface {
 
 	/*
-	AcceptOrganizationInvitation Accept Organization Invitation
+	AcceptOrganizationInvitation Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to accept
@@ -49,7 +49,7 @@ type ProfileApi interface {
 	ClearIdenfyVerificationResultExecute(r ApiClearIdenfyVerificationResultRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	DeclineOrganizationInvitation Decline Organization Invitation
+	DeclineOrganizationInvitation Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to decline
@@ -110,7 +110,7 @@ type ProfileApi interface {
 	GetOAuthOptionsExecute(r ApiGetOAuthOptionsRequest) (*GetOAuthOptionsReply, *http.Response, error)
 
 	/*
-	GetUserOrganizationInvitation Get User Organization Invitation
+	GetUserOrganizationInvitation Get User Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id The id of the organization invitation to get
@@ -135,7 +135,7 @@ type ProfileApi interface {
 	GetUserSettingsExecute(r ApiGetUserSettingsRequest) (*GetUserSettingsReply, *http.Response, error)
 
 	/*
-	ListUserOrganizationInvitations List User Organization Invitations
+	ListUserOrganizationInvitations List User Organization Invitations DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListUserOrganizationInvitationsRequest
@@ -161,7 +161,7 @@ type ProfileApi interface {
 	ListUserOrganizationsExecute(r ApiListUserOrganizationsRequest) (*ListUserOrganizationsReply, *http.Response, error)
 
 	/*
-	LoginMethod Get the login method for an email address
+	LoginMethod Get the login method for an email address DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiLoginMethodRequest
@@ -185,7 +185,7 @@ type ProfileApi interface {
 	OAuthCallbackExecute(r ApiOAuthCallbackRequest) (*OAuthCallbackReply, *http.Response, error)
 
 	/*
-	ResendEmailValidation Resend Email Verification
+	ResendEmailValidation Resend Email Verification DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiResendEmailValidationRequest
@@ -197,7 +197,7 @@ type ProfileApi interface {
 	ResendEmailValidationExecute(r ApiResendEmailValidationRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	ResetPassword Reset Password
+	ResetPassword Reset Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiResetPasswordRequest
@@ -209,7 +209,7 @@ type ProfileApi interface {
 	ResetPasswordExecute(r ApiResetPasswordRequest) (map[string]interface{}, *http.Response, error)
 
 	/*
-	Signup Signup
+	Signup Signup DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiSignupRequest
@@ -221,7 +221,7 @@ type ProfileApi interface {
 	SignupExecute(r ApiSignupRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	UpdatePassword Update Password
+	UpdatePassword Update Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiUpdatePasswordRequest
@@ -293,7 +293,7 @@ type ProfileApi interface {
 	UpdateUserV22Execute(r ApiUpdateUserV22Request) (*UserReply, *http.Response, error)
 
 	/*
-	Validate Validate
+	Validate Validate DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -326,7 +326,7 @@ func (r ApiAcceptOrganizationInvitationRequest) Execute() (*AcceptOrganizationIn
 }
 
 /*
-AcceptOrganizationInvitation Accept Organization Invitation
+AcceptOrganizationInvitation Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to accept
@@ -722,7 +722,7 @@ func (r ApiDeclineOrganizationInvitationRequest) Execute() (*DeclineOrganization
 }
 
 /*
-DeclineOrganizationInvitation Decline Organization Invitation
+DeclineOrganizationInvitation Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to decline
@@ -1686,7 +1686,7 @@ func (r ApiGetUserOrganizationInvitationRequest) Execute() (*GetUserOrganization
 }
 
 /*
-GetUserOrganizationInvitation Get User Organization Invitation
+GetUserOrganizationInvitation Get User Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id The id of the organization invitation to get
@@ -2080,7 +2080,7 @@ func (r ApiListUserOrganizationInvitationsRequest) Execute() (*ListUserOrganizat
 }
 
 /*
-ListUserOrganizationInvitations List User Organization Invitations
+ListUserOrganizationInvitations List User Organization Invitations DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListUserOrganizationInvitationsRequest
@@ -2533,7 +2533,7 @@ func (r ApiLoginMethodRequest) Execute() (*LoginMethodReply, *http.Response, err
 }
 
 /*
-LoginMethod Get the login method for an email address
+LoginMethod Get the login method for an email address DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLoginMethodRequest
@@ -2933,7 +2933,7 @@ func (r ApiResendEmailValidationRequest) Execute() (map[string]interface{}, *htt
 }
 
 /*
-ResendEmailValidation Resend Email Verification
+ResendEmailValidation Resend Email Verification DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiResendEmailValidationRequest
@@ -3129,7 +3129,7 @@ func (r ApiResetPasswordRequest) Execute() (map[string]interface{}, *http.Respon
 }
 
 /*
-ResetPassword Reset Password
+ResetPassword Reset Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiResetPasswordRequest
@@ -3333,7 +3333,7 @@ func (r ApiSignupRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-Signup Signup
+Signup Signup DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiSignupRequest
@@ -3539,7 +3539,7 @@ func (r ApiUpdatePasswordRequest) Execute() (*LoginReply, *http.Response, error)
 }
 
 /*
-UpdatePassword Update Password
+UpdatePassword Update Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiUpdatePasswordRequest
@@ -4756,7 +4756,7 @@ func (r ApiValidateRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-Validate Validate
+Validate Validate DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id

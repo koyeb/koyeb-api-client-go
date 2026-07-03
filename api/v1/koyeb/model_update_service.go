@@ -22,6 +22,7 @@ type UpdateService struct {
 	SkipBuild *bool `json:"skip_build,omitempty"`
 	SaveOnly *bool `json:"save_only,omitempty"`
 	LifeCycle *ServiceLifeCycle `json:"life_cycle,omitempty"`
+	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
 }
 
 // NewUpdateService instantiates a new UpdateService object
@@ -201,6 +202,38 @@ func (o *UpdateService) SetLifeCycle(v ServiceLifeCycle) {
 	o.LifeCycle = &v
 }
 
+// GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
+func (o *UpdateService) GetInstanceSnapshotId() string {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceSnapshotId
+}
+
+// GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateService) GetInstanceSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+    return nil, false
+	}
+	return o.InstanceSnapshotId, true
+}
+
+// HasInstanceSnapshotId returns a boolean if a field has been set.
+func (o *UpdateService) HasInstanceSnapshotId() bool {
+	if o != nil && !isNil(o.InstanceSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshotId gets a reference to the given string and assigns it to the InstanceSnapshotId field.
+func (o *UpdateService) SetInstanceSnapshotId(v string) {
+	o.InstanceSnapshotId = &v
+}
+
 func (o UpdateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Definition) {
@@ -217,6 +250,9 @@ func (o UpdateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.LifeCycle) {
 		toSerialize["life_cycle"] = o.LifeCycle
+	}
+	if !isNil(o.InstanceSnapshotId) {
+		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
 	}
 	return json.Marshal(toSerialize)
 }

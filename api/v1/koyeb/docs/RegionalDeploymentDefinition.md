@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **ConfigFiles** | Pointer to [**[]ConfigFile**](ConfigFile.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Mesh** | Pointer to [**RegionalDeploymentMesh**](RegionalDeploymentMesh.md) |  | [optional] [default to REGIONALDEPLOYMENTMESH_AUTO]
+**NetworkPolicy** | Pointer to [**NetworkPolicy**](NetworkPolicy.md) |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Archive** | Pointer to [**ArchiveSource**](ArchiveSource.md) |  | [optional] 
@@ -416,6 +417,31 @@ SetMesh sets Mesh field to given value.
 `func (o *RegionalDeploymentDefinition) HasMesh() bool`
 
 HasMesh returns a boolean if a field has been set.
+
+### GetNetworkPolicy
+
+`func (o *RegionalDeploymentDefinition) GetNetworkPolicy() NetworkPolicy`
+
+GetNetworkPolicy returns the NetworkPolicy field if non-nil, zero value otherwise.
+
+### GetNetworkPolicyOk
+
+`func (o *RegionalDeploymentDefinition) GetNetworkPolicyOk() (*NetworkPolicy, bool)`
+
+GetNetworkPolicyOk returns a tuple with the NetworkPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkPolicy
+
+`func (o *RegionalDeploymentDefinition) SetNetworkPolicy(v NetworkPolicy)`
+
+SetNetworkPolicy sets NetworkPolicy field to given value.
+
+### HasNetworkPolicy
+
+`func (o *RegionalDeploymentDefinition) HasNetworkPolicy() bool`
+
+HasNetworkPolicy returns a boolean if a field has been set.
 
 ### GetDocker
 

@@ -22,7 +22,7 @@ import (
 type SessionsApi interface {
 
 	/*
-	Login Login user
+	Login Login user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiLoginRequest
@@ -34,7 +34,7 @@ type SessionsApi interface {
 	LoginExecute(r ApiLoginRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	Logout Logout user
+	Logout Logout user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiLogoutRequest
@@ -50,6 +50,7 @@ type SessionsApi interface {
 
 	Creates a new session without an organization for current user.
 NOTE: If you want a session linked to another organization, please use "Switch organization".
+DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiNewSessionRequest
@@ -61,7 +62,7 @@ NOTE: If you want a session linked to another organization, please use "Switch o
 	NewSessionExecute(r ApiNewSessionRequest) (*LoginReply, *http.Response, error)
 
 	/*
-	RefreshToken Refresh token
+	RefreshToken Refresh token DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiRefreshTokenRequest
@@ -99,7 +100,7 @@ func (r ApiLoginRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-Login Login user
+Login Login user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLoginRequest
@@ -292,7 +293,7 @@ func (r ApiLogoutRequest) Execute() (map[string]interface{}, *http.Response, err
 }
 
 /*
-Logout Logout user
+Logout Logout user DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiLogoutRequest
@@ -481,6 +482,7 @@ NewSession New session
 
 Creates a new session without an organization for current user.
 NOTE: If you want a session linked to another organization, please use "Switch organization".
+DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiNewSessionRequest
@@ -665,7 +667,7 @@ func (r ApiRefreshTokenRequest) Execute() (*LoginReply, *http.Response, error) {
 }
 
 /*
-RefreshToken Refresh token
+RefreshToken Refresh token DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiRefreshTokenRequest

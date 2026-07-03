@@ -38,6 +38,7 @@ type Quotas struct {
 	ArchiveMaxSizeMb *string `json:"archive_max_size_mb,omitempty"`
 	Lifecycle *LifecycleQuotas `json:"lifecycle,omitempty"`
 	MaxProjects *string `json:"max_projects,omitempty"`
+	InstanceSnapshots *InstanceSnapshotQuotas `json:"instance_snapshots,omitempty"`
 }
 
 // NewQuotas instantiates a new Quotas object
@@ -761,6 +762,38 @@ func (o *Quotas) SetMaxProjects(v string) {
 	o.MaxProjects = &v
 }
 
+// GetInstanceSnapshots returns the InstanceSnapshots field value if set, zero value otherwise.
+func (o *Quotas) GetInstanceSnapshots() InstanceSnapshotQuotas {
+	if o == nil || isNil(o.InstanceSnapshots) {
+		var ret InstanceSnapshotQuotas
+		return ret
+	}
+	return *o.InstanceSnapshots
+}
+
+// GetInstanceSnapshotsOk returns a tuple with the InstanceSnapshots field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Quotas) GetInstanceSnapshotsOk() (*InstanceSnapshotQuotas, bool) {
+	if o == nil || isNil(o.InstanceSnapshots) {
+    return nil, false
+	}
+	return o.InstanceSnapshots, true
+}
+
+// HasInstanceSnapshots returns a boolean if a field has been set.
+func (o *Quotas) HasInstanceSnapshots() bool {
+	if o != nil && !isNil(o.InstanceSnapshots) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshots gets a reference to the given InstanceSnapshotQuotas and assigns it to the InstanceSnapshots field.
+func (o *Quotas) SetInstanceSnapshots(v InstanceSnapshotQuotas) {
+	o.InstanceSnapshots = &v
+}
+
 func (o Quotas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Apps) {
@@ -828,6 +861,9 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.MaxProjects) {
 		toSerialize["max_projects"] = o.MaxProjects
+	}
+	if !isNil(o.InstanceSnapshots) {
+		toSerialize["instance_snapshots"] = o.InstanceSnapshots
 	}
 	return json.Marshal(toSerialize)
 }
