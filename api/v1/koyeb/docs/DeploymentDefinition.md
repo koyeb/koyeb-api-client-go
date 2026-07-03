@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | Pointer to **string** | Service name. Deprecated, set it directly in the Service when creating it. | [optional] 
 **Type** | Pointer to [**DeploymentDefinitionType**](DeploymentDefinitionType.md) |  | [optional] [default to DEPLOYMENTDEFINITIONTYPE_INVALID]
 **Strategy** | Pointer to [**DeploymentStrategy**](DeploymentStrategy.md) |  | [optional] 
 **Routes** | Pointer to [**[]DeploymentRoute**](DeploymentRoute.md) |  | [optional] 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **ConfigFiles** | Pointer to [**[]ConfigFile**](ConfigFile.md) |  | [optional] 
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Mesh** | Pointer to [**DeploymentMesh**](DeploymentMesh.md) |  | [optional] [default to DEPLOYMENTMESH_AUTO]
+**NetworkPolicy** | Pointer to [**NetworkPolicy**](NetworkPolicy.md) |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Database** | Pointer to [**DatabaseSource**](DatabaseSource.md) |  | [optional] 
@@ -417,6 +418,31 @@ SetMesh sets Mesh field to given value.
 `func (o *DeploymentDefinition) HasMesh() bool`
 
 HasMesh returns a boolean if a field has been set.
+
+### GetNetworkPolicy
+
+`func (o *DeploymentDefinition) GetNetworkPolicy() NetworkPolicy`
+
+GetNetworkPolicy returns the NetworkPolicy field if non-nil, zero value otherwise.
+
+### GetNetworkPolicyOk
+
+`func (o *DeploymentDefinition) GetNetworkPolicyOk() (*NetworkPolicy, bool)`
+
+GetNetworkPolicyOk returns a tuple with the NetworkPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkPolicy
+
+`func (o *DeploymentDefinition) SetNetworkPolicy(v NetworkPolicy)`
+
+SetNetworkPolicy sets NetworkPolicy field to given value.
+
+### HasNetworkPolicy
+
+`func (o *DeploymentDefinition) HasNetworkPolicy() bool`
+
+HasNetworkPolicy returns a boolean if a field has been set.
 
 ### GetDocker
 

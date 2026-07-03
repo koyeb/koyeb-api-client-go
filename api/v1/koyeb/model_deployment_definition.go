@@ -16,6 +16,7 @@ import (
 
 // DeploymentDefinition struct for DeploymentDefinition
 type DeploymentDefinition struct {
+	// Service name. Deprecated, set it directly in the Service when creating it.
 	Name *string `json:"name,omitempty"`
 	Type *DeploymentDefinitionType `json:"type,omitempty"`
 	Strategy *DeploymentStrategy `json:"strategy,omitempty"`
@@ -31,6 +32,7 @@ type DeploymentDefinition struct {
 	ConfigFiles []ConfigFile `json:"config_files,omitempty"`
 	SkipCache *bool `json:"skip_cache,omitempty"`
 	Mesh *DeploymentMesh `json:"mesh,omitempty"`
+	NetworkPolicy *NetworkPolicy `json:"network_policy,omitempty"`
 	Docker *DockerSource `json:"docker,omitempty"`
 	Git *GitSource `json:"git,omitempty"`
 	Database *DatabaseSource `json:"database,omitempty"`
@@ -542,6 +544,38 @@ func (o *DeploymentDefinition) SetMesh(v DeploymentMesh) {
 	o.Mesh = &v
 }
 
+// GetNetworkPolicy returns the NetworkPolicy field value if set, zero value otherwise.
+func (o *DeploymentDefinition) GetNetworkPolicy() NetworkPolicy {
+	if o == nil || isNil(o.NetworkPolicy) {
+		var ret NetworkPolicy
+		return ret
+	}
+	return *o.NetworkPolicy
+}
+
+// GetNetworkPolicyOk returns a tuple with the NetworkPolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentDefinition) GetNetworkPolicyOk() (*NetworkPolicy, bool) {
+	if o == nil || isNil(o.NetworkPolicy) {
+    return nil, false
+	}
+	return o.NetworkPolicy, true
+}
+
+// HasNetworkPolicy returns a boolean if a field has been set.
+func (o *DeploymentDefinition) HasNetworkPolicy() bool {
+	if o != nil && !isNil(o.NetworkPolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetNetworkPolicy gets a reference to the given NetworkPolicy and assigns it to the NetworkPolicy field.
+func (o *DeploymentDefinition) SetNetworkPolicy(v NetworkPolicy) {
+	o.NetworkPolicy = &v
+}
+
 // GetDocker returns the Docker field value if set, zero value otherwise.
 func (o *DeploymentDefinition) GetDocker() DockerSource {
 	if o == nil || isNil(o.Docker) {
@@ -716,6 +750,9 @@ func (o DeploymentDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Mesh) {
 		toSerialize["mesh"] = o.Mesh
+	}
+	if !isNil(o.NetworkPolicy) {
+		toSerialize["network_policy"] = o.NetworkPolicy
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker

@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Role** | Pointer to [**RegionalDeploymentRole**](RegionalDeploymentRole.md) |  | [optional] [default to REGIONALDEPLOYMENTROLE_INVALID]
+**InstanceSnapshotId** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **DeploymentId** | Pointer to **string** |  | [optional] 
@@ -572,6 +573,31 @@ SetRole sets Role field to given value.
 `func (o *RegionalDeployment) HasRole() bool`
 
 HasRole returns a boolean if a field has been set.
+
+### GetInstanceSnapshotId
+
+`func (o *RegionalDeployment) GetInstanceSnapshotId() string`
+
+GetInstanceSnapshotId returns the InstanceSnapshotId field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotIdOk
+
+`func (o *RegionalDeployment) GetInstanceSnapshotIdOk() (*string, bool)`
+
+GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshotId
+
+`func (o *RegionalDeployment) SetInstanceSnapshotId(v string)`
+
+SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
+
+### HasInstanceSnapshotId
+
+`func (o *RegionalDeployment) HasInstanceSnapshotId() bool`
+
+HasInstanceSnapshotId returns a boolean if a field has been set.
 
 ### GetVersion
 

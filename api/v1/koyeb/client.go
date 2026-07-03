@@ -77,6 +77,8 @@ type APIClient struct {
 
 	DomainsApi DomainsApi
 
+	InstanceSnapshotsApi InstanceSnapshotsApi
+
 	InstancesApi InstancesApi
 
 	IntercomApi IntercomApi
@@ -129,6 +131,8 @@ type APIClient struct {
 
 	SummaryApi SummaryApi
 
+	TestApi TestApi
+
 	UsagesApi UsagesApi
 
 	UsersApi UsersApi
@@ -164,6 +168,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.DeploymentsApi = (*DeploymentsApiService)(&c.common)
 	c.DockerHelperApi = (*DockerHelperApiService)(&c.common)
 	c.DomainsApi = (*DomainsApiService)(&c.common)
+	c.InstanceSnapshotsApi = (*InstanceSnapshotsApiService)(&c.common)
 	c.InstancesApi = (*InstancesApiService)(&c.common)
 	c.IntercomApi = (*IntercomApiService)(&c.common)
 	c.InviteApi = (*InviteApiService)(&c.common)
@@ -190,6 +195,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SsoApi = (*SsoApiService)(&c.common)
 	c.SubscriptionsApi = (*SubscriptionsApiService)(&c.common)
 	c.SummaryApi = (*SummaryApiService)(&c.common)
+	c.TestApi = (*TestApiService)(&c.common)
 	c.UsagesApi = (*UsagesApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 

@@ -20,6 +20,8 @@ type CreateService struct {
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
 	LifeCycle *ServiceLifeCycle `json:"life_cycle,omitempty"`
 	ProjectId *string `json:"project_id,omitempty"`
+	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewCreateService instantiates a new CreateService object
@@ -167,6 +169,70 @@ func (o *CreateService) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
+// GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
+func (o *CreateService) GetInstanceSnapshotId() string {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+		var ret string
+		return ret
+	}
+	return *o.InstanceSnapshotId
+}
+
+// GetInstanceSnapshotIdOk returns a tuple with the InstanceSnapshotId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetInstanceSnapshotIdOk() (*string, bool) {
+	if o == nil || isNil(o.InstanceSnapshotId) {
+    return nil, false
+	}
+	return o.InstanceSnapshotId, true
+}
+
+// HasInstanceSnapshotId returns a boolean if a field has been set.
+func (o *CreateService) HasInstanceSnapshotId() bool {
+	if o != nil && !isNil(o.InstanceSnapshotId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceSnapshotId gets a reference to the given string and assigns it to the InstanceSnapshotId field.
+func (o *CreateService) SetInstanceSnapshotId(v string) {
+	o.InstanceSnapshotId = &v
+}
+
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *CreateService) GetName() string {
+	if o == nil || isNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetNameOk() (*string, bool) {
+	if o == nil || isNil(o.Name) {
+    return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CreateService) HasName() bool {
+	if o != nil && !isNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *CreateService) SetName(v string) {
+	o.Name = &v
+}
+
 func (o CreateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AppId) {
@@ -180,6 +246,12 @@ func (o CreateService) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.ProjectId) {
 		toSerialize["project_id"] = o.ProjectId
+	}
+	if !isNil(o.InstanceSnapshotId) {
+		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
+	}
+	if !isNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return json.Marshal(toSerialize)
 }

@@ -4,29 +4,29 @@ All URIs are relative to *https://app.koyeb.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation
+[**AcceptOrganizationInvitation**](ProfileApi.md#AcceptOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**ClearIdenfyVerificationResult**](ProfileApi.md#ClearIdenfyVerificationResult) | **Post** /v1/account/idenfy | ClearIdenfyVerificationResult marks the current result for idenfy as superseded
-[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation
+[**DeclineOrganizationInvitation**](ProfileApi.md#DeclineOrganizationInvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**GetCurrentOrganization**](ProfileApi.md#GetCurrentOrganization) | **Get** /v1/account/organization | Get Current Organization
 [**GetCurrentUser**](ProfileApi.md#GetCurrentUser) | **Get** /v1/account/profile | Get Current User
 [**GetIdenfyToken**](ProfileApi.md#GetIdenfyToken) | **Get** /v1/account/idenfy | Begin a session with iDenfy, emit an authToken
 [**GetOAuthOptions**](ProfileApi.md#GetOAuthOptions) | **Get** /v1/account/oauth | Get OAuth Providers
-[**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation
+[**GetUserOrganizationInvitation**](ProfileApi.md#GetUserOrganizationInvitation) | **Get** /v1/account/organization_invitations/{id} | Get User Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**GetUserSettings**](ProfileApi.md#GetUserSettings) | **Get** /v1/account/settings | 
-[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations
+[**ListUserOrganizationInvitations**](ProfileApi.md#ListUserOrganizationInvitations) | **Get** /v1/account/organization_invitations | List User Organization Invitations DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**ListUserOrganizations**](ProfileApi.md#ListUserOrganizations) | **Get** /v1/account/organizations | List User Organizations
-[**LoginMethod**](ProfileApi.md#LoginMethod) | **Get** /v1/account/login_method | Get the login method for an email address
+[**LoginMethod**](ProfileApi.md#LoginMethod) | **Get** /v1/account/login_method | Get the login method for an email address DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**OAuthCallback**](ProfileApi.md#OAuthCallback) | **Post** /v1/account/oauth | Authenticate using OAuth
-[**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | Resend Email Verification
-[**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | Reset Password
-[**Signup**](ProfileApi.md#Signup) | **Post** /v1/account/signup | Signup
-[**UpdatePassword**](ProfileApi.md#UpdatePassword) | **Post** /v1/account/update_password | Update Password
+[**ResendEmailValidation**](ProfileApi.md#ResendEmailValidation) | **Post** /v1/account/resend_validation | Resend Email Verification DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+[**ResetPassword**](ProfileApi.md#ResetPassword) | **Post** /v1/account/reset_password | Reset Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+[**Signup**](ProfileApi.md#Signup) | **Post** /v1/account/signup | Signup DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
+[**UpdatePassword**](ProfileApi.md#UpdatePassword) | **Post** /v1/account/update_password | Update Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**UpdateUser**](ProfileApi.md#UpdateUser) | **Put** /v1/account/profile | Update User
 [**UpdateUser2**](ProfileApi.md#UpdateUser2) | **Patch** /v1/account/profile | Update User
 [**UpdateUserSettings**](ProfileApi.md#UpdateUserSettings) | **Patch** /v1/account/settings | 
 [**UpdateUserV2**](ProfileApi.md#UpdateUserV2) | **Put** /v2/account/profile | Update User V2
 [**UpdateUserV22**](ProfileApi.md#UpdateUserV22) | **Patch** /v2/account/profile | Update User V2
-[**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | Validate
+[**Validate**](ProfileApi.md#Validate) | **Post** /v1/account/validate/{id} | Validate DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 
 
@@ -34,7 +34,7 @@ Method | HTTP request | Description
 
 > AcceptOrganizationInvitationReply AcceptOrganizationInvitation(ctx, id).Body(body).Execute()
 
-Accept Organization Invitation
+Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 > DeclineOrganizationInvitationReply DeclineOrganizationInvitation(ctx, id).Body(body).Execute()
 
-Decline Organization Invitation
+Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -486,7 +486,7 @@ Name | Type | Description  | Notes
 
 > GetUserOrganizationInvitationReply GetUserOrganizationInvitation(ctx, id).Execute()
 
-Get User Organization Invitation
+Get User Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -613,7 +613,7 @@ Other parameters are passed through a pointer to a apiGetUserSettingsRequest str
 
 > ListUserOrganizationInvitationsReply ListUserOrganizationInvitations(ctx).Limit(limit).Offset(offset).Statuses(statuses).Execute()
 
-List User Organization Invitations
+List User Organization Invitations DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -755,7 +755,7 @@ Name | Type | Description  | Notes
 
 > LoginMethodReply LoginMethod(ctx).Email(email).Execute()
 
-Get the login method for an email address
+Get the login method for an email address DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -885,7 +885,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResendEmailValidation(ctx).Body(body).Execute()
 
-Resend Email Verification
+Resend Email Verification DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -949,7 +949,7 @@ Name | Type | Description  | Notes
 
 > map[string]interface{} ResetPassword(ctx).Body(body).Execute()
 
-Reset Password
+Reset Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -1013,7 +1013,7 @@ Name | Type | Description  | Notes
 
 > LoginReply Signup(ctx).Body(body).SeonFp(seonFp).Execute()
 
-Signup
+Signup DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -1079,7 +1079,7 @@ Name | Type | Description  | Notes
 
 > LoginReply UpdatePassword(ctx).Body(body).SeonFp(seonFp).Execute()
 
-Update Password
+Update Password DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 
@@ -1473,7 +1473,7 @@ Name | Type | Description  | Notes
 
 > LoginReply Validate(ctx, id).SeonFp(seonFp).Execute()
 
-Validate
+Validate DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 [**GetOrganization**](OrganizationApi.md#GetOrganization) | **Get** /v1/organizations/{id} | Get Organization
 [**GithubInstallation**](OrganizationApi.md#GithubInstallation) | **Post** /v1/github/installation | Start Github Installation
 [**ReactivateOrganization**](OrganizationApi.md#ReactivateOrganization) | **Post** /v1/organizations/{id}/reactivate | Reactivate an Organization
-[**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context
+[**SwitchOrganization**](OrganizationApi.md#SwitchOrganization) | **Post** /v1/organizations/{id}/switch | Switch Organization context DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 [**UnscopeOrganizationToken**](OrganizationApi.md#UnscopeOrganizationToken) | **Post** /v1/unscope_organization_token | Unscope Organization Token
 [**UpdateBudget**](OrganizationApi.md#UpdateBudget) | **Put** /v1/organizations/{organization_id}/budget | Update Budget
 [**UpdateOrganization**](OrganizationApi.md#UpdateOrganization) | **Put** /v1/organizations/{id} | Update Organization
@@ -772,7 +772,7 @@ Name | Type | Description  | Notes
 
 > LoginReply SwitchOrganization(ctx, id).Body(body).SeonFp(seonFp).Execute()
 
-Switch Organization context
+Switch Organization context DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 ### Example
 

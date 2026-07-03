@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **ArchiveMaxSizeMb** | Pointer to **string** |  | [optional] 
 **Lifecycle** | Pointer to [**LifecycleQuotas**](LifecycleQuotas.md) |  | [optional] 
 **MaxProjects** | Pointer to **string** |  | [optional] 
+**InstanceSnapshots** | Pointer to [**InstanceSnapshotQuotas**](InstanceSnapshotQuotas.md) |  | [optional] 
 
 ## Methods
 
@@ -595,6 +596,31 @@ SetMaxProjects sets MaxProjects field to given value.
 `func (o *Quotas) HasMaxProjects() bool`
 
 HasMaxProjects returns a boolean if a field has been set.
+
+### GetInstanceSnapshots
+
+`func (o *Quotas) GetInstanceSnapshots() InstanceSnapshotQuotas`
+
+GetInstanceSnapshots returns the InstanceSnapshots field if non-nil, zero value otherwise.
+
+### GetInstanceSnapshotsOk
+
+`func (o *Quotas) GetInstanceSnapshotsOk() (*InstanceSnapshotQuotas, bool)`
+
+GetInstanceSnapshotsOk returns a tuple with the InstanceSnapshots field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceSnapshots
+
+`func (o *Quotas) SetInstanceSnapshots(v InstanceSnapshotQuotas)`
+
+SetInstanceSnapshots sets InstanceSnapshots field to given value.
+
+### HasInstanceSnapshots
+
+`func (o *Quotas) HasInstanceSnapshots() bool`
+
+HasInstanceSnapshots returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

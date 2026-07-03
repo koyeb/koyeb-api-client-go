@@ -173,7 +173,7 @@ https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Duration.html.
 	ReactivateOrganizationExecute(r ApiReactivateOrganizationRequest) (*ReactivateOrganizationReply, *http.Response, error)
 
 	/*
-	SwitchOrganization Switch Organization context
+	SwitchOrganization Switch Organization context DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param id
@@ -2464,7 +2464,7 @@ func (r ApiSwitchOrganizationRequest) Execute() (*LoginReply, *http.Response, er
 }
 
 /*
-SwitchOrganization Switch Organization context
+SwitchOrganization Switch Organization context DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id
