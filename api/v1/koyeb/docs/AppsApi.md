@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ## ListApps
 
-> ListAppsReply ListApps(ctx).Limit(limit).Offset(offset).Name(name).ProjectId(projectId).Execute()
+> ListAppsReply ListApps(ctx).Limit(limit).Offset(offset).Name(name).ProjectId(projectId).Ids(ids).Execute()
 
 List App
 
@@ -313,10 +313,11 @@ func main() {
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
     name := "name_example" // string | (Optional) A filter for name (optional)
     projectId := "projectId_example" // string | (Optional) A filter for the project ID (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on app ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.AppsApi.ListApps(context.Background()).Limit(limit).Offset(offset).Name(name).ProjectId(projectId).Execute()
+    resp, r, err := apiClient.AppsApi.ListApps(context.Background()).Limit(limit).Offset(offset).Name(name).ProjectId(projectId).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `AppsApi.ListApps``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -341,6 +342,7 @@ Name | Type | Description  | Notes
  **offset** | **string** | (Optional) The offset in the list of item to return | 
  **name** | **string** | (Optional) A filter for name | 
  **projectId** | **string** | (Optional) A filter for the project ID | 
+ **ids** | **[]string** | (Optional) Filter on app ids | 
 
 ### Return type
 

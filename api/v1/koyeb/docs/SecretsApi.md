@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ## ListSecrets
 
-> ListSecretsReply ListSecrets(ctx).Name(name).Limit(limit).Offset(offset).Types(types).ProjectId(projectId).Execute()
+> ListSecretsReply ListSecrets(ctx).Name(name).Limit(limit).Offset(offset).Types(types).ProjectId(projectId).Ids(ids).Execute()
 
 List Secrets
 
@@ -238,10 +238,11 @@ func main() {
     offset := "offset_example" // string |  (optional)
     types := []string{"Types_example"} // []string | Filter by secret types (optional)
     projectId := "projectId_example" // string | (Optional) A filter for the project ID (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on secret ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecretsApi.ListSecrets(context.Background()).Name(name).Limit(limit).Offset(offset).Types(types).ProjectId(projectId).Execute()
+    resp, r, err := apiClient.SecretsApi.ListSecrets(context.Background()).Name(name).Limit(limit).Offset(offset).Types(types).ProjectId(projectId).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SecretsApi.ListSecrets``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,6 +268,7 @@ Name | Type | Description  | Notes
  **offset** | **string** |  | 
  **types** | **[]string** | Filter by secret types | 
  **projectId** | **string** | (Optional) A filter for the project ID | 
+ **ids** | **[]string** | (Optional) Filter on secret ids | 
 
 ### Return type
 

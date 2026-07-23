@@ -1647,6 +1647,7 @@ type ApiListServicesRequest struct {
 	statuses *[]string
 	regions *[]string
 	projectId *string
+	ids *[]string
 }
 
 // (Optional) The id of the app
@@ -1694,6 +1695,12 @@ func (r ApiListServicesRequest) Regions(regions []string) ApiListServicesRequest
 // (Optional) A filter for the project ID
 func (r ApiListServicesRequest) ProjectId(projectId string) ApiListServicesRequest {
 	r.projectId = &projectId
+	return r
+}
+
+// (Optional) Filter on service ids
+func (r ApiListServicesRequest) Ids(ids []string) ApiListServicesRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -1782,6 +1789,17 @@ func (a *ServicesApiService) ListServicesExecute(r ApiListServicesRequest) (*Lis
 	}
 	if r.projectId != nil {
 		localVarQueryParams.Add("project_id", parameterToString(*r.projectId, ""))
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

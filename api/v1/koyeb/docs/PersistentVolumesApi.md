@@ -287,7 +287,7 @@ Name | Type | Description  | Notes
 
 ## ListPersistentVolumes
 
-> ListPersistentVolumesReply ListPersistentVolumes(ctx).Limit(limit).Offset(offset).ServiceId(serviceId).Region(region).Name(name).ProjectId(projectId).Execute()
+> ListPersistentVolumesReply ListPersistentVolumes(ctx).Limit(limit).Offset(offset).ServiceId(serviceId).Region(region).Name(name).ProjectId(projectId).Ids(ids).Execute()
 
 List all PersistentVolumes
 
@@ -310,10 +310,11 @@ func main() {
     region := "region_example" // string | (Optional) A filter for the region (optional)
     name := "name_example" // string | (Optional) A filter for the name (optional)
     projectId := "projectId_example" // string | (Optional) A filter for the project ID (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on volume ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PersistentVolumesApi.ListPersistentVolumes(context.Background()).Limit(limit).Offset(offset).ServiceId(serviceId).Region(region).Name(name).ProjectId(projectId).Execute()
+    resp, r, err := apiClient.PersistentVolumesApi.ListPersistentVolumes(context.Background()).Limit(limit).Offset(offset).ServiceId(serviceId).Region(region).Name(name).ProjectId(projectId).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PersistentVolumesApi.ListPersistentVolumes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -340,6 +341,7 @@ Name | Type | Description  | Notes
  **region** | **string** | (Optional) A filter for the region | 
  **name** | **string** | (Optional) A filter for the name | 
  **projectId** | **string** | (Optional) A filter for the project ID | 
+ **ids** | **[]string** | (Optional) Filter on volume ids | 
 
 ### Return type
 

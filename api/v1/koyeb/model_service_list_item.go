@@ -21,6 +21,7 @@ type ServiceListItem struct {
 	Name *string `json:"name,omitempty"`
 	Type *ServiceType `json:"type,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -184,6 +185,38 @@ func (o *ServiceListItem) HasOrganizationId() bool {
 // SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
 func (o *ServiceListItem) SetOrganizationId(v string) {
 	o.OrganizationId = &v
+}
+
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *ServiceListItem) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ServiceListItem) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *ServiceListItem) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *ServiceListItem) SetProjectId(v string) {
+	o.ProjectId = &v
 }
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
@@ -519,6 +552,9 @@ func (o ServiceListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
+	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
 	}
 	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId

@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## ListInstances
 
-> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
+> ListInstancesReply ListInstances(ctx).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Ids(ids).Execute()
 
 List Instances
 
@@ -263,10 +263,11 @@ func main() {
     order := "order_example" // string | (Optional) Sorts the list in the ascending or the descending order (optional)
     startingTime := time.Now() // time.Time | (Optional) The starting time of the period of running instance (optional)
     endingTime := time.Now() // time.Time | (Optional) The ending time of the period of running instance (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on instance ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Execute()
+    resp, r, err := apiClient.InstancesApi.ListInstances(context.Background()).AppId(appId).ServiceId(serviceId).DeploymentId(deploymentId).RegionalDeploymentId(regionalDeploymentId).AllocationId(allocationId).ReplicaIndex(replicaIndex).Statuses(statuses).Limit(limit).Offset(offset).Order(order).StartingTime(startingTime).EndingTime(endingTime).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstancesApi.ListInstances``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -299,6 +300,7 @@ Name | Type | Description  | Notes
  **order** | **string** | (Optional) Sorts the list in the ascending or the descending order | 
  **startingTime** | **time.Time** | (Optional) The starting time of the period of running instance | 
  **endingTime** | **time.Time** | (Optional) The ending time of the period of running instance | 
+ **ids** | **[]string** | (Optional) Filter on instance ids | 
 
 ### Return type
 
