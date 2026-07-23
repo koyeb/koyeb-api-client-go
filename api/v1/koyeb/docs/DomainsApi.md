@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 ## ListDomains
 
-> ListDomainsReply ListDomains(ctx).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).ProjectId(projectId).Execute()
+> ListDomainsReply ListDomains(ctx).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).ProjectId(projectId).Ids(ids).Execute()
 
 List Domains
 
@@ -239,10 +239,11 @@ func main() {
     appIds := []string{"Inner_example"} // []string | (Optional) A filter for apps (optional)
     name := "name_example" // string | (Optional) A filter for name (optional)
     projectId := "projectId_example" // string | (Optional) A filter for the project ID (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on domain ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).ProjectId(projectId).Execute()
+    resp, r, err := apiClient.DomainsApi.ListDomains(context.Background()).Limit(limit).Offset(offset).Types(types).Statuses(statuses).AppIds(appIds).Name(name).ProjectId(projectId).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DomainsApi.ListDomains``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -270,6 +271,7 @@ Name | Type | Description  | Notes
  **appIds** | **[]string** | (Optional) A filter for apps | 
  **name** | **string** | (Optional) A filter for name | 
  **projectId** | **string** | (Optional) A filter for the project ID | 
+ **ids** | **[]string** | (Optional) Filter on domain ids | 
 
 ### Return type
 

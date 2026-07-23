@@ -914,6 +914,7 @@ type ApiListInstanceSnapshotsRequest struct {
 	name *string
 	statuses *[]string
 	type_ *string
+	ids *[]string
 }
 
 func (r ApiListInstanceSnapshotsRequest) Limit(limit string) ApiListInstanceSnapshotsRequest {
@@ -938,6 +939,11 @@ func (r ApiListInstanceSnapshotsRequest) Statuses(statuses []string) ApiListInst
 
 func (r ApiListInstanceSnapshotsRequest) Type_(type_ string) ApiListInstanceSnapshotsRequest {
 	r.type_ = &type_
+	return r
+}
+
+func (r ApiListInstanceSnapshotsRequest) Ids(ids []string) ApiListInstanceSnapshotsRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -1001,6 +1007,17 @@ func (a *InstanceSnapshotsApiService) ListInstanceSnapshotsExecute(r ApiListInst
 	}
 	if r.type_ != nil {
 		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

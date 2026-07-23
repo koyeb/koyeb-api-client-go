@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ## ListDeployments
 
-> ListDeploymentsReply ListDeployments(ctx).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Execute()
+> ListDeploymentsReply ListDeployments(ctx).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Ids(ids).Execute()
 
 List Deployments
 
@@ -318,10 +318,11 @@ func main() {
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter on statuses (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on deployment ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DeploymentsApi.ListDeployments(context.Background()).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Execute()
+    resp, r, err := apiClient.DeploymentsApi.ListDeployments(context.Background()).AppId(appId).ServiceId(serviceId).Limit(limit).Offset(offset).Statuses(statuses).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsApi.ListDeployments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -347,6 +348,7 @@ Name | Type | Description  | Notes
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
  **statuses** | **[]string** | (Optional) Filter on statuses | 
+ **ids** | **[]string** | (Optional) Filter on deployment ids | 
 
 ### Return type
 

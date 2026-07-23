@@ -672,6 +672,7 @@ type ApiListSnapshotsRequest struct {
 	organizationId *string
 	statuses *[]string
 	region *string
+	ids *[]string
 }
 
 // (Optional) The number of items to return
@@ -701,6 +702,12 @@ func (r ApiListSnapshotsRequest) Statuses(statuses []string) ApiListSnapshotsReq
 // (Optional) A filter for the region
 func (r ApiListSnapshotsRequest) Region(region string) ApiListSnapshotsRequest {
 	r.region = &region
+	return r
+}
+
+// (Optional) Filter on snapshot ids
+func (r ApiListSnapshotsRequest) Ids(ids []string) ApiListSnapshotsRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -764,6 +771,17 @@ func (a *SnapshotsApiService) ListSnapshotsExecute(r ApiListSnapshotsRequest) (*
 	}
 	if r.region != nil {
 		localVarQueryParams.Add("region", parameterToString(*r.region, ""))
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

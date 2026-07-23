@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## ListRegionalDeployments
 
-> ListRegionalDeploymentsReply ListRegionalDeployments(ctx).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
+> ListRegionalDeploymentsReply ListRegionalDeployments(ctx).DeploymentId(deploymentId).Limit(limit).Offset(offset).Ids(ids).Execute()
 
 List Regional Deployments
 
@@ -176,10 +176,11 @@ func main() {
     deploymentId := "deploymentId_example" // string | (Optional) Filter on deployment id (optional)
     limit := "limit_example" // string | (Optional) The number of items to return (optional)
     offset := "offset_example" // string | (Optional) The offset in the list of item to return (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on regional deployment ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RegionalDeploymentsApi.ListRegionalDeployments(context.Background()).DeploymentId(deploymentId).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.RegionalDeploymentsApi.ListRegionalDeployments(context.Background()).DeploymentId(deploymentId).Limit(limit).Offset(offset).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RegionalDeploymentsApi.ListRegionalDeployments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -203,6 +204,7 @@ Name | Type | Description  | Notes
  **deploymentId** | **string** | (Optional) Filter on deployment id | 
  **limit** | **string** | (Optional) The number of items to return | 
  **offset** | **string** | (Optional) The offset in the list of item to return | 
+ **ids** | **[]string** | (Optional) Filter on regional deployment ids | 
 
 ### Return type
 
