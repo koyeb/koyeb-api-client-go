@@ -25,6 +25,7 @@ type DeploymentListItem struct {
 	SucceededAt *time.Time `json:"succeeded_at,omitempty"`
 	TerminatedAt *time.Time `json:"terminated_at,omitempty"`
 	OrganizationId *string `json:"organization_id,omitempty"`
+	ProjectId *string `json:"project_id,omitempty"`
 	AppId *string `json:"app_id,omitempty"`
 	ServiceId *string `json:"service_id,omitempty"`
 	ParentId *string `json:"parent_id,omitempty"`
@@ -36,6 +37,8 @@ type DeploymentListItem struct {
 	ProvisioningInfo *DeploymentProvisioningInfo `json:"provisioning_info,omitempty"`
 	DatabaseInfo *DeploymentDatabaseInfo `json:"database_info,omitempty"`
 	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
+	// CreatedBy is the user_id of the user that called CreateService or UpdateService. It's optional because CreateService or UpdateService can be called by a machine, using a token that's organization scoped, not user scoped.
+	CreatedBy *string `json:"created_by,omitempty"`
 	Version *string `json:"version,omitempty"`
 	DeploymentGroup *string `json:"deployment_group,omitempty"`
 }
@@ -315,6 +318,38 @@ func (o *DeploymentListItem) HasOrganizationId() bool {
 // SetOrganizationId gets a reference to the given string and assigns it to the OrganizationId field.
 func (o *DeploymentListItem) SetOrganizationId(v string) {
 	o.OrganizationId = &v
+}
+
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetProjectId() string {
+	if o == nil || isNil(o.ProjectId) {
+		var ret string
+		return ret
+	}
+	return *o.ProjectId
+}
+
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetProjectIdOk() (*string, bool) {
+	if o == nil || isNil(o.ProjectId) {
+    return nil, false
+	}
+	return o.ProjectId, true
+}
+
+// HasProjectId returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasProjectId() bool {
+	if o != nil && !isNil(o.ProjectId) {
+		return true
+	}
+
+	return false
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
+func (o *DeploymentListItem) SetProjectId(v string) {
+	o.ProjectId = &v
 }
 
 // GetAppId returns the AppId field value if set, zero value otherwise.
@@ -669,6 +704,38 @@ func (o *DeploymentListItem) SetInstanceSnapshotId(v string) {
 	o.InstanceSnapshotId = &v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *DeploymentListItem) GetCreatedBy() string {
+	if o == nil || isNil(o.CreatedBy) {
+		var ret string
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentListItem) GetCreatedByOk() (*string, bool) {
+	if o == nil || isNil(o.CreatedBy) {
+    return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *DeploymentListItem) HasCreatedBy() bool {
+	if o != nil && !isNil(o.CreatedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
+func (o *DeploymentListItem) SetCreatedBy(v string) {
+	o.CreatedBy = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DeploymentListItem) GetVersion() string {
 	if o == nil || isNil(o.Version) {
@@ -759,6 +826,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	if !isNil(o.OrganizationId) {
 		toSerialize["organization_id"] = o.OrganizationId
 	}
+	if !isNil(o.ProjectId) {
+		toSerialize["project_id"] = o.ProjectId
+	}
 	if !isNil(o.AppId) {
 		toSerialize["app_id"] = o.AppId
 	}
@@ -791,6 +861,9 @@ func (o DeploymentListItem) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.InstanceSnapshotId) {
 		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
+	}
+	if !isNil(o.CreatedBy) {
+		toSerialize["created_by"] = o.CreatedBy
 	}
 	if !isNil(o.Version) {
 		toSerialize["version"] = o.Version

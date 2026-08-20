@@ -508,6 +508,7 @@ type ApiListRegionalDeploymentsRequest struct {
 	deploymentId *string
 	limit *string
 	offset *string
+	ids *[]string
 }
 
 // (Optional) Filter on deployment id
@@ -525,6 +526,12 @@ func (r ApiListRegionalDeploymentsRequest) Limit(limit string) ApiListRegionalDe
 // (Optional) The offset in the list of item to return
 func (r ApiListRegionalDeploymentsRequest) Offset(offset string) ApiListRegionalDeploymentsRequest {
 	r.offset = &offset
+	return r
+}
+
+// (Optional) Filter on regional deployment ids
+func (r ApiListRegionalDeploymentsRequest) Ids(ids []string) ApiListRegionalDeploymentsRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -576,6 +583,17 @@ func (a *RegionalDeploymentsApiService) ListRegionalDeploymentsExecute(r ApiList
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

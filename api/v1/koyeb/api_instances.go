@@ -807,6 +807,7 @@ type ApiListInstancesRequest struct {
 	order *string
 	startingTime *time.Time
 	endingTime *time.Time
+	ids *[]string
 }
 
 // (Optional) Filter on application id
@@ -878,6 +879,12 @@ func (r ApiListInstancesRequest) StartingTime(startingTime time.Time) ApiListIns
 // (Optional) The ending time of the period of running instance
 func (r ApiListInstancesRequest) EndingTime(endingTime time.Time) ApiListInstancesRequest {
 	r.endingTime = &endingTime
+	return r
+}
+
+// (Optional) Filter on instance ids
+func (r ApiListInstancesRequest) Ids(ids []string) ApiListInstancesRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -962,6 +969,17 @@ func (a *InstancesApiService) ListInstancesExecute(r ApiListInstancesRequest) (*
 	}
 	if r.endingTime != nil {
 		localVarQueryParams.Add("ending_time", parameterToString(*r.endingTime, ""))
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

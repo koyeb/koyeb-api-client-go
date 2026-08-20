@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Egress** | Pointer to [**EgressPolicy**](EgressPolicy.md) |  | [optional] 
+**Mesh** | Pointer to [**Mesh**](Mesh.md) |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetEgress sets Egress field to given value.
 `func (o *NetworkPolicy) HasEgress() bool`
 
 HasEgress returns a boolean if a field has been set.
+
+### GetMesh
+
+`func (o *NetworkPolicy) GetMesh() Mesh`
+
+GetMesh returns the Mesh field if non-nil, zero value otherwise.
+
+### GetMeshOk
+
+`func (o *NetworkPolicy) GetMeshOk() (*Mesh, bool)`
+
+GetMeshOk returns a tuple with the Mesh field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMesh
+
+`func (o *NetworkPolicy) SetMesh(v Mesh)`
+
+SetMesh sets Mesh field to given value.
+
+### HasMesh
+
+`func (o *NetworkPolicy) HasMesh() bool`
+
+HasMesh returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

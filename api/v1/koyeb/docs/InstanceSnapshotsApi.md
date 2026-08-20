@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 
 ## ListInstanceSnapshots
 
-> ListInstanceSnapshotsReply ListInstanceSnapshots(ctx).Limit(limit).Offset(offset).Name(name).Statuses(statuses).Type_(type_).Execute()
+> ListInstanceSnapshotsReply ListInstanceSnapshots(ctx).Limit(limit).Offset(offset).Name(name).Statuses(statuses).Type_(type_).Ids(ids).Execute()
 
 
 
@@ -308,10 +308,11 @@ func main() {
     name := "name_example" // string |  (optional)
     statuses := []string{"Statuses_example"} // []string |  (optional)
     type_ := "type__example" // string |  (optional) (default to "INSTANCE_SNAPSHOT_TYPE_INVALID")
+    ids := []string{"Inner_example"} // []string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.InstanceSnapshotsApi.ListInstanceSnapshots(context.Background()).Limit(limit).Offset(offset).Name(name).Statuses(statuses).Type_(type_).Execute()
+    resp, r, err := apiClient.InstanceSnapshotsApi.ListInstanceSnapshots(context.Background()).Limit(limit).Offset(offset).Name(name).Statuses(statuses).Type_(type_).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `InstanceSnapshotsApi.ListInstanceSnapshots``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -337,6 +338,7 @@ Name | Type | Description  | Notes
  **name** | **string** |  | 
  **statuses** | **[]string** |  | 
  **type_** | **string** |  | [default to &quot;INSTANCE_SNAPSHOT_TYPE_INVALID&quot;]
+ **ids** | **[]string** |  | 
 
 ### Return type
 

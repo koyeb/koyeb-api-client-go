@@ -17,6 +17,7 @@ import (
 // NetworkPolicy struct for NetworkPolicy
 type NetworkPolicy struct {
 	Egress *EgressPolicy `json:"egress,omitempty"`
+	Mesh *Mesh `json:"mesh,omitempty"`
 }
 
 // NewNetworkPolicy instantiates a new NetworkPolicy object
@@ -68,10 +69,45 @@ func (o *NetworkPolicy) SetEgress(v EgressPolicy) {
 	o.Egress = &v
 }
 
+// GetMesh returns the Mesh field value if set, zero value otherwise.
+func (o *NetworkPolicy) GetMesh() Mesh {
+	if o == nil || isNil(o.Mesh) {
+		var ret Mesh
+		return ret
+	}
+	return *o.Mesh
+}
+
+// GetMeshOk returns a tuple with the Mesh field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NetworkPolicy) GetMeshOk() (*Mesh, bool) {
+	if o == nil || isNil(o.Mesh) {
+    return nil, false
+	}
+	return o.Mesh, true
+}
+
+// HasMesh returns a boolean if a field has been set.
+func (o *NetworkPolicy) HasMesh() bool {
+	if o != nil && !isNil(o.Mesh) {
+		return true
+	}
+
+	return false
+}
+
+// SetMesh gets a reference to the given Mesh and assigns it to the Mesh field.
+func (o *NetworkPolicy) SetMesh(v Mesh) {
+	o.Mesh = &v
+}
+
 func (o NetworkPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Egress) {
 		toSerialize["egress"] = o.Egress
+	}
+	if !isNil(o.Mesh) {
+		toSerialize["mesh"] = o.Mesh
 	}
 	return json.Marshal(toSerialize)
 }

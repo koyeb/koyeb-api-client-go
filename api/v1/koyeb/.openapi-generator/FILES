@@ -326,6 +326,8 @@ docs/LogsApi.md
 docs/ManageReply.md
 docs/ManualServiceScaling.md
 docs/MembersSummary.md
+docs/Mesh.md
+docs/MeshScope.md
 docs/MetricName.md
 docs/MetricsApi.md
 docs/NeonPostgresDatabase.md
@@ -754,6 +756,8 @@ model_login_request.go
 model_manage_reply.go
 model_manual_service_scaling.go
 model_members_summary.go
+model_mesh.go
+model_mesh_scope.go
 model_metric_name.go
 model_neon_postgres_database.go
 model_neon_postgres_database_deployment_metadata.go

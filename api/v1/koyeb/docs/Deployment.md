@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **SucceededAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
@@ -27,6 +28,7 @@ Name | Type | Description | Notes
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 **InstanceSnapshotId** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** | CreatedBy is the user_id of the user that called CreateService or UpdateService. It&#39;s optional because CreateService or UpdateService can be called by a machine, using a token that&#39;s organization scoped, not user scoped. | [optional] 
 
 ## Methods
 
@@ -246,6 +248,31 @@ SetOrganizationId sets OrganizationId field to given value.
 `func (o *Deployment) HasOrganizationId() bool`
 
 HasOrganizationId returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *Deployment) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *Deployment) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *Deployment) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *Deployment) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
 
 ### GetAppId
 
@@ -621,6 +648,31 @@ SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
 `func (o *Deployment) HasInstanceSnapshotId() bool`
 
 HasInstanceSnapshotId returns a boolean if a field has been set.
+
+### GetCreatedBy
+
+`func (o *Deployment) GetCreatedBy() string`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *Deployment) GetCreatedByOk() (*string, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *Deployment) SetCreatedBy(v string)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *Deployment) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

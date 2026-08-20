@@ -19,9 +19,10 @@ type CreateService struct {
 	AppId *string `json:"app_id,omitempty"`
 	Definition *DeploymentDefinition `json:"definition,omitempty"`
 	LifeCycle *ServiceLifeCycle `json:"life_cycle,omitempty"`
-	ProjectId *string `json:"project_id,omitempty"`
 	InstanceSnapshotId *string `json:"instance_snapshot_id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// (Optional) The Albe service account ID to associate with the service. Immutable after creation.
+	ServiceAccountId *string `json:"service_account_id,omitempty"`
 }
 
 // NewCreateService instantiates a new CreateService object
@@ -137,38 +138,6 @@ func (o *CreateService) SetLifeCycle(v ServiceLifeCycle) {
 	o.LifeCycle = &v
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *CreateService) GetProjectId() string {
-	if o == nil || isNil(o.ProjectId) {
-		var ret string
-		return ret
-	}
-	return *o.ProjectId
-}
-
-// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateService) GetProjectIdOk() (*string, bool) {
-	if o == nil || isNil(o.ProjectId) {
-    return nil, false
-	}
-	return o.ProjectId, true
-}
-
-// HasProjectId returns a boolean if a field has been set.
-func (o *CreateService) HasProjectId() bool {
-	if o != nil && !isNil(o.ProjectId) {
-		return true
-	}
-
-	return false
-}
-
-// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *CreateService) SetProjectId(v string) {
-	o.ProjectId = &v
-}
-
 // GetInstanceSnapshotId returns the InstanceSnapshotId field value if set, zero value otherwise.
 func (o *CreateService) GetInstanceSnapshotId() string {
 	if o == nil || isNil(o.InstanceSnapshotId) {
@@ -233,6 +202,38 @@ func (o *CreateService) SetName(v string) {
 	o.Name = &v
 }
 
+// GetServiceAccountId returns the ServiceAccountId field value if set, zero value otherwise.
+func (o *CreateService) GetServiceAccountId() string {
+	if o == nil || isNil(o.ServiceAccountId) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceAccountId
+}
+
+// GetServiceAccountIdOk returns a tuple with the ServiceAccountId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateService) GetServiceAccountIdOk() (*string, bool) {
+	if o == nil || isNil(o.ServiceAccountId) {
+    return nil, false
+	}
+	return o.ServiceAccountId, true
+}
+
+// HasServiceAccountId returns a boolean if a field has been set.
+func (o *CreateService) HasServiceAccountId() bool {
+	if o != nil && !isNil(o.ServiceAccountId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountId gets a reference to the given string and assigns it to the ServiceAccountId field.
+func (o *CreateService) SetServiceAccountId(v string) {
+	o.ServiceAccountId = &v
+}
+
 func (o CreateService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.AppId) {
@@ -244,14 +245,14 @@ func (o CreateService) MarshalJSON() ([]byte, error) {
 	if !isNil(o.LifeCycle) {
 		toSerialize["life_cycle"] = o.LifeCycle
 	}
-	if !isNil(o.ProjectId) {
-		toSerialize["project_id"] = o.ProjectId
-	}
 	if !isNil(o.InstanceSnapshotId) {
 		toSerialize["instance_snapshot_id"] = o.InstanceSnapshotId
 	}
 	if !isNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !isNil(o.ServiceAccountId) {
+		toSerialize["service_account_id"] = o.ServiceAccountId
 	}
 	return json.Marshal(toSerialize)
 }
