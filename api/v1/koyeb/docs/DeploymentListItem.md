@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **SucceededAt** | Pointer to **time.Time** |  | [optional] 
 **TerminatedAt** | Pointer to **time.Time** |  | [optional] 
 **OrganizationId** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **ServiceId** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
@@ -23,6 +24,7 @@ Name | Type | Description | Notes
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **DatabaseInfo** | Pointer to [**DeploymentDatabaseInfo**](DeploymentDatabaseInfo.md) |  | [optional] 
 **InstanceSnapshotId** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** | CreatedBy is the user_id of the user that called CreateService or UpdateService. It&#39;s optional because CreateService or UpdateService can be called by a machine, using a token that&#39;s organization scoped, not user scoped. | [optional] 
 **Version** | Pointer to **string** |  | [optional] 
 **DeploymentGroup** | Pointer to **string** |  | [optional] 
 
@@ -244,6 +246,31 @@ SetOrganizationId sets OrganizationId field to given value.
 `func (o *DeploymentListItem) HasOrganizationId() bool`
 
 HasOrganizationId returns a boolean if a field has been set.
+
+### GetProjectId
+
+`func (o *DeploymentListItem) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *DeploymentListItem) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *DeploymentListItem) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *DeploymentListItem) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
 
 ### GetAppId
 
@@ -519,6 +546,31 @@ SetInstanceSnapshotId sets InstanceSnapshotId field to given value.
 `func (o *DeploymentListItem) HasInstanceSnapshotId() bool`
 
 HasInstanceSnapshotId returns a boolean if a field has been set.
+
+### GetCreatedBy
+
+`func (o *DeploymentListItem) GetCreatedBy() string`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *DeploymentListItem) GetCreatedByOk() (*string, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *DeploymentListItem) SetCreatedBy(v string)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *DeploymentListItem) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
 
 ### GetVersion
 

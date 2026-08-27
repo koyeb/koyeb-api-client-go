@@ -505,7 +505,7 @@ Name | Type | Description  | Notes
 
 ## ListServices
 
-> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).ProjectId(projectId).Execute()
+> ListServicesReply ListServices(ctx).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).Ids(ids).Execute()
 
 List Services
 
@@ -529,11 +529,11 @@ func main() {
     types := []string{"Types_example"} // []string | (Optional) Filter on service types (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter on service statuses (optional)
     regions := []string{"Inner_example"} // []string | (Optional) Filter on regions (optional)
-    projectId := "projectId_example" // string | (Optional) A filter for the project ID (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on service ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).ProjectId(projectId).Execute()
+    resp, r, err := apiClient.ServicesApi.ListServices(context.Background()).AppId(appId).Limit(limit).Offset(offset).Name(name).Types(types).Statuses(statuses).Regions(regions).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicesApi.ListServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -561,7 +561,7 @@ Name | Type | Description  | Notes
  **types** | **[]string** | (Optional) Filter on service types | 
  **statuses** | **[]string** | (Optional) Filter on service statuses | 
  **regions** | **[]string** | (Optional) Filter on regions | 
- **projectId** | **string** | (Optional) A filter for the project ID | 
+ **ids** | **[]string** | (Optional) Filter on service ids | 
 
 ### Return type
 

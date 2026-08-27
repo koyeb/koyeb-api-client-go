@@ -518,6 +518,8 @@ Class | Method | HTTP request | Description
  - [ManageReply](docs/ManageReply.md)
  - [ManualServiceScaling](docs/ManualServiceScaling.md)
  - [MembersSummary](docs/MembersSummary.md)
+ - [Mesh](docs/Mesh.md)
+ - [MeshScope](docs/MeshScope.md)
  - [MetricName](docs/MetricName.md)
  - [NeonPostgresDatabase](docs/NeonPostgresDatabase.md)
  - [NeonPostgresDatabaseDeploymentMetadata](docs/NeonPostgresDatabaseDeploymentMetadata.md)

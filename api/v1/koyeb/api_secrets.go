@@ -697,7 +697,7 @@ type ApiListSecretsRequest struct {
 	limit *string
 	offset *string
 	types *[]string
-	projectId *string
+	ids *[]string
 }
 
 func (r ApiListSecretsRequest) Name(name string) ApiListSecretsRequest {
@@ -721,9 +721,9 @@ func (r ApiListSecretsRequest) Types(types []string) ApiListSecretsRequest {
 	return r
 }
 
-// (Optional) A filter for the project ID
-func (r ApiListSecretsRequest) ProjectId(projectId string) ApiListSecretsRequest {
-	r.projectId = &projectId
+// (Optional) Filter on secret ids
+func (r ApiListSecretsRequest) Ids(ids []string) ApiListSecretsRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -785,8 +785,16 @@ func (a *SecretsApiService) ListSecretsExecute(r ApiListSecretsRequest) (*ListSe
 			localVarQueryParams.Add("types", parameterToString(t, "multi"))
 		}
 	}
-	if r.projectId != nil {
-		localVarQueryParams.Add("project_id", parameterToString(*r.projectId, ""))
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

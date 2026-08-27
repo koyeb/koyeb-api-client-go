@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ## ListSnapshots
 
-> ListSnapshotsReply ListSnapshots(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Statuses(statuses).Region(region).Execute()
+> ListSnapshotsReply ListSnapshots(ctx).Limit(limit).Offset(offset).OrganizationId(organizationId).Statuses(statuses).Region(region).Ids(ids).Execute()
 
 List all Snapshots
 
@@ -236,10 +236,11 @@ func main() {
     organizationId := "organizationId_example" // string | (Optional) Filter by organization_id (optional)
     statuses := []string{"Statuses_example"} // []string | (Optional) Filter by status   - SNAPSHOT_STATUS_INVALID: zero value, invalid  - SNAPSHOT_STATUS_CREATING: the snapshot is being created  - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available  - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated  - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted  - SNAPSHOT_STATUS_DELETED: the snapshot is deleted (optional)
     region := "region_example" // string | (Optional) A filter for the region (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on snapshot ids (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.SnapshotsApi.ListSnapshots(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Statuses(statuses).Region(region).Execute()
+    resp, r, err := apiClient.SnapshotsApi.ListSnapshots(context.Background()).Limit(limit).Offset(offset).OrganizationId(organizationId).Statuses(statuses).Region(region).Ids(ids).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SnapshotsApi.ListSnapshots``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -265,6 +266,7 @@ Name | Type | Description  | Notes
  **organizationId** | **string** | (Optional) Filter by organization_id | 
  **statuses** | **[]string** | (Optional) Filter by status   - SNAPSHOT_STATUS_INVALID: zero value, invalid  - SNAPSHOT_STATUS_CREATING: the snapshot is being created  - SNAPSHOT_STATUS_AVAILABLE: the snapshot is complete and available  - SNAPSHOT_STATUS_MIGRATING: the snapshot is being migrated  - SNAPSHOT_STATUS_DELETING: the snapshot is being deleted  - SNAPSHOT_STATUS_DELETED: the snapshot is deleted | 
  **region** | **string** | (Optional) A filter for the region | 
+ **ids** | **[]string** | (Optional) Filter on snapshot ids | 
 
 ### Return type
 

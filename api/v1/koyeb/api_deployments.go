@@ -938,6 +938,7 @@ type ApiListDeploymentsRequest struct {
 	limit *string
 	offset *string
 	statuses *[]string
+	ids *[]string
 }
 
 // (Optional) Filter on application id
@@ -967,6 +968,12 @@ func (r ApiListDeploymentsRequest) Offset(offset string) ApiListDeploymentsReque
 // (Optional) Filter on statuses
 func (r ApiListDeploymentsRequest) Statuses(statuses []string) ApiListDeploymentsRequest {
 	r.statuses = &statuses
+	return r
+}
+
+// (Optional) Filter on deployment ids
+func (r ApiListDeploymentsRequest) Ids(ids []string) ApiListDeploymentsRequest {
+	r.ids = &ids
 	return r
 }
 
@@ -1029,6 +1036,17 @@ func (a *DeploymentsApiService) ListDeploymentsExecute(r ApiListDeploymentsReque
 			}
 		} else {
 			localVarQueryParams.Add("statuses", parameterToString(t, "multi"))
+		}
+	}
+	if r.ids != nil {
+		t := *r.ids
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("ids", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("ids", parameterToString(t, "multi"))
 		}
 	}
 	// to determine the Content-Type header

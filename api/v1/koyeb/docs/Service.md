@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**ServiceType**](ServiceType.md) |  | [optional] [default to SERVICETYPE_INVALID_TYPE]
 **OrganizationId** | Pointer to **string** |  | [optional] 
+**ProjectId** | Pointer to **string** |  | [optional] 
 **AppId** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**ServiceStatus**](ServiceStatus.md) |  | [optional] [default to SERVICESTATUS_STARTING]
 **Messages** | Pointer to **[]string** |  | [optional] 
@@ -24,6 +25,7 @@ Name | Type | Description | Notes
 **LastProvisionedDeploymentId** | Pointer to **string** |  | [optional] 
 **State** | Pointer to [**ServiceState**](ServiceState.md) |  | [optional] 
 **LifeCycle** | Pointer to [**ServiceLifeCycle**](ServiceLifeCycle.md) |  | [optional] 
+**ServiceAccountId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -319,6 +321,31 @@ SetOrganizationId sets OrganizationId field to given value.
 
 HasOrganizationId returns a boolean if a field has been set.
 
+### GetProjectId
+
+`func (o *Service) GetProjectId() string`
+
+GetProjectId returns the ProjectId field if non-nil, zero value otherwise.
+
+### GetProjectIdOk
+
+`func (o *Service) GetProjectIdOk() (*string, bool)`
+
+GetProjectIdOk returns a tuple with the ProjectId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProjectId
+
+`func (o *Service) SetProjectId(v string)`
+
+SetProjectId sets ProjectId field to given value.
+
+### HasProjectId
+
+`func (o *Service) HasProjectId() bool`
+
+HasProjectId returns a boolean if a field has been set.
+
 ### GetAppId
 
 `func (o *Service) GetAppId() string`
@@ -543,6 +570,31 @@ SetLifeCycle sets LifeCycle field to given value.
 `func (o *Service) HasLifeCycle() bool`
 
 HasLifeCycle returns a boolean if a field has been set.
+
+### GetServiceAccountId
+
+`func (o *Service) GetServiceAccountId() string`
+
+GetServiceAccountId returns the ServiceAccountId field if non-nil, zero value otherwise.
+
+### GetServiceAccountIdOk
+
+`func (o *Service) GetServiceAccountIdOk() (*string, bool)`
+
+GetServiceAccountIdOk returns a tuple with the ServiceAccountId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServiceAccountId
+
+`func (o *Service) SetServiceAccountId(v string)`
+
+SetServiceAccountId sets ServiceAccountId field to given value.
+
+### HasServiceAccountId
+
+`func (o *Service) HasServiceAccountId() bool`
+
+HasServiceAccountId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
