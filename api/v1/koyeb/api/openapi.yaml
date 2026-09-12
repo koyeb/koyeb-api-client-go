@@ -9380,6 +9380,209 @@ paths:
       tags:
       - PersistentVolumes
       x-codegen-request-body-name: body
+  /v1/claim:
+    post:
+      operationId: Claim
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PoolClaimRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PoolClaimReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Claim a sandbox from a service pool
+      tags:
+      - PoolClaims
+      x-codegen-request-body-name: body
+  /v1/claims/{sandbox_id}:
+    get:
+      operationId: GetClaim
+      parameters:
+      - in: path
+        name: sandbox_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: request_id
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetPoolClaimReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get a claim
+      tags:
+      - PoolClaims
+  /v1/service_pools/{pool_id}/claims:
+    get:
+      operationId: ListClaim
+      parameters:
+      - in: path
+        name: pool_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListPoolClaimReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List claims of a service pool
+      tags:
+      - PoolClaims
   /v1/provisioning/{deployment_id}/status/{stage}/{attempt}:
     patch:
       operationId: DeclareStageProgress
@@ -10406,6 +10609,199 @@ paths:
       tags:
       - Secrets
       x-codegen-request-body-name: body
+  /v1/service_pools:
+    get:
+      operationId: ListServicePools
+      parameters:
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: limit
+        schema:
+          type: string
+      - in: query
+        name: offset
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListServicePoolsReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List ServicePools
+      tags:
+      - ServicePools
+    post:
+      operationId: CreateServicePool
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/CreateServicePool'
+        required: true
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateServicePoolReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Create a ServicePool
+      tags:
+      - ServicePools
+      x-codegen-request-body-name: service_pool
+  /v1/service_pools/{id}:
+    get:
+      operationId: GetServicePool
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetServicePoolReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get a ServicePool
+      tags:
+      - ServicePools
   /v1/service_events:
     get:
       operationId: ListServiceEvents
@@ -24865,6 +25261,155 @@ components:
         volume:
           $ref: '#/components/schemas/PersistentVolume'
       type: object
+    GetPoolClaimReply:
+      example:
+        claim:
+          fulfilled_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          released_at: 2000-01-23T04:56:07.000+00:00
+          pool_id: pool_id
+          workspace_id: workspace_id
+          service_id: service_id
+          organization_id: organization_id
+          sandbox_id: sandbox_id
+          pool_generation: pool_generation
+          id: id
+          customer_id: customer_id
+          request_id: request_id
+          status: null
+      properties:
+        claim:
+          $ref: '#/components/schemas/PoolClaim'
+      type: object
+    ListPoolClaimReply:
+      example:
+        offset: 6
+        claims:
+        - fulfilled_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          released_at: 2000-01-23T04:56:07.000+00:00
+          pool_id: pool_id
+          workspace_id: workspace_id
+          service_id: service_id
+          organization_id: organization_id
+          sandbox_id: sandbox_id
+          pool_generation: pool_generation
+          id: id
+          customer_id: customer_id
+          request_id: request_id
+          status: null
+        - fulfilled_at: 2000-01-23T04:56:07.000+00:00
+          created_at: 2000-01-23T04:56:07.000+00:00
+          released_at: 2000-01-23T04:56:07.000+00:00
+          pool_id: pool_id
+          workspace_id: workspace_id
+          service_id: service_id
+          organization_id: organization_id
+          sandbox_id: sandbox_id
+          pool_generation: pool_generation
+          id: id
+          customer_id: customer_id
+          request_id: request_id
+          status: null
+        limit: 0
+        count: 1
+        has_next: true
+      properties:
+        claims:
+          items:
+            $ref: '#/components/schemas/PoolClaim'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+        count:
+          format: int64
+          type: integer
+        has_next:
+          type: boolean
+      type: object
+    PoolClaim:
+      example:
+        fulfilled_at: 2000-01-23T04:56:07.000+00:00
+        created_at: 2000-01-23T04:56:07.000+00:00
+        released_at: 2000-01-23T04:56:07.000+00:00
+        pool_id: pool_id
+        workspace_id: workspace_id
+        service_id: service_id
+        organization_id: organization_id
+        sandbox_id: sandbox_id
+        pool_generation: pool_generation
+        id: id
+        customer_id: customer_id
+        request_id: request_id
+        status: null
+      properties:
+        id:
+          type: string
+        pool_id:
+          type: string
+        service_id:
+          type: string
+        request_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/PoolClaim.Status'
+        organization_id:
+          type: string
+        workspace_id:
+          type: string
+        customer_id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        fulfilled_at:
+          format: date-time
+          type: string
+        released_at:
+          format: date-time
+          type: string
+        sandbox_id:
+          type: string
+        pool_generation:
+          format: uint64
+          type: string
+      type: object
+    PoolClaim.Status:
+      default: UNSPECIFIED
+      enum:
+      - UNSPECIFIED
+      - PENDING
+      - FULFILLED
+      - FAILED
+      - RELEASED
+      type: string
+    PoolClaimReply:
+      example:
+        service_id: service_id
+        sandbox_id: sandbox_id
+        prewarmed: true
+      properties:
+        service_id:
+          type: string
+        sandbox_id:
+          type: string
+        prewarmed:
+          type: boolean
+      type: object
+    PoolClaimRequest:
+      example:
+        pool_id: pool_id
+        request_id: request_id
+      properties:
+        pool_id:
+          type: string
+        request_id:
+          type: string
+      type: object
     CreateStageAttemptReply:
       type: object
     DeclareStageProgressReply:
@@ -27172,6 +27717,1778 @@ components:
       properties:
         secret:
           $ref: '#/components/schemas/Secret'
+      type: object
+    CreateServicePool:
+      example:
+        size: 0
+        name: name
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          regions:
+          - regions
+          - regions
+          volumes:
+          - path: path
+            replica_index: 9
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 9
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          skip_cache: true
+          proxy_ports:
+          - protocol: null
+            port: 1
+          - protocol: null
+            port: 1
+          archive:
+            id: id
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          config_files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            image: image
+            image_registry_secret: image_registry_secret
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            command: command
+          routes:
+          - path: path
+            security_policies:
+              basic_auths:
+              - password: password
+                username: username
+              - password: password
+                username: username
+              api_keys:
+              - api_keys
+              - api_keys
+            port: 0
+          - path: path
+            security_policies:
+              basic_auths:
+              - password: password
+                username: username
+              - password: password
+                username: username
+              api_keys:
+              - api_keys
+              - api_keys
+            port: 0
+          database:
+            neon_postgres:
+              databases:
+              - owner: owner
+                name: name
+              - owner: owner
+                name: name
+              roles:
+              - name: name
+                secret: secret
+              - name: name
+                secret: secret
+              region: region
+              instance_type: instance_type
+              pg_version: 9
+          git:
+            run_command: run_command
+            workdir: workdir
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            branch: branch
+            sha: sha
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          scalings:
+          - min: 5
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+          - min: 5
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+          health_checks:
+          - tcp:
+              port: 4
+            restart_limit: 7
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 5
+            interval: 6
+            grace_period: 1
+            timeout: 1
+          - tcp:
+              port: 4
+            restart_limit: 7
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 5
+            interval: 6
+            grace_period: 1
+            timeout: 1
+          name: name
+          network_policy:
+            mesh:
+              scope: null
+              name: name
+            egress:
+              mode: null
+              allow_list:
+              - cidr: cidr
+              - cidr: cidr
+          strategy:
+            type: null
+          mesh: null
+      properties:
+        name:
+          type: string
+        size:
+          format: int64
+          type: integer
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+      type: object
+    CreateServicePoolReply:
+      example:
+        service_pool:
+          generation: generation
+          created_at: 2000-01-23T04:56:07.000+00:00
+          workspace_id: workspace_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          size: 0
+          organization_id: organization_id
+          name: name
+          ready_count: 6
+          messages:
+          - messages
+          - messages
+          definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            proxy_ports:
+            - protocol: null
+              port: 1
+            - protocol: null
+              port: 1
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 9
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            health_checks:
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            name: name
+            network_policy:
+              mesh:
+                scope: null
+                name: name
+              egress:
+                mode: null
+                allow_list:
+                - cidr: cidr
+                - cidr: cidr
+            strategy:
+              type: null
+            mesh: null
+          id: id
+          customer_id: customer_id
+          status: null
+      properties:
+        service_pool:
+          $ref: '#/components/schemas/ServicePool'
+      type: object
+    DeleteServicePoolReply:
+      type: object
+    GetServicePoolReply:
+      example:
+        service_pool:
+          generation: generation
+          created_at: 2000-01-23T04:56:07.000+00:00
+          workspace_id: workspace_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          size: 0
+          organization_id: organization_id
+          name: name
+          ready_count: 6
+          messages:
+          - messages
+          - messages
+          definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            proxy_ports:
+            - protocol: null
+              port: 1
+            - protocol: null
+              port: 1
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 9
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            health_checks:
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            name: name
+            network_policy:
+              mesh:
+                scope: null
+                name: name
+              egress:
+                mode: null
+                allow_list:
+                - cidr: cidr
+                - cidr: cidr
+            strategy:
+              type: null
+            mesh: null
+          id: id
+          customer_id: customer_id
+          status: null
+      properties:
+        service_pool:
+          $ref: '#/components/schemas/ServicePool'
+      type: object
+    ListServicePoolsReply:
+      example:
+        service_pools:
+        - generation: generation
+          created_at: 2000-01-23T04:56:07.000+00:00
+          workspace_id: workspace_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          size: 0
+          organization_id: organization_id
+          name: name
+          ready_count: 6
+          messages:
+          - messages
+          - messages
+          definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            proxy_ports:
+            - protocol: null
+              port: 1
+            - protocol: null
+              port: 1
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 9
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            health_checks:
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            name: name
+            network_policy:
+              mesh:
+                scope: null
+                name: name
+              egress:
+                mode: null
+                allow_list:
+                - cidr: cidr
+                - cidr: cidr
+            strategy:
+              type: null
+            mesh: null
+          id: id
+          customer_id: customer_id
+          status: null
+        - generation: generation
+          created_at: 2000-01-23T04:56:07.000+00:00
+          workspace_id: workspace_id
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          size: 0
+          organization_id: organization_id
+          name: name
+          ready_count: 6
+          messages:
+          - messages
+          - messages
+          definition:
+            instance_types:
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            - scopes:
+              - scopes
+              - scopes
+              type: type
+            regions:
+            - regions
+            - regions
+            volumes:
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            - path: path
+              replica_index: 9
+              id: id
+              scopes:
+              - scopes
+              - scopes
+            skip_cache: true
+            proxy_ports:
+            - protocol: null
+              port: 1
+            - protocol: null
+              port: 1
+            archive:
+              id: id
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            type: null
+            ports:
+            - protocol: protocol
+              port: 6
+            - protocol: protocol
+              port: 6
+            env:
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            - scopes:
+              - scopes
+              - scopes
+              secret: secret
+              value: value
+              key: key
+            config_files:
+            - path: path
+              permissions: permissions
+              content: content
+            - path: path
+              permissions: permissions
+              content: content
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              image: image
+              image_registry_secret: image_registry_secret
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              command: command
+            routes:
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            - path: path
+              security_policies:
+                basic_auths:
+                - password: password
+                  username: username
+                - password: password
+                  username: username
+                api_keys:
+                - api_keys
+                - api_keys
+              port: 0
+            database:
+              neon_postgres:
+                databases:
+                - owner: owner
+                  name: name
+                - owner: owner
+                  name: name
+                roles:
+                - name: name
+                  secret: secret
+                - name: name
+                  secret: secret
+                region: region
+                instance_type: instance_type
+                pg_version: 9
+            git:
+              run_command: run_command
+              workdir: workdir
+              build_command: build_command
+              no_deploy_on_push: true
+              tag: tag
+              repository: repository
+              buildpack:
+                privileged: true
+                run_command: run_command
+                build_command: build_command
+              branch: branch
+              sha: sha
+              docker:
+                args:
+                - args
+                - args
+                privileged: true
+                entrypoint:
+                - entrypoint
+                - entrypoint
+                dockerfile: dockerfile
+                command: command
+                target: target
+            scalings:
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            - min: 5
+              max: 5
+              scopes:
+              - scopes
+              - scopes
+              targets:
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+              - average_mem:
+                  value: 7
+                requests_per_second:
+                  value: 9
+                average_cpu:
+                  value: 2
+                requests_response_time:
+                  quantile: 4
+                  value: 2
+                concurrent_requests:
+                  value: 3
+                sleep_idle_delay:
+                  deep_sleep_value: 1
+                  light_sleep_value: 1
+                  value: 7
+            health_checks:
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            - tcp:
+                port: 4
+              restart_limit: 7
+              http:
+                path: path
+                headers:
+                - value: value
+                  key: key
+                - value: value
+                  key: key
+                method: method
+                port: 5
+              interval: 6
+              grace_period: 1
+              timeout: 1
+            name: name
+            network_policy:
+              mesh:
+                scope: null
+                name: name
+              egress:
+                mode: null
+                allow_list:
+                - cidr: cidr
+                - cidr: cidr
+            strategy:
+              type: null
+            mesh: null
+          id: id
+          customer_id: customer_id
+          status: null
+        offset: 5
+        limit: 1
+        count: 5
+        has_next: true
+      properties:
+        service_pools:
+          items:
+            $ref: '#/components/schemas/ServicePool'
+          type: array
+        limit:
+          format: int64
+          type: integer
+        offset:
+          format: int64
+          type: integer
+        count:
+          format: int64
+          type: integer
+        has_next:
+          type: boolean
+      type: object
+    ServicePool:
+      example:
+        generation: generation
+        created_at: 2000-01-23T04:56:07.000+00:00
+        workspace_id: workspace_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        size: 0
+        organization_id: organization_id
+        name: name
+        ready_count: 6
+        messages:
+        - messages
+        - messages
+        definition:
+          instance_types:
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          - scopes:
+            - scopes
+            - scopes
+            type: type
+          regions:
+          - regions
+          - regions
+          volumes:
+          - path: path
+            replica_index: 9
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          - path: path
+            replica_index: 9
+            id: id
+            scopes:
+            - scopes
+            - scopes
+          skip_cache: true
+          proxy_ports:
+          - protocol: null
+            port: 1
+          - protocol: null
+            port: 1
+          archive:
+            id: id
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          type: null
+          ports:
+          - protocol: protocol
+            port: 6
+          - protocol: protocol
+            port: 6
+          env:
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          - scopes:
+            - scopes
+            - scopes
+            secret: secret
+            value: value
+            key: key
+          config_files:
+          - path: path
+            permissions: permissions
+            content: content
+          - path: path
+            permissions: permissions
+            content: content
+          docker:
+            args:
+            - args
+            - args
+            privileged: true
+            image: image
+            image_registry_secret: image_registry_secret
+            entrypoint:
+            - entrypoint
+            - entrypoint
+            command: command
+          routes:
+          - path: path
+            security_policies:
+              basic_auths:
+              - password: password
+                username: username
+              - password: password
+                username: username
+              api_keys:
+              - api_keys
+              - api_keys
+            port: 0
+          - path: path
+            security_policies:
+              basic_auths:
+              - password: password
+                username: username
+              - password: password
+                username: username
+              api_keys:
+              - api_keys
+              - api_keys
+            port: 0
+          database:
+            neon_postgres:
+              databases:
+              - owner: owner
+                name: name
+              - owner: owner
+                name: name
+              roles:
+              - name: name
+                secret: secret
+              - name: name
+                secret: secret
+              region: region
+              instance_type: instance_type
+              pg_version: 9
+          git:
+            run_command: run_command
+            workdir: workdir
+            build_command: build_command
+            no_deploy_on_push: true
+            tag: tag
+            repository: repository
+            buildpack:
+              privileged: true
+              run_command: run_command
+              build_command: build_command
+            branch: branch
+            sha: sha
+            docker:
+              args:
+              - args
+              - args
+              privileged: true
+              entrypoint:
+              - entrypoint
+              - entrypoint
+              dockerfile: dockerfile
+              command: command
+              target: target
+          scalings:
+          - min: 5
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+          - min: 5
+            max: 5
+            scopes:
+            - scopes
+            - scopes
+            targets:
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+            - average_mem:
+                value: 7
+              requests_per_second:
+                value: 9
+              average_cpu:
+                value: 2
+              requests_response_time:
+                quantile: 4
+                value: 2
+              concurrent_requests:
+                value: 3
+              sleep_idle_delay:
+                deep_sleep_value: 1
+                light_sleep_value: 1
+                value: 7
+          health_checks:
+          - tcp:
+              port: 4
+            restart_limit: 7
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 5
+            interval: 6
+            grace_period: 1
+            timeout: 1
+          - tcp:
+              port: 4
+            restart_limit: 7
+            http:
+              path: path
+              headers:
+              - value: value
+                key: key
+              - value: value
+                key: key
+              method: method
+              port: 5
+            interval: 6
+            grace_period: 1
+            timeout: 1
+          name: name
+          network_policy:
+            mesh:
+              scope: null
+              name: name
+            egress:
+              mode: null
+              allow_list:
+              - cidr: cidr
+              - cidr: cidr
+          strategy:
+            type: null
+          mesh: null
+        id: id
+        customer_id: customer_id
+        status: null
+      properties:
+        id:
+          type: string
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        organization_id:
+          type: string
+        workspace_id:
+          type: string
+        name:
+          type: string
+        size:
+          format: int64
+          type: integer
+        ready_count:
+          format: int64
+          type: integer
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+        status:
+          $ref: '#/components/schemas/ServicePool.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        generation:
+          format: uint64
+          type: string
+        customer_id:
+          type: string
+      type: object
+    ServicePool.Status:
+      default: UNSPECIFIED
+      enum:
+      - UNSPECIFIED
+      - READY
+      - PROVISIONING
+      - ERROR
+      - DELETING
+      type: string
+    UpdateServicePool:
+      properties:
+        size:
+          format: int64
+          type: integer
+        definition:
+          $ref: '#/components/schemas/DeploymentDefinition'
+      type: object
+    UpdateServicePoolReply:
+      properties:
+        service_pool:
+          $ref: '#/components/schemas/ServicePool'
       type: object
     AutocompleteReply:
       example:

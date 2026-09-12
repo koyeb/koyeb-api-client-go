@@ -103,6 +103,8 @@ type APIClient struct {
 
 	PersistentVolumesApi PersistentVolumesApi
 
+	PoolClaimsApi PoolClaimsApi
+
 	ProfileApi ProfileApi
 
 	ProjectsApi ProjectsApi
@@ -118,6 +120,8 @@ type APIClient struct {
 	SearchApi SearchApi
 
 	SecretsApi SecretsApi
+
+	ServicePoolsApi ServicePoolsApi
 
 	ServicesApi ServicesApi
 
@@ -181,6 +185,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.OrganizationQuotasApi = (*OrganizationQuotasApiService)(&c.common)
 	c.PaymentMethodsApi = (*PaymentMethodsApiService)(&c.common)
 	c.PersistentVolumesApi = (*PersistentVolumesApiService)(&c.common)
+	c.PoolClaimsApi = (*PoolClaimsApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
 	c.ProjectsApi = (*ProjectsApiService)(&c.common)
 	c.ProvisioningApi = (*ProvisioningApiService)(&c.common)
@@ -189,6 +194,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.RepositoriesApi = (*RepositoriesApiService)(&c.common)
 	c.SearchApi = (*SearchApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
+	c.ServicePoolsApi = (*ServicePoolsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionsApi = (*SessionsApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)
