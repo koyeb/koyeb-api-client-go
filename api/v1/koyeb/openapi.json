@@ -10180,6 +10180,233 @@
         ]
       }
     },
+    "/v1/claim": {
+      "post": {
+        "summary": "Claim a sandbox from a service pool",
+        "operationId": "Claim",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/PoolClaimReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PoolClaimRequest"
+            }
+          }
+        ],
+        "tags": [
+          "PoolClaims"
+        ]
+      }
+    },
+    "/v1/claims/{sandbox_id}": {
+      "get": {
+        "summary": "Get a claim",
+        "operationId": "GetClaim",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPoolClaimReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "sandbox_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "request_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PoolClaims"
+        ]
+      }
+    },
+    "/v1/service_pools/{pool_id}/claims": {
+      "get": {
+        "summary": "List claims of a service pool",
+        "operationId": "ListClaim",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListPoolClaimReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pool_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "PoolClaims"
+        ]
+      }
+    },
     "/v1/provisioning/{deployment_id}/status/{stage}/{attempt}": {
       "post": {
         "summary": "Create an attempt for a stage",
@@ -11385,6 +11612,219 @@
         ],
         "tags": [
           "Secrets"
+        ]
+      }
+    },
+    "/v1/service_pools": {
+      "get": {
+        "summary": "List ServicePools",
+        "operationId": "ListServicePools",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListServicePoolsReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServicePools"
+        ]
+      },
+      "post": {
+        "summary": "Create a ServicePool",
+        "operationId": "CreateServicePool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateServicePoolReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "service_pool",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateServicePool"
+            }
+          }
+        ],
+        "tags": [
+          "ServicePools"
+        ]
+      }
+    },
+    "/v1/service_pools/{id}": {
+      "get": {
+        "summary": "Get a ServicePool",
+        "operationId": "GetServicePool",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetServicePoolReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServicePools"
         ]
       }
     },
@@ -19933,6 +20373,124 @@
         }
       }
     },
+    "GetPoolClaimReply": {
+      "type": "object",
+      "properties": {
+        "claim": {
+          "$ref": "#/definitions/PoolClaim"
+        }
+      }
+    },
+    "ListPoolClaimReply": {
+      "type": "object",
+      "properties": {
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PoolClaim"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "has_next": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PoolClaim": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "pool_id": {
+          "type": "string"
+        },
+        "service_id": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/PoolClaim.Status"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "workspace_id": {
+          "type": "string"
+        },
+        "customer_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fulfilled_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "released_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sandbox_id": {
+          "type": "string"
+        },
+        "pool_generation": {
+          "type": "string",
+          "format": "uint64"
+        }
+      }
+    },
+    "PoolClaim.Status": {
+      "type": "string",
+      "enum": [
+        "UNSPECIFIED",
+        "PENDING",
+        "FULFILLED",
+        "FAILED",
+        "RELEASED"
+      ],
+      "default": "UNSPECIFIED"
+    },
+    "PoolClaimReply": {
+      "type": "object",
+      "properties": {
+        "service_id": {
+          "type": "string"
+        },
+        "sandbox_id": {
+          "type": "string"
+        },
+        "prewarmed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "PoolClaimRequest": {
+      "type": "object",
+      "properties": {
+        "pool_id": {
+          "type": "string"
+        },
+        "request_id": {
+          "type": "string"
+        }
+      }
+    },
     "CreateStageAttemptReply": {
       "type": "object"
     },
@@ -20648,6 +21206,149 @@
       "properties": {
         "secret": {
           "$ref": "#/definitions/Secret"
+        }
+      }
+    },
+    "CreateServicePool": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        }
+      }
+    },
+    "CreateServicePoolReply": {
+      "type": "object",
+      "properties": {
+        "service_pool": {
+          "$ref": "#/definitions/ServicePool"
+        }
+      }
+    },
+    "DeleteServicePoolReply": {
+      "type": "object"
+    },
+    "GetServicePoolReply": {
+      "type": "object",
+      "properties": {
+        "service_pool": {
+          "$ref": "#/definitions/ServicePool"
+        }
+      }
+    },
+    "ListServicePoolsReply": {
+      "type": "object",
+      "properties": {
+        "service_pools": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServicePool"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "has_next": {
+          "type": "boolean"
+        }
+      }
+    },
+    "ServicePool": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "organization_id": {
+          "type": "string"
+        },
+        "workspace_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ready_count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        },
+        "status": {
+          "$ref": "#/definitions/ServicePool.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "generation": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "customer_id": {
+          "type": "string"
+        }
+      }
+    },
+    "ServicePool.Status": {
+      "type": "string",
+      "enum": [
+        "UNSPECIFIED",
+        "READY",
+        "PROVISIONING",
+        "ERROR",
+        "DELETING"
+      ],
+      "default": "UNSPECIFIED"
+    },
+    "UpdateServicePool": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "definition": {
+          "$ref": "#/definitions/DeploymentDefinition"
+        }
+      }
+    },
+    "UpdateServicePoolReply": {
+      "type": "object",
+      "properties": {
+        "service_pool": {
+          "$ref": "#/definitions/ServicePool"
         }
       }
     },

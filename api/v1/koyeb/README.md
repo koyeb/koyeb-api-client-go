@@ -176,6 +176,9 @@ Class | Method | HTTP request | Description
 *PersistentVolumesApi* | [**ListPersistentVolumeEvents**](docs/PersistentVolumesApi.md#listpersistentvolumeevents) | **Get** /v1/volume_events | List Persistent Volume events
 *PersistentVolumesApi* | [**ListPersistentVolumes**](docs/PersistentVolumesApi.md#listpersistentvolumes) | **Get** /v1/volumes | List all PersistentVolumes
 *PersistentVolumesApi* | [**UpdatePersistentVolume**](docs/PersistentVolumesApi.md#updatepersistentvolume) | **Post** /v1/volumes/{id} | Update a PersistentVolume
+*PoolClaimsApi* | [**Claim**](docs/PoolClaimsApi.md#claim) | **Post** /v1/claim | Claim a sandbox from a service pool
+*PoolClaimsApi* | [**GetClaim**](docs/PoolClaimsApi.md#getclaim) | **Get** /v1/claims/{sandbox_id} | Get a claim
+*PoolClaimsApi* | [**ListClaim**](docs/PoolClaimsApi.md#listclaim) | **Get** /v1/service_pools/{pool_id}/claims | List claims of a service pool
 *ProfileApi* | [**AcceptOrganizationInvitation**](docs/ProfileApi.md#acceptorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/accept | Accept Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
 *ProfileApi* | [**ClearIdenfyVerificationResult**](docs/ProfileApi.md#clearidenfyverificationresult) | **Post** /v1/account/idenfy | ClearIdenfyVerificationResult marks the current result for idenfy as superseded
 *ProfileApi* | [**DeclineOrganizationInvitation**](docs/ProfileApi.md#declineorganizationinvitation) | **Post** /v1/account/organization_invitations/{id}/decline | Decline Organization Invitation DEPRECATED: this has been replaced by WorkOS and will be dropped soon.
@@ -223,6 +226,9 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**RevealSecret**](docs/SecretsApi.md#revealsecret) | **Post** /v1/secrets/{id}/reveal | Reveal Secret
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | Update Secret
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | Update Secret
+*ServicePoolsApi* | [**CreateServicePool**](docs/ServicePoolsApi.md#createservicepool) | **Post** /v1/service_pools | Create a ServicePool
+*ServicePoolsApi* | [**GetServicePool**](docs/ServicePoolsApi.md#getservicepool) | **Get** /v1/service_pools/{id} | Get a ServicePool
+*ServicePoolsApi* | [**ListServicePools**](docs/ServicePoolsApi.md#listservicepools) | **Get** /v1/service_pools | List ServicePools
 *ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
@@ -320,6 +326,8 @@ Class | Method | HTTP request | Description
  - [CreateSecret](docs/CreateSecret.md)
  - [CreateSecretReply](docs/CreateSecretReply.md)
  - [CreateService](docs/CreateService.md)
+ - [CreateServicePool](docs/CreateServicePool.md)
+ - [CreateServicePoolReply](docs/CreateServicePoolReply.md)
  - [CreateServiceReply](docs/CreateServiceReply.md)
  - [CreateSnapshotReply](docs/CreateSnapshotReply.md)
  - [CreateSnapshotRequest](docs/CreateSnapshotRequest.md)
@@ -426,11 +434,13 @@ Class | Method | HTTP request | Description
  - [GetOrganizationUsageReply](docs/GetOrganizationUsageReply.md)
  - [GetPaymentMethodReply](docs/GetPaymentMethodReply.md)
  - [GetPersistentVolumeReply](docs/GetPersistentVolumeReply.md)
+ - [GetPoolClaimReply](docs/GetPoolClaimReply.md)
  - [GetProjectReply](docs/GetProjectReply.md)
  - [GetQuotasReply](docs/GetQuotasReply.md)
  - [GetRegionReply](docs/GetRegionReply.md)
  - [GetRegionalDeploymentReply](docs/GetRegionalDeploymentReply.md)
  - [GetSecretReply](docs/GetSecretReply.md)
+ - [GetServicePoolReply](docs/GetServicePoolReply.md)
  - [GetServiceReply](docs/GetServiceReply.md)
  - [GetServiceScalingReply](docs/GetServiceScalingReply.md)
  - [GetSnapshotReply](docs/GetSnapshotReply.md)
@@ -499,12 +509,14 @@ Class | Method | HTTP request | Description
  - [ListPaymentMethodsReply](docs/ListPaymentMethodsReply.md)
  - [ListPersistentVolumeEventsReply](docs/ListPersistentVolumeEventsReply.md)
  - [ListPersistentVolumesReply](docs/ListPersistentVolumesReply.md)
+ - [ListPoolClaimReply](docs/ListPoolClaimReply.md)
  - [ListProjectsReply](docs/ListProjectsReply.md)
  - [ListRegionalDeploymentEventsReply](docs/ListRegionalDeploymentEventsReply.md)
  - [ListRegionalDeploymentsReply](docs/ListRegionalDeploymentsReply.md)
  - [ListRegionsReply](docs/ListRegionsReply.md)
  - [ListSecretsReply](docs/ListSecretsReply.md)
  - [ListServiceEventsReply](docs/ListServiceEventsReply.md)
+ - [ListServicePoolsReply](docs/ListServicePoolsReply.md)
  - [ListServicesReply](docs/ListServicesReply.md)
  - [ListSnapshotsReply](docs/ListSnapshotsReply.md)
  - [ListUsageReply](docs/ListUsageReply.md)
@@ -558,6 +570,10 @@ Class | Method | HTTP request | Description
  - [PersistentVolumeQuotas](docs/PersistentVolumeQuotas.md)
  - [PersistentVolumeStatus](docs/PersistentVolumeStatus.md)
  - [Plan](docs/Plan.md)
+ - [PoolClaim](docs/PoolClaim.md)
+ - [PoolClaimReply](docs/PoolClaimReply.md)
+ - [PoolClaimRequest](docs/PoolClaimRequest.md)
+ - [PoolClaimStatus](docs/PoolClaimStatus.md)
  - [Port](docs/Port.md)
  - [PrivateRegistryConfiguration](docs/PrivateRegistryConfiguration.md)
  - [Project](docs/Project.md)
@@ -603,6 +619,8 @@ Class | Method | HTTP request | Description
  - [ServiceEvent](docs/ServiceEvent.md)
  - [ServiceLifeCycle](docs/ServiceLifeCycle.md)
  - [ServiceListItem](docs/ServiceListItem.md)
+ - [ServicePool](docs/ServicePool.md)
+ - [ServicePoolStatus](docs/ServicePoolStatus.md)
  - [ServiceState](docs/ServiceState.md)
  - [ServiceStatus](docs/ServiceStatus.md)
  - [ServiceSummary](docs/ServiceSummary.md)
@@ -644,6 +662,8 @@ Class | Method | HTTP request | Description
  - [UpdateProjectReply](docs/UpdateProjectReply.md)
  - [UpdateSecretReply](docs/UpdateSecretReply.md)
  - [UpdateService](docs/UpdateService.md)
+ - [UpdateServicePool](docs/UpdateServicePool.md)
+ - [UpdateServicePoolReply](docs/UpdateServicePoolReply.md)
  - [UpdateServiceReply](docs/UpdateServiceReply.md)
  - [UpdateServiceScalingRequest](docs/UpdateServiceScalingRequest.md)
  - [UpdateSnapshotReply](docs/UpdateSnapshotReply.md)
