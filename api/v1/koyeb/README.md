@@ -230,6 +230,7 @@ Class | Method | HTTP request | Description
 *ServicePoolsApi* | [**CreateServicePool**](docs/ServicePoolsApi.md#createservicepool) | **Post** /v1/service_pools | Create a ServicePool
 *ServicePoolsApi* | [**GetServicePool**](docs/ServicePoolsApi.md#getservicepool) | **Get** /v1/service_pools/{id} | Get a ServicePool
 *ServicePoolsApi* | [**ListServicePools**](docs/ServicePoolsApi.md#listservicepools) | **Get** /v1/service_pools | List ServicePools
+*ServicePoolsApi* | [**UpdateServicePool**](docs/ServicePoolsApi.md#updateservicepool) | **Put** /v1/service_pools/{id} | 
 *ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service

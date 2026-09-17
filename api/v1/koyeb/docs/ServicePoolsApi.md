@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateServicePool**](ServicePoolsApi.md#CreateServicePool) | **Post** /v1/service_pools | Create a ServicePool
 [**GetServicePool**](ServicePoolsApi.md#GetServicePool) | **Get** /v1/service_pools/{id} | Get a ServicePool
 [**ListServicePools**](ServicePoolsApi.md#ListServicePools) | **Get** /v1/service_pools | List ServicePools
+[**UpdateServicePool**](ServicePoolsApi.md#UpdateServicePool) | **Put** /v1/service_pools/{id} | 
 
 
 
@@ -195,6 +196,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ListServicePoolsReply**](ListServicePoolsReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateServicePool
+
+> UpdateServicePoolReply UpdateServicePool(ctx, id).ServicePool(servicePool).UpdateMask(updateMask).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    servicePool := *openapiclient.NewUpdateServicePool() // UpdateServicePool | 
+    updateMask := "updateMask_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServicePoolsApi.UpdateServicePool(context.Background(), id).ServicePool(servicePool).UpdateMask(updateMask).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServicePoolsApi.UpdateServicePool``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateServicePool`: UpdateServicePoolReply
+    fmt.Fprintf(os.Stdout, "Response from `ServicePoolsApi.UpdateServicePool`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateServicePoolRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **servicePool** | [**UpdateServicePool**](UpdateServicePool.md) |  | 
+ **updateMask** | **string** |  | 
+
+### Return type
+
+[**UpdateServicePoolReply**](UpdateServicePoolReply.md)
 
 ### Authorization
 
