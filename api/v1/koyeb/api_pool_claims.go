@@ -20,79 +20,288 @@ import (
 )
 
 
-type QuotasApi interface {
+type PoolClaimsApi interface {
 
 	/*
-	GetOrganizationQuotasUsage Return the organization's current quota usage alongside the plan's limits. Response is cached in Redis for 60s. Accept text/plain (or ?format=prometheus) to receive the response rendered as Prometheus text exposition format (\"koyeb_quota_<x>\" for usage, \"koyeb_quota_<x>_limit\" for the plan limit) suitable for scraping into an external Prometheus.
+	Claim Claim a sandbox from a service pool
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param organizationId
-	@return ApiGetOrganizationQuotasUsageRequest
+	@return ApiClaimRequest
 	*/
-	GetOrganizationQuotasUsage(ctx context.Context, organizationId string) ApiGetOrganizationQuotasUsageRequest
+	Claim(ctx context.Context) ApiClaimRequest
 
-	// GetOrganizationQuotasUsageExecute executes the request
-	//  @return GetOrganizationQuotasUsageReply
-	GetOrganizationQuotasUsageExecute(r ApiGetOrganizationQuotasUsageRequest) (*GetOrganizationQuotasUsageReply, *http.Response, error)
+	// ClaimExecute executes the request
+	//  @return PoolClaimReply
+	ClaimExecute(r ApiClaimRequest) (*PoolClaimReply, *http.Response, error)
 
 	/*
-	ReviewOrganizationCapacity DEPRECATED: Review Organization Capacity
+	GetClaim Get a claim
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiReviewOrganizationCapacityRequest
+	@param claimId
+	@return ApiGetClaimRequest
 	*/
-	ReviewOrganizationCapacity(ctx context.Context) ApiReviewOrganizationCapacityRequest
+	GetClaim(ctx context.Context, claimId string) ApiGetClaimRequest
 
-	// ReviewOrganizationCapacityExecute executes the request
-	//  @return ReviewOrganizationCapacityReply
-	ReviewOrganizationCapacityExecute(r ApiReviewOrganizationCapacityRequest) (*ReviewOrganizationCapacityReply, *http.Response, error)
+	// GetClaimExecute executes the request
+	//  @return GetPoolClaimReply
+	GetClaimExecute(r ApiGetClaimRequest) (*GetPoolClaimReply, *http.Response, error)
+
+	/*
+	ListClaim List claims of a service pool
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param poolId
+	@return ApiListClaimRequest
+	*/
+	ListClaim(ctx context.Context, poolId string) ApiListClaimRequest
+
+	// ListClaimExecute executes the request
+	//  @return ListPoolClaimReply
+	ListClaimExecute(r ApiListClaimRequest) (*ListPoolClaimReply, *http.Response, error)
 }
 
-// QuotasApiService QuotasApi service
-type QuotasApiService service
+// PoolClaimsApiService PoolClaimsApi service
+type PoolClaimsApiService service
 
-type ApiGetOrganizationQuotasUsageRequest struct {
+type ApiClaimRequest struct {
 	ctx context.Context
-	ApiService QuotasApi
-	organizationId string
+	ApiService PoolClaimsApi
+	body *PoolClaimRequest
 }
 
-func (r ApiGetOrganizationQuotasUsageRequest) Execute() (*GetOrganizationQuotasUsageReply, *http.Response, error) {
-	return r.ApiService.GetOrganizationQuotasUsageExecute(r)
+func (r ApiClaimRequest) Body(body PoolClaimRequest) ApiClaimRequest {
+	r.body = &body
+	return r
+}
+
+func (r ApiClaimRequest) Execute() (*PoolClaimReply, *http.Response, error) {
+	return r.ApiService.ClaimExecute(r)
 }
 
 /*
-GetOrganizationQuotasUsage Return the organization's current quota usage alongside the plan's limits. Response is cached in Redis for 60s. Accept text/plain (or ?format=prometheus) to receive the response rendered as Prometheus text exposition format (\"koyeb_quota_<x>\" for usage, \"koyeb_quota_<x>_limit\" for the plan limit) suitable for scraping into an external Prometheus.
+Claim Claim a sandbox from a service pool
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param organizationId
- @return ApiGetOrganizationQuotasUsageRequest
+ @return ApiClaimRequest
 */
-func (a *QuotasApiService) GetOrganizationQuotasUsage(ctx context.Context, organizationId string) ApiGetOrganizationQuotasUsageRequest {
-	return ApiGetOrganizationQuotasUsageRequest{
+func (a *PoolClaimsApiService) Claim(ctx context.Context) ApiClaimRequest {
+	return ApiClaimRequest{
 		ApiService: a,
 		ctx: ctx,
-		organizationId: organizationId,
 	}
 }
 
 // Execute executes the request
-//  @return GetOrganizationQuotasUsageReply
-func (a *QuotasApiService) GetOrganizationQuotasUsageExecute(r ApiGetOrganizationQuotasUsageRequest) (*GetOrganizationQuotasUsageReply, *http.Response, error) {
+//  @return PoolClaimReply
+func (a *PoolClaimsApiService) ClaimExecute(r ApiClaimRequest) (*PoolClaimReply, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetOrganizationQuotasUsageReply
+		localVarReturnValue  *PoolClaimReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QuotasApiService.GetOrganizationQuotasUsage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoolClaimsApiService.Claim")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/quotas/organizations/{organization_id}/usage"
-	localVarPath = strings.Replace(localVarPath, "{"+"organization_id"+"}", url.PathEscape(parameterToString(r.organizationId, "")), -1)
+	localVarPath := localBasePath + "/v1/claim"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"*/*"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["Bearer"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorWithFields
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+			var v GoogleRpcStatus
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+            		newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+            		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetClaimRequest struct {
+	ctx context.Context
+	ApiService PoolClaimsApi
+	claimId string
+}
+
+func (r ApiGetClaimRequest) Execute() (*GetPoolClaimReply, *http.Response, error) {
+	return r.ApiService.GetClaimExecute(r)
+}
+
+/*
+GetClaim Get a claim
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param claimId
+ @return ApiGetClaimRequest
+*/
+func (a *PoolClaimsApiService) GetClaim(ctx context.Context, claimId string) ApiGetClaimRequest {
+	return ApiGetClaimRequest{
+		ApiService: a,
+		ctx: ctx,
+		claimId: claimId,
+	}
+}
+
+// Execute executes the request
+//  @return GetPoolClaimReply
+func (a *PoolClaimsApiService) GetClaimExecute(r ApiGetClaimRequest) (*GetPoolClaimReply, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPoolClaimReply
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoolClaimsApiService.GetClaim")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/claims/{claim_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"claim_id"+"}", url.PathEscape(parameterToString(r.claimId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -240,58 +449,80 @@ func (a *QuotasApiService) GetOrganizationQuotasUsageExecute(r ApiGetOrganizatio
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReviewOrganizationCapacityRequest struct {
+type ApiListClaimRequest struct {
 	ctx context.Context
-	ApiService QuotasApi
-	body *ReviewOrganizationCapacityRequest
+	ApiService PoolClaimsApi
+	poolId string
+	status *string
+	limit *string
+	offset *string
 }
 
-func (r ApiReviewOrganizationCapacityRequest) Body(body ReviewOrganizationCapacityRequest) ApiReviewOrganizationCapacityRequest {
-	r.body = &body
+func (r ApiListClaimRequest) Status(status string) ApiListClaimRequest {
+	r.status = &status
 	return r
 }
 
-func (r ApiReviewOrganizationCapacityRequest) Execute() (*ReviewOrganizationCapacityReply, *http.Response, error) {
-	return r.ApiService.ReviewOrganizationCapacityExecute(r)
+func (r ApiListClaimRequest) Limit(limit string) ApiListClaimRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r ApiListClaimRequest) Offset(offset string) ApiListClaimRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r ApiListClaimRequest) Execute() (*ListPoolClaimReply, *http.Response, error) {
+	return r.ApiService.ListClaimExecute(r)
 }
 
 /*
-ReviewOrganizationCapacity DEPRECATED: Review Organization Capacity
+ListClaim List claims of a service pool
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiReviewOrganizationCapacityRequest
+ @param poolId
+ @return ApiListClaimRequest
 */
-func (a *QuotasApiService) ReviewOrganizationCapacity(ctx context.Context) ApiReviewOrganizationCapacityRequest {
-	return ApiReviewOrganizationCapacityRequest{
+func (a *PoolClaimsApiService) ListClaim(ctx context.Context, poolId string) ApiListClaimRequest {
+	return ApiListClaimRequest{
 		ApiService: a,
 		ctx: ctx,
+		poolId: poolId,
 	}
 }
 
 // Execute executes the request
-//  @return ReviewOrganizationCapacityReply
-func (a *QuotasApiService) ReviewOrganizationCapacityExecute(r ApiReviewOrganizationCapacityRequest) (*ReviewOrganizationCapacityReply, *http.Response, error) {
+//  @return ListPoolClaimReply
+func (a *PoolClaimsApiService) ListClaimExecute(r ApiListClaimRequest) (*ListPoolClaimReply, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ReviewOrganizationCapacityReply
+		localVarReturnValue  *ListPoolClaimReply
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "QuotasApiService.ReviewOrganizationCapacity")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PoolClaimsApiService.ListClaim")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/quotas/capacity"
+	localVarPath := localBasePath + "/v1/service_pools/{pool_id}/claims"
+	localVarPath = strings.Replace(localVarPath, "{"+"pool_id"+"}", url.PathEscape(parameterToString(r.poolId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
 
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -309,8 +540,6 @@ func (a *QuotasApiService) ReviewOrganizationCapacityExecute(r ApiReviewOrganiza
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
