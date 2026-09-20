@@ -5,7 +5,6 @@ All URIs are relative to *https://app.koyeb.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateServicePool**](ServicePoolsApi.md#CreateServicePool) | **Post** /v1/service_pools | Create a ServicePool
-[**DeleteServicePool**](ServicePoolsApi.md#DeleteServicePool) | **Delete** /v1/service_pools/{id} | Delete a ServicePool
 [**GetServicePool**](ServicePoolsApi.md#GetServicePool) | **Get** /v1/service_pools/{id} | Get a ServicePool
 [**ListServicePools**](ServicePoolsApi.md#ListServicePools) | **Get** /v1/service_pools | List ServicePools
 [**UpdateServicePool**](ServicePoolsApi.md#UpdateServicePool) | **Put** /v1/service_pools/{id} | 
@@ -61,74 +60,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CreateServicePoolReply**](CreateServicePoolReply.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteServicePool
-
-> map[string]interface{} DeleteServicePool(ctx, id).Execute()
-
-Delete a ServicePool
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicePoolsApi.DeleteServicePool(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ServicePoolsApi.DeleteServicePool``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteServicePool`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `ServicePoolsApi.DeleteServicePool`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteServicePoolRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-**map[string]interface{}**
 
 ### Authorization
 

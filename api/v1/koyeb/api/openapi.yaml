@@ -9452,10 +9452,6 @@ paths:
         required: true
         schema:
           type: string
-      - in: query
-        name: request_id
-        schema:
-          type: string
       responses:
         "200":
           content:
@@ -10808,67 +10804,6 @@ paths:
       - ServicePools
       x-codegen-request-body-name: service_pool
   /v1/service_pools/{id}:
-    delete:
-      operationId: DeleteServicePool
-      parameters:
-      - in: path
-        name: id
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/DeleteServicePoolReply'
-          description: A successful response.
-        "400":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/ErrorWithFields'
-          description: Validation error
-        "401":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the token is not valid.
-        "403":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Returned in case of server error.
-        "503":
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/Error'
-          description: Service is unavailable.
-        default:
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/google.rpc.Status'
-          description: An unexpected error response.
-      summary: Delete a ServicePool
-      tags:
-      - ServicePools
     get:
       operationId: GetServicePool
       parameters:

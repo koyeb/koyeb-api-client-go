@@ -264,12 +264,6 @@ type ApiGetClaimRequest struct {
 	ctx context.Context
 	ApiService PoolClaimsApi
 	claimId string
-	requestId *string
-}
-
-func (r ApiGetClaimRequest) RequestId(requestId string) ApiGetClaimRequest {
-	r.requestId = &requestId
-	return r
 }
 
 func (r ApiGetClaimRequest) Execute() (*GetPoolClaimReply, *http.Response, error) {
@@ -313,9 +307,6 @@ func (a *PoolClaimsApiService) GetClaimExecute(r ApiGetClaimRequest) (*GetPoolCl
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.requestId != nil {
-		localVarQueryParams.Add("request_id", parameterToString(*r.requestId, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

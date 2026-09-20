@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ## GetClaim
 
-> GetPoolClaimReply GetClaim(ctx, claimId).RequestId(requestId).Execute()
+> GetPoolClaimReply GetClaim(ctx, claimId).Execute()
 
 Get a claim
 
@@ -94,11 +94,10 @@ import (
 
 func main() {
     claimId := "claimId_example" // string | 
-    requestId := "requestId_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.PoolClaimsApi.GetClaim(context.Background(), claimId).RequestId(requestId).Execute()
+    resp, r, err := apiClient.PoolClaimsApi.GetClaim(context.Background(), claimId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PoolClaimsApi.GetClaim``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,7 +123,6 @@ Other parameters are passed through a pointer to a apiGetClaimRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **requestId** | **string** |  | 
 
 ### Return type
 
