@@ -228,6 +228,7 @@ Class | Method | HTTP request | Description
 *SecretsApi* | [**UpdateSecret**](docs/SecretsApi.md#updatesecret) | **Put** /v1/secrets/{id} | Update Secret
 *SecretsApi* | [**UpdateSecret2**](docs/SecretsApi.md#updatesecret2) | **Patch** /v1/secrets/{id} | Update Secret
 *ServicePoolsApi* | [**CreateServicePool**](docs/ServicePoolsApi.md#createservicepool) | **Post** /v1/service_pools | Create a ServicePool
+*ServicePoolsApi* | [**DeleteServicePool**](docs/ServicePoolsApi.md#deleteservicepool) | **Delete** /v1/service_pools/{id} | Delete a ServicePool
 *ServicePoolsApi* | [**GetServicePool**](docs/ServicePoolsApi.md#getservicepool) | **Get** /v1/service_pools/{id} | Get a ServicePool
 *ServicePoolsApi* | [**ListServicePools**](docs/ServicePoolsApi.md#listservicepools) | **Get** /v1/service_pools | List ServicePools
 *ServicePoolsApi* | [**UpdateServicePool**](docs/ServicePoolsApi.md#updateservicepool) | **Put** /v1/service_pools/{id} | 
