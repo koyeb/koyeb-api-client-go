@@ -1,5 +1,5 @@
 module github.com/koyeb/koyeb-api-client-go
 
-go 1.16
+go 1.23.0
 
-require golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
+require golang.org/x/oauth2 v0.27.0
