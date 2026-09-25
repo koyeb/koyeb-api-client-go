@@ -18758,6 +18758,10 @@
         },
         "docker": {
           "$ref": "#/definitions/DockerBuilder"
+        },
+        "credential_source": {
+          "type": "string",
+          "description": "Credentials can come from a specific source or default to using Github (when unset or set to \"github\")."
         }
       }
     },

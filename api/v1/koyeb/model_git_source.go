@@ -27,6 +27,8 @@ type GitSource struct {
 	Workdir *string `json:"workdir,omitempty"`
 	Buildpack *BuildpackBuilder `json:"buildpack,omitempty"`
 	Docker *DockerBuilder `json:"docker,omitempty"`
+	// Credentials can come from a specific source or default to using Github (when unset or set to \"github\").
+	CredentialSource *string `json:"credential_source,omitempty"`
 }
 
 // NewGitSource instantiates a new GitSource object
@@ -366,6 +368,38 @@ func (o *GitSource) SetDocker(v DockerBuilder) {
 	o.Docker = &v
 }
 
+// GetCredentialSource returns the CredentialSource field value if set, zero value otherwise.
+func (o *GitSource) GetCredentialSource() string {
+	if o == nil || isNil(o.CredentialSource) {
+		var ret string
+		return ret
+	}
+	return *o.CredentialSource
+}
+
+// GetCredentialSourceOk returns a tuple with the CredentialSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GitSource) GetCredentialSourceOk() (*string, bool) {
+	if o == nil || isNil(o.CredentialSource) {
+    return nil, false
+	}
+	return o.CredentialSource, true
+}
+
+// HasCredentialSource returns a boolean if a field has been set.
+func (o *GitSource) HasCredentialSource() bool {
+	if o != nil && !isNil(o.CredentialSource) {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialSource gets a reference to the given string and assigns it to the CredentialSource field.
+func (o *GitSource) SetCredentialSource(v string) {
+	o.CredentialSource = &v
+}
+
 func (o GitSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Repository) {
@@ -397,6 +431,9 @@ func (o GitSource) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Docker) {
 		toSerialize["docker"] = o.Docker
+	}
+	if !isNil(o.CredentialSource) {
+		toSerialize["credential_source"] = o.CredentialSource
 	}
 	return json.Marshal(toSerialize)
 }

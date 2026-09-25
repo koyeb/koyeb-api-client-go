@@ -18986,6 +18986,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -19258,6 +19259,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -19540,6 +19542,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -19849,6 +19852,7 @@ components:
             build_command: build_command
           branch: branch
           sha: sha
+          credential_source: credential_source
           docker:
             args:
             - args
@@ -20519,6 +20523,7 @@ components:
           build_command: build_command
         branch: branch
         sha: sha
+        credential_source: credential_source
         docker:
           args:
           - args
@@ -20564,6 +20569,10 @@ components:
           $ref: '#/components/schemas/BuildpackBuilder'
         docker:
           $ref: '#/components/schemas/DockerBuilder'
+        credential_source:
+          description: Credentials can come from a specific source or default to using
+            Github (when unset or set to "github").
+          type: string
       type: object
     HTTPHeader:
       example:
@@ -21114,6 +21123,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -21865,6 +21875,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -22724,6 +22735,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -23655,6 +23667,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -24123,6 +24136,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -25947,6 +25961,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -26332,6 +26347,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -26526,6 +26542,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -26759,6 +26776,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -27182,6 +27200,7 @@ components:
             build_command: build_command
           branch: branch
           sha: sha
+          credential_source: credential_source
           docker:
             args:
             - args
@@ -27465,6 +27484,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -28223,6 +28243,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -28511,6 +28532,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -28799,6 +28821,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -29085,6 +29108,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -29364,6 +29388,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -29666,6 +29691,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -29981,6 +30007,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -30267,6 +30294,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -30569,6 +30597,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
@@ -31182,6 +31211,7 @@ components:
                 build_command: build_command
               branch: branch
               sha: sha
+              credential_source: credential_source
               docker:
                 args:
                 - args
@@ -31782,6 +31812,7 @@ components:
               build_command: build_command
             branch: branch
             sha: sha
+            credential_source: credential_source
             docker:
               args:
               - args
