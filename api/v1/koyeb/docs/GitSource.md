@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Workdir** | Pointer to **string** |  | [optional] 
 **Buildpack** | Pointer to [**BuildpackBuilder**](BuildpackBuilder.md) |  | [optional] 
 **Docker** | Pointer to [**DockerBuilder**](DockerBuilder.md) |  | [optional] 
+**CredentialSource** | Pointer to **string** | Credentials can come from a specific source or default to using Github (when unset or set to \&quot;github\&quot;). | [optional] 
 
 ## Methods
 
@@ -283,6 +284,31 @@ SetDocker sets Docker field to given value.
 `func (o *GitSource) HasDocker() bool`
 
 HasDocker returns a boolean if a field has been set.
+
+### GetCredentialSource
+
+`func (o *GitSource) GetCredentialSource() string`
+
+GetCredentialSource returns the CredentialSource field if non-nil, zero value otherwise.
+
+### GetCredentialSourceOk
+
+`func (o *GitSource) GetCredentialSourceOk() (*string, bool)`
+
+GetCredentialSourceOk returns a tuple with the CredentialSource field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentialSource
+
+`func (o *GitSource) SetCredentialSource(v string)`
+
+SetCredentialSource sets CredentialSource field to given value.
+
+### HasCredentialSource
+
+`func (o *GitSource) HasCredentialSource() bool`
+
+HasCredentialSource returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
