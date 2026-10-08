@@ -15984,7 +15984,6 @@ components:
             delete_after_sleep_min: 7
             delete_after_create_max: 1
             delete_after_create_min: 1
-          services_by_app: services_by_app
           service_provisioning_concurrency: service_provisioning_concurrency
           logs_retention: 2
           max_instances_by_type:
@@ -16091,7 +16090,6 @@ components:
           delete_after_sleep_min: 7
           delete_after_create_max: 1
           delete_after_create_min: 1
-        services_by_app: services_by_app
         service_provisioning_concurrency: service_provisioning_concurrency
         logs_retention: 2
         max_instances_by_type:
@@ -16120,9 +16118,6 @@ components:
         domains:
           format: int64
           title: "Deprecated, use custom_domains instead"
-          type: string
-        services_by_app:
-          format: int64
           type: string
         service_provisioning_concurrency:
           format: int64
@@ -18972,7 +18967,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -19087,6 +19082,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -19102,6 +19100,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -19245,7 +19246,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -19360,6 +19361,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -19375,6 +19379,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -19528,7 +19535,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -19643,6 +19650,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -19658,6 +19668,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -19709,7 +19722,7 @@ components:
             secret: secret
           region: region
           instance_type: instance_type
-          pg_version: 9
+          pg_version: 6
       properties:
         neon_postgres:
           $ref: '#/components/schemas/NeonPostgresDatabase'
@@ -19838,7 +19851,7 @@ components:
               secret: secret
             region: region
             instance_type: instance_type
-            pg_version: 9
+            pg_version: 6
         git:
           run_command: run_command
           workdir: workdir
@@ -19953,6 +19966,9 @@ components:
           interval: 6
           grace_period: 1
           timeout: 1
+          grpc:
+            port: 9
+            service: service
         - tcp:
             port: 4
           restart_limit: 7
@@ -19968,6 +19984,9 @@ components:
           interval: 6
           grace_period: 1
           timeout: 1
+          grpc:
+            port: 9
+            service: service
         name: name
         network_policy:
           mesh:
@@ -20091,6 +20110,9 @@ components:
         interval: 6
         grace_period: 1
         timeout: 1
+        grpc:
+          port: 9
+          service: service
       properties:
         grace_period:
           format: int64
@@ -20116,6 +20138,8 @@ components:
           $ref: '#/components/schemas/TCPHealthCheck'
         http:
           $ref: '#/components/schemas/HTTPHealthCheck'
+        grpc:
+          $ref: '#/components/schemas/GRPCHealthCheck'
       type: object
     DeploymentInstanceType:
       example:
@@ -20509,6 +20533,21 @@ components:
       - EGRESS_POLICY_MODE_DEFAULT
       - EGRESS_POLICY_MODE_DENY_ALL
       type: string
+    GRPCHealthCheck:
+      example:
+        port: 9
+        service: service
+      properties:
+        port:
+          format: int64
+          title: "The port to use to perform the health check, must be declared in\
+            \ the ports section"
+          type: integer
+        service:
+          title: An optional gRPC service name placed in the gRPC HealthCheckRequest;
+            empty means the gRPC default
+          type: string
+      type: object
     GitSource:
       example:
         run_command: run_command
@@ -20673,7 +20712,7 @@ components:
           secret: secret
         region: region
         instance_type: instance_type
-        pg_version: 9
+        pg_version: 6
       properties:
         pg_version:
           format: int64
@@ -20979,6 +21018,14 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
+          docker:
+            resolved_entrypoint:
+            - resolved_entrypoint
+            - resolved_entrypoint
+            resolved_digest: resolved_digest
+            resolved_cmd:
+            - resolved_cmd
+            - resolved_cmd
         role: null
         created_at: 2000-01-23T04:56:07.000+00:00
         skip_build: true
@@ -21109,7 +21156,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -21224,6 +21271,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -21239,6 +21289,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -21598,6 +21651,14 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
+          docker:
+            resolved_entrypoint:
+            - resolved_entrypoint
+            - resolved_entrypoint
+            resolved_digest: resolved_digest
+            resolved_cmd:
+            - resolved_cmd
+            - resolved_cmd
         created_at: 2000-01-23T04:56:07.000+00:00
         created_by: created_by
         version: version
@@ -21861,7 +21922,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -21976,6 +22037,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -21991,6 +22055,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -22130,6 +22197,14 @@ components:
             sender_avatar_url: sender_avatar_url
             sender_profile_url: sender_profile_url
           type: null
+        docker:
+          resolved_entrypoint:
+          - resolved_entrypoint
+          - resolved_entrypoint
+          resolved_digest: resolved_digest
+          resolved_cmd:
+          - resolved_cmd
+          - resolved_cmd
       properties:
         trigger:
           $ref: '#/components/schemas/TriggerDeploymentMetadata'
@@ -22145,6 +22220,8 @@ components:
           type: array
         sandbox:
           $ref: '#/components/schemas/SandboxMetadata'
+        docker:
+          $ref: '#/components/schemas/DockerDeploymentMetadata'
       type: object
     DeploymentNeonPostgresDatabaseInfo:
       example:
@@ -22550,6 +22627,33 @@ components:
         protocol:
           $ref: '#/components/schemas/ProxyPortProtocol'
       type: object
+    DockerDeploymentMetadata:
+      description: |-
+        Image metadata resolved at provisioning time for docker-source
+        deployments without an explicit command.
+      example:
+        resolved_entrypoint:
+        - resolved_entrypoint
+        - resolved_entrypoint
+        resolved_digest: resolved_digest
+        resolved_cmd:
+        - resolved_cmd
+        - resolved_cmd
+      properties:
+        resolved_digest:
+          description: Digest of the resolved image manifest ("sha256:...").
+          type: string
+        resolved_entrypoint:
+          description: ENTRYPOINT from the image config.
+          items:
+            type: string
+          type: array
+        resolved_cmd:
+          description: CMD from the image config.
+          items:
+            type: string
+          type: array
+      type: object
     GetDeploymentReply:
       example:
         deployment:
@@ -22591,6 +22695,14 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
+            docker:
+              resolved_entrypoint:
+              - resolved_entrypoint
+              - resolved_entrypoint
+              resolved_digest: resolved_digest
+              resolved_cmd:
+              - resolved_cmd
+              - resolved_cmd
           role: null
           created_at: 2000-01-23T04:56:07.000+00:00
           skip_build: true
@@ -22721,7 +22833,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -22836,6 +22948,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -22851,6 +22966,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -23390,6 +23508,14 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
+            docker:
+              resolved_entrypoint:
+              - resolved_entrypoint
+              - resolved_entrypoint
+              resolved_digest: resolved_digest
+              resolved_cmd:
+              - resolved_cmd
+              - resolved_cmd
           created_at: 2000-01-23T04:56:07.000+00:00
           created_by: created_by
           version: version
@@ -23653,7 +23779,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -23768,6 +23894,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -23783,6 +23912,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -23859,6 +23991,14 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
+            docker:
+              resolved_entrypoint:
+              - resolved_entrypoint
+              - resolved_entrypoint
+              resolved_digest: resolved_digest
+              resolved_cmd:
+              - resolved_cmd
+              - resolved_cmd
           created_at: 2000-01-23T04:56:07.000+00:00
           created_by: created_by
           version: version
@@ -24122,7 +24262,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -24237,6 +24377,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -24252,6 +24395,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -25827,7 +25973,15 @@ components:
     GetRegionalDeploymentReply:
       example:
         regional_deployment:
-          metadata: "{}"
+          metadata:
+            docker:
+              resolved_entrypoint:
+              - resolved_entrypoint
+              - resolved_entrypoint
+              resolved_digest: resolved_digest
+              resolved_cmd:
+              - resolved_cmd
+              - resolved_cmd
           role: null
           created_at: 2000-01-23T04:56:07.000+00:00
           scheduled_at: 2000-01-23T04:56:07.000+00:00
@@ -25990,6 +26144,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -26005,6 +26162,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -26376,6 +26536,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -26391,6 +26554,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -26571,6 +26737,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -26586,6 +26755,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -26642,7 +26814,15 @@ components:
       type: object
     RegionalDeployment:
       example:
-        metadata: "{}"
+        metadata:
+          docker:
+            resolved_entrypoint:
+            - resolved_entrypoint
+            - resolved_entrypoint
+            resolved_digest: resolved_digest
+            resolved_cmd:
+            - resolved_cmd
+            - resolved_cmd
         role: null
         created_at: 2000-01-23T04:56:07.000+00:00
         scheduled_at: 2000-01-23T04:56:07.000+00:00
@@ -26805,6 +26985,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -26820,6 +27003,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -27028,7 +27214,7 @@ components:
             type: string
           type: array
         metadata:
-          type: object
+          $ref: '#/components/schemas/RegionalDeploymentMetadata'
         provisioning_info:
           $ref: '#/components/schemas/DeploymentProvisioningInfo'
         role:
@@ -27229,6 +27415,9 @@ components:
           interval: 6
           grace_period: 1
           timeout: 1
+          grpc:
+            port: 9
+            service: service
         - tcp:
             port: 4
           restart_limit: 7
@@ -27244,6 +27433,9 @@ components:
           interval: 6
           grace_period: 1
           timeout: 1
+          grpc:
+            port: 9
+            service: service
         name: name
         network_policy:
           mesh:
@@ -27513,6 +27705,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -27528,6 +27723,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -27577,6 +27775,18 @@ components:
       - REGIONAL_DEPLOYMENT_MESH_DISABLED
       type: string
     RegionalDeploymentMetadata:
+      example:
+        docker:
+          resolved_entrypoint:
+          - resolved_entrypoint
+          - resolved_entrypoint
+          resolved_digest: resolved_digest
+          resolved_cmd:
+          - resolved_cmd
+          - resolved_cmd
+      properties:
+        docker:
+          $ref: '#/components/schemas/DockerDeploymentMetadata'
       type: object
     RegionalDeploymentVolume:
       example:
@@ -28229,7 +28439,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -28344,6 +28554,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -28359,6 +28572,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -28518,7 +28734,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -28633,6 +28849,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -28648,6 +28867,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -28807,7 +29029,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -28922,6 +29144,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -28937,6 +29162,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -29094,7 +29322,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -29209,6 +29437,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -29224,6 +29455,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -29374,7 +29608,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -29489,6 +29723,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -29504,6 +29741,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -29677,7 +29917,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -29792,6 +30032,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -29807,6 +30050,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -29993,7 +30239,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -30108,6 +30354,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -30123,6 +30372,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -30280,7 +30532,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -30395,6 +30647,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -30410,6 +30665,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -30583,7 +30841,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -30698,6 +30956,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -30713,6 +30974,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:
@@ -31067,6 +31331,14 @@ components:
                 sender_avatar_url: sender_avatar_url
                 sender_profile_url: sender_profile_url
               type: null
+            docker:
+              resolved_entrypoint:
+              - resolved_entrypoint
+              - resolved_entrypoint
+              resolved_digest: resolved_digest
+              resolved_cmd:
+              - resolved_cmd
+              - resolved_cmd
           role: null
           created_at: 2000-01-23T04:56:07.000+00:00
           skip_build: true
@@ -31197,7 +31469,7 @@ components:
                   secret: secret
                 region: region
                 instance_type: instance_type
-                pg_version: 9
+                pg_version: 6
             git:
               run_command: run_command
               workdir: workdir
@@ -31312,6 +31584,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             - tcp:
                 port: 4
               restart_limit: 7
@@ -31327,6 +31602,9 @@ components:
               interval: 6
               grace_period: 1
               timeout: 1
+              grpc:
+                port: 9
+                service: service
             name: name
             network_policy:
               mesh:
@@ -31673,6 +31951,14 @@ components:
               sender_avatar_url: sender_avatar_url
               sender_profile_url: sender_profile_url
             type: null
+          docker:
+            resolved_entrypoint:
+            - resolved_entrypoint
+            - resolved_entrypoint
+            resolved_digest: resolved_digest
+            resolved_cmd:
+            - resolved_cmd
+            - resolved_cmd
         instance_snapshot_id: instance_snapshot_id
         save_only: true
         definition:
@@ -31798,7 +32084,7 @@ components:
                 secret: secret
               region: region
               instance_type: instance_type
-              pg_version: 9
+              pg_version: 6
           git:
             run_command: run_command
             workdir: workdir
@@ -31913,6 +32199,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           - tcp:
               port: 4
             restart_limit: 7
@@ -31928,6 +32217,9 @@ components:
             interval: 6
             grace_period: 1
             timeout: 1
+            grpc:
+              port: 9
+              service: service
           name: name
           network_policy:
             mesh:

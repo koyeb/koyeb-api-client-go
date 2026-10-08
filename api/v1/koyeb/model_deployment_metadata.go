@@ -22,6 +22,7 @@ type DeploymentMetadata struct {
 	Archive *ArchiveDeploymentMetadata `json:"archive,omitempty"`
 	ProxyPorts []DeploymentProxyPortMetadata `json:"proxy_ports,omitempty"`
 	Sandbox *SandboxMetadata `json:"sandbox,omitempty"`
+	Docker *DockerDeploymentMetadata `json:"docker,omitempty"`
 }
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object
@@ -233,6 +234,38 @@ func (o *DeploymentMetadata) SetSandbox(v SandboxMetadata) {
 	o.Sandbox = &v
 }
 
+// GetDocker returns the Docker field value if set, zero value otherwise.
+func (o *DeploymentMetadata) GetDocker() DockerDeploymentMetadata {
+	if o == nil || isNil(o.Docker) {
+		var ret DockerDeploymentMetadata
+		return ret
+	}
+	return *o.Docker
+}
+
+// GetDockerOk returns a tuple with the Docker field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentMetadata) GetDockerOk() (*DockerDeploymentMetadata, bool) {
+	if o == nil || isNil(o.Docker) {
+    return nil, false
+	}
+	return o.Docker, true
+}
+
+// HasDocker returns a boolean if a field has been set.
+func (o *DeploymentMetadata) HasDocker() bool {
+	if o != nil && !isNil(o.Docker) {
+		return true
+	}
+
+	return false
+}
+
+// SetDocker gets a reference to the given DockerDeploymentMetadata and assigns it to the Docker field.
+func (o *DeploymentMetadata) SetDocker(v DockerDeploymentMetadata) {
+	o.Docker = &v
+}
+
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.Trigger) {
@@ -252,6 +285,9 @@ func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Sandbox) {
 		toSerialize["sandbox"] = o.Sandbox
+	}
+	if !isNil(o.Docker) {
+		toSerialize["docker"] = o.Docker
 	}
 	return json.Marshal(toSerialize)
 }

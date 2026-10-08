@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Timeout** | Pointer to **int64** |  | [optional] 
 **Tcp** | Pointer to [**TCPHealthCheck**](TCPHealthCheck.md) |  | [optional] 
 **Http** | Pointer to [**HTTPHealthCheck**](HTTPHealthCheck.md) |  | [optional] 
+**Grpc** | Pointer to [**GRPCHealthCheck**](GRPCHealthCheck.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetHttp sets Http field to given value.
 `func (o *DeploymentHealthCheck) HasHttp() bool`
 
 HasHttp returns a boolean if a field has been set.
+
+### GetGrpc
+
+`func (o *DeploymentHealthCheck) GetGrpc() GRPCHealthCheck`
+
+GetGrpc returns the Grpc field if non-nil, zero value otherwise.
+
+### GetGrpcOk
+
+`func (o *DeploymentHealthCheck) GetGrpcOk() (*GRPCHealthCheck, bool)`
+
+GetGrpcOk returns a tuple with the Grpc field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGrpc
+
+`func (o *DeploymentHealthCheck) SetGrpc(v GRPCHealthCheck)`
+
+SetGrpc sets Grpc field to given value.
+
+### HasGrpc
+
+`func (o *DeploymentHealthCheck) HasGrpc() bool`
+
+HasGrpc returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

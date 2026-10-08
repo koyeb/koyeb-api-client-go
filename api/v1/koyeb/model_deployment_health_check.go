@@ -22,6 +22,7 @@ type DeploymentHealthCheck struct {
 	Timeout *int64 `json:"timeout,omitempty"`
 	Tcp *TCPHealthCheck `json:"tcp,omitempty"`
 	Http *HTTPHealthCheck `json:"http,omitempty"`
+	Grpc *GRPCHealthCheck `json:"grpc,omitempty"`
 }
 
 // NewDeploymentHealthCheck instantiates a new DeploymentHealthCheck object
@@ -233,6 +234,38 @@ func (o *DeploymentHealthCheck) SetHttp(v HTTPHealthCheck) {
 	o.Http = &v
 }
 
+// GetGrpc returns the Grpc field value if set, zero value otherwise.
+func (o *DeploymentHealthCheck) GetGrpc() GRPCHealthCheck {
+	if o == nil || isNil(o.Grpc) {
+		var ret GRPCHealthCheck
+		return ret
+	}
+	return *o.Grpc
+}
+
+// GetGrpcOk returns a tuple with the Grpc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentHealthCheck) GetGrpcOk() (*GRPCHealthCheck, bool) {
+	if o == nil || isNil(o.Grpc) {
+    return nil, false
+	}
+	return o.Grpc, true
+}
+
+// HasGrpc returns a boolean if a field has been set.
+func (o *DeploymentHealthCheck) HasGrpc() bool {
+	if o != nil && !isNil(o.Grpc) {
+		return true
+	}
+
+	return false
+}
+
+// SetGrpc gets a reference to the given GRPCHealthCheck and assigns it to the Grpc field.
+func (o *DeploymentHealthCheck) SetGrpc(v GRPCHealthCheck) {
+	o.Grpc = &v
+}
+
 func (o DeploymentHealthCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.GracePeriod) {
@@ -252,6 +285,9 @@ func (o DeploymentHealthCheck) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Http) {
 		toSerialize["http"] = o.Http
+	}
+	if !isNil(o.Grpc) {
+		toSerialize["grpc"] = o.Grpc
 	}
 	return json.Marshal(toSerialize)
 }

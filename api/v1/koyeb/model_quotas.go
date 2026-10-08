@@ -19,7 +19,6 @@ type Quotas struct {
 	Apps *string `json:"apps,omitempty"`
 	Services *string `json:"services,omitempty"`
 	Domains *string `json:"domains,omitempty"`
-	ServicesByApp *string `json:"services_by_app,omitempty"`
 	ServiceProvisioningConcurrency *string `json:"service_provisioning_concurrency,omitempty"`
 	MemoryMb *string `json:"memory_mb,omitempty"`
 	InstanceTypes []string `json:"instance_types,omitempty"`
@@ -152,38 +151,6 @@ func (o *Quotas) HasDomains() bool {
 // SetDomains gets a reference to the given string and assigns it to the Domains field.
 func (o *Quotas) SetDomains(v string) {
 	o.Domains = &v
-}
-
-// GetServicesByApp returns the ServicesByApp field value if set, zero value otherwise.
-func (o *Quotas) GetServicesByApp() string {
-	if o == nil || isNil(o.ServicesByApp) {
-		var ret string
-		return ret
-	}
-	return *o.ServicesByApp
-}
-
-// GetServicesByAppOk returns a tuple with the ServicesByApp field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Quotas) GetServicesByAppOk() (*string, bool) {
-	if o == nil || isNil(o.ServicesByApp) {
-    return nil, false
-	}
-	return o.ServicesByApp, true
-}
-
-// HasServicesByApp returns a boolean if a field has been set.
-func (o *Quotas) HasServicesByApp() bool {
-	if o != nil && !isNil(o.ServicesByApp) {
-		return true
-	}
-
-	return false
-}
-
-// SetServicesByApp gets a reference to the given string and assigns it to the ServicesByApp field.
-func (o *Quotas) SetServicesByApp(v string) {
-	o.ServicesByApp = &v
 }
 
 // GetServiceProvisioningConcurrency returns the ServiceProvisioningConcurrency field value if set, zero value otherwise.
@@ -804,9 +771,6 @@ func (o Quotas) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.Domains) {
 		toSerialize["domains"] = o.Domains
-	}
-	if !isNil(o.ServicesByApp) {
-		toSerialize["services_by_app"] = o.ServicesByApp
 	}
 	if !isNil(o.ServiceProvisioningConcurrency) {
 		toSerialize["service_provisioning_concurrency"] = o.ServiceProvisioningConcurrency

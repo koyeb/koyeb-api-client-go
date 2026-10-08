@@ -16318,10 +16318,6 @@
           "format": "int64",
           "title": "Deprecated, use custom_domains instead"
         },
-        "services_by_app": {
-          "type": "string",
-          "format": "int64"
-        },
         "service_provisioning_concurrency": {
           "type": "string",
           "format": "int64"
@@ -18374,6 +18370,9 @@
         },
         "http": {
           "$ref": "#/definitions/HTTPHealthCheck"
+        },
+        "grpc": {
+          "$ref": "#/definitions/GRPCHealthCheck"
         }
       }
     },
@@ -18717,6 +18716,20 @@
         "EGRESS_POLICY_MODE_DENY_ALL"
       ],
       "default": "EGRESS_POLICY_MODE_DEFAULT"
+    },
+    "GRPCHealthCheck": {
+      "type": "object",
+      "properties": {
+        "port": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The port to use to perform the health check, must be declared in the ports section"
+        },
+        "service": {
+          "type": "string",
+          "title": "An optional gRPC service name placed in the gRPC HealthCheckRequest; empty means the gRPC default"
+        }
+      }
     },
     "GitSource": {
       "type": "object",
@@ -19334,6 +19347,9 @@
         },
         "sandbox": {
           "$ref": "#/definitions/SandboxMetadata"
+        },
+        "docker": {
+          "$ref": "#/definitions/DockerDeploymentMetadata"
         }
       }
     },
@@ -19557,6 +19573,30 @@
           "$ref": "#/definitions/ProxyPortProtocol"
         }
       }
+    },
+    "DockerDeploymentMetadata": {
+      "type": "object",
+      "properties": {
+        "resolved_digest": {
+          "type": "string",
+          "description": "Digest of the resolved image manifest (\"sha256:...\")."
+        },
+        "resolved_entrypoint": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "ENTRYPOINT from the image config."
+        },
+        "resolved_cmd": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "CMD from the image config."
+        }
+      },
+      "description": "Image metadata resolved at provisioning time for docker-source\ndeployments without an explicit command."
     },
     "GetDeploymentReply": {
       "type": "object",
@@ -21238,7 +21278,13 @@
       "default": "REGIONAL_DEPLOYMENT_MESH_AUTO"
     },
     "RegionalDeploymentMetadata": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "docker": {
+          "$ref": "#/definitions/DockerDeploymentMetadata",
+          "description": "Image metadata copied from the deployment's metadata at the fan-out."
+        }
+      }
     },
     "RegionalDeploymentVolume": {
       "type": "object",
