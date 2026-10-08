@@ -188,6 +188,7 @@ docs/DigitalOceanRegistryConfiguration.md
 docs/DiscourseAuthReply.md
 docs/DiscourseAuthRequest.md
 docs/DockerBuilder.md
+docs/DockerDeploymentMetadata.md
 docs/DockerHelperApi.md
 docs/DockerHubRegistryConfiguration.md
 docs/DockerSource.md
@@ -210,6 +211,7 @@ docs/ExecCommandRequestBody.md
 docs/ExecCommandRequestIdType.md
 docs/ExecCommandRequestTerminalSize.md
 docs/GCPContainerRegistryConfiguration.md
+docs/GRPCHealthCheck.md
 docs/GetAppReply.md
 docs/GetBudgetReply.md
 docs/GetCatalogInstanceReply.md
@@ -419,6 +421,7 @@ docs/RegionalDeploymentDefinitionType.md
 docs/RegionalDeploymentEvent.md
 docs/RegionalDeploymentListItem.md
 docs/RegionalDeploymentMesh.md
+docs/RegionalDeploymentMetadata.md
 docs/RegionalDeploymentRole.md
 docs/RegionalDeploymentStatus.md
 docs/RegionalDeploymentVolume.md
@@ -646,6 +649,7 @@ model_digital_ocean_registry_configuration.go
 model_discourse_auth_reply.go
 model_discourse_auth_request.go
 model_docker_builder.go
+model_docker_deployment_metadata.go
 model_docker_hub_registry_configuration.go
 model_docker_source.go
 model_domain.go
@@ -713,6 +717,7 @@ model_github_installation_request.go
 model_google_protobuf_any.go
 model_google_protobuf_null_value.go
 model_google_rpc_status.go
+model_grpc_health_check.go
 model_has_unpaid_invoices_reply.go
 model_http_header.go
 model_http_health_check.go
@@ -857,6 +862,7 @@ model_regional_deployment_definition_type.go
 model_regional_deployment_event.go
 model_regional_deployment_list_item.go
 model_regional_deployment_mesh.go
+model_regional_deployment_metadata.go
 model_regional_deployment_role.go
 model_regional_deployment_status.go
 model_regional_deployment_volume.go

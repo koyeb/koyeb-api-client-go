@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Messages** | Pointer to **[]string** |  | [optional] 
 **Definition** | Pointer to [**RegionalDeploymentDefinition**](RegionalDeploymentDefinition.md) |  | [optional] 
 **Datacenters** | Pointer to **[]string** |  | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
+**Metadata** | Pointer to [**RegionalDeploymentMetadata**](RegionalDeploymentMetadata.md) |  | [optional] 
 **ProvisioningInfo** | Pointer to [**DeploymentProvisioningInfo**](DeploymentProvisioningInfo.md) |  | [optional] 
 **Role** | Pointer to [**RegionalDeploymentRole**](RegionalDeploymentRole.md) |  | [optional] [default to REGIONALDEPLOYMENTROLE_INVALID]
 **InstanceSnapshotId** | Pointer to **string** |  | [optional] 
@@ -501,20 +501,20 @@ HasDatacenters returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *RegionalDeployment) GetMetadata() map[string]interface{}`
+`func (o *RegionalDeployment) GetMetadata() RegionalDeploymentMetadata`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *RegionalDeployment) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *RegionalDeployment) GetMetadataOk() (*RegionalDeploymentMetadata, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *RegionalDeployment) SetMetadata(v map[string]interface{})`
+`func (o *RegionalDeployment) SetMetadata(v RegionalDeploymentMetadata)`
 
 SetMetadata sets Metadata field to given value.
 

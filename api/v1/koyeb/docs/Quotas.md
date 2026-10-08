@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **Apps** | Pointer to **string** |  | [optional] 
 **Services** | Pointer to **string** |  | [optional] 
 **Domains** | Pointer to **string** |  | [optional] 
-**ServicesByApp** | Pointer to **string** |  | [optional] 
 **ServiceProvisioningConcurrency** | Pointer to **string** |  | [optional] 
 **MemoryMb** | Pointer to **string** |  | [optional] 
 **InstanceTypes** | Pointer to **[]string** |  | [optional] 
@@ -121,31 +120,6 @@ SetDomains sets Domains field to given value.
 `func (o *Quotas) HasDomains() bool`
 
 HasDomains returns a boolean if a field has been set.
-
-### GetServicesByApp
-
-`func (o *Quotas) GetServicesByApp() string`
-
-GetServicesByApp returns the ServicesByApp field if non-nil, zero value otherwise.
-
-### GetServicesByAppOk
-
-`func (o *Quotas) GetServicesByAppOk() (*string, bool)`
-
-GetServicesByAppOk returns a tuple with the ServicesByApp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServicesByApp
-
-`func (o *Quotas) SetServicesByApp(v string)`
-
-SetServicesByApp sets ServicesByApp field to given value.
-
-### HasServicesByApp
-
-`func (o *Quotas) HasServicesByApp() bool`
-
-HasServicesByApp returns a boolean if a field has been set.
 
 ### GetServiceProvisioningConcurrency
 

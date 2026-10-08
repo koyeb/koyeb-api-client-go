@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Archive** | Pointer to [**ArchiveDeploymentMetadata**](ArchiveDeploymentMetadata.md) |  | [optional] 
 **ProxyPorts** | Pointer to [**[]DeploymentProxyPortMetadata**](DeploymentProxyPortMetadata.md) |  | [optional] 
 **Sandbox** | Pointer to [**SandboxMetadata**](SandboxMetadata.md) |  | [optional] 
+**Docker** | Pointer to [**DockerDeploymentMetadata**](DockerDeploymentMetadata.md) |  | [optional] 
 
 ## Methods
 
@@ -179,6 +180,31 @@ SetSandbox sets Sandbox field to given value.
 `func (o *DeploymentMetadata) HasSandbox() bool`
 
 HasSandbox returns a boolean if a field has been set.
+
+### GetDocker
+
+`func (o *DeploymentMetadata) GetDocker() DockerDeploymentMetadata`
+
+GetDocker returns the Docker field if non-nil, zero value otherwise.
+
+### GetDockerOk
+
+`func (o *DeploymentMetadata) GetDockerOk() (*DockerDeploymentMetadata, bool)`
+
+GetDockerOk returns a tuple with the Docker field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDocker
+
+`func (o *DeploymentMetadata) SetDocker(v DockerDeploymentMetadata)`
+
+SetDocker sets Docker field to given value.
+
+### HasDocker
+
+`func (o *DeploymentMetadata) HasDocker() bool`
+
+HasDocker returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
