@@ -11748,6 +11748,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "status",
+            "description": "Filter pools by their own status: ready, provisioning, error or deleting.",
+            "in": "query",
+            "required": false,
+            "type": "string"
           }
         ],
         "tags": [

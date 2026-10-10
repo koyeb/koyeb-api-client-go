@@ -10688,6 +10688,12 @@ paths:
         name: offset
         schema:
           type: string
+      - description: "Filter pools by their own status: ready, provisioning, error\
+          \ or deleting."
+        in: query
+        name: status
+        schema:
+          type: string
       responses:
         "200":
           content:
