@@ -669,6 +669,7 @@ type ApiListServicePoolsRequest struct {
 	name *string
 	limit *string
 	offset *string
+	status *string
 }
 
 func (r ApiListServicePoolsRequest) Name(name string) ApiListServicePoolsRequest {
@@ -683,6 +684,12 @@ func (r ApiListServicePoolsRequest) Limit(limit string) ApiListServicePoolsReque
 
 func (r ApiListServicePoolsRequest) Offset(offset string) ApiListServicePoolsRequest {
 	r.offset = &offset
+	return r
+}
+
+// Filter pools by their own status: ready, provisioning, error or deleting.
+func (r ApiListServicePoolsRequest) Status(status string) ApiListServicePoolsRequest {
+	r.status = &status
 	return r
 }
 
@@ -732,6 +739,9 @@ func (a *ServicePoolsApiService) ListServicePoolsExecute(r ApiListServicePoolsRe
 	}
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
