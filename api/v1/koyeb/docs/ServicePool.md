@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**ServicePoolStatus**](ServicePoolStatus.md) |  | [optional] [default to SERVICEPOOLSTATUS_UNSPECIFIED]
 **Messages** | Pointer to **[]string** |  | [optional] 
 **Generation** | Pointer to **string** |  | [optional] 
-**CustomerId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -336,31 +335,6 @@ SetGeneration sets Generation field to given value.
 `func (o *ServicePool) HasGeneration() bool`
 
 HasGeneration returns a boolean if a field has been set.
-
-### GetCustomerId
-
-`func (o *ServicePool) GetCustomerId() string`
-
-GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
-
-### GetCustomerIdOk
-
-`func (o *ServicePool) GetCustomerIdOk() (*string, bool)`
-
-GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomerId
-
-`func (o *ServicePool) SetCustomerId(v string)`
-
-SetCustomerId sets CustomerId field to given value.
-
-### HasCustomerId
-
-`func (o *ServicePool) HasCustomerId() bool`
-
-HasCustomerId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

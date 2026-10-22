@@ -213,6 +213,7 @@ docs/ExecCommandRequestTerminalSize.md
 docs/GCPContainerRegistryConfiguration.md
 docs/GRPCHealthCheck.md
 docs/GetAppReply.md
+docs/GetArchiveReply.md
 docs/GetBudgetReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetCredentialReply.md
@@ -671,6 +672,7 @@ model_exec_command_request_id_type.go
 model_exec_command_request_terminal_size.go
 model_gcp_container_registry_configuration.go
 model_get_app_reply.go
+model_get_archive_reply.go
 model_get_budget_reply.go
 model_get_catalog_instance_reply.go
 model_get_credential_reply.go
