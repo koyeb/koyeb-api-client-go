@@ -1,15 +1,6 @@
 openapi: 3.0.1
 info:
   description: |
-    The Koyeb API allows you to interact with the Koyeb platform in a simple, programmatic way using conventional HTTP requests.
-  title: Koyeb Rest API
-  version: 1.0.0
-servers:
-- url: https://app.koyeb.com/
-security:
-- Bearer: []
-tags:
-- description: |
     Welcome to the Koyeb API documentation.
 
     The Koyeb API allows you to interact with the Koyeb platform in a simple, programmatic way using conventional HTTP requests.
@@ -42,7 +33,7 @@ tags:
     The following code is an example request to retrieve the list of Apps.
 
     ```
-    %curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://app.koyeb.com/v1/apps
+    $ curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://app.koyeb.com/v1/apps
     {
       "apps": [
         {
@@ -84,7 +75,11 @@ tags:
 
     Your API keys carry many privileges. Take care to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, Slack, client-side code, and so forth.
 
-    To make an authenticated request, include a bearer-type Authorization header containing your API key.
+    To make an authenticated request, include a bearer-type Authorization header containing your API key, prefixed with `Bearer `:
+
+    ```
+    Authorization: Bearer <your-api-key>
+    ```
 
     All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.
 
@@ -191,9 +186,12 @@ tags:
 
     Paginated endpoints usually also accept filters to search and sort results.
     These filters are documented along with each endpoint documentation.
-  name: intro
-  x-displayName: Introduction
-  x-traitTag: true
+  title: Koyeb Rest API
+  version: 1.0.0
+servers:
+- url: https://app.koyeb.com/
+security:
+- Bearer: []
 paths:
   /v1/account/activities:
     get:
@@ -7306,6 +7304,136 @@ paths:
       tags:
       - Archives
       x-codegen-request-body-name: archive
+  /v1/archives/{id}:
+    delete:
+      description: |-
+        Mark an archive for deletion. Its status becomes deleting, and it is
+        deleted along with its file shortly after. Deployments already built from
+        it keep running, but nothing can be built from it any more.
+      operationId: DeleteArchive
+      parameters:
+      - description: The id of the archive.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DeleteArchiveReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Delete Archive
+      tags:
+      - Archives
+    get:
+      description: "Get an archive, with a signed URL to download it."
+      operationId: GetArchive
+      parameters:
+      - description: The id of the archive.
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetArchiveReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Get Archive
+      tags:
+      - Archives
   /v1/compose:
     post:
       operationId: Compose
@@ -10686,6 +10814,12 @@ paths:
           type: string
       - in: query
         name: offset
+        schema:
+          type: string
+      - description: "Filter pools by their own status: ready, provisioning, error\
+          \ or deleting."
+        in: query
+        name: status
         schema:
           type: string
       responses:
@@ -15996,6 +16130,7 @@ components:
           memory_mb: memory_mb
           domains_load_balancer:
             max_koyeb: 5
+          persistent_volumes_disabled: true
           metrics_retention: 5
           archive_max_size_mb: archive_max_size_mb
           access_reserved_subdomains:
@@ -16102,6 +16237,7 @@ components:
         memory_mb: memory_mb
         domains_load_balancer:
           max_koyeb: 5
+        persistent_volumes_disabled: true
         metrics_retention: 5
         archive_max_size_mb: archive_max_size_mb
         access_reserved_subdomains:
@@ -16182,6 +16318,14 @@ components:
           type: string
         instance_snapshots:
           $ref: '#/components/schemas/InstanceSnapshotQuotas'
+        persistent_volumes_disabled:
+          description: |-
+            When true, persistent volumes are disabled for the organization regardless
+            of persistent_volumes_by_region. kaccount's ComputeQuotas omits
+            persistent_volumes_by_region when this is set, so the flag must travel
+            explicitly — otherwise consumers cannot distinguish "disabled" from "no
+            custom quotas".
+          type: boolean
       type: object
     ScaleToZeroQuotas:
       example:
@@ -17938,6 +18082,10 @@ components:
         delete_when_empty: true
       properties:
         delete_when_empty:
+          description: |-
+            If true, the app is deleted once it has no service left: either when
+            its last service is deleted or, for an app that never had a service,
+            once it is older than 15 minutes.
           type: boolean
       type: object
     AppListItem:
@@ -18490,11 +18638,14 @@ components:
     Archive:
       example:
         size: size
+        download_url_deadline: 2000-01-23T04:56:07.000+00:00
         organization_id: organization_id
+        download_url: download_url
         upload_url: upload_url
         created_at: 2000-01-23T04:56:07.000+00:00
         id: id
         deleted_at: 2000-01-23T04:56:07.000+00:00
+        status: null
       properties:
         id:
           description: "The archive id, that can be referenced when creating or updating\
@@ -18522,7 +18673,31 @@ components:
             archive is garbage collected.
           format: date-time
           type: string
+        download_url:
+          description: |-
+            A signed URL to download the archive. Getting an archive signs a new one
+            when it has less than 5 minutes left, valid for 24 hours.
+          type: string
+        download_url_deadline:
+          description: When download_url expires.
+          format: date-time
+          type: string
+        status:
+          $ref: '#/components/schemas/ArchiveStatus'
       type: object
+    ArchiveStatus:
+      default: ARCHIVE_STATUS_INVALID
+      enum:
+      - ARCHIVE_STATUS_INVALID
+      - ARCHIVE_STATUS_HEALTHY
+      - ARCHIVE_STATUS_DELETING
+      - ARCHIVE_STATUS_DELETED
+      title: |-
+        - ARCHIVE_STATUS_INVALID: zero value, invalid
+         - ARCHIVE_STATUS_HEALTHY: the archive can be deployed and downloaded
+         - ARCHIVE_STATUS_DELETING: the archive is waiting for its file to be removed
+         - ARCHIVE_STATUS_DELETED: the archive and its file are deleted
+      type: string
     CreateArchive:
       example:
         size: size
@@ -18536,11 +18711,32 @@ components:
       example:
         archive:
           size: size
+          download_url_deadline: 2000-01-23T04:56:07.000+00:00
           organization_id: organization_id
+          download_url: download_url
           upload_url: upload_url
           created_at: 2000-01-23T04:56:07.000+00:00
           id: id
           deleted_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+      properties:
+        archive:
+          $ref: '#/components/schemas/Archive'
+      type: object
+    DeleteArchiveReply:
+      type: object
+    GetArchiveReply:
+      example:
+        archive:
+          size: size
+          download_url_deadline: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          download_url: download_url
+          upload_url: upload_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          status: null
       properties:
         archive:
           $ref: '#/components/schemas/Archive'
@@ -18982,6 +19178,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -19261,6 +19458,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -19550,6 +19748,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -19866,6 +20065,7 @@ components:
           branch: branch
           sha: sha
           credential_source: credential_source
+          skip_submodules: true
           docker:
             args:
             - args
@@ -20563,6 +20763,7 @@ components:
         branch: branch
         sha: sha
         credential_source: credential_source
+        skip_submodules: true
         docker:
           args:
           - args
@@ -20612,6 +20813,10 @@ components:
           description: Credentials can come from a specific source or default to using
             Github (when unset or set to "github").
           type: string
+        skip_submodules:
+          description: A flag to skip initializing git submodules when cloning the
+            repository.
+          type: boolean
       type: object
     HTTPHeader:
       example:
@@ -21171,6 +21376,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -21937,6 +22143,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -22848,6 +23055,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -23794,6 +24002,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -24277,6 +24486,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -25626,9 +25836,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           pool_generation: pool_generation
           id: id
-          released_at: 2000-01-23T04:56:07.000+00:00
           pool_id: pool_id
-          customer_id: customer_id
           request_id: request_id
           status: null
       properties:
@@ -25646,9 +25854,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           pool_generation: pool_generation
           id: id
-          released_at: 2000-01-23T04:56:07.000+00:00
           pool_id: pool_id
-          customer_id: customer_id
           request_id: request_id
           status: null
         - workspace_id: workspace_id
@@ -25658,9 +25864,7 @@ components:
           created_at: 2000-01-23T04:56:07.000+00:00
           pool_generation: pool_generation
           id: id
-          released_at: 2000-01-23T04:56:07.000+00:00
           pool_id: pool_id
-          customer_id: customer_id
           request_id: request_id
           status: null
         limit: 0
@@ -25692,9 +25896,7 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         pool_generation: pool_generation
         id: id
-        released_at: 2000-01-23T04:56:07.000+00:00
         pool_id: pool_id
-        customer_id: customer_id
         request_id: request_id
         status: null
       properties:
@@ -25712,15 +25914,10 @@ components:
           type: string
         workspace_id:
           type: string
-        customer_id:
-          type: string
         created_at:
           format: date-time
           type: string
         fulfilled_at:
-          format: date-time
-          type: string
-        released_at:
           format: date-time
           type: string
         pool_generation:
@@ -25734,7 +25931,6 @@ components:
       - PENDING
       - FULFILLED
       - FAILED
-      - RELEASED
       type: string
     PoolClaimReply:
       example:
@@ -25757,6 +25953,9 @@ components:
         pool_id:
           type: string
         request_id:
+          description: |-
+            Idempotency key scoped to the pool: retries with the same value return the
+            same claim. A fresh id is generated when omitted.
           type: string
       type: object
     CreateStageAttemptReply:
@@ -26116,6 +26315,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -26508,6 +26708,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -26709,6 +26910,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -26957,6 +27159,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -27387,6 +27590,7 @@ components:
           branch: branch
           sha: sha
           credential_source: credential_source
+          skip_submodules: true
           docker:
             args:
             - args
@@ -27677,6 +27881,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -28454,6 +28659,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -28600,13 +28806,13 @@ components:
     CreateServicePoolReply:
       example:
         service_pool:
-          generation: generation
-          created_at: 2000-01-23T04:56:07.000+00:00
           workspace_id: workspace_id
+          generation: generation
           updated_at: 2000-01-23T04:56:07.000+00:00
           size: 0
           organization_id: organization_id
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           ready_count: 6
           messages:
           - messages
@@ -28749,6 +28955,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -28884,7 +29091,6 @@ components:
               type: null
             mesh: null
           id: id
-          customer_id: customer_id
           status: null
       properties:
         service_pool:
@@ -28895,13 +29101,13 @@ components:
     GetServicePoolReply:
       example:
         service_pool:
-          generation: generation
-          created_at: 2000-01-23T04:56:07.000+00:00
           workspace_id: workspace_id
+          generation: generation
           updated_at: 2000-01-23T04:56:07.000+00:00
           size: 0
           organization_id: organization_id
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           ready_count: 6
           messages:
           - messages
@@ -29044,6 +29250,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -29179,7 +29386,6 @@ components:
               type: null
             mesh: null
           id: id
-          customer_id: customer_id
           status: null
       properties:
         service_pool:
@@ -29188,13 +29394,13 @@ components:
     ListServicePoolsReply:
       example:
         service_pools:
-        - generation: generation
-          created_at: 2000-01-23T04:56:07.000+00:00
-          workspace_id: workspace_id
+        - workspace_id: workspace_id
+          generation: generation
           updated_at: 2000-01-23T04:56:07.000+00:00
           size: 0
           organization_id: organization_id
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           ready_count: 6
           messages:
           - messages
@@ -29337,6 +29543,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -29472,15 +29679,14 @@ components:
               type: null
             mesh: null
           id: id
-          customer_id: customer_id
           status: null
-        - generation: generation
-          created_at: 2000-01-23T04:56:07.000+00:00
-          workspace_id: workspace_id
+        - workspace_id: workspace_id
+          generation: generation
           updated_at: 2000-01-23T04:56:07.000+00:00
           size: 0
           organization_id: organization_id
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           ready_count: 6
           messages:
           - messages
@@ -29623,6 +29829,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -29758,7 +29965,6 @@ components:
               type: null
             mesh: null
           id: id
-          customer_id: customer_id
           status: null
         offset: 5
         limit: 1
@@ -29783,13 +29989,13 @@ components:
       type: object
     ServicePool:
       example:
-        generation: generation
-        created_at: 2000-01-23T04:56:07.000+00:00
         workspace_id: workspace_id
+        generation: generation
         updated_at: 2000-01-23T04:56:07.000+00:00
         size: 0
         organization_id: organization_id
         name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
         ready_count: 6
         messages:
         - messages
@@ -29932,6 +30138,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -30067,7 +30274,6 @@ components:
             type: null
           mesh: null
         id: id
-        customer_id: customer_id
         status: null
       properties:
         id:
@@ -30100,8 +30306,6 @@ components:
           type: array
         generation:
           format: uint64
-          type: string
-        customer_id:
           type: string
       type: object
     ServicePool.Status:
@@ -30254,6 +30458,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -30398,13 +30603,13 @@ components:
     UpdateServicePoolReply:
       example:
         service_pool:
-          generation: generation
-          created_at: 2000-01-23T04:56:07.000+00:00
           workspace_id: workspace_id
+          generation: generation
           updated_at: 2000-01-23T04:56:07.000+00:00
           size: 0
           organization_id: organization_id
           name: name
+          created_at: 2000-01-23T04:56:07.000+00:00
           ready_count: 6
           messages:
           - messages
@@ -30547,6 +30752,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -30682,7 +30888,6 @@ components:
               type: null
             mesh: null
           id: id
-          customer_id: customer_id
           status: null
       properties:
         service_pool:
@@ -30856,6 +31061,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -31484,6 +31690,7 @@ components:
               branch: branch
               sha: sha
               credential_source: credential_source
+              skip_submodules: true
               docker:
                 args:
                 - args
@@ -32099,6 +32306,7 @@ components:
             branch: branch
             sha: sha
             credential_source: credential_source
+            skip_submodules: true
             docker:
               args:
               - args
@@ -33356,13 +33564,12 @@ components:
       type: object
   securitySchemes:
     Bearer:
+      description: |
+        API key passed as a bearer token. The header value must be prefixed with `Bearer `, e.g. `Authorization: Bearer <your-api-key>`.
       in: header
       name: Authorization
       type: apiKey
 x-tagGroups:
-- name: Introduction
-  tags:
-  - intro
 - name: API
   tags:
   - Profile
