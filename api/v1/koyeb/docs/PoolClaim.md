@@ -11,10 +11,8 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**PoolClaimStatus**](PoolClaimStatus.md) |  | [optional] [default to POOLCLAIMSTATUS_UNSPECIFIED]
 **OrganizationId** | Pointer to **string** |  | [optional] 
 **WorkspaceId** | Pointer to **string** |  | [optional] 
-**CustomerId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **FulfilledAt** | Pointer to **time.Time** |  | [optional] 
-**ReleasedAt** | Pointer to **time.Time** |  | [optional] 
 **PoolGeneration** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -211,31 +209,6 @@ SetWorkspaceId sets WorkspaceId field to given value.
 
 HasWorkspaceId returns a boolean if a field has been set.
 
-### GetCustomerId
-
-`func (o *PoolClaim) GetCustomerId() string`
-
-GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
-
-### GetCustomerIdOk
-
-`func (o *PoolClaim) GetCustomerIdOk() (*string, bool)`
-
-GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCustomerId
-
-`func (o *PoolClaim) SetCustomerId(v string)`
-
-SetCustomerId sets CustomerId field to given value.
-
-### HasCustomerId
-
-`func (o *PoolClaim) HasCustomerId() bool`
-
-HasCustomerId returns a boolean if a field has been set.
-
 ### GetCreatedAt
 
 `func (o *PoolClaim) GetCreatedAt() time.Time`
@@ -285,31 +258,6 @@ SetFulfilledAt sets FulfilledAt field to given value.
 `func (o *PoolClaim) HasFulfilledAt() bool`
 
 HasFulfilledAt returns a boolean if a field has been set.
-
-### GetReleasedAt
-
-`func (o *PoolClaim) GetReleasedAt() time.Time`
-
-GetReleasedAt returns the ReleasedAt field if non-nil, zero value otherwise.
-
-### GetReleasedAtOk
-
-`func (o *PoolClaim) GetReleasedAtOk() (*time.Time, bool)`
-
-GetReleasedAtOk returns a tuple with the ReleasedAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReleasedAt
-
-`func (o *PoolClaim) SetReleasedAt(v time.Time)`
-
-SetReleasedAt sets ReleasedAt field to given value.
-
-### HasReleasedAt
-
-`func (o *PoolClaim) HasReleasedAt() bool`
-
-HasReleasedAt returns a boolean if a field has been set.
 
 ### GetPoolGeneration
 
