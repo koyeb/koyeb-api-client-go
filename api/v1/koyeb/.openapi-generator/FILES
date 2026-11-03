@@ -67,6 +67,7 @@ docs/AppsSummary.md
 docs/Archive.md
 docs/ArchiveDeploymentMetadata.md
 docs/ArchiveSource.md
+docs/ArchiveStatus.md
 docs/ArchivesApi.md
 docs/AutoRelease.md
 docs/AutoReleaseGroup.md
@@ -213,6 +214,7 @@ docs/ExecCommandRequestTerminalSize.md
 docs/GCPContainerRegistryConfiguration.md
 docs/GRPCHealthCheck.md
 docs/GetAppReply.md
+docs/GetArchiveReply.md
 docs/GetBudgetReply.md
 docs/GetCatalogInstanceReply.md
 docs/GetCredentialReply.md
@@ -538,6 +540,7 @@ model_apps_summary.go
 model_archive.go
 model_archive_deployment_metadata.go
 model_archive_source.go
+model_archive_status.go
 model_auto_release.go
 model_auto_release_group.go
 model_autocomplete_reply.go
@@ -671,6 +674,7 @@ model_exec_command_request_id_type.go
 model_exec_command_request_terminal_size.go
 model_gcp_container_registry_configuration.go
 model_get_app_reply.go
+model_get_archive_reply.go
 model_get_budget_reply.go
 model_get_catalog_instance_reply.go
 model_get_credential_reply.go

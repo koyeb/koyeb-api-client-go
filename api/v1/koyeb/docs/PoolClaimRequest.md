@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PoolId** | Pointer to **string** |  | [optional] 
-**RequestId** | Pointer to **string** |  | [optional] 
+**RequestId** | Pointer to **string** | Idempotency key scoped to the pool: retries with the same value return the same claim. A fresh id is generated when omitted. | [optional] 
 
 ## Methods
 
