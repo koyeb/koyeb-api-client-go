@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **SkipCache** | Pointer to **bool** |  | [optional] 
 **Mesh** | Pointer to [**RegionalDeploymentMesh**](RegionalDeploymentMesh.md) |  | [optional] [default to REGIONALDEPLOYMENTMESH_AUTO]
 **NetworkPolicy** | Pointer to [**NetworkPolicy**](NetworkPolicy.md) |  | [optional] 
+**KillTimeoutSecs** | Pointer to **int64** |  | [optional] 
 **Docker** | Pointer to [**DockerSource**](DockerSource.md) |  | [optional] 
 **Git** | Pointer to [**GitSource**](GitSource.md) |  | [optional] 
 **Archive** | Pointer to [**ArchiveSource**](ArchiveSource.md) |  | [optional] 
@@ -442,6 +443,31 @@ SetNetworkPolicy sets NetworkPolicy field to given value.
 `func (o *RegionalDeploymentDefinition) HasNetworkPolicy() bool`
 
 HasNetworkPolicy returns a boolean if a field has been set.
+
+### GetKillTimeoutSecs
+
+`func (o *RegionalDeploymentDefinition) GetKillTimeoutSecs() int64`
+
+GetKillTimeoutSecs returns the KillTimeoutSecs field if non-nil, zero value otherwise.
+
+### GetKillTimeoutSecsOk
+
+`func (o *RegionalDeploymentDefinition) GetKillTimeoutSecsOk() (*int64, bool)`
+
+GetKillTimeoutSecsOk returns a tuple with the KillTimeoutSecs field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKillTimeoutSecs
+
+`func (o *RegionalDeploymentDefinition) SetKillTimeoutSecs(v int64)`
+
+SetKillTimeoutSecs sets KillTimeoutSecs field to given value.
+
+### HasKillTimeoutSecs
+
+`func (o *RegionalDeploymentDefinition) HasKillTimeoutSecs() bool`
+
+HasKillTimeoutSecs returns a boolean if a field has been set.
 
 ### GetDocker
 

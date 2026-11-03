@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DeleteWhenEmpty** | Pointer to **bool** |  | [optional] 
+**DeleteWhenEmpty** | Pointer to **bool** | If true, the app is deleted once it has no service left: either when its last service is deleted or, for an app that never had a service, once it is older than 15 minutes. | [optional] 
 
 ## Methods
 

@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **Lifecycle** | Pointer to [**LifecycleQuotas**](LifecycleQuotas.md) |  | [optional] 
 **MaxProjects** | Pointer to **string** |  | [optional] 
 **InstanceSnapshots** | Pointer to [**InstanceSnapshotQuotas**](InstanceSnapshotQuotas.md) |  | [optional] 
+**PersistentVolumesDisabled** | Pointer to **bool** | When true, persistent volumes are disabled for the organization regardless of persistent_volumes_by_region. kaccount&#39;s ComputeQuotas omits persistent_volumes_by_region when this is set, so the flag must travel explicitly — otherwise consumers cannot distinguish \&quot;disabled\&quot; from \&quot;no custom quotas\&quot;. | [optional] 
 
 ## Methods
 
@@ -595,6 +596,31 @@ SetInstanceSnapshots sets InstanceSnapshots field to given value.
 `func (o *Quotas) HasInstanceSnapshots() bool`
 
 HasInstanceSnapshots returns a boolean if a field has been set.
+
+### GetPersistentVolumesDisabled
+
+`func (o *Quotas) GetPersistentVolumesDisabled() bool`
+
+GetPersistentVolumesDisabled returns the PersistentVolumesDisabled field if non-nil, zero value otherwise.
+
+### GetPersistentVolumesDisabledOk
+
+`func (o *Quotas) GetPersistentVolumesDisabledOk() (*bool, bool)`
+
+GetPersistentVolumesDisabledOk returns a tuple with the PersistentVolumesDisabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPersistentVolumesDisabled
+
+`func (o *Quotas) SetPersistentVolumesDisabled(v bool)`
+
+SetPersistentVolumesDisabled sets PersistentVolumesDisabled field to given value.
+
+### HasPersistentVolumesDisabled
+
+`func (o *Quotas) HasPersistentVolumesDisabled() bool`
+
+HasPersistentVolumesDisabled returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

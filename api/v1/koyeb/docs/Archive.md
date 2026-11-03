@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **Size** | Pointer to **string** | The provisioned space for the archive. | [optional] 
 **CreatedAt** | Pointer to **time.Time** | Date of creation of the archive. | [optional] 
 **DeletedAt** | Pointer to **time.Time** | This field is automatically set by Koyeb when the archive is garbage collected. | [optional] 
+**DownloadUrl** | Pointer to **string** | A signed URL to download the archive. Getting an archive signs a new one when it has less than 5 minutes left, valid for 24 hours. | [optional] 
+**DownloadUrlDeadline** | Pointer to **time.Time** | When download_url expires. | [optional] 
+**Status** | Pointer to [**ArchiveStatus**](ArchiveStatus.md) |  | [optional] [default to ARCHIVESTATUS_INVALID]
 
 ## Methods
 
@@ -179,6 +182,81 @@ SetDeletedAt sets DeletedAt field to given value.
 `func (o *Archive) HasDeletedAt() bool`
 
 HasDeletedAt returns a boolean if a field has been set.
+
+### GetDownloadUrl
+
+`func (o *Archive) GetDownloadUrl() string`
+
+GetDownloadUrl returns the DownloadUrl field if non-nil, zero value otherwise.
+
+### GetDownloadUrlOk
+
+`func (o *Archive) GetDownloadUrlOk() (*string, bool)`
+
+GetDownloadUrlOk returns a tuple with the DownloadUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadUrl
+
+`func (o *Archive) SetDownloadUrl(v string)`
+
+SetDownloadUrl sets DownloadUrl field to given value.
+
+### HasDownloadUrl
+
+`func (o *Archive) HasDownloadUrl() bool`
+
+HasDownloadUrl returns a boolean if a field has been set.
+
+### GetDownloadUrlDeadline
+
+`func (o *Archive) GetDownloadUrlDeadline() time.Time`
+
+GetDownloadUrlDeadline returns the DownloadUrlDeadline field if non-nil, zero value otherwise.
+
+### GetDownloadUrlDeadlineOk
+
+`func (o *Archive) GetDownloadUrlDeadlineOk() (*time.Time, bool)`
+
+GetDownloadUrlDeadlineOk returns a tuple with the DownloadUrlDeadline field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDownloadUrlDeadline
+
+`func (o *Archive) SetDownloadUrlDeadline(v time.Time)`
+
+SetDownloadUrlDeadline sets DownloadUrlDeadline field to given value.
+
+### HasDownloadUrlDeadline
+
+`func (o *Archive) HasDownloadUrlDeadline() bool`
+
+HasDownloadUrlDeadline returns a boolean if a field has been set.
+
+### GetStatus
+
+`func (o *Archive) GetStatus() ArchiveStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *Archive) GetStatusOk() (*ArchiveStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *Archive) SetStatus(v ArchiveStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *Archive) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

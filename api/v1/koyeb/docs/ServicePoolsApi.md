@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 
 ## ListServicePools
 
-> ListServicePoolsReply ListServicePools(ctx).Name(name).Limit(limit).Offset(offset).Execute()
+> ListServicePoolsReply ListServicePools(ctx).Name(name).Limit(limit).Offset(offset).Status(status).Execute()
 
 List ServicePools
 
@@ -234,10 +234,11 @@ func main() {
     name := "name_example" // string |  (optional)
     limit := "limit_example" // string |  (optional)
     offset := "offset_example" // string |  (optional)
+    status := "status_example" // string | Filter pools by their own status: ready, provisioning, error or deleting. (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ServicePoolsApi.ListServicePools(context.Background()).Name(name).Limit(limit).Offset(offset).Execute()
+    resp, r, err := apiClient.ServicePoolsApi.ListServicePools(context.Background()).Name(name).Limit(limit).Offset(offset).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServicePoolsApi.ListServicePools``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -261,6 +262,7 @@ Name | Type | Description  | Notes
  **name** | **string** |  | 
  **limit** | **string** |  | 
  **offset** | **string** |  | 
+ **status** | **string** | Filter pools by their own status: ready, provisioning, error or deleting. | 
 
 ### Return type
 
