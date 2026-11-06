@@ -18,6 +18,7 @@ import (
 type SandboxMetadata struct {
 	PublicUrl *string `json:"public_url,omitempty"`
 	RoutingKey *string `json:"routing_key,omitempty"`
+	InternalUrl *string `json:"internal_url,omitempty"`
 }
 
 // NewSandboxMetadata instantiates a new SandboxMetadata object
@@ -101,6 +102,38 @@ func (o *SandboxMetadata) SetRoutingKey(v string) {
 	o.RoutingKey = &v
 }
 
+// GetInternalUrl returns the InternalUrl field value if set, zero value otherwise.
+func (o *SandboxMetadata) GetInternalUrl() string {
+	if o == nil || isNil(o.InternalUrl) {
+		var ret string
+		return ret
+	}
+	return *o.InternalUrl
+}
+
+// GetInternalUrlOk returns a tuple with the InternalUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SandboxMetadata) GetInternalUrlOk() (*string, bool) {
+	if o == nil || isNil(o.InternalUrl) {
+    return nil, false
+	}
+	return o.InternalUrl, true
+}
+
+// HasInternalUrl returns a boolean if a field has been set.
+func (o *SandboxMetadata) HasInternalUrl() bool {
+	if o != nil && !isNil(o.InternalUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetInternalUrl gets a reference to the given string and assigns it to the InternalUrl field.
+func (o *SandboxMetadata) SetInternalUrl(v string) {
+	o.InternalUrl = &v
+}
+
 func (o SandboxMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if !isNil(o.PublicUrl) {
@@ -108,6 +141,9 @@ func (o SandboxMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if !isNil(o.RoutingKey) {
 		toSerialize["routing_key"] = o.RoutingKey
+	}
+	if !isNil(o.InternalUrl) {
+		toSerialize["internal_url"] = o.InternalUrl
 	}
 	return json.Marshal(toSerialize)
 }

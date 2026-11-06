@@ -1,0 +1,331 @@
+/*
+Koyeb Rest API
+
+Welcome to the Koyeb API documentation.  The Koyeb API allows you to interact with the Koyeb platform in a simple, programmatic way using conventional HTTP requests. The API has predictable resource-oriented URLs, allowing you to request, retrieve and execute actions on resources efficiently.  The API returns JSON-encoded responses and uses standard HTTP response codes, and verbs.  All of the functionality available in the Koyeb Control Panel is also available via the API, allowing you to automate repetitive and complex actions as required.  All production API requests are made to:  - https://app.koyeb.com/<version>  All data is sent and received as JSON.  ## Constructing Requests  Requests are made of three components:  - Base URL: `https://app.koyeb.com` - API Version: `v1` - Resource path: `apps`  To construct a proper request, you need to format the URL as follows:  `https://app.koyeb.com/{version}/{resource}`  Example: `https://app.koyeb.com/v1/apps`  The following code is an example request to retrieve the list of Apps.  ``` $ curl -H 'Authorization: Bearer 1111-1111-1111-1111-1111' https://app.koyeb.com/v1/apps {   \"apps\": [     {       \"id\": \"e267e09d-a2ef-4672-95c7-bf88d787a274\",       \"name\": \"demo\",       \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",       \"updated_at\": \"2021-04-26T08:28:59.221274Z\",       \"created_at\": \"2021-04-26T08:28:59.221274Z\",       \"domains\": [         {           \"name\": \"demo-koyeb.koyeb.app\",           \"deployment_group\": \"prod\"         }       ]     },     {       \"id\": \"e38caea5-5acb-4fec-aa65-81749546b470\",       \"name\": \"www\",       \"organization_id\": \"c402bcad-d06d-4fd6-8af2-08b790c0e249\",       \"updated_at\": \"2021-05-04T08:56:40.557792Z\",       \"created_at\": \"2021-05-04T08:56:40.557792Z\",       \"domains\": [         {           \"name\": \"www-koyeb.koyeb.app\",           \"deployment_group\": \"prod\"         }       ]     }   ],   \"limit\": 20,   \"offset\": 0,   \"count\": 2 } ```  # Authentication  The Koyeb API uses API keys to authenticate requests. You can view and manage your API keys in the Koyeb Control Panel.  Your API keys carry many privileges. Take care to keep them secure! Do not share your secret API keys in publicly accessible areas such as GitHub, Slack, client-side code, and so forth.  To make an authenticated request, include a bearer-type Authorization header containing your API key, prefixed with `Bearer `:  ``` Authorization: Bearer <your-api-key> ```  All API requests must be made over HTTPS. Calls made over plain HTTP will fail. API requests without authentication will also fail.  # Errors  We use conventional HTTP response codes to indicate the success or failure of an API request.  In general, codes in the 2xx range indicate success, codes in the 4xx range indicate an error that resulted from the provided information (e.g., a required parameter is missing, resource not found), and codes in the 5xx range indicate an error with our servers.  ## HTTP Status Code Summary  - `200 OK` - Everything worked as expected. - `400 Bad Request` - Often missing a required parameter. - `401 Unauthorized` - No valid API key provided. - `402 Request Failed` - Parameters were valid, but the request failed. - `403 Forbidden` - Insufficient privileges to access the requested resource. - `404 Not Found` - The requested item doesn't exist. - `50x` Server errors - Something went wrong on the API domain's end.  Input and output data must be valid JSON with the appropriate Content-Type header set.  ## Attributes  - code:    - `invalid_argument`: Occur when your request has invalid parameters.   - `unknown_resource`: Occur when the resource doesn't exist.   - `authentication_error`: Arise when there is a problem with authentication.   - `rate_limit_error`: Too many requests hit the API too quickly.   - `authorization_required`: You don't have sufficient right to access the resource.   - `api_error`: API errors use in case of a problem with api domain's servers (extremely uncommon).  - message:    - A human-readable error giving more details about the error  - status:    - The HTTP code returned by the server.  - fields (Optional):    - An array of parameters with a human-readable message giving more details about the error.  ## Errors responses example  Response 400 (application/json)  ``` {   \"status\": 400,   \"code\": \"invalid_argument\",   \"message\": \"Invalid argument\",   \"fields\": [     {       \"field\": \"definition.docker.image\",       \"description\": \"cannot be blank\"     }   ] } ```  Response 401 (application/json)  ``` {   \"status\": 401,   \"code\": \"authentication_error\",   \"message\": \"Request unauthenticated with bearer\" } ```  Response 403 (application/json)  ``` {   \"status\": 403,   \"code\": \"authentication_required\",   \"message\": \"You don't have the requested permission to access to resource.\" } ```   Response 404 (application/json)  ``` {   \"status\": 404,   \"code\": \"unknown_resource\",   \"message\": \"App not found\" } ```  # Pagination  All top-level API resources receive a paginated response. For instance, list Apps, list Services, and others share a standard structure, taking two parameters: limit and offset.  **Paginated request**  Requests against paginated endpoints accept two query string arguments:  * *limit*, a positive integer lower or equal to 100 to select the number of items to display. * *offset*, an integer to indicate the position to start at.  Paginated endpoints usually also accept filters to search and sort results. These filters are documented along with each endpoint documentation. 
+
+API version: 1.0.0
+*/
+
+// Code generated by OpenAPI Generator (https://openapi-generator.tech); DO NOT EDIT.
+
+package koyeb
+
+import (
+	"encoding/json"
+)
+
+// QueryServicesViewReply struct for QueryServicesViewReply
+type QueryServicesViewReply struct {
+	Services []ServiceViewRow `json:"services,omitempty"`
+	Groups []ServiceViewGroup `json:"groups,omitempty"`
+	Facets []ServiceViewFacet `json:"facets,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
+	Offset *int64 `json:"offset,omitempty"`
+	Count *int64 `json:"count,omitempty"`
+	HasNext *bool `json:"has_next,omitempty"`
+}
+
+// NewQueryServicesViewReply instantiates a new QueryServicesViewReply object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewQueryServicesViewReply() *QueryServicesViewReply {
+	this := QueryServicesViewReply{}
+	return &this
+}
+
+// NewQueryServicesViewReplyWithDefaults instantiates a new QueryServicesViewReply object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewQueryServicesViewReplyWithDefaults() *QueryServicesViewReply {
+	this := QueryServicesViewReply{}
+	return &this
+}
+
+// GetServices returns the Services field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetServices() []ServiceViewRow {
+	if o == nil || isNil(o.Services) {
+		var ret []ServiceViewRow
+		return ret
+	}
+	return o.Services
+}
+
+// GetServicesOk returns a tuple with the Services field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetServicesOk() ([]ServiceViewRow, bool) {
+	if o == nil || isNil(o.Services) {
+    return nil, false
+	}
+	return o.Services, true
+}
+
+// HasServices returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasServices() bool {
+	if o != nil && !isNil(o.Services) {
+		return true
+	}
+
+	return false
+}
+
+// SetServices gets a reference to the given []ServiceViewRow and assigns it to the Services field.
+func (o *QueryServicesViewReply) SetServices(v []ServiceViewRow) {
+	o.Services = v
+}
+
+// GetGroups returns the Groups field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetGroups() []ServiceViewGroup {
+	if o == nil || isNil(o.Groups) {
+		var ret []ServiceViewGroup
+		return ret
+	}
+	return o.Groups
+}
+
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetGroupsOk() ([]ServiceViewGroup, bool) {
+	if o == nil || isNil(o.Groups) {
+    return nil, false
+	}
+	return o.Groups, true
+}
+
+// HasGroups returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasGroups() bool {
+	if o != nil && !isNil(o.Groups) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroups gets a reference to the given []ServiceViewGroup and assigns it to the Groups field.
+func (o *QueryServicesViewReply) SetGroups(v []ServiceViewGroup) {
+	o.Groups = v
+}
+
+// GetFacets returns the Facets field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetFacets() []ServiceViewFacet {
+	if o == nil || isNil(o.Facets) {
+		var ret []ServiceViewFacet
+		return ret
+	}
+	return o.Facets
+}
+
+// GetFacetsOk returns a tuple with the Facets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetFacetsOk() ([]ServiceViewFacet, bool) {
+	if o == nil || isNil(o.Facets) {
+    return nil, false
+	}
+	return o.Facets, true
+}
+
+// HasFacets returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasFacets() bool {
+	if o != nil && !isNil(o.Facets) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacets gets a reference to the given []ServiceViewFacet and assigns it to the Facets field.
+func (o *QueryServicesViewReply) SetFacets(v []ServiceViewFacet) {
+	o.Facets = v
+}
+
+// GetLimit returns the Limit field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetLimit() int64 {
+	if o == nil || isNil(o.Limit) {
+		var ret int64
+		return ret
+	}
+	return *o.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetLimitOk() (*int64, bool) {
+	if o == nil || isNil(o.Limit) {
+    return nil, false
+	}
+	return o.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasLimit() bool {
+	if o != nil && !isNil(o.Limit) {
+		return true
+	}
+
+	return false
+}
+
+// SetLimit gets a reference to the given int64 and assigns it to the Limit field.
+func (o *QueryServicesViewReply) SetLimit(v int64) {
+	o.Limit = &v
+}
+
+// GetOffset returns the Offset field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetOffset() int64 {
+	if o == nil || isNil(o.Offset) {
+		var ret int64
+		return ret
+	}
+	return *o.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetOffsetOk() (*int64, bool) {
+	if o == nil || isNil(o.Offset) {
+    return nil, false
+	}
+	return o.Offset, true
+}
+
+// HasOffset returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasOffset() bool {
+	if o != nil && !isNil(o.Offset) {
+		return true
+	}
+
+	return false
+}
+
+// SetOffset gets a reference to the given int64 and assigns it to the Offset field.
+func (o *QueryServicesViewReply) SetOffset(v int64) {
+	o.Offset = &v
+}
+
+// GetCount returns the Count field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetCount() int64 {
+	if o == nil || isNil(o.Count) {
+		var ret int64
+		return ret
+	}
+	return *o.Count
+}
+
+// GetCountOk returns a tuple with the Count field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetCountOk() (*int64, bool) {
+	if o == nil || isNil(o.Count) {
+    return nil, false
+	}
+	return o.Count, true
+}
+
+// HasCount returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasCount() bool {
+	if o != nil && !isNil(o.Count) {
+		return true
+	}
+
+	return false
+}
+
+// SetCount gets a reference to the given int64 and assigns it to the Count field.
+func (o *QueryServicesViewReply) SetCount(v int64) {
+	o.Count = &v
+}
+
+// GetHasNext returns the HasNext field value if set, zero value otherwise.
+func (o *QueryServicesViewReply) GetHasNext() bool {
+	if o == nil || isNil(o.HasNext) {
+		var ret bool
+		return ret
+	}
+	return *o.HasNext
+}
+
+// GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryServicesViewReply) GetHasNextOk() (*bool, bool) {
+	if o == nil || isNil(o.HasNext) {
+    return nil, false
+	}
+	return o.HasNext, true
+}
+
+// HasHasNext returns a boolean if a field has been set.
+func (o *QueryServicesViewReply) HasHasNext() bool {
+	if o != nil && !isNil(o.HasNext) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
+func (o *QueryServicesViewReply) SetHasNext(v bool) {
+	o.HasNext = &v
+}
+
+func (o QueryServicesViewReply) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if !isNil(o.Services) {
+		toSerialize["services"] = o.Services
+	}
+	if !isNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
+	if !isNil(o.Facets) {
+		toSerialize["facets"] = o.Facets
+	}
+	if !isNil(o.Limit) {
+		toSerialize["limit"] = o.Limit
+	}
+	if !isNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !isNil(o.Count) {
+		toSerialize["count"] = o.Count
+	}
+	if !isNil(o.HasNext) {
+		toSerialize["has_next"] = o.HasNext
+	}
+	return json.Marshal(toSerialize)
+}
+
+type NullableQueryServicesViewReply struct {
+	value *QueryServicesViewReply
+	isSet bool
+}
+
+func (v NullableQueryServicesViewReply) Get() *QueryServicesViewReply {
+	return v.value
+}
+
+func (v *NullableQueryServicesViewReply) Set(val *QueryServicesViewReply) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableQueryServicesViewReply) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableQueryServicesViewReply) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableQueryServicesViewReply(val *QueryServicesViewReply) *NullableQueryServicesViewReply {
+	return &NullableQueryServicesViewReply{value: val, isSet: true}
+}
+
+func (v NullableQueryServicesViewReply) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableQueryServicesViewReply) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}
+
+

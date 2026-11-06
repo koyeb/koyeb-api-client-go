@@ -7241,6 +7241,102 @@ paths:
       tags:
       - Apps
   /v1/archives:
+    get:
+      description: "List the archives of the organization, most recent first."
+      operationId: ListArchives
+      parameters:
+      - description: (Optional) The number of items to return
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of items to return
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Filter on archive ids
+        explode: true
+        in: query
+        name: ids
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          (Optional) Filter by archive status
+
+           - ARCHIVE_STATUS_INVALID: zero value, invalid
+           - ARCHIVE_STATUS_HEALTHY: the archive can be deployed and downloaded
+           - ARCHIVE_STATUS_DELETING: the archive is waiting for its file to be removed
+           - ARCHIVE_STATUS_DELETED: the archive and its file are deleted
+        explode: true
+        in: query
+        name: statuses
+        schema:
+          items:
+            enum:
+            - ARCHIVE_STATUS_INVALID
+            - ARCHIVE_STATUS_HEALTHY
+            - ARCHIVE_STATUS_DELETING
+            - ARCHIVE_STATUS_DELETED
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListArchivesReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: List Archives
+      tags:
+      - Archives
     post:
       description: Create a signed URL to upload an archive.
       operationId: CreateArchive
@@ -12176,6 +12272,225 @@ paths:
       tags:
       - Services
       x-codegen-request-body-name: body
+  /v1/views/services:
+    get:
+      description: |-
+        Unstable: this endpoint may change without notice.
+
+        Returns Services with their App and Deployment state. Filters, search,
+        sorting, grouping, counts and facets are all computed on the full
+        authorized result before pagination.
+      operationId: QueryServicesView
+      parameters:
+      - description: (Optional) Case-insensitive search on the Service name and the
+          App name
+        in: query
+        name: search
+        schema:
+          type: string
+      - description: (Optional) Filter on Service types
+        explode: true
+        in: query
+        name: filters.types
+        schema:
+          items:
+            enum:
+            - INVALID_TYPE
+            - WEB
+            - WORKER
+            - DATABASE
+            - SANDBOX
+            type: string
+          type: array
+        style: form
+      - description: (Optional) Filter on Service statuses
+        explode: true
+        in: query
+        name: filters.statuses
+        schema:
+          items:
+            enum:
+            - STARTING
+            - HEALTHY
+            - DEGRADED
+            - UNHEALTHY
+            - DELETING
+            - DELETED
+            - PAUSING
+            - PAUSED
+            - RESUMING
+            type: string
+          type: array
+        style: form
+      - description: (Optional) Filter on regions of the latest Deployment
+        explode: true
+        in: query
+        name: filters.regions
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: (Optional) Filter on App ids
+        explode: true
+        in: query
+        name: filters.app_ids
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: |-
+          (Optional) Filter on active Deployment states
+
+           - SLEEPING: The active Deployment is scaled to zero and wakes up on traffic
+        explode: true
+        in: query
+        name: filters.active_deployment_states
+        schema:
+          items:
+            enum:
+            - NONE
+            - STARTING
+            - HEALTHY
+            - DEGRADED
+            - UNHEALTHY
+            - STOPPING
+            - PAUSED
+            - SLEEPING
+            type: string
+          type: array
+        style: form
+      - description: (Optional) Filter on latest Deployment states
+        explode: true
+        in: query
+        name: filters.latest_deployment_states
+        schema:
+          items:
+            enum:
+            - NONE
+            - STARTING
+            - STOPPING
+            - FAILED
+            type: string
+          type: array
+        style: form
+      - description: (Optional) Filter on Services that need attention
+        in: query
+        name: filters.needs_attention
+        schema:
+          type: boolean
+      - in: query
+        name: sort.field
+        schema:
+          default: CREATED_AT
+          enum:
+          - CREATED_AT
+          - UPDATED_AT
+          - NAME
+          - APP_NAME
+          - ACTIVE_DEPLOYMENT_STATE
+          - LATEST_DEPLOYMENT_STATE
+          type: string
+      - in: query
+        name: sort.direction
+        schema:
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      - description: |-
+          (Optional) Group rows by App. Groups are ordered by App name and keep a
+          stable order across pages. Pagination always counts Services
+        in: query
+        name: group_by
+        schema:
+          default: NO_GROUP
+          enum:
+          - NO_GROUP
+          - APP
+          type: string
+      - description: (Optional) The number of items to return
+        in: query
+        name: limit
+        schema:
+          type: string
+      - description: (Optional) The offset in the list of item to return
+        in: query
+        name: offset
+        schema:
+          type: string
+      - description: (Optional) Facets to compute on the full result
+        explode: true
+        in: query
+        name: facets
+        schema:
+          items:
+            enum:
+            - TYPE
+            - STATUS
+            - REGION
+            - APP
+            - ACTIVE_DEPLOYMENT_STATE
+            - LATEST_DEPLOYMENT_STATE
+            - NEEDS_ATTENTION
+            type: string
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/QueryServicesViewReply'
+          description: A successful response.
+        "400":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorWithFields'
+          description: Validation error
+        "401":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the token is not valid.
+        "403":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Returned in case of server error.
+        "503":
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Service is unavailable.
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/google.rpc.Status'
+          description: An unexpected error response.
+      summary: Query the Services view
+      tags:
+      - ServiceViews
   /v1/snapshots:
     get:
       operationId: ListSnapshots
@@ -18741,6 +19056,53 @@ components:
         archive:
           $ref: '#/components/schemas/Archive'
       type: object
+    ListArchivesReply:
+      example:
+        archives:
+        - size: size
+          download_url_deadline: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          download_url: download_url
+          upload_url: upload_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+        - size: size
+          download_url_deadline: 2000-01-23T04:56:07.000+00:00
+          organization_id: organization_id
+          download_url: download_url
+          upload_url: upload_url
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          deleted_at: 2000-01-23T04:56:07.000+00:00
+          status: null
+        offset: 6
+        limit: 0
+        count: 1
+        has_next: true
+      properties:
+        archives:
+          items:
+            $ref: '#/components/schemas/Archive'
+          title: The collection of archives
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of archives matching the filters
+          type: integer
+        has_next:
+          title: If there are more items after in the collection
+          type: boolean
+      type: object
     BasicAuthPolicy:
       example:
         password: password
@@ -21207,6 +21569,7 @@ components:
           sandbox:
             public_url: public_url
             routing_key: routing_key
+            internal_url: internal_url
           proxy_ports:
           - protocol: null
             port: 6
@@ -21842,6 +22205,7 @@ components:
           sandbox:
             public_url: public_url
             routing_key: routing_key
+            internal_url: internal_url
           proxy_ports:
           - protocol: null
             port: 6
@@ -22390,6 +22754,7 @@ components:
         sandbox:
           public_url: public_url
           routing_key: routing_key
+          internal_url: internal_url
         proxy_ports:
         - protocol: null
           port: 6
@@ -22888,6 +23253,7 @@ components:
             sandbox:
               public_url: public_url
               routing_key: routing_key
+              internal_url: internal_url
             proxy_ports:
             - protocol: null
               port: 6
@@ -23703,6 +24069,7 @@ components:
             sandbox:
               public_url: public_url
               routing_key: routing_key
+              internal_url: internal_url
             proxy_ports:
             - protocol: null
               port: 6
@@ -24188,6 +24555,7 @@ components:
             sandbox:
               public_url: public_url
               routing_key: routing_key
+              internal_url: internal_url
             proxy_ports:
             - protocol: null
               port: 6
@@ -24699,10 +25067,15 @@ components:
       example:
         public_url: public_url
         routing_key: routing_key
+        internal_url: internal_url
       properties:
         public_url:
           type: string
         routing_key:
+          type: string
+        internal_url:
+          title: "In-cluster url of the sandbox gateway, for clients running in the\
+            \ same k8s cluster"
           type: string
       type: object
     TriggerDeploymentMetadata:
@@ -31544,6 +31917,7 @@ components:
             sandbox:
               public_url: public_url
               routing_key: routing_key
+              internal_url: internal_url
             proxy_ports:
             - protocol: null
               port: 6
@@ -32166,6 +32540,7 @@ components:
           sandbox:
             public_url: public_url
             routing_key: routing_key
+            internal_url: internal_url
           proxy_ports:
           - protocol: null
             port: 6
@@ -32551,6 +32926,462 @@ components:
     UpdateServiceScalingReply:
       title: Empty reply - success is indicated by no error
       type: object
+    QueryServicesViewFilters:
+      properties:
+        types:
+          items:
+            $ref: '#/components/schemas/Service.Type'
+          title: (Optional) Filter on Service types
+          type: array
+        statuses:
+          items:
+            $ref: '#/components/schemas/Service.Status'
+          title: (Optional) Filter on Service statuses
+          type: array
+        regions:
+          items:
+            type: string
+          title: (Optional) Filter on regions of the latest Deployment
+          type: array
+        app_ids:
+          items:
+            type: string
+          title: (Optional) Filter on App ids
+          type: array
+        active_deployment_states:
+          items:
+            $ref: '#/components/schemas/ServiceViewActiveDeployment.State'
+          title: (Optional) Filter on active Deployment states
+          type: array
+        latest_deployment_states:
+          items:
+            $ref: '#/components/schemas/ServiceViewLatestDeployment.State'
+          title: (Optional) Filter on latest Deployment states
+          type: array
+        needs_attention:
+          title: (Optional) Filter on Services that need attention
+          type: boolean
+      type: object
+    QueryServicesViewReply:
+      example:
+        offset: 5
+        limit: 1
+        count: 5
+        groups:
+        - by: null
+          count: 0
+          label: label
+          key: key
+        - by: null
+          count: 0
+          label: label
+          key: key
+        has_next: true
+        services:
+        - app:
+            name: name
+            id: id
+          active_deployment:
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            missing: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            state: null
+            id: id
+            status: null
+          regions:
+          - regions
+          - regions
+          created_at: 2000-01-23T04:56:07.000+00:00
+          source:
+            reference: reference
+            type: null
+          type: null
+          latest_deployment:
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            missing: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            state: null
+            id: id
+            status: null
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+          instance_type: instance_type
+          needs_attention: true
+          status: null
+        - app:
+            name: name
+            id: id
+          active_deployment:
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            missing: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            state: null
+            id: id
+            status: null
+          regions:
+          - regions
+          - regions
+          created_at: 2000-01-23T04:56:07.000+00:00
+          source:
+            reference: reference
+            type: null
+          type: null
+          latest_deployment:
+            updated_at: 2000-01-23T04:56:07.000+00:00
+            missing: true
+            created_at: 2000-01-23T04:56:07.000+00:00
+            state: null
+            id: id
+            status: null
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          name: name
+          messages:
+          - messages
+          - messages
+          id: id
+          app_id: app_id
+          instance_type: instance_type
+          needs_attention: true
+          status: null
+        facets:
+        - kind: null
+          values:
+          - count: 6
+            label: label
+            value: value
+          - count: 6
+            label: label
+            value: value
+        - kind: null
+          values:
+          - count: 6
+            label: label
+            value: value
+          - count: 6
+            label: label
+            value: value
+      properties:
+        services:
+          items:
+            $ref: '#/components/schemas/ServiceViewRow'
+          type: array
+        groups:
+          items:
+            $ref: '#/components/schemas/ServiceViewGroup'
+          title: "Groups present in this page, with counts computed on the full result"
+          type: array
+        facets:
+          items:
+            $ref: '#/components/schemas/ServiceViewFacet'
+          title: "Facets computed on the full result, ignoring the filter on the facet\
+            \ itself"
+          type: array
+        limit:
+          format: int64
+          title: The limit in the request
+          type: integer
+        offset:
+          format: int64
+          title: The offset in the request
+          type: integer
+        count:
+          format: int64
+          title: The total number of Services matching the query
+          type: integer
+        has_next:
+          title: If there is more items after in the collection
+          type: boolean
+      type: object
+    QueryServicesViewSort:
+      properties:
+        field:
+          $ref: '#/components/schemas/QueryServicesViewSort.Field'
+        direction:
+          $ref: '#/components/schemas/QueryServicesViewSort.Direction'
+      type: object
+    QueryServicesViewSort.Direction:
+      default: ASC
+      enum:
+      - ASC
+      - DESC
+      type: string
+    QueryServicesViewSort.Field:
+      default: CREATED_AT
+      enum:
+      - CREATED_AT
+      - UPDATED_AT
+      - NAME
+      - APP_NAME
+      - ACTIVE_DEPLOYMENT_STATE
+      - LATEST_DEPLOYMENT_STATE
+      title: |-
+        ACTIVE_DEPLOYMENT_STATE and LATEST_DEPLOYMENT_STATE sort by severity, the
+        most urgent first in ascending order. NONE states are always last
+      type: string
+    ServiceViewActiveDeployment:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        missing: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        state: null
+        id: id
+        status: null
+      properties:
+        state:
+          $ref: '#/components/schemas/ServiceViewActiveDeployment.State'
+        id:
+          title: Unset when the Service has no active Deployment
+          type: string
+        missing:
+          title: True when the Service references an active Deployment that cannot
+            be found
+          type: boolean
+        status:
+          $ref: '#/components/schemas/Deployment.Status'
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    ServiceViewActiveDeployment.State:
+      default: NONE
+      description: "- SLEEPING: The active Deployment is scaled to zero and wakes\
+        \ up on traffic"
+      enum:
+      - NONE
+      - STARTING
+      - HEALTHY
+      - DEGRADED
+      - UNHEALTHY
+      - STOPPING
+      - PAUSED
+      - SLEEPING
+      title: "The Deployment currently serving the Service, from the product point\
+        \ of view"
+      type: string
+    ServiceViewApp:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    ServiceViewFacet:
+      example:
+        kind: null
+        values:
+        - count: 6
+          label: label
+          value: value
+        - count: 6
+          label: label
+          value: value
+      properties:
+        kind:
+          $ref: '#/components/schemas/ServiceViewFacet.Kind'
+        values:
+          items:
+            $ref: '#/components/schemas/ServiceViewFacet.Value'
+          type: array
+      type: object
+    ServiceViewFacet.Kind:
+      default: TYPE
+      enum:
+      - TYPE
+      - STATUS
+      - REGION
+      - APP
+      - ACTIVE_DEPLOYMENT_STATE
+      - LATEST_DEPLOYMENT_STATE
+      - NEEDS_ATTENTION
+      type: string
+    ServiceViewFacet.Value:
+      example:
+        count: 6
+        label: label
+        value: value
+      properties:
+        value:
+          title: The value to use in the matching filter
+          type: string
+        label:
+          title: "A display label when the value is an identifier, e.g. the App name"
+          type: string
+        count:
+          format: int64
+          type: integer
+      type: object
+    ServiceViewGroup:
+      example:
+        by: null
+        count: 0
+        label: label
+        key: key
+      properties:
+        by:
+          $ref: '#/components/schemas/ServiceViewGroup.By'
+        key:
+          title: "The group key, e.g. the App id"
+          type: string
+        label:
+          title: "The group label, e.g. the App name"
+          type: string
+        count:
+          format: int64
+          title: The number of Services of this group matching the query
+          type: integer
+      type: object
+    ServiceViewGroup.By:
+      default: NO_GROUP
+      enum:
+      - NO_GROUP
+      - APP
+      type: string
+    ServiceViewLatestDeployment:
+      example:
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        missing: true
+        created_at: 2000-01-23T04:56:07.000+00:00
+        state: null
+        id: id
+        status: null
+      properties:
+        state:
+          $ref: '#/components/schemas/ServiceViewLatestDeployment.State'
+        id:
+          title: Unset when the Service has no latest Deployment
+          type: string
+        missing:
+          title: True when the Service references a latest Deployment that cannot
+            be found
+          type: boolean
+        status:
+          $ref: '#/components/schemas/Deployment.Status'
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    ServiceViewLatestDeployment.State:
+      default: NONE
+      enum:
+      - NONE
+      - STARTING
+      - STOPPING
+      - FAILED
+      title: The state of the latest Deployment when it differs from the active one
+      type: string
+    ServiceViewRow:
+      example:
+        app:
+          name: name
+          id: id
+        active_deployment:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          missing: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          state: null
+          id: id
+          status: null
+        regions:
+        - regions
+        - regions
+        created_at: 2000-01-23T04:56:07.000+00:00
+        source:
+          reference: reference
+          type: null
+        type: null
+        latest_deployment:
+          updated_at: 2000-01-23T04:56:07.000+00:00
+          missing: true
+          created_at: 2000-01-23T04:56:07.000+00:00
+          state: null
+          id: id
+          status: null
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        name: name
+        messages:
+        - messages
+        - messages
+        id: id
+        app_id: app_id
+        instance_type: instance_type
+        needs_attention: true
+        status: null
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/Service.Type'
+        status:
+          $ref: '#/components/schemas/Service.Status'
+        messages:
+          items:
+            type: string
+          type: array
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        app_id:
+          type: string
+        app:
+          $ref: '#/components/schemas/ServiceViewApp'
+        active_deployment:
+          $ref: '#/components/schemas/ServiceViewActiveDeployment'
+        latest_deployment:
+          $ref: '#/components/schemas/ServiceViewLatestDeployment'
+        needs_attention:
+          title: "True when the active Deployment state is UNHEALTHY or DEGRADED,\
+            \ or the latest Deployment state is FAILED"
+          type: boolean
+        regions:
+          items:
+            type: string
+          title: Regions of the latest Deployment
+          type: array
+        instance_type:
+          title: Instance type of the latest Deployment
+          type: string
+        source:
+          $ref: '#/components/schemas/ServiceViewSource'
+      type: object
+    ServiceViewSource:
+      example:
+        reference: reference
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/ServiceViewSource.Type'
+        reference:
+          title: The docker image or the git repository
+          type: string
+      type: object
+    ServiceViewSource.Type:
+      default: UNKNOWN
+      enum:
+      - UNKNOWN
+      - DOCKER
+      - GIT
+      - ARCHIVE
+      - DATABASE
+      type: string
     CreateSnapshotReply:
       example:
         snapshot:
@@ -33619,6 +34450,7 @@ x-tagGroups:
   - activity
   - Apps
   - Services
+  - ServiceViews
   - Deployments
   - Archives
   - RegionalDeployments

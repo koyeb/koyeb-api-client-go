@@ -28,6 +28,7 @@
         "activity",
         "Apps",
         "Services",
+        "ServiceViews",
         "Deployments",
         "Archives",
         "RegionalDeployments",
@@ -7763,6 +7764,108 @@
       }
     },
     "/v1/archives": {
+      "get": {
+        "summary": "List Archives",
+        "description": "List the archives of the organization, most recent first.",
+        "operationId": "ListArchives",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListArchivesReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ids",
+            "description": "(Optional) Filter on archive ids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "statuses",
+            "description": "(Optional) Filter by archive status\n\n - ARCHIVE_STATUS_INVALID: zero value, invalid\n - ARCHIVE_STATUS_HEALTHY: the archive can be deployed and downloaded\n - ARCHIVE_STATUS_DELETING: the archive is waiting for its file to be removed\n - ARCHIVE_STATUS_DELETED: the archive and its file are deleted",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "ARCHIVE_STATUS_INVALID",
+                "ARCHIVE_STATUS_HEALTHY",
+                "ARCHIVE_STATUS_DELETING",
+                "ARCHIVE_STATUS_DELETED"
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "Archives"
+        ]
+      },
       "post": {
         "summary": "Create Archive",
         "description": "Create a signed URL to upload an archive.",
@@ -13306,6 +13409,254 @@
         ]
       }
     },
+    "/v1/views/services": {
+      "get": {
+        "summary": "Query the Services view",
+        "description": "Unstable: this endpoint may change without notice.\n\nReturns Services with their App and Deployment state. Filters, search,\nsorting, grouping, counts and facets are all computed on the full\nauthorized result before pagination.",
+        "operationId": "QueryServicesView",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/QueryServicesViewReply"
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ErrorWithFields"
+            }
+          },
+          "401": {
+            "description": "Returned when the token is not valid.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Returned in case of server error.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "503": {
+            "description": "Service is unavailable.",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/google.rpc.Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "search",
+            "description": "(Optional) Case-insensitive search on the Service name and the App name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filters.types",
+            "description": "(Optional) Filter on Service types",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "INVALID_TYPE",
+                "WEB",
+                "WORKER",
+                "DATABASE",
+                "SANDBOX"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.statuses",
+            "description": "(Optional) Filter on Service statuses",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "STARTING",
+                "HEALTHY",
+                "DEGRADED",
+                "UNHEALTHY",
+                "DELETING",
+                "DELETED",
+                "PAUSING",
+                "PAUSED",
+                "RESUMING"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.regions",
+            "description": "(Optional) Filter on regions of the latest Deployment",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.app_ids",
+            "description": "(Optional) Filter on App ids",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.active_deployment_states",
+            "description": "(Optional) Filter on active Deployment states\n\n - SLEEPING: The active Deployment is scaled to zero and wakes up on traffic",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "STARTING",
+                "HEALTHY",
+                "DEGRADED",
+                "UNHEALTHY",
+                "STOPPING",
+                "PAUSED",
+                "SLEEPING"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.latest_deployment_states",
+            "description": "(Optional) Filter on latest Deployment states",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "STARTING",
+                "STOPPING",
+                "FAILED"
+              ]
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "filters.needs_attention",
+            "description": "(Optional) Filter on Services that need attention",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.field",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "CREATED_AT",
+              "UPDATED_AT",
+              "NAME",
+              "APP_NAME",
+              "ACTIVE_DEPLOYMENT_STATE",
+              "LATEST_DEPLOYMENT_STATE"
+            ],
+            "default": "CREATED_AT"
+          },
+          {
+            "name": "sort.direction",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ASC",
+              "DESC"
+            ],
+            "default": "ASC"
+          },
+          {
+            "name": "group_by",
+            "description": "(Optional) Group rows by App. Groups are ordered by App name and keep a\nstable order across pages. Pagination always counts Services",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "NO_GROUP",
+              "APP"
+            ],
+            "default": "NO_GROUP"
+          },
+          {
+            "name": "limit",
+            "description": "(Optional) The number of items to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "description": "(Optional) The offset in the list of item to return",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "facets",
+            "description": "(Optional) Facets to compute on the full result",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "TYPE",
+                "STATUS",
+                "REGION",
+                "APP",
+                "ACTIVE_DEPLOYMENT_STATE",
+                "LATEST_DEPLOYMENT_STATE",
+                "NEEDS_ATTENTION"
+              ]
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "ServiceViews"
+        ]
+      }
+    },
     "/v1/snapshots": {
       "get": {
         "summary": "List all Snapshots",
@@ -18208,6 +18559,37 @@
         }
       }
     },
+    "ListArchivesReply": {
+      "type": "object",
+      "properties": {
+        "archives": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Archive"
+          },
+          "title": "The collection of archives"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of archives matching the filters"
+        },
+        "has_next": {
+          "type": "boolean",
+          "title": "If there are more items after in the collection"
+        }
+      }
+    },
     "BasicAuthPolicy": {
       "type": "object",
       "properties": {
@@ -20000,6 +20382,10 @@
         },
         "routing_key": {
           "type": "string"
+        },
+        "internal_url": {
+          "type": "string",
+          "title": "In-cluster url of the sandbox gateway, for clients running in the same k8s cluster"
         }
       }
     },
@@ -22202,6 +22588,384 @@
     "UpdateServiceScalingReply": {
       "type": "object",
       "title": "Empty reply - success is indicated by no error"
+    },
+    "QueryServicesViewFilters": {
+      "type": "object",
+      "properties": {
+        "types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service.Type"
+          },
+          "title": "(Optional) Filter on Service types"
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Service.Status"
+          },
+          "title": "(Optional) Filter on Service statuses"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "(Optional) Filter on regions of the latest Deployment"
+        },
+        "app_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "(Optional) Filter on App ids"
+        },
+        "active_deployment_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewActiveDeployment.State"
+          },
+          "title": "(Optional) Filter on active Deployment states"
+        },
+        "latest_deployment_states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewLatestDeployment.State"
+          },
+          "title": "(Optional) Filter on latest Deployment states"
+        },
+        "needs_attention": {
+          "type": "boolean",
+          "title": "(Optional) Filter on Services that need attention"
+        }
+      }
+    },
+    "QueryServicesViewReply": {
+      "type": "object",
+      "properties": {
+        "services": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewRow"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewGroup"
+          },
+          "title": "Groups present in this page, with counts computed on the full result"
+        },
+        "facets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewFacet"
+          },
+          "title": "Facets computed on the full result, ignoring the filter on the facet itself"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The limit in the request"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The offset in the request"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The total number of Services matching the query"
+        },
+        "has_next": {
+          "type": "boolean",
+          "title": "If there is more items after in the collection"
+        }
+      }
+    },
+    "QueryServicesViewSort": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "$ref": "#/definitions/QueryServicesViewSort.Field"
+        },
+        "direction": {
+          "$ref": "#/definitions/QueryServicesViewSort.Direction"
+        }
+      }
+    },
+    "QueryServicesViewSort.Direction": {
+      "type": "string",
+      "enum": [
+        "ASC",
+        "DESC"
+      ],
+      "default": "ASC"
+    },
+    "QueryServicesViewSort.Field": {
+      "type": "string",
+      "enum": [
+        "CREATED_AT",
+        "UPDATED_AT",
+        "NAME",
+        "APP_NAME",
+        "ACTIVE_DEPLOYMENT_STATE",
+        "LATEST_DEPLOYMENT_STATE"
+      ],
+      "default": "CREATED_AT",
+      "title": "ACTIVE_DEPLOYMENT_STATE and LATEST_DEPLOYMENT_STATE sort by severity, the\nmost urgent first in ascending order. NONE states are always last"
+    },
+    "ServiceViewActiveDeployment": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/ServiceViewActiveDeployment.State"
+        },
+        "id": {
+          "type": "string",
+          "title": "Unset when the Service has no active Deployment"
+        },
+        "missing": {
+          "type": "boolean",
+          "title": "True when the Service references an active Deployment that cannot be found"
+        },
+        "status": {
+          "$ref": "#/definitions/Deployment.Status"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ServiceViewActiveDeployment.State": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "STARTING",
+        "HEALTHY",
+        "DEGRADED",
+        "UNHEALTHY",
+        "STOPPING",
+        "PAUSED",
+        "SLEEPING"
+      ],
+      "default": "NONE",
+      "description": "- SLEEPING: The active Deployment is scaled to zero and wakes up on traffic",
+      "title": "The Deployment currently serving the Service, from the product point of view"
+    },
+    "ServiceViewApp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "ServiceViewFacet": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "$ref": "#/definitions/ServiceViewFacet.Kind"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceViewFacet.Value"
+          }
+        }
+      }
+    },
+    "ServiceViewFacet.Kind": {
+      "type": "string",
+      "enum": [
+        "TYPE",
+        "STATUS",
+        "REGION",
+        "APP",
+        "ACTIVE_DEPLOYMENT_STATE",
+        "LATEST_DEPLOYMENT_STATE",
+        "NEEDS_ATTENTION"
+      ],
+      "default": "TYPE"
+    },
+    "ServiceViewFacet.Value": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "title": "The value to use in the matching filter"
+        },
+        "label": {
+          "type": "string",
+          "title": "A display label when the value is an identifier, e.g. the App name"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "ServiceViewGroup": {
+      "type": "object",
+      "properties": {
+        "by": {
+          "$ref": "#/definitions/ServiceViewGroup.By"
+        },
+        "key": {
+          "type": "string",
+          "title": "The group key, e.g. the App id"
+        },
+        "label": {
+          "type": "string",
+          "title": "The group label, e.g. the App name"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of Services of this group matching the query"
+        }
+      }
+    },
+    "ServiceViewGroup.By": {
+      "type": "string",
+      "enum": [
+        "NO_GROUP",
+        "APP"
+      ],
+      "default": "NO_GROUP"
+    },
+    "ServiceViewLatestDeployment": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/ServiceViewLatestDeployment.State"
+        },
+        "id": {
+          "type": "string",
+          "title": "Unset when the Service has no latest Deployment"
+        },
+        "missing": {
+          "type": "boolean",
+          "title": "True when the Service references a latest Deployment that cannot be found"
+        },
+        "status": {
+          "$ref": "#/definitions/Deployment.Status"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ServiceViewLatestDeployment.State": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "STARTING",
+        "STOPPING",
+        "FAILED"
+      ],
+      "default": "NONE",
+      "title": "The state of the latest Deployment when it differs from the active one"
+    },
+    "ServiceViewRow": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Service.Type"
+        },
+        "status": {
+          "$ref": "#/definitions/Service.Status"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "app_id": {
+          "type": "string"
+        },
+        "app": {
+          "$ref": "#/definitions/ServiceViewApp",
+          "title": "The App of the Service"
+        },
+        "active_deployment": {
+          "$ref": "#/definitions/ServiceViewActiveDeployment"
+        },
+        "latest_deployment": {
+          "$ref": "#/definitions/ServiceViewLatestDeployment"
+        },
+        "needs_attention": {
+          "type": "boolean",
+          "title": "True when the active Deployment state is UNHEALTHY or DEGRADED, or the latest Deployment state is FAILED"
+        },
+        "regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Regions of the latest Deployment"
+        },
+        "instance_type": {
+          "type": "string",
+          "title": "Instance type of the latest Deployment"
+        },
+        "source": {
+          "$ref": "#/definitions/ServiceViewSource",
+          "title": "Source of the latest Deployment"
+        }
+      }
+    },
+    "ServiceViewSource": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/ServiceViewSource.Type"
+        },
+        "reference": {
+          "type": "string",
+          "title": "The docker image or the git repository"
+        }
+      }
+    },
+    "ServiceViewSource.Type": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "DOCKER",
+        "GIT",
+        "ARCHIVE",
+        "DATABASE"
+      ],
+      "default": "UNKNOWN"
     },
     "CreateSnapshotReply": {
       "type": "object",
