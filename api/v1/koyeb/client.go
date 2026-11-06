@@ -123,6 +123,8 @@ type APIClient struct {
 
 	ServicePoolsApi ServicePoolsApi
 
+	ServiceViewsApi ServiceViewsApi
+
 	ServicesApi ServicesApi
 
 	SessionsApi SessionsApi
@@ -195,6 +197,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SearchApi = (*SearchApiService)(&c.common)
 	c.SecretsApi = (*SecretsApiService)(&c.common)
 	c.ServicePoolsApi = (*ServicePoolsApiService)(&c.common)
+	c.ServiceViewsApi = (*ServiceViewsApiService)(&c.common)
 	c.ServicesApi = (*ServicesApiService)(&c.common)
 	c.SessionsApi = (*SessionsApiService)(&c.common)
 	c.SnapshotsApi = (*SnapshotsApiService)(&c.common)

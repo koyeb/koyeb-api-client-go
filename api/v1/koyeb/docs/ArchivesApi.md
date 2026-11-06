@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**CreateArchive**](ArchivesApi.md#CreateArchive) | **Post** /v1/archives | Create Archive
 [**DeleteArchive**](ArchivesApi.md#DeleteArchive) | **Delete** /v1/archives/{id} | Delete Archive
 [**GetArchive**](ArchivesApi.md#GetArchive) | **Get** /v1/archives/{id} | Get Archive
+[**ListArchives**](ArchivesApi.md#ListArchives) | **Get** /v1/archives | List Archives
 
 
 
@@ -201,6 +202,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetArchiveReply**](GetArchiveReply.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListArchives
+
+> ListArchivesReply ListArchives(ctx).Limit(limit).Offset(offset).Ids(ids).Statuses(statuses).Execute()
+
+List Archives
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    limit := "limit_example" // string | (Optional) The number of items to return (optional)
+    offset := "offset_example" // string | (Optional) The offset in the list of items to return (optional)
+    ids := []string{"Inner_example"} // []string | (Optional) Filter on archive ids (optional)
+    statuses := []string{"Statuses_example"} // []string | (Optional) Filter by archive status   - ARCHIVE_STATUS_INVALID: zero value, invalid  - ARCHIVE_STATUS_HEALTHY: the archive can be deployed and downloaded  - ARCHIVE_STATUS_DELETING: the archive is waiting for its file to be removed  - ARCHIVE_STATUS_DELETED: the archive and its file are deleted (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ArchivesApi.ListArchives(context.Background()).Limit(limit).Offset(offset).Ids(ids).Statuses(statuses).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ArchivesApi.ListArchives``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListArchives`: ListArchivesReply
+    fmt.Fprintf(os.Stdout, "Response from `ArchivesApi.ListArchives`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListArchivesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **string** | (Optional) The number of items to return | 
+ **offset** | **string** | (Optional) The offset in the list of items to return | 
+ **ids** | **[]string** | (Optional) Filter on archive ids | 
+ **statuses** | **[]string** | (Optional) Filter by archive status   - ARCHIVE_STATUS_INVALID: zero value, invalid  - ARCHIVE_STATUS_HEALTHY: the archive can be deployed and downloaded  - ARCHIVE_STATUS_DELETING: the archive is waiting for its file to be removed  - ARCHIVE_STATUS_DELETED: the archive and its file are deleted | 
+
+### Return type
+
+[**ListArchivesReply**](ListArchivesReply.md)
 
 ### Authorization
 

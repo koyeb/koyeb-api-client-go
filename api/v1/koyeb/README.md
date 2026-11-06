@@ -278,6 +278,7 @@ Class | Method | HTTP request | Description
 *ArchivesApi* | [**CreateArchive**](docs/ArchivesApi.md#createarchive) | **Post** /v1/archives | Create Archive
 *ArchivesApi* | [**DeleteArchive**](docs/ArchivesApi.md#deletearchive) | **Delete** /v1/archives/{id} | Delete Archive
 *ArchivesApi* | [**GetArchive**](docs/ArchivesApi.md#getarchive) | **Get** /v1/archives/{id} | Get Archive
+*ArchivesApi* | [**ListArchives**](docs/ArchivesApi.md#listarchives) | **Get** /v1/archives | List Archives
 *BillingApi* | [**HasUnpaidInvoices**](docs/BillingApi.md#hasunpaidinvoices) | **Get** /v1/billing/has_unpaid_invoices | Experimental: Has unpaid invoices
 *BillingApi* | [**Manage**](docs/BillingApi.md#manage) | **Get** /v1/billing/manage | 
 *BillingApi* | [**NextInvoice**](docs/BillingApi.md#nextinvoice) | **Get** /v1/billing/next_invoice | Experimental: Fetch next invoice
@@ -418,6 +419,7 @@ Class | Method | HTTP request | Description
 *ServicePoolsApi* | [**GetServicePool**](docs/ServicePoolsApi.md#getservicepool) | **Get** /v1/service_pools/{id} | Get a ServicePool
 *ServicePoolsApi* | [**ListServicePools**](docs/ServicePoolsApi.md#listservicepools) | **Get** /v1/service_pools | List ServicePools
 *ServicePoolsApi* | [**UpdateServicePool**](docs/ServicePoolsApi.md#updateservicepool) | **Put** /v1/service_pools/{id} | 
+*ServiceViewsApi* | [**QueryServicesView**](docs/ServiceViewsApi.md#queryservicesview) | **Get** /v1/views/services | Query the Services view
 *ServicesApi* | [**Autocomplete**](docs/ServicesApi.md#autocomplete) | **Post** /v1/services-autocomplete | Autocomplete definition
 *ServicesApi* | [**CreateService**](docs/ServicesApi.md#createservice) | **Post** /v1/services | Create Service
 *ServicesApi* | [**DeleteService**](docs/ServicesApi.md#deleteservice) | **Delete** /v1/services/{id} | Delete Service
@@ -690,6 +692,7 @@ Class | Method | HTTP request | Description
  - [LifecycleQuotas](docs/LifecycleQuotas.md)
  - [ListAppEventsReply](docs/ListAppEventsReply.md)
  - [ListAppsReply](docs/ListAppsReply.md)
+ - [ListArchivesReply](docs/ListArchivesReply.md)
  - [ListCatalogInstancesReply](docs/ListCatalogInstancesReply.md)
  - [ListCredentialsReply](docs/ListCredentialsReply.md)
  - [ListDatacentersReply](docs/ListDatacentersReply.md)
@@ -779,6 +782,11 @@ Class | Method | HTTP request | Description
  - [PublicUser](docs/PublicUser.md)
  - [QueryLogsReply](docs/QueryLogsReply.md)
  - [QueryLogsReplyPagination](docs/QueryLogsReplyPagination.md)
+ - [QueryServicesViewFilters](docs/QueryServicesViewFilters.md)
+ - [QueryServicesViewReply](docs/QueryServicesViewReply.md)
+ - [QueryServicesViewSort](docs/QueryServicesViewSort.md)
+ - [QueryServicesViewSortDirection](docs/QueryServicesViewSortDirection.md)
+ - [QueryServicesViewSortField](docs/QueryServicesViewSortField.md)
  - [QuotaUsage](docs/QuotaUsage.md)
  - [Quotas](docs/Quotas.md)
  - [ReactivateOrganizationReply](docs/ReactivateOrganizationReply.md)
@@ -825,6 +833,19 @@ Class | Method | HTTP request | Description
  - [ServiceSummary](docs/ServiceSummary.md)
  - [ServiceType](docs/ServiceType.md)
  - [ServiceUsage](docs/ServiceUsage.md)
+ - [ServiceViewActiveDeployment](docs/ServiceViewActiveDeployment.md)
+ - [ServiceViewActiveDeploymentState](docs/ServiceViewActiveDeploymentState.md)
+ - [ServiceViewApp](docs/ServiceViewApp.md)
+ - [ServiceViewFacet](docs/ServiceViewFacet.md)
+ - [ServiceViewFacetKind](docs/ServiceViewFacetKind.md)
+ - [ServiceViewFacetValue](docs/ServiceViewFacetValue.md)
+ - [ServiceViewGroup](docs/ServiceViewGroup.md)
+ - [ServiceViewGroupBy](docs/ServiceViewGroupBy.md)
+ - [ServiceViewLatestDeployment](docs/ServiceViewLatestDeployment.md)
+ - [ServiceViewLatestDeploymentState](docs/ServiceViewLatestDeploymentState.md)
+ - [ServiceViewRow](docs/ServiceViewRow.md)
+ - [ServiceViewSource](docs/ServiceViewSource.md)
+ - [ServiceViewSourceType](docs/ServiceViewSourceType.md)
  - [Snapshot](docs/Snapshot.md)
  - [SnapshotStatus](docs/SnapshotStatus.md)
  - [SnapshotType](docs/SnapshotType.md)

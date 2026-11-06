@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PublicUrl** | Pointer to **string** |  | [optional] 
 **RoutingKey** | Pointer to **string** |  | [optional] 
+**InternalUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -75,6 +76,31 @@ SetRoutingKey sets RoutingKey field to given value.
 `func (o *SandboxMetadata) HasRoutingKey() bool`
 
 HasRoutingKey returns a boolean if a field has been set.
+
+### GetInternalUrl
+
+`func (o *SandboxMetadata) GetInternalUrl() string`
+
+GetInternalUrl returns the InternalUrl field if non-nil, zero value otherwise.
+
+### GetInternalUrlOk
+
+`func (o *SandboxMetadata) GetInternalUrlOk() (*string, bool)`
+
+GetInternalUrlOk returns a tuple with the InternalUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInternalUrl
+
+`func (o *SandboxMetadata) SetInternalUrl(v string)`
+
+SetInternalUrl sets InternalUrl field to given value.
+
+### HasInternalUrl
+
+`func (o *SandboxMetadata) HasInternalUrl() bool`
+
+HasInternalUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
